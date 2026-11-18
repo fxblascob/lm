@@ -42,4 +42,4 @@ Para ejecutar los ejemplos y prácticas de la sección `php/`:
 - **JavaScript (ES6+)**
 - **XML / DTD / XPath**
 - **PHP & MySQL / MariaDB (PDO)**
-- **Bootstrap 5.1.3**
+- **Bootstrap 5.1.3 (vía CDN)**
