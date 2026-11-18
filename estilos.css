@@ -1,5 +1,5 @@
 body {
-    background : #C0D9D9 url('.//imagenes/fondo.gif') repeat;
+    background : #C0D9D9 url('./imagenes/fondo.gif') repeat;
     font : 11pt Verdana, Geneva, Arial, Helvetica, sans-serif;
     color : #353434;
     margin : 0;

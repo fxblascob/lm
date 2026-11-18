@@ -1,8 +1,10 @@
 function hacerclic(){
-    document.querySelector("#contenedor_cuerpo p:first-clild").onclick=mostraralerta;
-   
+    var p = document.querySelector("#contenedor_cuerpo p:first-child");
+    if (p) {
+        p.onclick = mostraralerta;
+    }
 }
 function mostraralerta() {
     alert("hizo clic");
 }
-window.onload=hacerclic;
+window.onload = hacerclic;
