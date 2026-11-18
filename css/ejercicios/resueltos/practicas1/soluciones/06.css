@@ -1,0 +1,23 @@
+div.c1 {
+	font-family:Arial;
+	font-size:20px;
+	background-color:purple;
+	margin-bottom:10px;
+	
+	}
+
+div.c2 {
+	font-family:Arial;
+	font-size:20px;
+	background-color:purple;
+	margin-bottom:10px;
+	position:relative;
+	left:40px;
+	}
+div.c3 {
+	font-family:Arial;
+	font-size:20px;
+	background-color:purple;
+	margin-bottom:10px;
+
+	}

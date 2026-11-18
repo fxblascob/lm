@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js14b</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+var mensaje="Este es un mensaje que se desplaza a la derecha";
+mensaje+="en esta ventana sobre la misma pagina Web !              ";
+
+// fraccion a mostrar
+var ancho=50;
+
+// codigo deslizante
+function desliza(){document.forms[0].panel.value=mensaje.substring(mensaje.length-ancho,mensaje.length);
+mensaje=mensaje.substring(mensaje.length-1,mensaje.length)+mensaje;
+mensaje=mensaje.substring(0,mensaje.length-1);
+setTimeOut("desliza()",100);
+}
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY onLoad="desliza(); return true;">
+<H1>Scroll en una ventana<BR> a la derecha</H1>
+Puedes poner el texto que tu quieras que se vea en la ventana.<P>
+<FORM>
+<INPUT TYPE=text NAME=panel VALUE="" SIZE=50>
+</FORM><P>
+
+<HR COLOR=red>
+<CENTER>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

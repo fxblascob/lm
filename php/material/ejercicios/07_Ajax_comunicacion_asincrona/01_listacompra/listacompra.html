@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script >
+            window.onload = function() {
+                function verLista() {
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {                
+                            let contenido = document.getElementById("contenido");
+                            contenido.innerHTML = this.responseText;
+                        }
+                    }
+                    xhttp.open("GET", "listado.php", true);
+                    xhttp.send();
+                }
+                document.getElementById("enviar").addEventListener("click",verLista);
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" id="enviar"  value="Enviar">
+        <div id ="contenido">
+        </div>
+    </body>
+</html>

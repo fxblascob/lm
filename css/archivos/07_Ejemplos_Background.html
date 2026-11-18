@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title> Ejemplos Background </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+		<script>
+			function cargar(n) {
+				var f='./ejemplos/ejemplo_1'+n+'.html';
+				var g='./ejemplos/ejemplo_1'+n+'_2.html';
+				document.getElementById("iframeResult").src=f;
+				document.getElementById("iframeResult_2").src=g;
+				var h='a'+n;
+				x=document.getElementById(h).innerHTML;
+				y=document.getElementById("piframedrcha");
+				y.innerHTML=x;
+				/*z=document.getElementById("piframeizqda");
+				z.innerHTML=x;*/
+			}
+		</script>
+	</head> 
+    <body ondblclick="ocultarMenu()">
+        <div id="contenedor_cabecera">
+			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>07 Ejemplos Background</h1>
+        </div>
+		<iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+            <h2>Ejemplos CSS - Backgrounds - Ejemplos de <a href="http://www.w3schools.com">www.w3schools.com</a></h2>
+			<div id="lista_enlaces_ejemplos">
+				<ul>
+					<li> <a id="a0" href="#" onclick="cargar(0)">Background color página</a>	</li>
+					<li> <a id="a1" href="#" onclick="cargar(1)">Background color elementos</a>	</li>
+					<li> <a id="a2" href="#" onclick="cargar(2)">Imagen como Background</a>	</li>
+					<li> <a id="a3" href="#" onclick="cargar(3)">Repetir imagen horiz.</a>	</li>
+					<li> <a id="a4" href="#" onclick="cargar(4)">Posicionar imagen fondo</a>	</li>
+					<li> <a id="a5" href="#" onclick="cargar(5)">Imagen fija background</a>	</li>
+					<li> <a id="a6" href="#" onclick="cargar(6)">Ejemplo avanzado</a>	</li>
+				</ul>
+			</div>	
+			<div class="p_iframe">
+				<p id="piframeizqda">Código </p>	
+				<p id="piframedrcha">Resultado</p>
+			</div>
+			<div style="clear:both;"></div>		
+				<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
+				<iframe id="iframeResult" class="result_output" name="view"></iframe>	
+				<div style="clear:both;"></div>
+			</div>
+			<div id="contenedor_pie">
+				<p>Manual de CSS</p>
+			</div>
+		</div>
+	</body>
+</html>

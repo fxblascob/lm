@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.9 </title>
+        <script type="text/javascript"> 
+        /*
+        Crea una página llamada 06_funciones_arrays_js.html.Dado un array de números enteros y utilizando
+        array.every() crea una función anonima que devuelva cierto si todos los elementos son pares
+        y falso en caso contrario.
+        */
+            window.onload = function() {
+                'use strict';
+                let comprobarArray = function (elem,pares=0){
+                    if (pares==1) {
+                        console.log("uno:"+elem);
+                        console.log("pares:"+pares);
+                        return (elem % 2 == 0)
+                    }else{
+                        console.log( elem) ;
+                        console.log("pares:"+pares);
+                        return (elem % 2 == 1)
+                    }
+                }
+                let array = [2,4,2,6];
+                let mostrar = document.getElementById("mostrar")
+                mostrar.innerHTML +="<br> Los elementos del array: "+ array;
+                mostrar.innerHTML +=" son todos pares: "+  array.every(elem => elem % 2 == 0)                
+            }
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js12d</TITLE>
+
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconde codigo
+
+var Temp;
+var TimerId = null;
+var TimerRunning = false;
+
+Seconds = 0
+Minutes = 0
+Hours = 0
+
+function startClock() {
+   stopClock();
+   showtime();
+}
+
+function stopClock() {
+   if(TimerRunning) 
+   clearTimeout(TimerId);
+   TimerRunning = false;
+}
+
+function showtime() {
+   if(Seconds >= 59) {
+      Seconds = 0
+      if(Minutes >= 59) {
+         Minutes = 0
+  	 if(Hours >= 23) {
+            Seconds = 0
+	    Minutes = 0
+	    Hours = 0
+	 } 
+	 else { 
+	    ++Hours 
+         }
+      }
+      else { 
+         ++Minutes 
+      }
+   } 
+   else { 
+      ++Seconds 
+   }
+   if(Seconds == 1) { var ss=" segundo" } else { var ss=" segundos" }
+   if(Minutes == 1) { var ms=" minuto, " } else { var ms=" minutos, " }
+   if(Hours == 1) { var hs=" hr, " } else { var hs=" hrs, " }
+   Temp = 'Tu estas aqui hace: '+Hours+hs+Minutes+ms+Seconds+ss
+   window.status = Temp;
+   TimerId = setTimeout("showtime()", 1000);
+   TimerRunning = true;
+}
+  
+function stat(txt) {
+   window.status = txt;
+   setTimeout("erase()", 2000);
+}
+
+function erase() {
+   window.status = "";
+}
+
+//-- fin esconder>
+</SCRIPT> 
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY onLoad="startClock()">
+<DIV ALIGN=justify>
+<H1>Cronómetro en la barra de estado</H1>
+
+Se activará cada vez que entre a esta página. Ahora puedes:<P>
+
+<CENTER>
+<HR COLOR=red>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<HR COLOR=blue>
+</BODY>
+</HTML>

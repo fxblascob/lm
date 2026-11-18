@@ -1,0 +1,249 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Perl: Estructuras de control</TITLE>
+</HEAD>
+<BODY bgcolor="White">
+<a name="#Econtrol"></a>
+<P align=center><U><FONT color=#4169e1 face="Arial Black" 
+size=7>Estructuras de 
+control</FONT></U></P>
+<P><U><FONT color=#4169e1 face="Arial Black" size=7></FONT></U>El desarrollo de un 
+programa viene determinado por el orden en que aparecen las instrucciones. El 
+lenguaje Perl posee controlar un conjunto de instrucciones que permiten 
+controlar el desarrollo de un programa. Estas instrucciones se denominan 
+<STRONG>estructuras de control </STRONG>porque permiten ejecutar un 
+conjunto de instrucciones cuando se verifica una condici&oacute;n o ejecutar 
+iterativamente un bloque de instrucciones mientras una expresi&oacute;n sea 
+v&aacute;lida.</P>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>1. La instrucci&oacute;n <EM>if.</EM></FONT></FONT></P>
+<P>Es muy parecida a la utilizada en C. La sintaxis de la 
+instrucci&oacute;n <EM>if </EM>es la siguiente:</P>
+<BLOCKQUOTE><FONT face=Courier>if 
+    (expresi&oacute;n) { <BR>&nbsp;&nbsp; 
+    instrucci&oacute;n o bloque de intrucciones 1; <BR>} <BR>[else { 
+    <BR>&nbsp;&nbsp; 
+    instrucci&oacute;n o bloque de intrucciones 2; <BR>} 
+    ]</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">El 
+programa eval&uacute;a la expresi&oacute;n. Cuando esta expresi&oacute;n resulta 
+verdadera, se ejecuta la instrucci&oacute;n o el bloque de instrucciones 1. Por 
+contra, cuando es falsa de ejecuta la instrucci&oacute;n o bloque de 
+instrucciones 2. Esta &uacute;ltima parte es opcional. Para representar una 
+estructura de varios casos se utilizar&aacute; la sintaxis siguiente:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>if 
+    (expresi&oacute;n 1) { <BR>&nbsp;&nbsp; 
+    instrucci&oacute;n o bloque de instrucciones 1; <BR>} <BR>elsif (expresi&oacute;n 2) { <BR>&nbsp;&nbsp; instrucci&oacute;n o bloque de instrucciones 2; <BR>} <BR>elsif (expresi&oacute;n 3) { <BR>&nbsp;&nbsp; instrucci&oacute;n o bloque de 
+    instrucciones 3; <BR>} <BR>else { 
+    <BR>&nbsp;&nbsp; intrucci&oacute;n o bloque de 
+    instrucciones 4; 
+<BR>}</FONT></BLOCKQUOTE>
+<P><FONT face=Courier></FONT>A 
+continuaci&oacute;n veremos un ejemplo sencillo del uso de esta estructura para 
+comprender mejor su funcionamiento:</P>
+<BLOCKQUOTE><FONT face=Courier>print &quot;Introduzca un n&uacute;mero del 
+    cero al dos y pulse Enter:\n&quot;; <BR>$var&nbsp; =<STDIN>&nbsp; 
+    &lt;STDIN&gt;; <BR>if ($var == 0) {<BR>&nbsp;&nbsp; print &quot;Esta es la 
+    opci&oacute;n 0\n&quot;; <BR>} <BR>elsif ($var == 1) { <BR>&nbsp;&nbsp; 
+    print &quot;Esta es la opci&oacute;n 1\n&quot;; <BR>} <BR>elsif ($var == 2) 
+    { <BR>&nbsp;&nbsp; print &quot;Esta es la opci&oacute;n 2\n&quot;;<BR>} 
+    <BR>else { <BR>&nbsp;&nbsp; print &quot;No existe al opci&oacute;n 
+    tecleada\n&quot;; <BR>}</FONT> </BLOCKQUOTE>
+<P><FONT face=Courier><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>2. La 
+instrucci&oacute;n 
+<EM>while</EM><EM>.</EM></FONT></FONT></FONT></P>
+<P>La instrucci&oacute;n <EM>while</EM> ejecuta iterativamente un bloque de instrucciones mientras una 
+expresi&oacute;n sea v&aacute;lida, evaluando la comprobaci&oacute;n en cada 
+iteraci&oacute;n. Cuando la prueba es v&aacute;lida, se ejecuta la 
+instrucci&oacute;n o el bloque de instrucciones delimitado por las llaves. La 
+sintaxis de esta instrucci&oacute;n es:</P>
+<BLOCKQUOTE><FONT face=Courier>while (expresi&oacute;n) { <BR>&nbsp;&nbsp; 
+    instrucci&oacute;n o bloque de instrucciones; <BR>}</FONT></BLOCKQUOTE>
+<P><FONT face=Courier></FONT>He aqu&iacute; un sencillo 
+ejemplo de manejo de esta estructura:</P>
+<BLOCKQUOTE><FONT face=Courier>print &quot;Teclea \&quot;x\&quot; para 
+    salir:\n&quot;; <BR>$ristra = &quot;&quot;; <BR>while ($ristra ne 
+    &quot;x&quot;) { <BR>&nbsp;&nbsp; $ristra = &lt;STDIN&gt;<STDIN> ; 
+    <BR>&nbsp;&nbsp; chop($ristra); <BR>&nbsp;&nbsp; print &quot;Has escrito 
+    $ristra\n&quot;; <BR>} <BR>print &quot;Salida.\n&quot; </FONT></BLOCKQUOTE><FONT 
+face=Courier>
+<P><FONT face=Courier><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>3. La 
+instrucci&oacute;n <EM>for</EM><EM>.</EM></FONT></FONT></FONT></P>
+<P><FONT face=Courier><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><EM></EM></FONT></FONT></FONT><FONT face="Times New Roman">La instrucci&oacute;n <EM>for</EM> permite ejecutar 
+iterativamente un conjunto de instrucciones. La sintaxis de la 
+instrucci&oacute;n <EM>for</EM> es:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>for (inicial_exp; test_exp; incremento_exp) { <BR>&nbsp;&nbsp;&nbsp; instrucci&oacute;n o bloque de intrucciones; <BR>}</BLOCKQUOTE>
+<P><FONT face="Times New Roman">donde:</FONT></P>
+<UL>
+    <LI><FONT face="Times New Roman"><STRONG>inicial_exp</STRONG> es la 
+    instrucci&oacute;n que inicializa el bucle. Consiste generalmente en la 
+    asignaci&oacute;n de un valor a una variable que permite controlar el 
+    n&uacute;mero de iteraciones.</FONT>
+    <LI><FONT face="Times New Roman"><STRONG>test_exp</STRONG> es la expresi&oacute;n 
+    evaluada en cada iteraci&oacute;n. Cuando esta expresi&oacute;n es 
+    verdadera, el bloque de instrucciones se ejecuta.</FONT>
+    <LI><FONT face="Times New Roman"><STRONG>incremento_exp </STRONG>es la 
+    expresi&oacute;n que permite la actualizaci&oacute;n de la variable que 
+    controla el n&uacute;mero de iteraciones.</FONT></LI></UL>
+<P><FONT face="Times New Roman"></FONT><FONT 
+face="Times New Roman">A continuaci&oacute;n veremos un ejemplo de esta 
+estructura para iniciarnos en su manejo:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>print &quot;10 
+    Iteraciones\n&quot;; <BR>for ($i=0; $i&lt;10; $i++) { <BR><FONT 
+    face="Times New Roman">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    </FONT>print &quot;Interaci&oacute;n n&uacute;mero $i\n&quot;; 
+<BR>}</BLOCKQUOTE>
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5>4. La instrucci&oacute;n 
+<EM>foreach</EM><EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P><FONT face="Times New Roman">La 
+instrucci&oacute;n <EM>foreach</EM> es similar a la 
+funci&oacute;n del mismo nombre de los <EM>Shells </EM>de 
+Unix. Asocia iterativamente a una variable cada elemento de la lista. Esta 
+sucesi&oacute;n de valores sirve para parametrizar la ejecuci&oacute;n del 
+bloque de instrucci&oacute;n. La sintaxis de la instrucci&oacute;n 
+<EM>foreach</EM> es:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>foreach $variable (@lista) { 
+    <BR>&nbsp;&nbsp;&nbsp; instrucci&oacute;n o bloque de instrucciones; 
+    <BR>}</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">Las 
+intrucciones <EM>for</EM> y <EM>foreach</EM> son equivalentes. Sin embargo, la utilizaci&oacute;n de una 
+de estas instrucciones se justifica generalmente por el contexto. El ejemplo 
+siguiente lo ilustra:</FONT></P>
+<BLOCKQUOTE>@lista = (&quot;elem1&quot;, 
+    &quot;elem2&quot;, &quot;elem3&quot;, &quot;elem4&quot;); <BR>for ($i = 0; $i&lt;= $#lista; $i++) { <BR>&nbsp;&nbsp; print $lista[$i], &quot;\n&quot;; <BR>} </BLOCKQUOTE>
+<P><FONT face="Times New Roman">Este 
+ejemplo no utiliza las caracter&iacute;sticas de los arrays en Perl. La 
+utilizaci&oacute;n de la instrucci&oacute;n <EM>foreach</EM> permitir&aacute; recorrer la lista de forma m&aacute;s 
+elegante. El ejemplo siguiente lo ilustra:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>@lista = (&quot;elem1&quot;, &quot;elem2&quot;, &quot;elem3&quot;, 
+    &quot;elem4&quot;); <BR>foreach $elem_actual (@lista) { <BR>&nbsp;&nbsp; print $elem_actual, &quot;\n&quot;; 
+    <BR>}</FONT></BLOCKQUOTE>
+<P><FONT face=Courier><FONT face="Times New Roman"><FONT face=Courier><FONT 
+color=royalblue face="Arial Black" size=7><FONT 
+color=steelblue face="Calisto MT" size=5>5. La 
+instrucci&oacute;n 
+<EM>goto</EM><EM>.</EM></FONT></FONT></FONT></FONT></FONT></P>
+<P><FONT face="Times New Roman">La 
+instrucci&oacute;n <EM>goto label</EM> permite cambiar el 
+recorrido lineal de las l&iacute;neas de c&oacute;digo prosiguiendo la 
+ejecuci&oacute;n del programa en la l&iacute;nea de etiqueta 
+<EM>label</EM>. La etiqueta se define colocando al final del identificador dos 
+puntos <EM>(:). </EM>En el siguiente ejemplo se 
+podr&aacute; ver mejor la contrucci&oacute;n del <EM>goto.</EM></FONT></P>
+<BLOCKQUOTE>if ($expr ne $expr_correcta) { <BR>&nbsp;&nbsp; goto error; 
+    <BR>} <BR>...<BR>error: print 
+    &quot;expresi&oacute;n incorrecta&quot;;</BLOCKQUOTE>
+<P><FONT face="Times New Roman">La 
+utilizaci&oacute;n del <EM>goto</EM> en Perl no es 
+recomendable. Por que le quita al c&oacute;digo legibilidad y aumenta la 
+posibilidad de errores.</FONT></P>
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT 
+face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5>6. La instrucci&oacute;n 
+<EM>last.</EM></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P><FONT face="Times New Roman">La 
+instrucci&oacute;n <EM>last</EM> interrumpe la 
+ejecuci&oacute;n del bucle actual y se ejecuta la instrucci&oacute;n que sigue 
+al bloque. El ejemplo siguiente permite interrumpir el bucle 
+<EM>while</EM> cuando la variable <EM>i</EM> toma el 
+valor 3.</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>$i 
+    = 0; <BR>while($i &lt; 6) { 
+    <BR>&nbsp;&nbsp; if($i == 3) { <BR>&nbsp;&nbsp;&nbsp;&nbsp; last; 
+    <BR>&nbsp;&nbsp; } <BR>&nbsp;&nbsp; $i++; <BR>} <BR>print &quot;el valor de \$i es 
+$i&quot;;</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">Cuando 
+la instrucci&oacute;n tiene como argumento una etiqueta, la ejecuci&oacute;n 
+prosigue en la l&iacute;nea indicada por la etiqueta.</FONT></P><FONT face="Times New Roman">
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT 
+face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5>7. La instrucci&oacute;n 
+<EM>next</EM><EM>.</EM></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT 
+face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5><EM></EM></FONT></FONT></FONT></FONT></FONT></FONT>La instrucci&oacute;n 
+<EM>next</EM> es id&eacute;ntica a la instrucci&oacute;n <EM>continue</EM> en C. Interrumpe la ejecuci&oacute;n del 
+bloque de instrucci&oacute;n actual y prosigue la ejecuci&oacute;n en la 
+iteraci&oacute;n siguente. Esta instrucci&oacute;n no interrumpe completamente 
+la ejecuci&oacute;n del bucle; la expresi&oacute;n que controla el bucle se 
+eval&uacute;a. Si el resultado de la expresi&oacute;n es v&aacute;lido, el bucle 
+se ejecuta de nuevo. </P>
+<P>Cuando una instrucci&oacute;n tiene como argumento una 
+etiqueta, la instrucci&oacute;n prosigue en la l&iacute;nea identificada por la 
+etiqueta y no al principio del bloque.</P>
+<P>Seguidamente veremos un ejemplo de dicha 
+instrucci&oacute;n:</P>
+<BLOCKQUOTE><FONT face=Courier>print &quot;Teclea \&quot;x\&quot; para 
+    salir:\n&quot;; <BR>print &quot;Si se pulsa la tecla \&quot;s\&quot; no se 
+    imprime:\n&quot;; <BR>$ristra = &quot;&quot;; <BR>while ($ristra ne 
+    &quot;x&quot;) { <BR>&nbsp;&nbsp; $ristra =<STDIN> ; chop($ristra); 
+    <BR>&nbsp;&nbsp; if ($ristra eq &quot;s&quot;) { 
+    <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next; <BR>&nbsp;&nbsp; } <BR>&nbsp;&nbsp; 
+    print &quot;Has escrito $ristra\n&quot;; <BR>} <BR>print 
+    &quot;Salida.\n&quot;</FONT></BLOCKQUOTE><FONT face=Courier><FONT face="Times New Roman">
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT 
+face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5>8. La instrucci&oacute;n 
+<EM>until</EM><EM>.</EM></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P>La instrucci&oacute;n <EM>until </EM>al igual que la 
+instrucci&oacute;n <EM>while</EM> permite ejecutar un conjunto de instrucciones 
+un n&uacute;mero repetido de veces. Pero al contrario que la la 
+instrucci&oacute;n <EM>while</EM>, la intrucci&oacute;n <EM>until</EM> ejecuta 
+dicho bloque de instrucciones mientras no se verifique la comprobaci&oacute;n. 
+La sintaxis es: </P>
+<BLOCKQUOTE>
+<BLOCKQUOTE><FONT face=Courier>until (expresi&oacute;n) { <BR>&nbsp;&nbsp; 
+        instrucci&oacute;n o bloque de instrucciones; <BR>}</FONT></BLOCKQUOTE></BLOCKQUOTE>
+<P><FONT face="Times New Roman">He aqu&iacute; el ejemplo anterior pero 
+utilizando la instrucci&oacute;n until.</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>
+    <BLOCKQUOTE><FONT face=Courier>print &quot;Teclea \&quot;x\&quot; para 
+        salir:\n&quot;; <BR>print &quot;Si se pulsa la tecla \&quot;s\&quot; no 
+        se imprime:\n&quot;; <BR>$ristra = &quot;&quot;; <BR>until ($ristra eq 
+        &quot;x&quot;) { <BR>&nbsp;&nbsp; $ristra =<STDIN> ; chop($ristra); 
+        <BR>&nbsp;&nbsp; if ($ristra eq &quot;s&quot;) { 
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next; <BR>&nbsp;&nbsp; } 
+        <BR>&nbsp;&nbsp; print &quot;Has escrito $ristra\n&quot;; <BR>} 
+        <BR>print &quot;Salida.\n&quot;</FONT></BLOCKQUOTE></BLOCKQUOTE><FONT 
+face=Courier><FONT face="Times New Roman">
+<P><FONT face="Times New Roman"><FONT face=Courier><FONT 
+face="Times New Roman"><FONT face=Courier><FONT color=royalblue 
+face="Arial Black" size=7><FONT color=steelblue 
+face="Calisto MT" size=5>9. La instrucci&oacute;n 
+<EM>unless</EM><EM>.</EM></FONT></FONT></FONT></FONT></FONT></FONT></P>
+<P>Esta instrucci&oacute;n es an&aacute;loga al 
+<EM>if</EM>, salvo que permite considerar la no verificaci&oacute;n de la 
+prueba. Su sintaxis es la siguiente: </P>
+<BLOCKQUOTE><FONT face=Courier>unless 
+    (expresi&oacute;n) { <BR>&nbsp;&nbsp; 
+    instrucci&oacute;n o bloque de intrucciones 1; <BR>} <BR></FONT></BLOCKQUOTE>
+<P>Para ver mejor el funcionamiento del <EM>unless</EM>, modificaremos el 
+ejemplo anterior para adaptarlo a dicha instrucci&oacute;n.</P>
+<BLOCKQUOTE>
+    <BLOCKQUOTE><FONT face=Courier>print &quot;Teclea \&quot;x\&quot; para 
+        salir:\n&quot;; <BR>print &quot;Si se pulsa la tecla \&quot;s\&quot; no 
+        se imprime:\n&quot;; <BR>$ristra = &quot;&quot;; <BR>until ($ristra eq 
+        &quot;x&quot;) { <BR>&nbsp;&nbsp; $ristra =<STDIN> ; chop($ristra); 
+        <BR>&nbsp;&nbsp; unless ($ristra eq &quot;s&quot;) { 
+        <BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; next; <BR>&nbsp;&nbsp; } 
+        <BR>&nbsp;&nbsp; print &quot;Has escrito $ristra\n&quot;; <BR>} 
+        <BR>print &quot;Salida.\n&quot;</FONT></BLOCKQUOTE></BLOCKQUOTE>
+<FONT face=Courier></FONT>&nbsp;
+</FONT></FONT></FONT></FONT></FONT></FONT>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/indice.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap5.htm#Econtrol"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bup.gif" border=0 alt="Estructuras de control" align="right" width="19" height="19"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap6.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bnext.gif" border=0 alt="Expresiones regulares" align="right" width="19" height="19"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap4.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bant.gif" border=0 alt="Operadores" align="right" width="19" height="19"></a>
+
+</BODY>
+</HTML>

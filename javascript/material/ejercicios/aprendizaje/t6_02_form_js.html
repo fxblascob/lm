@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Ejercicio formularios</title>
+        <style type="text/css"> 
+            body {font-family: arial, helvetica;} 
+            #container {
+                background-color: rgb(169, 169, 236);
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                line-height: 3em;
+            }
+        </style>
+        <script type="text/javascript"> 
+        /*
+           Crea un formulario en un documento llamado 02_form_js.html. El formulario deberá
+            llamarse form2, y deberás definir una función llamada validarFormulario que comentaremos
+            a continuación. El formulario debe tener los siguientes campos:
+            • Un campo llamado login, con una etiqueta asociada “Login”
+            • Un campo llamado edad (numérico), con una etiqueta asociada “Edad”
+            • Un campo llamado nacimiento (numérico) con una etiqueta “Año de nacimiento”
+            • Una lista desplegable llamada provincia con una etiqueta “Seleccione provincia”.
+            La primera opción de esa lista debe decir “-Seleccionar una provincia-“, y
+            tener value=”“. Las otras tres opciones deben ser Alicante, Valencia y Castellón.
+            • Un botón de tipo submit y con valor Enviar.
+            Al intentar enviar el formulario, se activará la función validarFormulario() comentada
+            antes, que deberemos implementar para comprobar lo siguiente:
+            • El campo login no puede estar vacío
+            • El campo edad puede estar vacío, pero si no lo está, debe tener un número
+            entre 0 y 200
+            • El campo nacimiento debe tener 4 dígitos
+            • La lista desplegable debe tener un elemento seleccionado que no sea el primero.
+            • Si todo lo anterior se cumple, se deberá mostrar un mensaje “Todo es correcto”
+            y enviar el formulario (el envío fallará porque la página destino no la habremos
+            implementado). Si algún campo no es válido, se deberá mostrar el correspondiente
+            mensaje de error y evitar el envío.
+        */
+            'use strict';
+            window.onload = function(){
+                let validarFormulario = function(evento) {
+                    let salida = document.getElementById("salida");
+                    salida.innerHTML="";
+                    let form = document.getElementById("form2");
+                    let ok = true;
+
+                    if (form.login.value==null || form.login.value=="") {
+                        ok = false;
+                        salida.innerHTML += "login incorrecto <br>";
+                    }
+                    if (form.edad.value != "" && (form.edad.value < 0 || form.edad.value > 200) ) {
+                        ok = false;
+                        salida.innerHTML += "edad incorrecta <br>";
+                    }
+                    if (form.nacimiento.value == "" || form.nacimiento.value.length != 4 || isNaN(form.nacimiento.value)) {
+                        ok = false;
+                        salida.innerHTML += "Fecha de nacimiento incorrecta <br>";
+                    }
+                    if (form.provincia.value=="") {
+                        ok = false;
+                        salida.innerHTML += "Provincia incorrecta <br>";
+                    }
+                    if (ok) salida.innerHTML = "Todo es correcto";
+                    else  evento.preventDefault(); 
+                    return ok;
+                }
+                let form = document.getElementById("form2");
+                form.addEventListener("submit",validarFormulario);
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="container">
+            <form name="form2" id="form2" action="" method="GET">
+                <label>Login:
+                    <input type="text" name="login" id="login">
+                </label>
+                <label>Edad:
+                    <input type="number" name="edad" id="edad">
+                </label>
+                <label>Año de nacimiento:
+                    <input type="number" name="nacimiento" id="nacimiento">
+                </label>
+                <label>Seleccione provincia:
+                    <select name="provincia">
+                        <option value="">Seleccionar una provincia</option>
+                        <option value="Alicante">Alicante</option>
+                        <option value="Valencia">Valencia</option>
+                        <option value="Castellón">Castellón</option>
+                    </select>
+                </label>
+                <input type="submit" value="Enviar" id="enviar">
+            </form>
+        </div>
+        <div id="salida"></div>
+       
+    </body>
+</html>

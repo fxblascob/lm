@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Ejercicio formularios</title>
+        <style type="text/css"> 
+            body {font-family: arial, helvetica;} 
+            #container {
+                background-color: rgb(169, 169, 236);
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                line-height: 3em;
+            }
+        </style>
+        <script type="text/javascript"> 
+        /*
+            Crea un formulario en una página llamada 01_form_js.html. Este formulario tendrá por nombre form1, y dentro tendrá los siguientes campos:
+            • Un campo de texto llamado login, con una etiqueta asociada que ponga “Login”.
+            • Un campo numérico llamado nhijos, con una etiqueta asociada que ponga “Número de hijos”
+            • Una casilla checkbox llamada info con un texto que ponga “Deseo recibir información por e-mail”
+            • Tres botones de radio que llamados horario con los textos Mañana, Tarde y Noche respectivamente, y encima de ellos una etiqueta asociada que ponga “Horario preferido para llamadas”
+            • Una lista desplegable llamada operador, y dentro los valores Movil1, Taronje, Hablafone y Roigo. Encima debe tener una etiqueta que diga “Seleccione operador”
+            • Un botón (tipo button OJO, no submit) de Enviar que, al hacer clic sobre él, active una función llamada mostrarInformacion que saque en el <div id=”salida”>  cada una de las opciones que hayamos escrito en cada campo del formulario. Por ejemplo, si hemos puesto como login “pepe”, como número de hijos 2, hemos marcado la casilla de información, elegido turno de Tarde y el operador Taronje, deberá sacar, uno a uno, los siguientes mensajes:
+                ◦ Tu login es pepe
+                ◦ Tienes 2 hijos
+                ◦ Deseas recibir información
+                ◦ Has elegido el horario de Tarde
+                ◦ Has elegido el operador Taronje
+            • En el caso de que el número de hijos esté vacío, deberá rellenarlo con el valor 0 al pulsar el botón de Enviar
+        */
+            'use strict';
+            window.onload = function(){
+                let mostrarInformacion = function() {
+                    let salida = document.getElementById("salida");
+                    let form = document.getElementById("form1");
+
+                    form.nhijos.value = form.nhijos.value=="" ? 0 : form.nhijos.value;
+                    salida.innerHTML = "<br>tu login es: "+form.login.value;
+                    salida.innerHTML += "<br>tienes: "+form.nhijos.value+" hijos";
+                    if (form.info.checked)
+                        salida.innerHTML += "<br>Deseas recibir información";
+                    else
+                        salida.innerHTML += "<br>No deseas recibir información";
+                    salida.innerHTML += "<br>has elegido horario de "+form.horario.value;
+                    salida.innerHTML += "<br>has elegido el operador "+form.operador.value;
+                }
+                let botonEnviar = document.getElementById("enviar");
+                botonEnviar.addEventListener("click",mostrarInformacion);
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="container">
+            <form name="form1" id="form1">
+                <label>Login:
+                    <input type="text" name="login" id="login">
+                </label>
+                <label>Número de hijos:
+                    <input type="number" name="nhijos" id="nhijos">
+                </label>
+                <label>Deseo recibir información por e-mail:
+                    <input type="checkbox" name="info" id="info">
+                </label>
+                <label for="horario">Horario preferido para llamadas:
+                    <input type="radio"  name="horario" value="Mañana">Mañana
+                    <input type="radio"  name="horario" value="Tarde">Tarde
+                    <input type="radio"  name="horario" value="Noche">Noche
+                </label>
+                <label>Seleccione operador:
+                    <select name="operador">
+                        <option value="Movil1">Movil1</option>
+                        <option value="Taronje">Taronje</option>
+                        <option value="Hablafone">Hablafone</option>
+                        <option value="Roigo">Roigo</option>
+                    </select>
+                </label>
+                <input type="button" value="Enviar" id="enviar">
+            </form>
+        </div>
+        <div id="salida">
+
+        </div>
+    </body>
+</html>

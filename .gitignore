@@ -1,0 +1,31 @@
+# Carpeta privada local de copias de seguridad
+.backup_privado/
+
+# Metadatos del sistema y sincronización en la nube
+*:com.dropbox.attrs
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Archivos de bloqueo y temporales de editores
+.~lock.*#
+*.odt#
+*.bak
+*.tmp
+*.swp
+*.bueno
+*.descarga
+*.lnk
+*.log
+
+# Carpetas de configuración de entorno de desarrollo
+.vscode/
+.idea/
+
+# Metadatos obsoletos de editores web (FrontPage)
+_vti_cnf/
+_vti_pvt/
+
+# Archivos multimedia que superan los límites de GitHub (>100MB)
+*.mov

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang=”es”>
+    <head>
+        <meta charset=”UTF-8”>
+        <title>Ejercicio 8 - Funciones básicas</title>
+        <script type="text/javascript"> 
+        /*
+        Crea una página llamada 06_par_impar_js.html y escribe el código de una función a la que se
+        pasa como parámetro un número entero y devuelve como resultado una cadena de texto que
+        indica si el número es par o impar. Mostrar por pantalla el resultado devuelto por la función.
+        Ejemplo:
+        document.write(esParImpar(5)) → devuelve: “5 es impar”
+        document.write(esParImpar(6) → devuelve: “6 es par”
+        */
+            'use strict';
+            function esParImpar(numero) {
+                if(numero % 2 == 0) {
+                    return "par";
+                } else {
+                    return "impar";
+                }
+            }
+            let numero = prompt("Introduce un número entero");
+            let resultado = parImpar(numero); 
+            alert("El número "+numero+" es "+resultado);
+            
+            
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

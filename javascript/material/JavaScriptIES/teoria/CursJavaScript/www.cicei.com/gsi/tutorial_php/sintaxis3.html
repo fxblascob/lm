@@ -1,0 +1,218 @@
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Variables</H1>
+
+<A NAME="nombres">
+<H3>Referencia a variables</H3>
+<P>Tal y como hemos venido observando en los ejemplos, las variables en PHP
+se referencian mediante el s&iacute;mbolo <B>$</B> seguido del nombre de la variable.
+Adem&aacute;s, curiosamente, PHP es <em>sensible a may&uacute;sculas</em> en cuanto a nombres
+de variables se refiere; es decir, las variables <B>$prueba</B> y <B>$Prueba</B>
+se consideran diferentes. No ocurre lo mismo con el resto de construcciones
+del lenguaje:</P>
+<PRE><FONT COLOR="red">
+
+	&#60;?PHP				/* puedo poner php en may&uacute;sculas */
+		$prueba = "hola";
+		$Prueba = "amigo";
+		ECHO("Prueba: $prueba $Prueba"); /* ECHO tambi&eacute;n en may&uacute;sculas
+	?&#62;
+</FONT></PRE>
+<P>El resultado de interpretar el c&oacute;digo anterior ser&aacute;:</P>
+<PRE><FONT COLOR="red">
+
+	Prueba: hola amigo
+</FONT></PRE>
+
+<HR>
+<A NAME="asigna">
+<H3>Asignaci&oacute;n de valores</H3>
+<P>Hemos visto en ejemplos anteriores que la asignaci&oacute;n de valores a variables
+se lleva a cabo mediante el operador <B>=</B>, colocando la variable destino
+a la izquierda de la asignaci&oacute;n (<EM>lvalue</EM>) y la <A HREF>expresi&oacute;n</A>
+a la derecha (<EM>rvalue</EM>).<P>
+<P>Pues bien, en PHP3 la asignaci&oacute;n se produce <B>por valor</B>; es decir, el 
+valor de la expresi&oacute;n que se encuentra a la derecha se copia en la zona
+de memoria reservada para la variable destino. Esto implica, que si asignamos
+el una variable <EM>var1</EM> a otra <EM>var2</EM>, lo que se copiar&aacute; en &eacute;sta
+&uacute;ltima ser&aacute; el valor de la primera, y las modificaciones que hagamos sobre
+cualquiera de las dos no afectar&aacute;n a la otra.</P>
+<PRE><FONT COLOR="red">
+	$a = 5;
+	$b = $a;
+	$b = $b + 3;
+	/* los valores ser&aacute;n $a = 5 y $b = 8; */
+</FONT></PRE>
+<P>Sin embargo, en PHP4 se admite a la asignaci&oacute;n <B>por referencia</B>;
+la variable <EM>var2</EM> se convierte en un <EM>alias</EM> de <EM>var1</EM>,
+y todas las modificaciones sobre una de ellas se reflejar&aacute;n en la otra.
+Esta tipo de asignaci&oacute;n se lleva a cabo colocando el caracter <B>&</B> delante
+de la variable origen.
+
+<PRE><FONT COLOR="red">
+	$a = 5;
+	<B>$b = &$a;</B>
+	$b = $b + 3;
+	/* los valores ser&aacute;n $a = 8 y $b = 8; */
+</FONT></PRE>
+<P><B>Importante:</B> el operador <B>&</B> solo se utiliza con variables. Los
+siguientes usos no son v&aacute;lidos:</P>
+<PRE>
+<FONT COLOR="red">
+	$a = &(3 + 4);
+	$b = &mostrar()	/* donde mostrar() es una <A HREF>funci&oacute;n</A> */
+	$c = &$vector[3];
+</FONT></PRE>
+
+<HR>
+<A NAME="ambito">
+<H3>Ámbito de las variables</H3>
+<P>El &aacute;mbito de una variable es el conjunto de sentencias en las que dicha
+variable puede utilizarse. Por ejemplo, en la siguiente funci&oacute;n el &aacute;mbito
+de <EM>$var</EM> tan s&oacute;lo comprender&aacute; las sentencias que conforman dicha
+funci&oacute;n.</P>
+<PRE>
+<FONT COLOR="red">
+	function ambito() {
+		$var = 4;
+
+		$a = $a + 4;
+		{...} /* aqu&iacute; podemos referenciar $var y obtendremos
+			 4 como su valor */
+	}
+	$function no_ambito() {
+		/* aqu&iacute; no podemos acceder al valor de $var de ambito().
+		   Si intentamos referenciar a $var aqu&iacute;, obtendremos una
+		   variable nueva que no ser&aacute; $var de ambito(). */
+	}
+</FONT></PRE>
+<P>Adem&aacute;s, aunque declaremos $var fuera de la funci&oacute;n no podremos acceder
+a su valor sin m&aacute;s:
+<PRE>
+<FONT COLOR="red">
+	$var = 4;
+	function muestra()
+	{
+		echo($var);	/* nos estamos refiriendo a una variable
+				$var que es local a la funci&oacute;n, no a la
+				global */
+	}
+</FONT></PRE>
+<H4>Variables globales</H4>
+<P>Pero eso no significa que no podamos acceder a variables globales. Para
+hacerlo debemos declarar, como tal, a la variable global a la que queramos
+acceder.</P>
+<PRE>
+<FONT COLOR="red">
+	$var = 4;
+	function muestra()
+	{
+		<B>global</B> $var;
+		echo "El valor de var es $var";
+	}
+</FONT></PRE>
+<P>El resultado ser&aacute;:</P>
+<PRE>
+<FONT COLOR="red">
+	El valor de var es 4
+</FONT></PRE>
+<P>Otra posible soluci&oacute;n es utilizar la variable <EM>$GLOBALS</EM>, que es
+un vector asociativo que almacena los valores de todas las variables globales.
+</P>
+<PRE>
+<FONT COLOR="red">
+	$var = 4;
+	function muestra()
+	{
+		$var = <B>$GLOBALS</B>["var"];
+		echo "El valor de var es $var";
+	}
+</FONT></PRE>
+<H4>Variables est&aacute;ticas</H4>
+<P>Se trata de variables locales a las funciones pero que mantienen su valor
+cuando se sale de la funci&oacute;n. As&iacute;, al volver a entrar, sigue manteniendo
+el mismo valor que ten&iacute;a al dejar la funci&oacute;n.</P>
+<PRE>
+<FONT COLOR="red">
+	function incrementa()
+	{
+		<B>static</B> $var = 0;
+		echo("$var");
+		$var = $var + 1;
+	}
+</FONT></PRE>
+<P>Despu&eacute;s de dos llamadas a la funci&oacute;n, <EM>var</EM> tendr&aacute; el valor 2.</P>
+
+<HR>
+<A NAME="variables">
+<H3>Variables variables</H3>
+<P>Podr&iacute;a parecer que, en un principio, el t&iacute;tulo de este cap&iacute;tulo est&aacute; mal
+escrito... pero no es as&iacute;. Si utilizamos dos <B>$</B> en lugar de uno, 
+obtendremos el siguiente resultado:</P>
+<PRE>
+<FONT COLOR="red">
+	$b = "saludo"
+	$a = "b";
+	echo "<B>${$</B>a}";
+</FONT></PRE>
+<P>En la &uacute;ltima l&iacute;nea, PHP tomar&aacute; el valor de $a, que es <EM>b</EM>, y lo 
+sustituir&aacute;. Entonces tenemos la sentencia equivalente <EM>echo $b</EM>,
+que ser&aacute; "saludo". Incluso podremos hacer una asignaci&oacute;n del tipo
+<B>$$a = "despedida"</B>, que modificar&aacute; el valor de <EM>$b</EM>.
+</P>
+
+<HR>
+<A NAME="predefinidas">
+<H3>Variables predefinidas</H3>
+<P>En PHP se definen por defecto una serie de variables a las que podemos
+acceder desde nuestros scripts. En esta secci&oacute;n vamos a ver las variables
+de entorno, que resumimos en la siguiente tabla.</P>
+<TABLE ALIGN="center" BORDER>
+
+<TR>
+	<TD>argv</TD>
+	<TD>Vector con los argumentos pasados al script. Cuando se llama 
+	mediante el m&eacute;todo GET, este vector contiene la cadena de
+	petici&oacute;n.</TD>
+</TR>
+
+<TR>
+	<TD>argc</TD>
+	<TD>N&uacute;mero de par&aacute;metros contenidos en argv.</TD>
+</TR>
+
+
+<TR>
+	<TD>PHP_SELF</TD>
+	<TD>Nombre de fichero del script en ejecuci&oacute;n. Solo disponible
+	cuando el int&eacute;rprete es un m&oacute;dulo del servidor web.</TD>
+</TR>
+
+
+<TR>
+	<TD>HTTP_COOKIE_VARS</TD>
+	<TD>Vector asociativo de variables pasadas por medio de
+	HTTP cookies. Solo disponible si la directiva 
+	<EM>track_vars</EM> est&aacute; activada.</TD>
+</TR>
+
+
+<TR>
+	<TD>HTTP_GET_VARS</TD>
+	<TD>Vector asociativo que contiene las variables pasadas por
+	medio del m&eacute;todo GET. Disponible solo si <EM>track_vars</EM>
+	est&aacute; activado.</TD>
+</TR>
+
+
+<TR>
+	<TD>HTTP_POST_VARS</TD>
+	<TD>Vector asociativo que contiene las variables pasadas por medio
+	del m&eacute;todo POST. Disponible solo si <EM>track_vars</EM> est&aacute; activado.</TD>
+</TR>
+</TABLE>
+
+
+</BODY>
+</HTML>

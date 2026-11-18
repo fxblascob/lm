@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js5</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Instrucciones</H1>
+El JavaScript posee un juego de instrucciones compacto que permite añadir muchisima interactividad a las paginas Web.<P>
+
+<H2>Condicional</H2>
+Permiten efectuar determinadas acciones en base a una condicion logica.<P>
+
+<H3>if</H3>
+Es un condicional simple
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+if (condicion) { instrucciones }<BR>
+[else { instrucciones }]
+</TABLE>
+</DIR>
+<P>
+<B>Nota:</B> Tambien es posible usar la expresion condicional que es mas simples asi: <B>condicion ? valor1 : valor 2</B>. Si la condicion toma el valor de verdadero, la expresion toma el valor1 de lo contrario toma el valor2.
+
+<H2>Bucles</H2>
+Un bucle es un conjunto de comandos que se ejecutan repetitivamente un cierto numero de veces.<P>
+
+<H3>for</H3>
+Permite un bucle repetitivo sabiendo de antemano el numero de ejecuciones que sera necesario.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+for ([inicial;][final;][incremento]) {instrucciones }
+</TABLE>
+</DIR>
+
+<B>Ejemplo:</B> for (i=0; i<4; i++){alert("Ahora van "+i)}
+
+
+<H3>while</H3>
+Permite un bucle repetitivo cuyo numero de repeticiones dependera de una condicion. Aqui normalmente no sabemos de antemano el numero de repeticiones.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>while (condicion) { instrucciones }
+</TABLE>
+</DIR>
+
+<H3>Control de bucle</H3>
+Tenemos dos comando para el control de bucles: <I>break</I> que termina el bucle y transfiere el control del programa a la siguiente instruccion a continuacion del bucle. <I>continue</I> interrumpe la ejecucion de comandos y regresa el control al inicio del bucle.<P>
+
+<H2>Manipulacion de objetos</H2>
+Hay varias intrucciones para manejar objetos<P>
+
+<H3>new</H3>
+Permite crear un nuevo objeto de un tipo definido por el usuario.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+variable=new tipo (parametri1 [,parametro2]...[,parametro n])
+</TABLE>
+</DIR>
+
+<H3>this</H3>
+Se usa para definir al objeto en uso, por lo general el que efectua una llamada, al definir un método.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+this[.propiedad]
+</TABLE>
+</DIR>
+
+<H3>for..in</H3>
+Itera una variable a lo largo de todas las propiedaes de un objeto, para cada propiedad. JavaScript ejecuta las instrucines especificadas.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+for (variable in objeto) { instrucciones }
+</TABLE>
+</DIR>
+
+<H3>with</H3>
+Establece el objto por omisión de una serie de instrucciones; si no especifica en las propiedades el abjeto, se asume el indicado con with.<P>
+
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+with (objeto) { instrucciones }
+</TABLE>
+</DIR>
+
+<H2>Comentarios</H2>
+Los comentarios son lineas que coloca el autor para propósitos explicativos dentro de un programa. El interprete ignora los comentarios.<P>
+
+<H3>Comentarios de una linea</H3>
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+// comantario
+</TABLE>
+</DIR>
+
+<H3>Comentarios de varias lineas</H3>
+<DIR>
+Sintaxis:
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+/* comantario */
+</TABLE>
+</DIR>
+</BODY>
+</HTML>

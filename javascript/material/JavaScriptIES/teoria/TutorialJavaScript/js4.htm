@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js8</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Variables</H1>
+Las variables son usadas para almacenar valores a ser evaluados.<P>
+
+En JavaScript no es necesario declarar las variables ya que automaticamente se convierten al tipo necesario mientras se ejecutan los comandos. Por ejemplo podemos definir <B>indica=true</B> y luego asignarle un valor de otro tipo <B>indica="prendido"</B><P>
+
+El nombre de una variable debe empezar por una letra o por el s&iacute;mbolo de subrayado ( _ ). Lo que siga a esto es indiferente. Pero diferencia mayusculas de minisculas.<P>
+
+Por ejemplo podr&iacute;amos definir como variables:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+Nombre<BR>
+_Opci&oacute;n15<BR>
+mes3
+</TABLE>
+</DIR>
+<P>
+
+Estar&iacute;an mal definidas las siguientes variables:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+7opcion<BR>
+&amp;inicio<BR>
+&#191;nombre
+</TABLE>
+</DIR>
+<P>
+
+Adem&aacute;s tambi&eacute;n estar&iacute;a mal si usaramos como variable:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+goto<BR>
+new<BR>
+null
+</TABLE>
+</DIR>
+<P>
+
+Debido a que son <A HREF=js7.htm>palabras reservadas</A> del lenguaje.<P>
+
+Una variable puede tener alcance <B>local</B> o <B>global</B>. Cuando es global se puede emplear en cualquier parte del programa. Las locales solo se pueden usar en la funcion donde fueron definidas.<P>
+
+Para crear una variable local le antepondremos la palabra <B>var</B>.<P>
+
+Un ejemplo del uso de variables en JavaScript es el siguiente:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt;&lt;TITLE&gt;Ejemplo&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- Ocultaci&oacute;n a antiguos navegadores<BR>
+var saludo = 'Hola que tal...'<BR>
+var despedida = 'Si se portan mal...'<BR>
+document.write ( saludo + ' Yo tambien ronco de noche.' + &lt;BR&gt;)<BR>
+document.write ( despedida + ' inviten.' )<BR>
+// Fin de la ocultaci&oacute;n--><BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+<P>
+
+
+<A HREF=""  onClick="window.open('js10b.htm','','width=500,height=100');return false">Visualizame</A><P>
+
+<H1>Variables tipo matriz</H1>
+La sintaxis para crear la matriz es la siguiente: <I>nombre=new Array(elementos)</I>, posteriormente para usarla se usa <I>nombre[# de elemento]</I>.<P>
+
+Una forma de crear las matrices de forma automatica es con el siguiente codigo:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;SCRIPT LENGUAGE=JavaScript&gt;<BR>
+function HacerMatriz(n) {<BR>
+&nbsp;&nbsp;&nbsp;this.length=0;<BR>
+&nbsp;&nbsp;&nbsp;for (var i = 1; i < n ; i++) {<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this[i]=0;<BR>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return this;<BR>
+&nbsp;&nbsp;&nbsp;}<BR>
+}<BR>
+&lt;/SCRIPT&gt;
+</TABLE>
+</DIR>
+<P>
+
+<H1>Operadores</H1>
+
+<CENTER>
+<TABLE BGCOLOR=FFFFCC WIDTH=80% BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Aritmeticos
+<TR><TD ALIGN=center WIDTH=20%>+<TD>Adicion
+<TR><TD ALIGN=center>-<TD>Sustraccion
+<TR><TD ALIGN=center>*<TD>Multiplicacion
+<TR><TD ALIGN=center>/<TD>Division
+<TR><TD ALIGN=center>%<TD>Modulo
+<TR><TD ALIGN=center>++<TD>Incremento
+<TR><TD ALIGN=center>--<TD>Decremento
+<TR><TD ALIGN=center>-<TD>Negacion
+<TR><TH COLSPAN=2>Cadena
+<TR><TD ALIGN=center>+<TD>Concatenacion.
+<TR><TD COLSPAN=2>Nota: Cuando se opera un valor de cadena con un numerico, el resultado es una cadena.
+<TR><TH COLSPAN=2>Sobre BITs
+<TR><TD ALIGN=center>AND o &<TD>Devuelve un 1 en cada bit para el cual ambos operandos sean 1 y 0 en el resto.
+<TR><TD ALIGN=center>OR o |<TD>Devuelve un 0 en cada bit para el cual ambos operandos sean 0 y 1 en el resto.
+<TR><TD ALIGN=center>O-EX o ^<TD>Devuelve un 1 en cada bit para el cual uno de los operandos sea 1 y el otro 0 y 0 en el resto.
+<TR><TD ALIGN=center>NOT o ~<TD>Devuelve un 1 en cada bit para el cual el operandos sean 0 y viceversa.
+<TR><TH COLSPAN=2>Logicos
+<TR><TD ALIGN=center>&&<TD>Devuelve verdadero si ambos operandos son verdaderos y falso en el resto.
+<TR><TD ALIGN=center>||<TD>Devuelve falso si ambos operandos son falsos y verdero en el resto.
+<TR><TD ALIGN=center>!<TD>Devuelve falso si operando es verdadero y viceversa.
+<TR><TH COLSPAN=2>Comparacion 
+<TR><TD ALIGN=center>==<TD>Devuelve verdadero si ambos operador son iguales.
+<TR><TD ALIGN=center>!=<TD>Devuelve verdadero si ambos operador son difrenetes.
+<TR><TD ALIGN=center>&gt;<TD>Devuelve verdadero si operador izquierdo es mayor al derecho.
+<TR><TD ALIGN=center>&gt;=<TD>Devuelve verdadero si operador izquierdo es mayor o igual al derecho.
+<TR><TD ALIGN=center>&lt:<TD>Devuelve verdadero si operador izquierdo es menor al derecho.
+<TR><TD ALIGN=center>&lt;=<TD>Devuelve verdadero si operador izquierdo es menor o igual al derecho.
+<TR><TH COLSPAN=2>Asignacion:
+<TR><TD ALIGN=center>x=y<TD>Asigna a x el valor de y
+<TR><TD ALIGN=center>x+=y<TD>Asigna a x el valor de x+y
+<TR><TD ALIGN=center>x-=y<TD>Asigna a x el valor de x-y
+<TR><TD ALIGN=center>x*=y<TD>Asigna a x el valor de x*y
+<TR><TD ALIGN=center>x/=y<TD>Asigna a x el valor de x/y
+<TR><TD ALIGN=center>x%=y<TD>Asigna a x el valor de x%y
+<TR><TD ALIGN=center>x&lt;&lt;=y<TD>Asigna a x el valor de x=x&lt;x&lt;y
+<TR><TD ALIGN=center>x&gt;&gt;y<TD>Asigna a x el valor de x=x&gt;x&gt;y
+<TR><TD ALIGN=center>x&gt;&gt;&gt;=y<TD>Asigna a x el valor de x=x&gt;x&gt;x&gt;y
+<TR><TD ALIGN=center>x&amp;=y<TD>Asigna a x el valor de x=x&amp;y
+<TR><TD ALIGN=center>x^=y<TD>Asigna a x el valor de x=x^y
+<TR><TD ALIGN=center>x|=y<TD>Asigna a x el valor de x=x|y
+</TABLE>
+<P>
+
+<H1>Prioridades de operacion</H1>
+
+<TABLE BGCOLOR=FFFFCC WIDTH=80% BORDER=1 CELLSPACING=0>
+<TR><TD ALIGN=center WIDTH=20%>1<TD ALIGN=center>[] O ()<TD>Agrupar
+<TR><TD ALIGN=center>2<TD ALIGN=center>!, ~, ++, --<TD>Negacion, incemento y decremento.
+<TR><TD ALIGN=center>3<TD ALIGN=center>*, / y %<TD>Multiplicacion, divicion y modulo.
+<TR><TD ALIGN=center>4<TD ALIGN=center>+ y -<TD>Adicion y sustraccion.
+<TR><TD ALIGN=center>5<TD ALIGN=center>&gt;&gt; y &lt;&lt;<TD>Desplazamiento
+<TR><TD ALIGN=center>6<TD ALIGN=center>&gt;, &gt;=, &lt;, &lt;=<TD>Relaciones
+<TR><TD ALIGN=center>7<TD ALIGN=center>= y !=<TD>Igualdad y desigualdad
+<TR><TD ALIGN=center>8<TD ALIGN=center>&<TD>Y sobre bits
+<TR><TD ALIGN=center>9<TD ALIGN=center>^<TD>O-EX sobre bits
+<TR><TD ALIGN=center>10<TD ALIGN=center>|<TD>O sobre bits
+<TR><TD ALIGN=center>12<TD ALIGN=center>&&<TD>AND
+<TR><TD ALIGN=center>13<TD ALIGN=center>||<TD>OR
+<TR><TD ALIGN=center>14<TD ALIGN=center>?:<TD>Condicional
+<TR><TD ALIGN=center>15<TD ALIGN=center>=, +=, -=<TD>Asignacion
+</TABLE>
+</BODY>
+</HTML>

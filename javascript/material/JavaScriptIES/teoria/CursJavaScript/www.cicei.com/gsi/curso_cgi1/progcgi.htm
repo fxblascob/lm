@@ -1,0 +1,110 @@
+<HEAD><TITLE>TUTORIAL CGI </TITLE></HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<HR>
+<CENTER><H1><FONT  COLOR=#800000>PROGRAMACI&Oacute;N CGI</FONT> </H1></CENTER>
+<HR>
+<BR>
+<H3><U>INVOCANDO UN CGI</U></H3>
+La forma m&aacute;s simple de invocar un CGI es mediante una URL que apunte al fichero ejecutable, que se encontrar&aacute; en el directorio reservado al efecto. El servidor, al recibir una petici&oacute;n dentro de este directorio comprender&aacute; que se trata de un programa y lo ejecutar&aacute;. Esto ocurrir&aacute; cada vez que se acceda al URL correspondiente.<P>
+Al ejecutarse un CGI, su salida est&aacute;ndar queda inmediatamente conectada con el servidor de informaci&oacute;n, que la har&aacute; llegar al cliente. Un programa CGI puede devolver cualquier tipo de informaci&oacute;n, desde un simple texto ASCII, a una imagen GIF, o JPEG o... pasando por una animaci&oacute;n, c&oacute;digo HTML y un largo etc&eacute;tera.<P>
+La intefaz CGI especifica una serie de cabeceras que los <EM>scripts</EM> pueden utilizar para proporcionar este tipo de informaci&oacute;n. As&iacute; aunque la salida del <EM>script</EM> es un flujo de datos, se puede considerar dividida en cabecera y cuerpo:
+<H4>Cabecera</H4>
+La cabecera incluye informaciones que utilizará el servidor para construir la cabecera HTTP de su respuesta al cliente. Tres líneas pueden aparecer en la cabecera. La línea Content-type, la línea Location y la línea Status.<BR>
+<U><EM>Content-type:</EM></U><BR>
+Indica el tipo de datos que generará el script cgi de forma que el cliente pueda saber cómo generarlos.<BR>
+ La sintaxis utilizada para indicar el tipo de datos es la sintaxis MIME:<BR>
+<EM>Content-type:type/subtype</EM>. Los tipos m&aacute;s habituales en la programaci&oacute;n cgi se resumen en la tabla siguiente:<P>
+
+<table border=2 cellspacing=1 cellpading=10>
+<tr><th>type/subtype<th>Descripci&oacute;n
+<tr valign=top align=left><td>text/html<td>Con mucho el tipo m&aacute;s utilizado, indica al cliente que los datos deben interpretarse como mandatos HTML 
+<tr valign=top align=left><td>text/plain<td>Indica al cliente que los datos son de texto plano, que no debe interpretarse en ning&uacute;n sentido
+<tr valign=top align=left><td>image/gif<BR>image/jpeg<BR>image/x-xbitmap<td>Son los tres tipos de im&aacute;genes soportados en general por los clientes WWW sin llamar a un <EM>viewer</EM> externo
+<tr valign=top align=left><td>audio/basic<td>Es un tipo que engloba todos los formatos de sonido .au y .snd. En general, el cliente llama a un programa externo para interpretar estos sonidos
+<tr valign=top align=left><td>aplication/postscript<td>Indica al cliente que los datos est&aacute;n en formato postscript. En general, el cliente llama a un int&eacute;rprete externo para mostrar el documento postscript 
+</table><P>
+
+<U><EM>Location:</EM></U><BR>
+No s&oacute;lo es posible devolver cierto tipo de informaci&oacute;n a trav&eacute;s de un CGI, sino tambi&eacute;n un puntero a la informaci&oacute;n deseada. Por supuesto este puntero ser&aacute; un URL. Para ello, se ha definido otra cabecera de CGI denominada <EM>Location</EM> que se emplea de la forma <BR>
+<EM>Location:&lt;URL&gt;</EM><BR>
+Por ejemplo, la salida de un CGI podr&iacute;a ser:<BR>
+<EM>Content-type:text/html</EM><BR>
+<EM>Location:http://highland.dit.upm.es:-8000</EM><BR>
+Lo habitual es que un CGI que responda con una cabecera <EM>Location</EM> no incluya cuerpo ni precise de cabecera <EM>Content-type</EM>.  <BR>
+
+<U><EM>Status:</EM></U><BR>
+Esta l&iacute;nea se utiliza muy raramente. Permite indicar el c&oacute;digo de retorno que el servidor debe enviar al cliente en el di&aacute;logo HTTP.<BR>
+La sintaxis es:<BR>
+<EM>Status:c&oacute;digo mensaje</EM><BR>
+Cuando no se precisa esta l&iacute;nea, el c&oacute;digo de retorno es '200 OK', lo que se traduce, en el di&aacute;logo HTTP con el cliente, en la l&iacute;nea 'HTTP 200 OK'. Obs&eacute;rvese sin embargo que los clientes no tienen en cuenta sistem&aacute;ticamente el valor de este c&oacute;digo.
+
+Es extremadamente IMPORTANTE, dejar una l&iacute;nea en blanco entre las cabeceras CGI y el contenido de la informaci&oacute;n. Si no se hace as&iacute;, el sistema no funcionar&aacute; y el cliente no podr&aacute; acceder a la informaci&oacute;n.<P>
+
+<H4>Cuerpo</H4>
+El cuerpo contiene los datos del documento. Deben corresponder al tipo MIME anunciado en la l&iacute;nea Content-type de la cabecera. En caso contrario el cliente ser&aacute; incapaz de mostrar el documento.<BR>
+
+
+Es importante mencionar que a la hora de programar CGI es necesario que se trabaja en un entorno concurrente en el que hay que tener especial cuidado en el accesso a datos compartidos. Hay que considerar que mientras se est&aacute; accediendo a ciertos datos, otro programador puede estar cambi&aacute;ndolos. Por ello , habr&aacute; que utilizar alguna t&eacute;cnica de programaci&oacute;n concurrente, por ejemplo el empleo de <EM>ficheros cerrojo o locks</EM>. Cuando un programa va a entrar en <EM>la zona cr&iacute;tica</EM>, comprueba si hay un cerrojo y en caso de que lo haya, espera. Cuando el cerrojo no est&eacute; presente lo crear&aacute;, entrar&aacute; en zona cr&iacute;tica y al salir lo eliminar&aacute;. Este sistema garantiza la <EM>exclusi&oacute;n mutua</EM>,  pero puede dar problemas de <EM>inanici&oacute;n, deadlock</EM> o <EM>bloqueo</EM> si un programa muere antes de liberar el cerrojo que ha activado.<P>
+<H3><U>LAS VARIABLES DE ENTORNO</U></H3>
+Cuando lanza el script cgi, el demonio httpd posiciona toda una serie de variables de entorno. Estas variables juegan un papel importante en la programación cgi: permitirán al desarrollador el acceso a numerosas informaciones, respecto al sevidor, el cliente, la máquina que ejecuta el cliente, etc. Se trata de uno de los medios de comunicación entre el servidor y el script cgi. Veamos la lista de variables de entorno creadas por el demonio antes de ejecutar un script cgi. Las tres primeras variables no dependen de la consulta efectuada por el cliente:
+<H4>SERVER_SOFTWARE</H4>
+Nombre y versión del demonio httpd que ejecuta el script cgi.<BR>
+Formato:nombre/versión<BR>
+<H4>SERVER_NAME</H4>
+Nombre de la máquina que ejecuta el demonio httpd o dirección IP si esta máquina no tiene número IP.<BR>
+<H4>GATEWAY_INTERFACE</H4>
+Nivel de versión de la pasarela cgi del servidor Web.<BR>
+Formato:CGI/versión<P>
+Las variables siguientes son específicas de una petición dada:<BR>
+<H4>SERVER_PROTOCOL</H4>
+Nombre y versión del protocolo utilizado por la consulta en curso de tratamiento.<BR>
+Formato:protocolo/versión<BR>
+<H4>SERVER_PORT</H4>
+Número del puerto(en el sentido IP) hacia el que ha sido enviada la petición.<BR>
+<H4>REQUEST_METHOD</H4>
+Método con el que se ha efectuado la petición. Esta variable es particularmente útil en el tratamiento de formularios. Permite saber si un formulario se gestiona con el método GET o con el método POST.<BR>
+<H4>SCRIPT_NAME</H4>
+Nombre del script a partir de la raíz del servidor Web. Por ejemplo:<BR>
+SCRIPT_NAME=/cgi-bin/test_script<BR>
+<H4>REMOTE_HOST</H4>
+Nombre de la máquina de origen de la petición. Si esta máquina no tiene nombre, el servidor informa solamente con la variable REMOTE_ADDR.<BR>
+<H4>REMOTE_ADDR</H4>
+Dirección IP de la máquina de origen de la petición.<BR>
+<H4>AUTH_TYPE</H4>
+Si el servidor permite la autentificación de usuario y  el script llamado por la consulta está protegido, esta variable indica el método utilizado para validar el usuario.<BR>
+<H4>REMOTE_USER</H4>
+Si el servidor permite la autentificación de usuario y  el script llamado por la consulta está protegido, esta variable indica el nombre del usuario de origen de la petición.<BR>
+<H4>REMOTE_IDENT</H4>
+Esta variable no se soporta en todos los servidores. Cuando está posicionada, indica el nombre de usuario conectado en la máquina de origen de la petición.<BR>
+<H4>CONTENT_TYPE</H4>
+Para las peticiones que vehiculan datos, esta variable indica el tipo de datos enviados por el cliente. El formato utilizado es el formato MIME.<BR>
+<H4>CONTENT_LENGTH</H4>
+Longitud de los datos enviados por el cliente. Esta variable permite en particular conocer el número de caracteres a leer de la entrada estándar en el tratamiento de un formulario con el método POST.<P>
+Las dos variables que siguen son con mucho las más utilizadas, por la simple razón que permiten pasar parámetros al script.<BR>
+<H4>PATH_INFO</H4>
+Es la cadena de caracters que empieza tras el nombre del script y termina antes del carácter '?' o al fin del URL si no hay '?'. Esta cadena va escrita siempre literalmente en los URL, y no es generada nunca por el cliente.<BR>
+<H4>QUERY_STRING</H4>
+Es la cadena de caracters que sigue al primer '?'  tras el nombre del script y se termina al final del URL.<BR>
+
+
+<H3><U>NO VA A FUNCIONAR</U></H3>
+   Hay una pregunta que antes o despu&eacute;s se plantea  todo desarrollador de CGI´s:"¿Por qu&eacute;e no funciona?". Frecuentemente las respuestas son siempre las mismas:
+<OL>
+<LI>El CGI no devuelve datos por su salida est&aacute;andar o  no dispone de cabeceras. Es posible que en algunos casos, la salida de un CGI que no contiene cabeceras sea interpretada como <EM>text/plain</EM> lo que no es raz&oacute;n para no incluir un <EM>Content-type</EM>
+<LI>No hay una linea en blanco despu&eacute;s de las cabeceras. 
+<LI>El fichero correspondiente al CGI no es ejecutable o,  en general no tiene los permisos adecuados. Si bien el ejecutable que resulta de una compilaci&oacute;n suele tener permisos de ejecuci&oacute;n , al escribir la fuente para un programa interpretado esto no suele ser as&uacute;i. En cualquier caso, conviene siempre ajustar los permisos manualmente por razones de seguridad.
+<LI>El fichero corresponde a un programa interpretado y no se ha indicado el interprete. 
+</OL>
+<A NAME="EJM">
+<H3>EJEMPLOS</H3></A>
+Para ilustrar la utilizaci&oacute;n de la programaci&oacute;n cgi, presentaremos aqu&iacute; tres ejemplos. El primero es un contador de accesos que puede utilizarse para indicar el n&uacute;mero de accesos a una p&aacute;gina HTML desde su creaci&oacute;n. El segundo permite generar din&aacute;micamente la imagen de un reloj. Finalmente, el &uacute;ltimo genera una secuencia animada.
+<UL>
+<LI><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/var.htm">Visualización de las variables de entorno</A>
+<LI><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/ej_anim.htm">Una secuencia animada</A>
+<LI><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/reloj.htm">La fecha y la hora</A>
+</UL>
+
+<HR>
+
+</BODY>
+</HTML>

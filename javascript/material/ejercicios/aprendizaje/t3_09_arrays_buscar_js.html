@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.4 </title>
+        <script type="text/javascript"> 
+        /*
+        Crea una página llamada 09_arrays_buscar_js.html.Crea una función que reciba un array y un valor, e
+        indique si dicho valor se encuentra en el array o no. Si existe, devolverá la posición del elemento,
+        si no, devolverá -1.
+        Ejemplo:
+        let array=[“uno”,”dos”,”tres”];
+        let valor=”cuatro”
+        Console.log(arrayContieneValor(array,valor)) → devolverá -1
+        let valor =”dos”
+        Console.log(arrayContieneValor(array,valor)) → devolverá 1
+        */
+            'use strict';
+            function buscarEnArray(array, valor) { 
+                let posicion = -1;
+                for(let i in array) {
+                    if (valor == array[i]) {
+                        posicion = i;
+                        break;
+                    }
+                }
+                return posicion;
+            }
+            let array = [1,2,3,4];
+            let elemento = 2;
+            let posicion = buscarEnArray(array,elemento);
+            document.write("El elemento: "+elemento+" está en el array:"+array+"<br> en la posición: "+posicion);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

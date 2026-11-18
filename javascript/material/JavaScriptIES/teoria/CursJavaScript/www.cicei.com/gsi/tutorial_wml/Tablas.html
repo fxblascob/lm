@@ -1,0 +1,66 @@
+<html>
+<head><title>Tablas</title></head>
+
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/fondo.gif">
+<center>
+<font size=6 color=0E7ACB face="Times New Roman"><b><u>Tablas</u></b></font><br>
+<hr width=75%>
+</center>
+
+<p>
+En WML tambien se pueden hacer tablas, aunque estas est&aacute;n mucho m&aacute;s limitadas que en HTML. En WML no se puede
+poner tablas dentro de tablas y se debe especificar el n&uacute;mero de columnas en la etiqueta &lt;table&gt;.
+</p>
+
+<p>
+Atributos de la etiqueta &lt;table&gt;:
+<ol>
+  <li><b>columns=numero</b> Con este atributo ponemos el n&uacute;mero de columnas que tendr&aacute; nuestra tabla, es
+obligatorio ponerlo. 
+  <li><b>title=&quot;&quot;</b> T&iacute;tulo de la tabla, puede ser representado o no por el navegador. 
+  <li><b>align=&quot;&quot;</b> Con este atributo se especifica la alineaci&oacute;n de las columnas dentro de la tabla.
+<b>C</b> significa centrado, <b>L</b> alineado a la izquierda y <b>R</b> alineado a la derecha. Se escribe una letra por
+cada columna, de manera que <b>CCR</b>, significar&iacute;a que la primera y segunda columnas van centradas y la tercera
+alineada a la derecha. 
+</ol>
+</p>
+
+<p>
+Por cada l&iacute;nea pondremos una etiqueta &lt;tr&gt;...&lt;/tr&gt; y por cada celda una etiqueta &lt;td&gt;...&lt;/td&gt;
+tal y como se hace en HTML.
+</p>
+
+<p>
+<font size=2 face="Courier">
+&lt;?xml version=&quot;1.0&quot;?&gt;<br>
+&lt;!DOCTYPE wml PUBLIC &quot;-//WAPFORUM//DTD WML 1.1//EN&quot; &quot;http://www.wapforum.org/DTD/wml_1.1.xml&quot;&gt;<br>
+&lt;wml&gt;<br>
+&lt;card id=&quot;t1&quot; title=&quot;Tablas&quot;&gt;<br>
+   &lt;p&gt;<br>
+<br>
+   &lt;table columns=&quot;3&quot;&gt;<br>
+&lt;tr&gt;<br>
+   &lt;td&gt;Dato 1&lt;/td&gt;<br>
+   &lt;td&gt;Dato 2&lt;/td&gt;<br>
+   &lt;td&gt;Otro dato&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;tr&gt;<br>
+   &lt;td&gt;4&lt;/td&gt;<br>
+   &lt;td&gt;5&lt;/td&gt;<br>
+   &lt;td&gt;6&lt;/td&gt;<br>
+&lt;/tr&gt;<br>
+&lt;/table&gt;<br>
+<br>
+   &lt;/p&gt;<br>
+&lt;/card&gt;<br>
+&lt;/wml&gt;
+</font>
+</p>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/Eventos.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/next.gif" align=right alt="Siguiente"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/index.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/index.gif" align=right alt="&Iacute;ndice"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/Formtext.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/prev.gif" align=right alt="Anterior"></a>
+
+</body>
+
+</html>

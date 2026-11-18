@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio11/ejercicio11.html -->
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio práctico DOM y EVENTOS</title>
+		<script type="text/javascript">
+			'use strict';
+			window.onload = function() {
+                //resuelto con innerHTML
+                function eventoBoton1(){
+                    let div = document.getElementById("informacion");
+                    div.innerHTML += "<p style='background-color:red'>has pulsado el botón 1</p>";
+                }
+                function eventoBoton2(){
+                    let div = document.getElementById("informacion");
+                    div.innerHTML += "<p style='background-color:yellow'>has pulsado el botón 2</p>";
+                }
+
+                document.body.innerHTML =  "<div id = 'botones'></div>";
+                document.body.innerHTML += "<div id = 'informacion'></div>";
+
+                let div_botones = document.getElementById("botones");
+                let div_informacion = document.getElementById("informacion");
+
+                // aplico los estilos del div botones y le meto los botones
+                div_botones.style.border = "thin solid silver";
+                div_botones.style.padding = "0.5em";
+                div_botones.innerHTML += "<p><button id='boton1'>Botón1</button></p>";
+                div_botones.innerHTML += "<p><button id='boton2'>Botón2</button></p>";
+
+                // aplico los estilos del div informacion
+                div_informacion.style.border = "thin solid red";
+                div_informacion.style.padding = "0.5em"
+                
+                //menejadores de eventos
+                document.getElementById("boton1").addEventListener("click",eventoBoton1);
+                document.getElementById("boton2").addEventListener("click",eventoBoton2);
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

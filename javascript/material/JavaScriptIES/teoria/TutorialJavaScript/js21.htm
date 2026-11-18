@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js21</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY>
+<H1>Boton animado</H1>
+
+Con este ejemplo podra ir a diferentes sitios usando el mismo boton, nota que va cambiando el titulo y el destino tambien.<P>
+
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+var timerID = null
+var timerRunning = false
+var charNo = 0
+var charMax = 0
+var lineNo = 0
+var lineMax = 4
+var lineArr = new Array(lineMax)
+var urlArr = new Array(lineMax)
+lineArr[1] = "Home page de UAP"
+urlArr[1] = "http://www.uap.edu.pe/"
+lineArr[2] = "Manual de HTML"
+urlArr[2] = "http://www.uap.edu.pe/fac/02/enlaces/manualhtmlegl/demo.htm"
+lineArr[3] = "Manual de JavaScript"
+urlArr[3] = "http://www.uap.edu.pe/fac/02/enlaces/manualhtmlegl/js/js-tutor.htm"
+lineArr[4] = "Enlaces a Internet"
+urlArr[5] = "http://www.uap.edu.pe/fac/02/enlaces/manualhtmlegl/webs.htm"
+
+var lineText = lineArr[1]
+
+function StartShow() {
+   StopShow()
+   ShowLine()
+   timerRunning = true
+}
+
+function FillSpaces() {
+   for (var i = 1; i <= lineWidth; i++) {
+      spaces += " "
+   }
+}
+
+function StopShow() {
+   if (timerRunning) {
+      clearTimeout(timerID)
+      timerRunning = false
+   }
+}
+
+function ShowLine() {
+   if (charNo == 0) {
+      // Next line
+      if (lineNo < lineMax) {
+         lineNo++
+      }	else {
+         lineNo = 1
+      }
+      lineText = lineArr[lineNo]
+      charMax = lineText.length
+   }
+   if (charNo <= charMax) { // Next char
+      document.formDisplay.buttonFace.value = lineText.substring(0, charNo)
+      charNo++
+      timerID = setTimeout("ShowLine()", 100)
+   } else {
+      charNo = 0
+      timerID = setTimeout("ShowLine()", 3000)
+   }
+}
+
+function GotoUrl(url) {
+   top.location.href = url
+}
+
+document.write("<FORM NAME=\"formDisplay\">");
+document.write("<INPUT TYPE=\"BUTTON\" NAME=\"buttonFace\" VALUE=\"&{lineText}\" SIZE=\"18\" onClick=\"GotoUrl(urlArr[lineNo])\">");
+document.write("</FORM>");
+StartShow();
+// fin esconder -->
+</SCRIPT>
+<P>
+
+</BODY>
+</HTML>

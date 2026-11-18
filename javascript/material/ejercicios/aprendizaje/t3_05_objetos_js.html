@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.10 </title>
+        <script type="text/javascript"> 
+        /*
+            Crea una página llamada 05_0bjetos_js.html. Define un array con datos de personas como los del
+            ejemplo anterior. Ordena después el array ascendentemente por el nombre de las personas (alfabético),
+            recórrelo y muéstralo por pantalla. Puede serte de utilidad la función localeCompare() que
+            permite comparar alfabéticamente dos textos y obtener un entero indicando cuál es mayor o
+            menor.          
+        */
+            'use strict';
+            window.onload = function() {
+                let personas = [
+                    {
+                        nombre: "Nacho",
+                        edad: 43,
+                        telefono: "611223344"
+                    },{
+                        nombre: "Javier",
+                        edad: 55,
+                        telefono: "123456789"
+                    },{
+                        nombre: "Antonio",
+                        edad: 50,
+                        telefono: "123456788"
+                    }
+                ];
+                let mostrarPantalla = p => {
+                    div.innerHTML += p.nombre;
+                    div.innerHTML += p.edad;
+                    div.innerHTML += p.telefono;
+                    div.innerHTML += "<br>";
+                }
+
+                let div = document.getElementById("mostrar");
+
+                div.innerHTML += "El array de personas antes de ordenar<br>";
+                personas.forEach(mostrarPantalla)
+                personas.sort((p1,p2) => p1.nombre.localeCompare(p2.nombre))
+                div.innerHTML += "El array de personas después de ordenar<br>";
+                personas.forEach(mostrarPantalla);
+                console.log("----->"+personas[0].nombre.localeCompare(personas[1].nombre))
+            }
+        </script>
+    </head>
+    <body>
+       
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

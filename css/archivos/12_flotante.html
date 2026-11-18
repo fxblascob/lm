@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>            Diseño visual II        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head> 
+    <body ondblclick="ocultarMenu()">
+	    <div id="contenedor_general">
+            <div id="contenedor_cabecera">
+                <img src="../imagenes/logo.jpg" width="147" height="92"> 
+                <h1>12 Diseño visual II</h1>
+            </div>
+            <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+            <div id="contenedor_cuerpo">
+                <h1>Diseño visual II: </h1>
+                <h2>Elementos <em>float</em> y <em>clear</em></h2>
+                <p>La propiedad <b>float</b> permite sacar a un elemento del flujo del documento, y posicionarlo a la izquierda o derecha de otros elementos adyacentes. Admite tres valores: <i>right</i>, <i>left</i> y <i>none</i>.</p>
+                <p>Un valor <i>left</i> significa que el elemento formará un bloque que se situará a la izquierda de los elementos adyacentes. Un valor right significa que el bloque se situará a la derecha.</p>
+                <p>Un bloque flotante <b>debe tener definida su anchura</b>, implícita o expresamente, ya que de lo contrario será tratado como no flotante.</p>
+                <p>La propiedad <b>clear</b> se utiliza conjuntamente con <i>float</i> para indicar si un elemento flotante permite otros elementos flotantes junto a el. Sus posible valores son <i>none</i> (permite elementos a ambos lados), <i>left</i> (no permite elementos flotantes a la izquierda), <i>right</i> (no permite elementos flotantes a la derecha) o <i>both</i> (no permite elementos flotantes a ningún lado).</p>
+                <p>Los elementos flotan horizontalmente hacia la izquierda o hacia la derecha. Un elemento float se moverá lo mas lejos que pueda hacia la izquierda o derecha del elemento contenedor. 
+                Los elementos que hay después del elemento flotante, flotarán alrededor de éste. Los elementos que hubiera antes del elemento "float" no se ven afectados.
+                Si una imagen, por ejemplo, está flotando a la derecha, el texto que venga después flotará alrededor de ésta a la izquierda.
+                Si se colocan varios elementos "float" uno después del otro, estos elementos flotarán uno al lado del otro si hay sitio.
+                </p>
+                <h3>Soluciones al problema de float en maquetación CSS</h3>
+                <img src="../imagenes/float_problemas.png">
+                <ol>
+                    <li>Añadir un ancho a todos los elementos flotantes dentro del contenedor, si esto no funciona tenemos otras soluciones:</li>
+                    <li>Añadir al contenedor (que contiene los elementos flotantes) la propiedad <span style="color:blue;">overflow:hidden</span></li>
+                    <li>Añadir al final del contenedor, después de los elementos flotantes, lo siguiente:<br>
+                        <span style="color:blue;">&lt;div style="clear: both"&gt;&lt;/div&gt;</span></li>
+                </ol>
+                
+
+                <p><a href="https://www.w3schools.com/cssref/pr_class_float.asp">Ejemplos float y clear </a>
+                <p><a href="https://www.w3schools.com/cssref/tryit.asp?filename=trycss_float_clear">Ejemplo de un elemento float y otro clear</a>
+                <h2>La propiedad <em>overflow</em></h2>
+                <p>La aparición de CSS 2 brindó a los diseñadores de páginas web algunos elementos que brindan una mayor versatilidad a la hora de distribuir los contenidos en el diseño. Una de las propiedades introducidas es “overflow”, que posibilita una distribución más eficaz de las capas en el diseño.
+                <p>En muchas ocasiones, es necesario para mantener ciertas proporciones en el diseño, asignar a las capas (elementos DIV) determinadas dimensiones, tanto en ancho como en altura.
+                <p>Cuando esto sucede, al momento de introducir los contenidos es posible que los mismos excedan las dimensiones asignadas.
+                <p>Con CSS1, cuando esto sucedía, lo más frecuente era que las capas aumentaran de tamaño hasta cubrir completamente el espacio necesario para los contenidos introducidos. Usualmente, este aumento de tamaño de las capas se produce en la altura.
+                <p>Para evitar este efecto, en CSS2 se introdujo el atributo “overflow”, que sirve para recortar los contenidos que exceden el tamaño de las capas.
+                <p>Pero también sirve para que, en caso de que se desee que el contenido en exceso sea visible, se agreguen a la capa barras de desplazamiento que permitan que el usuario acceda al resto del contenido y la capa mantenga el tamaño deseado.
+                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_visible">Overflow:visible</a>
+                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_scroll">Overflow:scroll</a>
+                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_auto">Overflow:auto</a>
+                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_hidden">Overflow:hidden</a>
+
+                <h2>La propiedad <em>display</em></h2>
+
+                <p>Establece el tipo de caja generada por un elemento y puede tomar los siguientes valores (los más importantes):
+                <ul>
+                    <li>display: none  -> Hace invisible la caja
+                    <li>display: inline -> Muestra la caja como un elemento en linea
+                    <li>display: block -> Muestra la caja como un elemento de bloque
+                    <li>display: inline-block  -> Muestra la caja como un elemento en linea pero se puede aplicar valores de <strong>width y height</strong>
+                </ul>      
+                <p><a href="./modelo_cajas_explicar.html">Explicación de display</a>   
+                <p><a href="https://www.w3schools.com/cssref/pr_class_display.asp">CSS display property - W3Schools</a>
+
+                
+                    
+                <div class="ejercicios">
+                    <h3><a href="17_ejercicios.html#ej_09">Ejercicio_CSS 9:</a></h3>
+                </div>
+                
+                <div class="ejercicios">
+                    <h3><a href="17_ejercicios.html#ej_10">Ejercicio_CSS 10:</a></h3>
+                </div>
+                <h2>Degradados</h2>
+                <p>Los degradados son uno de los efectos más utilizados en la web. Anteriormente, era necesario el uso de imágenes para lograr este efecto, pero ahora es realmente fácil de hacer usando CSS.
+                <p>Los degradados son configurados como fondos, por lo que podemos usar las propiedades background o background-image para declararlos.
+                <p>Tenemos dos tipos de degradados:  <a href="https://www.w3schools.com/css/css3_gradients.asp">degradados lineales </a> y <a href="https://www.w3schools.com/css/css3_gradients_radial.asp">degradados radiales</a>.
+
+                <h2>Bodes redondeados y sombras</h2>
+                <p>Durante muchos años los diseñadores han sufrido intentando lograr el efecto de esquinas redondeadas en las cajas de sus páginas web, eran esa clase de cosas que nos hacía pensar: “debería ser fácil hacerlo”.
+                <p>Gracias a la propiedad border-radius de CSS3, ahora podemos hacerlo de forma muy sencilla
+                <p><a href="https://www.w3schools.com/css/css3_borders.asp">Bordes redondeados </a> 
+                <p><a href="https://www.w3schools.com/css/css3_shadows.asp">Sombras a cajas y a texto </a>
+                <h2>Bordes a partir de imágenes</h2>
+                <p><a href="https://www.w3schools.com/css/css3_border_images.asp">Bordes con imagenes</a>
+                <p><a href="http://w3.unpocodetodo.info/css3/border-image.php">Para entender mejor la propiedad border-image-slice</a>
+                <p>La propiedad <strong>border-image </strong>utiliza una imagen para trazar el borde de un elemento HTML y es el método abreviado de:</p>
+                <p><strong>border-image-source, border-image-slice, border-image-width, border-image-outset, y border-image-repeat.</strong></P>
+                
+                <img style="float:left;"  src="../imagenes/border-image_regiones_slice.png" width="150px">
+                <img style="clear:right;" src="../imagenes/border-image_regiones_slice2.png" width="400px">
+                <ul>
+                    <p><strong>#border-image-slice: </strong></p>
+                   
+                    <p>El diagrama anterior ilustra la ubicación de cada región.
+
+                    <p>Los posibles valores de la propiedad border-image-slice son:de uno a cuatro valores numéricos (porcentajes o números sin unidades): se interpretan como píxeles en imágenes de mapa de bits o como coordenadas en imágenes vectoriales.
+
+                    <li>Las zonas 1-4 son regiones de esquina . Cada uno se usa una sola vez para formar las esquinas de la imagen del borde final.
+                    <li>Las zonas 5-8 son regiones de borde . Estos se repiten, escalan o modifican de otro modo en la imagen del borde final para que coincida con las dimensiones del elemento.
+                    <li>La zona 9 es la región media . Se descarta de manera predeterminada, pero se usa como una imagen de fondo si se establece el fill la palabra clave .
+                    <li>Las propiedades border-image-repeat , border-image-width y border-image-outset determinan cómo se usan estas regiones para formar la imagen de borde final.
+                    <p> La propiedad border-image-slice se puede especificar utilizando de uno a cuatro valores <number-percentage> para representar la posición de cada segmento de imagen. Los valores negativos no son válidos; Los valores superiores a su dimensión correspondiente se fijan al 100% .
+
+                    <li>Cuando se especifica una posición, crea los cuatro sectores a la misma distancia de sus respectivos lados.
+                    <li>Cuando se especifican dos posiciones, el primer valor crea sectores medidos desde arriba y abajo , el segundo crea sectores medidos desde la izquierda y la derecha .
+                    <li>Cuando se especifican tres posiciones, el primer valor crea un segmento medido desde la parte superior , el segundo crea sectores medidos desde la izquierda y la derecha , el tercero crea un sector medido desde la parte inferior .
+                    <li>Cuando se especifican cuatro posiciones, crean cortes medidos desde la parte superior , derecha , inferior e izquierda en ese orden (en sentido horario).
+                    <li>El valor de fill opcional , si se usa, se puede colocar en cualquier lugar de la declaración.
+                </ul>
+               
+                <ul><p><strong>#border-image-repeat: </strong></p>
+                    <li><strong>stretch:</strong> Después de dibujar las esquinas, los segmentos 5 - 8 serán estirados para llenar el espacio correspondiente entre las esquinas.
+                    <li><strong>repeat: </strong>Después de dibujar las esquinas, los segmentos 5 - 8 serán repetidos para llenar el espacio correspondiente entre las esquinas. Si no encajan a la perfección los fragmentos de imagen pueden ser recortados para que quepan.
+                    <li><strong>round: </strong>Después de dibujar las esquinas, los segmentos 5 - 8 serán repetidos para llenar el espacio correspondiente entre las esquinas. Los fragmentos de imagen podrán ser estirados para encajar a la perfección en el espacio disponible;
+                    <li><strong>space: </strong>La normativa dice que los fragmentos de imagen serán espaciados para encajar a la perfección en el espacio disponible. La verdad es que esto todavía no funciona en ningún navegador.
+                </ul>
+                
+                <ul><p><strong>#border-image-outset</strong>
+                    <li>Por defecto el borde que utiliza la imagen esta pintado dentro de los limites de la caja. La propiedad border-image-outset amplía la área donde poder dibujar el borde.
+                    <li>Puede tomar valores numéricos por ejemplo border-image-outset:4. En este caso la área dentro de cual es posible dibujar los fragmentos de imagen será ampliada a 4 veces el valor especificado de la anchura del borde.
+                    <li>También puede tomar valores en px, em, etc... Por ejemplo border-image-outset:20px.En este caso la área dentro de cual es posible dibujar los fragmentos de imagen será ampliada en 20px.
+                    <li>Exactamente como en el caso de border-width puede tomar 1, 2, 3 o 4 valores.
+                <ul>
+                <img   src="../imagenes/border-image_outset.png" width="500px"><br>
+
+                <h3>Ejemplos de como especificar varios valores en una sola instrucción</h3>
+                <pre>
+                /* source | slice */
+                border-image: linear-gradient(red, blue) 27;
+
+                /* source | slice | repeat */
+                border-image: url("/images/border.png") 27 space;
+
+                /* source | slice | width */
+                border-image: linear-gradient(red, blue) 27 / 35px;
+
+                /* source | slice | width | outset | repeat */
+                border-image: url("/images/border.png") 27 23 / 50px 30px / 1rem round space;
+                </pre>
+                <div class="ejercicios">
+                    <h3><a href="17_ejercicios.html#ej_11">Ejercicio_CSS 11:</a></h3>
+                </div>
+                <div class="ejercicios">
+                    <h3><a href="17_ejercicios.html#ej_12">Ejercicio_CSS 12:</a></h3>
+                </div>
+            </div>
+            <div id="contenedor_pie">
+                <p>Manual de CSS - Lenguaje de Marcas - DAW-ASIR</p>
+            </div>
+        </div>
+    </body>
+</html>

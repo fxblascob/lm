@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>           Reglas de estilo        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+    <body ondblclick="ocultarMenu()">
+      <div id="contenedor_general">
+        <div id="contenedor_cabecera">
+			      <img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>03 Reglas de estilos</h1>
+        </div>
+        <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+            <h1>Reglas de estilo</h1>
+            <p>Una vez visto la estructura genérica de una regla de estilo en el <a href="./02_estructura.html">punto anterior</a>, podemos pasar a ver cómo se aplican dichas reglas. Partiremos del ejemplo siguiente:</p>
+            <div class="codigo">
+                <pre>
+p {
+  color: red;  
+}</pre>
+            </div>
+        
+            <p>En este caso, se aplicaría la regla de estilo <tt>color: red</tt> (que significa color de texto rojo) a todos los selectores indicados, en este caso los párrafos (elementos &lt;p&gt;) de la página HTML. Sin embargo, ¿sería posible actuar solamente en unos párrafos determinados y dejar el resto con otro color de letra? La respuesta es, obviamente, sí. Para ello se han desarrollado unos selectores especiales que responden a los nombres de <b>identificador</b>, <b>clase</b>, <b>pseudo-clase</b> y <b>pseudo-elemento</b>.
+			<p>A menudo hay que aplicar un estilo a varios elementos,  los podemos agrupar para hacer más compacto el código. 
+			Así en el ejemplo de abajo, todos los elemento &lt;h1&gt;, &lt;h2&gt; y &lt;p&gt; serían de color verde</p>
+			<div class="codigo">
+            <pre>
+h1,h2,p
+{
+color:green;
+}			</pre> 
+			</div>
+		    <h2>Identificadores - id</h2>    
+            <p>En HTML se puede definir un atributo llamado identificador (<tt>id</tt>), que tiene como fin asignar un nombre único a un elemento dentro de la página web. De esta manera, un elemento queda distinguido de todos los demás, ya que <b>dentro de una página web no puede haber más de un elemento con el mismo identificador</b>. Además, <b>un elemento sólo puede tener un único identificador</b>. Los identificadores son cadenas de letras y números que deben comenzar por una letra. En el ejemplo siguiente se puede ver cómo se identifica un párrafo con un identificador:</p>
+             <div class="codigo">
+                <pre>
+&lt;p id="parrafo1"&gt; </pre>
+            </div>            
+            <p>Una vez que en el documento HTML hemos asignado un identificador a un elemento, podemos hacer referencia a dicho elemento en la hoja de estilo a través de su identificador. En este caso, puesto que se trata de un párrafo, la regla de estilo quedaría de la siguiente manera:</p>
+            
+            <div class="codigo">
+                <pre>
+p#parrafo1 {font-size: 14pt;}
+o bien:
+#parrafo1 {font-size: 14pt;}
+</pre>
+            </div>
+            
+            <p>Genéricamente, si en HTML identificamos a un elemento <tt>&lt;e id=&quot;identificador&quot;&gt;</tt>, para aplicar una regla de estilo a dicho elemento se utilizará:</p>
+            
+            <div class="codigo">
+                <pre>
+e#identificador {
+  propiedad1: valor1;
+  propiedad2: valor2;
+  propiedad3: valor3;
+  ...
+}</pre>
+            </div>
+            <p>Como puede observarse, se utiliza el nombre del elemento en cuestión seguido del símbolo almohadilla (#) y el nombre del identificador que le hayamos asignado.</p> 
+            <div class="ejercicios">
+                <h3><a href="17_ejercicios.html#ej_04">Ejercicio_CSS 4:</a></h3>
+            </div>
+            
+            <h2>Clases - class</h2>
+            
+            <p>En HTML se puede definir un atributo llamado clase (<tt>class</tt>), que tiene como fin agrupar varios elementos dentro de la página web. De esta manera, <b>una clase hace referencia a un conjunto de elementos</b>. Además, <b>un elemento puede pertenecer a varias clases</b>. Los nombres de clase son cadenas de letras y números que deben comenzar por una letra. En el ejemplo siguiente se puede ver cómo se define un elemento dentro de una clase:</p>
+            
+             <div class="codigo">
+                <pre>
+&lt;img src="mesa.jpg" class="muebles"&gt; 
+</pre>
+            </div>
+            
+            <p>Para hacer que un elemento pertenezca a varias clases, éstas se separan por espacios:</p>
+            
+             <div class="codigo">
+                <pre>
+&lt;img src="cama.jpg" class="muebles habitacion"&gt; </pre>
+            </div>
+            
+            <p>Una vez que en el documento HTML hemos asignado una clase a un elemento, podemos hacer referencia a todos los elementos pertenecientes a una clase de la siguiente manera:</p>
+            
+            <div class="codigo">
+                <pre>
+.muebles {
+  border-width: 1px;
+  border-color: red;
+}           
+.habitacion {
+  border-width: 2px;
+  border-style: dashed;
+}</pre>
+            </div>
+            
+            <p>De esta manera, se crearía un borde rojo de un píxel en todos los elementos (imágenes, párrafos,...) que pertenecieran a la clase <tt>muebles</tt> y se crearía un borde de línea discontinua de 2 píxeles en todos los elementos de la clase <tt>habitacion</tt>. La imagen <tt>cama.jpg</tt>, al pertenecer a las dos clases, tendría un borde discontinuo rojo de 2 píxeles de grosor.</p>
+            
+            <p>Como puede observarse, en la hoja de estilo se utiliza un punto seguido del nombre de la clase.</p>
+            
+            <div class="ejercicios">
+                <h3><a href="17_ejercicios.html#ej_05">Ejercicio_CSS 5:</a></h3>
+            </div>
+            
+            <h2>Pseudo-clases.</h2>
+            <p>La sintaxis de pseudo-clases:</p>
+			<p class="p_aviso">selector:pseudo-class {property:value;}</p>
+			
+            <p>Las pseudo-clases clasifican a un elemento en función del estado del mismo. Normalmente se utilizan para los enlaces, y definen los eventos que hayan ocurrido: que el enlace esté sin visitar, que haya sido visitado, que el cursor del ratón se encuentre por encima, etc. Las más utilizadas se definen a continuación:</p>
+            
+             <div class="codigo">
+                <pre>
+a:link    <span class="comentarios">/*Enlace no visitado*/</span>
+a:visited <span class="comentarios">/*Enlace ya visitado*/</span>
+a:hover   <span class="comentarios">/*Cursor encima del Enlace*/</span>
+a:active  <span class="comentarios">/*Al seleccionar el Enlace*/</span>
+a:focus   <span class="comentarios">/*Enlaces seleccionados con el teclado*/</span></pre>
+            </div>
+<div class="aviso">
+<img src="../imagenes/lamp.jpg">
+<p>
+<i>a:hover</i> tiene que ir después de <i>a:link</i> y de <i>a:visited</i><br>
+<i>a:active</i> tiene que ir después de <i>a:hover</i> 
+</p>
+</div>
+
+			<p>CSS clases pueden ser usadas con pseudoclases</p>
+			<p class="p_aviso">selector.class:pseudo-class {property:value;}</p>
+			<div class="codigo">
+<pre>
+a.red:visited {color:#FF0000;}
+&lt;a class="red" href="css_syntax.asp"&gt;CSS Syntax&lt;/a&gt;</pre>
+			</div>
+
+<h3>La Pseudo-clase :first-child </h3>
+<p>La pseudo-clase :first-child se refiere al elemento que es el primer hijo de otro elemento.</p>
+
+<p>En el ejemplo de abajo el selector se refiere a cualquier &lt;p&gt; elemento que sea el primer hijo de cualquier otro elemento. 
+Por lo que pondrá el primer párrafo en azul, por ser el primer hijo de &lt;body&gt;. Si hubiera una etiqueta antes, entre &lt;body&gt; y &lt;p&gt;, entonces ya no sería el primer hijo</p>
+			<div class="codigo">
+            <pre>
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+p:first-child
+{
+color:blue;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;p&gt;Esto es un párrafo&lt;/p&gt;
+&lt;p&gt;Esto es un párrafo&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+			</div>
+
+
+            <div class="ejercicios">
+                <h3><a href="17_ejercicios.html#ej_06">Ejercicio_CSS 6:</a></h3>
+            </div>
+            
+            
+            <h2>Pseudo-elementos.</h2>
+            
+            <p>Los pseudo-elementos hacen referencia a algunas partes de los elementos de una página a los que HTML no otorga identidad propia. Solamente existen cuatro, que son:</p>
+            
+             <div class="codigo">
+                <pre>
+:first-letter <span class="comentarios">/*Primer carácter del elemento*/</span>
+:first-line   <span class="comentarios">/*Primera línea del elemento*/</span>
+:before       <span class="comentarios">/*Elemento anterior*/</span>
+:after        <span class="comentarios">/*Elemento posterior*/</span></pre>
+            </div>
+			
+			<p>El ejemplo de abajo pone la primera letra de cada párrafo con un tamaño 16 y la primera línea la pone de color rojo y con mayúsculas de un tamaño menor</p>
+            
+            <div class="codigo">
+                <pre>
+p:first-letter {
+  font-size: 16pt;
+} 
+p:first-line
+{
+color:#ff0000;
+font-variant:small-caps;
+}</pre>
+            </div>
+
+			<p>El ejemplo de abajo inserta la imagen <i>smiley.gif</i> delante de todos los &lt;h1&gt; y detrás de los &lt;h2&gt; </p>
+      <p>La propiedad <em>content</em> se utiliza solo con los pseudo-elementos <em> ::before </em> y <em> ::after </em>  para insertar contenido como texto o imágenes.</p>
+			<div class="codigo">
+                <pre>
+h1:before {
+   content:url(smiley.gif);
+}
+
+h2:after {
+   content: " un texto cualquiera  ";
+}
+</pre>
+</div>
+
+
+  
+            <div class="ejercicios">
+                <h3><a href="17_ejercicios.html#ej_07">Ejercicio_CSS 7:</a></h3>
+            </div>
+            
+<h2>Todos los CSS Pseudo Clases/Elementos</h2>
+<table class="reference">
+  <tr>
+    <th style="width:20%">Selector</th>
+    <th style="width:17%">Ejemplo</th>
+    <th>Descripción del Ejemplo</th>
+  </tr>
+  <tr>
+    <td style="color:blue">:link</td>
+    <td>a:link</td>
+    <td>Selecciona todos los links no visitados</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:visited</td>
+    <td>a:visited</td>
+    <td>Selecciona todos los links visitados</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:active</td>
+    <td>a:active</td>
+    <td>Selecciona el link activo</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:hover</a></td>
+    <td>a:hover</td>
+    <td>Selecciona links con el ratón encima</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:focus</td>
+    <td>input:focus</td>
+    <td>Selecciona el elemento "input" que tiene el "focus"</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:first-letter</td>
+    <td>p:first-letter</td>
+    <td>Selecciona la primera letra de cada elemento &lt;p&gt;</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:first-line</td>
+    <td>p:first-line</td>
+    <td>Selecciona la primera letra de cada elemento &lt;p&gt;</td>
+  </tr>
+  <tr>
+    <td style="color:blue">:first-child</td>
+    <td>p:first-child</td>
+    <td>Selecciona cada elemento &lt;p&gt; que sea el primer hijo de su padre</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:before</td>
+    <td>p:before</td>
+    <td>Inserta un contenido "content" antes de cada elemento &lt;p&gt;</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:after</td>
+    <td>p:after</td>
+    <td>Inserta un contenido "content" después de cada elemento&lt;p&gt;</td>
+  </tr>
+	<tr>
+    <td style="color:blue">:lang(<i>language</i>)</td>
+    <td>p:lang(it)</td>
+    <td>Selecciona cada elemento &lt;p&gt; con un atributo "lang" cuyo valor empieza con &quot;it&quot;</td>
+  </tr>
+</table>
+			
+		  
+      </div>
+			<div id="contenedor_pie">
+				<p>Manual de CSS - Lenguaje de Marcas - DAW-ASIR</p>
+			</div>
+	  </div>
+    </body>
+</html>

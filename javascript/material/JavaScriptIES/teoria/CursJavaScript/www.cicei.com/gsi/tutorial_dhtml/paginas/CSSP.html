@@ -1,0 +1,164 @@
+<html>
+<title>Tutorial de DHTML - CSSP</title>
+
+<body background="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/graficos/background.gif">
+
+<H2>Cascading Style Sheets Positioning</H2>
+
+Los Cascading Style Sheets (CSS) son la base del HTML Din&aacute;mico, tanto en el Netscape Navigator 4.0 como en el Internet Explorer 4.0. Los CSS ofrecen una forma de crear un conjunto de estilos que definen c&oacute;mo se mostrar&aacute;n los elementos de una p&aacute;gina. Los Cascading Style Sheets Positioning (CSSP) son una extensi&oacute;n de los CSS, y permiten un control a nivel de pixel sobre la localizaci&oacute;n de cualquier elemento de la p&aacute;gina. El objetivo del presente tutorial es aprender a hacer p&aacute;ginas utilizando DHTML, por tanto, aunque se utilizar&aacute;n CSS y CSSP, no se explicar&aacute; en este manual. 
+
+<H3>Uso del tag DIV</H3>
+
+Cuando se utilizan CSSP, estas propiedades se aplican, normalmente, a un tag DIV (division). Cuando uno pone HTML/text en un tag DIV, a este tag se le llama de varias formas: "bloque DIV", "elemento DIV", "capa-CSS" o, como suele ser m&aacute;s habitual, simplemente "capa". Cuando te encuentres en una p&aacute;gina o en otro manual una referencia a cualquiera de estos t&eacute;rminos, debes saber que se est&aacute;n refiriendo a una misma cosa: a un "trozo" de HTML encerrado dentro de un tag DIV posicionado. <p>
+
+La sintaxis de un tag DIV no difiere con respecto a otros tags: <p>
+
+<PRE>
+      	&lt;DIV&gt;
+	  Esto es un tag DIV
+      	&lt;/DIV&gt;
+</PRE>
+
+Pero al aplicar CSS a un tag DIV, podemos definir exactamente en qu&eacute; parte de la pantalla se mostrar&aacute; este trozo de HTML. Para esto, antes debemos dar al DIV un identificador para poder referirnos a &eacute;l: <p>
+
+<PRE>
+	&lt;DIV ID="ejemplo"&gt;
+	  Esto es un ejemplo de tag DIV con identificador
+      	&lt;/DIV&gt;
+</PRE>
+
+Las restricciones a la hora de poner identificadores a este tag, son las mismas que para casi todos los lenguajes de programaci&oacute;n, es decir, se puede usar cualquier combinaci&oacute;n de caracteres alfanum&eacute;ricos, incluyendo adem&aacute;s el underscore (_), debiendo empezar siempre con una letra. <p>
+
+Existen dos maneras de aplicar el CSS al tag:
+
+<OL>
+<LI> CSS en el propio documento: <p>
+	Esta forma es la m&aacute;s usada: <p>
+
+<PRE>
+   &lt;DIV ID="ejemplo" STYLE="aqu&iacute; van los estilos del tag"&gt;
+     Esto es un ejemplo de tag DIV con identificador y estilos
+   &lt;/DIV&gt;
+</PRE>
+
+<LI> Tag de estilo externo: <p>
+	El uso de esta segunda forma evidentemente produce el mismo efecto, aunque existen ciertos aspectos que hay que tener en cuenta en este caso. Por tanto, ser&aacute; mejor esperar a que veamos el cap&iacute;tulo dedicado a Nesting Layers antes de probar esto. Por el momento, s&oacute;lo muestro c&oacute;mo se hace:<p>
+
+<PRE>
+   &lt;STYLE TYPE="text/css"&gt;
+   &lt;!--
+   #ejemplo {aqu&iacute; van los estilos}
+   --&gt;
+   &lt;/STYLE&gt;
+
+   &lt;DIV ID="ejemplo"&gt;
+     Esto es un ejemplo de tag DIV
+   &lt;/DIV&gt;
+</PRE>
+
+N&oacute;tese c&oacute;mo se usa el ID en el tag STYLE para asignar los estilos CSS.
+
+</OL>
+
+<H3>Propiedades Cross-Browser CSS</H3>
+
+Puesto que el objetivo de este tutorial es generar c&oacute;digo DHTML que funcione tanto en el Netscape como en el Explorer, en cierta manera estamos limitados en cuanto a los estilos y propiedades CSS que podemos usar. Generalmente, las siguientes propiedades son las que funcionan, seg&uacute;n define el est&aacute;ndar:
+
+<DL>
+
+<DT> <b>position</b>
+<DD> Define c&oacute;mo se posicionar&aacute; el tag DIV: "relative" indica que las coordenadas est&aacute;n especificadas con respecto a otro elemento, mientras que "absolute" significa que el tag DIV se colocar&aacute; en las coordenadas señaladas.
+
+<DT> <b>left</b>
+<DD> Posici&oacute;n izquierda del tag (n&uacute;mero de pixels desde el extremo izquierdo del navegador).
+
+<DT> <b>top</b>
+<DD> Posici&oacute;n superior del tag (n&uacute;mero de pixels desde el extremo superior del navegador).
+
+<DT> <b>width</b>
+<DD> Ancho del tag DIV. Cualquier cosa que se coloque en el interior del tag, se ajustar&aacute; seg&uacute;n este valor. Si usas capas para crear animaciones, deber&iacute;as definir siempre el ancho de la capa. La raz&oacute;n est&aacute; en que en el Explorer el ancho por defecto es el ancho de la pantalla. Por tanto, si mueves la capa por la pantalla, aparecer&aacute; una barra de desplazamiento en la parte inferior, lo cual no es muy apropiado porque, adem&aacute;s de inc&oacute;modo, ralentiza la animaci&oacute;n.
+
+<DT> <b>height</b>
+<DD> Altura del tag DIV. Esta propiedad no se suele usar demasiado a menos que quieras recortar la capa.
+
+<DT> <b>clip</b>
+<DD> Define el rect&aacute;ngulo de recorte de la capa. Los valores que se utilizan para definirlo son los de las cuatro esquinas: arriba,derecha,abajo,izquierda.
+
+<DT> <b>visibility</b>
+<DD> Determina si la capa ser&aacute; "visible", "hidden" (oculta) o "inherit" (hereda visibilidad, opci&oacute;n por defecto).
+
+<DT> <b>z-index</b>
+<DD> La profundidad del tag DIV.
+
+<DT> <b>background-color</b>
+<DD> Color de fondo del tag DIV. En el Netscape, esta propiedad s&oacute;lo se aplica al color de fondo del texto. Si quieres dibujar cuadros con CSS, puedes ajustar la propiedad layer-background-color al mismo valor.
+
+<DT> <b>layer-background-color</b>
+<DD> Color de fondo del tag DIV. S&oacute;lo para el Netscape.
+
+<DT> <b>background-image</b>
+<DD> Imagen de fondo de la capa. S&oacute;lo para el Internet Explorer.
+
+<DT> <b>layer-background-image</b>
+<DD> Imagen de fondo de la capa. S&oacute;lo para el Netscape Navigator.
+
+</DL>
+
+La sintaxis de los CSS difiere del HTML, se usan dos puntos para separar la propiedad y su valor, y se usa punto y coma para separar las distintas propiedades:
+
+<PRE>
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	width: 200px;
+	height: 100px;
+	clip: rect(0px 200px 100px 0px);
+	visiblity: visible;
+	z-index: 1;
+	background-color:#FF0000;
+	layer-background-color:#FF0000;
+	background-image:URL(icono.gif);
+	layer-background-image:URL(icono.gif);
+</PRE>
+
+Uno tiene cierta flexibilidad a la hora de asignar propiedades CSS. En primer lugar, no tenemos que definir todas ellas. Los espacios en blanco se ignoran, por lo que podemos tener todas ellas en la misma l&iacute;nea, en l&iacute;neas separadas, usar tabulados, etc. Adem&aacute;s, la unidad por defecto es el pixel, por lo que no es necesario poner "px" tras cada valor de posici&oacute;n, aunque sin embargo se recomienda hacerlo, por posibles incompatibilidades entre el Netscape y el Explorer.<p>
+
+Una asignaci&oacute;n de propiedades podr&iacute;a ser la siguiente:<p>
+
+<PRE>
+	position:absolute; left:50px; top:100px; width:200px; height:100px; clip:rect(0px 200px 100px 0px); background-color:#FF0000; layer-background-color:#FF0000;
+</PRE>
+
+El ejemplo completo ser&iacute;a:<p>
+
+<OL>
+<LI> Ejemplo Interno (Con asignaci&oacute;n de propiedades en el propio tag <b>DIV</b>):<p>
+<PRE>
+   &lt;DIV ID="ejemplo" STYLE="position: absolute; left:50px; top:100px; width:200px; height:100px; clip:rect(0px 200px 100px 0px); visiblity:visible; z-index:1" &gt;
+     Esto es un ejemplo de tag DIV con estilos
+   &lt;/DIV&gt;
+</PRE>
+<LI> Ejemplo Externo (Con asignaci&oacute;n de propiedades fuera del tag <b>DIV</b>):<p>
+<PRE>
+   &lt;STYLE TYPE="text/css"&gt;
+   &lt;!--
+   #ejemplo {position: absolute; left:50px; top:100px; width:200px; height:100px; clip:rect(0px 200px 100px 0px); visiblity:visible; z-index:1;}
+   --&gt;
+   &lt;/STYLE&gt;
+
+   &lt;DIV ID="ejemplo"&gt;
+     Esto es un ejemplo de tag DIV con estilos
+   &lt;/DIV&gt;
+</PRE>
+</OL>
+
+<TABLE border=0 cellspacing=2 cellpadding=3>
+	<TD bgcolor=#9B8DE9> Apartado Anterior:  <a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/paginas/Introduccion.html">Introducci&oacute;n</a> </TD>
+	<TD bgcolor=#9B8DE9> <a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/index.html"> &Iacute;ndice </a> </TD>
+	<TD bgcolor=#9B8DE9> Apartado Siguiente: <a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/paginas/cross-browser_JavaScript.html"> Cross-Browser JavaScript</a> </TD>
+</TABLE>
+
+
+<br>
+</body>
+</html>

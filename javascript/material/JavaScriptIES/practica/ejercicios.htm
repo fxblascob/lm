@@ -1,0 +1,708 @@
+<html><head><title>Introduccion a JavaScript - Parte1</title>
+
+
+<script language="LiveScript">
+
+<!-- Hiding
+     function pushbutton() {
+       alert("Hola!");
+     }
+     function getname(str) {
+       alert("Hola, "+ str+"!");
+     }
+     function stat(txt) {
+        window.status = txt;
+        setTimeout("erase()",1500);
+      }
+     function erase() {
+       window.status="";
+     }
+// -->
+
+</script>
+
+<script language="LiveScript">
+
+<!-- Escondamonos
+     function hello() {
+       alert("Hola!");
+     }
+     function RandomNumber() {
+       timenow = new Date();
+       num= Math.abs(Math.sin(timenow.getTime()));
+       return num;  
+     }
+     function WinOpen() {
+       msg=open("","DisplayWindow","toolbar=no,directories=no,menubar=no");
+       msg.document.write("<HEAD><TITLE>Que bien!</TITLE></HEAD>");
+       msg.document.write("<CENTER><h1><B>Esto es una elegancia!</B></h1></CENTER>");
+     }
+     function stat(txt) {
+        window.status = txt;
+        setTimeout("erase()",1500);
+      }
+     function erase() {
+       window.status="";
+     }
+// -->
+
+</script>
+
+<script language="JavaScript">
+
+<!-- Hide
+function WinOpen(url) {
+   msg=open(url,"DisplayWindow","toolbar=no,directories=no,menubar=no,status=yes");
+}
+function statbar(txt) {
+   window.status = txt;
+}
+function moveover(txt) {
+   window.status = txt;
+   setTimeout("erase()",1000);
+}
+function erase() {
+   window.status="";
+}
+function stat(txt) {
+   window.status = txt;
+   setTimeout("erase()",1500);
+}
+// -->
+
+</script></head><body alink="#9999dd" bgcolor="#ffffff" link="BLUE" text="#000000" vlink="#4444dd">
+<a name="what"></a>
+<center>
+  <font color="BLUE" size="+3"><br>
+  Ejercicios de JavaScript</font><font color="BLUE" size="+2"><br>
+  </font>
+</center>
+
+
+<p>
+</p><hr align="center" size="2" width="80%">
+<p> <font size="+1">Selección de ejemplos sacados de internet y optimizados 
+  para Netscape y Internet Explorer.</font><br>
+  <br>
+<font size="+1"> 
+</font></p><p><font size="+1"> 
+</font></p><hr align="center" size="2" width="80%">
+<p><font size="+1"> <br>
+  <br>
+  <a name="ex1"></a> Veamos algunos pequeños scripts, de modo que usted 
+  pueda aprender de que modo estos son implementados dentro de los documentos 
+  de HTML y mostrar con que posibilidades se cuenta en este nuevo lenguaje script. 
+  Comenzaré con un script muy pequeño el cual solo mostrará 
+  texto dentro de un documento HTML. 
+</font></p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+Mi primer JavaScript!
+&lt;/head&gt;
+&lt;body&gt;
+&lt;br&gt;
+Este es documento normal en HTML.
+&lt;br&gt;
+  &lt;script language="LiveScript"&gt;
+    document.write("Esto es JavaScript!")
+  &lt;/script&gt;
+&lt;br&gt;
+Otra vez en HTML.
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><font size="+1"> Si está usando navegadores antiguos entonces este escrito se debe ver 
+  un poco extraño... 
+</font></p><p><font size="+1"> <i> Este es un documento normal en HTML. <br>
+  <script language="LiveScript">
+
+<!-- Hiding
+    document.write("Esto es JavaScript!")
+// -->
+  
+
+</script>Esto es JavaScript!
+  <br>
+  Otra vez en HTML. </i> 
+</font></p><p><font size="+1"><i> </i> Pero lo que yo quería mostrar es como se deben usar los tags 
+  &lt;script&gt;. Usted puede usar estos tags en su documento en el lugar que desee. 
+  <br>
+</font></p><p><font size="+1"> 
+</font></p><hr align="center" size="2" width="80%">
+<p><font size="+1"> <b>Funciones</b><br>
+  <br>
+  <a name="ex2"></a> Las funciones son invocadas por eventos iniciados por el 
+  usuario. Por esto parece razonable mantenerlas dentro de los tags &lt;head&gt;. 
+  Ellos son cargados antes de que el usuario puedea hacer algo que llame una función. 
+  Los scripts pueden ser ubicados como comentario para asegurarse de que los browsers 
+  obsoletos no muestren el script por si solos. </font></p>
+<p><font size="+1"> 
+</font></p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+  &lt;script language="LiveScript"&gt;
+     function pushbutton() {
+       alert("Hola!");
+  }
+ &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form&gt;
+  &lt;input type="button" name="Button1" value="Presióneme" onclick="pushbutton()"&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font><p>
+</p></pre>
+<font size="+1"><br>
+Si desea probar esta función ya mismo entonces por favor presione el botón. 
+</font><p><font size="+1"> 
+</font></p><form>
+<font size="+1">  <input name="Button1" value="Presióneme" onclick="pushbutton()" type="button">
+
+</font><p><font size="+1">&nbsp; 
+</font></p><p><font size="+1">Este script creará un botón que cuando es presionado muestra 
+  una ventana diciendo 'Hola!'. Además, qué está sucediendo 
+  en este script? Primero la función se carga y es guardada en memoria. 
+  Entonces un botón es hecho con el tag normal &lt;form&gt; (HTML). Hay algo 
+  completamente nuevo con el tag &lt;input&gt;. Allí puede ver 'onclick'. 
+  Esto le dice al browser que función tiene que invocar cuando este botón 
+  es presionado (logicamente si el browser es compatible con JavaScript). La función 
+  'pushbutton()' se aclara en el encabezado (&lt;head&gt;). Cuando el botón 
+  es presionado esta función se ejecuta. Existe otra cosa nueva en este 
+  script el método 'alert'. Esto método ya es declarado en JavaScript- 
+  solo se necesita invocarlo. Existen muchos métodos diferentes los cuales 
+  se pueden invocar. Aquí mostraré algunos. Puede encontar una descripción 
+  completa en el home page de Netscape. Creo que esa lista se ira volviendo mas 
+  y mas extensa en el futuro. Pero por el momento hay algunas cosas divertidas 
+  que se pueden hacer con los métodos dados. <br>
+  (No creo que el método 'alert' esté planeado para ser usado en 
+  esta forma, pero aquí estamos sólo aprendiendo y de esta manera 
+  es completamente fácil de aprender. Espero me disculpen...) <br>
+</font></p><p><font size="+1"> 
+</font></p><hr align="center" size="2" width="80%">
+<p><font size="+1"> Obtener el nombre de usuario<br>
+  <br>
+  <a name="ex3"></a> Ahora ya vamos lejos. En efecto tenemos un gran número 
+  de posibilidades tan solo agregando funciones a nuestros scripts. Ahora le mostraré 
+  como puede leer algo que un usuario haya insertado en una forma. </font></p>
+<p><font size="+1"> 
+</font></p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="LiveScript"&gt;
+&lt;!--  esconde el script de viejos browsers
+  function getname(str) {
+    alert("Hola "+ str+"!");
+  }
+// end hiding contents --&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+Por favor, escriba su nombre:
+&lt;form&gt;
+  &lt;input type="text" name="name" onBlur="getname(this.value)" value=""&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font><p>
+</p></pre>
+<font size="+1"><br>
+Ahora puede probar este script de nuevo: <i> <br>
+<br>
+Por favor escriba su nombre: 
+<form>
+  <input name="name" onblur="getname(this.value)" value="" type="text">
+</form>
+</i> 
+</font><p><font size="+1"><i> </i> Otra vez tenemos nuevos elementos implementados en este script. Primero 
+  usted habrá notado el comentario en el script. De esta forma se puede 
+  esconder el script de los browsers obsoletos que no ejecutan scripts. Usted 
+  debe seguir el orden mostrado! El principio del comentario debe estar justo 
+  después del primer tag &lt;script&gt;. El comentario termina justo antes 
+  del &lt;script&gt; tag. En este documento HTML usted tiene una forma donde el usuario 
+  puede escribir su nombre. El 'onBlur' en el tag &lt;input&gt; le dice al programa 
+  cliente que función es la que tiene que invocar cuando algo se introduce 
+  en esta forma o casilla. La función 'getname(str)' será invocada 
+  cuando usted deja en blanco esta forma ('leave') o presiona 'enter' sin haber 
+  escrito nada. La función tomará el 'string' usted escribió 
+  a través del comando 'getname(this.value)'. 'This.value' significa el 
+  valor que usted escribió en la forma. 
+</font></p><p><font size="+1"><br>
+</font></p><p><font size="+1"> 
+</font></p><hr align="center" size="2" width="80%">
+<h2><font size="+1"> <br>
+  <br>
+  <a name="ex4"></a>Función de fecha</font></h2>
+<p><font size="+1">Vamos a implementar la función de la fecha dentro de nuestro script. 
+  De modo que si usted hace una página en HTML, puede hacer que el usuario 
+  vea la última modificació del documento sin que se tenga que escribir 
+  la fecha. Simplemente se escribe un programa en script. Cuando se hagan pequeños 
+  cambios en el futuro, la fecha cambia automaticamente. 
+</font></p><p><font size="+1"> 
+</font></p><pre><font size="+1">&lt;html&gt;
+&lt;body&gt;
+Esta es una simple página en HTML.
+&lt;br&gt;
+Ultima modificación:
+  &lt;script language="LiveScript"&gt;
+  &lt;!--  oculta el script de los browsers obsoletos
+    document.write(document.lastModified)
+  // termina de esconder el contenido --&gt;
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font><p>
+</p></pre>
+ 
+<p><font size="+1"> En mi primera publicación de esta introducción 
+  había escrito <i>lastmodified</i>. Este fue el estilo que Netscape 2.0 
+  beta2 quería. Ahora ha cambiado a <i>lastModified</i>. De modo que dese 
+  cuenta que JavaScript es bastante sensitivo. lastmodified y lastModified son 
+  algo diferente. </font></p>
+<p>&nbsp;</p>Ultima modificación:
+  <script language="LiveScript">
+  <!--  oculta el script de los browsers obsoletos
+    document.write(document.lastModified)
+  // termina de esconder el contenido -->
+  </script>04/30/2001 13:14:58
+
+<p>&nbsp;</p>
+<hr align="center" size="2" width="80%">
+<h2> Enlaces y links<br>
+  <br>
+</h2>
+<p><font size="+1"><a name="status"></a> La siguiente propiedad de JavaScript 
+  la puede observar moviendo el puntero del mouse sobre este <a href="http://www.vialaweb.com/javascript/tpage.htm" onmouseover="window.status='Otro link estúpido...';
+ return true">link</a>. Tan solo observe la barra de estado en la parte baja del 
+  browser. Esto se puede combinar muy bien con funciones de JavaScript. Si mueve 
+  el mouse sobre este <a href="" onmouseover="hello()">link</a> una ventana se 
+  abrirá. Ahora le mostraré la fuente que produce estos dos efectos: 
+  </font><br>
+</p>
+<pre><font size="+1">&lt;a href="tpage.htm" onMouseOver="window.status='Otro link estúpido...';
+ return true"&gt;
+</font></pre>
+<p><br>
+  <font size="+1">La única cosa que tiene que hacer es agregar el método 
+  onMouseOver en su tag &lt;a&gt;. El window.status le permite escribir cosas el 
+  la barra de estado de su browser. Como puede ver, tiene que alternar con las 
+  comillas. No puede usar " todo el tiempo, porque de otar manera JavaScript 
+  no es capaz de identificar el string que que quiere imprimir en la barra de 
+  estado. Después del string se tiene que escribir <i>;return true</i>. 
+  <br>
+  Bueno, esto no es realmente JavaScript. Usted puede pensar que otros browsers 
+  interpretan esto a través del estilo HTML. El segundo ejemplo usa JavaScript 
+  llamando la función 'alert'. Aquí está la fuente: </font><br>
+</p>
+<pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="LiveScript"&gt;
+&lt;!-- Escondemos la funcion
+     function hello() {
+       alert("Hola!");
+     }
+// --&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href="" onMouseOver="hello()"&gt;link&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><br>
+  <font size="+1">Esto es completamente fál. Usa el método 'onMouseOver' 
+  y la función <i>hello()</i> es invocada cuando este evento ocurre. </font> 
+</p>
+<p> 
+</p><hr align="center" size="2" width="80%">
+<h2><a name="date"></a>Fecha y hora actual</h2>
+<p><font size="+1"> Ahora quiero mostrarles un ejemplo usando el método 
+  de la fecha y la hora, usted ya vió la propiedad <i>lastModified</i> 
+  trabajando. Ahora vamos a escribir la hora local a nuestro documento. Este método 
+  utiliza la fecha y la hora de su máquina, si la fecha de su máquina 
+  es 5/17/2001 esta será la fecha que verá. Estos datos no son conservados 
+  por Internet o algo parecido. <br>
+  <br>
+  <script language="LiveScript">
+
+<!-- Escondiendo
+  today = new Date()
+  document.write("La hora actual es: ",today.getHours(),":",today.getMinutes())
+  document.write("<br>La fecha es: ", today.getMonth()+1,"/",today.getDate(),"/",today.getYear());
+// se termina de esconder -->
+
+</script>La hora actual es: 19:48<br>La fecha es: 4/21/108
+  </font>
+</p><p><font size="+1"> Aquí está la fuente: <br>
+  </font>
+</p><pre><font size="+1">&lt;script language="LiveScript"&gt;
+&lt;!-- Escondiendo
+  today = new Date()
+  document.write("La hora actual es: ",today.getHours(),":",today.getMinutes())
+  document.write("<br>La fecha es: ", today.getMonth()+1,"/",today.getDate(),"/",today.getYear());
+// se termina de esconder --&gt;
+&lt;/script&gt;</font></pre>
+<p><font size="+1"><br>
+  </font></p>
+<p><font size="+1"><br>
+  Primero creamos una variable de tiempo. Esto es hecho por <i>today=new Date()</i>. 
+  Cuando no especificamos cierta fecha y hora el browser usa la hora local y la 
+  pone en la variable 'today'. Note que no tenemos que aclarar la variable 'today' 
+  en ninguna parte. Esta es una diferencia entre Java y otros lenguajes de programación 
+  donde se tiene que especificar la que escribe antes de usarlo. Hemos creado 
+  un objeto que mantiene la fecha y hora local. Ahora podemos simplemente escribir 
+  su contenido en el documento, tiene que escribir <i>today</i> antes de cada 
+  método get... De otra forma el browser no sabría a que objeto 
+  referirse. El método getMonth manda un número entre 0 y 11. 0 
+  para enero y 11 para diciembre. Por esto es que tenemos que sumar 1 al número 
+  enviado para tener el mes correcto.<br>
+  Algo interesante que se puede pensar es crear una fecha, por ejemplo la fecha 
+  cuando usted elaboró el documento, así usted podrí calcular 
+  cuantos dias después alguien está leyendo su documento. </font></p>
+<p><font size="+1"><br>
+  Para esto necesitará la fecha de hoy como se muestra en el ejemplo y 
+  además la fecha de creación. Se le puede poner una fecha de publicación 
+  al documento para que se publique automaticamente. Sería así:<i>docStarted= 
+  new Date(96,0,13)</i> <br>
+  </font></p>
+<p><font size="+1">Se tiene que especificar primero el año, luego el mes 
+  (recuerde que el mes disminuye en uno) y luego el día. También 
+  se puede especificar así: <i> docStarted= new Date(96,0,13,10,50,0)</i> 
+  <br>
+  </font></p>
+<p><font size="+1">Los primeros números siguen siendo la fecha. Están 
+  seguidos por la hora, minutos y segundos.Tengo que decirle que JavaScript no 
+  tiene una entrada real para el tiempo. Pero como pudo ver, pero de todas formas 
+  se puede trabajar bastante bien con esto. La forma en que esto funciona es que 
+  la fechas son representadas por números de milisegundos desde 1/1/1970 
+  0:0h. Esto suena un poco complicado pero es un método común para 
+  representar fechas en los computadores. Pero usted no debe molestarse acerca 
+  de esto, solo debe prestar atención a las funciones y ver que después 
+  de todo no es tan difícil. </font></p>
+<p> 
+</p><hr align="center" size="2" width="80%">
+<h2><a name="random"></a> NÚMEROS ALEATORIOS </h2>
+<p><font size="+1"> Tengo una muy buena función donde se puede calcular 
+  un número al azar. Esto pronto será implementado por JavaScript. 
+  Pero por el momento se debe trabajar con algunos trucos. Bueno, realmente no 
+  es un truco. Esta es una forma que creo que la mayoría de compiladores 
+  usan para calcular números al azar. Si se <i>calculan</i>. Se toma la 
+  hora de su máquina y se manipula de alguna manera. Tal vez la versión 
+  final de JavaScript usará este método (o alguno parecido) de alguna 
+  forma. Como le había dicho antes l tiempo es un número bastante 
+  grande. Se puede usar y hacer calculos con él. Por ejemplo se le puede 
+  calcular el seno y luego el valor absoluto. Esto nos dará un número 
+  entre 0 y 1. Además como el tiempo cambia cada milisegundo no correrá 
+  el riesgo de recibir el mismo número dos veces (cuando se calcula inmediatamente 
+  uno después del otro). Cuando quiera calcular muchos números al 
+  azar en un corto intervalo de tiempo no debe usar la función 'sin()' 
+  sola. Así obtendria siempre valores ciertamente cercanos y esto no es 
+  un número al azar. Pero si lo quiere hacer en verdad y cada 20 segundos, 
+  esta es una estupenda función para lograrlo. </font>
+</p><p><font size="+1"> Este es un número al azar: 
+  <script language="LiveScript">
+
+<!--
+  document.write(RandomNumber());
+// -->
+
+</script>0.8364347414241728
+  </font>
+</p><p><font size="+1"> Esta es la fuente para este ejemplo: </font>
+</p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="LiveScript"&gt;
+function RandomNumber() {
+  today = new Date();
+  num= Math.abs(Math.sin(today.getTime()));
+  return num;  
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script language="LiveScript"&gt;
+&lt;!--
+  document.write("Este es un numero al azar:", RandomNumber());
+// --&gt;
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</font></pre>
+<p> 
+</p><p> 
+</p><hr align="center" size="2" width="80%">
+<h2><a name="win"></a> Nuevas ventanas </h2>
+<p><font size="+1"> La creación de ventanas es una gran característica 
+  de JavaScript. Se pueden cargar ventanas nuevas con documentos HTML en ellas. 
+  Navegar por Internet todo con JavaScript. Voy a mostrarle como podemos abrir 
+  una nueva ventana y escribir algo en ella. Si usted presiona este botón 
+  querrá ver lo que voy a explicar ahora.</font>
+</p><p> 
+</p><form>
+  <font size="+1">
+  <input name="Boton1" value="Aqui estoy!" onclick="WinOpen()" type="button">
+  </font>
+</form>
+<p><font size="+1">Rompiendo con la tradición, no escribí <i>Hello 
+  world!</i> en la página ...<br>
+  Aquí está la fuente: </font>
+</p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="LiveScript"&gt;
+function WinOpen() {
+   msg=open("","DisplayWindow","toolbar=no,directories=no,menubar=no");
+   msg.document.write("&lt;HEAD&gt;&lt;TITLE&gt;Que bien!&lt;/TITLE&gt;&lt;/HEAD&gt;");
+   msg.document.write("&lt;CENTER&gt;&lt;h1&gt;&lt;B&gt;Esto es una elegancia!&lt;/B&gt;&lt;/h1&gt;&lt;/CENTER&gt;<br>");
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form&gt;
+&lt;input type="button" name="Boton1" value="Push me" onclick="WinOpen()"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><font size="+1">Como usted siempre puede ver el botón que invoca la 
+  función. La función WinOpen() crea una nueva ventana invocando 
+  el método open. Las primeras comillas contienen la URL de la página. 
+  Aquí puede poner la dirección del documento que quiere cargar. 
+  Si lo deja vacío ninguna página se carga, pero puede escribir 
+  en ella con JavaScript! Las siguientes comillas especifican el nombre de la 
+  ventana, aquí puede escribir lo que quiera, esto no tiene ningún 
+  efecto en nuestros ejemplos por ahora. Pero recibirá un mensaje de error 
+  cuando escriba <i>Display Window</i> (con un espacio entre ambas palabras - 
+  Netscape le dice algo diferente en su información - pero estuve sentado 
+  media hora y no logré encontrar ningún error!). Las comillas siguientes 
+  especifican las propiedades de la ventana. Esto es realmente interesante! usted 
+  puede decir si quiere barras de herramientas, barras de desplazamiento... Si 
+  escribe <i>toolbar=yes</i> entonces tendrá barra de herramientas en su 
+  ventana. Algunas propiedades que puede cambiar aparecan abajo. Se puede especificar 
+  cada cosa posible, solo tiene que escribirla como le mostré y <i>sin</i> 
+  espacios entre ellas. Aquí está lo que se le puede cambiar a la 
+  página: </font> </p>
+<p><font size="+1"> toolbar<br>
+  location<br>
+  directories<br>
+  status<br>
+  menubar<br>
+  scrollbars<br>
+  resizable<br>
+  copyhistory<br>
+  width=<i>pixeles</i><br>
+  height=<i>pixeles</i><br>
+  </font>
+</p><p>&nbsp;
+</p><p><font size="+1">Para <i>pixeles</i> tiene que escribir el número de 
+  pixeles. De esta forma le puede decir al browsers que tan grande debe ser la 
+  ventana.<br>
+  Después de que haya abierto la ventana y llamado su msg (aparece al frente 
+  del método 'open'), puede escribir en ella. Se puede escribir código 
+  HTML! esta es una cosa fabulosa. Se puede construir un documento HTML usando 
+  la entrada de una forma dada en el documento anterior. Usted puede hacer una 
+  página donde un usuario tenga que escribir su nombre en una 'forma', 
+  entonces un nuevo documento HTML es creado conteniendo su nombre; meses atrás 
+  esto solo era posible con scripts CGI! </font>
+</p><p>&nbsp;
+</p><hr>
+<p><font size="+1"><b>Note esto:</b> Parecen haber errores o 'bugs' en JavaScript. 
+  Cuando usted escribe algo a una ventana, tiene siempre que poner un &lt;br&gt; 
+  después de el último texto escrito en la ventana, de otra forma 
+  es probable que no se vea la última linea de su escrito.<br>
+  Si quiere insertar imágenes en la nueva ventana este seguro de poner 
+  las propiedades <i>height</i> y <i>width</i> en el tag &lt;img&gt;. De otra forma 
+  no verá imágenes o su página se desvanecerá de alguna 
+  manera. Esto puede causar algunos problemas muy extraños donde usted 
+  no cree que la imagen es responsable. </font>
+</p><hr>
+<p>&nbsp; 
+</p><h2> Mensajes en la barra de Estado<br>
+  <br>
+</h2>
+<p><font size="+1">Ahora quiero mostrarle como escribir cosas en la barra de estado, 
+  (la barra enla parte inferior de su browser donde se ven las URL's) y porsupuesto 
+  explicaré como trabaja un scroller -aunque ellos ya son odiados en la 
+  escena del JavaScript (mas adelante les diré por que-<br>
+  Primero, cómo se referencia la barra de estado? Este script muestra como 
+  se puede escribir un simple texto en la barra de estado: </font></p>
+<p> 
+</p><form>
+  <font size="+1">
+  <input name="look" value="Escribir!" onclick="statbar('Hola esta es la barra de estado!');" type="button">
+  <input name="erase" value="Borrar!" onclick="statbar('');" type="button">
+  </font>
+</form>
+<p>&nbsp;</p>
+<p><font size="+1">Aquí está el script: </font></p>
+<p> 
+</p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="JavaScript"&gt;
+&lt;!-- Hide
+function statbar(txt) {
+   window.status = txt;
+}
+// --&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form&gt;
+&lt;input type="button" name="look" value="Escribir!" onclick="statbar('Hola! esta es la barra de estado!');"&gt;
+&lt;input type="button" name="erase" value="Borrar!" onclick="statbar('');"&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><font size="+1"> Creamos dos botones, ambos invocan la función statbar(txt).El 
+  'txt' en los paréntesis muestra que la función toma una variable. 
+  (Llamé esto <i>txt</i>, pudo haber sido algo totalmente diferente). Cuando 
+  se estudia el tag &lt;form&gt;, donde se crean los botones, puede ver que la función 
+  statbar(txt) es invocada. Pero allí no escribimos <i>txt</i>. Solo escribimos 
+  el texto que queremos que nos muestre la barra de estado. Se puede ver de esta 
+  manera: la función es invocada y define la variable txt esta toma el 
+  valor ('value') que se puso después del llamado de la función. 
+  De esta forma cuando se oprime el boton 'Escribir!', la función statbar(txt) 
+  es invocada y txt conserva el valor ('string') 'Hola! esta es la barra de estado!'. 
+  Ahora se puede usar la variable txt muy usualmente. Este método de otorgar 
+  variables a las funciones las hace muy flexibles. Observe el segundo botón. 
+  Este invoca la misma función, si no tuvieramos la variable, necesitariamos 
+  dos funciones diferentes.</font>
+</p><p><font size="+1"><br>
+  Ahora qué hace la función statbar(txt)? Bueno, esto es simple. 
+  Usted solo escribe los contenidos de txt a la variable window.status. Esto es 
+  hecho por <i>window.status = txt;</i>. Escrbiendo un valor nulo ('') hace que 
+  la barra se borre. Note que tenemos que usar las comillas simples ' porque usamos 
+  comillas dobles " para definir onClick. El browser necesita saber a quien le 
+  pertenecen las comillas, por eso se tiene que alternan con comillas sencillas 
+  y dobles. Creo que esto está completamente calro.</font>
+</p><p> <font size="+1"><a name="erase"></a> Usted ya sabe que la propiedad onMouseOver 
+  de la parte dos de este tutorial:<br>
+  &lt;a href="tpage.html" onMouseOver="window.status='Otro link estupido...'; 
+  return true"&gt; <br>
+  No se molesta porque la barra de estado no borra el texto cuando el puntero 
+  del mouse no se apunta alli mucho tiempo? Tengo una solución bastante 
+  simple. Escribimos una función que usa la misma técnica para borrar 
+  la barra de estado mostrada arriba. Pero cómo podemos invocar la función 
+  de borrado? No tenemos una propiedad o un método para detectar si el 
+  mouse se está moviendo sobre un link. Instalando un 'timer' es la solución. 
+  </font>
+</p><p><font size="+1"> Ensaye el siguiente script <a href="http://www.vialaweb.com/javascript/dontclck.htm" onmouseover="moveover('Desapareciendo!'); return true;">aquí</a>. 
+  Sólo mueva el puntero sobre él no haga click! </font>
+</p><p><font size="+1"> Esto es realmente puro, solo mire la fuente y verá 
+  que es más fácil de lo que se ve a primera vista. </font>
+</p><p> 
+</p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="JavaScript"&gt;
+&lt;!-- Hide
+function moveover(txt) {
+   window.status = txt;
+   setTimeout("erase()",1000);
+}
+function erase() {
+   window.status="";
+}
+// --&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href="dontclck.htm" onMouseOver="moveover('Desapareciendo!');return true;"&gt;
+link&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><font size="+1"> Usted reconocerá muchas partes de este script. La función 
+  moveover(txt) es solo la función statbar(txt) después de algún 
+  trabajo de copiar y pegar sobre ella! Algo similar sucede con la función 
+  erase(). En el &lt;body&gt; de la página de HTML creamos un link con la 
+  ya conocida propiedad onMouseOver. Nuestra función moveover(txt) es invocada 
+  con la string 'Desapareciendo!' pasándola por encima de la variable txt. 
+  El window.status toma los contenidos de txt. Lo mismo que la función 
+  statbar(txt). Aunque la invocaciónde la función setTimeout(...) 
+  is nueva. Esta funció configura un tiempo de finalización. Quién 
+  estaba esperando eso? La funció setTimeout(...) define una hora de arranque 
+  y una hora de finalización. En nuestro ejemplo la función erase() 
+  es invocada después de 1000 milisegundos (un segundo). Esta es una característica 
+  fantástica! Su función moveover(txt) termina luego de que el tiempo 
+  es configurado.El browser invoca la función erase() automaticamente luego 
+  de un segundo. (Todavía sigue pensando en una página que diga 
+  al usuario:<i>Cuando usted no haga esto su disco duro será destruido 
+  en 10 segundos!</i> ???) <br>
+  Luego de que el tiempo de finalización a concluido, el tiempo de inicio 
+  no arranca de nuevo, claro que se puede invocar otra vez con la función 
+  erase(). Esto nos lleva directamente a los scrollers que todos queremos. </font>
+</p><p> 
+</p><hr align="center" size="2" width="80%">
+<p>&nbsp; 
+</p><h2>Scroller</h2>
+<p><font size="+1"> Como usted ya sabe como escribir cosas en la barra de estado 
+  y como trabaja la función setTimeout, le será fácil de 
+  entender el scroller. </font> 
+</p><p><font size="+1"> Presione este botón para ver mi scroller. El script 
+  debe cargarse desde el servidor. Así que sea paciente si no lo ve inmediatamente. 
+  </font>
+</p><p> 
+</p><form>
+  <font size="+1">
+  <input name="Button" value="Scroller" onclick="WinOpen('scroller.htm')" type="button">
+  </font>
+</form>
+<p><font size="+1"> Un vistazo al script: </font>
+</p><p> 
+</p><pre><font size="+1">&lt;html&gt;
+&lt;head&gt;
+&lt;script language="JavaScript"&gt;
+&lt;!-- Hide
+
+var scrtxt="Aqui va el mensaje, los visitantes de su pagina "+
+"la veran por horas totalmente fascinados...";
+var lentxt=scrtxt.length;
+var width=100;
+var pos=1-width;
+
+function scroll() {
+  pos++;
+  var scroller="";
+  if (pos==lentxt) {
+    pos=1-width;
+  }
+  if (pos&lt;0) {
+    for (var i=1; i&lt;=Math.abs(pos); i++) {
+      scroller=scroller+" ";}
+    scroller=scroller+scrtxt.substring(0,width-i+1);
+
+  }
+  else {
+    scroller=scroller+scrtxt.substring(pos,width+pos);
+
+  }
+  window.status = scroller;
+
+  setTimeout("scroll()",150);
+  }
+//--&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onLoad="scroll();return true;"&gt;
+Aqui va su super pagina!
+&lt;/body&gt;
+&lt;/html&gt;
+</font></pre>
+<p><font size="+1"> Este script usa las mismas funciones (o parte de ellas) que 
+  usamos antes. El setTimeout(...) le dice al 'timer' que invoque la función 
+  scroll() cuando el tiempo es el justo. El scroller se moverá un paso 
+  mas adelante. Al comienzo hay muchos cálculos pero esto no es muy importante 
+  para saber como funciona el script. Los cálculos se hacen para determinar 
+  la posicióon donde el scroller debe arrancar. Si se ubica solo al comienzo 
+  se deben poner unos espacios en blanco para ubicar el texto correctamente.</font>
+</p><p><font size="+1"> Yo le dije al comienzo de mi introducción que los scrollers 
+  no son muy populares, o que si ellos aún son populares, no lo serán 
+  por mucho tiempo. Existen muchas razones, aquí menciono algunas, pero 
+  son muchas más.<br>
+  Si usted ve este efecto por primera vez es completamente fascinante; pero cuando 
+  lo ve por diezmillonésima vez, no es tan divertido. Bueno esto no es 
+  un buen argumento además puede que esté afectando algún 
+  truco usado en sus páginas.<br>
+  </font>
+</p><p>&nbsp; 
+</p><p>&nbsp; </p>
+</form></body></html>

@@ -1,0 +1,297 @@
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Operadores</H1>
+
+<P>PHP nos ofrece una gran variedad de operadores, desde los aritm&eacute;ticos
+hasta operadores a nivel de bits. Podemos llevar a cabo la
+siguiente clasificaci&oacute;n:
+<UL>
+	<LI>Aritm&eacute;ticos
+	<LI>L&oacute;gicos
+	<LI>De comparaci&oacute;n
+	<LI>L&oacute;gicos
+	<LI>De cadenas
+	<LI>A nivel de bits
+	<LI>De asignaci&oacute;n
+	<LI>De incremento y decremento
+	<LI>De control de errores
+	<LI>De ejecuci&oacute;n
+</UL>
+
+<HR>
+<A NAME="aritmeticos">
+<H3>Operadores aritm&eacute;ticos</H3>
+<TABLE BORDER ALIGN="center">
+<TR>
+	<TD><B>Operaci&oacute;n</TD>
+	<TD><B>S&iacute;mbolo</B></TD>
+	<TD><B>Devuelve</B></TD>
+	<TD ALIGN="center"><B>Ejemplos</B></TD>
+</TR>
+<TR>
+	<TD>Suma</TD><TD ALIGN="center"><B>+</B></TD>
+	<TD>La suma de los operandos</TD>
+	<TD ALIGN="center">$a + $b</TD>
+</TR>
+<TR>
+	<TD>Resta</TD><TD ALIGN="center"><B>-</B></TD>
+	<TD>La diferencia de los operandos</TD>
+	<TD ALIGN="center">$a - $b</TD>
+</TR>
+<TR>
+	<TD>Producto</TD><TD ALIGN="center"><B>*</B></TD>
+	<TD>El producto de los operandos</TD>
+	<TD ALIGN="center">$a * $b</TD>
+</TR>
+<TR>
+	<TD>Divisi&oacute;n</TD><TD ALIGN="center"><B>/</B></TD>
+	<TD>El cociente de los operandos</TD>
+	<TD ALIGN="center">$a / $b</TD>
+</TR>
+<TR>
+	<TD>M&oacute;dulo</TD><TD ALIGN="center"><B>%</B></TD>
+	<TD>El resto del cociente $a / $b</TD>
+	<TD ALIGN="center">$a % $b</TD>
+</TR>
+</TABLE>
+
+<HR>
+<A NAME="logicos">
+<H3>Operadores l&oacute;gicos</H3>
+<P>En principio nos va a llamar la atenci&oacute;n el hecho de que existan
+dos operadores AND y dos OR. La explicaci&oacute;n es que cada operador AND tiene
+diferente <A HREF>recedencia</A>; con los operadores OR ocurre lo mismo.</P>
+<TABLE BORDER ALIGN="center">
+<TR>
+	<TD><B>Operaci&oacute;n</B></TD>
+	<TD><B>S&iacute;mbolo</B></TD>
+	<TD><B>Devuelve</B></TD>
+	<TD ALIGN="center"><B>Ejemplos</B></TD>
+</TR>
+<TR>
+	<TD>Y-l&oacute;gico</TD><TD ALIGN="center"><B>and</B></TD>
+	<TD>Verdadero si $a y $b son verdaderos</TD>
+	<TD ALIGN="center">$a and $b</TD>
+</TR>
+<TR>
+	<TD>Y-l&oacute;gico</TD><TD ALIGN="center"><B>&&</B></TD>
+	<TD>Verdaderos si $a y $b son verdaderos</TD>
+	<TD ALIGN="center">$a && $b</TD>
+</TR>
+<TR>
+	<TD>O-l&oacute;gico</TD><TD ALIGN="center"><B>or</B></TD>
+	<TD>Falso si $a y $b son falsos</TD>
+	<TD ALIGN="center">$a or $b</TD>
+</TR>
+<TR>
+	<TD>O-l&oacute;gico</TD><TD ALIGN="center"><B>||</B></TD>
+	<TD>Falso si $a y $b son falsos</TD>
+	<TD ALIGN="center">$a / $b</TD>
+</TR>
+<TR>
+	<TD>O-exclusivo</TD><TD ALIGN="center"><B>xor</B></TD>
+	<TD>Verdadero si $a o $b es verdadero, pero no los dos</TD>
+	<TD ALIGN="center">$a xor $b</TD>
+</TR>
+<TR>
+	<TD>Negaci&oacute;n l&oacute;gica</TD><TD ALIGN="center"><B>!</B></TD>
+	<TD>Verdadero si $a es falso.</TD>
+	<TD ALIGN="center">!$a</TD>
+</TR>
+</TABLE>
+
+<HR>
+<A NAME="comparacion">
+<H3>Operadores de comparaci&oacute;n</H3>
+<TABLE BORDER ALIGN="center">
+<TR>
+	<TD><B>Operaci&oacute;n</TD>
+	<TD><B>Operador</B></TD>
+	<TD><B>Devuelve</B></TD>
+	<TD><B>Ejemplos</B></TD>
+</TR>
+<TR>
+	<TD>Igual</TD><TD ALIGN="center"><B>==</B></TD>
+	<TD>Verdadero si $a y $b son iguales</TD>
+	<TD ALIGN="center">$a == $b</TD>
+</TR>
+<TR>
+	<TD>Identidad</TD><TD ALIGN="center"><B>===</B></TD>
+	<TD>Verdaderos si $a y $b son verdaderos y del mismo tipo</TD>
+	<TD ALIGN="center">$a && $b</TD>
+</TR>
+<TR>
+	<TD>Distinto</TD><TD ALIGN="center"><B>!=</B></TD>
+	<TD>Verdadero si $a y $b son distintos</TD>
+	<TD ALIGN="center">$a != $b</TD>
+</TR>
+<TR>
+	<TD>Menor que</TD><TD ALIGN="center"><B>&#60;</B></TD>
+	<TD>Verdadero si $a es menor que $b</TD>
+	<TD ALIGN="center">$a &#60; $b</TD>
+</TR>
+<TR>
+	<TD>Menor o igual que</TD><TD ALIGN="center"><B>&#60;=</B></TD>
+	<TD>Verdadero si $a es menor o igual que $b</TD>
+	<TD ALIGN="center">$a &#60;= $b</TD>
+</TR>
+<TR>
+	<TD>Mayor que</TD><TD ALIGN="center"><B>&#62;</B></TD>
+	<TD>Verdadero si $a es mayor que $b</TD>
+	<TD ALIGN="center">$a &#62; $b</TD>
+</TR>
+<TR>
+	<TD>Mayor o igual que</TD><TD ALIGN="center"><B>&#62;=</B></TD>
+	<TD>Verdadero si $a es mayor o igual que $b</TD>
+	<TD ALIGN="center">$a &#62;= $b</TD>
+</TR>
+<TR>
+	<TD>Condicional</TD><TD ALIGN="center"><B>?:</B></TD>
+	<TD>Exp2 si Exp1 es verdadero; si no Expr3</TD>
+	<TD ALIGN="center">(Expr1) ? (Expr): (Expr3);</TD>
+</TR>
+</TABLE>
+
+<HR>
+<A NAME="cadenas">
+<H3>Operadores de cadenas</H3>
+<P>El operador ofrecido por PHP para las cadenas es el de concatenaci&oacute;n, que
+se corresponde con el s&iacute;mbolo"<B>.</B>" (punto).</P>
+<P>Tambi&eacute;n podemos considerar a los corchetes [ ] como operador para
+las cadenas, ya que cumple una funci&oacute;n an&aacute;loga a la que lleva a cabo con
+los vectores.</P>
+<PRE>
+<FONT COLOR="red">
+	$c = $a.$b;	/* $c tendr&aacute; como valor la concatenaci&oacute;n $a y $b */
+	$cadena = "prueba";
+	$caracter = $cadena[3]; /* $caracter valdr&aacute; 'e' */
+</FONT></PRE>
+
+<HR>
+<A NAME="bits">
+<H3>Operadores a nivel de bits</H3>
+<TABLE BORDER ALIGN="center">
+<TR>
+	<TD><B>Operaci&oacute;n</TD>
+	<TD><B>Operador</B></TD>
+	<TD><B>Devuelve</B></TD>
+	<TD ALIGN="center"><B>Ejemplos</B></TD>
+</TR>
+<TR>
+	<TD>Y-L&oacute;gico</TD><TD ALIGN="center"><B>&</B></TD>
+	<TD>Y-L&oacute;gico bit a bit</TD>
+	<TD ALIGN="center">$a & $b</TD>
+</TR>
+<TR>
+	<TD>O-L&oacute;gico</TD><TD ALIGN="center"><B>|</B></TD>
+	<TD>O-L&oacute;gico bit a bit</TD>
+	<TD ALIGN="center">$a | $b</TD>
+</TR>
+<TR>
+	<TD>O-Exclusivo</TD><TD ALIGN="center"><B>^</B></TD>
+	<TD>O-Exclusivo a nivel de bits</TD>
+	<TD ALIGN="center">$a ^ $b</TD>
+</TR>
+<TR>
+	<TD>Negaci&oacute;n</TD><TD ALIGN="center"><B>~</B></TD>
+	<TD>Negaci&oacute;n a nivel de bits</TD>
+	<TD ALIGN="center">~$a</TD>
+</TR>
+<TR>
+	<TD>Desplazamiento a la izquierda</TD><TD ALIGN="center"><B>&#60;&#60;</B></TD>
+	<TD>Desplaza $a hacia la izquierda a nivel de bits $b veces</TD>
+	<TD ALIGN="center">$a &#60;&#60; $b</TD>
+</TR>
+<TR>
+	<TD>Desplazamiento a la derecha</TD><TD ALIGN="center"><B>&#62;&#62;</B></TD>
+	<TD>Desplaza $a hacia la derecha a nivel de bits $b veces</TD>
+	<TD ALIGN="center">$a &#62;&#62; $b</TD>
+</TR>
+</TABLE>
+
+<HR>
+<A NAME="asignacion">
+<H3>Operadores de asignaci&oacute;n</H3>
+<P>El operador de asignaci&oacute;n por excelencia es "<B>=</B>". Se trata del m&aacute;s
+sencillo de los operadores de asignaci&oacute;n:</P>
+<PRE>
+<FONT COLOR="red">
+	$a = $b + 1;	/* $a vale $b + 1 */
+</FONT></PRE>
+<P>Decimos que es el m&aacute;s sencillo porque PHP, al igual que C, nos ofrece
+gran variedad de operadores de asignaci&oacute;n, por medio de la combinaci&oacute;n del
+s&iacute;mbolo "<B>=</B>" con otros operadores.</P>
+<PRE>
+<FONT COLOR="red">
+	$a += 5;		/* $a = $a + 5; */
+	$b .= "Concatena";	/* $b = $b."Concatena"; */
+	$a -= 3;		/* $a = $a - 3; */
+	$a *= $a		/* $a = $a * $a; */
+	$a /= 2;		/* $a = $a / 2; */
+</FONT></PRE>
+
+<P>Otro aspecto a destacar de los operadores de asignaci&oacute;n en PHP es que,
+adem&aacute;s de producirse la asignaci&oacute;n de un valor, se devuelve &eacute;l mismo.</P>
+<PRE>
+<FONT COLOR="red">
+	$a = ($b = 3);		/* $b = 3 devuelve 3. Por tanto $a = $b = 3; */
+	$a = $b = 3;
+	$a = ($b *= 3) + 5;	/* $b = $b * 3;
+				   $a = $b * 3 + 5; */
+</FONT></PRE>
+
+<HR>
+<A NAME="incdec">
+<H3>Operadores de incremento y decremento (++, --)</H3>
+<P>Estos operadores han estado siempre ligados a C, lenguaje con el cual
+vieron la luz. Se trata de incrementar en una unidad el valor de la variable
+sobre la que se aplican: $a++ equivale aritm&eacute;ticamente a $a = $a + 1, o bien,
+a $a += 1. Pero estos operadores tienen algo m&aacute;s: si se colocan antes de la
+variable (preincremente/predecremento) se incrementa/decrementa el valor de $a
+y luego se utiliza su valor. Si se ponen como sufijo de la variable, primero se
+utiliza el valor de $a y luego se opera sobre &eacute;sta.</P>
+<PRE>
+<FONT COLOR="red">
+	$a = 1;
+	$a++;		/* $a vale 2 */
+	$a--;		/* $a vale 1 */
+	++$a;		/* $a vale 2 */
+	--$a;		/* $a vale 1 */
+</FONT></PRE>
+<P>Hasta aqu&iacute;, nada especial. Pero en el siguiente ejemplo vemos lo que
+explic&aacute;bamos, la importancia de su posici&oacute;n:</P>
+<PRE>
+<FONT COLOR="red">
+	$a = 1;		/* $a vale 1 */
+	$b = $a++;	/* $b vale 1 y $a vale 2 */
+</FONT></PRE>
+<P>Primero se utiliza el valor de $a para la asignaci&oacute;n y, despu&eacute;s, se
+incrementa $a.</P><BR>
+<PRE>
+<FONT COLOR="red">
+	$a = 1;		/* $a vale 1 */
+	$b = --$a;	/* $a y $b valen 0 */
+</FONT></PRE>
+<P>Primero se decrementa $a y luego se utiliza su valor en la asignaci&oacute;n.</P>
+
+<HR>
+<A NAME="errores">
+<H3>Operador de control de errores</H3>
+<P>El signo <B>@</B>, colocado antes de una expresi&oacute;n, hace que cualquier mensaje
+de error de esa expresi&oacute;n se ignore. Dicho mensaje se almacenar&aacute; en la variable
+global <EM>$php_errormsg</EM>.</P>
+
+<HR>
+<A NAME="ejecucion">
+<H3>Operador de ejecuci&oacute;n</H3>
+<P>Por medio de la utilizaci&oacute;n de <EM>backquotes</EM> <B>`</B>, se comunica
+a PHP la ejecuci&oacute;n de un comando del <EM>shell</EM>.</P>
+<PRE>
+<FONT COLOR="red">
+	$date = `date`;
+	echo $date;		/* la salida ser&aacute;
+				   Fri Sep 15 00:54:51 WEST 2000 */
+</FONT></PRE>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+<html>
+
+<head>
+<title> Manual de UNIX </title>
+</head>
+
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi2/imagenes/unix.jpg">
+
+<A name="unix"></A>
+
+<IMG SRC=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi2/imagenes/manual.gif>
+<h1> Lectura de p&aacute;ginas del manual <h1> 
+<IMG SRC=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi2/imagenes/skal3.gif width="582" height="9"> 
+
+<form action="http://sopa.dis.ulpgc.es/prog/man?00+00" method=post>
+
+P&aacute;gina del manual(ej. <code>printf</code>)
+<input type="text" name=command size=32><code>  </code>
+Secci&oacute;n (del 1 al 8, o vac&iacute;o)
+<input type="text" name=section size=2>
+
+<p>
+<input type="submit" value="Ver p&aacute;gina">
+<p>
+<input type="reset" value="Vaciar">
+
+</form>
+<IMG SRC=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi2/imagenes/skal3.gif width="582" height="9"> 
+
+<IMG SRC=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi2/imagenes/manual.gif>
+<h2> B&uacute;squeda de p&aacute;ginas del manual por contenido</h2> 
+
+
+<form action=http://sopa.dis.ulpgc.es/manual method=post>
+
+<b>Claves de b&uacute;squeda: </b>    
+<input type=TEXT name=clave size=30><p>
+(ej.<code>delete file</code>)<p> 
+
+
+<b>Opciones de b&uacute;squeda: </b> <p>
+<input type=RADIO NAME=modo value=OR>  
+Cualquiera de las claves (OR)
+<p>
+
+<input checked type=RADIO NAME=modo value=AND>     
+Todas las claves (AND)
+<P>
+<input type="submit" value="Buscar">
+<p>
+<input type="reset" value="Vaciar">
+
+</form>
+
+</body>
+</html>
+

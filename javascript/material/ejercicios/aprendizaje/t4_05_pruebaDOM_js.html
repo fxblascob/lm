@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio 12 - DOM básico y atributos HTML</title>
+		<style type="text/css">
+			.oculto { display: none; }
+			.visible { display: inline; }
+		</style>
+		<script>
+			/*
+			Completar el código JavaScript proporcionado para que cuando se pinche sobre el enlace se
+			muestre completo el contenido del texto. Además, el enlace debe dejar de mostrarse después
+			de pulsarlo por primera vez. La acción de pinchar sobre un enlace forma parte de los "Eventos"
+			de JavaScript que se ven en el siguiente capítulo. En este ejercicio, sólo se debe saber que al
+			pinchar sobre el enlace, se ejecuta la función llamada muestra().
+			*/
+			'use strict';
+			window.onload = function(){
+				function muestraEsconde() {
+					let elemento = document.getElementById("adicional");
+					let enlace = document.getElementById("enlace");
+
+					if (elemento.className == "oculto") {
+						elemento.className = "visible";
+						enlace.innerHTML = "Ocultar";
+					}else {
+						elemento.className = "oculto";
+						enlace.innerHTML = "Seguir leyendo";
+					}	
+				}
+				document.getElementById("enlace").onclick = muestraEsconde;
+			}
+		</script>
+	</head>
+	<body>
+		<p id="texto">
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue, commodo nec, commodo ultricies, turpis. 
+			Quisque sapien nunc, posuere vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id, aliquam vitae, ultrices porttitor, pede. 
+			<span id="adicional" class="oculto">
+				Nullam sit amet nisl elementum elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque, 
+				felis eu adipiscing ullamcorper, odio urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis scelerisque. Donec lacus neque, vehicula in, 
+				eleifend vitae, venenatis ac, felis. Donec arcu. Nam sed tortor nec ipsum aliquam ullamcorper. Duis accumsan metus eu urna. Aenean vitae enim. Integer lacus. Vestibulum venenatis erat eu odio. 
+				Praesent id metus.
+			</span>
+		</p>
+		<a id="enlace" href="#">Seguir leyendo</a>
+	</body>
+</html>

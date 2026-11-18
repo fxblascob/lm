@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.8 </title>
+        <script type="text/javascript"> 
+        /*Crea un fichero llamado 02_arrays_ordenacion_js.html. 
+        Crea dentro un array de números y muéstralo ordenado de mayor a menor.
+        */
+
+            'use strict';
+            window.onload = function() {
+                //let array = [3,4,5,6];
+                let array = [20, 4, 6, 2, 10];
+                document.getElementById("mostrar").innerHTML +="<br> Array original: "+ array;
+                array.sort((n1,n2) => {return n2-n1;});
+                document.getElementById("mostrar").innerHTML +="<br> Array ordenado descendente (sort con lambda): "+ array;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

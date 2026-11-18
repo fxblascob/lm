@@ -1,0 +1,5 @@
+a:link  {color:red;}	  /*Enlace no visitado*/
+a:visited {color:green;}  /*Enlace ya visitado*/
+a:hover   {color:blue;} /*Cursor encima del Enlace*/
+a:active  {color:yellow;}   /*Al seleccionar el Enlace*/
+a:focus   {color:brown;}   /*Enlaces seleccionados con el teclado*/

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" /> <title>Ejercicio 3.2 - Información sobre cadenas</title>
+        <script type="text/javascript"> 
+        /*
+        información sobre una cadena de texto que se le pasa como argumento. A partir de la cadena
+        que se le pasa, la función determina si esa cadena está formada sólo por mayúsculas, sólo por
+        minúsculas o por una mezcla de ambas.
+        Ejemplo:
+        document.write(mayusculasMinusculas(“Hola Mundo”)) → devuelve: “Mayúsculas y minúsculas”
+        document.write(mayusculasMinusculas(“HOLA MUNDO”)) → devuelve: “Mayúsculas”
+        document.write(mayusculasMinusculas(“hola mundo”)) → devuelve: “Minúsculas”
+        */
+            'use strict';
+            function infoMayusMinus(cadena) { 
+                let resultado = "La cadena \""+cadena+"\" ";
+                // Comprobar mayúsculas y minúsculas 
+                if(cadena == cadena.toUpperCase()) {
+                    resultado += " está formada sólo por mayúsculas";
+                } else if(cadena == cadena.toLowerCase()) {
+                    resultado += " está formada sólo por minúsculas";
+                } else {
+                    resultado += " está formada por mayúsculas y minúsculas";
+                }
+                return resultado;
+            }
+            let texto = prompt("Introduce un texto para ver las mayúsculas")
+            alert(infoMayusMinus(texto)); 
+
+</script>
+    </head>
+    <body>
+    </body>
+</html>

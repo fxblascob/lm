@@ -1,0 +1,235 @@
+<html>
+
+<head>
+
+<title> Tutorial de JavaScript </title>
+
+</head>
+
+<body bgcolor="white">
+
+<a name="operadores"></a>
+<font size=7 color="#006400"><b><center><FONT color=mediumblue face=Tahoma>Cap&iacute;tulo 
+3: </FONT><U> </center><center><FONT color=royalblue face="Arial Black">Operadores 
+</FONT> </center></U></b></font>
+
+<br>
+<br>
+
+<p>
+JavaScript posee una amplia variedad de operadores. 
+Estos operadores los podemos distinguir en dos grupos: <b> binarios</b>, que act&uacute; sobre dos operandos y <b> unarios</b>, que s&oacute;lo requieren un operando. As&iacute;, su 
+sintaxis general es:
+
+<center><h3><TT>
+<p>
+	operando1 <I>operador_Binario</I> 
+operando2
+<p>
+	operando1 <I>operador_unario</I>
+<p>
+	<I>operador_unario</I> operando1
+<p>
+</TT></h3></center>
+
+<a name="aritmeticos"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.1. Operadores aritm&eacute;ticos 
+</FONT> </U></b></h2>
+
+<p>
+JavaScript suministra las operaciones b&aacute;sicas con 
+el &uacute;nico a&ntilde;adido del operador que devuelve el resto de la 
+divisi&oacute;n entre el operador izquierdo y el derecho. Se carece de 
+operadores m&aacute;s complejos, aunque el objeto Math definido en JavaScript 
+posee dichas tareas.
+<p>
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla1.gif" alt="tabla de operadores aritméticos" align="middle" width="311" height="104"> 
+</center>
+
+<br>
+
+<p><I>
+<B>Nota</B>: El operador <B>+</B> aplicado strings, 
+concatena ambas strings en una sola. 
+</I><p>
+
+<p><h3><b>Operadores de incremento (++) y 
+decremento (--). </b></h3>
+
+<p>
+Estos operadores son unarios y realizan el 
+autoincremento y el autodecremento a la variable que se les aplica. 
+Adem&aacute;s de modificar la variable, devuelven el valor de la misma.
+<p>
+El operador de incremento o decremento puede ir delante 
+p detr&aacute;s de la variable teniendo diferente significado. Si el operador es <b>++</b> se sit&uacute;a despu&eacute;s de la variable se 
+denomina <I>postincremento</I>, haciendo que primero tome 
+el valor y despu&eacute;s se incremente la variable. Ejemplo:
+<p>
+<center><h4>
+	<TT>n=k++;</TT><I> // El valor de k se asigna a n y luego se incrementa k.</I> 
+</h4></center>
+<p>
+Si el operador <b>++</b> se 
+sit&uacute;a antes de la variable se denomina <I>preincremento</I> y hace que primero se incremente la variable y luego se 
+tome el valor. Ejemplo:
+<p>
+<center><h4>
+	<TT>n=++k;</TT><I> // Primero se incrementa k y luego se asigna a n.</I> 
+</h4></center>
+<p>
+El operador de decremento act&uacute;a de igual forma al 
+de incremento.
+<p>
+
+<a name="relacionales"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.2. Operadores relacionales</FONT> 
+ </U></b></h2>
+
+<p>
+Se emplean t&iacute;picamente en las expresiones 
+condicionales. Los operadores relacionales devuelven valores booleanos. Los 
+operandos pueden ser tanto n&uacute;mericos como strings.
+<p>
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla2.gif" alt="tabla de operadores relacionales" align="middle" width="313" height="119"> 
+</center>
+<br>
+
+<a name="logicos"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.3. Operadores l&oacute;gicos. 
+</FONT> </U></b></h2>
+
+<p>
+Los operandos l&oacute; est&aacute; relacionados con los 
+relacionales ya que normalmente los operandos que usan son resultado de 
+expresiones relacionales. Los valores resultantes son booleanos.
+<p>
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla3.gif" alt="tabla de operadores lógicos" align="middle" width="314" height="73"> 
+</center>
+<br>
+
+<a name="deBits"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.4. Operadores bit a bit. 
+</FONT> </U></b></h2>
+
+<p>
+La forma de trabajar de estos operadores es convertir a 
+binario los operandos y luego operar con ellos bit a bit.
+<p>
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla4.gif" alt="tabla de operadores bit a bit" align="middle" width="417" height="214"> 
+</center>
+
+<p><I>
+<B>Nota</B>: Los operadores de propagaci&oacute;n toman dos operandos: el 
+primero es la variable a propagar y el segundo es el n&uacute;mero de posiciones 
+a propagar. 
+</I><p>
+
+<a name="asignacion"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.5. Operadores de asignaci&oacute;n. 
+</FONT> </U></b></h2>
+
+<p>
+La asignaci&oacute;n tambi&eacute;n es un operador que 
+devuelve la variable modificada. El operador de asignaci&oacute;n en JavaScript 
+es <B>=</B>. Los operadores de asignaci&oacute;n que se 
+muestran a continuaci&oacute;n no son sino abreviaturas que hacen m&aacute;s 
+c&oacute;moda y simples las expresiones, aunque a veces sean m&aacute;s 
+ilegibles.
+<p> 
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla5.gif" alt="tabla de operadores de asignación" align="middle" width="304" height="233"> 
+</center>
+<br>
+
+<a name="otros"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.6. Otros operadores. </FONT> </U></b></h2>
+
+<blockquote>
+<p><h3><b> 3.6.1. Operador de 
+    selecci&oacute;n. </b></h3>
+<p>
+Este operador se utiliza para ejecutar una 
+    operaci&oacute;n u otra dependiendo de la condici&oacute;n. El formato es el 
+    siguiente:
+<center>
+<p><h4><b>Condici&oacute;n ? Exp1 : 
+    Exp2 </b></h4>
+</center>
+<p>
+Si se cumple la condici&oacute;n se eval&uacute; y 
+    se devuelve la expresi&oacute;n Exp1 si no la Exp2.<I> 
+    Podemos poner un s&oacute;lo valor.</I> Ejemplo:
+<center>
+<p><h4>i = (x!=y)?6:(k+1)</h4>
+</center>
+<p>
+<p><h3><b> 3.6.2. El operador <I>new</I>. </b></h3>
+<p>
+Este operador se va a utilizar para crear una 
+    instacia de un tipo de objetos previamente definido. La sintaxis a seguir es 
+    la siguiente:
+<center>
+<p><h4><b>variableObjeto = <I>new</I> tipoDeObjeto(par&aacute;metro 1, 
+    par&aacute;metro 2, ...)</b></h4>
+</center>
+<p>
+Estos par&aacute;metros son los que se le pasan al 
+    constructor de dicho objeto en cuesti&oacute;n.
+<p>
+<p><h3><b> 3.6.3. El operador <I>typeof</I>. </b></h3>
+<p>
+Este operador aplicado a una variable devuelve el 
+    tipo de objeto al que pertenece el dato contenido por dicha variable. Su 
+    sintaxis es:
+<center>
+<p><h4><b><I>typeof</I>(variable)</b></h4>
+</center>
+<p></p>
+</blockquote>
+
+<a name="precedencia"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>3.7. Precedencia. </FONT> </U></b></h2>
+
+<p>
+La precedencia de los operadores va a determinar el 
+orden en que se ejecuten en una expresi&oacute;n determinada. Usando 
+par&eacute;ntesis controlaremos que las operaciones se lleven a cabo 
+seg&uacute;n nosotros queramos. En JavaScript la precedencia de los operadores 
+de mayor a menor es la siguiente: 
+<p>
+
+<center>
+<img src="../../../javascript/teoria/cursjavascript/tabla6.gif" alt="tabla de precedencia de operadores" align="middle" width="298" height="217"> 
+</center>
+<br>
+<br>
+
+
+<a href="../../../javascript/teoria/cursjavascript/index.htm"><img src="../../../javascript/teoria/cursjavascript/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap3.html#operadores"><img src="../../../javascript/teoria/cursjavascript/Bup.gif" border=0 alt="Operadores" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap4.html"><img src="../../../javascript/teoria/cursjavascript/Bnext.gif" border=0 alt="Estructuras de control" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap2.html"><img src="../../../javascript/teoria/cursjavascript/Bant.gif" border=0 alt="Tipos de datos" align="right" width="19" height="19"></a> 
+
+</body>
+
+</html>

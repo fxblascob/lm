@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang=”es”>
+    <head>
+        <meta charset=”UTF-8”>
+        <title>Ejercicio 8 - Funciones básicas</title>
+        <script type="text/javascript"> 
+            'use strict';
+            /*
+            Crea una página llamada 05_ejercicio_lambdas_js.html donde repites el ejercicio
+            anterior definiendo las funciones requeridas como funciones lambda.
+            */
+
+            let textoMenosPalabra = (t1,t2) => {
+                while (t1.includes(t2)){
+                    t1 = t1.replace(t2,"");
+                }
+                return(t1);
+            }
+
+            let t1 = prompt("Introduce un texto");
+            let t2 = prompt("Introduce una palabra a quitar del texto anterior");
+            
+            alert("El texto menos la palabra es:  "+ textoMenosPalabra(t1,t2) );
+            
+           
+            
+            // Función que reciba como parámetro un nombre de fichero (texto) y 
+            //determine si es una imagen JPG o PNG.
+            let tipoFichero = (fichero) =>  {
+                if (fichero.endsWith(".jpg") ||  fichero.endsWith(".JPG") ||  fichero.endsWith(".png") || fichero.endsWith(".PNG"))
+                    return(true);
+                else 
+                    return(false);
+            }
+
+            let fichero = prompt("Introduce un nombre de fichero" );
+            if (tipoFichero(fichero))
+                alert("Es un fichero JPG o PNG");
+            else    
+                alert("No es un fichero conocido");
+
+           
+           
+           /*Función que reciba como parámetro un texto y determine si es una matrícula válida.
+             Una matrícula  se considera válida si está compuesta por 4 dígitos y 3 letras mayúsculas.
+             */
+             let validarMatricula = (matricula) => {
+                let ok = true;
+                for (let i = 0; i < 7; i++ ) {
+                    if (i <= 3 && (matricula[i] < "0" ||  matricula[i] > "9"))
+                        ok = false;
+                    else if (i >= 4 && (matricula[i] < "A" ||  matricula[i] > "Z"))
+                            ok = false;
+                }
+                return(ok);
+            }
+            
+            let matricula = prompt("Introduce una matrícula" );
+            if (validarMatricula(matricula))
+                alert("La matricula es correcta");
+            else   
+                alert("La matricula no es correcta");
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

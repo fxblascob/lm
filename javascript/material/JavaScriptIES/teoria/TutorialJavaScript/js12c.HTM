@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js12c</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+/* Scroll parameters */
+scroll_length=120
+scroll_delay=50
+scroll_amount=1
+hold_delay=2000
+
+/* Default message lines */
+defaultline=" Mensaj en barra de estado tipo 3"
+prefixnew="Incluye: "
+prefixnot="Muestra: "
+prefixdefault="Bienvenidos a mi pagina web..."
+
+/* Message lines and modifying dates (day 01-31; month 01-12; year 1996-)
+   disable: day 00, month 00 */
+l1="  Mensaje 1. "
+mday1=00
+mmon1=00
+myear1=2000
+
+l2="  Mensaje 2. "
+mday2=00
+mmon2=00
+myear2=2001
+
+l3="  Mensaje 3. "
+mday3=13
+mmon3=02
+myear3=2002
+
+l4="  Mensaje 4. "
+mday4=00
+mmon4=00
+myear4=2003
+
+l5="  Mensaje 5. "
+mday5=00
+mmon5=00
+myear5=2004
+
+l6="  Mensaje 6. "
+mday6=00
+mmon6=00
+myear6=2005
+
+/* Other variables; do not change */
+message=""
+pref=""
+temp=""
+changed=""
+cookie_expire_date=new Date(2002,02,13)
+
+/* The code */
+/* Loader */ 
+function on_load(){if(GetCookie('visit')==null)document.cookie="";timerONE=setTimeout('prefixscroll(prefixdefault,0,0);',500);}
+function continue_load(){message=check_visit();pref=get_prefix();timerONE=setTimeout('status_msg(scroll_length);',hold_delay);}
+function SetCookie(name,value){var argv=SetCookie.arguments,argc=SetCookie.arguments.length;var expires=(argc>2)?argv[2]:null;if(expires!=null)FixCookieDate(expires);document.cookie=name+"="+escape(value)+((expires==null)?"":(";expires="+expires.toGMTString()));}
+/* Cookie */
+function FixCookieDate(date){var base=new Date(0),skew=base.getTime();if(skew>0)date.setTime(date.getTime()-skew);}
+function getCookieVal(offset){var endstr=document.cookie.indexOf(";",offset);if(endstr==-1)endstr=document.cookie.length;return unescape(document.cookie.substring(offset,endstr));}
+function GetCookie(name){var arg=name+"=",alen=arg.length,clen=document.cookie.length,i=0;while(i<clen){var j=i+alen;if(document.cookie.substring(i,j)==arg)return getCookieVal(j);i=document.cookie.indexOf(" ",i)+1;if(i==0)break;}return null;}
+function DeleteCookie(name){var exp=new Date();FixCookieDate(exp);exp.setTime(exp.getTime()-1);var cval=GetCookie(name);if(cval!=null)document.cookie=name+"="+cval+";expires="+exp.toGMTString();}
+
+/* Scroll engine */ 
+/* Date */
+function get_day(){var td=new Date(),d=td.getDate();if(d<10)d="0"+d;return d;}
+function get_month(){var td=new Date(),m=td.getMonth()+1;if(m<10)m="0"+m;return m;}
+function get_year(){var td=new Date(),y=1900+td.getYear();return y;}
+function get_visit(){var d=get_day(),m=get_month(),y=get_year();temp=d+"."+m+"."+y;return temp;}
+function on_unload(){SetCookie('visit',get_visit());}
+
+/* Comparison and prefix */
+function get_viewed(pvd,pvm,pvy){var rl="",mdm,mdd,mdy,n=1;while(n<=6){if(n==1){temp=l1;mdm=mmon1;mdd=mday1;mdy=myear1;}if(n==2){temp=l2;mdm=mmon2;mdd=mday2;mdy=myear2;}if(n==3){temp=l3;mdm=mmon3;mdd=mday3;mdy=myear3;}if(n==4){temp=l4;mdm=mmon4;mdd=mday4;mdy=myear4;}if(n==5){temp=l5;mdm=mmon5;mdd=mday5;mdy=myear5;}if(n==6){temp=l6;mdm=mmon6;mdd=mday6;mdy=myear6;}n++;rl+=compare(temp,pvd,pvm,pvy,mdd,mdm,mdy);}temp="";return rl;}
+function compare(temp,pvd,pvm,pvy,mdd,mdm,mdy){var rl="";if(pvy<mdy)rl+=temp;else if(pvy==mdy){if(pvm<mdm)rl+=temp;else if(pvm==mdm){if(pvd<=mdd)rl+=temp;}}return rl;}
+function check_visit(){if(GetCookie('visit')){var pv=GetCookie('visit');if(pv=="null"||pv==null){changed=true;temp=l1+l2+l3+l4+l5+l6;return temp;}var pvd=pv.charAt(0)+pv.charAt(1),pvm=pv.charAt(3)+pv.charAt(4),pvy=pv.charAt(6)+pv.charAt(7)+pv.charAt(8)+pv.charAt(9);temp=get_viewed(pvd,pvm,pvy);if(!temp){changed=false;temp=defaultline;}else changed=true;return temp;}else{changed=true;temp=l1+l2+l3+l4+l5+l6;return temp;}}
+function get_prefix(){if(changed==false)return prefixnot;else{if(changed==true)return prefixnew;else{temp="";return temp;}}}
+
+/* Status scroller */
+function status_msg(n){var scroll=" "+pref,c=1,cmd;if(n<=scroll_length&&n>0){for(c=0;c<n;c++){scroll+=" ";}scroll+=message;n-=scroll_amount;cmd="status_msg("+n+")";window.status=scroll;timerTwo=window.setTimeout(cmd,scroll_delay);}else if(n<=0){if(-n<message.length){scroll+=message.substring(-n,message.length);n-=scroll_amount;cmd="status_msg("+n+")";window.status=scroll;timerTwo=window.setTimeout(cmd,scroll_delay);}else{window.status=scroll;timerTwo=window.setTimeout("status_msg(scroll_length)",scroll_delay);}}}
+
+/* Prefix scroller */
+function prefixscroll(prefix,n,method){var scroll=" ";if(method==0){n=prefix.length-2;scroll+=prefix.substring(n,prefix.length);window.status=scroll;n-=scroll_amount;var cont="prefixscroll('"+prefix+"',"+n+",1)";continuetimerID=setTimeout(cont,scroll_delay);}if(method==1){if(n>0){scroll+=prefix.substring(n,prefix.length);window.status=scroll;n-=scroll_amount;var cont="prefixscroll('"+prefix+"',"+n+",1)";continuetimerID=setTimeout(cont,scroll_delay);}else if(n==0){scroll+=prefix;window.status=scroll;n+=scroll_amount;var cont="prefixscroll('"+prefix+"',"+n+",2)";continuetimerID=setTimeout(cont,hold_delay);}}if(method==2){if(n<prefix.length){scroll+=prefix.substring(n,prefix.length);window.status=scroll;n+=scroll_amount;var cont="prefixscroll('"+prefix+"',"+n+",2)";continuetimerID=setTimeout(cont,scroll_delay);}else if(n==prefix.length){window.status=scroll;continue_load();}}}
+// fin esconder -->
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY onLoad="on_load()" onUnload="on_unload()">
+<H1>Mensaje en la barra de estado tipo scroll</H1>
+
+<CENTER>
+<FORM>
+<INPUT TYPE=button VALUE=Regresar onClick="history.back()">
+<INPUT TYPE=button VALUE=Cerrar onClick="if (confirm('Estás seguro que quieres cerrar esta ventana ?'))window.close();else (alert('De acuerdo, no lo cierro.'))">
+</FORM>
+</BODY>
+</HTML>

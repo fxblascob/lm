@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus js-focus-visible theme-light" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="true" data-target="docs" x-ms-format-detection="none" lang="es-es"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="Función starts-with (XPath)">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://docs.microsoft.com/es-es/previous-versions/ms256174(v%3dvs.120)">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@docsmsft">
+
+
+	<meta name="is_archived" content="true">
+<meta name="ROBOTS" content="NOINDEX,NOFOLLOW">
+<meta name="ms.author" content="Archiveddocs">
+<meta name="breadcrumb_path" content="/previous-versions/visualstudio/breadcrumb/toc.json">
+<meta name="ms.topic" content="archived">
+<meta name="ms.prod" content="vs.120">
+<meta name="uhfHeaderId" content="MSDocsHeader-Archive">
+<meta name="ms:contentKeyID" content="58496150">
+<meta name="TOCTitle" content="Función starts-with">
+<meta name="ms:assetid" content="9691eee3-3ee8-4beb-957a-49c6026433cf">
+<meta name="ms:mtpsurl" content="https://msdn.microsoft.com/es-es/library/ms256174(v=VS.120)">
+<meta name="ms.translationtype" content="MT">
+<meta name="ms.date" content="02/25/2015">
+<meta name="mtps_version" content="v=VS.120">
+<meta name="search.ms_sitename" content="Docs">
+<meta name="search.ms_docsetname" content="previous-versions-root">
+<meta name="locale" content="es-es">
+<meta name="site_name" content="Docs">
+<meta name="search.ms_product" content="MSDN">
+<meta name="depot_name" content="MSDN.previous-versions-root">
+<meta name="author" content="Allen Jin">
+<meta name="updated_at" content="2019-02-28 08:30 AM">
+<meta name="gitcommit" content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/previous-versions-root.es-es/commit/5ced6eb17ca988032fde52ad622f76ba1b284204?path=%2fvs.120%2fms256174(v%3dvs.120).md&amp;_a=contents">
+<meta name="original_content_git_url" content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/previous-versions-root.es-es?path=%2fvs.120%2fms256174(v%3dvs.120).md&amp;version=GBlive&amp;_a=contents">
+<meta name="document_id" content="f6d4c9b7-0cbc-6f9c-8265-f7c815948d29">
+<meta name="document_version_independent_id" content="cc2907bc-6598-bd41-bce5-3920de3a65af">
+<meta name="page_type" content="conceptual">
+<meta name="search.mshattr.devlang" content="xml">
+<meta name="word_count" content="232">
+
+
+<link href="https://docs.microsoft.com/es-es/previous-versions/ms256174(v%3dvs.120)" rel="canonical">
+	<title>Función starts-with (XPath) | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/d90e65d0.css">
+
+	<link rel="stylesheet" href="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/672b4bb0.css">
+
+
+	<script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/a.js"></script><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/a_002.js"></script><script async="" defer="defer" crossorigin="anonymous" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/lux.js"></script><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/analytics.js"></script><script>
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			azureHeaderLocale: 'es-es',
+			contentLocale: 'es-es',
+			contentDir: 'ltr',
+			userLocale: 'es-es',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			
+				moniker_type: 'none',
+			},
+			hasBinaryRating: false,
+			hasGithubIssues: false,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'None',
+			feedbackGitHubRepo: '',
+			feedbackProductUrl: '',
+			contentGitUrl: 'https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/previous-versions-root.es-es?path=%2fvs.120%2fms256174(v%3dvs.120).md&version=GBlive&_a=contents',
+			extendBreadcrumb: true,
+			isContentEditable: false
+		},
+		functions:{}
+	};
+	if (!('Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise)) {
+		document.write('<script src="https://static.docs.com/ui/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof fetch !== 'function') {
+		document.write('<script src="https://static.docs.com/ui/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof HTMLTemplateElement === 'undefined') {
+		document.write('<script src="https://static.docs.com/ui/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof URL !== 'function') {
+		document.write('<script src="https://static.docs.com/ui/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"><\/script>');
+	}
+	</script>
+
+	<script src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/jquery-3.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+		<script src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/482e6bbc.js"></script><style></style><script src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/jsll-4.js" async="" defer="defer"></script>
+
+<script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/t_003.js"></script><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/t_004.js"></script><style type="text/css" media="print">.usabilla_live_button_container { display: none; }</style><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/t_002.js"></script><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/t.js"></script><script async="" src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/t_005.js"></script><script async="" src="https://web.vortex.data.microsoft.com/collect/v1/t.js?ver='2.1'&amp;name='Ms.Webi.PageAction'&amp;time='2020-03-19T19%3A53%3A33.342Z'&amp;os='Unix'&amp;appId='JS%3ADocs'&amp;-ver='1.0'&amp;-impressionGuid='d8ccceee-abd4-4129-9fbb-fff7f5d07268'&amp;-pageName='f6d4c9b7-0cbc-6f9c-8265-f7c815948d29'&amp;-uri='https%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN'&amp;-pageTags='%7B%22pgauth%22%3A%22Archiveddocs%22%2C%22pgtop%22%3A%22archived%22%2C%22product%22%3A%22vs.120%22%2C%22date%22%3A%2202%2F25%2F2015%22%2C%22depotname%22%3A%22MSDN.previous-versions-root%22%2C%22author%22%3A%22Allen%20Jin%22%2C%22publishtime%22%3A%222019-02-28%2008%3A30%20AM%22%2C%22gitcommit%22%3A%22https%3A%2F%2Fdocs-archive.visualstudio.com%2FDefaultCollection%2Fdocs-archive-project%2F_git%2Fprevious-versions-root.es-es%2Fcommit%2F5ced6eb17ca988032fde52ad622f76ba1b284204%3Fpath%3D%252fvs.120%252fms256174(v%253dvs.120).md%26_a%3Dcontents%22%2C%22giturl%22%3A%22https%3A%2F%2Fdocs-archive.visualstudio.com%2FDefaultCollection%2Fdocs-archive-project%2F_git%2Fprevious-versions-root.es-es%3Fpath%3D%252fvs.120%252fms256174(v%253dvs.120).md%26version%3DGBlive%26_a%3Dcontents%22%2C%22document_version_independent_id%22%3A%22cc2907bc-6598-bd41-bce5-3920de3a65af%22%2C%22contentlocale%22%3A%22es-es%22%2C%22highContrast%22%3A%22false%22%2C%22metaTags%22%3A%7B%7D%7D'&amp;-contentVer='2.0'&amp;-market='es-es'&amp;-pageType='conceptual'&amp;-actionType='O'&amp;-behavior=300&amp;-content='%5B%7B%22event%22%3A%22page-focus-changed%22%2C%22value%22%3A%22focus%22%7D%5D'&amp;*baseType='Ms.Content.PageAction'&amp;*timeToAction=12748&amp;*cookieEnabled=true&amp;*isJs=true&amp;*title='Funci%C3%B3n%20starts-with%20(XPath)%20%7C%20Microsoft%20Docs'&amp;*isLoggedIn=false&amp;*isManual=true&amp;*referrerUri='https%3A%2F%2Fiesmarenostrum.net%2Fmoodle%2Fcourse%2Fview.php%3Fid%3D75'&amp;ext-javascript-ver='1.1'&amp;ext-javascript-libVer='4.2.14'&amp;ext-javascript-domain='docs.microsoft.com'&amp;ext-javascript-msfpc='GUID%3D7a683fe2b6da4bb19c7a121539bda34c%26HASH%3D7a68%26LV%3D202003%26V%3D4%26LU%3D1583396066992'&amp;ext-javascript-userConsent=true&amp;ext-user-localId='t%3A06C23F9DB25664A212CE31E0B3E165B4'&amp;$mscomCookies=false"></script></head>
+
+<body dir="ltr" lang="es-es"><div style="display: none;" id="lightningjs-usabilla_live"><div><iframe id="lightningjs-frame-usabilla_live" frameborder="0"></iframe></div></div>
+<div class="header-holder has-default-focus">
+	<a href="#main" class="skip-to-main-link visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Ir al contenido principal</a>
+		<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization"><!----><!----><div class="nav-bar"><!---->
+		
+		<a itemprop="url" href="https://www.microsoft.com/" aria-label="Microsoft" class="nav-bar-button ">
+			<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+		</a>
+		
+			
+		<button class="nav-bar-burger" title="Navegación global" aria-controls="ax-12" aria-expanded="false">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span class="is-visually-hidden"><!---->Navegación global<!----></span>
+		</button>
+		<nav class="nav-bar-mobile-nav" role="navigation" id="ax-12" aria-label="Global" hidden="">
+			<ul class="nav-bar-mobile-nav-list">
+				
+		<li class="nav-bar-mobile-nav-item">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/es-es/"><!---->Docs<!----></a>
+		</li>
+				<!---->
+		<li class="nav-bar-mobile-nav-item">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/es-es/previous-versions"><!---->Documentación de versiones anteriores<!----></a>
+		</li><!---->
+				
+			</ul>
+		</nav>
+	
+			
+			
+		<nav class="nav-bar-nav" role="navigation" aria-label="Global">
+			<ul class="nav-bar-nav-list">
+				
+		<li class="nav-bar-item is-category has-spacing">
+			<a class="nav-bar-button title has-hover-underline is-4" itemprop="url" href="https://docs.microsoft.com/es-es/">
+				<span><!---->Docs<!----></span>
+			</a>
+		</li>
+	
+				<!---->
+		<li class="nav-bar-item">
+			<a class="nav-bar-button has-hover-underline" href="https://docs.microsoft.com/es-es/previous-versions">
+				<span><!---->Documentación de versiones anteriores<!----></span>
+			</a>
+		</li><!---->
+		<li class="dropdown nav-bar-item" hidden="">
+			<button aria-expanded="false" class="dropdown-trigger nav-bar-button has-hover-underline" aria-controls="ax-13">
+				<span><!---->Más<!----></span>
+				<span class="nav-bar-button-chevron" aria-hidden="true">
+					<span class="docon docon-chevron-down-light expanded-indicator"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu" id="ax-13" aria-label="Más">
+				<!---->
+		<li class="nav-bar-item" hidden="">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/es-es/previous-versions"><!---->Documentación de versiones anteriores<!----></a>
+		</li>
+	<!---->
+			</ul>
+		</li><!---->
+				
+			</ul>
+		</nav>
+	
+			<span class="nav-bar-spacer is-hidden-mobile"></span>
+			
+			<div class="nav-bar-item nav-bar-search-form-item " id="ax-14" hidden="">
+				
+			<form class="is-flex" method="GET" id="searchForm" name="searchForm" role="search" aria-label="Buscar" aria-expanded="false" action="https://docs.microsoft.com/es-es/search/">
+					<div class="autocomplete" data-bi-name="autocomplete"><!---->
+		<div class="control ">
+			<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-search-input" class="autocomplete-input input   is-full-width" type="search" name="search" aria-expanded="false" aria-owns="ax-15-listbox" aria-activedescendant="" aria-label="Buscar" placeholder="Buscar versiones anteriores">
+
+			<span aria-hidden="true" class="icon is-small is-left" hidden="">
+				<span class="has-text-primary docon docon-undefined"></span>
+			</span>
+
+			<span class="autocomplete-loader loader has-text-primary" aria-hidden="true" hidden=""></span>
+		</div>
+
+		<ul class="autocomplete-suggestions is-vertically-scrollable" role="listbox" id="ax-15-listbox" hidden="">
+			
+		</ul><!----></div>
+					<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+					<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+					<input name="category" value="All" hidden="">
+					
+					<input name="dataSource" value="previousVersions" hidden="">
+			</form>
+		
+			</div>
+			<div class="nav-bar-item  ">
+				<button id="form-expander" class="nav-bar-button has-hover-underline has-margin-left-extra-small " title="Buscar" aria-expanded="false" aria-controls="ax-14">
+						
+					<span class="is-visually-hidden-mobile"><!---->Buscar<!----></span>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-search"></span>
+					</span>
+	
+				</button>
+			</div>
+		
+		
+	<!----></div></header>		</div>
+		<div class="content-header uhf-container has-padding has-default-focus" data-bi-name="content-header">
+			<nav class="has-padding-none-mobile has-flex-grow" data-bi-name="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Ruta de navegación">
+				<ul id="page-breadcrumbs" class="breadcrumbs">
+				</ul>
+			</nav>
+		<div class="content-header-controls">
+			<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+				<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+				<span>Contenido</span>
+			</button>
+		</div>
+		<div class="content-header-controls exit-focus">
+			<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+				<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+				<span>Salir del modo de enfoque</span>
+			</button>
+		</div>
+		<div class="has-padding-none-mobile is-size-7 is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow has-padding-none">
+			<ul class="action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+				<li>
+					<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Agregar marcador de Función starts-with (XPath) | Microsoft Docs" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-single-bookmark"></span>
+						</span>
+						<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Marcador</span>
+					</button>
+				</li>
+					<li id="contenteditbtn" hidden="">
+								<a href="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/previous-versions-root.es-es?path=%2fvs.120%2fms256174(v%3dvs.120).md&amp;version=GBlive&amp;_a=contents" class="button is-text has-inner-focus is-icon-only-touch is-small" title="Editar este documento" data-bi-name="edit">
+							<span class="icon">
+								<span class="docon docon-edit-outline" aria-hidden="true"></span>
+							</span>
+							<span class="is-visually-hidden-touch is-hidden-portrait">Editar</span>
+						</a>
+					</li>
+
+				<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Compartir este documento" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Compartir</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN%26WT.mc_id%3Dtwitter&amp;text=Funci%C3%B3n%20starts-with%20(XPath)%20%7C%20Microsoft%20Docs&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN%26WT.mc_id%3Dtwitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin" href="https://www.linkedin.com/cws/share?url=https%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN%26WT.mc_id%3Dlinkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN%26WT.mc_id%3Dfacebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email" href="mailto:?subject=%5BArt%C3%ADculo%20compartido%5D%20Funci%C3%B3n%20starts-with%20(XPath)%20%7C%20Microsoft%20Docs&amp;body=Funci%C3%B3n%20starts-with%20(XPath)%20%7C%20Microsoft%20Docs%0A%0Ahttps%3A%2F%2Fdocs.microsoft.com%2Fes-es%2Fprevious-versions%2Fms256174(v%3Dvs.120)%3Fredirectedfrom%3DMSDN%26WT.mc_id%3Demail">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Correo electrónico</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>				</li>
+				<li>
+<div class="dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-small is-icon-only-touch has-inner-focus" aria-controls="theme-menu" aria-expanded="false" title="Tema" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Tema</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start is-selected" data-theme-to="light" aria-pressed="true">
+					<span class="theme-light has-margin-right-small">
+						<span class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Claro					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="dark" aria-pressed="false">
+					<span class="theme-dark has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Oscuro					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="high-contrast" aria-pressed="false">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Contraste alto					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>				</li>
+				<li id="docs-sign-in-container-item">
+					<a class="docs-sign-in auth-status-determined not-authenticated button is-text has-inner-focus has-text-primary is-small" href="#">Iniciar sesión</a>
+					<div class="dropdown has-caret auth-status-determined authenticated">
+						<button class="dropdown-trigger button is-text has-inner-focus is-small is-icon-only-touch has-inner-focus" aria-label="Su cuenta" aria-controls="user-menu" aria-expanded="false">
+							<span class="icon" aria-hidden="true">
+								<span class="image">
+									<img class="has-body-background-medium is-rounded" data-profile-property="avatarThumbnailUrl">
+								</span>
+							</span>
+							<span class="is-inline-truncated has-margin-left-small" data-profile-property="userName"></span>
+						</button>
+						<div class="dropdown-menu box" id="user-menu" role="menu">
+							<div class="media is-user-dir">
+								<div class="media-left">
+									<span class="image is-64x64" aria-hidden="true">
+										<img class="has-body-background-medium is-rounded" data-profile-property="avatarUrl">
+									</span>
+								</div>
+								<div class="media-content">
+									<p class="title">
+										<span class="is-inline-truncated has-max-width-200" data-profile-property="userName"></span>
+									</p>
+									<p class="subtitle has-margin-bottom-none">
+										<span class="is-inline-truncated has-max-width-200" data-profile-property="upn"></span>
+									</p>
+									<ul class="is-unstyled has-margin-none has-margin-top-small">
+										<li><a href="https://docs.microsoft.com/profile" data-profile-property="profileUrl">Perfil</a></li>
+										<li><a href="https://docs.microsoft.com/profile" data-profile-property="bookmarksUrl">Marcadores</a></li>
+										<li><a href="https://docs.microsoft.com/profile" data-profile-property="collectionsUrl">Colecciones</a></li>
+										<li><a class="docs-sign-out" href="#">Cerrar sesión</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<button type="button" class="is-hidden-tablet contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Contenido" data-bi-name="contents-expand">
+				<span class="icon">
+					<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+				</span>
+				<span>Contenido</span>
+			</button>
+		</div>
+	</div>
+
+	<div id="banner-holder" class="has-default-focus has-overflow-hidden">
+	</div>
+
+	<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+			<section data-dismissable="disappearing" class="uhf-container has-padding has-padding-top-small has-padding-bottom-small is-info alert is-banner">
+				<button data-dismiss="" type="button" class="delete is-absolute has-top-zero has-right-zero has-margin-extra-small is-large"><span class="visually-hidden">Descartar alerta</span></button>
+				<div class="columns">
+					<div class="column is-12">
+						<div class="level">
+							<div class="level-left has-flex-shrink">
+								<div class="level-item has-flex-shrink">
+									<p class="has-text-white-static disclaimer-title has-margin-top-extra-small has-margin-right-medium has-line-height-reset is-size-7-mobile">
+										<span class="icon">
+											<span class="docon docon-status-error-outline" aria-hidden="true"></span>
+										</span>
+										<span>Este artículo lo ha traducido una máquina. Este contenido ya no se actualizará periódicamente. Consulte la página del <a href="https://support.microsoft.com/en-us/lifecycle/selectindex">ciclo de vida de productos de Microsoft</a> para obtener información sobre cómo se admite este producto, servicio, tecnología o API.</span>
+									</p>
+								</div>
+							</div>
+							
+			<div class="level-right has-margin-extra-small-mobile">
+				<div class="level-item has-flex-justify-content-start-mobile has-padding-small-tablet">
+					<a href="https://docs.microsoft.com/" class="button is-info is-outlined is-small has-margin-left-extra-small has-margin-right-extra-small">
+						<span>Volver al sitio principal</span>
+					</a>
+				</div>
+			</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			<section data-dismissable="disappearing" class="uhf-container has-padding has-padding-top-small has-padding-bottom-small is-info alert is-banner">
+				<button data-dismiss="" type="button" class="delete is-absolute has-top-zero has-right-zero has-margin-extra-small is-large"><span class="visually-hidden">Descartar alerta</span></button>
+				<div class="columns">
+					<div class="column is-12">
+						<div class="level">
+							<div class="level-left has-flex-shrink">
+								<div class="level-item has-flex-shrink">
+									<p class="has-text-white-static disclaimer-title has-margin-top-extra-small has-margin-right-medium has-line-height-reset is-size-7-mobile">
+										<span class="icon">
+											<span class="docon docon-status-error-outline" aria-hidden="true"></span>
+										</span>
+										<span>Esta página se ha redirigido de forma permanente a docs.microsoft.com</span>
+									</p>
+								</div>
+							</div>
+							
+			<div class="level-right has-margin-extra-small-mobile">
+				<div class="level-item has-flex-justify-content-start-mobile has-padding-small-tablet">
+					<a href="https://docs.microsoft.com/welcome-to-docs" class="button is-info is-outlined is-small has-margin-left-extra-small has-margin-right-extra-small">
+						<span>Saber más</span>
+					</a>
+				</div>
+			</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Principal" style="width: 230.65px; top: 300.4px; bottom: 24px;"></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" dir="ltr" lang="es-es">
+
+
+
+						<h1 id="función-starts-with-xpath" sourcefile="vs.120/ms256174(v=vs.120).md" sourcestartlinenumber="14">Función starts-with (XPath)</h1>
+
+						<ul class="metadata page-metadata" data-bi-name="page info" dir="ltr" lang="es-es">
+							<li class="displayDate">
+								<time role="presentation" datetime="2015-02-25T00:00:00.000Z" data-article-date-source="ms.date">25/02/2015</time>
+							</li>
+								<li class="readingTime">Tiempo de lectura: 2 minutos</li>
+
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Esquema del artículo">
+							<h3>En este artículo</h3>
+						<ol><li><a href="#comentarios">Comentarios</a></li><li><a href="#ejemplo">Ejemplo</a></li><li><a href="#vea-también">Vea también</a></li></ol></nav>
+
+						<!-- <content> -->
+							
+<p>Devuelve un valor verdadero si la cadena del primer argumento 
+comienza con la cadena del segundo argumento; en caso contrario, el 
+valor que devuelva será falso.</p>
+<div class="codeHeader" id="code-try-0" data-bi-name="code-header"><span class="language"></span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copiar código">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copiar</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code data-author-content="boolean starts-with(string, string)
+">boolean starts-with(string, string)
+</code></pre>
+<h2 id="comentarios">Comentarios<a class="docon docon-link heading-anchor" href="#comentarios" aria-labelledby="comentarios"></a></h2>
+<p>Si un argumento no es de tipo cadena, primero se convierte en una 
+cadena mediante la función string() y, a continuación, se evalúa el 
+resultado de dicha conversión.</p>
+<div class="table-scroll-wrapper"><table class="table"><caption class="visually-hidden">Tabla 1</caption>
+<colgroup>
+<col style="">
+</colgroup>
+<thead>
+<tr class="header">
+<th><img src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/jj991932.gif" title="Nota de precaución" alt="Nota de precaución" class="note" data-linktype="relative-path"><strong>Precaución</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p>Las conversiones de cadenas <span><span></span></span> para 
+conjuntos de nodos que se pasan a esta función como argumentos pueden 
+arrojar resultados inesperados.Para obtener más información, consulta <a href="https://msdn.microsoft.com/es-es/library/bb399495(v=vs.120)" data-linktype="external">Función string (XPath)</a>.</p></td>
+</tr>
+</tbody>
+</table></div>
+<p>La función distingue mayúsculas de minúsculas.</p>
+<h2 id="ejemplo">Ejemplo<a class="docon docon-link heading-anchor" href="#ejemplo" aria-labelledby="ejemplo"></a></h2>
+<p>En el siguiente ejemplo se ilustra el uso de la función starts-with()
+ para consultar una colección de libros cuyo título comienza con la 
+letra mayúscula "W".</p>
+<h3 id="archivo-xml-starts-withxml">Archivo XML (starts-with.xml)<a class="docon docon-link heading-anchor" href="#archivo-xml-starts-withxml" aria-labelledby="archivo-xml-starts-withxml"></a></h3>
+<div class="codeHeader" id="code-try-1" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copiar código">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copiar</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; 
+
+href=&quot;contains.xsl&quot;?&gt;      
+&lt;bookstore&gt;
+  &lt;book&gt;
+     &lt;title&gt;The Weather Pattern&lt;/title&gt;
+     &lt;author&gt;Weather Man&lt;/author&gt;
+     &lt;price&gt;100.00&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book&gt;
+     &lt;title&gt;Weaving Patterns&lt;/title&gt;
+     &lt;author&gt;Weaver&lt;/author&gt;
+     &lt;price&gt;150.00&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book&gt;
+     &lt;title&gt;Speech Pattern&lt;/title&gt;
+     &lt;author&gt;Speaker&lt;/author&gt;
+     &lt;price&gt;15.00&lt;/price&gt;
+  &lt;/book&gt;
+  &lt;book&gt;
+     &lt;title&gt;Writing Style&lt;/title&gt;
+     &lt;author&gt;Writer&lt;/author&gt;
+     &lt;price&gt;1500.00&lt;/price&gt;
+  &lt;/book&gt;
+&lt;/bookstore&gt;
+"><span><span class="hljs-meta">&lt;?xml version="1.0"?&gt;</span>
+<span class="hljs-meta">&lt;?xml-stylesheet type="text/xsl" 
+
+href="contains.xsl"?&gt;</span>      
+<span class="hljs-tag">&lt;<span class="hljs-name">bookstore</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">book</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>The Weather Pattern<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">author</span>&gt;</span>Weather Man<span class="hljs-tag">&lt;/<span class="hljs-name">author</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">price</span>&gt;</span>100.00<span class="hljs-tag">&lt;/<span class="hljs-name">price</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">book</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">book</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Weaving Patterns<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">author</span>&gt;</span>Weaver<span class="hljs-tag">&lt;/<span class="hljs-name">author</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">price</span>&gt;</span>150.00<span class="hljs-tag">&lt;/<span class="hljs-name">price</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">book</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">book</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Speech Pattern<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">author</span>&gt;</span>Speaker<span class="hljs-tag">&lt;/<span class="hljs-name">author</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">price</span>&gt;</span>15.00<span class="hljs-tag">&lt;/<span class="hljs-name">price</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">book</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">book</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Writing Style<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">author</span>&gt;</span>Writer<span class="hljs-tag">&lt;/<span class="hljs-name">author</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">price</span>&gt;</span>1500.00<span class="hljs-tag">&lt;/<span class="hljs-name">price</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">book</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">bookstore</span>&gt;</span>
+</span></code></pre>
+<h3 id="archivo-xslt-starts-withxsl">Archivo XSLT (starts-with.xsl)<a class="docon docon-link heading-anchor" href="#archivo-xslt-starts-withxsl" aria-labelledby="archivo-xslt-starts-withxsl"></a></h3>
+<div class="codeHeader" id="code-try-2" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copiar código">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copiar</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;?xml version='1.0'?&gt;
+&lt;xsl:stylesheet version=&quot;1.0&quot;           
+
+xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot;&gt;
+
+  &lt;xsl:output method=&quot;html&quot;   
+     omit-xml-declaration=&quot;yes&quot;/&gt;
+
+  &lt;xsl:template match=&quot;/&quot;&gt;
+    &lt;html&gt;
+       &lt;head&gt;&lt;title&gt;example&lt;/title&gt;&lt;/head&gt;
+    &lt;body&gt;
+       &lt;xsl:apply-templates select=&quot;//book&quot;/&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+  &lt;/xsl:template&gt;
+
+  &lt;xsl:template match=&quot;book&quot;&gt;
+     &lt;xsl:if test=&quot;starts-with(title, 'W')&quot;&gt;
+       &lt;DIV&gt;
+         &lt;B&gt;&lt;xsl:value-of select=&quot;title&quot;/&gt;&lt;/B&gt; by 
+         &lt;I&gt;&lt;xsl:value-of select=&quot;author&quot;/&gt;&lt;/I&gt; costs
+         &lt;xsl:value-of select=&quot;price&quot;/&gt;.
+       &lt;/DIV&gt;
+     &lt;/xsl:if&gt;
+  &lt;/xsl:template&gt;
+
+&lt;/xsl:stylesheet&gt;
+"><span><span class="hljs-meta">&lt;?xml version='1.0'?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">xsl:stylesheet</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.0"</span>           
+
+<span class="hljs-attr">xmlns:xsl</span>=<span class="hljs-string">"http://www.w3.org/1999/XSL/Transform"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">xsl:output</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"html"</span>   
+     <span class="hljs-attr">omit-xml-declaration</span>=<span class="hljs-string">"yes"</span>/&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">xsl:template</span> <span class="hljs-attr">match</span>=<span class="hljs-string">"/"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>example<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">xsl:apply-templates</span> <span class="hljs-attr">select</span>=<span class="hljs-string">"//book"</span>/&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xsl:template</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-name">xsl:template</span> <span class="hljs-attr">match</span>=<span class="hljs-string">"book"</span>&gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">xsl:if</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"starts-with(title, 'W')"</span>&gt;</span>
+       <span class="hljs-tag">&lt;<span class="hljs-name">DIV</span>&gt;</span>
+         <span class="hljs-tag">&lt;<span class="hljs-name">B</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">xsl:value-of</span> <span class="hljs-attr">select</span>=<span class="hljs-string">"title"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">B</span>&gt;</span> by 
+         <span class="hljs-tag">&lt;<span class="hljs-name">I</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">xsl:value-of</span> <span class="hljs-attr">select</span>=<span class="hljs-string">"author"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">I</span>&gt;</span> costs
+         <span class="hljs-tag">&lt;<span class="hljs-name">xsl:value-of</span> <span class="hljs-attr">select</span>=<span class="hljs-string">"price"</span>/&gt;</span>.
+       <span class="hljs-tag">&lt;/<span class="hljs-name">DIV</span>&gt;</span>
+     <span class="hljs-tag">&lt;/<span class="hljs-name">xsl:if</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">xsl:template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">xsl:stylesheet</span>&gt;</span>
+</span></code></pre>
+<h3 id="ms256174collapse_alles-esvs120gifsalida"><img src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/jj169940.gif" alt="ms256174.collapse_all(es-es,VS.120).gif" title="ms256174.collapse_all(es-es,VS.120).gif" data-linktype="relative-path">Salida<a class="docon docon-link heading-anchor" href="#ms256174collapse_alles-esvs120gifsalida" aria-labelledby="ms256174collapse_alles-esvs120gifsalida"></a></h3>
+<p>Esta hoja de estilos XSLT, cuando se aplica al archivo XML (starts-with.xml) produce el siguiente resultado:</p>
+<p><strong>Weaving Patterns</strong> by <em>Weaver</em> cuesta 150,00.</p>
+<p><strong>Writing Style</strong> by <em>Writer</em> cuesta 1500,00.</p>
+<h2 id="vea-también">Vea también<a class="docon docon-link heading-anchor" href="#vea-también" aria-labelledby="vea-también"></a></h2>
+<h4 id="referencia">Referencia<a class="docon docon-link heading-anchor" href="#referencia" aria-labelledby="referencia"></a></h4>
+<p><a href="https://msdn.microsoft.com/es-es/library/bb399504(v=vs.120)" data-linktype="external">Referencia de tipos de datos XML</a></p>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- recommended content page section -->
+
+							<nav data-bi-name="recommendation-bottom" id="recommended-content-center" class="is-hidden-desktop" aria-labelledby="recommended-content-center-title" hidden="">
+								<h3 id="recommended-content-center-title" class="is-size-2 has-margin-top-large has-margin-bottom-small">Artículos relacionados</h3>
+							</nav>
+
+						<!-- end recommended content page section -->
+
+						<!-- page rating section -->
+						<!-- end page rating section -->
+
+
+						<!-- feedback section -->
+
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <a data-mscc-ic="false" class="locale-selector-link" href="https://docs.microsoft.com/es-es/locale?target=https://docs.microsoft.com/es-es/previous-versions/ms256174(v=vs.120)?redirectedfrom=MSDN" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text has-inner-focus">Español (España)</span></a>
+
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/previous-versions/" data-bi-name="archivelink">Documentación de versiones anteriores</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/contribute" data-bi-name="contributorGuide">Contribuir</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacidad &amp; cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/es-es/legal/termsofuse" data-bi-name="termsofuse">Términos de uso</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Comentarios del sitio</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Marcas comerciales</a></li>
+		<li>© Microsoft 2020</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-7 right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Acciones de página">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable" style="top: 300.4px; bottom: 24px;">
+								<nav data-bi-name="recommendation-sidebar" id="recommended-content-nav" role="navigation" aria-labelledby="recommended-content-nav-title" hidden="">
+									<h3 id="recommended-content-nav-title">Artículos relacionados</h3>
+								</nav>
+							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Esquema del artículo">
+								<h3>En este artículo</h3>
+							<ol><li class="selected"><a href="#comentarios">Comentarios</a></li><li><a href="#ejemplo">Ejemplo</a></li><li><a href="#vea-también">Vea también</a></li></ol></nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container"></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <a data-mscc-ic="false" class="locale-selector-link" href="https://docs.microsoft.com/es-es/locale?target=https://docs.microsoft.com/es-es/previous-versions/ms256174(v=vs.120)?redirectedfrom=MSDN" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text">Español (España)</span></a>
+
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/previous-versions/" data-bi-name="archivelink">Documentación de versiones anteriores</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/contribute" data-bi-name="contributorGuide">Contribuir</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacidad &amp; cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/es-es/legal/termsofuse" data-bi-name="termsofuse">Términos de uso</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Comentarios del sitio</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Marcas comerciales</a></li>
+		<li>© Microsoft 2020</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Panel de acciones" class="action-panel has-default-focus" tabindex="-1"></div>
+
+
+<script src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/mscc-0.js" async="" defer="defer"></script><div class="usabilla_live_button_container" role="button" tabindex="0" style="top: 50%; margin-top: 0px; position: fixed; width: 0px; height: 0px; z-index: 99999990; right: 0px; display: none;" aria-label="Usabilla Feedback Button"><iframe src="Funci%C3%B3n%20starts-with%20(XPath)%20|%20Microsoft%20Docs_files/ms256174vvs_002.html" style="width: 0px; height: 0px; margin: 0px; padding: 0px; border: 0px none; overflow: hidden; z-index: 9998; position: absolute; left: 0px; top: 0px; box-shadow: 0px 0px 0px; background-color: transparent;" marginwidth="0" marginheight="0" scrolling="no" data-tags="right" title="Usabilla Feedback Button" frameborder="0"></iframe></div></body></html>

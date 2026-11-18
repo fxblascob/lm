@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo con Media Queries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .contenido, .sidebar {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @media screen and (min-width: 768px) {
+            main {
+                display: flex;
+                gap: 20px;
+            }
+
+            .sidebar {
+                width: 300px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                display: block;
+            }
+
+            .sidebar {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Mi Sitio Web</h1>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="contenido">
+            <h2>Bienvenido al contenido principal</h2>
+            <p>Este es el contenido de la página. En una pantalla más grande, veremos dos columnas, pero en pantallas pequeñas será una sola columna.</p>
+        </section>
+        <aside class="sidebar">
+            <h3>Barra Lateral</h3>
+            <p>Información adicional aquí.</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mi Sitio Web</p>
+    </footer>
+</body>
+</html>
+

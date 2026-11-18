@@ -1,0 +1,336 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Perl: Entrada/salida</TITLE>
+</HEAD>
+<BODY bgcolor="White">
+<a name="#E/S"></a>
+<P align=center><FONT color=#4169e1 face="Arial Black" 
+size=7><U>Entrada / 
+Salida</U></FONT></P>
+<P>Perl interact&uacute;a con el usuario o con el sistema 
+operativo por medio de entradas salidas que permiten el intercambio de 
+informaci&oacute;n. Este intercambio de datos se gestiona por medio de 
+operadores espec&iacute;ficos que configuran una interfaz entre el script y su 
+entorno.</P>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>1. El acceso a 
+archivos en Perl<EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P>Perl accede a los archivos de tipo ASCII por medio de 
+punteros a archivos. Estos se referencian mediante variables y constituyen el 
+enlace entre el script y el archivo consultado. Se utilizar&aacute;n 
+may&uacute;sculas para representar estas variables a fin de no equivocarse con 
+otras variables. Los archivos se consultan mediante la rutina <EM>open </EM>que admite dos argumentos, un puntero de archivo y un nombre de 
+archivo:</P>
+<BLOCKQUOTE><FONT face=Courier>open(PUNTERO, &quot;modo de acceso + nombre de 
+archivo&quot;);</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">El 
+argumento de <EM>open </EM>que representa el nombre de 
+archivo puede tener cualquiera de los prefijos que se muestran en la siguiente 
+tabla, estos prefijos indican el modo de acceso al archivo <EM>(si no se pone ning&uacute;n prefijo es que se toma el modo de acceso por 
+defecto que es el de lectura)</EM>:</FONT></P>
+<center>
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/table12.gif" alt="Modos de acceso a los archivos" align="middle"> 
+</center>
+<P><FONT face="Times New Roman">En 
+cuanto a los punteros a archivos decir que, cuando se ejecuta un programa en 
+Perl su primera actividad es asignar un puntero o manejador de archivo para el 
+canal de entrada, otro para el canal de salida y otro para el de 
+informaci&oacute;n de errores. Estos punteros son respectivamente STDIN, STDOUT 
+y STDERR, donde se puede observar que STD significa est&aacute;ndar. Los tres 
+STD se usan con tanta frecuencia en Perl que a menudo se suponen que existen, y 
+por consiguiente, Perl no necesita que se mencionen expl&iacute;citamente, en 
+lugar de ello, Perl los crea y les asigna canales autom&aacute;ticamente. Por 
+ejemplo:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>print 
+    &quot;hola&quot;; <BR>print STDOUT 
+    &quot;hola&quot;;</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">Estas 
+dos l&iacute;neas realizan lo mismo ya que Perl supone que STDOUT es el monitor 
+y por eso visualiza sin necesidad de indicar en ning&uacute;n lugar STDOUT. 
+ </FONT></P>
+<P><FONT face="Times New Roman">En el 
+ejemplo que se puede ver a continuaci&oacute;n, forzamos un error muy 
+t&iacute;pico en los progrmadores no cerrar comillas:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>print 
+    &quot;hola;</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">El 
+resultado de la ejecuci&oacute;n de este programa ser&aacute; un mensaje 
+paracido a este:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"><FONT face=Courier>Can't find string 
+    terminator...line 3</FONT></FONT></BLOCKQUOTE><FONT 
+face="Times New Roman"><FONT face=Courier>
+<P><FONT face="Times New Roman">Sabemos 
+que con el simbolo &gt; podemos redirigir una salida de pantalla a un archivo. 
+Pero si tecleamos:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>hola.pl &gt; error.txt</BLOCKQUOTE>
+<P><FONT face="Times New Roman">El 
+archivo error est&aacute; vac&iacute;o. Esto es porque la salida est&aacute;ndar 
+de los errores STDERR es la pantalla. Para que se grave el error en el archivo 
+hay que direccionar el canal de error, que en Unix es el 2, al archivo. Esto se 
+hace como sigue:</FONT></P>
+<BLOCKQUOTE>hola.pl 2&gt;error.txt</BLOCKQUOTE>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>2. El operador de 
+entrada &lt;&gt;<EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P><FONT face="Times New Roman">Una vez 
+iniciado el puntero mediante la rutina <EM>open</EM>, este 
+mismo puntero permite acceder al contenido del archivo por medio del operador 
+&lt;&gt;. El contenido del archivo se recorre l&iacute;nea por l&iacute;nea 
+mediante la estructura 
+<EM>&lt;PUNTERO&gt;</EM>. Al final de 
+la utilizaci&oacute;n el archivo se cierra mediante el operador <EM>close.</EM> El ejemplo siguiente indica como acceder al contenido del 
+archivo <EM>data.txt</EM> y guardar el resultado en el 
+archivo 
+<EM>out.txt</EM>:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>open(IN, &quot;data.txt&quot;); <BR>open(OUT, &quot;&gt;out.txt&quot;); 
+    <BR>while($linea = &lt;IN&gt;) { <BR>&nbsp; # manipula 
+    los caracteres leidos y puestos en la variable <BR>&nbsp; # $linea. Por ejemplo convertir los caracteres a 
+    min&uacute;sculas <BR>&nbsp; $linea =~ tr/A-Z/a-z/; <BR>&nbsp; # escritura del resultado<BR>&nbsp; print OUT $linea;<BR>} 
+    <BR>close(IN);<BR>close(OUT);</BLOCKQUOTE>
+<P><FONT face="Times New Roman">El 
+ejemplo siguiente visualiza en la consola el nombre&nbsp; de cada usuario y su 
+directorio predeterminado. Esta informaci&oacute;n se extrae del archivo <EM>&quot;/etc/passwd&quot;</EM> que contiene la 
+descripci&oacute;n de cada login. Para ello es necesario saber que cada 
+l&iacute;nea del archivo <EM>passwd</EM> est&aacute; 
+compuesta por: el nombre que usa el usuario para entrar (login), la 
+contrase&ntilde;a encriptada (password), n&uacute;mero que identifica al usuario 
+(uid), n&uacute;mero que identifica al grupo al que pertenece el usuario (gid), 
+informaci&oacute;n sobre el usuario (User_Information), directorio inicial del 
+usuario (login_directory) y el interprete de comandos usado por dicho usario 
+(login_shell). Esta informaci&oacute;n relativa al usuario se estructura en 
+dicho fichero en una l&iacute;nea de la siguiente manera:</FONT></P>
+<P align=center><FONT 
+face=Courier>login:password:uid:gid:User_Information:login_directory:login_shell</FONT></P>
+<P><FONT face="Times New Roman">Por 
+tanto, este ejemplo se realizar&aacute; de la siguiente manera:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>open(PASSWD, &quot;/etc/passwd&quot;); 
+    <BR>while 
+    ($p = &lt;PASSWD&gt;) { # lee una l&iacute;nea del archivo 
+    <BR>&nbsp;&nbsp;&nbsp; chop($p); #quitamos el salto de l&iacute;nea 
+    <BR>&nbsp;&nbsp;&nbsp; @field = split(/:/, $p); <BR>&nbsp;&nbsp;&nbsp; print &quot; Usuario $field[0] y su 
+    directorio es $field[5]&quot;; <BR>} 
+    <BR>close(PASSWD);</FONT></BLOCKQUOTE>
+<P><FONT face=Courier></FONT><FONT face="Times New Roman">A continuaci&oacute;n se da de alta a 
+un usuario si clave de paso, esto se realiza escribiendo en el archivo <EM>&quot;/etc/passwd&quot;:</EM></FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"><EM></EM></FONT>open(PASS, 
+    &quot;&gt;&gt;/etc/passwd&quot;); <BR>print PASS, 
+    &quot;$login::$uid:$gid:$information:&quot;; <BR>print 
+    PASS, &quot;$login_dir:$login_shell\n&quot;; <BR>close(PASS);<BR></BLOCKQUOTE>
+<P><FONT face=Courier></FONT><FONT 
+face="Times New Roman">Si STDIN se encuentra del operador 
+&lt;&gt;, lee una l&iacute;nea cada vez desde ese manejador de archivo. Por 
+ejemplo:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"></FONT>$uno = &lt;STDIN&gt;; 
+    <BR>$dos 
+    =&lt;STDIN&gt;; <BR>print $uno.$dos;</BLOCKQUOTE>
+<P><FONT face="Times New Roman" size=3>Al ejecutar este script, teclear unas palabras seguidas de enter y repetir 
+lo mismo una segunda vez. A medida que escribimos &lt;STDIN&gt; lee lo que 
+tecleamos y al pulsar enter lo asigna a la variable $uno. Lo mismo ocurre le 
+ocurre a $dos. Pero, si se ejecuta este otro script:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman" size=3></FONT>while ($linea = &lt;STDIN&gt;) { <BR>&nbsp;&nbsp; print $linea; <BR>}</BLOCKQUOTE>
+<P><FONT face=Arial size=2><FONT face="Times New Roman"><FONT size=3><FONT>Este script</FONT></FONT></FONT><FONT><FONT size=3><FONT face="Times New Roman"> permite hacer un bucle para leer y 
+escribir tantas l&iacute;neas como queramos. La condici&oacute;n se escribe 
+entre par&eacute;ntensis y las l&iacute;neas que hacen el bucle entre llaves. 
+Para finalizar la entradadesde el teclado pulsar 
+Control+Z.</FONT></FONT></FONT><BR></FONT></P>
+<P><FONT face="Times New Roman">Por otro 
+lado, el acceso en lectura a un archivo es dependiente del contexto. En un 
+contexto escalar, Perl lee un archivo l&iacute;nea por l&iacute;nea y lo asigna 
+al escalar. En un contexto de array o lista, el acceso al contenido del archivo 
+entra&ntilde;a una lectura completa del archivo. Cada elemento del archivo 
+contiene entonces una l&iacute;nea completa del archivo le&iacute;do. Por 
+ejemplo:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier>$file 
+    = &quot;datos.txt&quot;; <BR>open(DATA, $file) || die 
+    &quot;no se puede abrir el archivo\n&quot;; <BR>@lineas 
+    = &lt;DATA&gt;&nbsp;&nbsp; # lee todo el archivo. 
+<BR>close(DATA);</FONT></BLOCKQUOTE>
+<BLOCKQUOTE><EM><FONT face="Times New Roman" size=2>La funci&oacute;n 
+    <STRONG>die</STRONG> manda una cadena de caracteres por el canal 
+    de error.</FONT></EM></BLOCKQUOTE>
+<P><FONT face="Times New Roman" size=3>Esta propiedad debe utilizarse con precauci&oacute;n, porque la lectura 
+completa de un archivo corre el riesgo de ser muy costosa en memoria. Por otra 
+parte, el lenguaje Perl utiliza caches para las entradas/salidas y en 
+consecuencia la lectura completa de un archivo no entra&ntilde;a necesariamente 
+una ganancia en materia de rendiemiento.</FONT></P><FONT face="Times New Roman" size=3>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>3. Los canales de 
+comunicaci&oacute;n <EM>(pipes)</EM><EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P>La rutina <EM>open</EM> de Perl puede 
+utilizarse tambi&eacute;m para ejecutar mandatos del shell, modificar sus 
+entradas y recuperar sus salidas. Cuando el nombre del archivo lleva como 
+prefijo el car&aacute;cter |, este nombre se trata como un mandato. Este mandato 
+se ejecuta y comunica con el script Perl mediante la rutina <EM>print</EM>. Veamos un ejemplo:</P>
+<BLOCKQUOTE><FONT face=Courier>open(MAIL, &quot;Mail root&quot;); # prepara un mail al superusuario <BR># contenido del mail <BR>print 
+    MAIL &quot;La cuenta del usuario a2344 ha expedido&quot;; <BR># env&iacute;o del mail 
+    <BR>close(MAIL);</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">Por otro 
+lado, cuando el nombre del archivo va seguido del car&aacute;cter |, el mandato 
+se ejecuta y se puede acceder a su resultado por medio del operador &lt;&gt;. 
+Por ejemplo:</FONT></P>
+<BLOCKQUOTE><FONT face=Courier># 
+    examina las personas conectadas a la m&aacute;quina <BR>open(WHO, &quot;who|&quot;); <BR>while($who = 
+    &lt;WHO&gt;) { <BR>&nbsp;&nbsp; chop $who; # suprime el 
+    retorno de carro 
+    <BR>&nbsp;&nbsp; ($user, $tty, $junk) = 
+    split(/\s+/, $who, 3); 
+    <BR>&nbsp;&nbsp; print &quot;El 
+    usuario $user est&aacute; en la terminal $tty\n&quot;; <BR>} <BR>close(WHO); 
+</FONT></BLOCKQUOTE><FONT face=Courier><FONT face="Times New Roman" size=3>
+<P><FONT color=#4682b4 face="Calisto MT" size=5>4. Los operadores de comprobaci&oacute;n de 
+archivos.</FONT></P></FONT> 
+</FONT>
+<P>Estos operadores tratan de resolvernos diferentes 
+problemas como la verificaci&oacute;n de la existencia de un archivo antes de 
+modificarlo o la supresi&oacute;n de archivos existentes en la creaci&oacute;n 
+de archivos con el mismo nombre. Estas verificaciones se llevan a cabo mediante 
+operadores que proporcionan informaci&oacute;n relativa a los archivos. Estos 
+opeadores que veremos en la tabla que se muestra a continuaci&oacute;n son 
+unarios, su argumento es un puntero de archivo.</P>
+<center>
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/table13.gif" alt="operadores de comprobación de archivos" align="middle"> 
+</center>
+<P>Por ejemplo:</P>
+<BLOCKQUOTE><FONT face=Courier>$data 
+    = &quot;data.txt&quot;; <BR>if (e- $data) { <BR>&nbsp;&nbsp; # OK, el archivo existe <BR>&nbsp;&nbsp; open ... 
+    <BR>} <BR>else { <BR>&nbsp;&nbsp; print &quot;el archivo 
+    $data no existe.\n&quot;; <BR>}</FONT></BLOCKQUOTE><FONT face=Courier><FONT face="Times New Roman" size=3>
+<P><FONT color=#4682b4 face="Calisto MT" size=5>5. Las funciones <EM>print</EM>, <EM>printf</EM>&nbsp; y <EM>sprintf</EM>.</FONT></P>
+<P>Las funciones <EM>print</EM> y <EM>printf</EM> permiten la escritura o la visualizaci&oacute;n 
+de un resultado. El operador print env&iacute;a la cadena de caracteres al 
+puntero de archivo pasado como argumento. Cuando &eacute;ste est&aacute; 
+ausente, el utilizado es el puntero STDOUT que representa la salida 
+est&aacute;ndar (la consola). La sintaxis de este operador es:</P>
+<P align=center><FONT face=Courier>print 
+PUNTERO $str1, $str1, ..., $strN;</FONT></P>
+<P><FONT face="Times New Roman">Por otro 
+lado la funci&oacute;n <EM>printf</EM> permite especificar 
+el formato de escritura. El texto as&iacute; formateado se env&iacute;a al 
+puntero de archivo pasado como argumento. Este formato es id&eacute;ntico al del 
+lenguaje C. Por lo tanto el texto formateado consta de una ristra de caracteres. 
+Los caracteres de ristra se escriben tal cual a excepci&oacute;n del %. El % 
+indica que hay que mostrar un par&aacute;metro de la lista, el siguiente al 
+&uacute;ltimo mostrado, con un formato en concreto el cual lo indica el caracter 
+que sigue al %. Los caracteres m&aacute;s comunes y el tipo de datos que 
+representa se muestra en la siguiente tabla:</FONT></P>
+<center>
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/table11.gif" alt="Caracteres de formato" align="middle"> 
+</center>
+<P>Si se desea imprimir el % como un car&aacute;cter dentro 
+de una cadena de control, debe utilizarse %%.</P>
+<P><FONT face="Times New Roman">Hay que 
+tener en cuenta que los literales de ristras permiten escribir caracteres 
+especiales con lo que se denomina un secuencia de escape. La secuencia de escape 
+comienza siempre con &quot;\&quot; y a continuaci&oacute;n se escribe otro 
+car&aacute;cter que representa el c&oacute;digo especial o el n&uacute;mero en 
+octal o hexadecimal de su c&oacute;digo ASCII. Las secuencias de escape 
+representan un &uacute;nico car&aacute;cter en la ristra donde aparecen. 
+ </FONT></P>
+<center>
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/table10.gif" alt="Caracteres especiales" align="middle"> 
+</center>
+<P><FONT face="Times New Roman"></FONT>Un ejemplo sencillo:</P>
+<BLOCKQUOTE><FONT face=Courier>printf PUNTERO &quot;%s %f&quot;, $string, $float; <BR>printf &quot;Enteros: base10=%s, base8=%o, base16=%x\n&quot;, $y, $z, 
+    $w; <BR># El identificador es STDOUT 
+    (visualizaci&oacute;n por pantalla).</FONT></BLOCKQUOTE>
+<P><FONT face="Times New Roman">La 
+funci&oacute;n <EM>sprintf</EM> devuelve una cadena de 
+caracteres formateada por la conveciones normalmente utilizadas por 
+<EM>printf</EM>, para ello se recomienda ver las dos tablas 
+anteriores. Para ver mejor el funcionamiento de esta rutina introducimos el 
+siguiente ejemplo:</FONT></P>
+<BLOCKQUOTE><FONT face="Times New Roman"><FONT face=Courier size=3>$lenguaje = 
+    &quot;Perl&quot;;<BR>$longitud = 10;<BR>$conformato = sprintf(&quot;%s&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprime:Perl<BR>$conformato = 
+    sprintf(&quot;&gt;&gt;%s&lt;&lt;&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprine:&gt;&gt;Perl&lt;&lt;<BR>$conformato = 
+    sprintf(&quot;&gt;&gt;%s &lt;&lt;&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprime:&gt;&gt;Perl &lt;&lt;<BR>$conformato = 
+    sprintf(&quot;&gt;&gt;%10s&lt;&lt;&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprime:&gt;&gt; Perl&lt;&lt;<BR>$conformato = 
+    sprintf(&quot;&gt;&gt;%-10s&lt;&lt;&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprime:&gt;&gt;Perl &lt;&lt;<BR>$conformato = 
+    sprintf(&quot;&gt;&gt;%-${longitud}s&lt;&lt;&quot;, $lenguaje);<BR>print 
+    $conformato,&quot;\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+    # Imprime:&gt;&gt;Perl &lt;&lt; </FONT></FONT></BLOCKQUOTE><FONT face=Courier><FONT face="Times New Roman" size=3>
+<P><FONT color=#4682b4 face="Calisto MT" size=5>6. Las funciones para manejo de ficheros.</FONT></P>
+<P>Para realizar un mejor tratamiento de los datos que se 
+encuentran en ficheros, Perl posee una serie de funciones predefinidas que nos 
+ayudan a realizar esta tarea con gran facilidad y simpleza. A 
+continuaci&oacute;n mencionaremos a las funciones m&aacute;s usadas por todos 
+los programadores de Perl.</P>
+<BLOCKQUOTE>
+    <UL>
+        <LI><STRONG>read(manejador, variable, longitud, [desplazamiento]). 
+        </STRONG>Esta funci&oacute;n lee desde un fichero, especificado en el 
+        par&aacute;metro <EM>manejador</EM>, un n&uacute;mero de bytes, 
+        especificado por el par&aacute;metro <EM>longitud</EM><EM>, </EM>y lo 
+        introduce en una variable de tipo escalar representada por el 
+        par&aacute;metro <EM>variable</EM>. El par&aacute;metro 
+        <EM>desplazamiento</EM>, si se especifica, indica desde que 
+        posici&oacute;n del fichero se empieza a leer. Por defecto, es la 
+        posici&oacute;n donde se encuentra el puntero. He aqu&iacute; algunos 
+        ejemplos:</LI></UL>
+    <BLOCKQUOTE>
+        <BLOCKQUOTE><FONT face=Courier>open(DAT,&quot;&lt;datos.txt&quot;); 
+            <BR>read(DAT, $var, 30); <BR># $var tiene los primeros 30 caracteres 
+            de <BR># datos.txt</FONT></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE>
+<BLOCKQUOTE>
+    <UL>
+        <LI><STRONG>seek(manejador, posici&oacute;n, referencia). </STRONG>La 
+        funci&oacute;n seek pone el puntero del fichero especificado por el 
+        par&aacute;metro <EM>manejador</EM> en el lugar indicado por el 
+        par&aacute;metro posici&oacute;n. El par&aacute;metro 
+        <EM>posici&oacute;n </EM>puede tener un valor positivo que nos indica un 
+        desplazamiento hacia el final del fichero o un valor negativo que nos 
+        indica un deplazamiento hacia el inicio del fichero. Este desplazamiento 
+        indicado en el par&aacute;metro <EM>posici&oacute;n </EM>se puede hacer 
+        desde el principio del fichero, desde la <EM>posici&oacute;n </EM>del 
+        puntero actual del fichero o desde el final del fichero. Esto lo 
+        determina el par&aacute;metro referencia con los valores 0,1 y 2 
+        respectivamente. Ejemplo:</LI></UL>
+    <BLOCKQUOTE>
+        <BLOCKQUOTE><FONT face=Courier>open(DAT,&quot;&lt;datos.txt&quot;); 
+            <BR>read(DAT, $var, 30); <BR>seek(DAT,-31,1); <BR>read(DAT, $var, 
+            30); # Volvemos a leer lo mismo.</FONT></BLOCKQUOTE></BLOCKQUOTE>
+    <UL>
+        <LI><STRONG><FONT face="Times New Roman">tell(manejador). </STRONG>Esta 
+        funci&oacute;n retorna la posici&oacute;n del puntero en el fichero 
+        especificado en el par&aacute;metro <EM>manejador</EM>. 
+        Ejemplo:</FONT></LI></UL>
+    <BLOCKQUOTE>
+        <BLOCKQUOTE><FONT face="Times New Roman">
+            <P><FONT face=Courier>open(DAT,&quot;&lt;datos.txt&quot;); 
+            <BR>read(DAT, $var, 30); <BR>$ptr = tell(DAT);&nbsp;&nbsp;&nbsp; # 
+            $ptr = 31;<BR></FONT></P></FONT></BLOCKQUOTE></BLOCKQUOTE><FONT 
+    face="Times New Roman">
+    <UL>
+        <LI><STRONG><FONT face="Times New Roman">eof(manejador). </STRONG>Esta 
+        funci&oacute;n retorna 1 (verdadero) si el fichero especificado por el 
+        par&aacute;metro <EM>manejador</EM> tiene el puntero en el final del 
+        mismo. Tambi&eacute;m devolver&aacute; uno si el <EM>manejador</EM> no 
+        est&aacute; asociado a ning&uacute;n fichero. En el ejemplo que viene a 
+        continuaci&oacute;n se leer&aacute; un fichero de nombre en el que cada 
+        uno de ellos est&aacute; en una l&iacute;nea del fichero y ocupa 50 
+        caracteres contando con el de salto de l&iacute;nea.</FONT></LI></UL>
+    <BLOCKQUOTE>
+        <BLOCKQUOTE><FONT face=Courier>open(NOM,&quot;&lt;nombres.txt); 
+            <BR>while (!(eof(NOM))) { <BR>&nbsp;&nbsp;&nbsp; read(NOM, $nombre, 
+            50); <BR>&nbsp;&nbsp;&nbsp; print $nombre; 
+    <BR>}</FONT></BLOCKQUOTE></BLOCKQUOTE></BLOCKQUOTE>
+</FONT></FONT> 
+</FONT></FONT></FONT></FONT></FONT></FONT>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/indice.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap8.htm#E/S"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bup.gif" border=0 alt="Entrada/Salida" align="right" width="19" height="19"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap9.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bnext.gif" border=0 alt="Variables predefinidas" align="right" width="19" height="19"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap7.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bant.gif" border=0 alt="Creación de funciones" align="right" width="19" height="19"></a>
+
+</BODY>
+</HTML>

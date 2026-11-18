@@ -1,0 +1,50 @@
+<html>
+<head><title>Enlaces en XML</title></head>
+
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/fondo.gif">
+<center>
+<font size=6 color=0E7ACB face="Times New Roman"><b><u>Enlaces en XML</u></b></font><br>
+<hr width=75%>
+</center>
+
+<p>
+Las habilidades de enlazado de los sistemas XML son mayores que las de HTML. Los enlaces tipo HREF existentes seguir&aacute;n
+utiliz&aacute;ndose, pero una nueva tecnología de enlazado basada en las lecciones aprendidas en el desarrollo de otros 
+est&aacute;ndares que utilizan hipertexto, como TEI y HyTime, que permiten manejar enlaces bidireccionales y multi-caminos,
+as&iacute; como enlaces a un fragmento de texto (en tus propios documentos) y no s&oacute;lo a un &uacute;nico punto. 
+</p>
+
+<p>
+Un enlace XML puede ser bien un URL (enlaces tradicionales, conocidos como XLink), un Puntero Extendido (XPointer o Xptr),
+o ambos. Un URL en s&iacute; misma se asume que tiene que ser un recurso (como en HTML). Si le sigue un XPointer, se asume
+que es un subrecurso de ese URL. Un XPointer en s&iacute; mismo se asume que se aplica al documento actual. 
+</p>
+
+<p>   
+Un Xptr siempre est&aacute; precedido de uno o m&aacute;s #, ?, &oacute; |. Los símbolos # y ? significan lo mismo que en
+las aplicaciones HTML; el símbolo | significa que el subrecurso puede ser encontrado aplicando el Xptr al recurso, pero el
+m&eacute;todo de hacer esto se deja a cargo de la aplicaci&oacute;n. 
+</p>
+
+<p>    
+La notaci&oacute;n de Punteros Extendidos tiene m&aacute;s funcionalidad que la 'fragmento de direcci&oacute;n' al final de
+algunos URLs, ya que permite, no solo referencias absolutas sino tambi&eacute;n referencias relativas dentro de un documento
+a partir de frases u objetos textuales, por ejemplo: 
+</p>
+    
+<p>
+<font size=2 face="Courier">
+&lt;ULINK URL=&quot;http://www.ucc.ie/faq.sgml#ID(faq-hypertext)CHILD(2,*)(4,*)&quot;&gt; <br>
+Enlace al &quot;cuarto objeto hijo&quot; del &quot;segundo objeto hijo&quot; despu&eacute;s del <br>
+elemento cuyo ID sea faq-hypertext<br> 
+&lt;/ULINK&gt; 
+</font>
+</p>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/Herramientas.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/next.gif" align=right alt="Siguiente"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/index.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/index.gif" align=right alt="&Iacute;ndice"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/DomJV.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/prev.gif" align=right alt="Anterior"></a>
+
+</body>
+
+</html>

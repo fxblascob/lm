@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js6</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Objetos</H1>
+Existen objetos predefinidos, cada uno con distintas propiedades, metodos y manejadores de eventos. A diferencia de JAVA aqui no se puede derivar clases, por los que se habla de unajerarquia de instancia.<P>
+
+Los objetos en javaScript los podemos clasificar en 4 niveles:<BR>
+<OL>
+<LI><B>window</B>, navigator, Math, String y Date
+<LI><B>document</B>, history, location, Frame y frames
+<LI><B>Form</B>, Anchor y link
+<LI>Button, Checkbox, Hidden, Password, Radio, elements, Select, Text, Textarea, Submit y Reset.
+</OL>
+
+<UL>
+<LI>Todo el segundo nivel pertenece a window.
+<LI>Todo el tercer nivel pertenece a document.
+<LI>Todo el cuarto nivel pertenece a form
+</UL>
+
+<H2>Primer nivel</H2>
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>window<TD COLSPAN=2>Es el objeto de nivel superior para cada grupo de objetos document, location e history.
+<TR><TD ROWSPAN=13>Propiedades
+<TR><TD>defaultStatus<TD>Mensaje por omision en la barra de estado de la ventana
+<TR><TD>document<TD>como document
+<TR><TD>Frame<TD>como Frame
+<TR><TD>frames<TD>Es un arreglo que contiene todos los recuadros de la ventana
+<TR><TD>length<TD>Indica el numero de recuadros de la ventana madre
+<TR><TD>location<TD>como location
+<TR><TD>name<TD>refleja el argumento nombre con que se creo la ventana
+<TR><TD>parent<TD>Es un sinonimo del argunmento nombre y se refiere a una ventana con recuadros
+<TR><TD>self<TD>Es un sinonimo del argumento nombre y se refiere a la ventana en uso
+<TR><TD>status<TD>Especifica un mensaje a presentar en la barra de estado de la ventana. <FORM><INPUT TYPE=button VALUE="window.status=mensaje" onClick="window.status='Este es un mensaje cualquiera'" </FORM>
+<TR><TD>top<TD>Es un sinonimo del argumento nombre y se refiere a una ventana de nivel superior del navegador.
+<TR><TD>window<TD>Es un sinonimo del argumento nombre y se refiere a la ventana en uso
+<TR><TD ROWSPAN=8>Metodos
+<TR><TD>open<TD>Abre una nueva ventana en tu navegador, con una pagina en blanco o la URL que tu indiques. <FORM><INPUT TYPE=button VALUE="window.open(pagina)" onClick="window.open('indice.htm')" </FORM>
+<TR><TD>close<TD>Cierra la ventana activa o indicada. <FORM><INPUT TYPE=button VALUE="window.close()" onClick="window.close()" </FORM>
+<TR><TD>alert<TD>Muestra una caja de alerta con un mensaje y el boton de aceptar. <FORM><INPUT TYPE=button VALUE="window.alert(mensaje)" onClick="window.alert('Esta es solo una advertencia')" </FORM>
+<TR><TD>confirm<TD>Muestra una caja de informacion con un mensaje y los botones aceptar y cancelar. <FORM><INPUT TYPE=button VALUE="window.confirm(mensaje)" onClick="window.confirm('Esta es una pregunta, de acuerdo ?')" </FORM>
+<TR><TD>prompt<TD>Muestra una caja de dialogo con un mensaje y un campo para entrada de datos y los botones aceptar y cancelar. <FORM><INPUT TYPE=button VALUE="window.prompt(mensaje [,valor por omision])" onClick="window.prompt('Cual es tu apodo ?','Kike')" </FORM>
+<TR><TD>setTimeout<TD>Evalua una expresion despues de transcurrido un tiempo en milisegundos
+<TR><TD>clearTimeout<TD>
+<TR><TD ROWSPAN=3>Eventos
+<TR><TD>onLoad<TD>Se ejecuta cuando el navegador termina de cargar una ventana o todos los recuadros indicador en &lt;FRAMESET&gt;
+<TR><TD>onUnload<TD>Se ejecuta cuando el navegador descarga la pagina.
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Date<TD>Permite trabajar con fechas y horas. Para crear nuevos objetos se puede usar:
+<UL>
+<LI>variable=new Date()
+<LI>variable=new Date("mes dia año horas:minutos:segundos")
+<LI>variable=new Date(año,mes,dia)
+<LI>variable=new Date(año,mes,dia,horas,minutos,segundos)
+</UL>
+<TR><TD>Propiedades<TD>ninguna
+<TR><TD>Metodos<TD>
+<TABLE BORDER=1 CELLSPACING=0>
+<TR><TD>getDate<TD>el dia del mes (1 a 31)
+<TR><TD>getDay<TD>el dia de la semana (0=dom, 1=lun...6=sabado)
+<TR><TD>getMonth<TD>el mes en numeros (0=ene, 1=feb...11=dic)
+<TR><TD>getYear<TD>el año con dos digitos
+<TR><TD>getHours<TD>la hora (0 a 24)
+<TR><TD>getMinutes<TD>los minutos (0 a 59)
+<TR><TD>getSeconds<TD>los segundos (o a 59)
+<TR><TD>getTime<TD>los milisegundos trascurridos desde el 01-01-1970
+<TR><TD>getTimezoneoffset<TD>diferencia horaria con GMT en minutos
+<TR><TH COLSPAN=2>Sintaxis: variable.metodo()
+<TR><TD>setDate<TD>Establece el dia del mes (1 a 31)
+<TR><TD>setMonth<TD>Establece el mes del año (1 a 11)
+<TR><TD>setYear<TD>Establece el año a partir de 1900
+<TR><TD>setHours<TD>Establece la hora del dia (0 a 23)
+<TR><TD>setMinutes<TD>Establece los minutos (0 a 59)
+<TR><TD>setSeconds<TD>Establece los segundos (0 a 59)
+<TR><TD>setTime<TD>Establece el valor del objeto Date, en milisegundos a partir de las 0:00:00 del 1º de enero de 1970
+<TR><TH COLSPAN=2>Sintaxis: variable.metodo(valor)
+<TR><TD>toGMTString<TD>Convierte un objeto Date a una cadena usando un formato GMT para Internet
+<TR><TD>toLocaleString<TD>Convierte un objeto Date a una cadena usando el formato local
+<TR><TD>parse<TD>Convierte una cadena representando una fecha al tiempo en milisegundos a partir de 0:00:00 del 1º de enero de 1970
+<TR><TD>UTC<TD>Convierte una fecha al tiempo en milisegundos a partir de las 0:00:00 del 1º de enero de 1970
+</TABLE>
+<TR><TD>Eventos<TD>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>string<TD COLSPAN=2>Es una cadena de caracteres encerrados entre comillas simples o dobles. Es un objeto basico en javascript.
+<TR><TD>Propiedades<TD>length<TD>Indica la longitud de la cadena. Sintaxis: string.lenght(nombre)
+<TR><TD ROWSPAN=19>Metodos
+<TR><TD>anchor<TD>Crea un marcador HTML
+<TR><TD>big<TD>Hace que una cadena se muestre con tipos grandes, como si estuviera entre comandos &lt;BIT&gt;
+<TR><TD>blink<TD>Hace que una cadena parpadee, como si estuviese entre comandos &lt;BLINK&gt;
+<TR><TD>bold<TD>Hace que una cadena este en negritas, como si estuviese entre comandos &lt;B&gt;
+<TR><TD>charAt<TD>Devuelve el caractere en la posicion indicada (0 a length-1) de la cadena
+<TR><TD>fixed<TD>Hace que la cadena se muestre como si estuviese entre comandos &lt;TT&gt;
+<TR><TD>fontcolor<TD>Hace que la cadena se muestre en el color indicado,  como si estuviese entre comandos &lt;FONT COLOR=&gt;
+<TR><TD>fontsize<TD>Hace que la cadena se muestre del tamaño indicado,  como si estuviese entre comandos &lt;FONT SIZE=&gt;
+<TR><TD>indexOf<TD>Devuleve la posicion dentro de la cadena donde se encuentra el texto de busqueda. De iquierda a derecha.
+<TR><TD>italics<TD>Hace que la cadena se muestre en cursiva,  como si estuviese entre comandos &lt;I&gt;
+<TR><TD>lastIndexOf<TD>Devuelve la ultima posicion dentro de la cadena en que se encuentra el texto de busqueda. De derecha a izquierda.
+<TR><TD>link<TD>Crea un enlace de hipertexto que apunta a otro URL
+<TR><TD>small<TD>Hace que un cadena se muestre con tipos pequeños, como si estuviera entre etiquetas &lt;SMALL&gt;
+<TR><TD>strike<TD>Hace que una cadena se muestre atravesada, como si estuviese entre etiquetas &lt;STRIKE&gt;
+<TR><TD>sub<TD>Hace que una cadena se muestre en subindice, como si estuviese entre etiquetas &lt;SUB&gt;
+<TR><TD>substring<TD>devuelve una subcadena de la cadena indicada, entre las posiciones indicadas.
+<TR><TD>toLowerCase<TD>Devuelve la cadena convertida en minusculas
+<TR><TD>toUpperCase<TD>Devuelve la cadena convertida en mayusculas
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>location<TD COLSPAN=2>Contiene informacion acerca del URL actualmente en uso. Especificar location sin propiedades devuelve el URL completo. La forma URL es la siguinete: <I>protocolo/servidor:puerto ruta buscada marcador</I>
+<TR><TD ROWSPAN=9>Propiedades
+<TR><TD>hash<TD>Especifica el nombre de un marcador dentro del URL.
+<TR><TD>host<TD>Especifica la posicion <I>servidor:puerto</I> del URL.
+<TR><TD>hostname<TD>Especifica el servidor y nombre de dominio o numero IP del URL. <FORM><INPUT TYPE=button VALUE="location.hostname" onClick="window.alert(location.hostname)" </FORM>
+<TR><TD>href<TD>Especifica el URL completo. <FORM><INPUT TYPE=button VALUE="location.href" onClick="window.alert(location.href)" </FORM>
+<TR><TD>pathname<TD>Especifica la posicion ruta del URL. <FORM><INPUT TYPE=button VALUE="location.pathname" onClick="window.alert(location.pathname)" </FORM>
+<TR><TD>port<TD>Especifica el puerto empleado por el servidor para las comuniciones. <FORM><INPUT TYPE=button VALUE="location.port" onClick="window.alert(location.port)" </FORM>
+<TR><TD>protocol<TD>Especifica el principio del URL hasta los dos puntos, incluidos. <FORM><INPUT TYPE=button VALUE="location.protocol" onClick="window.alert(location.protocol)" </FORM>
+<TR><TD>search<TD>Especifica un parametro de busqueda.
+<TR><TD>Metodos<TD COLSPAN=2>ninguno
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>math<TD COLSPAN=2>Es un objeto predefinido que contiene propiedades y metodos para constantes y funciones matematicas.
+<TR><TD ROWSPAN=9>Propiedades
+<TR><TD>E<TD>La constante de EULER. Aproximadamente 2.7818
+<TR><TD>LN2<TD>El logaritmo natural de 2. Aproximadamente 0.693
+<TR><TD>LN10<TD>El logaritmo natural de 10. Aproximadamente 2.302
+<TR><TD>LOG2E<TD>El logaritmo en base 2 de e. Aproximadamente 1.442
+<TR><TD>LOG10E<TD>El logaritmo vulgar de e. Aproximadamente 0.434
+<TR><TD>PI<TD>La constante PI. Aproximadamente 3.14159
+<TR><TD>SQRT1_2<TD>La raiz cuadrada de 1/2. Aproximadamente 0.707
+<TR><TD>SQRT2<TD>La raiz cuadrada de 2. Aproximadamente 1.414
+<TR><TD>Metodos<TD COLSPAN=2>ninguno
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>navigator<TD COLSPAN=2>
+<TR><TD ROWSPAN=5>Propiedades
+<TR><TD>appCodeName<TD>Especifica el nombre en codigo del navegador. <FORM><INPUT TYPE=button VALUE="navigator.appCodeName" onClick="window.alert('Tu estas usando:\n\n'+navigator.appCodeName)" </FORM>
+<TR><TD>appName<TD>Especifica el nombre del navegador. <FORM><INPUT TYPE=button VALUE="navigator.appName" onClick="window.alert('Tu estas usando:\n\n'+navigator.appName)" </FORM>
+<TR><TD>appVersion<TD>Especifica informacion de la version del navegador. <FORM><INPUT TYPE=button VALUE="navigator.appVersion" onClick="window.alert(navigator.appVersion)" </FORM>
+<TR><TD>userAgent<TD>Especifica la cadena del agente de usuario. <FORM><INPUT TYPE=button VALUE="navigator.userAgent" onClick="window.alert(navigator.userAgent)" </FORM>
+<TR><TD>Metodos<TD COLSPAN=2>ninguno
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=#FFCCFF BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Tipos MIME
+<TR><TD>text/html<TD>documento en formato HTML
+<TR><TD>text/plain<TD>ducumento es ASCII puro
+<TR><TD>image/gif<TD>imagen en formato GIF
+<TR><TD>image/jpeg<TD>imagen en formato JPEG
+<TR><TD>image/bmp<TD>imagen en formato de mapa de bits
+<TR><TD>plug-in<TD>cualquier plug-in
+</TABLE><P>
+
+<H2>Segundo nivel (pertenece a window)</H2>
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>document<TD COLSPAN=2>Contiene informacion del documento cargado actualmente, proporcionando métodos para generar HTML.
+<TR><TD ROWSPAN=18>Propiedades
+<TR><TD>alinkColor<TD>corresponde al parametro ALINK del comando &lt;BODY&gt;
+<TR><TD>Anchor<TD>
+<TR><TD>anchors<TD>arreglo que refleja todos los marcadores del documento
+<TR><TD>bgColor<TD>corresponde al parametro BGCOLOR del comando &lt;BODY&gt;
+<TR><TD>cookie<TD>galletita
+<TR><TD>fgColor<TD>corresponde al parametro TEXT del comando &lt;BODY&gt;
+<TR><TD>Form<TD>&nbsp; <FORM><INPUT TYPE=button VALUE="window.document.Form" onClick="window.alert(window.document.Form)" </FORM>
+<TR><TD>forms<TD>arreglo que refleja todos los formularios del documento
+<TR><TD>history<TD>
+<TR><TD>lastModified<TD>Fecha actual del documento. <FORM><INPUT TYPE=button VALUE="document.lastModified" onClick="window.alert(document.lastModified)" </FORM>
+<TR><TD>linkColor<TD>corresponde al parametro LINK del comando &lt;BODY&gt;
+<TR><TD>Link<TD>
+<TR><TD>links<TD>arreglo que refleja todos los enlaces del documento
+<TR><TD>location<TD>URL completo del documento
+<TR><TD>referrer<TD>URL del documento que lo llamo
+<TR><TD>title<TD>corresponde al comando TITLE
+<TR><TD>vlinkColor<TD>corresponde al parametro VLINK del comando &lt;BODY&gt;
+<TR><TD ROWSPAN=6>Metodos
+<TR><TD>clear<TD>borra el documento en una ventana.<BR>document.clear()
+<TR><TD>close<TD>cierra un flujo de salida y fuerza a que se muetren los datos enviados.<BR>document.close()
+<TR><TD>open<TD>abre un flujo para escribir la salida de los metodos white y writeln.<BR>document.open([tipo MIME])
+<TR><TD>write<TD>escribe una o mas expresiones de HTML en el documento contenido en la ventana indicada<BR>document.write(exp1[,exp2]...[,expN])
+<TR><TD>writeln<TD>escribe una o mas expresiones de HTML en el documento contenido en la ventana indicada, seguidas de un caracter de nueva linea.<BR>document.writeln(exp1[,exp2]...[,expN])
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>history<TD COLSPAN=2>Contiene la informacion de los URLs que el cliente ha visitado desde una ventana.
+<TR><TD>Propiedades<TD COLSPAN=2>Indica la cantidad de entradas en el objeto history. sintaxis: history.length
+<TR><TD ROWSPAN=4>Metodos
+<TR><TD>back<TD>retrocede al URL anterior. <FORM><INPUT TYPE=button VALUE="history.back()" onClick="history.back()" </FORM>
+<TR><TD>forward<TD>avanza al URL siguiente (despues de haber retrocedido).
+<TR><TD>go<TD>desplaza al URL indicado en relacion a la actual posicion, hacia adelante (+) o hacia aras (-). Sintaxis: history.go(desplazamiento)
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Frame<TD COLSPAN=2>Una ventana puede tener distintos recuadros reslizables o fijos, cada uno conteniendo un documento diferente o inclusive, otros recuadros. La totalidad de los recuadros conforman la ventana.
+<TR><TD ROWSPAN=8>Propiedades
+<TR><TD>frames<TD>arreglo que refleja todos los recuadros en un ana ventana
+<TR><TD>name<TD>corresponde al atribut NAME del comando <B>&lt;FRAME&gt;</B>
+<TR><TD>length<TD>indica el numero de recuadros "hijos" dentro del recuadro actual
+<TR><TD>parent<TD>indica la ventana o recuadro que contiene el documento
+<TR><TD>self<TD>indica el recuadro en uso
+<TR><TD>window<TD>indica el recuadro en uso
+<TR><TH COLSPAN=2>[ventana.]recuadro.propiedad
+<TR><TD ROWSPAN=3>Metodos
+<TR><TD>setTimeout<TD>evalua una expresion despues de transcurrido un tiempo en milisegundos. Sintaxis: setTimeout(expresion,tiempo)
+<TR><TD>clearTimeout<TD>cancela un retardo definido mediante setTimeout. Sintaxis: clearTimeout(tiempo)
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Arreglo Frame<TD>Se puede hacer referencia a los recuadros usando el arreglo frames. Este arreglo contiene un elemento por cada recuadro "hijo" (definido por una etiqueta &lt;FRAME&gt;) en una ventana que contenga etiquetas &lt;FRAMESET&gt;, segun el orden en que figuran. El primer recuadro es parent.frames[0], el segundo es parent.frame[1] y asi sucesivamente. El modo de referirse al arreglo es el siguiente: [recuadro.]frames[indice] o [ventana.]frames[indice]
+<TR><TD>Propiedades<TD>Length. Indica el numero de recuadros en una ventana o recuadro. Sintaxis: [ventana.]frames.length o [recuadro.]frames.length
+<TR><TD>Metodos<TD>ninguno
+<TR><TD>Eventos<TD>ninguno
+</TABLE><P>
+
+<H2>Tercer nivel (pertenece a document)</H2>
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>form<TD COLSPAN=2>Permite que el usuario introduzca datos y seleccione opciones de elementos tales como casillas para marcar, botones de radio y listas de seleccion. Tambien permite enviar datos al servidor.
+<TR><TD ROWSPAN=17>Propiedades
+<TR><TD>action<TD>
+<TR><TD>Button<TD>
+<TR><TD>Checkbox<TD>Casilla de verificacion. <FORM><INPUT TYPE=button VALUE="form.checkbox" onClick="form.checkbox" </FORM>
+<TR><TD>elements<TD>
+<TR><TD>encoding<TD>
+<TR><TD>Hidden<TD>
+<TR><TD>length<TD>
+<TR><TD>method<TD>
+<TR><TD>Password<TD>
+<TR><TD>Radio<TD>Boton de radio
+<TR><TD>Reset<TD>Boton reset
+<TR><TD>Select<TD>&nbsp:
+<TR><TD>Submit<TD>Boton enviar
+<TR><TD>target<TD>Destino
+<TR><TD>Text<TD>
+<TR><TD>Textarea<TD>
+<TR><TD>Metodos<TD>Submit<TD>Permite el formulario. Sintaxis: formulario.submit()forms[indice].submit()
+<TR><TD>Eventos<TD>onSubmit<TD>Ejecuta cuando se remite el formulario. Sintaxis: &lt;FORM NAME=formulario TARGET=ventana ACTION=URL METHOD=get|post ENCTYPE=codigo onSubmit="action en JavaScript"&gt;
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Arreglo Forms<TD COLSPAN=2>Es un arreglo que conteiene un elemento por cada formulario presente en el documento, segun el orden en que figuran. El primer formulario es document.forms[0], el segundo es document.forms[1] y asi sucesivamente.
+<TR><TD>Propiedades<TD>length<TD>Indica el numero de formularios en el documento. Sintaxis: document.forms.length
+<TR><TD>Metodos<TD COLSPAN=2>ninguno
+<TR><TD>Eventos<TD COLSPAN=2>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Anchor<TD>Es una porcion de texto que puede ser el dstino de un enlace. Si el objeto ANCHOR tambien es un objeto LINK, tendrá entradas tanto en el ARREGLO ANCHORS como en el ARREGLO LINKS.
+<TR><TD>Propiedades<TD>ninguna
+<TR><TD>Metodos<TD>ninguno
+<TR><TD>Eventos<TD>ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Arreglo Anchor<TD>Se puede hacer referencia a los objetos ANCHOR mediante el ARREGLO ANCHORS, el cual tiene un elemento por cada comando &lt;A NAME= &gt; en el orden en que aparecen. El primer elemento es <I>document.anchors[0]</I>, el segundo es <I>document.anchors[1]</I> y asi sucesivamente.
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>Ninguno
+<TR><TD>Eventos<TD>Ninguno
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH>Link<TD COLSPAN=2>Es cualquier fragmento de texto o una imagen empleada como enlace de hipertexto. Cuando el usuario hace clic en un enlace, se carga la referencia de hipertexto en la ventana destino.
+<TR><TD ROWSPAN=10>Propiedades
+<TR><TD>hash<TD>
+<TR><TD>host<TD>
+<TR><TD>hostname<TD>
+<TR><TD>href<TD>
+<TR><TD>pathname<TD>
+<TR><TD>port<TD>
+<TR><TD>protocol<TD>
+<TR><TD>search<TD>
+<TR><TD>target<TD>
+<TR><TD>Metodos<TD COLSPAN=2>ninguno
+<TR><TD ROWSPAN=3>Eventos
+<TR><TD>onClick<TD>&ltA HREF=URL [NAME=marcador][TARGET=ventana][onClick="accion"]&gt;enlace&lt;/A&gt; 
+<TR><TD>onMouseOver<TD>Ejecuta cuando el puntero del raton paso sobre el enlace.<BR>&ltA HREF=URL [NAME=marcador][TARGET=ventana][onMouseOver="accion"]&gt;enlace&lt;/A&gt; 
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Arreglo Link
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+
+<H2>Cuarto nivel (pertenece a form)</H2>
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Button
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLWSPAN=2>Checkbox
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Arreglo Elements
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Hidden
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Arreglo Options
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Elementos del arreglo Options
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Password
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Radio
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Select
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Text
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Textarea
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Reset
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE><P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH COLSPAN=2>Submit
+<TR><TD>Propiedades<TD>
+<TR><TD>Metodos<TD>
+<TR><TD>Eventos<TD>
+</TABLE>
+</BODY>
+</HTML>

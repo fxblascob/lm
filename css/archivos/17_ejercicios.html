@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title> Ejercicios de aprendizaje </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <style>
+            .soluciones {visibility:hidden;}</style>
+
+    </head>
+    <body>
+        <div id="contenedor_general">
+            <div id="contenedor_cabecera">
+                <img src="../imagenes/logo.jpg" width="147" height="92"> 
+                <h1>Ejercicios de aprendizaje</h1>
+            </div>
+            <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+            <div id="contenedor_cuerpo">
+                <h1>Ejercicios de aprendizaje</h1>
+                <div class="ejercicios">
+                    <h2 id="ej_01" >Ejercicio_CSS 1  :</h2>
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al primer párrafo utilizando el primero de los métodos descritos. Dicho estilo consistirá en poner el texto de color verde y con tamaño de letra de 15 puntos. El código CSS necesario es el siguiente:</p>
+                    <div class="codigo">
+    <pre>color:green; font-size:15pt;</pre>
+                    </div>
+                    <p>Observa que el formato se aplica sólo al primer párrafo, que es el que tiene la etiqueta <tt>style</tt>. Guarda el archivo con el nombre ejercicio1.html.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/01.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/01.html"> Solución: html</a>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_02">Ejercicio_CSS 2:</h2>
+                    <p>Utilizando el documento HTML del ejemplo anterior, manteniendo los cambios realizados en el ejercicio 1, aplica un estilo CSS a todos los párrafos utilizando el segundo de los métodos descritos (hoja de estilo interna). Dicho estilo consistirá en poner el texto de color rojo y con tamaño de letra de 8 puntos. El código CSS necesario es el siguiente:</p>
+                    <div class="codigo">
+                        <pre>
+            p {
+            color:red; <span class="comentarios">/*Color rojo*/</span>
+            font-size:8pt; <span class="comentarios">/*Tamaño de letra 8 puntos*/</span>
+            }</pre>
+                    </div>
+                    
+                    <p>Observa que <b>todos</b> los párrafos del documento se ponen de color rojo con tamaño de letra 8 <b>menos el primero</b>. Esto es porque la hoja de estilos interna aplica los formatos escritos en ella a todos los elementos tipo párrafo (&lt;p&gt;), pero como el primero tiene definido su propio estilo dentro de su misma etiqueta &lt;p&gt;, será ésta última la que tenga más peso. Se puede deducir que los estilos definidos <b>directamente en las etiquetas HTML</b> se aplican <b>por delante</b> de los definidos en la <b>hoja de estilos interna</b>. Guarda el archivo con el nombre ejercicio2.html.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/02.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/02.html"> Solución: html</a>
+                    
+                </div>
+                
+                <div class="ejercicios">
+                    <h2 id="ej_03">Ejercicio_CSS 3:</h2>
+    
+                    <p>Por último, crea un nuevo archivo de texto llamado &quot;estilos.css&quot; y escribe en él el siguiente código css:</p>
+                    
+                    <div class="codigo">
+                        <pre>
+            p { 
+            color:blue; <span class="comentarios">/*Color azul*/</span>
+            text-indent:2em; <span class="comentarios">/*Sangría de dos caracteres*/</span>
+            text-align:right; <span class="comentarios">/*Alineado a la derecha*/</span>
+            }</pre>
+                    </div>
+                    
+                    <p>A continuación, guarda el archivo y sitúalo en la misma carpeta que los ejercicios anteriores. Después, abre el ejercicio 2 y guárdalo con el nombre <b>ejercicio3.html</b>. Modifícalo para que utilice la hoja de estilos externa tal y como se explica en el método 3.</p>
+    
+                    <p>Observa qué ocurre si incluyes la hoja de estilos externa <b>antes</b> que la hoja interna y viceversa.</p>
+                    
+                    <p>Se puede deducir que los estilos se aplican <b>siguiendo el orden en que estén situados en el documento HTML</b>. Además, si se indica en dos sitios distintos un estilo que afecte al mismo elemento, <b>prevalecerá el último estilo aplicado</b>.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/03.png"> Resultado final cargando primero la hoja externa</a>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/03_2.png"> Resultado final cargando primero la hoja interna</a>
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.css"> css</a>
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_04">Ejercicio_CSS 4:</h2>
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al cuarto párrafo utilizando un identificador. Dicho estilo consistirá en poner el texto de color verde y con tamaño de letra de 15 puntos. El código CSS necesario es el siguiente:</p>
+                   
+                    <div class="codigo">
+                        <pre>
+            color: green; 
+            font-size: 15pt;    
+                        </pre>
+                    </div>
+                    
+                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio4.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio4.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/04.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/04.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/04.css"> css</a>
+                   
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_05">Ejercicio_CSS 5:</h2>
+    
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS a los párrafos impares utilizando una clase. Dicho estilo consistirá en poner el texto de color azul y con tamaño de letra de 7 puntos. El código CSS necesario es el siguiente:</p>
+                    
+                    <div class="codigo">
+                        <pre>
+    color: blue; 
+    font-size: 7pt;    </pre>
+                    </div>
+                    
+                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio5.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio5.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/05.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/05.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/05.css"> css</a>
+                </div>
+                <div class="ejercicios">
+                    <h2  id="ej_06">Ejercicio_CSS 6:</h2>
+    
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS a los enlaces que aparezcan en el documento. Los enlaces normales deberán ser rojos (red), los visitados verdes (green), los activos amarillo (yellow) y los que tengan el ratón encima azules (blue).</p>
+                    
+                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio6.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio6.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/06.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/06.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/06.css"> css</a>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_07">Ejercicio_CSS 7:</h2>
+    
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS para que la primera letra de cada párrafo tenga tamaño 18 puntos y la primera letra de cada encabezado h3 tenga un tamaño de 22 puntos.</p>
+                    
+                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio7.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio7.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/07.png"> Resultado final</a>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/07.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/07.css"> css</a>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_08">Ejercicio_CSS 8:</h2>
+    
+                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al cuerpo de la página que ponga el color de la letra en rojo (red) y cree un borde sólido de 3 píxeles. Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio8.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio8.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
+                    <p>Observa que los párrafos heredan el color de letra pero no los bordes.</p>
+                    <p>A continuación, añade el siguiente código para editar el estilo de los párrafos:</p>
+                    <div class="codigo">
+                        <pre>
+            p {
+            border: inherit; 
+            }
+                        </pre>
+                    </div>
+                        <p>Observa que ahora sí que aparece un borde alrededor de cada párrafo. Esto es porque la propiedad <i>border</i>, que no se hereda, se ha definido para que sea heredable mediante la palabra <i>inherit</i>.</p>
+                        <p><a href="../ejercicios/resueltos/aprendizaje/resultado/08.png"> Resultado final</a>
+                        <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/08.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/08.css"> css</a>
+                </div>
+
+                <div class="ejercicios">
+                    <h2 id="ej_09">Ejercicio_CSS 9:</h2>
+    
+                    <p>Guarda el documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a> con el nombre de <tt>&quot;ejercicio9.html&quot;</tt>. Modifícalo añadiendo dos capas: la primera (<i>capa1</i>) almacenerá la tercera parte (aproximadamente) del código HTML, y la otra (<i>capa2</i>) el resto.</p>
+                    
+                    <p>A continuación, crea cuatro hojas de estilo externas llamadas: <tt>&quot;ejercicio9a.css&quot;</tt>, <tt>&quot;ejercicio9b.css&quot;</tt>, <tt>&quot;ejercicio9c.css&quot;</tt> y <tt>&quot;ejercicio9d.css&quot;</tt>. Añade los estilos necesarios para que se cumpla lo siguiente:</p>
+                    
+                    <ul>
+                        <li><b>9a</b> - La primera capa esté flotando a la derecha.</li>
+                        <li><b>9b</b> - La primera capa esté flotando a la izquierda.</li>
+                        <li><b>9c</b> - Las dos capas estén flotando (una a la izquierda y otra a la derecha).</li>
+                        <li><b>9d</b> - La primera capa esté flotando a la izquierda y la segunda tenga la propiedad <tt>clear:both</tt>.</li>
+                    </ul>
+                    <p> <a href="../ejercicios/resueltos/aprendizaje/resultado/09a.png"> Resultado 09a </a> -
+                    <p class="soluciones">  
+                        solución 09a: 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.html"> html </a> -
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.css"> css </a>
+                    <p> 
+                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09b.png"> Resultado 09b </a> -
+                    <p class="soluciones">
+                        solución 09b: 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.html"> html </a> -
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.css"> css </a>
+                    <p> 
+                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09c.png"> Resultado 09c </a> -
+                    <p class="soluciones">
+                        solución 09c: 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.html"> html </a> -
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.css"> css </a>
+                    <p> 
+                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09d.png"> Resultado 09d </a> -
+                    <p class="soluciones">
+                        solución 09d: 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.html"> html </a> -
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.css"> css </a>
+                    </p>
+                    
+                </div>
+                
+                <div class="ejercicios">
+                    <h2 id="ej_10">Ejercicio_CSS 10:</h2>
+    
+                    <p>Visita la página <a href="http://www.w3schools.com/css/tryit.asp?filename=trycss_float6">http://www.w3schools.com/css/tryit.asp?filename=trycss_float6</a>. Observa cómo construir un esquema de página de sitio web utilizando la propiedad <tt>float</tt> y <tt>clear</tt>. En la parte de la izquierda tienes el código fuente y en la derecha el resultado.</p>
+                    
+                    <p>Contesta a las siguientes preguntas y guárdalas en un archivo con nombre <tt>&quot;ejercicio10.txt&quot;</tt>:</p>
+                    
+                    <ol>
+                        <li>¿Cuántas capas se utilizan en el código HTML? Indica sus nombres. ¿Se utilizan clases o identificadores?</li>
+                        <li>¿Se utiliza una hoja de estilos interna o externa? ¿Por qué?</li>
+                        <li>¿Cómo consiguen dividir el centro de la página en dos partes, una a la izquierda de la otra?</li>
+                    </ol>
+                    <p>
+                        
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_11">Ejercicio_CSS 11:</h2>
+    
+                    <p>Crea una página web,  parecida a la del enlace de abajo
+                    <p>Utiliza capas o contenedores de css3-html5 para posicionar los elementos</p>
+                    <p>La imagen la puedes sacar de <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/pirata.png"> aquí </a>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/11.png"> Resultado final</a>
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.css"> css</a>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_12">Ejercicio_CSS 12:</h2>
+    
+                    <p>Une todos lo ejercicios que has realizado utilizando un menú, parecido al del enlace de abajo</a>  </p>
+                    <p>Utiliza capas o contenedores para posicionar los elementos y listas sin orden para los menús</p>
+                    <p>Las imágenes las puedes sacar de aquí: 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/img_tree.png"> arbol </a> y 
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/logo.png"> logo </a>
+                    </p>
+                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/12.png"> Resultado final</a>
+                        <p class="soluciones">
+                            <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.html"> Solución: html</a>
+                            
+                            <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.css"> css</a>
+                        </p>
+                </div>
+                <div class="ejercicios" style="display:none;">
+                    <h2 id="ej_13">Ejercicio_CSS 13:</h2>
+    
+                    <p>Desarrollo de un sitio web adaptativo utilizando media queries de forma que permita visualizar la página en varias resoluciones 
+                         según aparece aquí: <a href="../ejercicios/resueltos/aprendizaje/resultado/13.png"> Resultado final</a></p>
+                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo_html.html">aquí</a>
+                    
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.html"> Solución: html</a>
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.css"> Solución css</a>
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_14">Ejercicio_CSS 14:</h2>
+                    <p>Crea un documento CSS donde, ayudándote de media queries, definas tres posibles disposiciones:<a href="../ejercicios/resueltos/aprendizaje/resultado/14_media_queries_grid.pdf"> Resultado final</a>
+                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">aquí</a>
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid.html"> Solución: html + css</a>
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_15">Ejercicio_CSS 15:</h2>
+                    <p>Crea un documento CSS donde, ayudándote de flexbox definas estas posibles disposiciones:<a href="../ejercicios/resueltos/aprendizaje/resultado/15_flexbox.pdf"> Resultado final</a>
+                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">aquí</a>
+                    
+                    <ul>
+                        <li>Las dos cajas centrales que ocupen el doble de tamaño que las laterales. Las laterales van a tener un color de fondo gris y las centrales amarillo-naranja.
+                        <li>Las cajas laterales tengan una anchura mínima de 200px, y las centrales de 300px. Cuando esto no sea posible, se redistribuirán
+                    </ul>
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/15_flexbox.html"> Solución: html + css</a>
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_16">Ejercicio_CSS 16:</h2>
+                    <p>
+                        Descarga <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">este ejemplo </a>que ya hemos utilizado en secciones anteriores. Añade una hoja propia estilos.css simplemente para dar un color de fondo a las cajas. Ahora vamos a utilizar la rejilla de Bootstrap para que:
+                    </p>
+                    <ul>
+                        <li>Las cuatro cajas se muestren una junto a otra en dispositivos tamaño lg o superior </li>
+                        <li>Las cajas se muestren de dos en dos en tamaño sm o superior                   </li>
+                        <li>Las cajas se muestren una bajo la otra en dispositivos más pequeños                        </li>
+                    </ul>
+                    <p>Define un margen entre las cajas para separarlas, y asigna a cada caja una anchura en celdas apropiada para su contenido, a tu gusto.
+                   
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/16_bootstrap.html"> Solución: html + css</a>
+                    </p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_17">Ejercicio_CSS 17:</h2>
+                    <p>
+                        Descarga <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios_html.html">este formulario</a> y aplícale 
+                        los estilos facilitados por Bootstrap para poderlo visualizar de este modo:<br>
+                        <img width="800" src="../ejercicios/resueltos/aprendizaje/resultado/17_ejercicio_bootstrap_formulario.png">
+                    </p>
+                   
+                    <p class="soluciones">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios.html"> Solución: html + css</a>
+                    </p>
+                </div>
+            </div>
+                <div id="contenedor_pie">
+                    <p>Manual de CSS</p>
+                </div>
+        </div>
+    </body>
+</html>

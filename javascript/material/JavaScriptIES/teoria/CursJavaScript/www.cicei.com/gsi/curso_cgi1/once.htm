@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<TITLE> TUTURIAL CGI </TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<CENTER><H1><FONT  COLOR=#800000>IM&AacuteGENES MAPEADAS</FONT></H1></CENTER>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13><BR>
+<P>
+La correspondencia entre diferentes zonas de una imagen y diferentes URL se denomina <STRONG>imagen mapeada</STRONG> o tambi&eacute;n <STRONG>imagen reactiva</STRONG>. Para realizar una imagen activable, se empezar&aacute; por poner la imagen con el tamaño deseado. Despu&eacute;s de determinar el tamaño &oacute;ptimo, se har&aacute; una lista de coordenadas zona por zona de las superficies activables. Si se decidiera posteriormente modificar el tamaño de la imagen, todo este trabajo tendr&iacute;a que repetirse. Las zonas activables podr&aacute;n tomar las formas de rect&aacute;ngulo, c&iacute;rculo o pol&iacute;gono.<P>
+Una imagen se mide en puntos o pixels y el origen de estas coordenadas se sit&uacute;a arriba y a la izquierda de la imagen. <BR>
+Para la realizaci&oacute;n del mapa de coordenadas - URL se crear&aacute; un fichero en el que cada l&iacute;nea definir&aacute; una forma geom&eacute;trica para la zona activable y su URL asociado. <BR>
+Sintaxis:
+<BLOCKQUOTE><tt>forma URL coordenada X, coordenada Y coordenada X, coordenada Y ...,...</tt></BLOCKQUOTE>
+
+El n&uacute;mero de puntos depender&aacute; de la forma de la zona:<BR>
+<UL>
+<LI><STRONG>RECT</STRONG>, se utiliza para un rect&aacute;ngulo definido por dos puntos: el extremo superior izquierdo y el extremo inferior derecho.
+<LI><STRONG>CIRCLE</STRONG>, se utiliza para un c&iacute;rculo definido por dos puntos: el centro y un punto cualquiera situado sobre la circunferencia.
+<LI><STRONG>POLY</STRONG>, se utiliza para un pol&iacute;gono definido por un m&aacute;ximo de 100 vectores: se da la direcci&oacute;n de cada extremo del vector.
+</UL><P>
+
+Una imagen mapeada se define por el siguiente conjunto de marcas:
+<BLOCKQUOTE><tt><STRONG>&lt;A HREF=/cgi-bin/imagemap/</STRONG>nombre simb&oacute;lico &gt;</tt></BLOCKQUOTE>
+<BLOCKQUOTE><tt>&lt;<STRONG>IMG SRC</STRONG>=url_del_fichero.gif <STRONG>ISMAP</STRONG>&gt;</tt></BLOCKQUOTE>
+<BLOCKQUOTE><tt>&lt;/<STRONG>A</STRONG>&gt;</tt></BLOCKQUOTE>
+
+<STRONG>/cgi-bin/imagemap/
+</STRONG> es un programa que debe estar instalado previamente en el servidor Web para poder proponer im&aacute;genes mapeadas.<P>
+<STRONG>imagemap.conf</STRONG> es un fichero instalado en la ra&iacute;z del servidor en el que se referenciar&aacute; con un nombre_simb&oacute;lico la direcci&oacute;n real del fichero en el que se describen las relaciones entre las zonas activables y sus URL asociados.<P>
+A petici&oacute;n del <I>browser</I> el servidor env&iacute;a la imagen mapeada. El lector hace clic sobre una zona de la imagen; gracias al atributo ISMAP, el<I>browser</I> recupera las coordenadas de la imagen, seguidamente desencadena el acceso al URL cgi-bin/imagemap pasando los par&aacute;metros siguientes: el nombre simb&oacute;lico del fichero xxx.map y las coordenadas X e Y del punto activado. El programa imagemap abre el fichero imagemap.conf y recupera la direcci&oacute;n real del fichero xxx.map que abrir&aacute;. Compara la pareja X,Y con las diferentes zonas definidas en este fichero y detecta as&iacute; el URL solicitado. Entonces efect&uacute;a la conexi&oacute;n con este URL.<P>
+
+HTML3 permite la realizaci&oacute;n de mapas activables en los que s&oacute;lo interviene el cliente. Es mucho m&aacute;s f&aacute;cil con este nivel de HTML, porque todo est&aacute; descrito en el mismo fichero y ya no se necesita un programa exterior (cgi-bin).<P>
+En el primer caso (ISMAP), el servidor es quien se encarga de detectar a partir de las coordenadas del punto activado el URL a conectar.<BR>
+En el segundo caso (USEMAP), cuando el cliente ha recibido la p&aacute;gina HTML, tratar&aacute; enteramente la detecci&oacute;n del punto activado y la conexi&oacute;n con el URL. Adem&aacute;s de la simplificaci&oacute;n de programaci&oacute;n, es m&aacute;s eficaz porque minimiza los accesos a la red.<BR>
+La imagen se define con la marca <STRONG>IMG</STRONG> a la que se asocia el atributo <STRONG>USEMAP</STRONG>. Este atributo permite referenciar un "subprograma HTML" que describe las zonas activables y sus URL asociados.<BR>
+La sintaxis de llamada es:
+<BLOCKQUOTE><tt>&lt;<STRONG>IMG SRC</STRONG>="url_del_fichero.gif" <STRONG>USEMAP</STRONG>="#nombre"&gt;</tt></BLOCKQUOTE>
+El c&oacute;digo de descripci&oacute;n del mapa se sit&uacute;a entre las marcas &lt;<STRONG>MAP NAME</STRONG>="nombre"&gt; y &lt;<STRONG>/MAP</STRONG>&gt;<BR>
+Entre estas dos marcas se definen las zonas activables por marcas &lt;<STRONG>AREA SHAPE</STRONG>="figura" <STRONG>HREF</STRONG>="url" <STRONG>COORDS</STRONG>= X0,Y0,X1,Y1,...&gt;<BR>
+Figura puede tomar los valores <STRONG>RECT, POLY o CIRCL</STRONG>, descritas anteriormente.<P>
+
+<H2>EJEMPLO</H2>                                                                                                          
+Haga click en alguna de las islas:<P>
+
+
+
+<A NAME = mapa><MAP NAME="">
+   <AREA COORDS="39,71,95,136" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#lapalma">
+   <AREA COORDS="115,151,160,190" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#lagomera">
+   <AREA COORDS="166,105,274,192" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#tenerife">
+   <AREA COORDS="288,151,372,226" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#grancanaria">
+   <AREA COORDS="442,83,548,183" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#fuerteventura">
+   <AREA COORDS="519,21,592,82" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#lanzarote">
+   <AREA COORDS="18,202,71,235" HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/islas.htm#elhierro">
+</MAP>
+<IMG BORDER=0 USEMAP="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/once.htm#" SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/canarias.jpg"> 
+</A>
+
+
+</BODY>
+</HTML>

@@ -1,0 +1,52 @@
+#contenedor_general{
+	position:relative;
+	left:5%;
+	width:90%;
+}
+#contenedor_general #contenedor_cabecera {
+	position:relative;
+	width:100%;
+	height:35px;
+	background-color:#70a097;
+	text-align:center;
+}
+#contenedor_general #contenedor_seccion {
+	position:relative;
+	top: 0px;
+	width:100%;
+	height:30%;
+	background-color:#d4e6f1;
+}
+#contenedor_general #contenedor_seccion #contenedor_datos {
+	display:block;
+	float:letf;
+	position:relative;
+	padding:10px;
+	width: 90%;
+}
+#contenedor_general #contenedor_seccion #contenedor_foto {
+	position:relative;
+	float: right;
+	padding:10px;
+}
+#contenedor_general #contenedor_seccion #contenedor_sql {
+	position:absolute;
+	right:1%;
+	top:65%;
+	display:block;
+	float:letf;
+}
+#contenedor_general #contenedor_menu {
+	position:relative;
+	width: 100%;
+	background-color:#b2babb;
+	text-align:center;
+	display:block;
+	clear: both;;
+}
+#contenedor_general #contenedor_tabla {
+	position:relative;
+	width:90%;
+	left:5%;
+	background-color:#b2babb;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio13/ejercicio13.html -->
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 4.3 - DOM básico y atributos HTML</title>
+        <script>
+            /*
+            Completar el código JavaScript proporcionado para que se añadan nuevos elementos a la lista
+            cada vez que se pulsa sobre el botón. Utilizar las funciones DOM para crear nuevos nodos y
+            añadirlos a la lista existente. Al igual que sucede en el ejercicio anterior, la acción de pinchar
+            sobre un botón forma parte de los "Eventos" de JavaScript que se ven en el siguiente capítulo.
+            En este ejercicio, sólo se debe saber que al pinchar sobre el botón, se ejecuta la función llamada
+            anyade().
+            */
+            window.onload = function(){
+                function anyade() {
+                    let lista = document.getElementById("lista");
+                    let li_count = document.querySelectorAll("ul li").length + 1;
+                    //lista.innerHTML += "<li> nuevo elemento "+li_count+" </li>";
+                    let li = document.createElement("li");
+                    li.innerText="nuevo elemento "+li_count;
+                    lista.appendChild(li);
+                }
+                document.getElementById("boton").onclick = anyade;
+            }
+            
+        </script>
+    </head>
+    <body>
+        <ul id="lista">
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Consectetuer adipiscing elit</li>
+            <li>Sed mattis enim vitae orci</li>
+            <li>Phasellus libero</li>
+            <li>Maecenas nisl arcu</li>
+        </ul>
+        <input type="button" id="boton"  value="Añadir elemento" >
+    </body>
+</html>

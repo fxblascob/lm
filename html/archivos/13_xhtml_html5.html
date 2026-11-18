@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Extras
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+
+    <body ondblclick="ocultarMenu()">
+	<div id="contenedor_general">
+	
+        <!--Cabecera -->
+        <div id="contenedor_cabecera">
+			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>13 XHTML y HTML 5</h1>
+        </div>
+        
+        <iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <!--Cuerpo de la página -->
+        <div id="contenedor_cuerpo">
+        
+            <h1>XHTML</h1>
+			
+			<p>XHTML 1.0 se convirtió en recomendación para construir páginas web en Enero del año 2000. Su objetivo era mejorar las deficiencias de HTML y aprovechar las ventajas de XML y tenía que mantener la compatibilidad con HTML 4.</p>
+			<p>En resumen, XHTML es un lenguaje formado por los mismos elementos que HTML pero que se ajusta a las normas sintácticas de XML.</p>
+			<p>Otra ventaja de XHTML es la posibilidad de incorporar elementos procedentes de otros espacios de nombres como MathML y SVG que nos permitirá construir documentos con contenido científico o gráficos vectoriales de una forma más simple.</p>
+			
+			<h2>Estructura y elementos del documento</h2>
+			<p>Es la misma que en HTML, con la salvedad de que la declaración DTD es obligatoria. Seguimos teniendo tres definiciones equivalentes a las de HTML
+			<ul>
+			    <li><b>Documento HTML estricto (HTML 4)</b>. 
+			        <div class="codigo">
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; 
+  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+                    </div>
+			    
+			    </li>
+			    
+			    <li><b>Documento HTML transicional (HTML 4)</b>. 
+			        <div class="codigo">
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; 
+  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+                    </div>
+			    
+			    </li>
+</ul>
+
+<p>En cuanto al elemento &lt;html&gt; es también obligatorio y además aparecen tres atributos, el primero <b>xmlns</b> especifica el tipo de documento, y el segundo y el tercero <b> xml:lang y lang </b> deben llevar como valores el código del lenguaje en el que será escrito.
+
+			        <div class="codigo">
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt; xml:lang&quot;es&quot; lang&quot;es&quot;&gt; 
+                    </div>
+
+<!--<p>Además &lt;head&gt; &lt;body&gt; son obligatorios al igual que &lt;head&gt; tiene que tener un &lt;title&gt;-->
+<p>Además las etiquetas &lt;html&gt;, &lt;head&gt; y &lt;body&gt; son obligatorias.
+
+<h3>Normas en XHTML</h3>
+<ul>
+<li>Todas las etiquetas y atributos deben ir en minúsculas.</li>
+<li>Todos los elementos deben cerrarse, incluso los elementos vacíos. Con éstos se añade la barra"/" al final en lugar de poner la etiqueta de cierre. 
+<br>Ejemplo:
+<div class="codigo">
+&lt;br /&gt; 
+<br>
+&lt;img src=&quot;grafico.jpg&quot; alt=&quot;gráfico&quot; /&gt; 
+</div>
+</li>
+<li>No se permiten errores de anidamiento de etiquetas</li>
+<li>Todos los valores de atributos deben estar entre comillas, simples o dobles y las dos del mismo tipo. Se recomienda usar las dobles.</li>
+<li>Todos los atributos deben tener un valor.
+<br>Ejemplo:
+<div class="codigo">
+&ltinput type=&quot;checkbox&quot; value=&quot;1&quot; checked=&quot;checked&quot;&gt;Aquí va el texto &lt/input&gt;
+</div>
+</li>
+</ul>
+
+<h1>HTML 5</h1>
+<p>Esta versión aporta nuevos elementos enfocados a la presentación, el diseño de la página (layout), facilitar la inclusión de audio y video, mejorar formularios y otras funciones más específicas.<p>
+<p>Esta versión tiene el objetivo de convertirse en una plataforma de desarrollo que integre todas las tecnologías web</p>
+<p>Ante el problema de que sea el usuario el que tenga que descargarse y actualizar los pluggins para reproducción de animaciones y videos, HTML 5 pretende  ser una solución incorporando una API (Application Program Interface), una biblioteca de funciones lo bastante amplia para que todos los navegadores se comporte igual</p>
+<p>Se simplifican los atributos, todos los elementos de HTML 5 tienen un conjunto común llamado <b>global attributes</b>.
+<p>En cuanto a la sintaxis es muy flexible y engloba el HTML y el XHTML.
+
+<h3>Características</h3>
+<ul>
+<li>Se permiten las mayúsculas en las etiquetas.</li>
+<li>La etiqueta de cierre es opcional en los elementos vacíos</li>
+<li>Es opcional establecer un valor a los atributos.</li>
+<li>Las comillas son opcionales en los atributos </li>
+</ul>
+
+<h2>Elementos de sección</h2>
+<p>Para evitar el uso indiscriminado de etiquetas &lt;div&gt;, aparecen nuevas etiquetas mas específicas que facilitan la comprensión del código.</p>
+<h3>&lt;header&gt;</h3>
+<p>Sirve para insertar información introductoria como el título, el logo o enlaces secundarios.</p>
+<h3>&lt;nav&gt;</h3>
+<p>Sirve para insertar una sección con enlaces a otras páginas o bloques importantes dentro del documento.</p>
+<h3>&lt;section&gt;</h3>
+<p>Sirve para insertar una sección general dentro de un documento. Puede anidarse para crear subsecciones.</p>
+<h3>&lt;article&gt;</h3>
+<p>Sirve para insertar un componente autónomo con el objetivo de que pueda a ser reutilizado en otro lugar, ej.: un post de foro, un artículo de periódico, un comentario de usuario, etc...Pueden anidarse.</p>
+<h3>&lt;aside&gt;</h3>
+<p>Sirve para insertar una sección relacionada indirectamente con el contenido que tiene a su alrededor. Ej.: para una barra lateral, publicidad o enlacs de navegación. </p>
+<h3>&lt;footer&gt;</h3>
+<p>Sirve para insertar un pie de página o de sección que suele contener el autor, el copyright, el año, el mapa del sitio, etc...</p>
+<h3>&lt;hgroup&gt;</h3>
+<p>Sirve para agrupar un conjunto de encabezamientos h1-h6</p>
+<h2>Estructura general</h2>
+
+<div class="codigo">
+<pre>
+&lt;body&gt;
+ &lt;header&gt;....&lt;/header&gt;
+ &lt;nav&gt;...&lt;/nav&gt;
+ &lt;section&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;aside&gt;...&lt;/aside&gt;
+ &lt;/section&gt;
+ &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+</pre>
+</div>
+
+<p>&lt;article&gt puede reproducir la estructura general: puede tener un &lt;header&gt;, varios &lt;section&gt; y un &lt;footer&gt;
+<div class="codigo">
+<pre>
+&lt;article&gt;
+ &lt;hgroup&gt;
+  &lt;h1&gt;Desarrollo web &lt;/h1&gt;
+  &lt;h2&gt;Tipos de lenguajes &lt;/h2&gt;
+ &lt;/hgroup&gt;
+ &lt;p&gt;Todos los lenguajes web provienen de SGML &lt;/p&gt;
+ &lt;section&gt;
+  &lt;h1&gt;HTML &lt;/h1&gt;  
+  &lt;p&gt;Lenguaje de Marcas de HiperTexto &lt;/p&gt;
+ &lt;/section&gt;
+ &lt;section&gt;
+  &lt;h1&gt;XML &lt;/h1&gt;  
+  &lt;p&gt;Lenguaje de Marcas de Extensible &lt;/p&gt;
+ &lt;/section&gt;
+&lt;/article&gt;
+</pre>
+</div>
+<h2>Forma de estructurar una página con HTML4 y con HTML5</h2>
+<img src="../imagenes/html4.png" width="500" height="500" align="center">
+<img src="../imagenes/html5.png" width="500" height="500" align="center">
+
+
+<h2>Formularios</h2>
+<h3>&lt;input&gt;</h3>
+<p>Incorpora nuevos type (search, number, time, url, email, etc..) y nuevos atributos como placeholder, que inserta un texto inicial que se borra al situar el foco en la caja, required para indicar que no puede quedarse vacío ese valor, etc...</p>
+<p><b>&lt;input type=&quot;search&quot;&gt;</b> Para cajas de búsqueda</p>
+<p><b>&lt;input type=&quot;number&quot;&gt;</b> Para aumentar o disminuir números usando botones</p>
+<div class="codigo">
+&lt;input name="numero" type=&quot;number&quot; min=0 max=20 value=2&gt;
+</div>
+
+<p>En el siguiente enlace podéis ver todos los type que incorpora HTML 5 y los navegadores que lo soportan: <a href="http://www.w3schools.com/html/html_form_input_types.asp">w3schools</a></p>
+<p>Otro enlace interesante <a href="http://desarrolloweb.dlsi.ua.es/cursos//2011/html5-css3-es/html5-formularios"> enlace </a>
+			<div id="contenedor_pie">
+				<p>Manual de HTML - CSS</p>
+			</div>
+	</div>
+    </body>
+
+</html>

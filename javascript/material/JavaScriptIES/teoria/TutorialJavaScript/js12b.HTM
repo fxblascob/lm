@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js12b</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- escondemos codigo
+function ver(seed){
+   var m1 = "Bienvenido a la página principal de Universidad ALAS Peruanas, ";
+   var m2 = "disfruta de la más variada información; ciencia, cultura, deportes y mucho más... ";
+   var m3 = "Estudia algunas de las carreras del futuro: Informatica, Contabilidad, Veterinaria,    Geografia o Recursos Naturales. " ;
+   var m4 = "Buscanos en Av San Felipe 1109, Jesus Maria o comunícate con nosotros al telefono:    470-9838...............";
+   var msg=m1+m2+m3+m4;
+   var out=" ";
+   var c=1;
+
+   if (seed > 100) {
+      seed--;
+      var cmd="ver(" + seed + ")";
+      timerTwo=window.setTimeout(cmd,100);
+   }
+   else if (seed <= 100 && seed > 0) {
+      for (c=0 ; c < seed ; c++) {
+         out+=" ";
+      }
+      out+=msg;
+      seed--;
+      var cmd="ver(" + seed + ")";
+      window.status=out;
+      timerTwo=window.setTimeout(cmd,100);
+   }
+   else if (seed <= 0) {
+      if (-seed < msg.length) {
+         out+=msg.substring(-seed,msg.length);
+         seed--;
+         var cmd="ver(" + seed + ")";
+         window.status=out;
+         timerTwo=window.setTimeout(cmd,100);
+      }
+      else {
+         window.status=" ";
+         timerTwo=window.setTimeout("ver(100)",75);
+      }
+   }
+}
+// fin esconder -->
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY BGPROPERTIES=fixed onLoad="timerONE=window.setTimeout('ver(100)',500);">
+<H1>Scroll en barra de estado<BR>con velocidad controlada</H1>
+
+Se podria poner el texto en una sola linea, tan larga como se quiera, siempre que este entre comillas, pero no debe de haber ningun salto de linea, si el texto es demasiado largo, es mejor dividirlo en varias lineas, tal como esta en este ejemplo.<P>
+
+Al final de la ultima palabra del texto conviene dejar una serie de espacios en blanco o puntos, para que no este encadenado el comienzo con el final de la cadena.<P>
+
+Dentro del comando de cuerpo <B>BODY</B> añades el parametro:<P> onLoad="timeONE=window.setTimeout('ver(100)',500);"<P>
+
+<A HREF=Js12c.HTM>Siguiente</A>
+<CENTER>
+</BODY>
+</HTML>

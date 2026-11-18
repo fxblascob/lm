@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>Ejemplo de resolución de conflictos con CSS</title>
+		<style type="text/css">
+			p {
+				color: blue;
+			}
+			p.grupo {
+				color: green;
+			}
+			p#tercero {
+				color: red;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<p>Este párrafo no pertenece a ninguna clase ni lleva ningún identificador. Estará escrito en azul.</p>
+		
+		<p class="grupo">Este párrafo pertenece a la clase &quot;grupo&quot; pero no lleva identificador. Estará escrito en verde.</p>
+		
+		<p class="grupo" id="tercero">Este párrafo pertenece a la clase &quot;grupo&quot; y tiene el identificador &quot;tercero&quot;. Estará escrito en rojo.</p>
+		
+		<p style="color:#999999">Este párrafo se escribirá en gris, siguiendo el estilo definido localmente.</p>
+	
+	</body>
+</html>

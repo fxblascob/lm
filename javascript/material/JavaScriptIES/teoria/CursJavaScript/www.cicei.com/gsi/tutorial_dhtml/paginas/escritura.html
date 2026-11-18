@@ -1,0 +1,95 @@
+<html>
+<title>Tutorial DHTML - Escritura en una Capa</title>
+
+<body background="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/graficos/background.gif">
+<H2>Escritura en una Capa</H2>
+
+El t&iacute;tulo puede despistar un poco. El objetivo de este apartado no es ver c&oacute;mo se introduce texto en una capa, puesto que eso es algo que ya deber&iacute;amos saber, aunque no lo hayamos visto espec&iacute;ficamente hasta ahora. Pero por si acaso, veamos por lo menos un ejemplo simple.<p>
+
+El usar una capa para introducir texto, es una herramienta que se puede comparar con el uso de tablas para colocar el texto de una forma determinada en nuestra p&aacute;gina. Cuando se inserta este texto en una capa, se ajusta a ella de la misma manera que se ajusta al documento cuando no est&aacute; en ninguna capa. Este hecho lo podemos aprovechar para provocar saltos de l&iacute;nea, o para situar las palabras como m&aacute;s nos apetezca, simplemente cambiando el alto y el ancho de la capa.<p>
+
+<a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/paginas/ejemplos/escritura1.html">Ejemplo</a> <p>
+
+Bien, tras esto, vayamos ahora con el tema de este apartado. Vamos a ver c&oacute;mo podemos cambiar el texto que contiene una capa, y escribir en ella, por ejemplo, el contenido de nuestras variables. Para ello, debemos modificar el contenido del tag <b>DIV</b>.<p>
+
+<H3>En Caso del Explorer</H3>
+
+En el Internet Explorer, podemos accedar al contenido HTML que est&aacute; en un tag <b>DIV</b> con lo siguiente:
+
+<PRE>
+	document.all.IDDiv.innerHTML = "Aqu&iacute; va el texto"
+</PRE>
+
+Donde <b>IDDiv</b> es el identificador de la capa que vamos a modificar.
+
+Otra forma de hacer los mismo es:
+
+<PRE>
+	document.all["IDDiv"].innerHTML = "Aqu&iacute; va el texto"
+</PRE>
+
+De esta forma, se eval&uacute;a <b>IDDiv</b> como una ristra, y se convierte en una forma m&aacute;s &uacute;til a la hora de hacer una p&aacute;gina compatible con ambos navegadores.
+
+<H3>En Caso del Netscape</H3>
+
+Puesto que en el Netscape cada capa define su propio documento, cada una de ellas tiene pr&aacute;cticamente las mismas posibilidades que el documento principal. Si quisi&eacute;semos reescribir un documento, usar&iacute;amos la funci&oacute;n <b>write</b> para el texto, y <b>close</b> para indicar que el proceso de escritura ha finalizado:<p>
+
+<PRE>
+	document.open()
+	document.write("Aqu&iacute; va el texto")
+	document.close()
+</PRE>
+
+Pero en el caso concreto de una capa, que es lo que nos interesa, debemos usar el vector <b>layers</b> antes de <b>open</b>, <b>write</b> y <b>close</b>:
+
+<PRE>
+	document.layers["IDDiv"].document.open()
+	document.layers["IDDiv"].document.write("Aqu&iacute; va el texto")
+	document.layers["IDDiv"].document.close()
+</PRE>
+
+<H3>Combinando Ambos</H3>
+
+Este es otro caso en el que la sintaxis difiere entre ambos navegadores, y se convierte en c&oacute;digo susceptible de ser introducido en una funci&oacute;n gen&eacute;rica que tenga en cuenta el navegador:
+
+<PRE>
+	function <b>Escritura</b> (id,texto,capaReferencia)
+	{
+	    var capa 
+	   
+	    if (ns4) 
+    	    {
+		if (capaReferencia)
+		    capa = eval ('document.'+capaReferencia+'.document.'+id+'.document')
+		else
+		    capa = document.layers[id].document
+		
+		capa.open()
+		capa.write(texto)
+		capa.close()
+	    }
+	    else
+		if (ie4) 
+		    document.all[id].innerHTML = texto
+	}
+</PRE> 
+
+Con esta funci&oacute;n implementada, todo lo que tenemos que hacer es indicar la capa a cambiar, y el texto que queramos colocar. <b>capaReferencia</b> indica la capa en la que est&aacute; situada la capa que queremos modificar. S&oacute;lo valdr&iacute;a distinto de nulo cuando tuvi&eacute;semos capas anidadas.<p>
+
+Una llamada a esta funci&oacute;n podr&iacute;a ser:
+
+<PRE>
+	Escritura ("capa", null, "Aqu&iacute; va el texto")
+</PRE>
+
+<a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/paginas/ejemplos/escritura2.html">Ejemplo</a>
+
+<br><br>
+<TABLE border=0 cellspacing=2 cellpadding=3>
+	<TD bgcolor=#9B8DE9> Apartado Anterior:  <a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/paginas/cambiar_imagenes.html">Cambiar Im&aacute;genes</a> </TD>
+	<TD bgcolor=#9B8DE9> <a href="../../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_dhtml/index.html"> &Iacute;ndice </a> </TD>
+</TABLE>
+
+</body>
+</html>
+

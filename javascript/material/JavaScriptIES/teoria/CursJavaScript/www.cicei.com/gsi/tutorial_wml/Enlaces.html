@@ -1,0 +1,72 @@
+<html>
+<head><title>Enlaces</title></head>
+
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/fondo.gif">
+<center>
+<font size=6 color=0E7ACB face="Times New Roman"><b><u>Enlaces</u></b></font><br>
+<hr width=75%>
+</center>
+
+<p>
+Al igual que en HTML podemos seleccionar parte de un texto o una imagen y que este sea un enlace a otra p&aacute;gina o que
+realice una tarea.
+</p>
+
+<p>
+Para realizar esto existe dos etiquetas <b>&lt;anchor&gt;...&lt;/anchor&gt;</b> y <b>&lt;a&gt;...&lt;/a&gt;</b>.
+<b>&lt;anchor&gt;</b> es mas completa y <b>&lt;a&gt;</b> es mas sencilla de usar.
+</p>
+
+<p>
+La etiqueta <b>&lt;a&gt;...&lt;/a&gt;</b> nos permite seleccionar un texto o imagen y hacer que sea un enlace a otra
+p&aacute;gina, de una manera muy similar a la etiqueta <b>&lt;a&gt;...&lt;/a&gt;</b> de HTML. Contiene el atributo <b>href</b>
+en el cual ponemos la URL a donde nos llevar&aacute; el enlace.
+</p>
+
+<p>
+A continuaci&oacute;n se muestra un ejemplo:
+</p>
+
+<p>
+<font size=2 face="Courier">
+&lt;a href=&quot;#tarjeta2&quot;&gt;Ir a tarjeta 2&lt;/a&gt;
+</font>
+</p>
+
+<p>
+Con la etiqueta <b>&lt;/anchor&gt;...&lt;anchor&gt;</b> podemos adem&aacute;s indicar que se realice una acci&oacute;n al
+activar el enlace. Las acciones que podemos incluir son:
+<ol>
+  <li><b>&lt;go href=&quot;&quot;/&gt;</b> Permite ir a la direcci&oacute;n indicada en el atributo href.
+  <li><b>&lt;prev/&gt;</b> Permite ir a la tarjeta anterior, en la historia del navegador.
+  <li><b>&lt;refresh&gt;...&lt;/refresh&gt;</b> Refresca el contenido de la tarjeta actual, volvi&eacute;ndola a pedir al
+servidor. 
+</ol>
+</p>
+
+<p>
+A continuaci&oacute;n se muestra un ejemplo:
+</p>
+
+<p>
+<font size=2 face="Courier">
+&lt;anchor&gt;<br>
+Ir a la tarjeta anterior.<br>
+&lt;prev/&gt;<br>
+&lt;/anchor&gt;<br>
+<br>
+<br>
+&lt;anchor&gt;<br>
+Ir a la tarjeta 2<br>
+&lt;go href=&quot;#tarjeta2&quot;/&gt;<br>
+&lt;/anchor&gt;
+</font>
+</p>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/Ejemplo2.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/next.gif" align=right alt="Siguiente"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/index.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/index.gif" align=right alt="&Iacute;ndice"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/Eventos.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_wml/imagen/prev.gif" align=right alt="Anterior"></a>
+
+</body>
+
+</html>

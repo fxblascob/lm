@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.5 </title>
+        <script type="text/javascript"> 
+        /*
+        Crea una página llamada 10_ejercicio_strings_js.html donde:
+        1. Crea una función que reciba un string con un path linux (directorios separados por /) y
+        devuelva un array que contenga todos los nombres de los directorios del path en sus elementos
+        (valora utilizar split)
+        ejemplo:
+        let path=“./usr/bin/temp”;
+        Console.log(pathObtenerCarpetas(path)) → devolverá [".","usr","bin","temp"]
+        • Crea una función que reciba dos strings y devuelva otro string que contenga el primero
+        con todas las apariciones del segundo string eliminadas. La búsqueda debe ser case insensitive,
+        es decir, no se distinguirá entre mayúsculas y minúsculas.
+        Se debe utilizar la función string.replace(patron, reemplazo)
+        ejemplo:
+        let texto=“mi padre se llama Manolo y yo me llamo Manolo”;
+        let patron = "Manolo" //texto a sustituir
+        console.log(reemplazar(texto,patron))
+        // el resultado final será -> "mi padre se llama y yo me llamo"
+        */
+            'use strict';
+            function procesarPath(path) { 
+                let arrayPath = path.split('/');
+                return(arrayPath);
+            }
+
+            function procesar2Strings(cad1,cad2) { 
+                return(cad1.toUpperCase().replace(cad2.toUpperCase(),""));
+            }
+
+            document.write(procesarPath("./home/xampp/mysql/bin"));
+            document.write("<br>");
+            document.write(procesar2Strings(" hola mundo maravilloso","maravilloso"));
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

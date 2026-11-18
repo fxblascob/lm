@@ -1,0 +1,95 @@
+<!DOCTYPE html >
+<html lang="es">
+    <head>
+        <title>  Tipos de hojas de estilo    </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+    <body ondblclick="ocultarMenu()">
+	<div id="contenedor_general">
+		<!--Cabecera -->
+        <div id="contenedor_cabecera">
+			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>01 Tipos de hojas de estilo</h1>
+        </div>
+        <!--Fin de Cabecera -->
+        <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+
+           
+        <!--Cuerpo de la página -->
+        <div id="contenedor_cuerpo">
+        
+            <h1>Tipos de hojas de estilo</h1>
+            
+            <p>Una hoja de estilos contiene datos de formato relativos a los elementos definidos en la página HTML. Por lo tanto, ambos (documento HTML y hoja de estilo) deben estar relacionados de alguna manera. Existen tres maneras de utilizar hojas de estilo:</p>
+            <h3>Tres formas de insertar CSS</h3>
+			<ul>
+			<li>Estilo en línea
+			<li>Hojas de estilo internas
+			<li>Hojas de estilo externas
+			</ul>
+
+            <ol>
+                <li><b>Estilo en línea: Aplicar estilos directamente a elementos HTML.</b> De esta manera se escribe el código CSS dentro del atributo <tt>style</tt> de la etiqueta HTML en cuestión. Por ejemplo, para aplicar un estilo css a un párrafo: 
+                    <div class="codigo">
+						<pre>
+&lt;p <b>style="color:sienna;margin-left:20px;"</b>&gt;HOLA&lt;/p&gt;
+                        </pre>
+					</div>
+                
+				<li><b>Hojas de estilos internas.</b> Se utilizan para aplicar estilos a la página en la cual se utiliza. El código de la hoja de estilo se ubicará en la cabecera de la página web, entre las etiquetas &lt;style&gt; y &lt;/style&gt;
+ 
+                    <div class="codigo">
+<pre>
+&lt;head&gt;
+    &lt;style&gt;
+        hr {color:sienna;}
+        p {margin-left:20px;}
+        body {background-image:url("images/back40.gif");}
+    &lt;/style&gt;
+&lt;/head&gt;
+</pre>
+				</div>
+                
+				<li><b>Hojas de estilos externas.</b> Se utilizan para aplicar el mismo formato a varias páginas de un portal. Se definen en un archivo externo que será consultado por todas las páginas HTML del sitio web, reutilizando por tanto el código. Para ello se escribirá el código CSS en un documento externo con extensión <tt>css</tt>. Posteriormente se vinculará a la página web mediante la utilización de la siguiente etiqueta en la cabecera del documento HTML en cuestión: 
+                    <div class="codigo">
+<pre><b>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;</b><i>nombre_archivo_css.css</i><b>&quot;&gt;</b></pre>
+					</div>
+            </ol>
+            
+            <div class="ejercicios">
+                <h2><a href="17_ejercicios.html#ej_01">Ejercicio_CSS 1  :</a></h2>                
+            </div>
+            
+            <div class="ejercicios">
+                <h2><a href="17_ejercicios.html#ej_02">Ejercicio_CSS 2:</a></h2>
+            </div>
+            
+            <div class="ejercicios">
+                <h2><a href="17_ejercicios.html#ej_03">Ejercicio_CSS 3:</a></h2>
+            </div>
+
+                <h3>Orden de los estilos en Cascada</h3>
+
+                <p>¿Qué estilo se usará cuando se ha especificado más de un estilo para un elemento de HTML?
+                <p>Los estilos irán en cascada en el siguiente orden de prioridad, de menos a más.
+                <ol>
+                    <li>Hoja de estilos externa
+                    <li>Hoja de estilos interna
+                    <li>Estilo en línea (directamente en un elemento HTML)
+                </ol>
+                <p>Un estilo en línea (dentro de un elemento HTML) tiene la prioridad mayor lo que quiere decir que sobrescribirá un estilo definido en una hoja de estilo interna (en la cabecera) o en una hoja de estilo externa.</p>
+                <p>Nota: Si el link de la hoja de estilo externa está después de la hoja de estilo interna, la externa anulará la interna.</p>
+                
+            </div>
+			<div id="contenedor_pie">
+				<p>Manual de CSS</p>
+			</div>
+        </div>
+        
+    </div>
+	
+    </body>
+
+</html>

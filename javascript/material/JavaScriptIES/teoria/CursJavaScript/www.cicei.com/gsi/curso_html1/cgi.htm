@@ -1,0 +1,83 @@
+<HTML>
+<HEAD><TITLE> Interfaz con el exterior: CGI </TITLE></HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/blanco51.gif">
+
+<A  NAME="inicio"> </A>
+<TABLE WIDTH=100%><TR>
+<TD>
+<h1> Interfaz con el exterior: CGI </h1>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#inicio"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/exterior.gif" align="right" border=0></A>
+</TR></TABLE>
+<BR>
+<BLOCKQUOTE> 
+El c&oacute;digo HTML se inserta en general en ficheros. El di&aacute;logo entre el 
+cliente (Mosaic, Netscape,...) y el servidor (NCSA, Cern, Netsite,...)
+se desarrolla de la siguiente forma:
+<UL>
+  <LI> el cliente solicita un fichero al servidor;
+  <LI> el servidor env&iacute;a la informaci&oacute;n contenida en ese fichero (de c&oacute;digo
+          HTML) al cliente;
+  <LI> el cliente se encarga de la visualizaci&oacute;n de la p&aacute;gina.
+</UL>
+<P>
+Los ficheros que contienen el c&oacute;digo HTML pueden ser accedidos en todo
+momento por parte de un cliente, por lo que no deber&aacute;n ser modificados.
+Si un cliente hace una petici&oacute;n de un fichero en curso de modificaci&oacute;n
+correr&aacute; el riesgo de tener una versi&oacute;n incoherente de dicho fichero.
+Esto impide la creaci&oacute;n de documentos din&aacute;micos, como por ejemplo 
+una consulta a una base de datos.
+<P>
+La idea de la programaci&oacute;n en CGI <I>(Common Gateway Interface)</I>
+es construir el documento HTML correspondiente a un enlace hipertexto
+en el mismo momento en que se pulsa sobre el enlace. El documento
+se env&iacute;a al cliente a medida que se construye sin almacenarse nunca
+en un fichero.
+<P>
+Esto se realiza por medio de enlaces ejecutables. EL cliente indica el 
+nombre de un fichero, siempre mediante un URL, no para recibir el 
+contenido sino para solicitar su ejecuci&oacute;n en el servidor. &eacute;ste ejecuta 
+el programa indicado y devuelve al cliente la salida est&aacute;ndar de dicho 
+programa (es decir, lo que se hubiera obtenido en la pantalla al ejecutar
+el programa manualmente desde la l&iacute;nea de comandos). Esta salida
+est&aacute;ndar es lo que constituye el documento HTML. Los programas
+ejecutados a partir de enlaces ejecutables se denominan <B><I> scripts
+CGI</I></B>.
+<P>
+En este apartado no se incluyen explicaciones sobre la realizaci&oacute;n de 
+scripts CGI, sin embargo a continuaci&oacute;n se detallan algunas direcciones
+donde poder encontrar esta informaci&oacute;n.
+<UL>
+  <LI><A HREF="http://hoohoo.ncsa.uiuc.edu/cgi/overview.html">
+         Documentaci&oacute;n extensiva de la NCSA sobre CGI</A>
+  <LI><A HREF="http://www.utoronto.ca/webdocs/CGI/cgi1.html">
+         An Introduction to The Common Gateway Interface</A><BR>
+         Apartado perteneciente al documento 
+         <A HREF="http://www.utoronto.ca/webdocs/HTMLdocs/NewHTML/htmlindex.html">
+         "Introduction to HTML"</A> de Ian Graham (Universidad de Toronto).
+  <LI><A HREF="http://blackcat.brynmawr.edu/~nswoboda/prog-html.html">
+         HTML-based Interfaces</A> Documento que describe c&oacute;mo crear interfaces 
+         gr&aacute;ficas para usuarios de HTML (CGI, formularios).
+  <LI><A HREF="http://search.yahoo.com/bin/search?p=cgi&y=n&e=74294&f=0%3A74294&r=Computers+and+Internet">
+          Yahoo: CGI, Computers and Internet</A> Lista de direcciones de documentos relacionados con CGI, proporcionada por <I>Yahoo</I>.
+  <LI><A HREF="http://www.yahoo.com/Computers_and_Internet/Internet/World_Wide_Web/CGI___Common_Gateway_Interface/">
+          Yahoo: CGI___Common_Gateway_Interface</A> Lista de direcciones de documentos relacionados con CGI, proporcionada por <I>Yahoo</I>.	
+</UL>
+</BLOCKQUOTE>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/cgi.htm#inicio"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Inicio</A></CENTER>
+
+<HR>
+<TABLE WIDTH=100%><TR>
+<TD>
+<A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#inicio"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/backleft.gif" align="middle">Indice</A>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/quien/quien.htm"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/pen.gif" align="right" border=0 width="84" height="40"></A>
+</TR></TABLE>
+<HR>
+
+<CENTER><i><FONT SIZE=+1 COLOR=#808080>
+Facultad de Inform&aacute;tica de la Universidad de Las Palmas de Gran Canaria
+</FONT></i></CENTER><HR>
+
+</BODY>
+</HTML>

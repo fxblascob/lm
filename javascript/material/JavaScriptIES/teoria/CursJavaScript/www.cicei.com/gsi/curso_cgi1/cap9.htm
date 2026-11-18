@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<TITLE> Inclusion de Imagenes</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<H1><FONT  COLOR=#800000><CENTER>INCLUSION DE IMAGENES</CENTER></FONT></H1>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<BR>
+<h3>Imagenes en Linea</h3>
+Por  imagen en l&iacute;nea se entiende una imagen cuya visualizaci&oacute;n 
+se hace autom&aacute;ticamente en la ventana del <I>browser</I> en la 
+transferencia de la p&aacute;gina HTML Como todos los <EM>browsers</EM> 
+gr&aacute;ficos deben entender el formato con el que se ha codificado la 
+imagen, se ha hecho una normalizaci&oacute;n con el est&aacute;ndar GIF. 
+ Se trata de un formato comprimido para optimizar el tiempo de telecarga y 
+permitiendo el tratamiento de im&aacute;genes en colores o niveles de grises.<P>
+La marca que permite incluir una imagen es &lt<STRONG>IMG</STRONG>&gt.  
+Esta marca siempre ir&aacute completada por el atributo <STRONG>SRC</STRONG> que pecisa la direcci&oacute;n del fichero gr&aacute;fico que contiene la imagen:<p>
+<BLOCKQUOTE>&ltIMG SRC=/directorio/subdirectorio/nombre_fichero_grafico&gt </BLOCKQUOTE><p>
+Generalmente se tendr&aacute; cuidado de referenciar en la marca &lt<B>IMG</B>&gt un fichero gr&aacute;fico local ya que no es aceptable que una imagen dependa de un servidor exterior.  S&oacute;lo en el caso de las im&aacute;genes din&aacute;micas se har&aacute; una ecepci&oacute;n. <p>
+Una imagen puede insertarse en el interior de un texto.  Pero siempre teniendo en cuenta que la marca de estilo &ltHn&gt ha de ser definida antes que la imagen.<br>
+La marca &lt<B>IMG</B>&gt admite el atributo <B>ALIGN</B> que permite la alineaci&oacute;n de la imagen con el texto.  Los valores que admite este atributo son:<p>
+<UL>
+<LI>TOP</LI>  :Alinea la parte superior de la imagen con la l&iacute;nea actual.<p>
+<center><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/payaso2.gif" align=top> Alineaci&oacute;n Superior.</center>
+<LI>MIDDLE</LI>   :Alinea el centro de la imagen con la l&iacute;nea actual.<p>
+<CENTER><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/payaso2.gif" align=middle>Alineaci&oacute;n  en el centro.</CENTER>
+<LI>BOTTOM</LI>  :Alinea la base de la imagen con la l&iacute;nea actual.<p>
+<CENTER><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/payaso2.gif" align=bottom>Alineaci&oacute;n de la base.</CENTER>
+</UL>
+<br><h2>Imagen original</h2><p><IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fantasi2.gif" WIDTH=200 HEIGHT=200 BORDER=0 HSPACE=2><p>
+Otros atributos propios del <I>browser</I> Netscape permiten redimensionar y hacer flotar una imagen en el texto:<br>
+
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fantasi2.gif" ALIGN="right" WIDTH=100 HEIGHT=100 BORDER=0 VSPACE=20 HSPACE=20>
+<UL>
+<LI> LEFT o RIGTH</LI>  :Hace flotar la imagen a la izquierda o a la derecha del texto con una regulaci&oacute;n del espacio vertical <B>VSPACE</B> y una regulaci&oacute;n del espacio horizontal <B>HSPACE</B>.
+ <LI>WIDTH y HEIGTH </LI> :Anchura y altura de la imagen en pixels.  De esta forma redefinimos el tamaño de la imagen.  Otra ventaja es que indicando el tamaño de la imagen mediante estos atributos, el <I>browser</I> no necesitar&aacute; calcular el espacio.
+<LI>BORDER </LI>=n  :n representa el grosor del trazo que bordea la imagen.  El valor cero suprime el borde.<p>
+</UL>
+
+<h3> Imagenes Externas e Imagenes como anclas</h3>
+Este tipo de imagen no aparece en la pantalla cuando se carga la p&aacute;gina. Son ficheros gr&aacute;ficos apuntados por enlaces hipertexto:<p>
+<BLOCKQUOTE>&ltA HREF=url_fichero_grafico&gt ancla &lt/A&gt </BLOCKQUOTE><p>
+Se puede reemplazar el texto de un ancla por una marca que define una imagen:<p>
+<BLOCKQUOTE>&ltA HREF=url_fichero_grafico&gt &lt IMG SRC=fichero_grafico mini&gt &lt/A&gt</BLOCKQUOTE> <p>
+
+
+</BODY>
+</HTML>

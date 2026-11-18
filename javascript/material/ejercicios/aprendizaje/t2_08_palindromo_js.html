@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.3 - Detección de palíndromos</title>
+        <script type="text/javascript"> 
+        /*
+        Crea una página llamada 08_palindromo_js.html define una función que determine si la cadena
+        de texto que se le pasa como parámetro es un palíndromo, es decir, si se lee de la misma forma
+        desde la izquierda y desde la derecha.
+        Ejemplo:
+        document.write(palindromo(“ana”)) → devuelve: “ana es palindromo”
+        document.write(palindromo(“anas”)) → devuelve: “anas no es palindromo”
+        */
+            'use strict';
+            function palindromo(cadena) { 
+                for (let i = 0, j = cadena.length-1; j >= 0 && i < cadena.length; i++, j--)
+                    if (cadena[i] != cadena[j])
+                        return false;
+                return true;
+            }
+
+            let texto = prompt("Introduce un texto para comprobar si es palíndromo");
+            if (palindromo(texto))
+                document.write(texto + " es palindromo"); 
+            else 
+                document.write(texto + " no es palindromo"); 
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

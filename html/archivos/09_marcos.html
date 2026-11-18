@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>
+           Marcos
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+		<script src="../../codigos.js"></script>
+    </head>
+
+    <body ondblclick="ocultarMenu()">
+	<div id="contenedor_general">
+        <div id="contenedor_cabecera">
+			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>09 Marcos</h1>
+        </div>
+		<iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+			<h1>Marcos y marcos incrustados</h1>
+			<h2 id="marcos-iframes">Marcos incrustados <i>("inline frame", &lt;iframe&gt;)</i></h2>
+			<p>Inserta un marco en línea dentro de un documento, es equivalente a insertar una página dentro de otra con el tamaño establecido.</p>
+			<p>El iframe es un objeto que se manipula con la misma libertad que cualquier otro elemento dentro del documento. Se suele utilizar para publicidad o sitios de colaboración
+			<p>Atributos: name, src, frameborder, marginwidth, marginheight, scrolling, width, height</p>
+<p>Sintaxis:
+		<div class="codigo">
+<pre>
+&lt;iframe src="URL"&gt;  &lt;/iframe&gt; 	
+</pre>
+</div>
+
+<p>Ejemplo: Visalización de la página "capas.html".</p>
+		<div class="codigo">
+<pre>
+&lt;iframe name="iframe_a" src="10_capas.html" width="800" height="200" 
+  marginwidth="6" marginheight="4" frameborder="1" scrolling="auto"&gt; 
+&lt;/iframe&gt;
+</pre>
+</div>
+<p>Se visualizaría así: </p>
+<iframe name="iframe_a" src="./10_capas.html" width="800" height="200" marginwidth="6" marginheight="4" frameborder="1" scrolling="auto"></iframe>
+
+<p>Un iframe puede ser usado como marco "target" de un link. Para ello en el atributo del link se debe poner el atributo "name" del iframe</p>
+<p>Así podríamos poner:</p>
+		<div class="codigo">
+<pre>
+&lt;p&gt;
+&lt;a href="formularios.html" target="iframe_a"&gt;Cargar "formularios.html"&lt;/a&gt;
+&lt;a href="capas.html" target="iframe_a"&gt;Cargar "Capas.html"&lt;/a&gt;
+&lt;/p&gt;
+</pre>
+</div>
+<p>Pulsa sobre el siguiente enlace: <a href="16_ejercicios.html" target="iframe_a"> Cargar "formularios.html"</a>
+<p>Para volver a cargar la página de antes:<a href="10_capas.html" target="iframe_a"> Cargar "Capas.html"</a>
+</p>
+
+		
+<p>Ejemplo de uso para ver un vídeo</p>
+<div class="codigo">
+<pre>
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
+	        frameborder="0" allowfullscreen&gt;
+&lt;/iframe&gt;
+</pre>	
+</div>
+<p> Se ve así: </p>
+	<iframe width="400" height="240" src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
+	        frameborder="0" allowfullscreen>
+	</iframe>
+	
+		
+</div>
+		<!-- Fin del cuerpo de la página-->
+			<div id="contenedor_pie">
+				<p>Manual de HTML - CSS</p>
+			</div>
+	</div>
+	
+</div>
+			
+    </body>
+
+</html>

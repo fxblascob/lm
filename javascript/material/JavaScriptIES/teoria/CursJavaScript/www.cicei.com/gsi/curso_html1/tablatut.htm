@@ -1,0 +1,450 @@
+<HTML>
+<Head><title> Tutorial de Tablas </Title></Head>
+<body BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/blanco51.gif">
+
+<a name="Contents"> </a>
+<TABLE WIDTH=100%><TR>
+<TD>
+<h1>Tutorial de tablas</h1>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#guiadet5"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/guia_det.gif" align="right" border=0></A>
+</TR></TABLE>
+<BR>
+<h2>Contenido</h2>
+<center>
+<Table>
+  <tr valign=top><td width=55%><ul>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Simple2x2>Tabla simple 2 x 2</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Another2x2>Otra tabla 2 x 2</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#RowColSpan>Atributos Rowspan y Colspan</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Headings>Cabeceras de filas y columnas</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#CellAlign>Alineamiento de celdas</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#CellWidth>Fijando el ancho de las celdas y de la tabla</a>
+  </ul></td>
+  <td width=45%><ul>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Centering>Centrado de tablas</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Centering>Fijaci&oacute;n de t&iacute;tulos</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#CellSpacing>Espaciado entre celdas: CellSpacing</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#CellPadding>M&aacute;rgenes de las celdas: CellPadding</a>
+   <li><a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Borderless>Tablas sin bordes</a>
+  </ul>
+</table>
+</center>
+<p>   </p>
+
+<hr>
+
+<h2><a name="Simple2x2">Tabla simple 2 x 2</a></h2>
+   <table border>
+   <tr>
+     <td>1</td>
+     <td>2</td>
+   <tr>
+     <td>3</td>
+     <td>4</td>
+   </table>
+   <pre><code>
+   &lt;table border&gt;
+   &lt;tr&gt;
+     &lt;td&gt;1&lt;/td&gt;
+     &lt;td&gt;2&lt;/td&gt;
+   &lt;tr&gt;
+     &lt;td&gt;3&lt;/td&gt;
+     &lt;td&gt;4&lt;/td&gt;
+   &lt;/table&gt;</code></pre>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=Another2x2>Otra tabla 2 x 2</a></h2>
+<table border>
+<tr>
+  <td>1</td>
+  <td>2</td>
+<tr>
+  <td>3</td>
+  <td>La celda se expande<br>
+       para ajustarse</td>
+</table>
+<pre><code>
+&lt;table border&gt;
+&lt;tr&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;2&lt;/td&gt;
+&lt;tr&gt;
+  &lt;td&gt;3&lt;/td&gt;
+  &lt;td&gt;La celda se expande&lt;br&gt;
+       para ajustarse&lt;/td&gt;
+&lt;/table&gt;</code></pre>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=RowColSpan>Atributos Rowspan y Colspan</a></h2>
+<table border>
+<tr>
+  <td>1</td>
+  <td>2</td>
+  <td>3</td>
+<tr>
+  <td>4</td>
+  <td rowspan=2 colspan=2>
+    Los atributos Rowspan y Colspan permiten que una celda
+    ocupe m&aacute;s de una fila o columna.
+  </td>
+<tr>
+  <td>5</td>
+</table>
+<pre><code>
+&lt;table border&gt;
+&lt;tr&gt;
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;2&lt;/td&gt;
+  &lt;td&gt;3&lt;/td&gt;
+&lt;tr&gt;
+  &lt;td&gt;4&lt;/td&gt;
+  &lt;td rowspan=2 colspan=2&gt;
+    Los atributos Rowspan y Colspan permiten que una celda
+    ocupe m&aacute;s de una fila o columna.
+  &lt;/td&gt;
+&lt;tr&gt;
+  &lt;td&gt;5&lt;/td&gt;
+&lt;/table&gt;</code></pre>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=Headings>Cabeceras de filas y columnas</a></h2>
+<table border>
+<tr>
+   <td></td>
+   <th colspan=5>D&iacute;as de la semana</th>
+<tr>
+   <td></td>
+   <th>Lunes</th>
+   <th>Martes</th>
+   <th>Mi&eacute;rcoles</th>
+   <th>Jueves</th>
+   <th>Viernes</th>
+<tr>
+   <th>1ª Semana</th>
+   <td>1</td>
+   <td>2</td>
+   <td>3</td>
+   <td>4</td>
+   <td>5</td>
+<tr>
+   <th>2ª Semana</th>
+   <td>6</td>
+   <td>7</td>
+   <td>8</td>
+   <td>9</td>
+   <td>10</td>
+</table>
+
+<code><pre>
+&lt;table border&gt;
+&lt;tr&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;th colspan=5&gt;D&iacute;as de la semana&lt;/th&gt;
+&lt;tr&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;th&gt;Lunes&lt;/th&gt;
+   &lt;th&gt;Martes&lt;/th&gt;
+   &lt;th&gt;Mi&eacute;rcoles&lt;/th&gt;
+   &lt;th&gt;Jueves&lt;/th&gt;
+   &lt;th&gt;Viernes&lt;/th&gt;
+&lt;tr&gt;
+   &lt;th&gt;1ª Semana&lt;/th&gt;
+   &lt;td&gt;1&lt;/td&gt;
+   &lt;td&gt;2&lt;/td&gt;
+   &lt;td&gt;3&lt;/td&gt;
+   &lt;td&gt;4&lt;/td&gt;
+   &lt;td&gt;5&lt;/td&gt;
+
+&lt;tr&gt;
+   &lt;th&gt;2ª Semana&lt;/th&gt;
+   &lt;td&gt;6&lt;/td&gt;
+   &lt;td&gt;7&lt;/td&gt;
+   &lt;td&gt;8&lt;/td&gt;
+   &lt;td&gt;9&lt;/td&gt;
+   &lt;td&gt;10&lt;/td&gt;
+&lt;/table&gt;  </pre></code>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=CellAlign>Alineamiento de celdas</a></h2>
+<table border>
+<tr>
+   <td></td>
+   <th colspan=3>Atributos de alineaci&oacute;n, Align y VAlign</th>
+<tr>
+   <th>Alineaci&oacute;n<br>Vertical</th>
+   <td valign=top>Top</td>
+   <td valign=middle>Middle</td>
+   <td valign=bottom>Bottom</td>
+<tr>
+   <th>Alineaci&oacute;n<br>Horizontal</th>
+   <td align=left>Left</td>
+   <td align=center>Center</td>
+   <td align=right>Right</td>
+</table>
+
+<code><pre>
+&lt;table border&gt;
+&lt;tr&gt;
+   &lt;td&gt;&lt;/td&gt;
+   &lt;th colspan=3&gt;Atributos de alineaci&oacute;n, Align y VAlign&lt;/th&gt;
+&lt;tr&gt;
+   &lt;th&gt;Alineaci&oacute;n&lt;br&gt;Vertical&lt;/th&gt;
+   &lt;td valign=top&gt;Top&lt;/td&gt;
+   &lt;td valign=middle&gt;Middle&lt;/td&gt;
+   &lt;td valign=bottom&gt;Bottom&lt;/td&gt;
+&lt;tr&gt;
+   &lt;th&gt;Alineaci&oacute;n&lt;br&gt;Horizontal&lt;/th&gt;
+   &lt;td align=left&gt;Left&lt;/td&gt;
+   &lt;td align=center&gt;Center&lt;/td&gt;
+   &lt;td align=right&gt;Right&lt;/td&gt;
+&lt;/table&gt; </pre></code>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2>Las celdas pueden contener casi cualquier cosa</h2>
+<table border>
+<tr align=center>
+  <td><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/sebastia.gif"><br>
+      Imagenes</td>
+  <td><a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents">Contenidos</a><br>
+      Hipertexto</td>
+<tr align=center>
+  <td>Alg&uacute;n<br>Texto</td>
+  <td><table border><caption>Otra tabla</caption>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+        </table></td>
+</table>
+<code><pre>
+&lt;table border&gt;
+&lt;tr align=center&gt;
+  &lt;td&gt;&lt;img src=&quot;glass.gif&quot;&gt;&lt;br&gt;
+      Imagenes&lt;/td&gt;
+  &lt;td&gt;&lt;a href=&quot;#Contents&quot;&gt;Contenidos&lt;/a&gt;&lt;br&gt;
+      Hipertexto&lt;/td&gt;
+&lt;tr align=center&gt;
+  &lt;td&gt;Alg&uacute;n&lt;br&gt;Texto&lt;/td&gt;
+  &lt;td&gt;&lt;table border&gt;&lt;caption&gt;Otra tabla&lt;/caption&gt;
+        &lt;tr&gt;
+          &lt;td&gt;1&lt;/td&gt;
+          &lt;td&gt;2&lt;/td&gt;
+          &lt;td&gt;3&lt;/td&gt;
+        &lt;tr&gt;
+          &lt;td&gt;4&lt;/td&gt;
+          &lt;td&gt;5&lt;/td&gt;
+        &lt;/table&gt;&lt;/td&gt;
+&lt;/table&gt;</pre></code>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=CellWidth>Fijando el ancho de las celdas y de la tabla</a></h2>
+<p>El ancho de una celda puede ser determinado en base a un porcentaje
+ del ancho de la tabla. <br>
+El ancho de una tabla puede ser fijado en base a un porcentaje del ancho
+de la pantalla.</p>
+<p>   </p>
+<table border width=75%>
+<tr>
+   <td width=20%>20%</td>
+   <td width=50%>50%</td>
+   <td width=15%>15%</td>
+   <td width=15%>15%</td>
+</table>
+
+<code><pre>
+&lt;table border width=75%&gt;
+&lt;tr&gt;
+   &lt;td width=20%&gt;20%&lt;/td&gt;
+   &lt;td width=50%&gt;50%&lt;/td&gt;
+   &lt;td width=15%&gt;15%&lt;/td&gt;
+   &lt;td width=15%&gt;15%&lt;/td&gt;
+&lt;/table&gt; </pre></code>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=Centering>Centrado de tablas y fijaci&oacute;n de t&iacute;tulos</a></h2>
+<p>Las tablas podr&aacute;n ser centradas y tener un t&iacute;tulo tanto en la parte 
+superior como en la inferior. </p>
+<p>   </p>
+<center>
+<table border width=75%>
+<caption align=bottom><h5>Figura 1: Tabla centrada con un ancho 
+del 75% </h5>
+</caption>
+<tr>
+   <td width=20%>20%</td>
+   <td width=50%>50%</td>
+   <td width=15%>15%</td>
+   <td width=15%>15%</td>
+</table>
+</center>
+<code><pre>
+&lt;center&gt;
+&lt;table border width=75% &gt;
+&lt;caption align=bottom&gt;&lt;h5&gt;Figura 1: Tabla centrada con un 
+ancho del 75% &lt;/h5&gt;
+&lt;/caption&gt;
+&lt;tr&gt;
+   &lt;td width=20%&gt;20%&lt;/td&gt;
+   &lt;td width=50%&gt;50%&lt;/td&gt;
+   &lt;td width=15%&gt;15%&lt;/td&gt;
+   &lt;td width=15%&gt;15%&lt;/td&gt;
+&lt;/table&gt;
+&lt;/center&gt;
+</pre></code>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=CellSpacing>Espaciado entre celdas: CellSpacing</a></h2>
+<table width=50% align=center>
+<tr valign=top><td>
+   <table border CellSpacing=0>
+   <Caption>CellSpacing de 0</caption>
+   <tr><td>1</td>
+       <td>2</td>
+   <tr><td>3</td>
+       <td>4</td>
+   </table></td>
+
+   <td>
+
+   <table border CellSpacing=10>
+   <Caption>CellSpacing de 10</caption>
+   <tr><td>1</td>
+       <td>2</td>
+   <tr><td>3</td>
+       <td>4</td>
+   </table>
+</table>
+
+<table align=center>
+<tr valign=top><td>
+   <code><Pre>   &lt;table border
+   CellSpacing=0&gt;
+   &lt;Caption&gt;
+   CellSpacing de 0
+   &lt;/caption&gt;
+   &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+   &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+       &lt;td&gt;4&lt;/td&gt;
+   &lt;/table&gt;</pre></code></td>
+
+   <td>
+    <code><pre>   &lt;table border
+   CellSpacing=10&gt;
+   &lt;Caption&gt;
+   CellSpacing de 10
+   &lt;/caption&gt;
+   &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+   &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+       &lt;td&gt;4&lt;/td&gt;
+   &lt;/table&gt; </pre></code>
+</table>
+
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=CellPadding>M&aacute;rgenes de las celdas: CellPadding</a></h2>
+<table width=50% align=center>
+<tr valign=top><td>
+   <table border CellPadding=0>
+   <Caption>CellPadding de 0</caption>
+   <tr><td>1</td>
+       <td>2</td>
+   <tr><td>3</td>
+       <td>4</td>
+   </table></td>
+
+   <td>
+
+   <table border CellPadding=10>
+   <Caption>CellPadding de 10</caption>
+   <tr><td>1</td>
+       <td>2</td>
+   <tr><td>3</td>
+       <td>4</td>
+   </table>
+</table>
+
+<table align=center>
+<tr valign=top><td>
+   <code><Pre>   &lt;table border
+   CellPadding=0&gt;
+   &lt;Caption&gt;
+   CellPadding de 0
+   &lt;/caption&gt;
+   &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+   &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+       &lt;td&gt;4&lt;/td&gt;
+   &lt;/table&gt;</pre></code></td>
+
+   <td>
+    <code><pre>   &lt;table border
+   CellPadding=10&gt;
+   &lt;Caption&gt;
+   CellPadding de 10
+   &lt;/caption&gt;
+   &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+       &lt;td&gt;2&lt;/td&gt;
+   &lt;tr&gt;&lt;td&gt;3&lt;/td&gt;
+       &lt;td&gt;4&lt;/td&gt;
+   &lt;/table&gt; </pre></code>
+</table>
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+
+<h2><a name=Borderless>Tablas sin bordes</a></h2>
+
+<p>
+Las tablas sin bordes pueden ser muy &uacute;tiles para la estructuraci&oacute;n 
+de documentos. Las tablas son utilizadas en varios lugares de este 
+documento para situar elementos uno al lado de otro. De hecho, la 
+lista de <a href=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents>contenidos</a> est&aacute; dividida en dos 
+columnas por medio de una tabla.</p>
+<p>
+<center>
+<table align=center>
+<tr><td><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/uconstr3.gif"></td>
+    <td>P&aacute;gina en<br> construcci&oacute;n</td>
+</table>
+</center>
+<p><center>El texto puede ser situado a un lado de la imagen.</center>
+
+<code><pre>
+&lt;center&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;uconstr3.gif&quot;&gt;&lt;/td&gt;
+    &lt;td&gt;P&aacute;gina en&lt;br&gt; construci&oacute;n&lt;/td&gt;
+&lt;/table&gt;
+&lt;/center&gt;
+</pre></code>
+
+<CENTER><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/tablatut.htm#Contents"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Contenido</A></CENTER>
+<hr>
+<TABLE WIDTH=100%><TR>
+<TD>
+<A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#guiadet5"><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/backleft.gif" align="middle">Indice</A>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/quien/quien.htm"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/pen.gif" align="right" border=0 width="84" height="40"></A>
+</TR></TABLE>
+<hr>
+
+<CENTER><i><FONT SIZE=+1 COLOR=#808080>
+Facultad de Inform&aacute;tica de la Universidad de Las Palmas de Gran Canaria
+</FONT></i></CENTER><HR>
+
+</body>
+</html>

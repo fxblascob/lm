@@ -1,0 +1,178 @@
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Funciones</H1>
+
+<HR>
+<A NAME="definicion">
+<H3>Definici&oacute;n de funciones</H3>
+<P>La sintaxis de definici&oacute;n de funciones es bastante simple:
+<PRE><FONT COLOR="red">
+	<B>function</B> nombre_funcion<B>(</B>argumentos<B>)</B>
+	<B>{</B>
+		cuerpo de la funci&oacute;n
+	<B>}</B>
+</FONT></PRE>
+Un ejemplo:
+<PRE><FONT COLOR="red">
+	function incrementa($i)
+	{
+		$i++;
+		echo 'Variable $i incrementada...'
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="parametros">
+<H3>Paso de par&aacute;metros</H3>
+<P>Hay varios aspectos a comentar a cerca de los argumentos de las funciones.
+Para empezar, PHP soporta el paso de par&aacute;metros por:</P>
+<UL>
+	<LI><B>valor:</B> se hace una copia del valor pasado en una nueva
+	variable que ser&aacute; local a la funci&oacute;n, y cuya modificaci&oacute;n no afectar&aacute;
+	a la variable pasada.
+	<LI><B>referencia:</B> la variable local que recoge el argumento se
+	convierte en un <EM>alias</EM> de la variable pasada. Toda modificaci&oacute;n
+	que sufra su valor dentro de la funci&oacute;n tendr&aacute; su reflejo en la variable
+	original. 
+</UL>
+<U>Paso de par&aacute;metros por valor</U>
+<P>El paso de par&aacute;metros por valor es el que se lleva a cabo por defecto
+en PHP. No es necesaria ninguna sintaxis ni indicaci&oacute;n especial. Por ejemplo,
+declaramos la siguiente funci&oacute;n:</P>
+<PRE><FONT COLOR="red">
+	function incrementa($parametro1)
+	{
+		$parametro1++;
+		echo "Incrementando parametro a $parametro1";
+	}
+</FONT></PRE>
+<P>Entonces, con la siguiente llamada llevaremos el paso del par&aacute;metro por valor:</P>
+<PRE><FONT COLOR="red">
+	$cuenta = 0;
+	incrementa($cuenta);
+	echo "El valor de cuenta es $cuenta";
+</FONT></PRE>
+<P>Obtenemos el siguiente resultado:
+<PRE><FONT COLOR="red">
+	Incrementando parametro a 1
+	El valor de cuenta es 0
+</FONT></PRE>
+<P>Podemos observar que el valor de $cuenta sigue siendo el mismo antes
+y despu&eacute;s de la ejecuci&oacute;n de la funci&oacute;n, a pesar de que <EM>$parametro1</EM>
+haya modificado su valor.</P>
+<BR>
+<U>Paso de par&aacute;metros por referencia</U>
+<P>Para llevar a cabo el paso de par&aacute;metros por referencia es necesaria
+una modificaci&oacute;n en la sintaxis a la hora de declarar o utilizar la funci&oacute;n.
+Si quisi&eacute;ramos pasar la variable <EM>$cuenta</EM> por referencia tenemos
+dos opciones. La <B>primera</B> es poner el s&iacute;mbolo <B>&</B> antes del par&aacute;metro
+correspondiente en la declaraci&oacute;n de la funci&oacute;n.
+<PRE><FONT COLOR="red">
+	function incrementa(<FONT COLOR="green">&#38;</FONT>$parametro1)
+	{
+		$parametro1++;
+		echo "Incrementando parametro a $parametro1;
+	}
+</FONT></PRE>
+<BR><P>La <B>segunda</B> es poner el s&iacute;mbolo <B>&</B> cuando se llame a la funci&oacute;n.</P>
+<PRE><FONT COLOR="red">
+	$cuenta = 0;
+	incrementa(<FONT COLOR="green">&#38;</FONT>$cuenta);
+</FONT></PRE><BR>
+<P>En ambos casos los resultados obtenidos ser&aacute;n id&eacute;nticos, produci&eacute;ndose la
+modificaci&oacute;n del valor de <EM>$cuenta</EM>:</P>
+<PRE><FONT COLOR="red">
+	Incrementando parametro a 1
+	El valor de cuenta es 1
+</FONT></PRE>
+
+<HR>
+<A NAME="devolucion">
+<H3>Devoluci&oacute;n de valores</H3>
+<P>Las funciones pueden devolver valores, fruto de su ejecuci&oacute;n. Dichos valores
+pueden asignarse a variables o, por el contrario, ignorarse. Para la
+devoluci&oacute;n de un valor se utiliza la palabra reservada <B>return</B>.
+</P>
+<PRE><FONT COLOR="red">
+	funtcion suma($a, $b)
+	{
+		return $a + $b;	/* devuelve la suma de $a y $b
+	}
+	$resultado = suma(4, 3); /* el resultado, 7, se
+				    almacena en $resultado */
+	suma($resultado, 44);	 /* en este caso el resultado
+				    se ignora */
+</FONT></PRE>
+
+<HR>
+<A NAME="pordefecto">
+<H3>Valores por defecto</H3>
+<P>En PHP, al igual que en C++, pueden asignarse valores por defecto
+a los argumentos de una funci&oacute;n. Ello significa que si, al llamar a la funci&oacute;n,
+no se especifica ning&uacute;n valor para el argumento, entonces se asume su valor
+por defecto.</P>
+<PRE><FONT COLOR="red">
+	function incrementa($numero = 1)
+	{
+		$numero++;
+		return "Devolviendo un $numero";
+	}
+	echo incrementa();
+	echo incrementa(5);
+</FONT></PRE>
+<BR><P>En la primera llamada el valor de $numero ser&aacute; 1, tomando su valor por
+defecto; en la segunda, tomar&aacute; el valor que se le pasa (5).</P>
+<PRE><FONT COLOR="red">
+	Devolviendo un 2;
+	Devolviendo un 6;
+</PRE></FONT>
+
+<HR>
+<A NAME="lista_arg">
+<H3>Lista de argumentos de longitud variable</H3>
+<P>Una de las caracter&iacute;sticas m&aacute;s importantes en el manejo de funciones de PHP4
+es la posibilidad de tener listas de argumentos de longitud variable. Eso implica
+que una funci&oacute;n no tiene por qu&eacute; tener siempre el mismo n&uacute;mero de par&aacute;metros
+en cada llamada. Adem&aacute;s, no se requiere sintaxis adicional.</P>
+<P>Para el manejo de esta caracter&iacute;stica se utilizar&aacute;n tres funciones:<P>
+<UL>
+	<LI><B>func_num_args():</B> devuelve el n&uacute;mero de argumentos
+	pasado a una funci&oacute;n. Su llamada se lleva a cabo desde dentro de
+	la propia funci&oacute;n.
+	<LI><B>func_get_args():</B> devuelve un vector con los valores
+	pasados a la funci&oacute;n como argumentos.
+	<LI><B>func_get_arg(entero):</B> devuelve el n-&eacute;simo componente de la lista
+	de argumentos.
+</UL>
+<PRE><FONT COLOR="red">
+	function imprime_lista()
+	{
+		$num = <B>func_num_args()</B>;
+
+		echo "Lista generada con la funci&oacute;n func_get_arg() &#60BR&#62;";
+		for ($i = 0; $i &#60; $num; $i++)
+			echo "Par&aacute;metro $i: ".<B>func_get_arg($i)</B>."&#60;BR&#62;";
+		echo "Lista generada con la funci&oacute;n func_get_args()";
+		$lista = <B>func_get_args()</B>;
+		for ($i = 0; $i &#60; $num; $i++)
+			echo "Par&aacute;metro $i: ".lista[$i]."&#60;BR&#62;";
+	}
+</PRE></FONT>
+
+<HR>
+<A NAME="func_vari">
+<H3>Funciones variables</H3>
+<P>Si ponemos los par&eacute;ntesis tras el nombre de una variable, PHP tratar&aacute; de ejecutar
+una funci&oacute;n con el mismo nombre que el valor almacenado por la variable. Viene a ser
+como sustituir la variable por su valor.</P>
+<P>En el siguiente ejemplo, vemos como podemos invocar a la funci&oacute;n del ejemplo
+anterior por medio de este curioso m&eacute;todo.</P>
+<PRE><FONT COLOR="red">
+	$nombre_funcion = "imprime_lista";
+	$nombre_funcion();			/* ejecuta la funci&oacute;n */
+	$nombre_funcion(1,3,4,5,1,"h");		/* ejecuta la funci&oacute;n pas&aacute;ndole
+						   varios argumentos */
+</PRE></FONT>
+</BODY>
+</HTML>

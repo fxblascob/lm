@@ -1,0 +1,59 @@
+<HTML>
+<HEAD><TITLE>fORMULARIOS Y CGI</TITLE><HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<center><H1><FONT  COLOR=#800000>FORMULARIOS Y CGI</font></H1></center>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13><BR>
+<P>
+La programaci&oacute;n CGI aplicada a los formularios se diferencia de la programaci&oacute;n<br>
+cl&aacute;sica en que el cliente debe enviar el conjunto de los datos entrados por el <br>
+usuario.  Para ello, el cliente construye una cadena de caracteres que contiene un <br>
+conjunto de parejas (nombre de campo, valor entrado). <br>
+Esta cadena posee el siguiente formato:<p>
+
+	<blockquote><b>nombre_campo1=valor1&nombre_campo2=valor2&...</b><p></blockquote>
+
+Los espacios se reemplazan por '+' y los caracteres esenciales por su valor<br> 
+hexadecimal bajo el formato %xx.<p>
+
+Una vez constru&iacute;da la cadena se env&iacute;a al servidor seg&uacute;n el m&eacute;todo indicado en el<br>
+atributo <b>METHOD</b> de la marca &lt<b>FORM</b>&gt.<br>
+
+<P>
+
+<h2>METODO GET</h2><P>
+
+En este m&eacute;todo, la cadena de caracteres se añade al URL que referencia el script a<br>
+ejecutar.  La separaci&oacute;n entre el nombre del script y la cadena se realiza mediante<br>
+el car&aacute;cter '?'. En la ejecuci&oacute;n del script cgi, esta cadena encontrar&aacute; en la 
+variable de entorno <b>QUERY_STRING</b>.  <p>
+  
+
+<h2>METODO POST</h2><P>
+Es el m&eacute;todo m&aacute;s utilizado para el tratamiento de formularios. La cadena de caracteres no se 
+añade al URL sino se envía mediante una secuencia HTTP especial. Antes de ejecutar el script cgi, el servidor 
+posiciona la variable de entorno <b>CONTENT_LENGTH</b> para indicar la longitud de la cadena que ha recibido. 
+Entonces, ejecuta el script enviando la cadena a la entrada est&acute;ndar del script.  Para recuperar la cadena
+de datos, el script debe leer CONTENT_LENGTH caracteres de su entrada est&aacute;ndar.<p>
+
+
+<h2>La Programaci&oacute;n</h2><p>
+El primer trabajo de un script cgi destinado a gestionar un formulario consistir&aacute; en recuperar la cadena de 
+caracteres que contiene los datos, decodificarla y finalmente extraer los pares (nombre del campo, valor entrante)
+En la pr&aacute;ctica los scripts se diseñan de modo que puedan dar respuesta a ambos m&eacute;todos (GET y POST).
+Para realizar el trabajo repetitivo de decodificaci&oacute;n y extracci&oacuten es aconsejable utilizar las siguientes:
+<ul>
+<li>cgi-lbi.pl para PERL</li>
+<li>libcgi para el C</li>
+</ul>
+<BR>
+<HR>
+<BR>
+<center>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/calcu.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/nph-anima.cgi?listado2.lst" border=0>Ejemplo: Una calculadora entera</A>
+</center>
+
+<BR>
+<HR>
+</BODY>
+</HTML>

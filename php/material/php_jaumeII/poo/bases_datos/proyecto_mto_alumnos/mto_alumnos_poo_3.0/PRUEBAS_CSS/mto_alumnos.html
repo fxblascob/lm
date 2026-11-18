@@ -1,0 +1,52 @@
+<!doctype=html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="./mto_alumnos.css"> 
+	</head>
+	<body>
+		<form name="form1" method="post" action="{form_action}" enctype="multipart/form-data">	
+			<div id="contenedor_general">
+				<header id="contenedor_cabecera">
+					<h2 >Mantenimiento de alumnos</h2>
+				</header>	
+				<section id = "contenedor_cuerpo">
+					<figure id = "contenedor_foto">
+						<img src="{form_foto}" border="0" width="70" height="70">'
+					</figure>
+					<article  id="contenedor_datos">
+						ID:<input type = 'label' name= 'id' size='4' value="{form_id}" >
+						Nombre:<input type = 'text' name= 'nombre' size='10' value="{form_nombre}">
+						Apellidos:<input type = 'text' name= 'apellidos'  size='15'  value='{form_apellidos}'>
+						<br>
+						Curso:<input type = 'text' name= 'curso' size='6'  value='{form_curso}'>
+						Grupo:<input type = 'text' name= 'grupo' size='2'  value='{form_grupo}'>
+						Anyo:<input type = 'text' name= 'anyo' size='9'  value='{form_anyo}'>
+						<br>
+						Num Ord:<input type = 'text' name= 'numord' size='2'  value='{form_numord}'>	
+						Aula:<input type = 'text' name= 'aula' size='2'  value='{form_aula}'>
+						<input type="hidden" name="MAX_FILE_SIZE" value="3000000" />
+						Foto:<input type = 'file' name= 'fichero_foto'  id= 'fichero_foto' accept='image/*'  >	
+					</article>
+					
+					<article id = "contenedor_sql">
+						<textarea name="cadena_sql" rows=3 cols=30 >{form_sql}</textarea>
+					</article>
+				</section>
+				<nav id = "contenedor_menu">
+					<input type="submit" name="primero" value="<<">
+					<input type="submit" name="anterior" value=" < ">
+					<input type="submit" name="siguiente" value=" > ">
+					<input type="submit" name="ultimo" value=">>">
+					<input type="submit" name="insertar" value="Ins">
+					<input type="submit" name="modificar" value="edit">
+					<input type="submit" name="borrar" value="delete">
+					<input type="submit" name="limpiar" value="clear">
+					<input type="submit" name="buscar" value="buscar">
+					<input type="submit" name="enviar" value="enviar sql">
+				</nav>
+				<footer id="contenedor_tabla">
+				</footer>
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,58 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico JavaScript - Js15a</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconde codigo
+a1=new Image(); 
+a1.src="off.gif";
+a2=new Image();
+a2.src="on.gif";
+
+function Cambia(refer,nueva) {document[refer].src=eval(nueva+".src") };
+//-- fin esconde -->
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY>
+<DIV ALIGN=justify>
+<H1>Evento Roll-over</H1>
+
+Con este evento confirmas al usuario que el puntero del mouse esta sobre un objeto o area particular en tu pagina, ya que inmediatamente cambia la imagen.<P>
+
+Primero debes añadir el codigo JavaScript en la cabecera del documento, haciendo referencia a las dos images que quieres mostrar, una es la que se muestra normalmente y la otra es para el boton seleccionado.<P>
+
+<TABLE WIDTH=90% BORDER=1 BGCOLOR=#FFCCFF CELLSPACING=0>
+<TR><TH>Codigo en la cabecera
+<TR><TD>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- esconde codigo
+a1=new Image();<BR>
+a1.src=<FONT COLOR=green>"off.gif"</FONT>;<BR>
+a2=new Image();<BR>
+a2.src=<FONT COLOR=green>"on.gif"</FONT>;<P>
+function Cambia(refer,nueva) {document[refer].src=eval(nueva+".src") };<BR>
+//-- fin esconde --&gt;<BR>
+&lt;/SCRIPT&gt;
+</TABLE>
+<P>
+
+Luego donde quieres mostrar el efecto añades el siguiente codigo:<P>
+
+<TABLE WIDTH=40% BORDER=1 BGCOLOR=#FFFFAA CELLSPACING=0>
+<TR><TH>Codigo en el cuerpo
+<TR><TD>
+&lt;A HREF=http://www.uap.edu.pe/<BR>
+onMouseOver="Cambia(<FONT COLOR=green>'abc'</FONT>,'a2')"<BR>
+onMouseOut="Cambia(<FONT COLOR=green>'abc'</FONT>,'a1')"&gt;<BR>
+&lt;IMG SRC=off.gif NAME=<FONT COLOR=green>abc</FONT>&gt;&lt;/A&gt;
+<TR><TD ALIGN=center>
+<A HREF=http://www.uap.edu.pe/
+onMouseOver="Cambia('abc','a2')"
+onMouseOut="Cambia('abc','a1')">
+<IMG SRC=off.gif NAME=abc BORDER=0 width="60" height="60"></A>
+</TABLE>
+<P>
+
+Para este ejemplo yo use la imagen <B>OFF.GIF</B> que se mostrara normalmente, pero cuando pongas el puntero del mouse sobre esta imagen se mostrara la imagen <B>ON.GIF</B>.<P></BODY>
+</HTML>

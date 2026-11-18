@@ -1,0 +1,40 @@
+<html>
+	<head>
+
+		<title>Documento sin t&iacute;tulo</title>
+		<style>
+			input:invalid {
+ 				 border: 2px dashed red;
+			}
+
+			input:valid {
+				border: 2px solid black;
+			}
+		</style>
+		<script>
+			function valida2(obj) {
+				//document.write("hola<br>"+obj.email.value);
+				//document.getElementById("email").value;
+				//document.write(JSON.stringify(obj));
+				document.write(Object.keys(obj));
+				document.write("<br>");
+				document.write(Object.keys(obj.document));
+			}
+			function valida(obj) {
+				alert(document.form1.email.value);
+				alert(document.form1.email.value);
+				
+			}
+		</script>
+
+	</head>
+	<body>
+		
+		<form  id="form1" name="form1"  >
+			<label> Correo Electrónico:</label>
+			<input type="text" nane="email" id="email"/>
+			<input type="submit" Value="Validar" onclick="valida(this);"/>
+		</form>
+	</body>
+</html>
+

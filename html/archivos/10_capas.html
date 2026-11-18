@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>
+            Capas
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+
+    <body ondblclick="ocultarMenu()">
+	<div id="contenedor_general">
+        <!--Cabecera -->
+        <div id="contenedor_cabecera">
+			      <img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>11 Capas</h1>
+        </div>
+        
+        <!--Índice del tema -->
+        <iframe id="if" src="./../menu.html" frameborder="0" ></iframe>
+        <!--Fin de Índice -->
+
+		       
+        <!--Cuerpo de la página -->
+        <div id="contenedor_cuerpo">
+        
+			<h1>Agrupación de elementos</h1>
+			<h2>Identificación de elementos: atributos <i>id</i> y <i>class</i></h2>
+            <p>Para identificar a cada elemento por separado, es necesario asignarle un nombre para poder hacer referencia a él. Esto se consigue mediante los atributos <i>id</i> y <i>class</i>. Estos atributos se pueden utilizar con cualquier etiqueta HTML</p>
+            
+            <p>El atributo <b>id</b> permite asignar a una etiqueta HTML un <b>nombre o identificador</b> que ha de ser <b>único</b> dentro del documento. Así pues, no puede haber dos elementos HTML con el mismo identificador.</p>
+            
+            <p>El atributo <b>class</b> permite asignar a una etiqueta HTML un <b>nombre de clase</b>. <b>Puede haber más de un elemento HTML que pertenezca a la misma clase</b>. Además, un elemento HTML puede pertenecer a varias clases (se colocarían varios atributos <i>class</i>).</p>
+
+			<h2>Agrupación de elementos: Etiquetas <i>&lt;div&gt;</i> y <i>&lt;span&gt;</i></h2>
+			
+			<h3>&lt;div&gt;</h3>	
+			<p>Sirve para agrupar varios elementos dentro de un bloque y de esta forma asignarle nombre, clase y estilo.</p>
+			<p>Es un elemento de bloque por lo que puede contener elementos en linea y otros elementos de bloque incluyendo otro elemento &lt;div&gt;.</p>
+
+			<h3>&lt;span&gt;</h3>	
+			<p>Sirve para identificar un elemento en línea y de esta forma asignarle nombre, clase y estilo.</p>
+			<p>Con &lt;span&gt; podmos cambiar entre otros el tamaño de la fuente, el color, el alto de línea, la posición del texto dentro de la línea, etc..</p>
+
+
+            <h1>Capas</h1>
+            
+            <p>En el diseño actual de páginas web, se utiliza un mecanismo para estructurar la información de los documentos: las <b>capas</b>.</p>
+            
+            <p>Una capa HTML es simplemente una <b>agrupación de código HTML</b> dentro de una etiqueta <b><i>&lt;div&gt; &lt;/div&gt</i></b>. De esta manera se separa el contenido de la página en secciones independientes que podrán ser tratadas independientemente mediante hojas de estilo (que se verán en el siguiente tema).</p>
+			
+			<h2>Estructura de una página mediante capas</h2>
+			
+			<p>A la hora de diseñar una página mediante capas, se suele seguir un esquema como el que se propone a continuación (se indica sólo el código correspondiente al cuerpo de la página):</p>	
+			
+			<div class="codigo">
+                    <pre>
+<b>&lt;body&gt;</b>
+
+  <b>&lt;div id=&quot;contenedor&quot;&gt;</b>
+  
+    <b>&lt;div id=&quot;cabecera&quot;&gt;</b>
+      ...
+      Contenido de la cabecera (título de la página,...)
+      ...
+    <b>&lt;/div&gt;</b>
+  
+    <b>&lt;div id=&quot;indice&quot;&gt;</b>
+      ...
+      Contenido del índice (enlaces a otras páginas, etc.)
+      ...
+    <b>&lt;/div&gt;</b>
+  
+    <b>&lt;div id=&quot;cuerpo&quot;&gt;</b>
+    ...
+      Contenido del cuerpo de la página 
+      (información principal: texto, imágenes,...)
+    ...
+    <b>&lt;/div&gt;</b>
+  
+    <b>&lt;div id=&quot;pie&quot;&gt;</b>
+      ...
+      Contenido del pie de la página (fecha, autor, copyright,...)
+      ...
+    <b>&lt;/div&gt;</b>
+    
+  <b>&lt;/div&gt;</b>
+  
+<b>&lt;/body&gt;</b>
+					</pre>
+            </div>
+            
+            <p>Como puede observarse, en primer lugar se define una capa llamada <i>contenedor</i>, que almacena todo el código HTML de la página. A continuación, se crean varias capas que albergarán los datos relacionados con la cabecera, índice, cuerpo y pie de la página.</p>
+            
+            <p>Por supuesto, este esquema es flexible y puede variarse.</p>
+<!--
+			<h3>&lt;div&gt;</h3>
+<p>Sirve para agrupar varios elementos ddentro de un bloque y de esta forma asignarle nombre, clase y estilo.</p>
+<p>Es un elemento de bloque por lo que puede contener elementos en linea y otros elementos de bloque incluyendo tro eemento &lt;div&gt;.</p>
+-->
+<h3>Ejemplo</h3>
+<div class="codigo">
+<pre>
+&lt;!--Primer bloque llamado cabecera --&gt;
+<b>
+&lt;div id="cabecera" style="background-color:#D5EDB3" align="center"&gt;
+ </b>
+ &lt;h2&gt;LAS CAPAS&lt;/h2&gt;
+ <b>
+ &lt;p&gt;&lt;span style="font-size:14pt; font-style:italic"&gt;El Nuevo Diseño de Webs&lt;/span&gt;&lt;/p&gt;
+</b>
+ &lt;/div&gt;
+
+&lt;!--Segundo bloque llamado contenido --&gt;
+<b>
+&lt;div id="contenido" style="background-color:#EE3" align="left"&gt;
+</b>  
+  &lt;p&gt;Las Capas tienen muchas ventajas
+	   a la hora de diseñar páginas webs.
+	   &lt;br&gt;
+    Características:
+  &lt;ul&gt;
+   &lt;li&gt;Permiten estructurar los documentos&lt;/li&gt;
+   &lt;li&gt;Es más sencilo su mantenimiento&lt;/li&gt;
+   &lt;li&gt;Permiten definir estilos&lt;/li&gt;
+  &lt;/ul&gt;
+ &lt;/p&gt;
+&lt;/div&gt;
+
+ &lt;div id="pie" style="background-color:#CCC" align="right"&gt;
+ &lt;p&gt;Esto es un aviso. &lt;br&gt;
+    que se pone en el pie &lt;br&gt;
+ &lt;/p&gt;
+ &lt;div&gt;
+</pre>
+</div>
+
+<p>Se vería así:</P>
+<!--Primer bloque llamado cabecera -->
+<div id="cabecera" style="background-color:#D5EDB3" align="center">
+	<h2>LAS CAPAS</h2>
+	<p><span style="font-size:16pt; font-style:italic">El Nuevo Diseño de Webs</span></p>
+	</div>
+
+<!--Segundo bloque llamado contenido -->
+	<div id="contenido" style="background-color:#EE3" align="left">
+	<p>Las Capas tienen muchas ventajas 
+	   a la hora de diseñar páginas webs.  
+	   <br>
+	   Características:
+	   <ul>
+		<li>Permiten estructurar los documentos </li>
+		<li>Es más sencilo su mantenimiento</li>
+		<li>Permiten definir estilos</li>
+	   </ul>
+	</p>
+	</div>
+	<div id="pie_2" style="background-color:#CCC" align="right">
+ 	<p>Esto es un aviso. <br>
+	   que se pone en el pie<br>
+	</p>
+	</div>
+
+<h3>Propiedades de las capas</h3>
+<p>Algunas propiedades de estas capas son:</p>
+<ul>
+<li>left, right, top y position, para definir la posición en pantalla</li>
+<li>width y height, para el ancho y alto</li>
+<li>z-index. Para ordenar el solapamiento.</li>
+<li>visibility. Para mostrar u ocultar.</li>
+<li>background-color, etc...</li>
+<li>Estas propiedades hay que definirlas a través de hojas de estilo.</li>
+</ul>
+
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_19">Ejercicio 19:</a></h2>
+            </div>
+            
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_20">Ejercicio 20:</a></h2>
+            </div> 
+			
+			
+		</div>
+			<div id="contenedor_pie">
+				<p>Manual de HTML - CSS - Lenguaje de Marcas - DAW-DAM-ASIR</p>
+			</div>
+	</div>
+	
+    </body>
+
+</html>

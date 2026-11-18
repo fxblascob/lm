@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Imágenes y multimedia
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+		<script src="../../codigos.js"></script>
+   </head>
+    <body ondblclick="ocultarMenu()">
+		<div id="contenedor_general">
+			<div id="contenedor_cabecera">
+				<img src="../imagenes/logo.jpg" width="147" height="92"> 
+				<h1>06 Imágenes</h1>
+			</div>
+	   		<iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+
+        <div id="contenedor_cuerpo">
+        
+            <h1>Imágenes</h1>
+			
+			<p>Para incluir gráficos e imágenes en nuestras páginas utilizaremos la etiqueta &lt;img&gt;. No tiene etiqueta de cierre. Se trata de un elemento en línea.</p>
+			<p>Su sintaxis es:</p>
+			<div class="codigo">
+&lt;img src=&quot;<b><i>nombre_fichero_imagen</i></b>&quot; [alt | title]=&quot;<b><i>texto_alternativo_imagen</i></b>&quot;&gt;
+            </div>
+			
+			<p>El atributo <b><i>src</i></b> especifica la URI de acceso a la imagen, el nombre del fichero que contiene el gráfico. Los formatos estándar en la red son GIF, JPEG y PNG.</p>
+			
+			<p>El atributo <b><i>alt</i></b> especifica el texto que se mostrará en lugar del gráfico en aquellos navegadores que no sean capaces de mostrarlos y en el supuesto de que el usuario los haya desactivado. Es obligatorio ponerlo para cumplir con los estándares del W3C.</p>
+			<p>El atributo <b><i>title</i></b> hace que aparezca un texto al poner el ratón encima. </p>
+
+			<p>El atributo <b><i>name</i></b> identifica la imagen para su manejo posterior en hoja de estilo o script.</p>
+
+			<p>Los atributos <b><i>height</i>, <i>width</i></b> establecen la altura y ancho respectivamente,  en píxeles o en porcentaje, cuando se especifican el navegador debe modificar las medidas originales de la imagen a las especificadas.</p>
+
+			<p>El atributo <b><i>usemap</i></b> sirve para asociar a la imagen un mapa de imágenes (como un marcador).</p>
+
+			<p>Existen más <b>atributos</b> admitidos por la etiqueta. Se pueden consultar en la guía de HTML. No obstante, <b>la mayoría no se utilizan</b>, ya que se han quedado obsoletos y es recomendable utilizar las hojas de estilo para conseguir los efectos deseados.</p>
+			<div class="ejercicios">
+                <h2><a href = "16_ejercicios.html#ej_05">Ejercicio 5:</a></h2>
+            </div>		
+
+			<h2>Imágenes y enlaces</h2>
+
+			<p>Para hacer que un gráfico se convierta en un enlace, hay que escribir la etiqueta &lt;img&gt; dentro de las etiquetas &lt;a&gt; y &lt;/a&gt;, como en el siguiente ejemplo:</p>
+			
+			<div class="codigo">
+&lt;a href=&quot;<i><b>destino_del_enlace</b></i>&quot;&gt; &lt;img src=&quot;<b><i>nombre_fichero_imagen</i></b>&quot; alt=&quot;<b><i>texto_alternativo_imagen</i></b>&quot;&gt; &lt;/a&gt;
+            </div>
+			
+			<div class="ejercicios">
+				<h2><a href="16_ejercicios.html#ej_06">Ejercicio 6:</a></h2>
+			</div>
+
+
+			<h2>Mapa de imágenes</h2>
+			<p> Un mapa de imágenes permite definir zonas diferentes en una imagen apuntando cada una de ellas a una URL diferente. </p>
+			<p>Para crear un mapa de imágenes, hay que usar la etiqueta <b>&lt;map&gt;</b>. La etiqueta final es obligatoria.</p>
+			<p><b>&lt;area&gt;</b></p>
+			<p>Para especificar una región geométrica del mapa y el vínculo asociado a esa región. No tiene etiqueta final</p>
+			<p><b>Atributos:</b></p>
+			<ul>
+				<li><b>shape:</b> Especifica el tipo de región con los valores: default, rect, circle y poly</li>
+					<ul>
+						<li>default (región completa)</li>
+						<li>rect (rectangular)=(x,y) vértice superior izquierdo, (x,y) vértice inferior derecho.</li>
+						<li>circle (circular) = (x,y) centro, radio.</li>
+						<li>poly (poligonal)=(x,y) 1ºpunto, (x,y) 2ºpunto,....,(x,y) último punto,</li>
+					</ul>
+				<li><b>coords:</b> indica la posición en pantalla, son valores de longitud partiendo de la esquina superior izquierda de la pantalla y separados por comas</li>
+			</ul>
+			<p>
+			<div class="codigo">
+<pre>
+&lt;body&gt;
+  &lt;img src=&quot;mapa.png&quot; usemap=&quot;#mapa1&quot; alt=&quot;mapa 4 colores&quot;&gt;			
+  &lt;map name=&quot;mapa1&quot;&gt;
+	  &lt;area href=&quot;amarillo.html&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
+	           coords=&quot;0,0,190,190&quot;&gt;
+	  &lt;area href=&quot;verde.html&quot; alt=&quot;VERDE&quot; shape=&quot;rect&quot; 
+	           coords=&quot;210,0,400,190&quot;&gt;
+	  &lt;area href=&quot;azul.html&quot; alt=&quot;AZUL&quot; shape=&quot;rect&quot; 
+	           coords=&quot;0,210,190,400&quot;&gt;
+          &lt;area href=&quot;rojo.html&quot; alt=&quot;ROJO&quot; shape=&quot;rect&quot; 
+	           coords=&quot;210,210,400,400&quot;&gt;
+  &lt;/map&gt;
+&lt;/body&gt;
+</pre>
+           </div>
+		   <p>Observa que el marcador "#mapa1" usado en el atributo <b>usemap</b> de la imagen debe ser igual que el usado en el atributo <b>name</b> del mapa.
+			
+			<div class="ejercicios">
+				<h2><a href="16_ejercicios.html#ej_06_2">Ejercicio 6_2:</a></h2>
+			</div>
+			<div class="ejercicios">
+				<h2><a href="16_ejercicios.html#ej_06_3">Ejercicio 6_3:</a></h2>
+			</div>
+			
+
+			<div class="codigo">
+&lt;area href=&quot;amarillo.html&quot; title= &quot;Región Amarilla&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
+	           coords=&quot;0,0,190,190&quot;&gt;
+			</div>
+		<p>Cuando se quiere marcar una zona que es irregular habrá que utilizar como Shape "poly" que es una polilínea e ir escribiendo las coordenadas de todos los puntos</p>
+			<div class="ejercicios">
+				<h2><a href="16_ejercicios.html#ej_06_4">Ejercicio 6_4:</a></h2>
+				
+			</div>
+		</div>
+		<!-- Fin del cuerpo de la página-->
+			<div id="contenedor_pie">
+				<p>Manual de HTML - Lenguaje de Marcas - DAW-ASIR</p>
+			</div>
+	</div>
+	
+
+		</body>
+
+	
+</html>

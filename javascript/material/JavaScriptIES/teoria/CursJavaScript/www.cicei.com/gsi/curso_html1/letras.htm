@@ -1,0 +1,345 @@
+<HTML>
+<HEAD><TITLE> Tipos de letra </TITLE></HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/blanco51.gif">
+
+<A NAME="inicio"> </A>
+<TABLE WIDTH=100%><TR>
+<TD>
+<H1><FONT COLOR=#800080>Tipos de letra</FONT></H1>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#guiadet3"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/guia_det.gif" align="right" border=0></A>
+</TR></TABLE>
+<BR>
+<BLOCKQUOTE>
+En este apartado se indica c&oacute;mo definir cabeceras mediante el 
+elemento <A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#hn><i>&lt;Hn&gt;</i></A>, y c&oacute;mo modificar 
+el tama&ntilde;o y color de alg&uacute;n grupo de caracteres mediante el 
+elemento <A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#font><i>&lt;FONT&gt;</i></A> y sus atributos
+SIZE y COLOR.
+<P>
+Se puede tambi&eacute;n cambiar el tama&ntilde;o de letra por defecto (3) de toda 
+la p&aacute;gina mediante el elemento vac&iacute;o 
+<A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#basefont><i>&lt;BASEFONT&gt;</i></A>. 
+</P>
+<P>
+Finalmente se definen los <A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#estilos>estilos de caracteres</A> 
+disponibles distinguiendo entre los estilos f&iacute;sicos (negrita, cursiva, ...)
+y los l&oacute;gicos (variables, citas, ejemplos, ...).
+</P>
+</BLOCKQUOTE>
+<HR>
+
+<A NAME="hn">
+<H2>Hn</H2>
+<BLOCKQUOTE>
+El elemento <B>&lt;Hn&gt;</B> se utiliza fundamentalmente para escribir
+encabezamientos. Asigna un tama&ntilde;o a los caracteres, dependiendo del 
+valor <B>n</B>, el cual var&iacute;a de 1 a 6. Los m&aacute;s grandes tienen valor 1 y los m&aacute;s 
+peque&ntilde;os valor 6. El texto entre estas marcas se trata en negrita. 
+Se inserta autom&aacute;ticamente un salto de p&aacute;rrafo, como puede comprobar
+en el siguiente ejemplo:
+<P>
+<B>Ejemplo:</B>
+</P>
+<BLOCKQUOTE>
+<PRE>Texto antes de la cabecera. &lt;H3&gt;Cabecera&lt;/H3&gt; M&aacute;s texto.</PRE>
+</BLOCKQUOTE>
+Esto dar&aacute; el siguiente resultado:
+<BLOCKQUOTE>
+Texto antes de la cabecera. <H3>Cabecera</H3> M&aacute;s texto.
+</BLOCKQUOTE>
+<P>
+En la siguiente tabla tiene una muestra del tama&ntilde;o de letra de cada una
+de las cabeceras.
+</P>
+<CENTER>
+<TABLE border width=75%>
+<TR align="center">
+<TD><CODE>&lt;H1&gt;Cabecera H1&lt;/H1&gt;</CODE>
+<TD><H1>Cabecera H1</H1>
+<TR align="center">
+<TD><CODE>&lt;H2&gt;Cabecera H2&lt;/H2&gt;</CODE>
+<TD><H2>Cabecera H2</H2>
+<TR align="center">
+<TD><CODE>&lt;H3&gt;Cabecera H3&lt;/H3&gt;</CODE>
+<TD><H3>Cabecera H3</H3>
+<TR align="center">
+<TD><CODE>&lt;H4&gt;Cabecera H4&lt;/H4&gt;</CODE>
+<TD><H4>Cabecera H4</H4>
+<TR align="center">
+<TD><CODE>&lt;H5&gt;Cabecera H5&lt;/H5&gt;</CODE>
+<TD><H5>Cabecera H5</H5>
+<TR align="center">
+<TD><CODE>&lt;H6&gt;Cabecera H6&lt;/H6&gt;</CODE>
+<TD><H6>Cabecera H6</H6>
+</TR>
+</TABLE>
+</CENTER>
+</BLOCKQUOTE>
+<CENTER><A  HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#inicio><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Inicio</A></CENTER>
+</A>
+
+<HR>
+
+<A  NAME="font">
+<H2>FONT</H2>
+<BLOCKQUOTE>
+El elemento <I>&lt;FONT&gt;</I> permite definir el tama&ntilde;o, color y tipo de
+letra de un conjunto de caracteres mediante los siguientes atributos:
+<BLOCKQUOTE>
+<img SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/bolaazul.gif" width="13" height="13">
+<FONT COLOR=#000080> El atributo SIZE:</FONT>
+Regula el tama&ntilde;o de los caracteres (1 - 7).<BR>
+<img SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/bolaazul.gif" width="13" height="13">
+<FONT COLOR=#000080>  El atributo COLOR: </FONT>
+Especifica el color de los caracteres. Para consultar los c&oacute;digos de los 
+colores que le interesen puede consultar la 
+<A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/colortab.htm>tabla de c&oacute;digos de colores</A>.<BR>
+<img SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/bolaazul.gif" width="13" height="13">
+<FONT COLOR=#000080>  El atributo FACE: </FONT>permite 
+definir el tipo de letra: Algerian, Arial, Times New Roman, Courier, 
+MS Serif, Symbol, System, Times New Roman, Windsort, ... <BR>
+Este atributo es soportado tan solo por algunos browsers. 
+(El Netscape no lo reconoce)
+</BLOCKQUOTE>
+<P>
+<B>Ejemplos:</B><BR>
+</P>
+<BLOCKQUOTE>
+<TABLE width=65%>
+<TR>
+<TD><b>Tama&ntilde;os</b> 
+<TD>	<FONT SIZE=1>1</FONT> <FONT SIZE=2>2</FONT>
+           <FONT SIZE=3>3</FONT> <FONT SIZE=4>4</FONT>
+           <FONT SIZE=5>5</FONT> <FONT SIZE=6>6</FONT>
+           <FONT SIZE=7>7</FONT> <FONT SIZE=6>6</FONT>
+           <FONT SIZE=5>5</FONT> <FONT SIZE=4>4</FONT>
+           <FONT SIZE=3>3</FONT> <FONT SIZE=2>2</FONT>
+           <FONT SIZE=1>1</FONT>
+<TD> (Ver c&oacute;digo fuente)
+<TR>
+<TD><b>Colores</b>
+<TD>	<FONT COLOR=#800000>C</FONT><FONT COLOR=#000080>O</FONT>
+		<FONT COLOR=#000080>L</FONT><FONT COLOR=#008000>O</FONT>
+		<FONT COLOR=#00FFFF>R</FONT><FONT COLOR=#FF0000>E</FONT>
+		<FONT COLOR=#C0C0C0>S</FONT> . <FONT COLOR=#800080>D</FONT>
+		<FONT COLOR=#008080>E</FONT> . <FONT COLOR=#0000FF>L</FONT>
+		<FONT COLOR=#808080>E</FONT><FONT COLOR=#FF00FF>T</FONT>
+		<FONT COLOR=#00FF00>R</FONT><FONT COLOR=#808000>A</FONT>
+		<FONT COLOR=#FFFF00>S </FONT>
+<TD> (Ver c&oacute;digo fuente)
+</TR>
+</TABLE>
+</BLOCKQUOTE>
+<BLOCKQUOTE>
+<PRE>
+&lt;FONT SIZE=4 COLOR=#008000&gt; Texto de color verde y tama&ntilde;o 4.&lt;FONT&gt;
+</PRE>
+<FONT SIZE=4 COLOR=#008000> Texto de color verde y tama&ntilde;o 4.</FONT>
+<PRE>
+&lt;FONT SIZE=6 COLOR=#FF0000&gt; Texto de color rojo y tama&ntilde;o 6.&lt;FONT&gt;
+</PRE>
+<FONT SIZE=6 COLOR=#FF0000> Texto de color rojo y tama&ntilde;o 6.</FONT>
+</BLOCKQUOTE>
+El atributo SIZE del elemento <I>&lt;FONT&gt;</I> tiene la peculiaridad 
+de poder indicar el tama&ntilde;o de letra deseado en funci&oacute;n del tama&ntilde;o 
+definido por defecto para el documento. 
+<P>
+<B>Ejemplo:</B>
+</P>
+<BLOCKQUOTE>
+<pre>
+Este texto tiene el tama&ntilde;o por defecto (3). &lt;BR&gt;
+&lt;FONT SIZE=-1&gt;Este texto es del tama&ntilde;o 3-1=2.&lt;/FONT&gt; &lt;BR&gt;
+&lt;FONT SIZE=+2&gt;Este texto es del tama&ntilde;o 3+2=5.&lt;/FONT&gt;
+</pre>
+</BLOCKQUOTE>
+Teniendo en cuenta que el valor por defecto definido inicialmente 
+para un documento es 3, el resultado ser&aacute;:
+<BLOCKQUOTE>
+Este texto tiene el tama&ntilde;o por defecto (3). <BR>
+<FONT SIZE=-1>Este texto es del tama&ntilde;o 3-1=2.</FONT> <BR>
+<FONT SIZE=+2>Este texto es del tama&ntilde;o 3+2=5.</FONT>
+</BLOCKQUOTE>
+<P>
+El valor del tama&ntilde;o por defecto puede ser modificado mediante el 
+elemento <A HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#basefont><I>&lt;BASEFONT&gt;</I></A> que se 
+explica a continuaci&oacute;n.
+</P>
+</BLOCKQUOTE>
+<CENTER><A  HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#inicio><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Inicio</A></CENTER>
+</A>
+
+<HR>
+
+<A NAME="basefont">
+<H2>BASEFONT</H2>
+<BLOCKQUOTE>
+El elemento <I>&lt;BASEFONT&gt;</I> permite cambiar el tama&ntilde;o por
+defecto de toda la p&aacute;gina mediante el atributo <B>SIZE</B>.
+<P>
+<B>Ejemplo:</B>
+</P>
+<BLOCKQUOTE>
+<PRE>
+&lt;BASEFONT SIZE=5&gt;
+</PRE>
+</BLOCKQUOTE>
+Con esta sentencia se conseguir&aacute; que el tama&ntilde;o de letra por defecto 
+del documento pase a ser 5, hasta que aparezca otro elemento 
+<I>&lt;BASEFONT&gt;</I> que lo restaure o lo cambie por otro valor
+diferente.
+
+<P>
+<B>Ejemplo de uso de <I>&lt;FONT&gt;</I> y <I>&lt;BASEFONT&gt;</I>:</B>
+</P>
+<BLOCKQUOTE>
+<pre>
+Inicialmente el tama&ntilde;o por defecto es 3.&lt;BR&gt;
+&lt;FONT SIZE=+2&gt;Por tanto este texto est&aacute; en 3+2=5&lt;/FONT&gt;&lt;BR&gt;
+&lt;BASEFONT SIZE=6&gt;
+Ahora el tama&ntilde;o por defecto es 6.&lt;BR&gt;
+&lt;FONT SIZE=-2&gt;Este texto est&aacute; en 6-2=4&lt;/FONT&gt;&lt;BR&gt;
+</pre>
+Inicialmente el tama&ntilde;o por defecto es 3.<BR>
+<FONT SIZE=+2>Por tanto este texto est&aacute; en 3+2=5</FONT><BR>
+<BASEFONT SIZE=6>
+Ahora el tama&ntilde;o por defecto es 6.<BR>
+<FONT SIZE=-2>Este texto est&aacute; en 6-2=4</FONT><BR>
+</BLOCKQUOTE>
+<BASEFONT SIZE=3>
+</BLOCKQUOTE>
+<CENTER><A  HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#inicio><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Inicio</A></CENTER>
+</A>
+
+<HR>
+
+<A NAME="estilos">
+<h2>Estilos de Caracteres</h2>
+<BLOCKQUOTE>
+Los siguientes elementos llenos permitir&aacute;n definir distintos estilos para
+el grupo de caracteres que se defina entre sus marcas de inicio y cierre.
+<P>
+<B>Ejemplo:</B>
+</P>
+<BLOCKQUOTE>
+<pre>
+&lt;i&gt; Texto en cursiva (it&aacute;lica) &lt;/i&gt;
+</pre>
+<i> Texto en cursiva (it&aacute;lica) </i>
+</BLOCKQUOTE>
+<P>
+Los estilos f&iacute;sicos indican expl&iacute;citamente el tipo de caracteres a utilizar.
+</P>
+<center>
+<table border width=50%><tr><td>
+	<center>
+	<table>
+	<tr>
+	<th colspan=2><FONT COLOR=#000080>Estilos f&iacute;sicos</FONT></th>
+	<tr>
+	<td><b>Negrita</b></td>
+	<td><code>&lt;b&gt;</code></td>
+	<tr>
+	<td><i>Cursiva</i></td>
+	<td><code>&lt;i&gt;</code></td>
+	<tr>
+	<td><u>Subrayado</u></td>
+	<td><code>&lt;u&gt;</code></td>
+	<tr>
+	<td><strike>Tachado</strike></td>
+	<td><code>&lt;strike&gt;</code></td>
+	<tr>
+	<td>A<sup>Super&iacute;ndice</sup></td>
+	<td><code>&lt;sup&gt;</code></td>
+	<tr>
+	<td>B<sub>Sub&iacute;ndice</sub></td>
+	<td><code>&lt;sub&gt;</code></td>
+	<tr>
+	<td><blink>Parpadeo</blink></td>
+	<td><code>&lt;blink&gt;</code></td>
+	<tr>
+	<td><tt>M&aacute;quina de escribir <br> (Teletipo)</tt></td>
+	<td><code>&lt;tt&gt;</code></td>
+	<tr>
+	<td><big>Texto grande</big></td>
+	<td><code>&lt;big&gt;</code></td>
+	<tr>
+	<td><small>Texto peque&ntilde;o</small></td>
+	<td><code>&lt;small&gt;</code></td>
+	</tr></table>
+	</center>
+</td></tr></table></center>
+<P>
+Los estilos l&oacute;gicos est&aacute;n pensados para caracterizar determinadas
+porciones de texto, pero su interpretaci&oacute;n es totalmente dependiente
+del browser.
+</P>
+<center>
+<table border width=50%><tr><td>
+	<center>
+	<table>
+	<tr>
+	<th colspan=2><FONT COLOR=#000080>Estilos l&oacute;gicos</FONT></th>
+	<tr>
+	<td><em>Énfasis</em></td>
+	<td><code>&lt;em&gt;</code></td>
+	<tr>
+	<td><strong>Texto destacado</strong></td>
+	<td><code>&lt;strong&gt;</code></td>
+	<tr>
+	<td><code>C&oacute;digo</code></td>
+	<td><code>&lt;code&gt;</code></td>
+	<tr>
+	<td><cite>Citas</cite></td>
+	<td><code>&lt;cite&gt;</code></td>
+	<tr>
+	<td><kbd>Entrada por teclado</kbd></td>
+	<td><code>&lt;kbd&gt;</code></td>
+	<tr>
+	<td><samp>Ejemplos</samp></td>
+	<td><code>&lt;samp&gt;</code></td>
+	<tr>
+	<td><var>Variables</var></td>
+	<td><code>&lt;var&gt;</code></td>
+	</tr></table>
+	</center>
+</td></tr></table>
+</center><br>
+Se pueden anidar distintos estilos obteniendo resultados como estos:
+<ul>
+<li><b><i> Negrita y cursiva </i></b>
+<pre>
+&lt;b&gt;&lt;i&gt; Negrita y cursiva &lt;/i&gt;&lt;/b&gt;
+</pre>
+<li><b><strike>Negrita y tachado</strike></b>
+<pre>
+&lt;b&gt;&lt;strike&gt; Negrita y tachado &lt;/strike&gt;&lt;/b&gt;
+</pre>
+<li><blink><strike><code>Parpadeo, tachado y tipo c&oacute;digo</code></strike></blink>
+<pre>
+&lt;blink&gt;&lt;strike&gt;&lt;code&gt;
+   Parpadeo,tachado y tipo c&oacute;digo
+&lt;/code&gt;&lt;/strike&gt;&lt;/blink&gt;
+</pre>
+</ul>
+</BLOCKQUOTE>
+</BLOCKQUOTE>
+<CENTER><A  HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/letras.htm#inicio><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/back.gif" align="middle" width="40" height="40">Inicio</A></CENTER>
+</A>
+
+<HR>
+<TABLE WIDTH=100%><TR>
+<TD>
+<A  HREF=../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/indice.htm#guiadet2><img hspace=10 src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/backleft.gif" align="middle">Indice</A>
+<TD>
+<A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/quien/quien.htm"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_html1/images/pen.gif" align="right" border=0 width="84" height="40"></A>
+</TR></TABLE>
+<HR>
+
+<CENTER><i><FONT SIZE=+1 COLOR=#808080>
+Facultad de Inform&aacute;tica de la Universidad de Las Palmas de Gran Canaria
+</FONT></i></CENTER><HR>
+
+</BODY>
+</HTML>

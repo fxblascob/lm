@@ -1,0 +1,159 @@
+<!DOCTYPE html >
+<html lang="es">
+    <head>
+        <title>            Diseño visual        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <script src="../../codigos.js"></script>
+        <meta charset="UTF-8">
+    </head>
+    <body ondblclick="ocultarMenu()">
+	    <div id="contenedor_general">
+        <div id="contenedor_cabecera">
+		      	<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>11 Diseño visual I</h1>
+        </div>
+        <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+            <h1>Diseño visual I</h1>
+            <p>Las hojas de estilo suelen utilizarse también para realizar diseños vistosos de las páginas web. Para ello se utiliza el llamado <b>modelo de cajas</b>. Este modelo tiene su base en que cualquier elemento HTML (tabla, fila, párrafo, división,...) es en realidad una caja con la siguiente estructura:</p>
+            <p class="imagenes"><img src="../imagenes/modelo_cajas.png" alt="modelo de cajas"></p>
+            <p>Así, cada caja tiene un <b>contenido</b> (texto en el caso de un párrafo, el contenido de una celda, etc.), alrededor del cual hay un espacio de <b>relleno</b> (en inglés, <i>padding</i>). Alrededor del relleno hay un <b>borde</b> (<i>border</i>), que puede estar visible o no, y por último está el <b>margen</b> (<i>margin</i>), que es el espacio que se deja desde la caja a lo que le rodea. Estos parámetros se pueden controlar con las propiedades que aparecen <a href="./guia_referencia_css_w3c/guia_css.xhtml#modeloCajas" target="_blank">aquí</a>.</p>
+            <p>Normalmente se suele utilizar el modelo de cajas para estructurar adecuadamente los contenidos de una página web. Para ello se suelen utilizar las etiquetas <b>&lt;div&gt;</b> para dividir la página en secciones. A cada etiqueta <i>&lt;div&gt;</i> se le asigna un <b>identificador</b> para poder referirse a ella desde la hoja de estilos y así poder situarla en la página con sus características propias (color de fondo, bordes, tipos de letra, etc.).</p>
+            <p>De esta manera, la primera tarea a realizar será planificar la estructura de nuestra página. Suele ser una buena idea realizar un boceto para esta tarea. Un ejemplo de ello sería:</p>
+            <p class="imagenes-kk"><img src="../imagenes/estructura_pagina.png" alt="Estructura" width="700px" ></p>
+            <p>A partir del boceto, se realizaría la estructuración del código HTML de la página. Para ello se haremos uso de las etiquetas <i>&lt;div&gt;</i>, tal como hemos comentado antes. En el caso del ejemplo, el <b>código HTML</b> necesario sería el siguiente:</p>
+            <div class="codigo"><a name="ejemplo_divisiones"></a>
+                <pre>
+                  
+        &lt;!DOCTYPE html&gt;
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;title&gt;Ejemplo de modelo visual&lt;/title&gt;
+          &lt;/head&gt;	
+          &lt;body&gt;
+            &lt;div id=&quot;contenedor&quot;&gt;
+                &lt;p&gt;contenedor
+                &lt;header&gt;
+                    &lt;p&gt;header&lt;/p&gt;
+                &lt;/header&gt;
+                &lt;div id = &quot;contenedor_izquierda&quot;&gt;
+                    &lt;p&gt;contenedor_izquierda&lt;/p&gt;
+                    &lt;nav&gt;
+                        &lt;p&gt;nav&lt;/p&gt;
+                        &lt;ul&gt;
+                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 1&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 2&lt;/a&gt;&lt;/li&gt;
+                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 3&lt;/a&gt;&lt;/li&gt;
+                        &lt;/ul&gt;
+                    &lt;/nav&gt;
+                    &lt;div class=&quot;foto&quot;&gt;
+                        &lt;p&gt;div&lt;/p&gt;
+                        FOTO1
+                    &lt;/div&gt;
+                    &lt;div class=&quot;foto&quot;&gt;
+                        &lt;p&gt;div&lt;/p&gt;
+                        FOTO2
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;main&gt;
+                    &lt;p&gt;main&lt;/p&gt;
+                    Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                    &lt;br&gt;Aquí vendría el código del cuerpo
+                &lt;/main&gt;
+            &lt;/div&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;
+                </pre>
+			</div>
+			
+            <p>El código CSS que quedaría para nuestro ejemplo tendría un aspecto similar al siguiente:</p>
+			
+			<div class="codigo"><a name="ejemplo_divisiones_css"></a>
+                <pre>
+                    * {margin:5px; padding:5;}
+                    p {color:red;}
+                    #contenedor {
+                        background-color: rgb(123, 192, 192);
+                        width:100%;
+                        height: 350px;
+                    }
+                    header {
+                        position:absolute;
+                        left:15px;
+                        width:98%;
+                        height: 60px;
+                        background-color:bisque;
+                        text-align: center;
+                    }
+                    #contenedor_izquierda {
+                        position: relative;
+                        top:75px;
+                        float:left;
+                        width:20%;
+                        background-color:rgb(205, 225, 243);
+                    }
+                    main {
+                        position: relative;
+                        top:75px;
+                        float:right;
+                        width:70%;
+                        background-color:bisque;
+                    }
+                    nav {
+                        width: 80%;
+                        background-color:bisque;
+                    }
+                    nav li {list-style: none;}
+                    .foto {
+                        width: 80%;
+                        background-color:bisque;
+                    }
+               </pre>
+			</div>
+            <p>puedes probar el ejemplo <a href="./ejemplos/pruebas_visual1.html">aquí </a></p>
+			<p>Una vez realizada la estructuración del código, añadiríamos los contenidos a cada una de las secciones: párrafos, imágenes, listas, tablas, etc. Una vez completada nuestra página, pasaríamos a definir la hoja de estilos necesaria.</p>
+			
+			<p>En la hoja de estilos se definiría el posicionamiento de cada una de las secciones. Para ello se hará uso del <a href="./guia_referencia_css_w3c/guia_css.xhtml#formatoVisual" target="_blank">modelo de formato visual</a>. En esta sección se encuentra el código CSS necesario para situar una caja dentro de la página web.</p>
+			
+			<p>El elemento <b><i>position</i></b> permite definir el comportamiento de la caja en el documento. Los valores que puede tomar son:</p>
+			
+			<ul>
+				<li><b>static</b>. Valor por defecto de todos los elementos HTML. Los elementos estáticos aparecen en pantalla según el flujo normal de representación de HTML. Los elementos posicionados con Static no están afectados por las propiedades top, bottom, left y right.
+				<li><b>relative</b>. La caja estará situada dentro del flujo del documento. Esto quiere decir que su posición vendrá marcada por los elementos HTML que tenga delante y detrás. Su posición se desplazará de forma relativa a la que tendría en ese flujo normal. Se podrá solapar con otros elementos pero el espacio que se le reservaba permanecerá en el flujo normal. Los elementos posicionados con Relative a menudo son usados como bloques contenedores de elementos posicionados con absolute.
+				<li><b>absolute</b>. La posición de la caja vendrá dada por las coordenadas que se definan. Sin embargo, la caja no estará dentro del flujo del documento, por lo que se podrá solapar con otros elementos de la página. El resto de elementos se comportan como si los elementos posicionados de forma absoluta no existieran. El elemento padre del que se posiciona de forma absoluta debe estar posicionado aunque sea con relative.
+				<li><b>fixed</b>. Este valor implica un posicionamiento absoluto (como el del apartado anterior) pero manteniendo la posición aunque se desplace la página. De esta manera, la caja estará siempre visible. Se suele utilizar para los índices de las páginas.
+			</ul>
+			
+			<p>Es aconsejable hacer pruebas con los distintos tipos de posicionamiento para ver su comportamiento. Una vez determinado este valor, se puede definir la posición de las cajas en función de unas coordenadas. Dichas coordenadas hacen referencia al elemento padre o a la ventana del navegador, y son las siguientes:</p>
+			
+			<ul>
+				<li><b>top</b>. Distancia de la caja respecto al límite superior de su elemento contenedor.
+				<li><b>right</b>. Distancia de la caja respecto al límite derecho de su elemento contenedor.
+				<li><b>bottom</b>. Distancia de la caja respecto al límite inferior de su elemento contenedor.
+				<li><b>left</b>. Distancia de la caja respecto al límite izquierdo de su elemento contenedor.
+			</ul>
+			
+			<p>Normalmente se suele indicar las distancias en píxeles (<i>px</i>).</p>
+			
+			<p>En el caso de que alguna caja se solape con otra, se puede determinar cuál estará delante utilizando el parámetro <b>z-index</b>. Este parámetro toma valores enteros positivos o negattivos(...,-1, 0, 1, 2, 3,...) y se asigna un valor para cada caja. La caja que tenga un valor mayor es la que aparecerá por delante de las demás.</p>
+			
+			<p>Por último, también se suele indicar la anchura (<b><i>width</i></b>) y la altura (<b><i>height</i></b>) de las cajas mediante los parámetros que se pueden encontrar en los <a href="./guia_referencia_css_w3c/guia_css.xhtml#detallesVisual" target="_blank">detalles del modelo de formato visual</a>.</p>
+			
+			
+            
+        </div>
+			<div id="contenedor_pie">
+				<p>Manual de CSS </p>
+			</div>
+	</div>
+	
+
+	
+    </body>
+
+</html>

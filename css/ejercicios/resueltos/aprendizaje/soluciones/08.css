@@ -1,0 +1,6 @@
+body {
+	color: red;
+	border-style: solid;
+	border:3 px;
+}
+p {border:inherit;}

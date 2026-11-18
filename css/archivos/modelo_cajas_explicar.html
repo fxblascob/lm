@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<style>
+			.cajas01 {
+				background-color: yellow;
+				border: 1px solid black;
+				width: 100px;
+				height: 100px;
+				padding: 5px;
+				margin: 50px 10px;
+				display:block;
+
+			}
+			.cajas02 {
+				background-color: yellow;
+				border: 1px solid black;
+				width: 100px;
+				height: 100px;
+				padding: 5px;
+				margin: 50px 10px;
+				display:inline;
+
+			}
+			.cajas03{
+				background-color: yellow;
+				border: 1px solid black;
+				width: 100px;
+				height: 100px;
+				padding: 5px;
+				margin: 50px 10px;
+				display:inline-block;
+
+			}
+		</style>
+		<body>
+			<h1>Elementos de bloque (display:block)</h1>
+
+			<p>Ciertas etiquetas se renderizan en el navegador en líneas independientes, no mezcladas con el resto del texto.  
+			Ejemplos de estas etiquetas son los encabezados (h1 hasta h6), los párrafos p), 
+			y quizá la más conocida de todas que es la etiqueta div usada normalmente para envolver a otros elementos. 
+			A estos elementos se les denomina elementos de bloque.</p>
+			<div class="cajas01">CAJA 1</div>
+			<div class="cajas01">CAJA 2</div>
+			<div class="cajas01">CAJA 3</div>
+			<hr>
+			<h1>Elementos de bloque (display:inline)</h1>
+
+			<p>Bien, aparte de este comportamiento por defecto, es posible cambiar el modo en el que se visualiza/renderiza cualquier elemento HTML de una página usando la propiedad CSS llamada display.</p>
+
+			<p>Esta propiedad puede tomar muchos valores diferentes, pero los más comunes son estos tres:</p>
+				<ul>
+					    <li>block: hace que el comportamiento del elemento sea como un bloque.
+					    <li>inline: el elemento se renderizará en línea con otros elementos.
+					    <li>inline-block: el elemento tendrá un comportamiento mezcla entre los dos anteriores, que ahora voy a describir.
+				</ul>
+			<div class="cajas02">CAJA 1</div>
+			<div class="cajas02">CAJA 2</div>
+			<div class="cajas02">CAJA 3</div>
+			<hr>
+			<h1>Elementos de bloque (display:inline-block)</h1>
+
+			<div class="cajas03">CAJA 1</div>
+			<div class="cajas03">CAJA 2</div>
+			<div class="cajas03">CAJA 3</div>
+		</body>
+	</head>
+</html>

@@ -1,0 +1,131 @@
+<HTML>
+<HEAD><TITLE>Manual practico de JavaScript - Js12f</title>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconde codigo
+// Retardo en milisegundos entre dos caracteres
+var speed = 10
+
+// Retardo en milisegundos entre el fin de uno y comienzo del siguiente
+var pause = 1500
+
+// set initial values
+var timerID = null
+var bannerRunning = false
+var state = ""
+var message = 0
+
+// crea matriz
+var ar = new Array()
+ar[0] = "Bienvenidos al manual practico de JavaScrip"
+ar[1] = "Aquí encontraras informacion para crear tu propia página web"
+ar[2] = "Archivos de imagenes, iconos animados, barras, Archivo javascript "
+ar[3] = ".... El Editor Html creado en javascript, y mucho más............"
+
+// no value is currently being displayed
+clearState()
+
+// stop the banner if it is currently running
+function stopBanner() {
+   if (bannerRunning)
+      clearTimeout(timerID)
+   bannerRunning = false
+}
+
+// inicia el banner
+function startBanner() {
+   stopBanner()
+   showBanner()
+}
+
+// assign state a string of "0" characters of the length of the current message
+function clearState() {
+   // initialize to empty string
+   state = ""
+   // create string of same length containing 0 digits
+   for (var i = 0; i < ar[message].length; ++i) {
+      state += "0"
+   }
+}
+
+// muestra el mensaje
+function showBanner() {
+   // if the current message is done
+   if (getString()) {
+      // increment message
+      message++
+      // if new message is out of range wrap around to first message
+      if (ar.length <= message)
+      message = 0
+      // new message is first displayed as empty string
+      clearState()
+      // display next character after pause milliseconds
+      timerID = setTimeout("showBanner()", pause)
+      // banner is now running
+      BannerRunning = true
+   } else {
+      // initialize to empty string
+      var str = ""
+      // built string to be displayed (only character selected thus far are displayed)
+      for (var j = 0; j < state.length; ++j) {
+         str += (state.charAt(j) == "1") ? ar[message].charAt(j) : "     "
+      }
+      // partial string is placed in status bar
+      window.status = str
+      // add another character after speed milliseconds
+      timerID = setTimeout("showBanner()", speed)
+      // banner is now running
+      bannerRunning = true
+   }
+}
+
+function getString() {
+   var full = true
+   for (var j = 0; j < state.length; ++j) {
+      if (state.charAt(j) == 0)
+         full = false
+   }
+   // return true immediately if no space found (avoid infinitive loop later)
+   if (full)
+      return true
+   // search for random until free space found (braoken up via break statement)
+   while (1) {
+      // a random number (between 0 and state.length - 1 == message.length - 1)
+      var num = getRandom(ar[message].length)
+      // if free space found break infinitive loop
+      if (state.charAt(num) == "0")
+      break
+   }
+   // replace the 0 character with 1 character at place found
+   state = state.substring(0, num) + "1" + state.substring(num + 1, state.length)
+   // return false because the string was not full (free space was found)
+   return false
+}
+
+function getRandom(max) {
+   return Math.round((max - 1) * Math.random())
+}
+// fin esconde -->
+</SCRIPT>
+
+</HEAD>
+<BODY onLoad="startBanner()">
+<H1>Mensaje en la barra de estado</H1>
+<P>
+<CENTER>
+<FORM>
+<INPUT TYPE=button VALUE=Cerrar onClick="if (confirm('Está seguro que desea cerrar esta ventana?'))window.close();else (alert('De acuerdo, no se cierra.'))">
+</FORM></CENTER>
+<HR COLOR=red>
+<CENTER>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

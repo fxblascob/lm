@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js13a</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconde codigo
+function backcolor(form){
+	temp = ""
+	for (var i = 0; i < 16; i++) {
+		temp = form.color[i].value
+		if (form.color[i].checked){ document.bgColor = temp }
+		}
+	}
+function randombackground(){
+	document.bgColor = getColor()
+	}
+function getColor(){
+	currentdate = new Date()
+	backgroundcolor = currentdate.getSeconds()
+	if (backgroundcolor > 44)
+		backgroundcolor = backgroundcolor - 45
+	else if (backgroundcolor > 29)
+		backgroundcolor = backgroundcolor - 30
+	else if (backgroundcolor > 15)
+		backgroundcolor = backgroundcolor - 16
+	if (backgroundcolor == 0 )
+		return "olive";
+	else if (backgroundcolor == 1 )
+		return "teal";
+	else if (backgroundcolor == 2 )
+		return "rojo";
+	else if (backgroundcolor == 3 )
+		return "azul";
+	else if (backgroundcolor == 4 )
+		return "marrón";
+	else if (backgroundcolor == 5 )
+		return "navy";
+	else if (backgroundcolor == 6 )
+		return "lime";
+	else if (backgroundcolor == 7 )
+		return "fushia";
+	else if (backgroundcolor == 8 )
+		return "verde";
+	else if (backgroundcolor == 9 )
+		return "purpura";
+	else if (backgroundcolor == 10 )
+		return "gris";
+	else if (backgroundcolor == 11 )
+		return "amarillo";
+	else if (backgroundcolor == 12 )
+		return "aqua";
+	else if (backgroundcolor == 13 )
+		return "negro";
+	else if (backgroundcolor == 14 )
+		return "blanco";
+	else if (backgroundcolor == 15 )
+		return "silver";
+	}
+// fin esconder -->
+</SCRIPT>
+</HEAD>
+
+<BODY BGCOLOR=white TEXT=navy onLoad="document.bgColor='lime'; return true;">
+<FONT FACE="Comic Sans MS">
+<CENTER>
+<H1>Selecciona un color de fondo</H1>
+
+<FORM NAME=backcolorform>
+
+<TABLE>
+<TR>
+<TD><INPUT TYPE=radio NAME=color VALUE=green onClick="backcolor(this.form)">Green
+<TD><INPUT TYPE=radio NAME=color VALUE=aqua onClick="backcolor(this.form)">Aqua
+<TD><INPUT TYPE=radio NAME=color VALUE=red onClick="backcolor(this.form)">Red
+<TD><INPUT TYPE=radio NAME=color VALUE=olive onClick="backcolor(this.form)">Olive
+
+<TR>
+<TD><INPUT TYPE=radio NAME=color VALUE=teal onClick="backcolor(this.form)">Teal
+<TD><INPUT TYPE=radio NAME=color VALUE=blue onClick="backcolor(this.form)">Blue
+<TD><INPUT TYPE=radio NAME=color VALUE=maroon onClick="backcolor(this.form)">Maroon
+<TD><INPUT TYPE=radio NAME=color VALUE=navy onClick="backcolor(this.form)">Navy
+
+<TR>
+<TD><INPUT TYPE=radio NAME=color VALUE=gray onClick="backcolor(this.form)">Gray
+<TD><INPUT TYPE=radio NAME=color VALUE=lime onClick="backcolor(this.form)">Lime
+<TD><INPUT TYPE=radio NAME=color VALUE=fuschia onClick="backcolor(this.form)">Fuschia
+<TD><INPUT TYPE=radio NAME=color VALUE=white onClick="backcolor(this.form)">White
+
+<TR>
+<TD><INPUT TYPE=radio NAME=color VALUE=purple onClick="backcolor(this.form)">Purple
+<TD><INPUT TYPE=radio NAME=color VALUE=silver onClick="backcolor(this.form)">Silver
+<TD><INPUT TYPE=radio NAME=color VALUE=yellow onClick="backcolor(this.form)">Yellow
+<TD><INPUT TYPE=radio NAME=color VALUE=black onClick="backcolor(this.form)">Black
+</TABLE>
+<P>
+
+<INPUT TYPE=button VALUE=Color onClick="randombackground()">
+<INPUT TYPE=button VALUE=Cerrar onClick="if (confirm('Estás seguro que desea cerrar esta ventana ?'))window.close();else (alert('De acuerdo, no la cierro.'))">
+</FORM>
+<P>
+
+<HR COLOR=red>
+<CENTER>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

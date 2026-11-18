@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang=”es”>
+    <head>
+        <meta charset=”UTF-8”>
+        <title>Ejercicio 8 - Funciones básicas</title>
+        <script type="text/javascript"> 
+            'use strict';
+            /*
+                Crea una página llamada 04_ejercicio_strings_js.html con las siguientes funciones:
+                • Función que reciba como parámetro dos textos t1 y t2 y devuelva el texto resultado
+                de quitar de t1 todas las apariciones de t2
+                • Función que reciba como parámetro un nombre de fichero (texto) y determine
+                si es una imagen JPG o PNG.
+                • Función que reciba como parámetro un texto y determine si es una matrícula
+                válida. Una matrícula se considera válida si está compuesta por 4 dígitos y 3
+                letras mayúsculas.
+                Comprueba el funcionamiento de todas estas funciones desde el propio código JavaScript,
+                con los datos de entrada que quieras.
+            */
+            let t1 = prompt("Introduce un texto");
+            let t2 = prompt("Introduce una palabra a quitar del texto anterior");
+            
+            alert("El texto menos la palabra es:  " + cambiar_texto(t1,t2));
+            
+            function cambiar_texto(t1,t2) {
+                while (t1.includes(t2)){
+                    t1 = t1.replace(t2,"");
+                }
+                return(t1);
+            }
+            // Función que reciba como parámetro un nombre de fichero (texto) y 
+            //determine si es una imagen JPG o PNG.
+            let fichero = prompt("Introduce un nombre de fichero" );
+            if (tipoFichero(fichero))
+                alert("Es un fichero JPG o PNG");
+            else    
+                alert("No es un fichero conocido");
+
+            function tipoFichero(fichero) {
+                if (fichero.endsWith(".jpg") ||  fichero.endsWith(".JPG") ||  fichero.endsWith(".png") || fichero.endsWith(".PNG"))
+                    return(true);
+                else 
+                    return(false);
+            }
+           
+           /*Función que reciba como parámetro un texto y determine si es una matrícula válida.
+             Una matrícula  se considera válida si está compuesta por 4 dígitos y 3 letras mayúsculas.
+             */
+            let matricula = prompt("Introduce una matrícula" );
+            if (validarMatricula(matricula))
+                alert("La matricula es correcta");
+            else   
+                alert("La matricula no es correcta");
+
+
+            function validarMatricula(matricula) {
+                let ok = true;
+                for (let i = 0; i < 7; i++ ) {
+                    if (i <= 3 && (matricula[i] < "0" ||  matricula[i] > "9"))
+                        ok = false;
+                    else if (i >= 4 && (matricula[i] < "A" ||  matricula[i] > "Z"))
+                            ok = false;
+                }
+                return(ok);
+            }
+            
+           
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

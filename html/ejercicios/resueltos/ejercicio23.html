@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>ejercicio 23</title>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="./imagenes/icono.ico">
+
+    </head>
+    <body>
+        <form action="mailto:correo@yahoo.es" enctype="multipart/form-data"   method="post">
+            <p>
+            Nombre:
+                <input type="text" id="nombre" value="" size="15" maxlength="20">
+            </p>
+            <p>
+            Apellidos:
+                <input type="text" id="apellidos" value="" size="20" maxlength="30">
+            </p>
+            <p>
+            Teléfono:
+                <input type="text" id="telefono" value="" size="10" maxlength="9">
+            </p>
+            <p>
+            Dni:
+                <input type="password" id="dni" value="" size="9" maxlength="10">
+            </p>
+            <p>
+            Sugerencias:<br>
+                <textarea id="sugerencias" rows="5" cols="30" ></Textarea>
+            
+            </p>
+            <p>
+            Desea recibir novedades de la web:
+            <input type="checkbox" id = "novedades" checked>
+            </p>
+            <p>
+            Calificación de la web:
+                <select id="calificacion">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5" selected>5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select> 
+            </p>
+
+            <p>
+            Acepta terminos del contrato:
+                <input type="radio" name="terminos" value="si"> Sí
+                <input type="radio" name="terminos" value="no" checked> No 
+
+            </p>
+            <input type="submit" value="enviar">
+            <input type="reset" value="Borrar datos">
+        </form>
+	</body>
+</html>

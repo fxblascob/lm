@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de la compra</title>
+    <style>
+        form {
+            border: 2px solid blue;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            function cargarLista(){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {                
+                        let elemento = document.getElementById("listado");
+                        let datos = JSON.parse(this.responseText);
+                        let html = "<h3>Lista cargada desde el botón</h3><ul>";
+                        datos.forEach(x => html += "<li>"+x.titulo+"</li>");
+                        html += "</ul>";
+                        elemento.innerHTML = html;
+                    }
+                }
+                xhttp.open("GET", "listado.php", true);
+                xhttp.send();
+            }
+
+            function enviarFormulario(evento){
+                evento.preventDefault();
+                let datos = new FormData(formulario);
+                const xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {                
+                            let listado = document.getElementById("listado");
+                            let datos = JSON.parse(this.responseText);
+                            let html = "<h3>Lista cargada desde el formulario</h3><ul>";
+                            datos.forEach(x => html += "<li>" + x.titulo + "</li>")
+                            html += "</ul>"
+                            listado.innerHTML = html;
+                        }
+                    }
+                    xhttp.open("POST", "nuevo.php", true);
+                    xhttp.send(datos);
+            }
+
+            document.getElementById("boton").addEventListener("click",cargarLista);
+            let formulario = document.getElementById('formulario');
+            formulario.addEventListener("submit", enviarFormulario);
+        }
+        
+    </script>
+</head>
+<body>
+    <h1>Lista de la compra</h1>
+    <hr>
+    
+    <form id="formulario">
+        <h3>Formulario de alta de nuevos artículos</h3>
+        <label for="articulo">Introduce un nuevo artículo: </label>
+        <input type="text" id="articulo" name="nuevoArticulo" required>
+        <input type="submit" id="submit" value="Enviar">
+    </form>
+    <hr>
+    <button id="boton">Cargar lista</button>
+
+    <div id="listado">
+    <div>
+    
+    
+</body>
+</html>

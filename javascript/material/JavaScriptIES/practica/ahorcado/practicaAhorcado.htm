@@ -1,0 +1,40 @@
+<html>
+<head>
+<script>
+
+function hacerArray(n) {
+	this.length=n
+	for (i=0;i<n;i++) 	this[i]='-'
+	return(this)
+}
+function ahorcado(pals) {
+	gana=false
+	palm= new hacerArray(pals.length)
+	errores=0;
+	while (errores<7) {
+		letra=prompt("letra:","");
+		pos=pals.indexOf(letra,0)
+		if (pos==-1) 	errores++;
+		else palm[pos]=letra;
+		gana=true
+		for (j=0;j<palm.length;j++) if (palm[j]=='-') gana=false
+		if (gana) return(true)
+		document.write("<br>")
+		for (j=0;j<palm.length;j++) document.write(palm[j])
+	}
+	return(false)
+}
+
+if (ahorcado(prompt("palabra secreta",""))) alert("has ganado")
+else alert("has perdido")
+
+</script>
+
+<title>Pagina nueva 1</title>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js30</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY>
+<DIV ALIGN=justify>
+<H1>Botones en formularios</H1>
+
+El objeto <B>Button</B> es un elemento de un formulario y debe ser definido dentro de el. Es decir entre los comandos &lt;FORM&gt; y &lt;/FORM&gt;.<P>
+
+El objeto <B>Button</B> es un boton personalizable que puedes usar para accionar una accion predefinida. El boton ejecuta el script especificodo en el evento <B>onClick</B>.<P>
+
+<TABLE BGCOLOR=FFFFCC BORDER=1 CELLSPACING=0>
+<TR><TH ROWSPAN=5>Propiedades
+<TR><TD>FORM<TD>Especifica el formulario que contiene el boton.
+<TR><TD>INPUT<TD>Reflela el atributo <B>TYPE</B>.
+<TR><TD>TYPE<TD>Reflela el atributo <B>TYPE</B>.
+<TR><TD>NAME<TD>Refleja el atributo <B>NAME</B>.
+<TR><TD>VALUE<TD>Refleja el atributo <B>VALUE</B>.
+<TR><TH ROWSPAN=7>Metodos
+<TR><TD>blur<TD>Retira el foco del boton.
+<TR><TD>click<TD>Simula un clic de mouse en el boton.
+<TR><TD>focus<TD>Pone el foco en el boton.
+<TR><TD>handleEvent<TD>Invoca el manejador para el evento especificado.
+<TR><TD>watch<TD>In addition, this object inherits the <B>watch</B> and <B>unwatch</B> methods from <B>Object</B>
+<TR><TD>unwatch<TD>
+<TR><TH ROWSPAN=6>Eventos
+<TR><TD>onblur<TD>Quita el foco de un boton. userButton.blur()
+<TR><TD>onClick<TD>
+<TR><TD>onFocus<TD>
+<TR><TD>onMouseDown<TD>
+<TR><TD>onMouseUp<TD>
+</TABLE>
+<P>
+
+Para un formulario dado, el motor de JavaScript crea el objeto boton apropiado y pone este objeto  como un elemento de la matriz de <B>FORM</B>. Se puede acceder a este boton accediendo al elemento de esta matriz ya sea por el numero o usando el atributo <B>NAME</B> del boton.<p>
+
+
+<H4>Ejemplo</H4>
+El siguiente ejemplo cea un boton llamado <B>calcButton</B>. El texto "Calculate" es mostrado en la cara del boton. Cuando haces clic sobre el boton, la funcion <B>calcFunction</B> es invocada.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+&lt;INPUT TYPE=button VALUE=Calculate NAME=calcButton<br>
+&nbsp;&nbsp;&nbsp;onClick="calcFunction(this.form)"&gt;
+</TABLE>
+</DIR>
+
+
+<HR>
+<H2>click</H2>
+Simula un clic de mouse en el boton, pero no invoca el evento <B>onClick</B>. 
+
+<B>Syntax:</B>click()
+
+<B>Seguridad:</B> Enviar un formulario con <B>mailto:</B> o <B>news:</B> en el URL requiere el privilegio <B>UniversalSendMail</B> activado.<P>
+
+<HR>
+<H2>Focus</H2>
+Navigates to the button and gives it focus.<P>
+
+<B>Syntax:</B> focus()
+
+<HR>
+<H2>form</H2>
+
+An object reference specifying the form containing the button.<P>
+
+<H4>Descripcion</H4>
+
+Each form element has a <B>form</B> property that is a reference to the element's parent form. This property is especially useful in event handlers, where you might need to refer to another element on the current form.<P>
+
+<B>Ejemplo 1.</B> In the following example, the form <B>myForm</B> contains a <B>Text</B> object and a button. When the user clicks the button, the value of the <B>Text</B> object is set to the form's name. The button's <B>onClick</B> event handler uses <B>this.form</B> to refer to the parent form, <B>myForm</B>.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;FORM NAME="myForm"&gt;<br>
+Form name:&lt;INPUT TYPE=text NAME=text1 VALUE=Beluga&gt;<br>
+&lt;P&gt;<br>
+&lt;INPUT NAME=boton1 TYPE=button VALUE='Show Form Name'<br>
+&nbsp;&nbsp;&nbsp;onClick="this.form.text1.value=this.form.name"&gt;<br>
+&lt;/FORM&gt;
+</TABLE>
+</DIR>
+
+<B>Ejemplo 2.</B> The following example shows a form with several elements. When the user clicks <B>button2</B>, the function <B>showElements</B> displays an alert dialog box containing the names of each element on the form <B>myForm</B>.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+function showElements(theForm) {<br>
+&nbsp;&nbsp;&nbsp;str = "Form Elements of form " + theForm.name + ": \n "<br>
+&nbsp;&nbsp;&nbsp;for (i = 0; i &lt; theForm.length; i++)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str += theForm.elements[i].name + "\n"<br>
+&nbsp;&nbsp;&nbsp;alert(str)<br>
+}<br>
+&lt;/script&gt;<br>&lt;FORM NAME="myForm"&gt;<br>
+Form name:&lt;INPUT TYPE="text" NAME="text1" VALUE="Beluga"&gt;<br>
+&lt;P&gt;<br>
+&lt;INPUT NAME="button1" TYPE="button" VALUE="Show Form Name"<br>
+&nbsp;&nbsp;&nbsp;onClick="this.form.text1.value=this.form.name"&gt;<br>
+&lt;INPUT NAME="button2" TYPE="button" VALUE="Show Form Elements"<br>&nbsp;&nbsp;&nbsp;onClick="showElements(this.form)"&gt;<br>
+&lt;/FORM&gt;
+</TABLE>
+</DIR>
+<P>
+
+The alert dialog box displays the following text:<P>
+
+<DIR>
+JavaScript Alert:<br>
+Form Elements of form myForm:<br>
+text1<br>
+button1<br>
+button2
+</DIR>
+<p>
+
+<B>Ejemplo 3.</B> The following example uses an object reference, rather than the <B>this</B> keyword, to refer to a form. The code returns a reference to <B>myForm</B>, which is a form containing <B>myButton</B>.
+
+<PRE>document.myForm.myButton.form</PRE>
+
+<HR>
+<H2>handleEvent</H2>
+
+Invokes the handler for the specified event.<P>
+
+<H4>Syntax</H4>
+
+<PRE>handleEvent(event)</PRE>
+
+<H4>Parameters</H4>
+
+<TABLE BORDER=0>
+<TR><TD>event<TD>The name of an event for which the object has an event handler.
+</TABLE>
+<P>
+
+<H2>name</H2>
+
+A string specifying the button's name.<P>
+
+<H4>Descripcion</H4>
+
+The <B>name</B> property initially reflects the value of the <B>NAME</B> attribute. Changing the <B>name</B> property overrides this setting.<P>
+
+Do not confuse the <B>name</B> property with the label displayed on a button. The <B>value</B> property specifies the label for the button. The <B>name</B> property is not displayed on the screen; it is used to refer programmatically to the object.<P>
+
+If multiple objects on the same form have the same <B>NAME</B> attribute, an array of the given name is created automatically. Each element in the array represents an individual <B>Form</B> object. Elements are indexed in source order starting at 0. For example, if two <B>Text</B> elements and a <B>Button</B> element on the same form have their <B>NAME</B> attribute set to <B>"myField"</CODE>, an array with the elements <B>myField[0]</B>, <B>myField[1]</B>, and <B>myField[2]</B> is created. You need to be aware of this situation in your code and know whether <B>myField</B> refers to a single element or to an array of elements.
+
+<H4>Ejemplo</H4>
+En el siguiente ejemplo, la funcion <B>valueGetter</B> usa un bucle <B>for</B> para navegar sobre los elementos de la matriz del formulario <B>valueTest</CODE>. La ventana <B>msgWindow</B> muestra el nombre de todos los elementos del formulario:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+function valueGetter() {<br>
+&nbsp;&nbsp;&nbsp;var msgWindow=window.open("")<br>
+&nbsp;&nbsp;&nbsp;for (var i = 0; i &lt; newWindow.document.valueTest.elements.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;msgWindow.document.write(newWindow.document.valueTest.elements[i].name + "&lt;BR&gt;")<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}
+</TABLE>
+</DIR>
+
+In the following example, the first statement creates a window called <B>netscapeWin</B>. The second statement displays the value <B>"netscapeHomePage"</B> in the Alert dialog box, because <B>"netscapeHomePage"</B> is the value of the <B>windowName</B> argument of <B>netscapeWin</B>.<P>
+
+<B>Button.value</B><P>
+
+<HR>
+<H2>type</H2>
+
+For all <B>Button</B> objects, the value of the <B>type</B> property is <B>"button"</B>. This property specifies the form element's type.<P>
+
+<H4>Ejemplo</H4>
+
+The following example writes the value of the <B>type</B> property for every element on a form.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+For (var i = 0; i &lt; document.form1.elements.length; i++) {<br>
+&nbsp;&nbsp;&nbsp;document.writeln("&lt;BR&gt;type is " + document.form1.elements[i].type)<br>
+}
+</TABLE>
+</DIR>
+
+<HR>
+
+<H2>value</H2>
+
+A string that reflects the button's <B>VALUE</B> attribute.<P>
+
+<H4>Description</H4>
+
+This string is displayed on the face of the button.<P>
+
+The <B>value</B> property is read-only for Macintosh and UNIX systems. On Windows, you can change this property.<P>
+
+When a <B>VALUE</B> attribute is not specified in HTML, the <B>value</B> property is an empty string.<P>
+
+Do not confuse the <B>value</B> property with the <B>name</B> property. The <B>name</B> property is not displayed on the screen; it is used to refer programmatically to the objects.
+
+<H4>Ejemplo</H4>
+
+The following function evaluates the <B>value</B> property of a group of buttons and displays it in the <B>msgWindow</B> window:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+function valueGetter() {<br>
+&nbsp;&nbsp;&nbsp;var msgWindow=window.open("")<br>
+&nbsp;&nbsp;&nbsp;msgWindow.document.write("submitButton.value is "+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.valueTest.submitButton.value +"&lt;BR&gt;")<br>
+&nbsp;&nbsp;&nbsp;msgWindow.document.write("resetButton.value is "+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.valueTest.resetButton.value +"&lt;BR&gt;")<br>
+&nbsp;&nbsp;&nbsp;msgWindow.document.write("helpButton.value is "+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.valueTest.helpButton.value +"&lt;BR&gt;")<br>
+&nbsp;&nbsp;&nbsp;msgWindow.document.close()<br>
+}
+</TABLE>
+</DIR>
+
+This example displays the following values:<P>
+<PRE>
+Query Submit<br>
+Reset<br>
+Help
+</PRE>
+
+The previous example assumes the buttons have been defined as follows:<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;INPUT TYPE="submit" NAME="submitButton"&gt;<br>
+&lt;INPUT TYPE="reset" NAME="resetButton"&gt;<br>
+&lt;INPUT TYPE="button" NAME="helpButton" VALUE="Help"&gt;
+</TABLE>
+</DIR>
+</BODY>
+</HTML>

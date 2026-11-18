@@ -1,0 +1,23 @@
+<html><head><title>Ocultando elementos</title>
+
+  
+  <script languaje="JAVASCRIPT">
+    function Desaparece(Elemento){
+      Elemento.style.visibility="hidden" 
+    }
+    function Aparece(){
+      Boton.style.visibility="visible" 
+      Caja.style.visibility="visible" 
+      Texto.style.visibility="visible" 
+    }
+  </script></head><body>
+ 
+  <input id="Boton" style="position: relative; visibility: hidden;" value="Botón que desaparece" onclick="alert('... y el botón sigue funcionando')" onmouseover="Desaparece(this)" type="button"><br><br>
+
+  <input id="Caja" style="position: relative; visibility: hidden;" value="Caja que desaparece" onclick="alert('... y la caja sigue funcionando')" onmouseover="Desaparece(this)" type="text"><br>
+
+  <p id="Texto" style="position: relative; visibility: hidden;" onclick="alert('... y la caja sigue funcionando')" onmouseover="Desaparece(this)">
+         Texto que desaparece </p><br>
+ 
+  <p onclick="Aparece()"> Pulsa aquí para que todo aparezca </p>
+</body></html>

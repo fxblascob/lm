@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js10</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+
+<H2>1. Escribir algo en documento actual</H2>
+Lo primero que aprenderemos a hacer sera escribir algo en el dcumento actual. Para esto usaremos el método <B>write</B> del objeto <B>document</B>. Mas adelante hablare de algunos otros metodos de este mismo objetos como son: clear, close, open y writeln.<P>
+
+La sintaxis es la siguiente: <B>document.write("Texto")</B><P>
+
+Adem&aacute;s de un texto, tambien se pueden mostrar variables, resultados de funciones, etc. Recuerda que basta introducir el codigo en el lugar que quieres que aparezca el texto sobre tu pagina.<P>
+
+<DIR>
+<TABLE BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt; &lt;TITLE&gt;Ejemplo 1&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+... codigo HTML<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- esconder codigo<br>
+document.write ("Hola que tal...")<BR>
+// fin esconder--><BR>
+&lt;/SCRIPT&gt;<BR>
+... mas codigo HTML<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Recuerda que tienes que a&ntilde;adir los comentarios para prevenir a los navegadores que no soportan JavaScript.<P>
+
+<H2>2. Escribir algo en un nuevo documento</H2>
+Ahora usaremos el mismo ejemplo anterior pero lo mostraremos en un nuevo documento, que sera abrierto en una nueva ventana. Para esto usaremos el metodo <B>open</B> del objeto <B>window</B> cuya sintaxis es: <B>[ventana=]window.open('URL','nombre',['caracteristicas'])</B><BR>
+
+<DL>
+<DT><B>ventana</B><DD>Nombre de la nueva ventana (opcional)
+<DT><B>URL</B><DD> Pagina a cargar
+<DT><B>nombre</B><DD> Nombre para referirse a la ventana en los atributos
+<DT><B>caracteristicas</B><DD> son todos opcionales
+   <DL>
+   <DT><B>width</B><DD>Ancho en pixels de la ventana
+   <DT><B>height</B><DD>Alto en pixels de la ventana
+   <DT><B>resizable</B><DD>=yes o no, =1 o 0
+   <DT><B>scrollbars</B><DD>=yes o no, =1 o 0
+   <DT><B>status</B><DD>=yes o no, =1 o 0
+   <DT><B>menubar</B><DD>=yes o no, =1 o 0
+   <DT><B>toolbar</B><DD>=yes o no, =1 o 0
+   <DT><B>location</B><DD>=yes o no, =1 o 0
+   <DT><B>directories</B><DD>=yes o no, =1 o 0
+   </DL>
+</DL><P>
+
+Para disparar la apertura de esta ventana usamos el evento <B>onClick</B> del objeto <B>link</B>,  como se ve en los siguientes ejemplos:<P>
+
+<DIR>
+<TABLE BGCOLOR=FFFFCC>
+<TR><TD>Pulsa para ver el efecto del<BR>
+&lt;A HREF=""  onClick="window.open('js10a.htm','','width=300,height=80');return false"&gt;Ejemplo 1&lt;/A&gt;<BR>
+o del<BR>
+&lt;A HREF=""  onClick="window.open('js10b.htm','','width=300,height=150,resizable=1');return false"&gt;Ejemplo 2&lt;/A&gt;
+</TABLE>
+</DIR>
+
+Pulsa para ver el efecto del <A HREF=""  onClick="window.open('js10a.htm','','width=300,height=80');return false">Ejemplo 1</A>
+o del <A HREF=""  onClick="window.open('js10b.htm','','width=300,height=150,resizable=1');return false">Ejemplo 2</A><P>
+
+<B>Nota:</B> Ademas en el ejemplo 2 active el <B>resizable</B> en la ventana resultante.<P>
+
+<B>Nota:</B> La diferencia de hacer esto contra el hacer un enlace simple usando HTML, es que el enlace se abrira en una nueva ventana, en la que podras controlar de tamaño, entre otras cosas.
+
+<H2>3. Mostrar el resultado de una funcion de usario</H2>
+Primero creamos una función de usuario y le asignamos parametros y luego mostramos el resultado de dicha funcion usando el metodo <B>write</B> del objeto <B>document</B> y añadiendo algunas de sus propiedades.<P>
+
+<DIR>
+<TABLE BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt; &lt;TITLE&gt;Ejemplo 3&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- esconder codigo<BR>
+function Suma(a,b) {<BR>
+&nbsp;&nbsp;&nbsp;return a+b<BR>
+}<BR>
+document.write("La suma de 4+7 es = ".fontcolor("red"),Suma(4,7))<BR>
+// fin esconder --&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Pulsa para ver el efecto del <A HREF=""  onClick="window.open('js10c.htm','','width=250,height=120,scrollbars=1');return false">Ejemplo 3</A><P>
+
+<B>Nota:</B> Ademas en el ejemplo 3 active el <B>scrollbars</B> en la ventana resultante.
+
+<H2>4. Escribir algo en pantalla</H2>
+En este ejemplo usaremos la propiedad <B>link</B> del objetos <B>document</B> para hacer un enlace desde esta nueva ventana.<P>
+
+<DIR>
+<TABLE BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt; &lt;TITLE&gt;Ejemplo 3&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- esconder codigo<BR>
+document.write("Si estas interesado en aprender los comandos HTML consulta "+"mi manual".link("http://www.uap.edu.pe/samples/demo/demo.htm").big())<BR>
+// Fin esconder --&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Pulsa para ver el efecto del <A HREF=""  onClick="window.open('js10d.htm','','width=550,height=100,status=1');return false">Ejemplo 4</A><P>
+
+<B>Nota:</B> Ademas en el ejemplo 4 active el <B>status</B> en la ventana resultante.
+
+<H2>5. Funcion que convierte Decimal en Hexadecimal</H2>
+
+Pulsa para ver el efecto del <A HREF=""  onClick="window.open('js10e.htm','','width=550,height=100,toolbar=yes');return false">Ejemplo 5</A><P>
+
+<B>Nota:</B> Ademas en el ejemplo 5 active el <B>toolbar</B> en la ventana resultante.
+
+<H2>6. Hora coordinada universal</H2>
+
+<DIR>
+<TABLE BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HEAD&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- esconder codigo<BR>
+function Dime() {<BR>
+var Hoy = new Date();<BR>
+var laHora = Hoy.getHours();<BR>
+var Diferencia = (Hoy.getTimezoneOffset() / 60);<BR>
+laHora -= Diferencia;<BR>
+if (Hoy > 23)  {laHora -= 24 }<BR>
+document.write(laHora + " horas, " + Hoy.getMinutes() + " minutos");<BR>
+window.setTimeout("Dime();", 60000);<BR>
+}<BR>
+// Fin esconder --&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;SCRIPT&gt;<BR>
+&lt;!-- llama a la funcion<BR>
+Dime();<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Pulsa para ver el efecto del <A HREF=""  onClick="window.open('js10f.htm','','width=550,height=100,menubar=yes');return false">Ejemplo 6</A><P>
+
+<B>Nota:</B> Ademas en el ejemplo 6 active el <B>menubar</B> en la ventana resultante.
+
+</BODY>
+</HTML>

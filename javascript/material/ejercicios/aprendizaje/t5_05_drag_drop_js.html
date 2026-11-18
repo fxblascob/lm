@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Drag & Drop</title>
+    <style>
+        #contenedor        {
+            display: grid;
+            grid-template-rows: auto auto;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        div        {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .receptor        {
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let imagenes = document.querySelectorAll(".imagen");
+            let receptores = document.querySelectorAll(".receptor");
+
+            let dragstart  = function(event) {event.dataTransfer.setData("elemento", event.target.id);  };
+            let dragover =  function(event) {event.preventDefault(); };
+            let drop =  function(event) {
+                event.preventDefault();
+                let datos = event.dataTransfer.getData("elemento");
+                event.target.appendChild(document.getElementById(datos))
+            };
+            //añado los manejadores de eventos en las imágenes y en los receptores
+            for (let i = 0; i < imagenes.length; i++){
+                imagenes[i].addEventListener("dragstart",dragstart)
+                receptores[i].addEventListener("dragover", dragover);
+                receptores[i].addEventListener("drop",drop);
+            }
+            
+            // control de que las imagenes estén bien colocadas--------------------
+            document.getElementById("check").addEventListener("click",function(){
+                let imagenes = document.querySelectorAll(".imagen");
+                for (let i=0; i<receptores.length;i++){
+                    if (receptores[i].id.indexOf(imagenes[i].id) < 0 ) {
+                        alert("las imagenes "+ imagenes[i].id +" no están bien colocada en el contenedor"+receptores[i].id);
+                        break;
+                    }
+                    
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <div>
+            <img id="logoFirefox" class="imagen" src="./ejercicios_material/logo_firefox.jpg" draggable="true">
+        </div>
+        <div>
+            <img id="logoOpera" class="imagen" src="./ejercicios_material/logo_opera.jpg" draggable="true">
+        </div>
+        <div>
+            <img id="logoSafari" class="imagen" src="./ejercicios_material/logo_safari.jpg" draggable="true">
+        </div>
+        <div id="receptor_logoSafari" class="receptor">
+            <p>Safari</p>
+        </div>
+        <div id="receptor_logoFirefox" class="receptor">
+            <p>Firefox</p>
+        </div>
+        <div id="receptor_logoOpera" class="receptor">
+            <p>Opera</p>
+        </div>
+    </div>
+
+    <div>
+        <button id="check">Comprobar</button>
+    </div>
+
+</body>
+</html>

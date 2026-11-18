@@ -1,0 +1,290 @@
+<HTML>
+<HEAD>
+<TITLE>TUTORIAL CGI</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+ <H1><CENTER><FONT  COLOR=#800000>LOS FORMULARIOS</FONT></CENTER></H1>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<P>Los formularios o <EM>forms</EM> son la respuesta aportada por el lenguaje HTML para generar en la pantalla cuadros de di&aacute;logo con el lector.
+<P>Como en un formulario en papel, se podr&aacute;n realizar zonas en las que se introducir&aacute; un texto, casillas de verificaci&oacute;n, listas de selecci&oacute;n, etc.
+<P>Estos formularios no ser&aacute;n nunca otra cosa que ficheros que se rellenan; siempre se necesitar&aacute; un elemento apropiado para tratar la informaci&oacute;n que se introduzca. Este elemento ser&aacute; casi siempre un programa (que se llaman <EM>scripts</EM>) que se ejecutar&aacute; en un estacio del servidor reservado a ese efecto: el CGI o <EM>Common Gategay Interface</EM>.Muy a menudo el programador deber&aacute; escribir un script que permita establecer el di&aacute;logo entre el <EM>browser</EM> que somete su formulario y otro programa accesible desde la m&aacute;quina servidor, como por ejemplo una base de datos.
+<BR>
+<BR>
+<H3>FUNCIONAMIENTO DE UN FORMULARIO</H3>
+
+<P>Un formulario describir&aacute; mediante marcas HTML las zonas en las que el usuario rellenar&aacute; su formulario. Cada una de estas zonas se identificar&aacute; con un nombre simb&oacute;lico, y cuando el formulario se env&iacute;a al programa de tratamiento, &eacute;ste recibe el identificador de cada zona  y el valor introducido.
+<P>El programa o <EM>script</EM> encargado del tratamiento del formulario se ejecuta en el CGI del servidor, y puede estar escrito en el lenguaje de programci&oacute;n que prefiera (C, Fortran, Perl, Tcl, todos los shells Unix, Visual C++,Visual Basic, Apple Script, y cualquier lenguaje que tenga una salida est&aacute;ndar).
+<P>El fin de la edici&oacute;n del formulario se desencadena cuando se pulsa un bot&oacute;n.En este momento, y s&oacute;lo entonces, el programa recibe el conjunto de los datos del formulario, que no tiene por qu&eacute; tener todos los campos rellenados.
+<P>No se puede, por ahora, realizar interfaces con un control de la edici&oacute;n en tiempo real a trav&eacute;s de p&aacute;ginas HTML, como por ejemplo que el terminal realize un chequeo de coherencia de los datos en el mismo momento en que se introducen. La transacci&oacute;n se efect&uacute;a de una sola vez y, si se ha entrado un dato err&oacute;neo, corresponde al <EM>script</EM> de tratamiento enviar un mensaje de error al usuario y volver a mostrar la pantalla de edici&oacute;n. Si el <EM>script</EM> est&aacute; bien dise&ntilde;ado puede incluso reenviar la pantalla rellenando previamente todos los campos que eran correctos.
+<BR>
+ 
+<P>Antes de empezar la descrici&oacute;n de las marcas hagamos el inventario de los elementos a nuestra disposici&oacute;n para crear estos formularios. Se definir&aacute;n tres clases de elementos:
+<BR>
+<UL>
+<LI>Una <STRONG>clase input</STRONG> que se aplica a diferentes tipos de entradas:
+<UL>
+<LI>campos de edici&oacute;n:
+<UL>
+<LI>Campo texto
+<LI>Campo texto oculto
+</UL>
+<LI>diversos tipos de botones
+<UL>
+<LI>Bot&oacute;n de sumisi&oacute;n (submit)
+<LI>Bot&oacute;n de borrado (reset)
+<LI>Casillas de verificaci&oacute; (checkbox)
+<LI>Bot&oacute;n radio
+</UL>
+</UL>
+<LI>Una <STRONG>clase select</STRONG> que se aplica a las listas:
+<UL>
+<LI>men&uacute;s despegables
+<LI>listas con barras de desplazamiento
+<UL>
+<LI>Lista 
+<LI>Campo de texto largo
+</UL>
+</UL>
+</UL>
+<BR>
+<BR>
+<H3>DESCRIPCI&Oacute;N DE LAS MARCAS DE FORMULARIO</H3>
+Estas marcas permiten fabricar una <STRONG>interfaz de edici&oacute;n</STRONG>, y a este nivel no vamos atratar a&uacute;n <A href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/progcgi.htm">La Programaci&oacute;n CGI</A> para el tratamiento del formulario. Sin embargo, se seleccionar&aacute; el nombre de las variables que identificar&aacute;n los elementos del formulario, y se escoger&aacute; simplemente el nombre del script que debe tratar los datos de este formulario. Corresponder&aacute; seguidamente al programador codificar el <EM>script</EM>.
+
+<UL>
+<LI><H3>&lt;FORM&gt; .... &lt;/FORM&gt;</H3> 
+Esta marca inicia un formulario. Entre estas dos marcas se situar&aacute;n todas las marcas que generan los diversos botones, casillas de verificaci&oacute;n, entradas de texto, etc; pero tambi&eacute;n texto HTML est&aacute;ndar que permite <EM>vestir</EM> el documento.Esta marca se completa obligatoriamente con dos atributos:<BR>
+<P>
+<UL>
+<LI><STRONG>El atributo METHOD:</STRONG>
+<P>Se dirige m&aacute;s bien al programacor que codificar&aacute; el script. Se encontrar&aacute; una descripci&oacute;n completa en el cap&iacute;tulo <A href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/progcgi.htm">La Programaci&oacute;n CGI</A>. Digamos simplemente por el momento que este atributo puede tomar dos valores GET y POST indicando el m&eacute;todo de transferencia al script de los datos adquiridos.
+<P>
+<LI><STRONG>El atributo ACTION:</STRONG>
+<P>La funci&oacute;n de este atributo es indicar la acci&oacute;n a emprender (el script a ejecutar) cuando se hace <EM>clic</EM> en el bot&oacute;n de sumisi&oacute;n. ACTION define el URL del script que permite tratar el formulario.
+</UL><BR>
+
+<P>La sintaxis general de apertura de un formulario es pues:
+<BLOCKQUOTE><CODE><STRONG>&lt; FORM METHOD</STRONG>=<EM>tipo de m&eacute;todo</EM> <STRONG>ACTION</STRONG>=<EM>URL_del_script</EM> &gt;</CODE></BLOCKQUOTE>
+<LI>Todas las marcas que se definir&aacute;n  ahora tendr&aacute;n atributos comunes que definieremos seguidamente:<BR>
+<P>
+<UL>
+<LI><STRONG>El atributo NAME</STRONG>
+<P>Permite definir el nombre que, en el momento de enviar los datos al script, permitir&aacute; a &eacute;ste identificar el origen de esos datos. Por ello se escribe siempre de la forma:
+<BLOCKQUOTE><CODE> ... <STRONG>NAME</STRONG>=nombre_de_la_variable_asociada</CODE></BLOCKQUOTE>
+<P>¡ATENCI&Oacute;N! El nombre que se va a atribuir aqu&iacute; debe ser &uacute;nico en el formulario, salvo en el caso de un conjunto compuesto por varios elementos (checkbox o bot&oacute;n radio)
+<BR>
+<P>
+<LI><STRONG>El atributo VALUE</STRONG>
+<BR>
+<UL>
+<LI>Para un campo de texto, permite predefinir el contenido del mismo.
+<LI>Para un bot&oacute;n de tipo <EM>submit </EM>o <EM>reset</EM>, indica el texto a escribir en el bot&oacute;n.
+<LI>Para un bot&oacute;n de tipo <EM>checkbox</EM>, indica el valor asociado al bot&oacute;n cuando &eacute;ste est&aacute; pulsado (o marcado). El valor especificado por NAME identifica el bloque de botones.
+<LI>Para un bot&oacute;n de tipo <EM>radio</EM>, indica el valor asociado al bot&oacute;n si &eacute;ste est&aacute; pulsado. El valor especificado por NAME identifica el bloque de botones.
+</UL>
+</UL>
+<LI><H3>&lt;INPUT&gt;</H3>
+<P>Es la marca general que permitir&aacute; definir todos los elementos de la <EM>clase input</EM>.
+<P>Sin atributo, la marca INPUT definir&aacute; una zona de entrada de texto simple; as&iacute; la instrucci&oacute;n siguiente:<BR>
+<BLOCKQUOTE>
+<CODE>&lt;<STRONG>INPUT  NAME</STRONG>="identidad"&gt;</CODE>
+</BLOCKQUOTE>
+<BR>
+dar&aacute; la visualizaci&oacute;n: <FORM METHOD=GET>
+<INPUT NAME="identidad" >
+</FORM>
+en la que se puede escoger un texto de longitud superior a la dimensi&oacute;n de la casilla (scrolling horizontal)
+
+<P><STRONG>El atributo TYPE</STRONG>
+Puede tomar los siguientes valores:
+<P>
+<UL>
+<LI><STRONG>SUBMIT:</STRONG> es el bot&oacute;n que desencadena el env&iacute;o de todos los datos del formulario hacia su script de tratamiento; el texto definido por el atributo VALUE se escribit&aacute; en el bot&oacute;n:<BR>
+<BLOCKQUOTE><CODE>
+&lt;<STRONG> INPUT TYPE</STRONG>="submit"  <STRONG>VALUE</STRONG>="Aceptar"&gt;
+</CODE></BLOCKQUOTE>
+<BR>
+Esta instrucci&oacute;n provoca la visualizaci&oacute;n siguiente 
+ <FORM METHOD=GET><INPUT  TYPE="submit" VALUE="Aceptar"></FORM>
+<P>El INPUT de tipo <EM>submit</EM> no precisa atributo NAME porque el programa no utiliza datos para este bot&oacute;n que s&oacute;lo tiene una funci&oacute;n de disparador.
+<P>
+<LI><STRONG>CHECKBOX</STRONG>: permite definir uno o varios valores que se atribuir&aacute;n a una misma variable (definida por NAME).
+<P>Por ejemplo, vamos a pedir al usuario que indique el o los microordenadores que utiliza. Las marcar HTML siguientes:
+<BLOCKQUOTE><CODE>
+&lt;<STRONG> INPUT TYPE</STRONG>="checkbox" <STRONG>NAME</STRONG>="micro" <STRONG>VALUE</STRONG>="mac"&gt; Macintosh &lt;BR&gt;<BR>
+ &lt; <STRONG>INPUT TYPE</STRONG>="checkbox" <STRONG>NAME</STRONG>="micro" <STRONG>VALUE</STRONG>="pc"&gt; PC &lt;BR&gt;<BR>
+&lt; <STRONG>INPUT TYPE</STRONG>="checkbox" <STRONG>NAME</STRONG>="micro" <STRONG>VALUE</STRONG>="ux"&gt; Estaci&oacute;n UNIX &lt;BR&gt;<BR>
+</CODE></BLOCKQUOTE>
+<P>provocar&aacute;n la visualizaci&oacute;n:<BR>
+<FORM METHOD=GET>
+<INPUT NAME="micro" TYPE="CHECKBOX" VALUE="mac">Macintosh<BR>
+<INPUT NAME="micro" TYPE="CHECKBOX" VALUE="pc">PC<BR>
+<INPUT NAME="micro" TYPE="CHECKBOX" VALUE="ux">Estaci&oacute;n UNIX<BR>
+</FORM>
+<P>La variable <EM>micro</EM> est&aacute; est&aacute; asociada a &ntilde los tres botones <EM>checkbox</EM> podr&aacute;n tener el valor <EM>mac+pc</EM> si el individuo utiliza estos dos tipos de ordenadores.
+<P>
+<LI><STRONG>RADIO</STRONG>: permitir&aacute; escoger una y s&oacute;lo una opci&oacute;n entre <EM>n</EM>. 
+<BR>Siguiendo nuestro ejemplo, vamos a pedir al usuario que indique si quiere una distribuci&oacute;n en CD-ROM o en disquete:<BR>
+<BLOCKQUOTE><CODE>
+&lt; <STRONG>INPUT  TYPE</STRONG>="radio" <STRONG>NAME</STRONG>="medio" <STRONG>VALUE</STRONG>="cd" <STRONG>CHECKED</STRONG>&gt; CD-ROM<BR>
+&lt; <STRONG>INPUT  TYPE</STRONG>="radio" <STRONG>NAME</STRONG>="medio" <STRONG>VALUE</STRONG>="dsk" &gt; DISQUETE
+</CODE></BLOCKQUOTE>
+
+<P>Provocar&aacute; la visualizaci&oacute;n:<BR>
+ <BLOCKQUOTE>
+<FORM METHOD=GET>
+<INPUT NAME="medio" TYPE="RADIO" VALUE="cd" CHECKED> CD-Rom<BR>
+<INPUT NAME="medio" TYPE="RADIO" VALUE="dsk"> Disquete<BR>
+</FORM></BLOCKQUOTE>
+
+<BR>
+
+<P>El atributo CHECKED tiene como efecto posicionar un bot&oacute;n (CD-ROM) en modo marcado.
+<P>Hacer <EM>clic</EM> sobre una opci&oacute;n deselecciona autom&aacute;ticamente las otras.
+<P>
+<LI><STRONG>PASSWORD</STRONG>: es una zona de texto en la que los caracteres escritos se reemplazan sistem&aacute;ticamente por asteriscos.
+
+<P>Por ejemplo:
+<BLOCKQUOTE><CODE>
+&lt; <STRONG>INPUT  TYPE</STRONG>="password" <STRONG>NAME</STRONG>="pwd" &gt; 
+</CODE></BLOCKQUOTE>
+
+<P>Presenta este aspecto, sustituyendo los caracteres introducidos por asteriscos:
+<P>
+<BLOCKQUOTE> <FORM METHOD=GET>
+<INPUT NAME="pwd" TYPE="PASSWORD">
+</FORM></BLOCKQUOTE>
+<P>
+
+<LI><STRONG>RESET</STRONG>: este bot&oacute;n permite borrar en todo momento los datos que se est&aacute; editando en el formulario; el texto definido por el atributo VALUE se escribir&aacute; en el bot&oacute;n:
+<BLOCKQUOTE><CODE>
+&lt; <STRONG>INPUT  TYPE</STRONG>="reset"  <STRONG>VALUE</STRONG>="Borrar"&gt; 
+</CODE></BLOCKQUOTE>
+<P>Da el resultado:
+<P>
+<BLOCKQUOTE>
+<FORM METHOD=GET>
+<INPUT  TYPE="reset" VALUE="borrar">
+</FORM></BLOCKQUOTE>
+</UL>
+<BR>
+<LI><H3>&lt;SELECT&gt; .... &lt;/SELECT&gt;</H3>
+Es la marca reservada a las listas. &Eacute;stas pueden clasificarse en dos categor&iacute;as:
+<P>
+<UL>
+<LI><STRONG>Los men&uacute;s desplegables</STRONG> (o <EM>pop-lists</EM>): se presentan en forma de un campo de texto y un bot&oacute;n para desplegar el men&uacute;.
+<P>La marca <STRONG>&lt;SELECT&gt;</STRONG> abre una lista en la que cada &iacute;tem se define por la marca <STRONG>&lt;OPTION&gt;</STRONG>; el atributo <STRONG>SELECTED</STRONG> permite escoger la opci&oacute;n que se visualizar&aacute; de forma predeterminada. Esta opci&oacute;n ser&aacute; la que se transmitir&aacute; al programa de aplicaci&oacute;n si el usuario no selecciona otra opci&oacute;n.
+
+<P>El c&oacute;digo HTML siguiente:
+
+<BLOCKQUOTE><CODE>
+&lt;<STRONG>SELECT NAME</STRONG>="paises"&gt;<BR>
+&lt;<STRONG>OPTION SELECTED</STRONG>&gt; Espa&ntilde;a<BR>
+&lt;<STRONG>OPTION</STRONG>&gt; Portugal<BR>
+&lt;<STRONG>OPTION</STRONG>&gt; Francia<BR>
+&lt;<STRONG>OPTION</STRONG>&gt; Italia<BR>
+&lt;<STRONG>/SELECT</STRONG>&gt;<BR>
+</CODE></BLOCKQUOTE>
+
+<P>da la visualizaci&oacute;n siguiente:<BR>
+<BLOCKQUOTE> <FORM METHOD=GET>
+<SELECT NAME="paises" >
+<OPTION SELECTED>Espa&ntilde;a
+<OPTION>Portugal
+<OPTION>Francia
+<OPTION>Italia
+</SELECT>
+ </FORM></BLOCKQUOTE>
+<P>
+<LI><STRONG>Las listas con barra de desplazamiento</STRONG> (o <EM>scrolled lists</EM>): son listas que aparecen en una ventana con barra de desplazamiento y en la que se puede regular el n&uacute;mero de items visibles. Se program&aacute;n de forma id&eacute;ntica a los men&uacute;s desplegables pero con un atributo suplementario <STRONG>SIZE</STRONG> que indica el n&uacute;mero de l&iacute;neas visibles en la ventana. Por defecto, s&oacute;lo se puede seleccionar una opci&oacute;n de la lista a la vez, salvo si se pone el atributo <STRONG>MULTIPLE</STRONG> que permitir&aacute; una selecci&oacute;n m&uacute;ltiple.
+
+<P>La programaci&oacute;n de una lista con selecci&oacute;n &uacute;nica es de la forma:
+<P>
+<BLOCKQUOTE><CODE>
+&lt;<STRONG>SELECT NAME</STRONG>="menu" <STRONG>SIZE</STRONG>=6&gt;
+&lt;<STRONG>OPTION</STRONG>&gt;Espa&ntilde;a<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Francia<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Portugal<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Italia<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Gran Breta&ntilde;a<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Irlanda<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Holanda<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;B&eacute;lgica<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Alemania<BR>
+&lt;<STRONG>OPTION</STRONG>&gt;Suiza<BR>
+</CODE></BLOCKQUOTE>
+
+<P>Y el resultado producido es: 
+<BLOCKQUOTE><FORM METHOD=GET><SELECT NAME="menu" SIZE= 6>
+<OPTION>Espa&ntilde;a
+<OPTION>Francia
+<OPTION>Portugal
+<OPTION>Italia
+<OPTION>Gran Breta&ntilde;a
+<OPTION>Irlanda
+<OPTION>Holanda
+<OPTION>B&eacute;lgica
+<OPTION>Alemania
+<OPTION>Suiza
+</SELECT>
+</FORM></BLOCKQUOTE>
+
+<P>Si se modifica la primera l&iacute;nea con la introducci&oacute;n del atributo MULTIPLE:
+
+<P><BLOCKQUOTE><CODE>
+&lt;<STRONG>SELECT  NAME</STRONG>="menu" <STRONG>SIZE</STRONG>=6 <STRONG>MULTIPLE</STRONG>&gt;
+</CODE></BLOCKQUOTE>
+
+<P>Obtenemos: 
+<BLOCKQUOTE><FORM METHOD=GET><SELECT NAME="menu" SIZE= 6 MULTIPLE>
+<OPTION>Espa&ntilde;a
+<OPTION>Francia
+<OPTION>Portugal
+<OPTION>Italia
+<OPTION>Gran Breta&ntilde;a
+<OPTION>Irlanda
+<OPTION>Holanda
+<OPTION>B&eacute;lgica
+<OPTION>Alemania
+<OPTION>Suiza
+</SELECT>
+</FORM></BLOCKQUOTE>
+<BR>Y podemos seleccionar con el rat&oacute;n m&aacute;s de una opci&oacute;n.
+</UL>
+<P>
+<LI><H3>&lt;TEXTAREA&gt; .... &lt;/TEXTAREA&gt;</H3>
+esta marca permite crear una zona de texto especificando su tama&ntilde;o mediante los valores que se asociar&aacute;m a los atributos <STRONG>ROWS</STRONG> y <STRONG>COLS</STRONG>. 
+<BR>ROWS  indicar&aacute; el n&uacute;mero de l&iacute;neas de la ventana mientras que COLS definir&aacute; el n&uacute;mero de columnas.
+<P>En esta ventana es posible predefinir un texto (entre las marcas &lt;TEXTAREA&gt; y &lt;/TEXTAREA&gt;) que el usuario podr&aacute; reemplazar o completar por su propio texto.
+
+<P>Por ejemplo:
+<BLOCKQUOTE><CODE>
+&lt;<STRONG>TEXTAREA NAME</STRONG>="comentario" <STRONG>ROWS</STRONG>=10 <STRONG>COLS</STRONG>=40&gt;<BR>
+Introduzca aqu&iacute; sus comentarios<BR>
+&lt;<STRONG>/TEXTAREA</STRONG>&gt;
+</CODE></BLOCKQUOTE>
+
+<P>Muestra la siguiente ventana:  
+<BLOCKQUOTE><FORM METHOD=GET>
+<TEXTAREA NAME="comentario" ROWS=10 COLS=40>Introduzca aqui sus comentarios</TEXTAREA>
+</FORM></BLOCKQUOTE>
+<P>¡ATENCI&Oacute;N! El bot&oacute;n de RESET del formulario no borra el texto predefinido, que debe borrarse manualmente.
+</UL>
+<P>
+<HR>
+<H2><IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/icon1.gif" WIDTH=28 HEIGHT=35 ALIGN=BOTTOM><A NAME="EJM">  EJEMPLOS :</A></H2>
+<P>
+Veamos algunos ejemplos de la utilización de formularios. Por ahora nos centratremos en la creación del formulario y no en su proceso por parte de un script CGI, esto se tratará en el capítulo de La programación CGI.
+
+<P> 
+<UL>
+   <LI><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/ejemplo1.htm">Ejemplo1</A></LI>
+   <LI><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/ejemplo2.htm">Ejemplo2</A></LI>
+   <LI><A  HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/imprim2.htm">Ejemplo3</A></LI>
+</UL>
+<BR>
+<BR>
+
+</BODY>
+</HTML>

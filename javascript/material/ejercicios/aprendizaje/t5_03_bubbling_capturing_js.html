@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio11/ejercicio11.html -->
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio</title>
+		<script type="text/javascript">
+            /*
+            Crea una página llamada 03_bubbling_capturing_js.html y prueba el código de los
+            ejemplos anteriores con la imagen que quieras. Define un color de fondo y un padding
+            para el div y para el párrafo, de forma que te ayude a localizarlos mejor en la
+            página y ver donde tienes que hacer clic en cada caso.
+            */
+			'use strict';
+			window.onload = function() {
+                let eventoClick = function(){
+                    alert(this.id);
+                }
+
+				let div =  document.getElementById("div1");
+                let p   = document.getElementById("p1");
+                let img = document.getElementById("img1");
+
+				div.addEventListener("click",eventoClick,true);
+                p.addEventListener("click",eventoClick,true);
+                img.addEventListener("click",eventoClick,true);
+				
+			}
+		</script>
+        <style>
+            #div1 {
+                border:3px solid red;
+            }
+            #p1 {
+                border: 3px solid green;
+            }
+        </style>
+
+	</head>
+	<body>
+		<div id = "div1">
+            <p id = "p1">
+                <img src="./ejercicios_material/minion.jpg" id="img1">
+            </p>
+        </div>
+	</body>
+</html>

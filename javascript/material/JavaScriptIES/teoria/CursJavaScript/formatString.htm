@@ -1,0 +1,339 @@
+<html>
+
+<head>
+
+<title>Los m&eacute;todos de formato</title>
+
+</head>
+
+<body bgcolor="white">
+<center><h2><u><FONT color=dodgerblue 
+face="Arial Black" size=7>Formatos</FONT></u></h2></center>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">1. Creaci&oacute;n de un link</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> enlace = &quot;&lt;&lt; Ir al ancla &gt;&gt;&quot;;
+	enlace = enlace.link(&quot;#referencia&quot;);
+	document.write(enlace);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var enlace = "<< Ir al ancla >>";
+	enlace = enlace.link("#referencia");
+	document.write(enlace);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><u><FONT color=darkblue face="">2. 
+Ristra parpadenate</FONT></u></h3> 
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> parpadea = &quot;&iexcl;&iexcl;Ahora lo vez, ahora no lo vez !!&quot;;
+	parpadea = parpadea.blink();
+	document.write(parpadea);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var parpadea = "¡¡Ahora lo vez, ahora no lo vez !!";
+	parpadea = parpadea.blink();
+	document.write(parpadea);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><u><FONT color=darkblue face="">3. 
+Creaci&oacute;n de un super&iacute;ndice</FONT></u></h3> 
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> superior = &quot;i+j&quot;;
+	<b>var</b> expr = &quot;(a+b)&quot; + superior.sup();
+	document.write(expr);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var superior = "i+j";
+	var expr = "(a+b)" + superior.sup();
+	document.write(expr);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><u><FONT color=darkblue face="">4. 
+Creaci&oacute;n de un sub&iacute;ndice</I></FONT></u></h3> 
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> superior = &quot;i,j&quot;;
+	<b>var</b> expr = &quot;Matriz&quot; + superior.sub();
+	document.write(expr);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var superior = "i,j";
+	var expr = "Matriz" + superior.sub();
+	document.write(expr);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><u><FONT color=darkblue face="">5. 
+Ristra de colores</I></FONT></u></h3> 
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> color = &quot;&iexcl; Qu&eacute; bonito !&quot;;
+	color = color.fontcolor(&quot;#766F6E&quot;);
+	document.write(color);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var color = "¡ Qué bonito !";
+	color = color.fontcolor("#FFF00");
+	document.write(color);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">6. Aumento del tama&ntilde;o</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> grande = &quot;Big&quot;;
+	grande = grande.big();
+	<b>var</b> ristra = &quot;normal &quot; + grande;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var grande = "Big";
+	grande = grande.big();
+	var ristra = "normal " + grande;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">7. Negrita</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> black = &quot;negrita&quot;;
+	black = black.bold();
+	<b>var</b> ristra = &quot;normal &quot; + black;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var black = "negrita";
+	black = black.bold();
+	var ristra = "normal " + black;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">8. Cambiar fuente a tipo 
+m&aacute;quina</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> mac = &quot;tipo m&aacute;quina&quot;;
+	mac = mac.fixed();
+	<b>var</b> ristra = &quot;normal &quot; + mac;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var mac = "tipo máquina";
+	mac = mac.fixed();
+	var ristra = "normal " + mac;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">9. Aumento del tama&ntilde;o con 
+precisi&oacute;n</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> grande = &quot;grande&quot;;
+	grande = grande.fontsize(6);
+	<b>var</b> ristra = &quot;normal &quot; + grande;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var grande = "grande";
+	grande = grande.fontsize(6);
+	var ristra = "normal " + grande;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">10. Cursiva</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> cursiva = &quot;cursiva&quot;;
+	cursiva = cursiva.italics();
+	<b>var</b> ristra = &quot;normal &quot; + cursiva;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var cursiva = "cursiva";
+	cursiva = cursiva.italics();
+	var ristra = "normal " + cursiva;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">11. Letra peque&ntilde;a</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> peque = &quot;peque&ntilde;a&quot;;
+	peque = peque.small();
+	<b>var</b> ristra = &quot;normal &quot; + peque;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var peque = "pequeña";
+	peque = peque.small();
+	var ristra = "normal " + peque;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">12. Letra tachada</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> tacha = &quot;letra tachada&quot;;
+	tacha = tacha.strike();
+	<b>var</b> tacha = &quot;normal &quot; + tacha;
+	document.write(ristra);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var tacha = "letra tachada";
+	tacha = tacha.strike();
+	var ristra = "normal " + tacha;
+	document.write(ristra);
+
+//-->
+</script>
+<p>
+<hr>
+<p>
+<h3><b><u><FONT 
+color=darkblue face="">13. Ancla</FONT></b></h3></U>
+<p>
+<pre><tt>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>var</b> ancla = &quot;Esto es un ancla&quot;;
+	ancla = ancla.anchor(&quot;referencia&quot;);
+	document.write(ancla);
+//--&gt;
+&lt;/script&gt;
+<p></p>
+</pre></TT>
+<script language="JavaScript">
+<!--
+	var ancla = "Esto es un ancla";
+	ancla = ancla.anchor("referencia");
+	document.write(ancla);
+
+//-->
+</script>
+<p>
+<hr></BODY></HTML>

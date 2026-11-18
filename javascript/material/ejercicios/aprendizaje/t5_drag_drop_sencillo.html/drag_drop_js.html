@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Drag & Drop</title>
+    <style>
+        #contenedor        {
+            display: grid;
+            grid-template-rows: auto auto;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        div        {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .receptor        {
+            border: 1px solid black;
+            border-radius: 10px;
+            height: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+
+            let imagenes = document.querySelectorAll(".imagen");
+            let contenedores = document.querySelectorAll(".receptor");
+            let dragstart  = function(event) {
+                    event.dataTransfer.setData("elemento", evento.target.id);
+                };
+            
+            let dragover =  function(event) {evento.preventDefault(); };
+            let drop =  function(event) {
+                event.preventDefault();
+                    let datos = evento.dataTransfer.getData("elemento");
+                    event.target.appendChild(document.getElementById(datos))
+            };
+
+            for (let i =0; i<3; i++){
+                imagenes[i].addEventListener("dragstart",dragstart)
+                contenedores[i].addEventListener("dragover", dragover);
+                contenedores[i].addEventListener("drop",drop);
+            }
+            
+            // control de que las imagenes estén bien colocadas--------------------
+            document.getElementById("check").addEventListener("click",function(){
+                let receptores = document.querySelectorAll(".receptor");
+                let imagenes = document.querySelectorAll(".imagen");
+                for (let i=0; i<receptores.length;i++){
+                    if (receptores[i].id.indexOf(imagenes[i].id) < 0 ) {
+                        alert("las imagenes no están bien colocadas");
+                        break;
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <div>
+            <img id="logoFirefox" class="imagen" src="logo_firefox.jpg" draggable="true">
+        </div>
+        <div>
+            <img id="logoOpera" class="imagen" src="logo_opera.jpg" draggable="true">
+        </div>
+        <div>
+            <img id="logoSafari" class="imagen" src="logo_safari.jpg" draggable="true">
+        </div>
+        <div id="receptor_logoSafari" class="receptor">
+            <p>Safari</p>
+        </div>
+        <div id="receptor_logoFirefox" class="receptor">
+            <p>Firefox</p>
+        </div>
+        <div id="receptor_logoOpera" class="receptor">
+            <p>Opera</p>
+        </div>
+    </div>
+
+    <div>
+        <button id="check">Comprobar</button>
+    </div>
+
+</body>
+</html>

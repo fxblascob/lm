@@ -1,0 +1,68 @@
+* {padding:0;margin:0;} 
+body {padding:10px;}
+header, footer {
+    border: 2px  grey solid;
+    border-radius: 10px;
+    background-color: green;
+    text-align: center;
+    padding: 10px;
+}
+nav, article{
+    border: 2px  grey solid;
+    border-radius: 10px;
+    background-image: linear-gradient(to right,rgb(128, 128, 236), rgb(233, 233, 241));
+    padding: 10px;
+}
+nav {
+    float:left;
+    overflow:auto; /* para que el menú no se salga del contenedor por ser float*/
+}
+nav ul li {
+    list-style: none;
+    border: 2px  grey solid;
+    border-radius: 5px;
+    width:80px;
+    text-align: center;
+}
+nav ul li a {
+    text-decoration: none;
+    color: black;
+    display: block; /* permite que el hipevinculo se vea como una caja*/
+}
+nav ul li a:link {
+    background-color: rgb(203, 203, 247);
+}
+nav ul li a:hover {
+    background-color: rgb(238, 238, 245);
+}
+section {
+    overflow:auto;
+    width:80%;
+}
+article {
+    float:left;
+    height:100px;
+    overflow: auto;
+    width:300px;
+}
+@media screen and (max-width: 800px) {
+    nav {
+        float: none; 
+        width: auto; 
+    }
+    nav ul li {
+        float: left;  /* pone el menú horizontal */
+    }
+    section {
+        margin-left: 0;
+    }
+    article {
+        float: none;
+        width: auto;
+    }
+}
+@media screen and (max-width: 600px) {
+    header  {
+        display: none;
+    }
+}

@@ -1,0 +1,115 @@
+<html>
+
+<head>
+
+<title> Los cookies </title>
+
+<script language="JavaScript">
+<!--
+
+	function GetCookie (name, InCookie) {
+		var prop = name + "="; // propiedad buscada
+		var plen = prop.length;
+		var clen = InCookie.length;
+		var i=0;
+		if (clen>0) { // Cookie no vacío;
+			i = InCookie.indexOf(prop,0); // aparición de la propiedad
+			if (i!=-1) { // propiedad encontrada
+				// Buscamos el valor correspondiente
+				j = InCookie.indexOf(";",i+plen);
+				if(j!=-1) // valor encontrado
+					return unescape(InCookie.substring(i+plen,j));
+				else //el último no lleva ";"
+					return unescape(InCookie.substring(i+plen,clen));
+			}
+			else
+				return "";
+		}
+		else
+			return "";
+	}
+
+	function SetCookie (name, value) {
+		// número de parámetros variable.
+		var argv = SetCookie.arguments;
+		var argc = SetCookie.arguments.length;
+		// asociación de parámetros a los campos cookie.
+		var expires = (argc > 2) ? argv[2] : null;
+		var path = (argc > 3) ? argv[3] : null;
+		var domain = (argc > 4) ? argv[4] : null;
+		var secure = (argc > 5) ? argv[5] : false;
+		// asignación de la propiedad tras la codificación URL
+		document.cookie = name + "=" + escape(value) +
+			((expires==null) ? "" : ("; expires=" + expires.toGMTString())) +
+			((path==null) ? "" : (";path=" + path)) +
+			((domain==null) ? "" : ("; domain=" + domain)) +
+			((secure==true) ? "; secure" : "");
+	}
+
+	function RecordUsernameAndTime (username) {
+		var today = new Date();
+		var expire = new Date("Feb 12, 2001"); // caducidad
+		if (username.value.length>0) {
+			// Asociación de la propiedad username
+			SetCookie("username", username.value, expire);
+			// Asignación de la propiedad lastime
+			SetCookie("lastime", today.getTime(), expire);
+		}
+		else{
+			alert("Tiene que escribir una cadena de caracteres");
+			return false;
+		}
+	}
+	
+	function DeleteUsernameAndTime (username) {
+		var today = new Date();
+		var expire = new Date("Feb 12, 1980"); // fecha pasada
+		// Asignación de la propiedad username
+		SetCookie("username", username, expire);
+		// Asignación de la propiedad lastime
+		SetCookie("lastime", today.getTime(), expire);
+		alert("El cookie " + username + " se ha borrado");
+		return true;
+	}
+
+
+//-->
+</script>
+</head>
+
+<body bgcolor="White">
+<script language="JavaScript">
+<!--
+	// Cookies asociadas al documento actual
+	var InCookie = document.cookie;
+	var msg = " ";
+	// buscamos la propiedad username
+	var username = GetCookie("username",document.cookie);
+	// buscamos la propiedad lastime
+	var last = GetCookie("lastime",document.cookie);
+	if ( username.length != 0) {// Cliente identificado por el Cookie
+		msg += "<h2> ¡¡ Buenos días, " + username + "!! </h2>";
+		// Muestra la fecha del último acceso
+		var lastime = new Date(last);
+		lastime.setTime(last);	// Transforma el formato fecha
+		msg += "último acceso de esta página: " + lastime + "<br>";
+		// Creación del botón de eliminar el cookie
+		msg += "<form onSubmit = 'DeleteUsernameAndTime(username)'>";
+		msg += "<input type='submit' value=' Anulación del cookie '>";
+		msg += "</form><br>";
+	}
+	else{
+		// Primer acceso
+		// Creación de un formulario que permite inicializar el cookie
+		msg += "<h2> Primer acceso, </h2>";
+		msg += "<form onSubmit='RecordUsernameAndTime(username)'>";
+		msg += "<h3>¿su nombre?</h3>";
+		msg += "<input type='text' name='username' size=12 ";
+		msg += "OnChange='if(this.value.length > 0){this.focus();this.select();}else{alert('Insertar una cadena de caracteres');}'>";
+		msg += "<input type='submit' value='Inicializar el cookie'>";
+		msg += "</form><br>";
+	}
+	document.write(msg);
+//-->
+</script>
+</body>

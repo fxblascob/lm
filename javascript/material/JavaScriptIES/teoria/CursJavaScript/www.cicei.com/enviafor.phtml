@@ -1,0 +1,28 @@
+<?
+$super_array[0]="--------------------------------------------------------";
+$super_array[1]="              Solicitud de información                  ";
+$super_array[2]="               desde el Web del CICEI                   ";
+$super_array[3]="--------------------------------------------------------";
+$super_array[4]="Nombre       : $nombre";
+$super_array[5]="Organización : $organizacion";
+$super_array[6]="e-Mail       : $email";
+$super_array[7]="Teléfono     : $telefono";
+$super_array[8]="Fax          : $fax";
+if($guardar == "")
+{
+  $guardar = "No";
+}
+$super_array[9]="Guardar datos: $guardar";
+$super_array[10]=" ";
+$super_array[11]="--------------------------------------------------------";
+$super_array[12]="Asunto : $asunto";
+$super_array[13]="--------------------------------------------------------";
+$super_array[14]="$mensaje";
+$super_array[19]="--------------------------------------------------------";
+
+$estring=implode($super_array, "\n");
+mail("info@cicei.com","Solicitud de información",$estring,"from: $nombre <$email>\nReply-To: $email");
+
+Header("Location: http://www.cicei.com/mensaje.html");?>
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio11/ejercicio11.html -->
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio</title>
+		<script type="text/javascript">
+			/*
+			Crea una página llamada 01_eventos_imagenes_js.html. Coloca en ella tres imágenes
+			centradas, con un tamaño de 100 x 100 píxeles (mediante CSS). Haz que, al pasar
+			el ratón por encima de cualquiera de ellas, se cambie su tamaño a 200 x 200 y se le
+			ponga un borde rojo de 3 píxeles de grosor. Haz que este efecto desaparezca al salir
+			el ratón de la imagen.
+			*/
+			'use strict';
+			window.onload = function() {
+				let entra = function(){
+					this.style.width="200px";
+					this.style.height="200px";
+					this.style.border="3px solid red";
+		
+				};
+				let sal = function(){
+					this.style.width="100px";
+					this.style.height="100px";
+					this.style.border="0px"
+				}
+				
+				let imagenes = document.querySelectorAll('.img');
+
+				for (let i = 0; i< imagenes.length; i++) {
+					imagenes[i].addEventListener("mouseenter",entra);
+					imagenes[i].addEventListener("mouseout",sal);
+				}
+			}
+		</script>
+		<style>
+			.img {
+				width:100px;
+				height: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<img class="img" src="./ejercicios_material/minion.jpg">
+		<img class="img" src="./ejercicios_material/minion2.jpg">
+		<img class="img" src="./ejercicios_material/minion3.jpg">
+	</body>
+</html>

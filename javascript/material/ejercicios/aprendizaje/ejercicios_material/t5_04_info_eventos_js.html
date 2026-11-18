@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title> Información sobre eventos</title>
+
+		<style type="text/css">
+			body {font-family: arial, helvetica;}
+			#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+		</style>
+
+		<script type="text/javascript">
+			'use strict'
+			function muestraInformacion(mensaje) {
+				document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+				for(let i=1; i<mensaje.length; i++) {
+					document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="info"></div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</body>
+</html>

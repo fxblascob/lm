@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>            Herencia y precedencia        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+    <body ondblclick="ocultarMenu()">
+	    <div id="contenedor_general">
+        <div id="contenedor_cabecera">
+          <img src="../imagenes/logo.jpg" width="147" height="92"> 
+          <h1>06 Herencia y precedencia</h1>
+        </div>
+        <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+          <h1>Herencia y precedencia</h1>
+          <h2>Herencia</h2>
+			    <p>Hay propiedades CSS que afectan a los elementos definidos por un selector y también a sus descendientes. Por ejemplo, si se especifica la propiedad <i>color</i> en el <i>body</i>, los elementos que estén dentro de <i>body</i> heredarán dicha propiedad. </p>
+			    <p>Sin embargo, también hay propiedades que no se heredan, como la propiedad <i>border</i>. Para conseguir que se herede dicha propiedad, se debe asignar el valor <i>inherit</i> a la propiedad que queremos que se herede del elemento padre.</p>
+			    <div class="ejercicios">
+                <h3><a href="17_ejercicios.html#ej_08">Ejercicio_CSS 8:</a></h3>
+          </div>
+			    <h2>Especificidad</h2>
+			    <p>En ocasiones, puede ocurrir que se definan dos reglas de estilo para un mismo elemento. Por ejemplo:</p>
+			    <div class="codigo">
+                <pre>
+p#parrafo1 {
+  font-size: 14pt;
+}
+
+p {
+  font-size: 8pt;
+}</pre>
+          </div>
+			    <p>En este caso, se indica que todos los párrafos deben tener tamaño de letra 8, mientras que el párrafo llamado <i>párrafo1</i> debe tener tamaño 14. ¿Qué tamaño se aplicará al final al párrafo llamado <i>párrafo1</i>? Pues se aplicará tamaño 14, ya que esa regla es más concreta que la que se aplica a todos los párrafos en general.</p>
+			    <p>En conclusión, puede decirse que <b>cuanto más concreto es el selector, más valor tiene la regla</b>. Así, el atributo <i>id</i> prevalecerá sobre el atributo <i>class</i>, y éste sobre cualquier selector simple. Además, los selectores simples se aplican por delante de las reglas heredadas.</p>
+		    	<h2>Ubicación</h2>
+			    <p>Las reglas que aparecen en último lugar tienen más peso. Así, las reglas que se aplican localmente al elemento HTML se considera que aparecen después de las definidas en las hojas de estilo interna y externa. A continuación se muestra un ejemplo de esto:</p>
+		    	<div class="codigo">
+                <pre>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Ejemplo de conflictos con CSS&lt;/title&gt;
+	
+    &lt;style type=&quot;text/css&quot;&gt;
+      p {
+        color: blue;
+      }
+      p.grupo {
+        color: green;
+      }
+      p#tercero {
+        color: red;
+      }
+    &lt;/style&gt;
+	
+  &lt;/head&gt;
+	
+  &lt;body&gt;
+    &lt;p&gt;Este párrafo no pertenece a ninguna clase ni lleva
+    ningún identificador. Estará escrito en azul.&lt;/p&gt;
+		
+    &lt;p class=&quot;grupo&quot;&gt;Este párrafo pertenece a la clase
+    &quot;grupo&quot; pero no lleva identificador. Estará escrito
+    en verde.&lt;/p&gt;
+		
+    &lt;p class=&quot;grupo&quot; id=&quot;tercero&quot;&gt;Este párrafo pertenece
+    a la clase &quot;grupo&quot; y tiene el identificador
+    &quot;tercero&quot;. Estará escrito en rojo.&lt;/p&gt;
+		
+    &lt;p style=&quot;color:#999999&quot;&gt;Este párrafo se escribirá
+    en gris, siguiendo el estilo definido localmente.&lt;/p&gt;
+	
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+			</div>
+			    <p>Pincha <a href="ejemplo_herencia.html" target="_blank">aquí</a> para ver el resultado de este ejemplo.</p>
+        </div>
+        <div id="contenedor_pie">
+          <p>Manual de CSS</p>
+        </div>
+	    </div>
+    </body>
+</html>

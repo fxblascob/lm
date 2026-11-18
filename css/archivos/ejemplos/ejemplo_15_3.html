@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+body 
+{margin:0;padding:0;
+background-image:url('w3css.gif');
+background-repeat:no-repeat;
+background-attachment:fixed;
+}
+P{color:red;
+}
+
+p:first-letter {
+  font-size: 2em;
+}
+p#parrafo0{color:green;font-size: 14pt;border:4px solid black;margin-bottom:10px;}
+p#parrafo1{color:green;font-size: 14pt;border:4px solid black;margin-top:20px;}
+
+.pares{color:orange;}
+
+p.pares:first-letter {
+  font-size: 3em;color:navy;
+}
+
+#div1 p{color:yellow;}
+#div1 p+p+p {
+  border-color: green; 
+  border-width: 2px;
+  border-style: solid;
+}
+</style>
+</head>
+
+<body>
+<p id="parrafo0">The background-image is fixed. Try to scroll down the page.</p>
+<p id="parrafo1" class="pares">The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p class="pares">The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p class="pares">The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p class="pares">The background-image is fixed. Try to scroll down the page.</p>
+<div id="div1">
+	<p>The background-image is fixed. Try to scroll down the page.</p>
+	<p>The background-image is fixed. Try to scroll down the page.</p>
+	<p>The background-image is fixed. Try to scroll down the page.</p>
+	<p>The background-image is fixed. Try to scroll down the page.</p>
+</div>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>The background-image is fixed. Try to scroll down the page.</p>
+<p>If you do not see any scrollbars, try to resize the browser window.</p>
+</body>
+
+</html>

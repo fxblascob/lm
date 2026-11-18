@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 2.2 - Arrays simples</title>
+        <script type="text/javascript">
+            /*
+            Crea una página llamada 02_calcular_precio_js.html que defina una función llamada
+            calcularPrecio con 3 parámetros: el nombre de un producto, su precio y su porcentaje
+            de IVA.
+            • Los tres parámetros deberán tener un valor por defecto: “Producto genérico”, 100 y 21.
+            • Internamente, se debe convertir el nombre del producto a string y los otros  dos datos a números
+            • Si el precio o el porcentaje no son numéricos, se mostrará por consola el mensaje de “Datos incorrectos”
+            • Si son válidos, mostraremos por consola el nombre del producto y el precio final  incluyendo el IVA
+            • Llama a la función varias veces con varios datos de prueba para comprobar su funcionamiento
+            */
+            'use strict';
+
+            //declaración de la función--------------------------------------------------
+            function calcularPrecio(nombre="producto genérico",precio=100,iva=21){
+                nombre = String(nombre);
+                precio = parseFloat(precio);
+                iva = parseFloat(iva);
+                if (isNaN(precio) || isNaN(iva)) 
+                    console.log("Datos incorrectos");
+                else{
+                    console.log("el producto:"+nombre + " Tine un precio con el iva incluido de: " + (precio+precio*iva/100) + "€ ");
+                }
+            }
+            //toma de datos y llamada a la función------------------------------------
+            let nombre = prompt("Nombre del producto");
+            let precio = prompt("precio");
+            let iva = prompt("iva");
+            calcularPrecio(nombre,precio,iva);
+        </script>
+    </head>
+    <body>
+        <p>Paso de parámetros a una función con valor por defecto</p>
+        
+    </body>
+</html>

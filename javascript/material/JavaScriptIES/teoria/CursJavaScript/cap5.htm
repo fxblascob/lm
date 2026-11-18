@@ -1,0 +1,341 @@
+<html>
+
+<head>
+
+<title> Las funciones </title>
+
+<SCRIPT language="JavaScript">
+<!--
+
+	function calcula(obj){
+		obj.result.value = eval(obj.expr.value)
+	}
+	
+	function Comprueba(form){
+		var number = parseFloat(form.valor.value);
+		if (isNaN(number)==true)
+			alert("No es numérico");
+		else
+			form.valor.value = number;
+			alert("Es numérico");
+	}
+		 
+//-->
+</SCRIPT>
+</head>
+
+<body bgcolor="white">
+
+<a name="funciones"></a>
+<font size=7 color="#006400"><b><center><FONT color=mediumblue face=Tahoma>Cap&iacute;tulo 
+5:</FONT><U> <p><FONT color=royalblue face="Arial Black" size=6>Las 
+funciones</FONT></center></U></b></font>
+
+<p>
+<a name="definicion"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>5.1. Definici&oacute;n de 
+funciones.</FONT></U></b></h2>
+<p>
+La instrucci&oacute;n <b> function 
+ </b>permite la definici&oacute;n de funciones. Despu&eacute;s de esta palabra 
+reservada se coloca el nombre de la funci&oacute;n seguido de una lista de 
+argumentos delimitados por par&eacute;ntesis y separados por comas. 
+<p>
+<blockquote><TT><pre>
+<b>function</b> nombre (param1, param2,..., param<I>n</I>){
+	instrucciones en JavaScript;
+} 
+</TT></PRE></blockquote><PRE></PRE>
+<p>
+<a name="return"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>5.2. La sentencia <I>return</I>.</FONT></U></b></h2>
+<p>
+La sentencia <b>return</b> es la 
+que permite devolver el resultado de una funci&oacute;n. En el ejemplo que se 
+ver&aacute; a continuaci&oacute;n, se muestra una funci&oacute;n que devuelve el 
+&aacute;rea de un cuadrado de lado <I>l</I>.
+<p>
+<blockquote><TT><pre>
+<b>function</b> Area(lado){
+	<b>return</b> lado*lado;
+} 
+</TT></PRE></blockquote><PRE></PRE>
+<p>
+<a name="propiedades"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>5.3. Propiedades de las 
+funciones.</FONT></U></b></h2>
+<p>
+JavaScript asocia a cada funci&oacute;n dos propiedades: <I>arguments</I> y <I>caller</I>. 
+Estas propiedades permiten respectivamente la gesti&oacute;n de los 
+par&aacute;metros opcionales y la identificac&iacute;&oacute;n de la 
+funci&oacute;n que llama.
+<p>
+<blockquote><h3><b> 5.3.1. La propiedad <I>caller</I>. </b></h3>
+<p>
+Muestra el nombre de la funci&oacute;n que llama, 
+    por lo tanto, esta propiedad devolver&aacute; una cadena de caracteres.
+<p>
+<h3><b> 5.3.2. La propiedad <I>arguments</I>. </b></h3>
+<p>
+Es un array que contiene los par&aacute;metros que 
+    le son pasados a la funci&oacute;n. Por ejemplo, la funci&oacute;n <I>suma</I> definida como:
+<p>
+<blockquote><TT><pre>
+<b>function</b> Suma(x){
+	<b>var</b> sumandos = suma.arguments;
+	<b>var</b> num_op = suma.arguments.length;
+	<b>var</b> resultado = 0;
+	<b>for</b> (<b>var</b> i=0; i&lt;num_op; i++)
+		resultado += sumandos[i];
+	<b>return</b> resultado;
+} 
+</TT></PRE></blockquote><PRE></PRE>
+<p>
+Vemos como esta funci&oacute;n permite calcular la 
+    suma de los n&uacute;meros pasados como argumentos. As&iacute;, Suma(4,5,7) 
+    devuelve 16 y Suma(56) devuelve 56.</p>
+</blockquote>
+<p>
+<a name="consideraciones"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>5.4. Consideraciones a tener en 
+cuenta.</FONT></U></b></h2>
+<p>
+Antes de empezar a trabajar con funciones es necesario 
+tener en cuenta los siguientes puntos:
+<blockquote>
+<ul>
+
+<li>
+El lenguaje JavaScript no permite las 
+        definiciones anidadas de funciones.
+
+<li>
+El paso de par&aacute;metros se realiza por 
+        valor. Es decir, si una funci&oacute;n modifica el contenido de sus 
+        argumentos, esta modificaci&oacute;n es local y no repercute ni 
+        globalmente ni a la funci&oacute;n que llama.</li>
+
+</ul>
+</blockquote>
+<p>
+<a name="predefinidas"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>5.5. Las funciones predefinidas por el 
+lenguaje.</FONT></U></b></h2>
+<p>
+<blockquote>
+<a name="eval"></a>
+<h3><b> 5.5.1. La funci&oacute;n <I>eval</I>. </b></h3>
+<p>
+La funci&oacute;n eval tiene como argumento una 
+    expresi&oacute;n y devuelve el valor de la misma. Esta funci&oacute;n 
+    resulta &uacute;til para evaluar una cadena de caracteres que representa una 
+    expresi&oacute;n num&eacute;rica. La edici&oacute;n efectuada mediante un 
+    campo de formulario es una cadena de caracteres que a veces es necesario 
+    convertir en valor num&eacute;rico. El c&oacute;digo siguiente ilustra este 
+    ejemplo permitiendo al usuario introducir una expreci&oacute;n 
+    num&eacute;rica y visualiza a continuaci&oacute;n el valor de la 
+    expresi&oacute;n.
+<blockquote><TT><pre>&lt;SCRIPT&gt;
+<b>function</b> calcula(obj){
+	obj.result.value = eval(obj.expr.value)
+} 
+&lt;/SCRIPT&gt;
+
+&lt;FORM NAME=&quot;evalua&quot;&gt;
+Introducir expresi&oacute;n: 
+	&lt;INPUT TYPE=&quot;text&quot; NAME=&quot;expr&quot; SIZE=20&gt;
+&lt;br&gt;
+Resultado: 
+	&lt;INPUT TYPE=&quot;text&quot; NAME=&quot;result&quot; SIZE=20&gt;
+&lt;br&gt;
+&lt;INPUT TYPE=&quot;button&quot; VALUE=&quot;evalua&quot; 
+		onClick=&quot;calcula(this.form)&quot;&gt;
+&lt;/FORM&gt;
+</TT></PRE></blockquote><PRE></PRE>
+<p>
+<form name="evalua">
+Introducir expresi&oacute;n:
+	<input name="expr" >
+<br>
+Resultado:
+	<input name="result" >
+<br>
+<input type="button" value=" Evalua " onClick="calcula(this.form)"> 
+    
+</form>
+<p>
+<h3><b> 5.5.2. Las funciones <I>escape y unescape</I>. </b></h3>
+<p>
+Estas dos funciones permiten codificar cadenas de 
+    caracteres en formato URL. Esta codificaci&oacute;n es necesaria en la 
+    creaci&oacute;n autom&aacute;tica de enlaces de hipertexto o en la 
+    definici&oacute;n de propiedades persistentes como los <I>Cookies</I>. Ejemplo:
+<p>
+<blockquote><TT><pre>
+escape(&quot;#&quot;); // devuelve %23
+unescape(&quot;%23&quot;); // devuelve #
+</TT></PRE></blockquote></h3><PRE></PRE>
+<p>
+<u><h3><b><FONT color=darkblue 
+    face="">Ejemplo</FONT></b></h3></u>
+<blockquote><tt><pre>&lt;form&gt;
+Introducir car&aacute;cter en formato URL o normal:
+	&lt;input type=&quot;text&quot; name=&quot;char&quot; size=5&gt;
+&lt;br&gt;
+&lt;INPUT type=&quot;radio&quot; name=&quot;codificacion&quot; value=&quot;normal&quot; 
+		onClick=&quot;this.form.char.value=escape(this.form.char.value)&quot;&gt;
+		formato est&aacute;ndar a URL&lt;br&gt;
+&lt;INPUT type=&quot;radio&quot; name=&quot;codificacion&quot; value=&quot;URL&quot;
+		onClick=&quot;this.form.char.value=unescape(this.form.char.value)&quot;&gt;
+		formato URL a est&aacute;ndar&lt;br&gt;
+&lt;/form&gt;</pre>
+</blockquote></TT><PRE></PRE>
+<form>
+Introducir car&aacute;cter en formato URL o 
+    normal:
+	<input name="char" size=5 >
+<br>
+<INPUT type="radio" name="codificacion" value="normal" 
+		onClick="this.form.char.value=escape(this.form.char.value)"> formato est&aacute;ndar a URL<br>
+<INPUT type="radio" name="codificacion" value="URL"
+		 onClick="this.form.char.value=unescape(this.form.char.value)"> formato URL a est&aacute;ndar<br>
+</form>
+<p>
+<h3><b> 5.5.3. La funci&oacute;n <I>isNaN</I>. </b></h3>
+<p>
+Funci&oacute;n que comprueba si el valor pasado por 
+    par&aacute;metros es n&uacute;merico o no. El resultado de esta 
+    funci&oacute;n es un booleano. Es decir, eval&uacute;a un argumento para ver 
+    si es NaN: <i>Not Number</i>.
+<p>
+<h3><blockquote><TT><pre>
+isNaN(valor de entrada)
+</TT></PRE></blockquote></h3><PRE></PRE>
+<p>
+<b><u><h3><FONT color=darkblue 
+    face="">Ejemplo</FONT></h3></u></b>
+<p>
+<blockquote><tt><pre>&lt;SCRIPT&gt;
+	<b>function</b> Comprueba(form){
+		<b>var</b> number = parseFloat(form.valor.value);
+		<b>if</b> (isNaN(number)==<b>true</b>)
+			alert(&quot;No es num&eacute;rico&quot;);
+		<b>else</b>
+			form.valor.value = number;
+			alert(&quot;Es num&eacute;rico&quot;);
+	}
+&lt;/SCRIPT&gt;
+
+<b>...</b>
+
+&lt;form&gt;
+Introducir un valor num&eacute;rico:
+	&lt;input type=&quot;text&quot; name=&quot;valor&quot;&gt;
+&lt;br&gt;
+&lt;input type=&quot;button&quot; value=&quot; Comprobar &quot; onClick=&quot;Comprueba(this.form)&quot;&gt;
+&lt;/form&gt;</pre>
+</blockquote></TT><PRE></PRE>
+<form>
+Introducir un valor num&eacute;rico:
+	<input name="valor" >
+<br>
+<input type="button" value=" Comprobar " onClick="Comprueba(this.form)"> 
+    
+</form>
+<p>
+<h3><b> 5.5.4. Las funci&oacute;n <I>parseFloat</I>. </b></h3>
+<p>
+Convierte una string a un n&uacute;mero en punto 
+    flotante. Si se encuentra otros caracteres que no sean n&uacute;meros, el 
+    signo '+', el '-' o un exponente, devuelve el valor encontrado hasta ese 
+    punto. Del mismo modo, si el primer caracter no se puede convertir a 
+    n&uacute;mero devolver&aacute; cero.
+<p>
+<h3><blockquote><TT><pre>
+parseFloat(cadena de caracteres)
+</TT></PRE></blockquote></h3><PRE></PRE>
+<p>
+<h3><u><b><FONT color=darkblue face="">Ejemplo</FONT></b></u></h3>
+<p>
+<blockquote><tt><pre>&lt;form&gt;
+Convierte a real:
+	&lt;input type=&quot;text&quot; name=&quot;float&quot;&gt;
+&lt;br&gt;
+&lt;input type=&quot;button&quot; value=&quot; Convierte &quot; 
+	onClick=&quot;this.form.float.value=parseFloat(this.form.float.value)&quot;&gt;
+&lt;/form&gt;</pre>
+</blockquote></TT><PRE></PRE>
+<form>
+Convierte a real:
+	<input name="float" >
+<br>
+<input type="button" value=" Convierte " 
+	onClick="this.form.float.value=parseFloat(this.form.float.value)"> 
+    
+</form>
+<p>
+<h3><b> 5.5.5. Las funci&oacute;n <I>parseInt</I>. </b></h3>
+<p>
+Convierte una cadena de caracteres de entrada a un 
+    n&uacute;mero entero con una base especificada. La base puede ser 8, 10 
+    &oacute; 16. Si se encuentra otros caracteres que no sean n&uacute;meros, el 
+    signo '+', el '-' o un exponente, devuelve el valor encontrado hasta ese 
+    punto. Del mismo modo, si el primer caracter no se puede convertir a 
+    n&uacute;mero devolver&aacute; cero.
+<p>
+<h3><blockquote><TT><pre>
+//base es opcional.
+parseInt(ristra,base) 
+</TT></PRE></blockquote></h3><PRE></PRE>
+<p>
+<u><h3><b><FONT color=darkblue 
+    face="">Ejemplo</FONT></b></h3></u>
+<p>
+<blockquote><tt><pre>
+Introducir entero:
+	&lt;input type=&quot;text&quot; name=&quot;int&quot;&gt;
+&lt;br&gt;
+&lt;INPUT type=&quot;radio&quot; name=&quot;conversion&quot; value=&quot;decimal&quot; 
+		onClick=&quot;this.form.int.value=parseInt(this.form.int.value, 10)&quot;&gt;
+		Expresar entero en decimal&lt;br&gt;
+&lt;INPUT type=&quot;radio&quot; name=&quot;conversion&quot; value=&quot;hexadecimal&quot;
+		onClick=&quot;this.form.int.value=parseInt(this.form.int.value, 16)&quot;&gt;
+		Expresar entero en hexadecimal&lt;br&gt;
+&lt;INPUT type=&quot;radio&quot; name=&quot;conversion&quot; value=&quot;octal&quot;
+		onClick=&quot;this.form.int.value=parseInt(this.form.int.value, 8)&quot;&gt;
+		Expresar entero en octal&lt;br&gt;
+&lt;/form&gt;</pre>
+</blockquote></TT><PRE></PRE>
+<form>
+Introducir entero:
+	<input name="int" >
+<br>
+<INPUT type="radio" name="conversion" value="decimal" 
+		onClick="this.form.int.value=parseInt(this.form.int.value, 10)"> Expresar entero en decimal<br>
+<INPUT type="radio" name="conversion" value="hexadecimal"
+		 onClick="this.form.int.value=parseInt(this.form.int.value, 16)"> Expresar entero en hexadecimal<br>
+<INPUT type="radio" name="conversion" value="octal"
+		 onClick="this.form.int.value=parseInt(this.form.int.value, 8)"> Expresar entero en octal<br>
+</form>
+</blockquote>
+<p>
+
+<a href="../../../javascript/teoria/cursjavascript/index.htm"><img src="../../../javascript/teoria/cursjavascript/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap5.htm#funciones"><img src="../../../javascript/teoria/cursjavascript/Bup.gif" border=0 alt="Las funciones" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap6.htm"><img src="../../../javascript/teoria/cursjavascript/Bnext.gif" border=0 alt="La gestión de eventos" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap4.html"><img src="../../../javascript/teoria/cursjavascript/Bant.gif" border=0 alt="Estructuras de control" align="right" width="19" height="19"></a></p>
+
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,120 @@
+<HTML>
+<HEAD>
+<TITLE>TUTORIAL CGI</TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13>
+<CENTER><H1><FONT  COLOR=#800000>LAS TABLAS</FONT></H1></CENTER><P>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13><BR>
+<P>
+	HTML 3 permite realizar tablas con regulación de la alineaci&oacute;n, el tamaño y el espaciado de las celdas.<P>
+	Una celda puede contener los elementos siguientes:
+<UL>
+<LI>texto
+<LI>listas
+<LI>im&aacute;genes
+<LI>enlaces de hipertexto
+<LI>elementos de formulario
+</UL>
+	La reprensentaci&oacute;n de la tabla depende del <I>browser </I>utilizado.
+Una tabla se define entre las marcas &lt;TABLE&GT; y  &lt; /TABLE&GT; T iene como atributos:
+<UL>
+<LI>BORDER que define el grosor del marco exterior
+<LI>CELLPADDING que define el espacio alrededor del texto de una celda
+<LI>CELLSPACING que define el espacio entre celdas
+<LI>WIDTH que define la anchura de la tabla relativa a la anchura de la ventana del <I>browser </I>
+</UL>
+<P>
+
+Por ejemplo, &lt;table border=12 cellspacing=4 cellpadding=8 &gt;<P>
+
+<CENTER><table border=6 cellspacing=2 cellpadding=8 >
+<caption align="bottom">
+<b>Producto</b>
+<TR align="center">
+<TD>*</TD>
+<TD>2</TD>
+<TD>4</TD>
+</TR>
+<TR align="center">
+<TD>3</TD>
+<TD>6</TD>
+<TD>12</TD>
+</TR>
+<TR align="center">
+<TD>6</TD>
+<TD>12</TD>
+<TD>24</TD>
+</TR>
+</table></CENTER>
+<P>
+	
+La tabla se describe l&iacute;nea tras l&iacute;nea. La marca &lt;TR&GT; inicia una l&iacute;nea de la tabla que terminar&aacute; con &lt;/TR&GT; y que admite los atributos  de alineaci&oacute;n del texto en el interior de todas las celdas de la l&iacute;nea:
+<UL>
+<LI>VALIGN alineaci&oacute;n vetical que puede tomar los valores:
+<UL>
+<LI>TOP coloca el texto en la parte superior de la celda
+<LI>BOTTOM coloca el texto en la parte inferior de la celda
+<LI>MIDDLE coloca el texto en el centro de la celda
+</UL>
+<LI>ALIGN alineaci&oacute;n horizontal que puede tomar los valores: 
+<UL>
+<LI>RIGHT coloca el texto a la derecha de la celda
+<LI>LEFT coloca el texto a la izquierda de la celda
+<LI>CENTER centra el texto en la celda
+</UL>
+</UL>
+	La marca <STRONG>&lt;TD&GT;</STRONG> es el elemento de inicio de una columna. Puede completarse con los atributos <STRONG>VALING</STRONG> y <STRONG>ALIGN</STRONG> que serán entonces prioritarios sobre los mismos valores definidos en la marca <STRONG>&lt;TR&gt;</STRONG>.<P>
+Sus atributos son:<BR>
+<UL>
+<LI><STRONG>COLSPAN</STRONG> para definir una celda cuya anchura es un múltiplo de la columna básica;
+<LI><STRONG>ROWSPAN</STRONG> para definir una celda cuya altura es un múltiplo de la línea;
+</UL>
+
+Un ejemplo de la utilización de estos atributos es:<P>
+
+&lt;TR align="center"&gt;&lt;TD&gt;&lt;/TD&gt;&lt;TD&gt;&lt;/TD&gt;&lt;TD&gt;A&lt;/TD&gt;&lt;TD&gt;B&lt;/TD>&lt;TD&gt;C&lt;/TD&gt;&lt;/TR&gt;<BR>
+
+&lt;TR align="center"&gt;
+&lt;TD rowspan=2 colspan=2&gt;Z&lt;/TD&gt;
+&lt;TD&gt;D&lt;/TD&gt;
+&lt;TD&gt;E&lt;/TD&gt;
+&lt;TD&gt;F&lt;/TD&gt;
+&lt;/TR&gt;<BR>
+
+&lt;TR align="center"&gt;
+&lt;TD&gt;G&lt;/TD&gt;
+&lt;TD&gt;H&lt;/TD&gt;
+&lt;TD&gt;I&lt;/TD&gt;
+&lt;/TR&gt;<P>
+
+
+<CENTER><table border=6 cellspacing=2 cellpadding=10 >
+<TR align="center">
+<TD></TD>
+<TD></TD>
+<TD>A</TD>
+<TD>B</TD>
+<TD>C</TD>
+</TR>
+<TR align="center">
+<TD rowspan=2 colspan=2>Z</TD>
+<TD>D</TD>
+<TD>E</TD>
+<TD>F</TD>
+</TR>
+<TR align="center">
+<TD>G</TD>
+<TD>H</TD>
+<TD>I</TD>
+</TR>
+</table></CENTER>
+<P>
+En las tablas el ajuste del tamaño de las celdas es automático, la anchura de una celda depende del texto más largo inscrito en una de las celdas de la columna.<BR>
+De modo predeterminado, si la línea es demasiado larga (&gt;64 caracteres), el <I>browser</I> la cortará en varias líneas.<BR>
+El atributo <STRONG>NOWRAP</STRONG> de la marca &lt;<STRONG>TD</STRONG>&gt; obliga al <I>browser</I> a inscribir todo el texto de la celda en una sola línea.<BR>
+La marca &lt;<STRONG>TH</STRONG>&gt; es idéntica a &lt;<STRONG>TD</STRONG>&gt; pero el texto de las celdas se considera como texto de cabecera. Este texto se centra automáticamente y se pone en negrita. Esta marca admite los mismos parámetros que la marca &lt;<STRONG>TD</STRONG>&gt; (<STRONG>valign, align, colspan, rowspan, nowrap</STRONG>).<BR>
+Una tabla puede tener un título definido entre las marcas &lt;<STRONG>CAPTION</STRONG>&gt; y &lt;<STRONG>/CAPTION</STRONG>&gt;. Este título puede situarse bien encima utilizando el atributo <STRONG>ALIGN</STRONG> con el valor <STRONG>TOP</STRONG>, o debajo utilizando <STRONG>ALIGN</STRONG> con el valor <STRONG>BOTTOM</STRONG>.
+</BODY>
+</HTML>

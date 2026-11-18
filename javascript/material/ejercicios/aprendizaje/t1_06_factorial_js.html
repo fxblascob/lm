@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang = "es">
+<head>
+	<meta charset="UTF-8">
+	<script>
+		'use strict';
+		let numero = prompt("Introduce un número y se mostrará su factorial"); 
+		let resultado = 1;
+		for(let i=1; i<=numero; i++) {
+			resultado *= i;
+		} 
+		alert("Resultado con for: "+resultado);
+		resultado = 1
+		let i = 1;
+		while (i<=numero) {
+			resultado *= i;
+			i++;
+		}
+		alert("Resultado con while: "+resultado);
+		resultado = 1
+		i = 1;
+		do {
+			resultado *= i
+			i++;
+		}while (i<=numero);
+		alert("Resultado con do while: "+resultado);
+		</script>
+	</script>
+</head>
+</body>
+</html>

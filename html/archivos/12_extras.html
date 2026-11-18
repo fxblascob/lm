@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="es">
+    <head>
+        <title>
+            Extras
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+		<script src="../../codigos.js"></script>
+    </head>
+    <body ondblclick="ocultarMenu()">
+		<div id="contenedor_general">
+			<div id="contenedor_cabecera">
+				<img src="../imagenes/logo.jpg" width="147" height="92"> 
+				<h1>12 Extras</h1>
+			</div>
+			
+			<!--Índice del tema -->
+		
+			<iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+			<!--Cuerpo de la página -->
+			<div id="contenedor_cuerpo">
+			
+				<h1>Extras</h1>
+				
+				<h2>Icono en la barra de navegación del explorador</h2>
+				
+				<p>Para añadir un icono que se muestre en la barra de navegación del navegador, se utiliza la siguiente etiqueta, que deberá incluirse en la <b>cabecera</b> de la página web:</p>
+				
+				<div class="codigo">
+	<b>&lt;link rel=&quot;shortcut icon&quot; href=&quot;</b><i>nombre_icono.ico</i><b>&quot;&gt;</b>
+				</div>
+				
+				<p>Hay que sustituir <i>nombre_icono.ico</i> por la ruta al archivo que contenga el icono que se pretenda incorporar. Este archivo deberá tener la <b>extensión <i>.ico</i></b>.
+				Normalmente un archivo de 12x12 o 60x60.			
+				Puedes encontrar un enlace a una web con gran variedad de iconos para descargar en la sección de bibliografía.</p>
+				
+				<p>El aspecto de la barra de navegación será el siguiente:</p>
+				
+				<div class="imagenes">
+					<img src="../imagenes/icono_barra.png" alt="Icono en barra de navegación">
+				</div>
+				
+				<p>En los sitios web únicamente es necesario incorporar esa etiqueta a la <b>página principal</b> del sitio para que se muestre en todas las demás.</p>
+				
+				<div class="ejercicios">
+					<h2><a href="16_ejercicios.html#ej_23">Ejercicio 23:</a></h2>
+				</div>
+				
+				<h2>Redirección automática a otra página</h2>
+				
+				<p>Para que una página se redirija automáticamente a otra, hay que introducir la siguiente etiqueta en la <b>cabecera</b> del documento HTML:</p>
+				
+				<div class="codigo">
+	<b>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;</b><i>numero_de_segundos</i><b>;url=</b><i>web_de_destino</i><b>&quot;&gt;</b>
+				</div>
+				
+				<p>Hay que sustituir <i>numero_de_segundos</i> por el número de segundos que tardará en producirse la redirección (si se pone el valor 0, la redirección se producirá en cuanto se cargue la página) y <i>web_de_destino</i> por la dirección web que se cargará cuando se agote el tiempo. </p>
+				
+				<div class="ejercicios">
+					<h2><a href="16_ejercicios.html#ej_24">Ejercicio 24:</a></h2>
+				</div>
+				
+			
+					
+		
+			<h2>Objetos Multimedia</h2>
+			<p>Actualmente la idea de muchos creadores es ir retirando Flash y aprovechar las nuevas capacidades de HTML 5 para la multimedia.</p>
+			<p><b>Problema Multimedia</b></p>
+			<p>El problema es que hay numerosos formatos de video y audio y que cada navegador tiene capacidades distintas al respecto.  
+	Por ello muchos usuarios conocedores de estos problemas saben que en los ordenadores hay que instalar plugins (extensiones) para poder ver videos u oir música.
+	El navegador buscará si disponemos del plugin apropiado para ver el vídeo, si no es así simplemente lo descargará en nuestro ordenador al no poder mostrar el contenido. 
+	</p>
+			<h3>&lt;video&gt; y &lt;audio&gt;</h3>
+			
+			<p>Atributos:</p>
+	<ul>
+	<li><b>src</b>: URL del vídeo a reproducir</li>
+	<li><b>poster</b>: para visualizar una imagen mientras no está disponible el vídeo</li>
+	<li><b>autoplay</b>: booleano que indica la reproducción automática del vídeo</li>
+	<li><b>loop</b>: booleano que indica la repetición automática del vídeo</li>
+	<li><b>controls</b>: booleano que indica al navegador que incorpore controles de usuario</li>
+	</ul>
+	<p>Los formatos de video a utilizar más habituales son: ogg, mp4, matroska (mkv,mka,mks)
+	y audio ogg, mp3, etc.</p>
+			
+			<p>
+			<b>Codecs. Elemento source</b><br/>
+	Se denomina codec (de codificar, decodificar), al software que se usa para crear los videos. Un video actual usa un formato comprimido de datos, por lo que para crearlos se codifican los datos y para mostrarlo, se decodifica. 
+	Eso significa que para ver un video en un formato concreto, se necesita el codec apropiado. Para más inri, cada navegador incorpora unos codecs. HTML 5 ha conseguido subsanar la situación, mediante la etiqueta <b>source</b>. 
+	La idea es que el video se codifica en varios formatos distintos y luego les hacemos referencia dentro de la etiqueta video y el navegador usará el formato que sea capaz de traducir (del que disponga de codecs). 
+	El elemento <b>source</b> fundamentalmente dispone de dos atributos: <b>src</b> para indicar la URL que nos lleva al video y <b>type</b> que indica el tipo MIME del video. Además dentro del tipo MIME se pueden indicar los 
+	codecs concretos que necesitamos para decodificar el video. 
+	<br/>La idea es la siguiente: 
+
+	<div class="codigo">
+<pre>
+&lt;video autoplay="autoplay" controls="controls" poster="foto1.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4;codecs='avc1.42E01E, mp40a.40.2' " /&gt;
+    &lt;source src="video.ogv" type="video/ogg;codecs='theora, vorbis' " /&gt;
+    El navegador no puede mostrar el vídeo
+&lt;/video> 
+</pre>
+	</div>
+	Dentro de type, el uso de codecs es opcional, ya que si el navegador no reconoce el formato no suele hacer caso a los codecs que se indiquen (aunque a veces les descarga). 
+	La idea es que si el primer formato no se reconoce (primer elemento source), se intenta el segundo y así sucesivamente. Si ninguno es reproducible por el navegador actual, 
+	éste mostrará la frase final tras el último source. 
+			</p>
+			
+			<div class="codigo">
+		<pre>&lt;video autoplay="autoplay" controls="controls"&gt;
+	&lt;source src="video.mp4" type="video/mp4"/&gt;
+	El navegador no puede mostrar el vídeo
+&lt;/video&gt;</pre>
+			</div>
+			<p>Así se verá: </p>
+			<video autoplay="autoplay" controls="controls">
+				<source src="../imagenes/video.mp4" type="video/mp4"/>
+				El navegador no puede mostrar el vídeo
+			</video>
+			<br/>
+			<br/>
+				<div class="codigo">
+		<pre>&lt;audio controls="controls"&gt;
+	&lt;source src="audio.ogg" type="audio/ogg"&gt;
+	&lt;source src="audio.mp3" type="audio/mpeg"&gt;
+	El navegador no puede mostrar el audio
+&lt;/audio&gt; 
+		</pre>
+		</div>
+		<br/>
+		<p>Así se verá: </p>
+		 <audio controls="controls">
+			<source src="../imagenes/audio.ogg" type="audio/ogg">
+			<source src="../imagenes/audio.mp3" type="audio/mpeg">
+			El navegador no puede mostrar el audio
+		</audio> 
+		<br/> <br/>
+		<h3>&lt;object&gt;</h3>
+		<p>Inserta un objeto en el documento y permite incorporar cualquier tipo de contenido a una página web. El tipo de objeto viene determinado por sus 
+		   atributos y puede ser una imagen,  un applet de java, un vídeo, una animación flash, otro documento HTML (aunque se puede hacer con iframe), etc..
+		   </p>
+		<p><b><u>Atributos</u></b></p>
+		<ul>
+		  <li><b>data:</b>Indica la URI donde están los datos del objeto.</li>
+		  <li><b>type:</b>Indica el tipo de datos especificados en data. La sintaxis es: type="categoria/formato". Ejemplo: audio/basic, audio/mpp3, video/mpeg, video/quicktime, application/x-shockwave-flash, etc.</li>
+		  <li><b>archive:</b>Es una lista de URIs (separada por espacios) donde hay archiivos útiles para el objeto.</li>
+		  <li><b>standby:</b>Es un texto que presenta el navegador durante la carga de los datos.</li>
+		  <li><b>height, width:</b> alto y ancho del objeto</li>
+		  <li><b>name:</b>Nombre para designar el elemento</li>
+		 </ul> 
+		  
+		  
+		  
+		 <h3>&lt;param&gt;</h3>
+		<p>Sirve para inicializar variables de objetos que serán utilizadas en tiempo de ejecución. No tiene etiqueta de cierre.
+		Elemento interior a object, que permite especificar parámetros a los plugins de los navegadores encargados de mostrar el objeto. A través de param pasamos instrucciones al plugin que reproduzca el objeto. 
+		La forma es mediante los atributos name (en el que se indica el nombre del atributo) y value (valor del atributo)</p>
+		<p><b><u>Atributos</u></b></p>
+		<ul>
+		  <li><b>name:</b>Indica el nombre de un parámetro de ejecución. </li>
+		  <li><b>value:</b>Indica el valor inicial del parámetro especificado en name.</li>
+		  <li><b>valuetype:</b>Indica el tipo del atributo value (data|ref|object). </li>
+		  <li><b>standby:</b>Es un texto que presenta el navegador durante la carga de los datos.</li>
+		  <li><b>type:</b>Indica el tipo del recurso cuando valuetype="ref".</li>
+		 </ul> 
+		  
+		 <p><b><u>Sintaxis</u></b></p>
+		 <p><b>&lt;param  name="nombre de parámetro" value="valor de parámetro"&gt;</b>
+		 
+		 <p>La lista de parámetros depende del tipo de objeto, algunos son: FileName para el nombre del archivo, quality para la calidad de imagen, wmode para el fondo, allowFullScreen para pantalla completa, swfversion para la versión de Flash Player, etc...
+		
+		<p>Ejemplo:  Insertar un video.</p>
+      
+	  
+	   <div class="codigo">
+		 <pre>
+&lt;object data="../imagenes/video.mp4" 
+  width="425" height="350"&gt;
+&lt;/object&gt;
+		 </pre>
+		 	</div>
+
+		 	<p>Aparece así:</p>		
+			<!--<object data="http://www.youtube.com/v/en0EfNXmL6M?version=3" width="425" height="350">-->
+			<object data="../imagenes/video.mp4" width="425" height="350" >
+			</object>
+<br/>
+<p>Insertar un pdf:</p>
+<div class="codigo">
+		 <pre>
+&lt;object width="425" height="350" data="./15_guia_html.pdf"&gt;
+&lt;/object&gt;
+		 </pre>
+			</div>
+			<p>Aparece así:</p>	
+			<object width="600" height="500" data="./14_guia_html.pdf"></object>
+			<br/>
+			<div class="ejercicios">
+				<h3><a href="16_ejercicios.html#ej_25">Ejercicio 25</a></h3>
+			</div>
+			<div id="contenedor_pie">
+					<p>Manual de HTML - CSS - Lenguaje de Marcas - DAW-ASIR</p>
+			</div>
+		</div>
+    </body>
+</html>

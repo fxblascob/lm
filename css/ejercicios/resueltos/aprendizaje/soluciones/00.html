@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<title>Ejemplo de modelo visual</title>
+		<meta charset="UTF-8">
+        <style>
+            p:first-letter{
+                color:red;
+                font-size:40;
+            }
+            #arbol {
+                float: right;
+            }
+        </style>
+	</head>	
+    <body>
+        <p>La propiedad float permite sacar a un elemento del flujo del documento, y posicionarlo a la izquierda o derecha de otros elementos adyacentes. Admite tres valores: right, left y none.</p>
+        <p>Un valor left significa que el elemento formará un bloque que se situará a la izquierda de los elementos adyacentes. Un valor right significa que el bloque se situará a la derecha.</p>
+        <div id="arbol">
+				<img src="./img/img_tree.png">
+		</div>
+        <p>Un bloque flotante debe tener definida su anchura, implícita o expresamente, ya que de lo contrario será tratado como no flotante.</p>
+        <p>La propiedad clear se utiliza conjuntamente con float para indicar si un elemento flotante permite otros elementos flotantes junto a el. Sus posible valores son none (permite elementos a ambos lados), 
+        left (no permite elementos flotantes a la izquierda), right (no permite elementos flotantes a la derecha) o both (no permite elementos flotantes a ningún lado).</p>
+
+        <p>Los elementos flotan horizontalmente hacia la izquierda o hacia la derecha. Un elemento float se moverá lo mas lejos que pueda hacia la izquierda o derecha del elemento contenedor. 
+        Los elementos que hay después del elemento flotante, flotarán alrededor de éste. Los elementos que hubiera antes del elemento "float" no se ven afectados. 
+        Si una imagen, por ejemplo, está flotando a la derecha, el texto que venga después flotará alrededor de ésta a la izquierda. Si se colocan varios elementos "float" uno después del otro, estos elementos flotarán uno al lado del otro si hay sitio. </p>
+    </body>
+</html>

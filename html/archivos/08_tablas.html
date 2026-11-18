@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>
+            Tablas
+        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+        <script src="../../codigos.js"></script>
+    </head>
+
+    <body ondblclick="ocultarMenu()">
+	<div id="contenedor_general">
+        <div id="contenedor_cabecera">
+ 			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+            <h1>08 Tablas</h1>
+        </div>
+        <iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+            <h1>Tablas</h1>
+			<h2>Tablas convencionales</h2>
+			<p>Las tablas en HTML son estructuras que están formadas por varias filas, cada una de las cuales tiene un conjunto de celdas.</p>
+			<p>Las tablas se crean con las etiquetas <b>&lt;table&gt;  &lt;/table&gt;</b>. Dentro de las etiquetas de apertura y cierre, inmediatamente después se puede colocar una etiqueta <b>&lt;caption&gt;  &lt;/caption&gt;</b> que incluya el título de la tabla. A continuación, se identifica cada fila de la tabla con las etiquetas <b>&lt;tr&gt;  &lt;/tr&gt;</b>. Por último, cada celda dentro de una fila se identifica con las etiquetas <b>&lt;td&gt;  &lt;/td&gt;</b>. A continuación puedes ver un ejemplo:</p>
+			<div class="codigo">
+                    <pre>
+<b>&lt;table border=&quot;1&quot;&gt;</b>
+  <b>&lt;caption&gt;</b>Título de la tabla<b>&lt;/caption&gt;</b>
+  <b>&lt;tr&gt;</b>
+      <b>&lt;td&gt;</b>Fila1-celda1<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila1-celda2<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila1-celda3<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila1-celda4<b>&lt;/td&gt;</b>
+  <b>&lt;/tr&gt;</b>
+  <b>&lt;tr&gt;</b>
+      <b>&lt;td&gt;</b>Fila2-celda1<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila2-celda2<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila2-celda3<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila2-celda4<b>&lt;/td&gt;</b>
+  <b>&lt;/tr&gt;</b>
+  <b>&lt;tr&gt;</b>
+      <b>&lt;td&gt;</b>Fila3-celda1<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila3-celda2<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila3-celda3<b>&lt;/td&gt;</b>
+      <b>&lt;td&gt;</b>Fila3-celda4<b>&lt;/td&gt;</b>
+  <b>&lt;/tr&gt;</b>
+<b>&lt;/table&gt;</b>
+					</pre>
+            </div>
+            
+            <p>El resultado sería:</p>
+            
+            <div class="ejemplo">
+<table border="1">
+  <caption>Título de la tabla</caption>
+  <tr>
+      <td>Fila1-celda1</td>
+      <td>Fila1-celda2</td>
+      <td>Fila1-celda3</td>
+      <td>Fila1-celda4</td>
+  </tr>
+  <tr>
+      <td>Fila2-celda1</td>
+      <td>Fila2-celda2</td>
+      <td>Fila2-celda3</td>
+      <td>Fila2-celda4</td>
+  </tr>
+  <tr>
+      <td>Fila3-celda1</td>
+      <td>Fila3-celda2</td>
+      <td>Fila3-celda3</td>
+      <td>Fila3-celda4</td>
+  </tr>
+</table>
+            </div>
+            
+            <p><b><u>Atributos:</u></b></p>
+			<ul>
+				<li><em><strong>width</strong></em>, anchura total de la tabla en píxeles o porcentaje.</li>
+                <li><em><strong>height</strong></em>, define la altura de la tabla en pixels o porcentaje.
+				<li><i><b>border</b></i>, que indica la anchura del borde de la tabla en píxeles (por defecto vale 0, por lo que no se muestra el borde) y los atributos.</li>
+				
+				<li><i><b>cellspacing</b></i>, especifica el espacio entre celdas.</li>
+				<li><i><b>cellpadding</b></i>, especifica el espacio entre el borde de una celda y su contenido.</li>
+			</ul>
+				
+            <p><b><u>Contenido de &lt;table&gt;:</u></b></p>
+			<ul>
+				<li><i><b>&lt;tr&gt;</b></i>, para crear una fila dentro de una tabla. La etiqueta final es opcional.</li>
+				<ul>
+					<li><i><b>align</b></i>, indica la alineación del texto a nivel de fila. align=”left|right|center|middle|bottom”.</li>
+					<li><i><b>valign</b></i>, indica la alineación del texto verticalmente a nivel de fila. valign=”top|middle|bottom|baseline”.</li>
+					<li><i><b>bgcolor</b></i>, En desuso</li>				
+				</ul>
+				<li><i><b>&lt;td&gt;</b></i>,<i><b>&lt;th&gt;</b></i>, para crear una celda dentro de una fila. (&lt;th&gt; es celda de cabecera).</li>
+				<ul>
+					<li><i><b>align</b></i>, indica la alineación del texto a nivel de celda. align=”left|right|center|justify”.</li>
+					<li><i><b>valign</b></i>, indica la alineación del texto verticalmente a nivel de celda. valign=”top|middle|bottom”.</li>
+					<li><i><b>rowspan</b></i>, indica el número de filas que ocupa la celda (combinar filas).
+					<li><i><b>colspan</b></i>, indica el número de columnas que ocupa la celda (combinar columnas).
+					<li><i><b>bgcolor</b></i>, En desuso</li>				
+				</ul>
+
+				</ul>
+		<p>Prueba el siguiente código y guárdalo como Ejemplo_10.html</p>
+		<div class="codigo">
+		<pre>
+&lt;table border="3" cellspacing="0" cellpadding="0" width="230"&gt;
+	&lt;tr&gt; 
+	  &lt;td colspan="3" height="10"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt; 
+	  &lt;td width="10" height="44"&gt;&nbsp;&lt;/td&gt;
+	  &lt;td width="210"&gt;
+	    &lt;strong&gt;HyperText Markup Language&lt;/strong&gt;
+	  &lt;/td&gt;
+	  &lt;td width="10" height="44"&gt;&nbsp;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt; 
+	  &lt;td colspan="3" height="10"&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+		</pre>
+		</div>
+		
+		<p>El resultado sería:</p>
+		<div class="ejemplo">
+		<table border="3" cellspacing="0" cellpadding="0" width="230">
+			<tr> 
+				<td colspan="3" height="10"></td>
+			</tr>
+			<tr> 
+				
+				<td width="10" height="44"></td>
+				<td width="210">
+					<strong>HyperText Markup Language</strong>
+				</td>
+				<td width="10" height="44">&nbsp;</td>
+			</tr>
+			<tr> 
+				<td colspan="3" height="10"></td>
+			</tr>
+		</table>
+		</div>
+			
+			
+			
+					
+            
+			<div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_11">Ejercicio 11:</a></h2>
+            </div>
+            
+            <h2>Celdas de cabecera</h2>
+            
+            <p>Es posible sustituir algunos elementos &lt;td&gt; por elementos <b>&lt;th&gt;</b>. Estos elementos hacen referencia a celdas de cabecera, y como tales aparecerán destacadas del resto (suelen aparecer en negrita y centradas).</p>
+            
+<p>Prueba el siguiente código y guárdalo como Ejemplo_11.html</p>
+<div class="codigo">
+<pre>			
+&lt;table border="3" cellspacing="0" cellpadding="5" width="390"&gt;
+ &lt;tr&gt; 
+  &lt;th width="10"&gt;Cod&lt;/th&gt;
+  &lt;th width="80"&gt;Nombre&lt;/th&gt;
+  &lt;th width="300"&gt;Significado&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt; 
+  &lt;td&gt;1&lt;/td&gt;
+  &lt;td&gt;SGML&lt;/td&gt;
+  &lt;td&gt;Standard Generalizaed Markup Language&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt; 
+  &lt;td&gt;2&lt;/td&gt;
+  &lt;td&gt;HTML&lt;/td&gt;
+  &lt;td&gt;HyperText Markup Language&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt; 
+  &lt;td&gt;3&lt;/td&gt;
+  &lt;td&gt;HML&lt;/td&gt;
+  &lt;td&gt;Extended Markup Language&lt;/td&gt;
+ &lt;/tr&gt;
+&lt;/table&gt;
+</pre>		
+		</div>
+		<div class="ejemplo">
+			<table border="3" cellspacing="0" cellpadding="5" width="50%">
+                <tr> 
+                    <th width="10">Cod</th>
+                    <th width="80">Nombre</th>
+                    <th width="300">Significado</th>
+                </tr>
+                <tr> 
+                    <td>1</td>
+                    <td>SGML</td>
+                    <td>Standard Generalizaed Markup Language</td>
+                </tr>
+                <tr> 
+                    <td>2</td>
+                    <td>HTML</td>
+                    <td>HyperText Markup Language</td>
+                </tr>
+                <tr> 
+                    <td>3</td>
+                    <td>HML</td>
+                    <td>Extended Markup Language</td>
+                </tr>
+		    </table>
+		</div>
+			
+			
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_12">Ejercicio 12:</a></h2>
+            </div>
+            <h2>Grupos de columnas</h2>
+            <p>Los grupos de columnas permiten hacer referencia a un grupo de columnas dentro de una tabla. Para ello se utilizan las etiquetas <b><i>&lt;colgroup&gt;</i></b> y <i><b>&lt;col&gt;</b></i>. Estas etiquetas son interesantes porque permiten definir la anchura de un conjunto de columnas a la vez, evitando tener que definir la anchura de cada columna por separado. Se deben incluir <b>al principio del código de la tabla</b>, justo después de la etiqueta <i>&lt;caption&gt;</i> (si existiera).</p>
+            <p>Ambas etiquetas se suelen utilizar con los atributos <i><b>width</b></i> (que indica la anchura de las columnas en píxeles o porcentaje), <i><b>align</b></i> (que indica la alineación de las columnas)  y <i><b>span</b></i> (que indica el número de columnas que se abarca en el conjunto indicado). </p>
+            <p><b>¡Ojo! Estas etiquetas no funcionan correctamente en Firefox</b> (la anchura de las columnas sí que parece funcionar, mientras que la alineación no).</p>
+            <p>La etiqueta <i><b>&lt;colgroup&gt;</b></i> se utiliza para indicar un conjunto de columnas. Así, si queremos indicar que las <b>5 primeras columnas</b> de una tabla deben tener anchura <b>20 píxeles</b> y las 3 siguientes 10 píxeles, incluiremos el siguiente código :</p>
+            <div class="codigo">
+                    <pre>
+&lt;colgroup span=&quot;5&quot; width=&quot;20&quot;&gt;
+&lt;/colgroup&gt;
+&lt;colgroup span=&quot;3&quot; width=&quot;10&quot;&gt;
+&lt;/colgroup&gt;
+					</pre>
+            </div>
+            
+            <p>La etiqueta <i><b>&lt;col&gt;</b></i> se suele utilizar para especificar un determinado número de celdas dentro de un elemento <i>&lt;colgroup&gt;</i>. Normalmente se utiliza para que un determinado conjunto de celdas reciba un atributo especial además de los especificados en <i>&lt;colgroup&gt;</i>. Así, si queremos indicar que las <b>5 primeras columnas</b> de una tabla deben tener anchura <b>20 píxeles</b> pero la columna 3, además de tener el ancho de 20 píxeles, debe recibir algún tratamiento posterior (normalmente mediante hojas de estilo), indicaremos lo siguiente:</p>
+            
+            <div class="codigo">
+                    <pre>
+&lt;colgroup span=&quot;5&quot; width=&quot;20&quot;&gt;
+  &lt;col span=&quot;2&quot;&gt;
+  &lt;col align=&quot;center&quot;&gt;
+  &lt;col span=&quot;2&quot;&gt;
+&lt;/colgroup&gt;
+					</pre>
+            </div>
+            <p>En el ejemplo anterior, las 5 primeras columnas tendrán 20 píxeles de ancho. Dentro de <i>&lt;colgroup&gt;</i> se detallan las demás columnas: las dos primeras quedan igual; la número 3 alinea su contenido al centro; y las dos últimas, quedan también igual. <b>¡Ojo!</b> el número de columnas que se indique en la etiqueta <i>&lt;colgroup&gt;</i> deberá ser igual a la suma de los números de columnas indicados por las etiquetas <i>&lt;col&gt;</i> de su interior.</p>
+            <ul><li><a href="https://www.w3schools.com/tags/tag_colgroup.asp">Ejemplo colgroup</a></li></ul>
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_13">Ejercicio 13:</a></h2>
+            </div>
+            <h2>Grupos de filas: cabecera, cuerpo y pie de tablas</h2>
+            <p>En ocasiones, es interesante dividir las filas de la tabla en diferentes partes organizativas. HTML contempla tres: <b>cabecera, cuerpo y pie</b>. Esta división se utiliza para diferenciar dichos campos y tratarlos por separado. Así, por ejemplo, en tablas muy largas que deban ser imprimidas en varias hojas, el navegador imprimirá la cabecera y el pie de la tabla en cada una de las hojas.</p>
+            <p>Las etiquetas que se utilizan para esto son:</p>
+            <ul>
+                <li><b>&lt;thead&gt;</b> <b>&lt;/thead&gt;</b> para la cabecera. Debe aparecer en primer lugar. Normalmente, las celdas contenidas en las filas de la cabecera serán del tipo &lt;th&gt; para que queden destacadas.</li>
+                <li><b>&lt;tbody&gt;</b> <b>&lt;/tbody&gt;</b> para el cuerpo. Puede haber más de un cuerpo en la misma tabla.</li>
+                <li><b>&lt;tfoot&gt;</b> <b>&lt;/tfoot&gt;</b> para el pie. Debe aparecer en último lugar.</li>
+            </ul>
+            <p>Cada una de dichas etiquetas <b>agrupa un conjunto de filas</b>. A continuación tienes un ejemplo. En él se ha definido un encabezado, un pie y dos cuerpos de la tabla. Para identificar cada uno, se ha utilizado el atributo <i><b>rules</b></i>, que indica qué bordes y separaciones aparecerán en la tabla (el valor <i>groups</i> indica que deben separarse los grupos de filas y columnas).</p>
+            <div class="codigo">
+                    <pre>
+<b>&lt;table</b> border=&quot;1&quot;<b>&gt;</b>
+  <b>&lt;caption&gt;</b>Título de la tabla<b>&lt;/caption&gt;</b>
+  <b>&lt;thead&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;th&gt;</b>Fila1_cabecera-celda1<b>&lt;/th&gt;</b>
+          <b>&lt;th&gt;</b>Fila1_cabecera-celda2<b>&lt;/th&gt;</b>
+          <b>&lt;th&gt;</b>Fila1_cabecera-celda3<b>&lt;/th&gt;</b>
+          <b>&lt;th&gt;</b>Fila1_cabecera-celda4<b>&lt;/th&gt;</b>
+      <b>&lt;/tr&gt;</b>
+  <b>&lt;/thead&gt;</b>
+ 
+  <b>&lt;tbody&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo1-celda1<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo1-celda2<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo1-celda3<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo1-celda4<b>&lt;/td&gt;</b>
+      <b>&lt;/tr&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo1-celda1<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo1-celda2<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo1-celda3<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo1-celda4<b>&lt;/td&gt;</b>
+      <b>&lt;/tr&gt;</b>
+  <b>&lt;/tbody&gt;</b>
+  <b>&lt;tbody&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo2-celda1<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo2-celda2<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo2-celda3<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila1_cuerpo2-celda4<b>&lt;/td&gt;</b>
+      <b>&lt;/tr&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo2-celda1<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo2-celda2<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo2-celda3<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila2_cuerpo2-celda4<b>&lt;/td&gt;</b>
+      <b>&lt;/tr&gt;</b>
+      <b>&lt;tr&gt;</b>
+          <b>&lt;td&gt;</b>Fila3_cuerpo2-celda1<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila3_cuerpo2-celda2<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila3_cuerpo2-celda3<b>&lt;/td&gt;</b>
+          <b>&lt;td&gt;</b>Fila3_cuerpo2-celda4<b>&lt;/td&gt;</b>
+      <b>&lt;/tr&gt;</b>
+  <b>&lt;/tbody&gt;</b>
+  <b>&lt;tfoot&gt;</b>
+  <b>&lt;tr&gt;</b>
+      <b>&lt;th&gt;</b>Fila1_pie-celda1<b>&lt;/th&gt;</b>
+      <b>&lt;th&gt;</b>Fila1_pie-celda2<b>&lt;/th&gt;</b>
+      <b>&lt;th&gt;</b>Fila1_pie-celda3<b>&lt;/th&gt;</b>
+      <b>&lt;th&gt;</b>Fila1_pie-celda4<b>&lt;/th&gt;</b>
+  <b>&lt;/tr&gt;</b>
+<b>&lt;/tfoot&gt;</b>
+<b>&lt;/table&gt;</b>
+					</pre>
+            </div>
+            <p>El resultado sería:</p>
+            <div class="ejemplo">
+              <img src="../imagenes/tablas.png">
+            </div>
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_14">Ejercicio 14:</a></h2>
+            </div>
+            <h2>Celdas que abarcan varias filas o columnas</h2>
+            <p>Para hacer que una celda ocupe varias celdas, se utilizan los atributos <i><b>rowspan</b></i> y <i><b>colspan</b></i> dentro de las etiquetas <i><b>&lt;td&gt;</b></i> (o <i>&lt;th&gt;</i>, si se utilizan las celdas destacadas). Con el primero, se consigue que una celda ocupe <b>varias filas</b>; con el segundo, se consigue que una celda ocupe <b>varias columnas</b>.</p>
+            <p>Las celdas ocupadas por una celda ampliada <b>no se incluirán en el sitio que les toque</b>.</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_colspan2">Ejemplo colspan</a>
+                <li><a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_rowspan2">Ejemplo rowspan</a>
+            </ul>
+            <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_15">Ejercicio 15:</a></h2>
+            </div>
+            
+             <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_16">Ejercicio 16:</a></h2>
+            </div>
+            
+             <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_17">Ejercicio 17:</a></h2>
+            </div>
+            
+             <div class="ejercicios">
+                <h2><a href="16_ejercicios.html#ej_18">Ejercicio 18:</a></h2>
+            </div>
+            
+           
+		</div>
+		<!-- Fin del cuerpo de la página-->
+			<div id="contenedor_pie">
+				<p>Manual de HTML - Lenguaje de Marcas - DAW-ASIR</p>
+			</div>
+	</div>
+	
+
+	
+    </body>
+
+</html>

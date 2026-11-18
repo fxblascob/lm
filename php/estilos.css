@@ -1,0 +1,209 @@
+body {
+    background : #C0D9D9 url('.//imagenes/fondo.gif') repeat;
+    font : 11pt Verdana, Geneva, Arial, Helvetica, sans-serif;
+    color : #353434;
+    margin : 0;
+    padding:0;
+} 
+/* ------------------para los PDF DE XML---------------------------------------- */
+object {    height:100vh;}
+/*------------------------------contenedor gran-------------------------------------------------*/
+#contenedor_general{   
+    text-align: justify;
+    width: 100%;
+    border: 4px solid #cccccc;
+    background-color : #f5f4c3;
+} 
+/*------------------------------capçalera--------------------------------------------*/
+#contenedor_cabecera{
+    width:100%;
+    height : 52px;
+    background-color: #cccccc;
+    padding-bottom: 10px;
+    position: fixed; /* para que quede fijo" */
+}   
+#contenedor_cabecera h1 {
+    color: #FFf800;
+    text-align: right;
+    float:left;
+    margin-top: 0px;
+	padding: 15px 15px 0px 0px;
+}
+#contenedor_cabecera img {
+    position: absolute;
+    top:0px;
+    right:0px;
+    width:80px;
+    height:60px;
+}
+.titulo_indice {color:orange;font-size:1.1em }
+/*---------------------------cos---------------------------------------------------*/
+#contenedor_cuerpo{
+    width:88%;
+    float:right;
+    margin: 5% 0px 0px 0px; 
+    padding: 10px 10px 10px 10px;
+    background-color: #f6f1f1;
+    border-left : 5px solid #cccccc;
+    border-bottom : 5px solid #cccccc;
+    
+} 
+/*----------------------------------------------------------------*/
+#contenedor_cuerpo iframe {    width:80%;     height:33vh;}
+#contenedor_cuerpo p{    text-indent: 2em;    }  
+#contenedor_cuerpo h1{    margin: 2px;	padding:2px 3px 0px 3px;    }  
+#contenedor_cuerpo h2,h3{    margin: 2px;	padding:2px 3px 2px 3px;    }  
+#contenedor_cuerpo ul#bibliografia{    list-style-type: square;    }
+#contenedor_cuerpo pre#codigo_cursor:hover {cursor: url("./imagenes/jack.ico"),auto; }
+#contenedor_cuerpo .imagenes {text-align: center;text-indent: 0em; }
+#contenedor_cuerpo .imagenes img {max-width: 400px;}	
+/*-----------------------menus-----------------------------------------------------*/
+/*-------------iframe del menu--------------------------------------------------------------*/
+iframe#if{ 
+    position: fixed;
+    top:65px;
+    border:none; 
+    width:10%; 
+    height:100vh;
+}
+#contenedor_indice{
+    background-color : #3a7496;
+}
+#contenedor_indice ,#contenedor_indice ul,#contenedor_indice li,#contenedor_indice  a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+    font-weight: normal;
+    text-decoration: none;
+    line-height: 1;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    position: relative;
+}
+
+#contenedor_indice   ul  li {
+    background: #f7f7f7;
+    background: -moz-linear-gradient(#f7f7f7 0%, #ececec 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f7f7f7), color-stop(100%, #ececec));
+    background: -webkit-linear-gradient(#f7f7f7 0%, #ececec 100%);
+    background: linear-gradient(#f7f7f7 0%, #ececec 100%);
+}
+/* ---------------sangrat menu segon nivell---------------------------------------------*/
+#contenedor_indice   ul  ul li { text-indent: 1em;   }
+
+#contenedor_indice   ul  li a:hover {
+    background: #2E779A;
+    background: -moz-linear-gradient(#2E779A 0%, #2E779A 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2E779A), color-stop(100%, #2E779A));
+    background: -webkit-linear-gradient(#2E779A 0%, #2E779A 100%);
+    background: linear-gradient(#2E779A 0%, #2E779A 100%);
+    color: #ffffff;
+}
+
+#contenedor_indice   ul  li  a {
+    font-size: 14px;
+    display: block;
+    color: #2E779A;
+    border: 1px solid #ececec;
+    border-top: none;
+    text-shadow: 0 -1px 1px #ececec;
+}
+/*------------------------------- peu--------------------------------------------------*/
+#contenedor_pie, footer{
+    clear : both;
+    color : #cccccc;
+    text-align : right;
+    margin : 10px 10px 0px 10px;
+    padding-bottom:10px;
+} 
+#contenedor_pie p , footer p {padding-top:1.5em;}
+/*---------------------------------generics---------------------------------------------------------*/
+p.p_aviso {
+    border:1px solid red;background:#ffddaa;
+    width:60%;font-weight:bold;font-size:14px;
+    text-align:center;margin:0 auto 1em auto;
+	}
+			
+#imagen_css{width:50%;margin:auto;}	
+#imagen_css img{border:1px solid red;width:100%;height:100%;}
+.enlaces_cuerpo a:link {color: blue; text-decoration: none;}
+.enlaces_cuerpo a:visited {color: blue;text-decoration: none;}
+.enlaces_cuerpo a:hover {color: #DD0000;text-decoration: underline;}
+.comentarios {    color: green;    }
+.ejercicios {
+    background: rgb(199, 197, 197);
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-top: 0,5em;
+}
+.ejercicios p {
+    text-indent: 0em;
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+.ejercicios .codigo{background: rgb(251,231,179);}
+	
+.codigo {    font-size: 11pt;    font-family: monospace;    text-align: left;    margin-top: 5px;    margin-bottom: 5px;
+    margin-left: auto;    margin-right: auto;    border-width: 1px;    border-style: solid;     background: #ffddaa;
+    padding: 0px 10px 0px 10px;	width: 70%;	overflow: auto;    }
+
+.ejemplo {    font-size: 9pt;    font-family: Arial;    text-align: left;    margin-top: 10px;    margin-bottom: 10px;
+    margin-left: 10px;    margin-right: 100px;    border-width: 10px;    border-style: solid;     background: #ffddaa;
+    padding: 10px;	/*width: 600px;*/	width: 70%;	overflow: auto;    }
+/*----------------------------------------------------*/
+.aviso{	font-size:10pt;    font-family:Arial;	font-weight:bold;	text-indent:0em;      text-align:left;    margin-top:10px;
+    margin-bottom:10px;    margin-left:auto;    margin-right:auto;    border-width: 1px;	border-radius:25px;
+    border-color:red;	border-style: solid;     background: #ffddaa;    padding: 10px;	/*width: 600px;*/	width:50%;
+	overflow: auto;    }
+.aviso img{ margin-right:15px;float:left;width:36px;height:36px;display:inline;}
+.aviso p{	vertical-align:top;display:inline; }
+
+/*---------------------tablas---------------------------------------------*/
+table { margin: auto;    text-align: center;    border: 2px solid black;    border-collapse: collapse;    }
+td    { border: 1px solid black;    text-align: left;    }
+/*
+td,th {
+    border: 1px solid black;   
+	text-align: left;
+    }
+	*/
+table.reference{border-collapse:collapse;width:100%;}
+table.reference tr:nth-child(odd)	{background-color:#F6F4F0;}
+table.reference tr:nth-child(even)	{background-color:#ffffff;}
+table.reference 			{background-color:#F6F4F0;}
+table.reference th{	color:#ffffff;background-color:#555555;border:1px solid #555555;font-size:12px;padding:3px;vertical-align:top;text-align:left;}
+table.reference th a:link,table.reference th a:visited{	color:#ffffff;}
+table.reference th a:hover,table.reference th a:active{	color:#EE872A;}
+table.reference td{	border:1px solid #d4d4d4;padding:5px;padding-top:7px;padding-bottom:7px;vertical-align:top;}
+table.reference td.example_code{vertical-align:bottom;}
+/*-----------------------ejemplos-------------------------------------------------------------------*/
+#lista_enlaces_ejemplos ul {    float:left;    width:100%;    padding:0;    margin:0;    list-style-type:none;}
+#lista_enlaces_ejemplos li{    margin:0;    padding:0;    vertical-align:middle;}
+#lista_enlaces_ejemplos a
+{
+    float:left;
+    width:7.5em;
+    height:4em;
+    text-decoration:none;
+    text-align:left;
+    color:yellow;background-color:#b0c4de;
+    padding:0.2em 0.2em 0.2em 0.2em;
+    border-right:1px solid white;
+    margin-bottom:3px;
+}
+#lista_enlaces_ejemplos a:link {color:yellow;background-color:#b0c4de;}
+#lista_enlaces_ejemplos a:visited {color:white;background-color:navy;}
+#lista_enlaces_ejemplos a:hover {color:blue;background-color:#ff3300;}
+#lista_enlaces_ejemplos li  {display:inline;}
+
+#nofloat {clear:both;}
+
+p.p_iframe {display:inline;}
+
+#piframeizqda {float:left;border:none white; width:40%; background-color:orange; padding:0;margin:0 0 2px 2px;text-indent: 0px;}	
+#piframedrcha {float:right;border:none white; width:53%; background-color:orange; padding:0;margin:0 2px 2px 0;text-align:right;padding-right:1.25em;}
+/*--- iframe de codi dels eixemples--------*/
+#iframeResult_2 {float:left;border:2px solid orange; width:40%; height:400px;}	
+/*--- iframe del resultat  dels eixemples--------*/
+#iframeResult {float:right;border:2px solid orange; width:55%; height:400px;}

@@ -1,0 +1,513 @@
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Algunas funciones de PHP</H1>
+
+<P>En este capítulo no van a incluirse todas y cada una de las funciones
+que soportan PHP y sus módulos. Se trata de crear una guía general de las
+funciones más comunes del lenguaje.</P>
+
+<HR>
+<A NAME="basicas">
+<H3>Funciones básicas</H3>
+<U>echo y print</U>
+<P>A lo largo de todo el texto hemos utilizado las funciones <EM>echo</EM>
+y <EM>print</EM>, sin preocuparnos de explicar su significado y sintaxis.
+Dichas funciones, como ya habrá supuesto el lector, imprimen en la
+salida estándar el argumento que se les pasa. Hay que hacer notar que su
+sintaxis es muy flexible, siendo válidas las cuatro siguientes llamadas:</P>
+<PRE><FONT COLOR="red">
+	$valor = 52;
+	echo "El valor es $valor";
+	echo ("El valor es $valor");
+	print "El valor es $valor";
+	print ("El valor es $valor");
+</FONT></PRE>
+
+<HR>
+<A NAME="vectores">
+<H3>Funciones de vectores</H3>
+<P>Ya hemos visto con anterioridad el manejo de vectores así como su
+inicialización. En este apartado vamos a estudiar una serie de funciones
+que van a simplificar el manejo de vectores. Además, prestaremos especial
+atención a una función de inicialización que aparece en esta sección.</P>
+<U>array()</U>
+<P>Esta función devuelve un vector que forma en base a los parámetros que
+se le pasan. A los parámetros se les puede dar un índice asociativo por medio
+del símbolo <B>=&#62;</B>. Vamos a ver un ejemplo donde creamos un vector de
+dos dimensiones:</P>
+<PRE><FONT COLOR="red">
+	$varios = array(
+		"colores" =&#62; array("a"=&#62;"amarillo, "b"=&#62;"rojo"),
+		"sentidos" =&#62; array("tacto", "gusto", "olfato", "oido", "vista")
+	);
+</FONT></PRE>
+
+<P><U>El resto de funciones</U></P>
+<TABLE BORDER ALIGN="center">
+
+<TR>
+	<TD><B>nombre</B></TD>
+	<TD><B>parámetros</B></TD>
+	<TD><B>descripción</B></TD>
+</TR>
+
+<TR>
+	<TD><B>array_count_values()</B></TD>
+	<TD>vector A</TD>
+	<TD>Devuelve un vector usando los valores del vector de entrada como
+	índices asociativos y su frecuencia como valor</TD>
+</TR>
+
+<TR>
+	<TD><B>array_flip()</B></TD>
+	<TD>vector A</TD>
+	<TD>Devuelve el vector inverso a A</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_keys()</B></TD>
+	<TD>vector A</TD>
+	<TD>Devuelve un vector con todos los valores de clave de A</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_merge()</B></TD>
+	<TD>vectores A; B, ...</TD>
+	<TD>Devuelve el vector concatenación de los vectores A, B, ...</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_pop()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve y extrae el valor del último elemento de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_push</B></TD>
+	<TD>vector V; gen A, B, ...</TD>
+	<TD>Añade al final de V los elementos A, B, ... devolviendo el número
+	de elementos añadidos</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_reverse()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve un vector con los elementos de V en orden inverso</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_shift</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve y extrae el valor del primer elemento de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_slice()</B></TD>
+	<TD>vector V; ent A, B</TD>
+	<TD>Extrae de un vector los elementos que van desde la posición
+	A hasta A+B, devolviendo un nuevo vector con dichos elementos</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_splice()</B></TD>
+	<TD>vector V; ent A, B; vector W</TD>
+	<TD>Elimina los elementos de V desde A hasta A+B e inserta en su lugar
+	los elementos del vector W</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_unshift()</B></TD>
+	<TD>vector V; gen A, B, ...</TD>
+	<TD>Inserta los elementos A, B, ... al principio de V y devuelve la
+	cantidad de elementos insertados</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_values()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve un vector con todos los valores de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>array_walk()</B></TD>
+	<TD>vector V; cad f; gen A, B, ...</TD>
+	<TD>Aplica la función f a todos los elementos del vector V añadiendo
+	los parámetros A, B, ... en cada llamada</TD>
+</TR>
+
+<TR>
+	<TD><B>arsort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena un vector de forma inversa manteniendo la asociación
+	clave-valor</TD>
+</TR>
+
+
+<TR>
+	<TD><B>asort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena un vector manteniendo la asociación clave-valor</TD>
+</TR>
+
+
+<TR>
+	<TD><B>count()</B></TD>
+	<TD>gen V</TD>
+	<TD>Devuelve el número de elementos de una variable</TD>
+</TR>
+
+
+<TR>
+	<TD><B>current()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve el elemento actual de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>each()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve la próxima pareja clave-valor de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>end()</B></TD>
+	<TD>vector V</TD>
+	<TD>Lleva el puntero interno del vector a su último elemento</TD>
+</TR>
+
+
+<TR>
+	<TD><B>in_array()</B></TD>
+	<TD>gen A; vector V</TD>
+	<TD>Devuelve verdadero si A se encuentra en V; Falso en otro caso</TD>
+</TR>
+
+<TR>
+	<TD><B>krsort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena V de forma inversa en base a la clave</TD>
+</TR>
+
+
+<TR>
+	<TD><B>ksort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena V en base a la clave</TD>
+</TR>
+
+<TR>
+	<TD><B>list()</B></TD>
+	<TD>gen A, B...</TD>
+	<TD>Asigna variables como si fueran un vector</TD>
+</TR>
+
+<TR>
+	<TD><B>next()</B></TD>
+	<TD>vector V</TD>
+	<TD>Avanza el puntero interno de un vector a la siguinte posición</TD>
+</TR>
+
+<TR>
+	<TD><B>pos()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve el elemento señalado por el puntero interno de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>prev()</B></TD>
+	<TD>vector V</TD>
+	<TD>Retrocede el puntero interno de un vector V a la posición anterior</TD>
+</TR>
+
+
+<TR>
+	<TD><B>reset()</B></TD>
+	<TD>vector V</TD>
+	<TD>Coloca el puntero interno de V en la primera posición</TD>
+</TR>
+
+
+<TR>
+	<TD><B>rsort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena V de forma inversa</TD>
+</TR>
+
+
+<TR>
+	<TD><B>shuffle()</B></TD>
+	<TD>vector V</TD>
+	<TD>"Desordena" los elementos de V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>sizeof()</B></TD>
+	<TD>vector V</TD>
+	<TD>Devuelve el número de elementos de V</TD>
+</TR>
+
+<TR>
+	<TD><B>sort</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena el vector V</TD>
+</TR>
+
+
+<TR>
+	<TD><B>uasort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena un vector en base a una función de comparación definida
+	por el usuario y manteniendo la asociación clave-valor</TD>
+</TR>
+
+<TR>
+	<TD><B>uksort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena un vector en base a una función de comparación definida
+	por el usuario sobre las claves</TD>
+</TR>
+
+
+<TR>
+	<TD><B>usort()</B></TD>
+	<TD>vector V</TD>
+	<TD>Ordena un vector en base a una función de comparación definida
+	por el usuario sobre los valores</TD>
+</TR>
+
+</TABLE>
+
+<HR>
+<A NAME="cadenas">
+<H3>Funciones de cadenas</H3>
+<P>PHP ofrece multitud de funciones para el manejo de cadenas. En esta sección
+mostramos sólo las más utilizadas.</P>
+<TABLE ALIGN="center" BORDER>
+
+<TR>
+	<TD><B>nombre</B></TD>
+	<TD><B>parámetros</B></TD>
+	<TD><B>descripción</B></TD>
+</TR>
+
+<TR>
+	<TD><B>print()</B></TD>
+	<TD>cad A</TD>
+	<TD>Imprime A en la salida estándar</TD>
+</TR>
+
+<TR>
+	<TD><B>printf()</B></TD>
+	<TD>cad A</TD>
+	<TD>Imprime A en la salida estándar aplicándole un formato (estilo C)</TD>
+</TR>
+
+
+<TR>
+	<TD><B>sprint()</B></TD>
+	<TD>cad F; gen A, B, ...</TD>
+	<TD>Devuelve una cadena formateada según F con las variable A, B, ...
+	</TD>
+</TR>
+
+<TR>
+	<TD><B>strstr() / strchr()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Busca B dentro de A y devuelve desde su primera aparición hasta
+	el final de A.</TD>
+</TR>
+
+
+<TR>
+	<TD><B>strcmp</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Devuelve un valor menor que 0 si A es menor que B; mayor que 1 si
+	B es menor que A; y 0 si son idénticas</TD>
+</TR>
+
+<TR>
+	<TD><B>stristr()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Como strstr pero insensible a mayúsculas/minúsculas</TD>
+</TR>
+
+<TR>
+	<TD><B>strlen()</B></TD>
+	<TD>cad A</TD>
+	<TD>Devuelve la longitud de A</TD>
+</TR>
+<TR>
+	<TD><B>strpos()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Devuelve la posición de la primera aparición de B en A</TD>
+</TR>
+
+<TR>
+	<TD><B>strrchr()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Análoga a strchr() pero empezando por el final de la cadena</TD>
+</TR>
+
+<TR>
+	<TD><B>strrev()</B></TD>
+	<TD>cad A</TD>
+	<TD>Invierte una cadena</TD>
+</TR>
+
+<TR>
+	<TD><B>strrpos()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Análoga a strpos() pero empezando por el final de la cadena</TD>
+</TR>
+
+<TR>
+	<TD><B>strrchr()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Análoga a strchr() pero empezando por el final de la cadena</TD>
+</TR>
+
+<TR>
+	<TD><B>strtok()</B></TD>
+	<TD>cad A, B</TD>
+	<TD>Extrae un token de A en base a B</TD>
+</TR>
+
+
+<TR>
+	<TD><B>strtolower() / strtoupper()</B></TD>
+	<TD>cad A</TD>
+	<TD>Pone una cadena en minúsculas / mayúsculas</TD>
+</TR>
+
+<TR>
+	<TD><B>str_replace()</B></TD>
+	<TD>cad A, B, C</TD>
+	<TD>Reemplaza por B las apariciones de A en C</TD>
+</TR>
+
+<TR>
+	<TD><B>substr()</B></TD>
+	<TD>cad A; ent B, C</TD>
+	<TD>Devuelve la subcadena de A que va desde la posición B hasta la B+C.
+</TR>
+
+<TR>
+	<TD><B>substr_replace()</B></TD>
+	<TD>cad A, B; ent C, D</TD>
+	<TD>Sustituye en A la subcadena desde C hasta C+D por la subcadena B</TD>
+</TABLE>
+
+
+<HR>
+<A NAME="variables">
+<H3>Funciones de variables</H3>
+<TABLE ALIGN="center" BORDER>
+
+<TR>
+	<TD><B>nombre</B></TD>
+	<TD><B>parámetros</B></TD>
+	<TD><B>descripción</B></TD>
+</TR>
+
+<TR>
+	<TD><B>doubleval()</B></TD>
+	<TD>esc A</TD>
+	<TD>Devuelve el valor <EM>double</EM> de A</TD>
+</TR>
+
+<TR>
+	<TD><B>empty()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve falso si la variable tiene valor vacío o cero</TD>
+</TR>
+
+<TR>
+	<TD><B>gettype()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve el tipo de la variable en forma de cadena: "integer",
+	"double", "string", "array", "object", "unknown type"</TD>
+</TR>
+
+<TR>
+	<TD><B>intval()</B></TD>
+	<TD>est A; ent B</TD>
+	<TD>Devuelve el valor entero de A usando B como base numérica. Por
+	defecto, B = 10</TD>
+</TR>
+
+<TR>
+	<TD><B>is_array()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si A es un vector.</TD>
+</TR>
+
+<TR>
+	<TD><B>is_float() / is_double() / is_real()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si A es un real.</TD>
+</TR>
+
+
+<TR>
+	<TD><B>is_int() / is_integer() / is_long()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si A es un entero.</TD>
+</TR>
+
+
+<TR>
+	<TD><B>is_string()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si A es una cadena.</TD>
+</TR>
+
+<TR>
+	<TD><B>is_object()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si A es un objeto.</TD>
+</TR>
+
+<TR>
+	<TD><B>isset()</B></TD>
+	<TD>gen A</TD>
+	<TD>Devuelve verdadero si existe A</TD>
+</TR>
+
+<TR>
+	<TD><B>settype()</B></TD>
+	<TD>gen A; cad B</TD>
+	<TD>Fuerza la variable A al tipo B</TD>
+</TR>
+
+<TR>
+	<TD><B>strval()</B></TD>
+	<TD>gen A</TD>
+	<TD>Convierte el valor de A a una cadena</TD>
+</TR>
+
+
+<TR>
+	<TD><B>unset()</B></TD>
+	<TD>gen A</TD>
+	<TD>Destruye A</TD>
+</TR>
+</TABLE>
+
+</BODY>
+</HTML>

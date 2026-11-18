@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.5 </title>
+        <script type="text/javascript"> 
+            /*
+            Crea una página llamada 03_tabla_multiplicar_js.html. Deberá pedirle al usuario un
+            número del 1 al 10 (repetidamente hasta que sea válido) y después, usando una función
+            previamente definida, mostrar la tabla de multiplicar de ese número en el contenido
+            de la página (document.write), en forma de lista no ordenada.
+            */
+            'use strict';
+            
+            //definición de la función---------------------------------------------------
+            function tablaMultiplicar(num) { 
+                let cadena = "<ul>"
+                for (let i = 1; i<=10; i++) {
+                    cadena += "<li> "+ num + "*" + i + " = "+(num*i)+"</li>";
+                }
+                cadena += "</ul>";
+
+                document.write(cadena);
+            }
+
+            //código que pide datos y llama a la función---------------------------------
+            let num;
+            do {
+                num = parseInt(prompt("Introduce un  número entero entre 1 y 10"));
+            } while (isNaN(num) || num < 1 || num > 10)
+
+            tablaMultiplicar(num);
+
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

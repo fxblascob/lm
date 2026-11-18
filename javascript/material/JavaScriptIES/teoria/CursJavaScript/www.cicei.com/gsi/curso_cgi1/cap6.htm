@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE> TUTORIAL CGI </TITLE>
+</HEAD>
+<BODY BACKGROUND="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13><BR>
+<H1><CENTER><FONT  COLOR=#800000>LISTAS</FONT></CENTER></H1>
+<IMG  SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" WIDTH=722 HEIGHT=13><BR>
+<BR>
+<P>HTML define dos tipos de listas:
+
+<H3>LISTA DESCRIPTIVA:</H3>
+<UL>
+<LI><STRONG>&lt;DL&gt; .... &lt;/DL&gt;</STRONG>
+<P>Con esta marca se abre una lista descriptiva. Englobar&aacute; otras dos marcas (DT y DD) cuya funci&oacute;n es caracterizar los elementos y sus definiciones.
+El atributo COMPACT asociado a esta marca (&lt;DL COMPACT&gt;) permitir&aacute; a alg&uacute;n browser mostrar en la misma l&iacute;nea el elemento y la primera l&iacute;ea del bloque de descripci&oacute;n.
+<P>
+<LI><STRONG>&lt;DT&gt; </STRONG>
+<P>Esta marca precede a cada &iacute;tem de la lista, que no debe sobrepasar una l&iacute;nea. Este elemento no realiza un resalte de cada &iacute;tem de la lista,es responsabilidad del autor utilizar las marcas de estilo o de t&iacute;tulo.
+<P>
+<LI><STRONG>&lt;DD&gt;</STRONG>
+<P>La marca &lt;DD&gt; corresponde a la zona de definici&oacute;n del &iacute;tem. El tama&ntilde;o de esta zona no est&aacute; limitado y cada l&iacute;nea se sangrar&aacute; hacia la derecha.
+</UL>
+
+<H4>ESTRUCTURA DE UNA LISTA DESCRIPTIVA:</H4>
+
+<BLOCKQUOTE>&lt;DL&gt;<BR>
+&lt;DT&gt; Elemento 1 &lt;DD&gt; Descripcio&oacute;n del elemento 1<BR>
+&lt;DT&gt; Elemento 2 &lt;DD&gt;  ...<BR>
+&lt;DT&gt; ... &lt;DD&gt; ...<BR>
+&lt;/DL&gt;</BLOCKQUOTE>
+
+<BR><BR>
+<H3>LISTA REGULAR: </H3>
+
+<UL>
+<LI><STRONG>&lt;UL&gt; .... &lt;/UL&gt;</STRONG>
+<P>Permite generar listas no numeradas, cada uno de los elementos de la lista ir&aacute; precedido por un s&iacute;mbolo que puede variar seg&uacute;n el nivel de anidamiento de la lista.
+<P>
+<LI><STRONG>&lt;OL&gt; .... &lt;/OL&gt;</STRONG>
+<P>Genera una lista ordenada o numerada.
+<P>
+<LI><STRONG>&lt;LI&gt;</STRONG>
+<P>Esta marca es com&uacute;n a los dos anteriores tipos de listas y precede a cada elemento de la lista.
+</UL>
+
+<H4>EJEMPLO DE LISTA NO NUMERADA:</H4>
+
+<BLOCKQUOTE>&lt;UL&gt;<BR>
+&lt;LI&gt; Elemento 1<BR>
+&lt;LI&gt; Elemento 2<BR>
+...<BR>
+&lt;/UL&gt;<BR></BLOCKQUOTE>
+
+<H4>EJEMPLO DE LISTA NUMERADA:</H4>
+
+<BLOCKQUOTE>&lt;OL&gt;<BR>
+&lt;LI&gt; Elemento 1<BR>
+&lt;LI&gt; Elemento 2<BR>
+...
+&lt;/OL&gt;<BR></BLOCKQUOTE>
+
+<P>Se pueden realizar anidaciones entre todos los distintos tipos de listas.
+
+</BODY>
+</HTML>

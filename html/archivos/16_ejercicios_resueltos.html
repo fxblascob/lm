@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>            Ejercicios        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
+        <meta charset="UTF-8">
+        <style>
+            .soluciones{
+                visibility:visible;
+            }
+        </style>
+    </head>
+    <body>
+	<div id="contenedor_general">
+
+        <div id="contenedor_cabecera">
+ 			<img src="../imagenes/logo.jpg" width="147" height="92"> 
+           <h1>Ejercicios</h1>
+        </div>
+         <iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+        <div id="contenedor_cuerpo">
+            <h2 id="ej_01">Ejercicio 1:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_1.pdf">enlace.</a> Guárdala con el nombre: ejercicio1.html.
+            </p>
+            <p class="soluciones" ><a href="../ejercicios/resueltos/ejercicio1.html"> Solución</a></p>
+
+            <h2 id="ej_02">Ejercicio 2:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_2.pdf">enlace.</a> Guárdala con el nombre: ejercicio2.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio2.html"> Solución</a></p>
+
+            <h2 id=""ej_03"">Ejercicio 3:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_3.pdf">enlace.</a> Guárdala con el nombre: ejercicio3.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio3.html"> Solución</a></p>
+
+            <h2 id="ej_04">Ejercicio 4:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_4.pdf">enlace.</a> Guárdala con el nombre: ejercicio4.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio4.html"> Solución</a></p>
+
+            <h2 id="ej_05">Ejercicio 5:</h2>
+            <p>
+                Realiza una página web que contenga tres párrafos (escribe el texto que tú quieras).
+                 A continuación, descárgate la siguiente <a href="../imagenes/imagen_marenostrum.jpg">imagen.</a> Modifica las dimensiones de la imagen 
+                 en cada posición. Incluye la imagen en los siguientes sitios:
+                <ul>
+                    <li>Dentro del primer párrafo, al principio.</li>
+                    <li>Dentro del segundo párrafo, al final.</li>
+                    <li>Entre el segundo y el tercer párrafo, dentro de un párrafo independiente. </li>
+                </ul>
+                Guarda el ejercicio con el nombre: ejercicio5.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio5.html"> Solución</a></p>
+
+            <h2 id="ej_06">Ejercicio 6:</h2>
+            <p>
+                A partir del ejercicio 5, transforma las imágenes en enlaces que vayan a la página del IES San Vicente. 
+                Guarda el ejercicio con el nombre: ejercicio6.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio5.html"> Solución</a></p>
+
+
+            <div class="ejercicios">
+                <h2 id="ej_06_2">Ejercicio 6_2:</h2>
+				<p>En el siguiente enlace tienes una imagen con cuatro zonas cada una de un color: <a href="../imagenes/Ej6_2_colores.jpg">imagen</a>.
+				debes crear cuatro archivos html con un párrafo que ponga "Región Amarilla" y guardalo con nombre amarillo.html. Haz lo mismo con el verde, rojo y azul</p>
+			    <p>Utiliza el código (realizando algunos cambios) y observa que se abren los html de nombre amarillo, verde, azul y rojo cuando haces click en cada una de las zonas	</p>
+                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_2.html</b>.</p>
+			</div>
+            <div class="codigo">
+                <pre>
+        &lt;body&gt;
+            &lt;img src=&quot;mapa.png&quot; usemap=&quot;#mapa1&quot; alt=&quot;mapa 4 colores&quot;&gt;			
+            &lt;map name=&quot;mapa1&quot;&gt;
+                &lt;area href=&quot;amarillo.html&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
+                        coords=&quot;0,0,190,190&quot;&gt;
+                &lt;area href=&quot;verde.html&quot; alt=&quot;VERDE&quot; shape=&quot;rect&quot; 
+                        coords=&quot;210,0,400,190&quot;&gt;
+                &lt;area href=&quot;azul.html&quot; alt=&quot;AZUL&quot; shape=&quot;rect&quot; 
+                        coords=&quot;0,210,190,400&quot;&gt;
+                    &lt;area href=&quot;rojo.html&quot; alt=&quot;ROJO&quot; shape=&quot;rect&quot; 
+                        coords=&quot;210,210,400,400&quot;&gt;
+            &lt;/map&gt;
+        &lt;/body&gt;
+                </pre>
+            </div>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio6_2/index.html"> Solución</a></p>
+
+			<div class="ejercicios">
+				<h2 id ="ej_06_3">Ejercicio 6_3:</h2>
+				<p>Añade el atributo title como se indica en el código para cada una de las zonas.</p>
+				<p>Observa que al situar el ratón en cada zona, aparece un el texto que se ha puesto en cada una de las zonas. </p>
+                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_3.html</b>.</p>
+			</div>
+			<div class="codigo">
+                &lt;area href=&quot;amarillo.html&quot; title= &quot;Región Amarilla&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
+	           coords=&quot;0,0,190,190&quot;&gt;
+			</div>
+		    <p>Cuando se quiere marcar una zona que es irregular habrá que utilizar como Shape "poly" que es una polilínea e ir escribiendo las coordenadas de todos los puntos</p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio6_3/index.html"> Solución</a></p>
+			<div class="ejercicios">
+				<h2 id="ej_06_4">Ejercicio 6_4:</h2>
+				<p> Crea un mapa de imágenes y especifica regiones para cada uno de los cuatro logos que aparecen en la siguiente <a href="../imagenes/Ej6_3_mapa.jpg"> imagen </a>de modo que utilices los distintos tipos de valores en el atributo shape (rect, circle y poly).</p>
+				<p> Al hacer click en cada una de las zonas se deben abrir las páginas a las que hacen referencia (www.w3schools.com, www.w3c.es, www.google.com/chrome y www.w3.org/TR/html5)</p>
+                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_4.html</b>.</p>
+			</div>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio6_4/index.html"> Solución</a></p>
+
+            <h2 id="ej_07">Ejercicio 7:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_7.pdf">enlace.</a> Guárdala con el nombre ejercicio7.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio7.html"> Solución</a></p>
+
+            <h2 id="ej_08">Ejercicio 8:</h2>
+            <p>
+                Transforma el ejercicio 7 para que cada elemento de la lista se convierta un enlace a 
+                una página web distinta. Guárdala con el nombre ejercicio8.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio8.html"> Solución</a></p>
+
+            <h2 id="ej_09">Ejercicio 9:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_9.pdf">enlace.</a> Guárdala con el nombre ejercicio9.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio9.html"> Solución</a></p>
+
+            <h2 id="ej_10">Ejercicio 10:</h2>
+            <p>
+                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
+                <a href="../ejercicios/ejercicio_10.pdf">enlace.</a> Guárdala con el nombre ejercicio10.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio10.html"> Solución</a></p>
+            
+            <h2 id="ej_11">Ejercicio 11:</h2>
+            <p>
+                Realiza una página web que contenga una tabla con tu horario del curso.
+                 Dicha tabla deterá tener 10 filas y 6 celdas por fila. 
+                 En el siguiente <a href="../ejercicios/ejercicio_11.pdf">enlace.</a> tienes la vista previa de cómo debería quedar. 
+                Guárdala con el nombre ejercicio11.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio11.html"> Solución</a></p>
+            <h2 id="ej_12">Ejercicio 12:</h2>
+            <p>
+                Realiza modificaciones al ejercicio 11 para destacar determinadas celdas, tal y 
+                como aparece en el siguiente <a href="../ejercicios/ejercicio_12.pdf">enlace.</a> Guarda el archivo con el nombre ejercicio12.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio12.html"> Solución</a></p>
+            <h2 id="ej_13">Ejercicio 13:</h2>
+            <p>
+                Modifica el ejercicio 12 para que la primera columna tenga un ancho de 124 píxeles y 
+                las 5 últimas tengan 180 píxeles y estén alineadas al centro. 
+                Guarda el archivo con el nombre ejercicio13.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio13.html"> Solución</a></p>
+            <h2 id="ej_14">Ejercicio 14:</h2>
+            <p>
+                Realiza una página web que contenga una tabla como la que aparece en el 
+                siguiente <a href="../ejercicios/ejercicio_14.pdf">enlace.</a>  
+                Guárdala con el nombre ejercicio14.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio14.html"> Solución</a></p>
+            <h2 id="ej_15">Ejercicio 15:</h2>
+            <p>
+                Realiza una página web que contenga una tabla como la que aparece 
+                en el siguiente<a href="../ejercicios/ejercicio_15.pdf">enlace.</a>  Guárdala con el nombre ejercicio15.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio15.html"> Solución</a></p>
+            <h2 id="ej_16">Ejercicio 16:</h2>
+            <p>
+                Realiza una página web que contenga una tabla como la que aparece 
+                en el siguiente <a href="../ejercicios/ejercicio_16.pdf">enlace.</a> Guárdala con el 
+                nombre ejercicio16.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio16.html"> Solución</a></p>
+            <h2 id="ej_17">Ejercicio 17:</h2>
+            <p>
+                Realiza una página web que contenga una tabla como la que aparece 
+                en el siguiente <a href="../ejercicios/ejercicio_17.pdf">enlace.</a> Guárdala con el 
+                nombre ejercicio17.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio17.html"> Solución</a></p>
+            <h2 id="ej_18">Ejercicio 18:</h2>
+            <p>
+                Realiza una página web que contenga una tabla como la que aparece 
+                en el siguiente <a href="../ejercicios/ejercicio_18.pdf">enlace.</a> Guárdala con el 
+                nombre ejercicio18.html.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio18.html"> Solución</a></p>
+            <h2 id="ej_19">Ejercicio 19:</h2>
+            <p>
+                Crea una carpeta con el nombre ejercicio19. En su interior, realiza las siguientes acciones:
+            </p>
+            <ul>
+                <li>Copia los ejercicios del 1 al 10.
+                <li>Modifícalos (sin borrar su contenido) para que tengan la siguiente estructura:
+                    <ul>
+                        <li>Una capa de nombre contenedor que englobe todo el contenido de la página.
+                        <li>Una capa de nombre cabecera, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y un encabezado de nivel 1 con el nombre del ejercicio (ejercicio 1, ejercicio 2, etc).
+                        <li>Una capa de nombre indice, que estará definida dentro de contenedor. Esta capa contendrá una una regla horizontal y una lista desordenada con enlaces a cada uno de los documentos (del 1 al 10).
+                        <li>Una capa de nombre cuerpo, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y el código HTML del ejercicio antes de que fuera modificado.
+                        <li> Una capa de nombre pie, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y un encabezado de nivel 4 con tu nombre, la fecha de hoy y la imagen-enlace a la web de W3C que dé prueba de que la validación HTML es correcta.
+                    </ul>
+                <li>Valida cada documento en la web de W3C.
+            </ul>
+
+Puedes ver cómo debe quedar cada página en el siguiente <a href="../ejercicios/ejercicio_19.pdf">enlace.</a>.
+            </p>
+            <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio19/ejercicio1.html"> Solución</a></p>
+            <div class="ejercicios">
+                <h2 id ="ej_20">Ejercicio 20:</h2>
+                
+                <p>Crea el esqueleto de una página web con la siguiente estructura:</p>
+                
+                <div class="imagenes">
+			        <img src="../imagenes/capas.png" alt="imagen de capas">
+			    </div>
+                
+                <p>La página deberá tener declaración de tipo de documento, codificación de caracteres, cabecera, título y cuerpo.</p>
+				
+				<p>Al terminar el ejercicio, añade el siguiente código a la <b>cabecera</b> de la página web para que se visualicen los bordes de la caja y así ver que el ejercicio es correcto:</p>
+				
+				<div class="codigo">
+                    <pre>
+                    &lt;style type=&quot;text/css&quot;&gt;
+                    div {
+                        border: solid 2px black;
+                        margin: 5px;
+                        padding: 10px;
+                        }
+                    &lt;/style&gt;
+					</pre>
+				</div>
+                
+                <p>Guarda la página con el nombre <b>ejercicio20.html</b>.</p>
+                <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio20.html"> Solución</a></p>
+                <div class="ejercicios">
+                    <h2 id="ej_21">Ejercicio 21:</h2>
+    
+                    <p>Crea una página HTML que tenga el aspecto <a href="../ejercicios/ejercicio_21.png">siguiente</a>. Las opciones de la lista desplegable serán: <i>1º ESO, 2º ESI, 1º ASI, 2º ASI</i>. Guarda la página con el nombre <b>ejercicio21.html</b>.</p>
+    
+                </div>
+                <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio21.html"> Solución</a></p>
+                
+                <div class="ejercicios">
+                    <h2 id ="ej_22">Ejercicio 22:</h2>
+    
+                    <p> Realiza un formulario que envíe los datos a la dirección de correo electrónico <i>midireccion@correo.com</i> con asunto <i>Ejercicio22</i>. Dicho formulario debe contener los controles siguientes, cada uno de ellos en un párrafo:</p>
+                    
+                    <ul>
+                        <li><b>Nombre</b>. El tamaño de la caja será 15 y la longitud máxima del texto será 20.</li>
+                        <li><b>Apellidos</b>. Su tamaño de caja será 20 y la longitud máxima del texto, 30.</li>
+                        <li><b>Teléfono</b>. Tendrá un tamaño de caja igual a 10 la longitud máxima del texto, 9.</li>
+                        <li><b>DNI</b>. Tendrá un tamaño 10 y una longitud máxima de 9. Será de tipo password.</li>
+                        <li><b>Sugerencias</b>. Será un campo de texto con 5 líneas y 30 columnas.</li>
+                        <li><b>Una caja de verificación</b> para seleccionar si se desea recibir las novedades de la web (activado por defecto).</li>
+                        <li><b>Un menú desplegable</b> en el que den una calificación de la web (de 1 a 10). La calificación por defecto será de 5.</li>
+                        <li><b>Dos botones de radio</b> para seleccionar si acepta los términos del contrato de licencia de envío de información (activado el <i>NO</i> por defecto).</li>
+                        <li>Un botón de <b>envío</b>.</li>
+                        <li>Un botón de <b>borrado</b>.</li>
+                    </ul>
+                    
+                    <p>Guarda la página con el nombre <b>ejercicio22.html</b>.</p>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio22.html"> Solución</a></p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_23">Ejercicio 23:</h2>
+    
+                    <p>Haz una copia del ejercicio 22 y guárdala con el nombre <b>ejercicio23.html</b>. Añádele el icono que más te guste a la barra de navegación.</p>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio23.html"> Solución</a></p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id ="ej_24">Ejercicio 24:</h2>
+    
+                    <p>Crea una página web que visualice el <b>mensaje</b> &quot;<i>Va a ser redirigido a la página www.iessanvicente.com en <b>10 segundos</b></i>&quot;, en formato encabezado de nivel 1, y una <b>imagen</b> del instituto a continuación. A los 10 segundos, la página deberá redirigirse automáticamente a dicha web. Guarda el ejercicio con el nombre <b>ejercicio24.html</b>.</p>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio24.html"> Solución</a></p>
+                </div>
+                <div class="ejercicios">
+                    <h2 id="ej_25">Ejercicio 25</h2>
+                    <p>Escoge un tema, visita en Internet información sobre ese tema, descárgate o enlaza un vídeo, un audio y un pdf.</p>
+                    <p class="soluciones"><a href="../ejercicios/resueltos/ejercicio25.html"> Solución</a></p>
+                </div>
+            </div>
+		</div>
+		<!-- Fin del cuerpo de la página-->
+			<div id="contenedor_pie">
+				<p>Manual de HTML - Lenguaje de Marcas - DAM-DAW-ASIR</p>
+			</div>
+	</div>
+    </body>
+</html>

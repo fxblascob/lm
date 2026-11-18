@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.11 </title>
+        <script type="text/javascript"> 
+            'use strict';
+            window.onload = function() {
+                /*
+                Crea un fichero llamado 04_funciones_arrays_js.html. Define un array de datos numéricos,
+                quédate sólo con los números que sean positivos y transforma el array para
+                que almacene los cuadrados de esos números. Usa funciones lambda para resolver
+                este ejercicio. Valora usar filter() y map().
+                */
+                let array = [2,4,-3,-5];
+
+                // muestro el array
+                document.getElementById("mostrar").innerHTML +="<br> Array: "+ array+"<br>";
+
+                // utilizando una función anónima
+                let nuevoArray = array.filter(item=>item > 0).map(item => item * item);  
+                document.getElementById("mostrar").innerHTML +="<br> resultado: "+ nuevoArray;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

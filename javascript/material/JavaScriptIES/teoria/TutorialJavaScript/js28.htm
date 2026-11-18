@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScrip - Js28</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- esconder codigo
+
+// Lee Cookie
+function getCookieVal(offset) {
+   var endstr = document.cookie.indexOf (";", offset);
+   if (endstr == -1) endstr = document.cookie.length;
+   return unescape (document.cookie.substring(offset, endstr));
+}
+
+// Crea Cookie
+function SetCookie (name, value) {
+   var argv =SetCookie.arguments;
+   var argc = SetCookie.arguments.length;
+   var expires = (argc > 2) ? argv[2] : null;
+   var path = (argc > 3) ?argv[3] : null;
+   var domain = (argc > 4) ? argv[4] : null;
+   var secure = (argc > 5) ? argv[5] : false;
+   document.cookie = name + "=" + escape (value) +
+   ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+   ((path == null) ? "" : ("; path=" + path)) +
+   ((domain == null) ? "" : ("; domain=" + domain)) +
+   ((secure == true) ? "; secure" : "");
+}
+
+// Lee datos de Cookie
+function GetCookie(name) {
+   var arg = name+"=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen) {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) return getCookieVal(j);
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+
+// Pide autorizacion
+function checkAGE() {
+   if (!confirm("Hola, puedo crear una galletita ?")) {
+      history.go(-1);
+      return "";
+   }
+}
+
+var UserName=GetCookie("msg1")
+if (UserName== null) {
+   document.writeln(checkAGE())
+   var UserName=prompt('Por favor escribe tu nombre (solo por esta vez):','Kike');
+   var expdate = new Date ();
+   expdate.setTime (expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+   SetCookie ("msg1", UserName, expdate);
+}
+
+// Contador
+function Pcounter(pcount) {
+   var pcount=GetCookie("msg2")
+   if (pcount==0) {
+      pcount=1
+   }
+   else pcount++
+   var expdate = new Date ();
+   expdate.setTime (expdate.getTime() + (24 * 60 * 60 * 1000 * 365));
+   SetCookie ("msg2", pcount, expdate);
+   return (pcount)
+}
+var accesscounter=Pcounter("pcount")
+
+// Clasificacion de usuario
+function FrequentUser() {
+   if (accesscounter >= 50) {
+      document.write('Adicto')
+   }
+   else if (accesscounter >= 30) {
+       document.write('Experimentado')
+       }
+       else if (accesscounter >= 10) {
+          document.write('Regular')
+       }
+       else if (accesscounter >= 5) {
+         document.write('Curioso')
+   }
+   else {
+      document.write('Nuevo')
+   }
+}
+// fin de esconder-->
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Leer/escribir una galletita o Cookie</H1>
+
+<CENTER>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- esconder codigo
+   var UserName=GetCookie("msg1")
+   if (UserName!=null ) {
+      document.write('<TABLE BORDER=1 BGCOLOR=FFFFCC CELLSPACING=0 CELLPADDING=10><TR><TD>');
+      document.write('Tu nombre es:<TD>'+UserName);
+      document.write('<TR><TD>Me visitaste:<TD>'+accesscounter+' veces');
+      document.write('<TR><TD>Ya eres cliente:<TD>');
+      FrequentUser()
+      document.write('</TABLE>');
+   }
+// fin de esconder-->
+</SCRIPT>
+<P></BODY>
+</HTML>

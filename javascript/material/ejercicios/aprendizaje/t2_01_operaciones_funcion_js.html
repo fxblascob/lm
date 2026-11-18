@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 1 - Archivo externo y varios mensajes</title>
+        <script>
+            /*
+            Crea un documento llamado 01_operaciones_funcion_js.html. En él, define cuatro
+            párrafos: uno que ponga “Suma”, otro que ponga “Resta”, otro que ponga “Multiplicación”
+            y otro que ponga “División”. Añade un código JavaScript que defina cuatro
+            funciones llamadas sumar, restar, multiplicar y dividir que reciban dos números como
+            parámetro y hagan cada una de estas cuatro operaciones con los números que reciben,
+            y muestren su resultado, como en el ejemplo anterior. Estas funciones se deben
+            activar respectivamente cuando hagamos clic sobre el párrafo correspondiente, es
+            decir, al hacer clic en el párrafo que pone “Suma”, deberemos activar la función sumar,
+            y así sucesivamente. Pasa como parámetro a las funciones los números que
+            quieras.
+            */
+            function suma(n1,n2) {
+                alert(n1+n2);
+            }
+            function resta(n1,n2) {
+                alert(n1-n2);
+            }
+            function multiplicacion(n1,n2) {
+                alert(n1*n2);
+            }
+            function division(n1,n2) {
+                alert(n1/n2);
+            }
+        </script>
+    </head>
+    <body>
+        <noscript>
+            Esta página <strong>requiere</strong> el uso de JavaScript y parece que está desactivado
+        </noscript>
+        <p onclick="suma(5,4)">Suma</p>
+        <p onclick="resta(5,4)">Resta</p>
+        <p onclick="multiplicacion(5,4)">Multiplicación</p>
+        <p onclick="division(5,4)">División</p>
+    </body>
+</html>

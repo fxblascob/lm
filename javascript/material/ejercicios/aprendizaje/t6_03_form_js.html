@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Ejercicio formularios</title>
+        <style type="text/css"> 
+            body {font-family: arial, helvetica;} 
+            #container {
+                background-color: rgb(169, 169, 236);
+            }
+            form {
+                display: flex;
+                flex-direction: column;
+                line-height: 3em;
+            }
+            input:valid  {
+                background-color: white;
+            }
+            input:invalid  {
+                background-color: red;
+            }
+                </style>
+        <script type="text/javascript"> 
+        /*
+        Crea un formulario en un documento llamado 03_form_js.html. El formulario deberá llamarse form3, y contendrá estos campos con sus respectivas restricciones:
+        • Un campo llamado login, obligatorio
+        • Dos campos de tipo password para introducir el password. Serán obligatorios, y además los dos 
+        passwords deben coincidir, y estar formados por al menos 8 caracteres, 
+        compuestos por letras (minúsculas o mayúsculas) y dígitos.
+        • Un campo llamado email, obligatorio
+        • Un botón de tipo submit y con valor Enviar.
+        Se debe comprobar la validez de los campos, y mostrar mensajes de error en formato HTML5 (sin alerts).
+         Deberás configurar mensajes de error personalizados en el caso del password 
+         (para mostrar si no coinciden, o para indicar el patrón que debe tener). T
+         ambién se deben marcar con fondo rojo los controles que hayan provocado error 
+         al intentar enviar el formulario. 
+         Dicho color de fondo rojo se restablecerá a blanco en cuanto se vuelva a escribir algo 
+         sobre el control.
+        */
+            'use strict';
+            window.onload = function(){
+                let validarPass = function(evento) {
+                    let ok = true;
+                    if (pass1.value != pass2.value) {
+                        pass2.setCustomValidity("los passwords no coinciden");
+                        ok = false;
+                    }
+                    if (pass1.patternMistach)  {
+                        pass1.setCustomValidity("al menos 8 digitos o letras");
+                        ok = false
+                    }
+                    if (pass2.patternMistach) {
+                        this.setCustomValidity("al menos 8 digitos o letras");
+                        ok = false;
+                    }
+                    if (ok) {
+                        pass1.setCustomValidity("");
+                        pass2.setCustomValidity("");
+                    }
+                    return ok;
+                }
+                document.form.addEventListener("submit",function(event) {
+                    event.preventDefault();  
+                    let pass1 = document.getElementById("pass1");
+                    let pass2 = document.getElementById("pass2");
+
+                    pass1.addEventListener("input",validarPass);
+                    pass2.addEventListener("input",validarPass);
+
+                    pass1.addEventListener("invalid",validarPass);
+                    pass2.addEventListener("invalid",validarPass);
+                });
+                
+            }
+        </script>
+
+    </head>
+    <body>
+        <div id="container">
+            <form name="form" id="form1" action="programa.php" method="GET">
+                <label>Login:
+                    <input type="text" name="login" id="login" required>
+                </label>
+                <label>
+                    Password:
+                    <input type="password" name="pass1" id="pass1" required pattern="[a-zA-Z0-9_]{8,16}">
+                </label>
+                <label>
+                    Repetir password:
+                    <input type="password" name="pass2" id="pass2" required pattern="[a-zA-Z0-9_]{8,16}">
+                </label>
+                <label>Email:
+                    <input type="email" name="email" id="email" required>
+                </label>
+
+                <input type="submit" value="Enviar" id="enviar">
+            </form>
+        </div>
+       
+    </body>
+</html>

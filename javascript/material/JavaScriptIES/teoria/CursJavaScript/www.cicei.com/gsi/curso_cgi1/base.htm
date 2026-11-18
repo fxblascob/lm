@@ -1,0 +1,73 @@
+<html>
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/fondoam.gif">
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" width="722" height="13">
+<font color=#800000><center><h1>Acceso a un servidor de Base de Datos</h1></center></font> 
+<img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/curso_cgi1/pookline.gif" width="722" height="13"><p>
+<h2>¿Por qu&eacute; usar el WWW? </h2>
+<ul>
+<li><b><h3>Interfase Gr&aacute;fica para Usuario (GUI): </b></h3> 
+Esta interfase hace los accesos a la base de datos m&aacute;s f&aacute;cil pero la implementaci&oacute;n de 
+tal interfase requiere que el usuario sea un programador habilidadoso. 
+Los <i>Web browser</i> proveen un GUI que puede ser usado para acceder a muchas cosas, entre ellas a bases de datos.
+Usando los formularios incorporados del <i>browser</i>, los usuarios pueden acceder a una base de dato simplemente rellenando los datos y presionando
+un bot&oacute;n.</li><p>
+
+<li><H3><B>Estandarizaci&oacute;n: </B></H3>
+Los web browsers acceden a documentos en m&aacute;quinas de todo el mundo.  Estos documentos est&aacute;n hechos en HTML.  Un documento HTML puede ser le&iacute;do por
+usuarios de cualquier m&aacute;quina en el mundo. As&iacute; usando un conjunto standard de herramientas,  el mantenimiento del c&oacute;digo se simplifica y la implementaci&oacute;n de nuevas ideas se hace m&aacute;s rapidamente.
+
+</li><P>
+
+<li><H3><B>Soporte de una plataforma cruzada:</B> </H3>
+Los browsers</li> est&aacute;n disponibles para casi todas las m&aacute;quinas.  Los browsers y HTML proveen medios de acceso al 
+WWW desde muchos diferentes tipos de m&aacute;quinas.  Este soporte permite a los usuarios en la mayor&iacute;a de los diferentes tipos de m&aacute;quina
+</li><p>
+<li><H3><B>Acceso a la red:</B> </H3>
+Uno de los beneficios de tener un servidor HTTP,  es que el ruido de red es manejado por el cliente y el servidor HTTP con lo cual ni el usuario ni el programador de HTML necesitan saber nada de la red.
+Esto simplifica la tarea de acceso a base de datos ya que se elimina el problema de tener dos plataformas diferentes  de hardware.
+ </li><p>
+</ul>
+
+
+<h2>Acceso a una base de Datos</h2><p>
+<ul>
+<li>
+<B><H3>CGI (Common Gateway Interface )</H3></B>
+Los servidoreds HTTP proporcionan un m&eacute;todo para ejecutar programas externos desde dentro de un documento HTML.  Este m&eacute;todo se denomina CG.  El servidor le pasa informaci&oacute;n al programa CGI y obtiene los resultados de la 
+ejecuci&oacute;n.  Este m&eacute;todo permite al usuario pasar informaci&oacute;n al programa CGI mediante un formulario. El programa procesa informaci&oacute;n y retorna el resultado en formato HTML o en texto.
+CGI se presta mucho a la tarea de coger informaci&oacute;n de una base de datos.  La flexibilidad del CGI permite el uso de cualquier m&eacute;todo de acceso, e incluso permite el uso de m&uacute;ltiples bases de datos en m&uacute;ltiples servidores.
+ 
+</li><p>
+<li>
+<h3>Tipos de Interfase:</h3> 
+Los programas CGI pueden pueden ser de casi cualquier tipo: <i>sed,awk,perl,shell scripts...</i>. Los programas CGI s&oacute;lo necesitan leer datos de la entrada, o acceder a las variables de entorno para los datos.  Una vez que los datos sean le&iacute;dos
+se generan los resultados o bien en foemato HTML o bien en texto ASCII.  La mayor&iacute;a de los programadores han emigrado al Perl. Las habilidades de procesamiento de texto del Perl y su versatilidad as&iacute; como su soporte de plataforma cruzada le hacen 
+ser la mejor elecci&oacute;n para los scripts CGI.<br>
+Una instrucci&oacute;n de SQL puede ser pasada en piezas y el programa CGI une las piezas, pasando la instrucci&oacute;n a la base de datos, obtener los resultados, formatearlos y pasarlos al servidor HTTP.
+</li><p>
+</ul>
+
+<h2>M&eacute;todos de Acceso</h2>
+Existen diferentes m&eacute;todos de acceder a una base de datos desde un <i>web browser</i>.  Algunas bases de datos tienen su propio software de interfase con la red, otras requieren un producto adicional y otras no tienen ninguno.
+Todos estos m&eacute;todos usan el procedimiento HTTP CGI gateway.  Para que un servidor HTTP pueda ejecutar programas CGI, debe estar configurado para permitir el acceso CGI.   A la hora de configurar el servidor HTTP, la seguridad debe ser tenida en cuenta.
+<ul>
+<li><H3>Base de Datos con sofware interno de red:</H3> 
+Si el cente HTTP y el servidor de la base de datos est&aacute;n en diferentes m&acute;quinas, el software de red de la base de datos es instalado en la misma m&aacute;quina del cliente HTTP.  Si los dos est&aacute;n en la misma m&aacute;quina, alg&uacute;n tipo de 
+software de acceso ser&aacute; proporcionado por la propia base de datos.
+</li><p>
+<li><H3>Base de Datos sin Software interno de red</H3>
+El cliente HTTP y el servidor pueden estar en diferentes m&aacute;quinas pero el servidor HTTP y el servidor de la Base de Datos deben estar  en la misma m&aacute;quina. La red que haya entre las dos m&aacute;quinas puede ser una red Novell entre los PC's o una red TCP/IP  en UNIX...
+El servidor HTTP debe estar configurado para permitir  acceso CGI.
+</li><p>
+<li>
+<H3>Usando software de red externo</H3>
+Esta soluci&oacute;n es s&oacute;lo para usuarios accediendo al servidor DB desde una m&aacute;quina remota.  No hay necesidad de software de red en la m&aacute;quina local.
+El software del servidor de red debe de aceptar una query de la base de datos, transportarla a trav&eacute;s de la red, entreg&acute;rsela al servidor de base de datos, obtener los resultados, llevar los resultados a trav&eacute;s de toda la red y entreg&aacute;rselos al software de la pasarela para 
+que se los entreguen al cliente HTTP.
+El servidor de red en la m&aacute;quina del servidor de la base de datos puede hacer llamadas directas a la base de datos a trav&eacutes de un API proporcionado por la base de datos, o a trav&eacute;s de alg&acute;n otro software de acceso a base de datos.
+Mientras esto parezca innecesario, considerando que el <I>web browser</I>y el servidor HTTP pueden manejar el tr&aacute;fico de red por s&iacute; mismos, 
+</li>
+
+</ul>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<HTML><HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Configuración de PHP</H1>
+<P>PHP es un lenguaje altamente configurable, es decir, podemos condicionar
+el comportamiento del intérprete en muchos aspectos por medio de modificar
+y añadir directivas en su fichero de configuración o en el de Apache.
+En este apartado vamos a estudiar las directivas más importantes y a
+lo largo del tutorial nos daremos cuenta de la utilidad de algunas
+de ellas.</P>
+<H3>Ficheros de configuración</H3>
+<P>Los ficheros de configuración para PHP3 y PHP4 son, respectivamente,
+<B>php3.ini</B> y <B>php.ini</B>. Si utilizamos el intérprete de PHP
+como módulo del servidor web, entonces el fichero de configuración se
+lee cuando se inicia dicho servidor. Si, por el contrario, trabaja como
+CGI, el fichero se lee cada vez que se ejecute el intérprete.</P>
+<H3>Directivas de configuración</H3>
+<P>En la siguiente lista se explica el comportamiendo de algunas de las
+directivas de configuración más importantes. En <FONT COLOR="red">
+rojo </FONT> tenemos su nombre y en<FONT COLOR="green">verde</FONT>
+el tipo de valor que almacena.</P>
+<HR>
+	<FONT COLOR="red">asp_tags</FONT><BR>
+	<FONT COLOR="green">lógica</FONT>
+	<P>Permite o no la utilización de marcas al estilo ASP. Ver 
+	<A HREF>enlace con escape de html</A>
+<HR>
+	<FONT COLOR="red">display_errors</FONT><BR>
+	<FONT COLOR="green">lógica</FONT>
+	<P>Indica si los errores han de escribirse como parte del documento
+	HTML.</P>
+<HR>
+	<FONT COLOR="red">doc_root</FONT><BR>
+	<FONT COLOR="green">cadena</FONT>
+	<P>Si PHP está configurado en modo seguro no servirá ningún documento
+	fuera de este directorio.</P>
+<HR>
+	<FONT COLOR="red">error_log</FONT><BR>
+	<FONT COLOR="green">cadena</FONT>
+	<P>Nombre del fichero donde se notificarán los errores.</P>
+<HR>
+	<FONT COLOR="red">error_reporting</FONT><BR>
+	<FONT COLOR="green">entera</FONT>
+	<P>Determina el nivel de notificación de errores.
+	Ver <A HREF>manejo de errores</A>.</P>
+<HR>
+	<FONT COLOR="red">open_basedir</FONT><BR>
+	<FONT COLOR="green">cadena</FONT>
+	<P>Indica el árbol de directorios donde se encuentran los ficheros
+	que PHP puede abrir. Bien utilizado, supone una nueva medida
+	de seguridad.</P>
+<HR>
+	<FONT COLOR="red">include_path</FONT><BR>
+	<FONT COLOR="green">cadena</FONT>
+	<P>Especifica la lista de directorios donde require() e include()
+	buscarán los ficheros.</P>
+<HR>
+	<FONT COLOR="red">max_execution_time</FONT><BR>
+	<FONT COLOR="green">entera</FONT>
+	<P>Fija el máximo tiempo de ejecución de un script escrito en PHP.
+	Con ello se consigue que, si alguno de los scripts falla, no se quede
+	"colgado" ocupando recursos.</P>
+<HR>
+	<FONT COLOR="red">memory_limit</FONT><BR>
+	<FONT COLOR="green">entera</FONT>
+	<P>Fija la cantidad máxima de memoria que puede tomar un script.</P>
+<HR>
+	<FONT COLOR="red">track_errors</FONT><BR>
+	<FONT COLOR="green">lógica</FONT>
+	<P>Especifica, si su valor es verdadero, que el último mensaje de
+	error se almacena en $php_errormsg.</P>
+<HR>
+	<FONT COLOR="red">track_vars</FONT><BR>
+	<FONT COLOR="green">lógica</FONT>
+	<P>Si es verdadera, indica que las entradas correspondientes
+	a GET, POST y cookie se encuentren en los vectores globales
+	asociativos $HTTP_GET_VAR, $HTTP_POST_VARS y $HTTP_COOKIE_VARS,
+	respectivamente.</P>
+<H3>Más directivas</H3>
+<P>Las directivas que hemos visto no son todas las que admite la configuración
+de PHP; encontramos más directivas específicas para seguridad, correo y las
+diferentes bases de datos. No obstante, no es objeto de este tutorial un
+estudio exhaustivo de la configuración del lenguaje, así que las directivas
+restantes se analizarán en otra ocasión.</P>
+</BODY>
+</HTML>

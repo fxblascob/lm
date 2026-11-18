@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 1 - Archivo externo y varios mensajes</title>
+        
+    </head>
+    <body>
+        <noscript>
+                Esta página <strong>requiere</strong> el uso de JavaScript y parece que está desactivado
+        </noscript>
+        <script>
+            'use strict';
+            let suma = 0;
+            let num = parseInt(prompt("Introduce un número"));
+            //-----------suma con for
+            for(let i = 1; i<= num; i++) {
+                suma = suma + i;
+                if (i<num) document.write(i+"+");
+                else document.write(i+"=");
+            }
+            document.write(suma);
+        </script>
+    </body>
+</html>

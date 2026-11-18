@@ -1,0 +1,27 @@
+<HTML>
+<HEAD><TITLE>Manual practico de JavaScript - Js10f</TITLE>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+function Dime()  {
+   var Hoy = new Date();
+   var laHora = Hoy.getHours();
+   var Diferencia = (Hoy.getTimezoneOffset() / 60);
+   laHora -= Diferencia;
+   if (laHora > 23)  {laHora -= 24};
+   document.write(laHora + " horas y " + Hoy.getMinutes() + " minutos.");
+   window.setTimeout("Dime();", 60000);
+}
+// Fin esconder -->
+</SCRIPT>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+
+<BODY TEXT=navy BGCOLOR=white>
+La hora coordinada universal es: 
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+Dime();
+// Fin esconder -->
+</SCRIPT>
+</BODY>
+</HTML>

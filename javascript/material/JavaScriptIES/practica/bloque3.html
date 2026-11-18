@@ -1,0 +1,116 @@
+<!DOCTYPE HTML >
+<html>
+	<head>
+		<title>Aprendiendo JavaScript</title>
+		<script language="javascript" src="bloca.js"></script></head><body>
+		<script LANGUAGE="JavaScript"> 
+
+			function muestraNavigator() {
+			   document.write("Navigator <b>appCodeName</b>: " + navigator.appCodeName + "<br>"); 
+			   document.write("Navigator <b>appName</b>: " + navigator.appName + "<br>"); 
+			   document.write("Navigator <b>appVersion</b>: " + navigator.appVersion + "<br>"); 
+			   document.write("Navigator <b>language</b>: " + navigator.language + "<br>");
+			   document.write("Navigator <b>platform</b>: " + navigator.platform + "<br>");
+			   document.write("Navigator <b>userAgent</b>: " + navigator.userAgent + "<br>"); 
+			}
+			function muestraScreen(){
+				document.write("Alto disponible para el navegador:" +	screen.availHeight+ "<br>")
+				document.write("Ancho disponible para el navegado: "+screen.availWidth+ "<br>")
+				document.write("Número de bits usados para representar los colores: "+screen.colorDepth+ "<br>")
+				document.write("Alto de la pantalla en pixeles: "+screen.height+ "<br>")
+				document.write("Ancho de la pantalla en pixeles: "+screen.width+ "<br>")
+			}
+			function calcula(operacion){ 
+				var operando1 = document.calc.operando1.value 
+				var operando2 = document.calc.operando2.value 
+				document.calc.resultado.value = eval(operando1 + operacion + operando2) 
+			} 
+
+			function ventanaCentrada(){
+					ventana=open(prompt('introduce una URL completa empezando con http://','http://jaimesegundo.edu.gva.es'),'ventana','toolbar=0,width=300,height=200')
+					ventana.moveTo((screen.width-300)/2,(screen.height-200)/2);
+				
+			} 
+			function comprobarFormulario() {
+				if  (document.form1.apellidos.value.length<3) alert("introduce tus apellididos")
+				if  (document.form1.nombre.value.length<3) alert("introduce tu nombre")
+				if  (   document.form1.dni.value.length!=9 || 	isNaN(document.form1.dni.value.substr(0,7)) || 
+					document.form1.dni.value[8].toLowerCase() <'a' || 	document.form1.dni.value[8].toLowerCase() >'z' )
+					alert("introduce tu dni correctamente")
+
+			}
+		</script> 
+	 </head>
+	 <body>
+		<h1>Ejercicios de javascript sobre modelo de objetos y eventos</h1>
+		<hr>
+		<table border  cellspacing=10 cellpadding="10" align="center" width="70%" >
+			<tr><td><input type=submit value='01 sacar un mensaje con alert al pulsar' onclick="window.alert('HAS PULSADO UN BOTÓN')"></td></tr>
+			<tr><td><input type=submit value='02 cambiar el título de la página al pulsar' onclick="document.title='LA PÁGINA DEL MENDA'"></td></tr>
+			<tr><td><input type=submit value='03 cambiar el color de fondo de la página al pasar por encima' onmouseover="document.bgColor='orange'" onMouseOut="document.bgColor='purple'"></td></tr>
+			<tr>
+				<td>
+					<input type=submit value='04 coger el color de otro objeto'> 
+					<table width="80%" height="40">
+						<tr>
+							<td bgcolor="red" onmouseover="document.bgColor=this.bgColor" ></td><td bgcolor="blue" onmouseover="document.bgColor=this.bgColor" ></td><td bgcolor="green" onmouseover="document.bgColor=this.bgColor" ></td>
+						</tr>
+					</table>
+				</td> 
+			</tr>
+			<tr><td><input type=submit value='05 abrir una URL que se pide al usuario en la misma ventana' onClick="document.location=prompt('introduce una URL completa empezando con http://','http://jaimesegundo.edu.gva.es')"></td></tr>
+			<tr><td><input type=submit value='06 abrir una URL que se pide al usuario en una ventana nueva ' onClick="open(prompt('introduce una URL completa empezando con http://','http://jaimesegundo.edu.gva.es'),'ventana','_new')"></td></tr>
+			<tr><td><input type=submit value='07 mostrar las propiedades del navegador ' onClick="muestraNavigator()"></td></tr>
+			<tr><td><input type=submit value='08 mostrar las propiedades de la pantalla ' onClick="muestraScreen()"></td></tr>
+			
+			<tr><td><input type=submit value='09  ' onClick='ventanaCentrada()'><br>Abrir una ventana nueva del navegador con un tamaño de 300 * 200 <br> en el centro de la pantalla y que no aparezcan las barras de herramientas</td></tr>
+			<tr>
+				<td>
+					<input type=submit value='10 atrás en el historial' onClick='window.back()'>
+					<input type=submit value='10 adelante en el historial' onClick='window.forward()'><br>
+					Implementar dos botones que van hacia adelente o hacia atrás en <br> el historial de navegación</td></tr>
+			<tr>
+				<td>
+					<input type=submit value='11 calculadora sencilla hecha con un formulario y cuatro botones ' >
+					<table width="80%" >
+						<tr>
+							<td>
+								<form name="calc"> 
+									<input type="Text" name="operando1" value="0" size="12"> <br> 
+									<input type="Text" name="operando2" value="0" size="12"> <br> 
+									<input type="Button" name="" value=" + " onclick="calcula('+')"> 
+									<input type="Button" name="" value=" - " onclick="calcula('-')"> 
+									<input type="Button" name="" value=" X " onclick="calcula('*')"> 
+									<input type="Button" name="" value=" / " onclick="calcula('/')"> <br> 
+									<input type="Text" name="resultado" value="0" size="12"> 
+								</form>
+							</td>
+						</tr>
+					</table>
+				</td> 
+			</tr>
+			<tr>
+				<td>
+					<input type=submit value='12' onClick='comprobarFormulario()'><br>
+					Crear un formulario y comprobar que los datos vienen bien rellenos. <br>
+					- El nombre y los apellidos deben tener almenos 2 caracteres <br> 
+					- El DNI debe estar formado por 8 numeros y una letra al final
+					<TABLE BORDER>
+						<form name='form1'>
+							<TR>
+								<TD>
+									nombre: <input type="text" name="nombre" size="25"><br>apellidos:<input type="text" name="apellidos" size="25"><br> DNI:<input type="text" name="dni" size="10">
+								</TD>
+							</TR>
+							<TR>
+								<TD>
+									<input value="enviar" type='button' onClick="comprobarFormulario()">
+								</TD>
+							</TR>
+						</form>
+					</TABLE>
+				</td> 
+			</tr>
+		</table>
+	</body>
+</html>

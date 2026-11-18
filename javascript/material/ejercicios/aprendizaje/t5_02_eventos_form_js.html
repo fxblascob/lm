@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio11/ejercicio11.html -->
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio</title>
+		<script type="text/javascript">
+			/*
+			Crea una página llamada 2_eventos_form_.html con un formulario como este:
+			Define eventos JavaScript sobre los dos cuadros de texto para que:
+			• Si salimos del cuadro de texto (evento blur) y no tiene valor (propiedad value
+			está vacía), se le ponga el color de fondo rojo al cuadro de texto. Si tiene valor,
+			dejaremos el color de fondo blanco.
+			• Cuando entramos al cuadro de texto (evento focus), se le ponga el color de
+			fondo amarillo.
+			*/
+
+			'use strict';
+			window.onload = function() {
+                let eventoBlur = function(){
+                    if (this.value=="")
+					    this.style.backgroundColor="red";
+                    else
+                        this.style.backgroundColor="white";
+				}
+                let eventoFocus = function() {
+                    this.style.backgroundColor="yellow";
+                }
+
+				let nombre =  document.getElementById("nombre");
+                let email = document.getElementById("email");
+
+				nombre.addEventListener("blur",eventoBlur);
+                email.addEventListener("blur",eventoBlur);
+                nombre.addEventListener("focus",eventoFocus);
+                email.addEventListener("focus",eventoFocus);
+				
+			}
+		</script>
+
+	</head>
+	<body>
+		<form>
+            <label>Nombre:  <input type="text" id="nombre"></label>
+            <label>Email:  <input type="text" id="email"></label>
+        </form>
+	</body>
+</html>

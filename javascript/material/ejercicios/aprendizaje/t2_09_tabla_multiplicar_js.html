@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.5 </title>
+        <script type="text/javascript"> 
+            /*
+            Crea una página llamada 09_tabla_multiplicar_js.html
+            • Crea un script (usando al menos 1 función) en el que se le pida al usuario 2 datos:
+            ◦ El primero serán dos números del 1 al 10 (debes dar error en otro caso)
+            ◦ El segundo será el modo de visualización: LISTA o TABLA (debe dar error si elige otra
+            cosa) puedes mostrarlo con la instrución document.write();
+            • El programa mostrará la tabla de multiplicar del número más pequeño, llegando hasta el
+            número más grande
+            • Ojo, tendrás que tener en cuenta que el usuario puede ponerte el segundo número más
+            pequeño que el primero.
+            • Ejemplo, si el usuario introduce los número 2 y 4, el resultado de la página será el siguiente
+            Ejemlo:
+            let desde, hasta, modo
+            //..pedir los datos y filtrar..
+            tablaMultiplicar(desde,hasta,modo);
+            */
+            'use strict';
+            function tablaMultiplicar(desde,hasta,modo) { 
+                let cadena = "";
+                if (modo == 1) { //tabla
+                    cadena = "<table border='1'>"
+                    for (let i=1; i<hasta; i++) {
+                        cadena += "<tr> <td>"+desde+"*"+i+"</td><td> = </td> <td>"+(desde*i)+"</td></tr>";
+                    }
+                    cadena += "</table>";
+                }else { //lista
+                    cadena = "<ul>"
+                    for (let i = 1; i<=hasta; i++) {
+                        cadena += "<li> "+desde+"*"+i+" = "+(desde*i)+"</li>";
+                    }
+                    cadena += "</ul>";
+                }
+                document.write(cadena);
+            }
+            
+            let desde, hasta, modo
+            do {
+                desde = prompt("Introduce un primer número entero entre 1 y 10");
+            } while (desde < 1 || desde > 10)
+            do {
+                hasta = prompt("Introduce un segundo número entero entre 1 y 10");
+            } while (hasta < 1 || hasta > 10)
+            do {
+                modo = prompt("Introduce el modo de presentación /n 1 -> Tabla /n2-> Lista");
+            }while (modo != 1 && modo !=2)
+
+            tablaMultiplicar(desde,hasta,modo);
+        </script>
+        <style>
+            table {
+                border:2px solid red;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

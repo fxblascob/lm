@@ -1,0 +1,327 @@
+<html>
+
+<head>
+
+<title> Los cookies </title>
+
+<script language="JavaScript">
+<!--	
+	function abrirVentana(Url, titulo, Width, Height){
+		var win_opt = "toolbar=0,location=0,directories=0,status=0,"; 
+		win_opt += "menubar=0,scrollbars,resizable=0,copyhistory=0,";
+		win_opt += "width=" + Width + ",height=" + Height;
+		window.open(Url,titulo,win_opt);
+	}	
+//-->	
+</script>
+</head>
+
+<body bgcolor="white">
+
+<a name="cookies"></a>
+<font size=7 color="#006400"><b><center><FONT color=mediumblue face=Tahoma>Cap&iacute;tulo 
+9: </FONT><U> <p><FONT color=royalblue face="Arial Black" size=6>Los 
+cookies </FONT>  </center></U></b></font>
+
+<p>
+<a name="queson"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>9.1. &iquest;Qu&eacute; son los <i>cookies</i>?.</FONT></U></b></h2>
+<p>
+Los cookies representan mecanismos que permiten al 
+servidor almacenar en el cliente informaci&oacute;n relativa a la 
+transacci&oacute;n. As&iacute;, cuando el servidor responde a una 
+petici&oacute;n del cliente, inserta una informaci&oacute;n que se 
+conservar&aacute; en el cliente. Esta informaci&oacute;n es una 
+descripci&oacute;n relativa a un conjunto de direcciones URL. En adelante, 
+ser&aacute; insertada por el cliente en una petici&oacute;n que referencie estas 
+direcciones URL y se denomina un <i>cookie</i>.
+<p>
+Este mecanismo, muy simple, proporciona una herramienta 
+potente para numerosas aplicaciones gestionadas por el Web.
+
+<p>
+<a name="Propiedades"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Tahoma>9.2. Propiedades de los 
+cookies.</FONT></U></b></h2>
+<p>
+Antes de empezar a enumerar las distintas propiedades de 
+los cookies debemos apuntar que un cliente no puede memorizar m&aacute;s de 300 
+cookies. El tama&ntilde;o m&aacute;ximo de cada cookie es de 4000 bytes. 
+Adem&aacute;s, el cliente no puede memorizar m&aacute;s de 20 cookies por 
+servidor.
+<p>
+Una vez dicho esto, vamos a enumerar las distintas 
+propiedades de los cookies:
+
+<DL>
+
+<DT><b>Nombre = Valor</b>
+<DD>Esta cadena de caracteres permite asociar a cada 
+    variable un valor espec&iacute;fico. Los caracteres espacio, punto y coma; y 
+    coma, no pueden figurar en la cadena de caracteres. Si estos caracteres 
+    forman parte del nombre de la variable o del valor asignado, deben 
+    remplazarse por su codificaci&oacute;n URL respectiva. La presencia de este 
+    campo es obligatoria.
+<p></p>
+<dt><b>expires = Fecha</b>
+<dd>El atributo expires especifica la fecha de caducidad 
+    del cookie. Cuando llega esta fecha, el cookie ser&aacute; borrado por el 
+    cliente y dejar&aacute; de insertarse en transacciones futuras. La fecha 
+    debe especificarse en el formato siguiente:
+<p><center><i>WeekDay, DD-Month-YY 
+    HH:MM:SS GMT</i></center>
+<p>
+Este campo es opcinal. Si no se indica, el cookie se 
+    borrar&aacute; al terminar la sesi&oacute;n. Por otra lado, tambi&eacute;n 
+    se utiliza esta propiedad para borrar un cookie, esto se har&aacute; 
+    introduciendo dicha propiedad con una fecha pasada.
+<p></p>
+<dt><b>domain = 
+    nombre_&aacute;mbito</b>
+<dd>Cuando el cliente busca el cookie aplicable a un 
+    servidor dado, este campo permite identificar el cookie correspondiente al 
+    servidor accedido. Cuando se pueden aplicar varios cookies, el campo
+<i>path</i> se eval&uacute;a una b&uacute;squeda m&aacute;s 
+    completa. Tales situaciones se producen cuando el campo <i>domain</i> representa un &aacute;mbito IP. Por ejemplo, si el campo 
+    especificado es <i>domain=&quot;ulpgc.es&quot;</i>, los 
+    cookies memorizados para este &aacute;mbito se aplicar&aacute;n 
+    tamni&eacute;n a los servidores <I>www.ulpgc.es</I> y <I>pracgsi.ulpgc.es</I>. En ciertos &aacute;mbitos como los 
+    &quot;COM&quot;, &quot;EDU&quot;, &quot;NET&quot;, &quot;ORG&quot;, 
+    &quot;GOV&quot;, &quot;MIL&quot; e &quot;INT&quot;, es obligatorio 
+    especificar los &aacute;mbitos conteniendo tres puntos, es decir, 
+    especificando tambi&eacute;n los sub&aacute;mbitos.
+<br>
+El valor predeterminado de este campo corresponde al servidor HTTP que 
+    haya inicializado el cookie.
+<p></p>
+<dt><b>path = camino</b>
+<dd>El atributo <i>path</i> permite 
+    asignar el cookie a un conjunto de recursos identificados por el <I>camino</I>. Cuando el cookie a sido asociado previamente 
+    a un servidor mediante el atributo
+<i>domain</i>, el URL 
+    del recurso se compara con el atributo <i>path</i>. Si 
+    este &uacute;ltimo est&aacute; presente en el URL entonces el cookie es 
+    v&aacute;lido y el cliente lo inserta en la petici&oacute;n. Por ejemplo, el 
+    atributo <i>path=&quot;/foo&quot;</i> se aplicar&aacute; 
+    a los recursos
+<i>&quot;foobar&quot;</i> y <i>&quot;/foo/bar.html&quot;</i>. El atributo <i>path=&quot;/&quot;</i> permitir&aacute; aplicar al 
+    cookie todos los recursos consultados. 
+<br>
+El valor 
+    predeterminado de <i>path</i> corresponde la documento 
+    consultado.
+<p></p>
+<dt><b>secure</b>
+<dd>Un cookie que contenga este campo es insertado por 
+    el cliente cuando la conexi&oacute;n cliente-servidor es segura. Es el caso 
+    por ejemplo cuando se utiliza el protocolo HTTPS.
+<br>
+Cuando este atributo est&aacute; ausente, el cookie se transmite 
+    independientemente del protocolo HTTP considerado.</dd>
+
+</DL>
+
+<p>
+<a name="definicion"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>9.3. La definici&oacute;n de <i>cookies</i>.</FONT></U></b></h2>
+<p>
+Como ya hemos visto anteriormente, el inter&eacute;s que 
+presenta la utilizaci&oacute;n de cookies para memorizar las propiedades 
+relativas a un recurso espec&iacute;fico. Estas propiedades se pueden definir de 
+dos maneras:
+<p><blockquote><b><h3>1. Mediante una llamada la Servidor HTTP.</h3></b>
+<p>
+<blockquote>
+En este caso, un cookie es iniciado por 
+        el servidor insertando al directiva <TT>Set-Cookie</TT> en la cabecera de la respuesta HTTP. Esto se 
+        generaliza mediante un script CGI con la siguiente sintaxis:
+<p><blockquote><tt><b>Set-Cookie</b>: Nombre=Valor; expires=Fecha; 
+            path=Camino; domain=Nombre_&aacute;mbito; secure 
+</blockquote></TT>
+<p></p>
+</blockquote>
+<b><h3>2. Utilizando JavaScript.</h3></b>
+<p>
+<blockquote>
+Como veremos en la secci&oacute;n 
+        siguiente con m&aacute;s detenimiento mediante un ejemplo, 
+        tambi&eacute;n puede definirse mediante la propiedad <i>cookie</i> del objeto <i>document</i>. Esto 
+        permite la definici&oacute;n local de propiedades de un cookie sin 
+        intervenci&oacute;n del servidor WWW. As&iacute;, la gesti&oacute;n y la 
+        memorizaci&oacute;n de los cookies las lleva a cabo el cliente. 
+</blockquote>
+</blockquote>
+
+<p>
+<a name="ejemplo"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>9.4. Ejemplo de definici&oacute;n de <i>cookies</i> mediante JavaScript.</FONT></U></b></h2>
+<p>
+En el ejemplo siguiente, asociaremos a un recurso las 
+propiedades <i>username</i> y <i>lastime</i> que permiten asociar a un cliente un nombre de usuario y la 
+fecha de &uacute;ltimo acceso al recurso. Para ello las funciones <i>GetCookie</i> y <i>SetCookie</i> 
+permiten respectivamente la b&uacute;squeda y la definici&oacute;n de una 
+propiedad. Estas funciones act&uacute;n sobre la cadena de caracteres <i>document.cookie</i> que contiene las propiedades asociadas 
+al recurso. Estas funciones utilizan las funciones predefinidas <i>escape</i> y <i>unescape</i> que permiten 
+respectivamente codificar y decodificar una cadena de caracteres en formato URL.
+<p>
+La funci&oacute;n <b>GetCookie</b> 
+posee dos argumentos que son el nombre de la propiedad y la cadena de caracteres 
+que representa los cookies asociados al documento. Esta funci&oacute;n devuelve 
+el valor de la propiedad cuando &eacute;sta aparece definida.
+<pre><tt>
+<blockquote>
+<b>function</b> GetCookie (name, InCookie) {
+	<b>var</b> prop = name + &quot;=&quot;; // propiedad buscada
+	<b>var</b> plen = prop.length;
+	<b>var</b> clen = InCookie.length;
+	<b>var</b> i=0;
+	<b>if</b> (clen&gt;0) { // Cookie no vac&iacute;o
+		i = InCookie.indexOf(prop,0); // aparici&oacute;n de la propiedad
+		<b>if</b> (i!=-1) { // propiedad encontrada
+			// Buscamos el valor correspondiente
+			j = InCookie.indexOf(&quot;;&quot;,i+plen);
+			<b>if</b>(j!=-1) // valor encontrado
+				<b>return</b> unescape(InCookie.substring(i+plen,j));
+			<b>else</b> //el &uacute;ltimo no lleva &quot;;&quot;
+				<b>return</b> unescape(InCookie.substring(i+plen,clen));
+		}
+		<b>else</b>
+			<b>return</b> &quot;&quot;;
+	}
+	<b>else</b>
+		<b>return</b> &quot;&quot;;
+}</blockquote>
+</pre></TT>
+<BLOCKQUOTE></BLOCKQUOTE>
+<p>
+La funci&oacute;n <b>SetCookie</b> 
+permite inicializar o borrar un cookie. Posee al menos dos argumentos 
+correspondientes a la propiedad y a su valor. Estos argumentos pueden 
+completarse con los diferentes campos de un cookie.
+<pre><tt>
+<blockquote>
+<b>function</b> SetCookie (name, value) {
+	// n&uacute;mero de par&aacute;metros variable.
+	<b>var</b> argv = SetCookie.arguments;
+	<b>var</b> argc = SetCookie.arguments.length;
+	// asociaci&oacute;n de par&aacute;metros a los campos cookie. 
+	<b>var</b> expires = (argc &gt; 2) ? argv[2] : <b>null</b>
+	<b>var</b> path = (argc &gt; 3) ? argv[3] : <b>null</b>
+	<b>var</b> domain = (argc &gt; 4) ? argv[4] : <b>null</b>
+	<b>var</b> secure = (argc &gt; 5) ? argv[5] : <b>false</b>
+	// asignaci&oacute;n de la propiedad tras la codificaci&oacute;n URL
+	document.cookie = name + &quot;=&quot; + escape(value) +
+		((expires==<b>null</b>) ? &quot;&quot; : (&quot;; expires=&quot; + expires.toGMTString())) +
+		((path==<b>null</b>) ? &quot;&quot; : (&quot;;path=&quot; + path)) +
+		((domain==<b>null</b>) ? &quot;&quot; : (&quot;; domain=&quot; + domain)) +
+		((secure==<b>true</b>) ? &quot;; secure&quot; : &quot;&quot;;
+}</blockquote>
+</pre></TT>
+<BLOCKQUOTE></BLOCKQUOTE>
+<p>
+La signaci&oacute;n de propiedades <i>username</i> y <i>lasttime</i> se hace mediante la 
+funci&oacute;n
+<b>RecordUsernameAndTime</b>, que asocia a 
+estas propiedades una fecha de caducidad.
+<pre><tt>
+<blockquote></blockquote>
+</pre></TT>
+<BLOCKQUOTE></BLOCKQUOTE>
+<p>
+Este cookie tambi&eacute;n puede ser anulado por el 
+usuario mediante la funci&oacute;n 
+<b>DeleteUsernameAndTime</b>. &Eacute;sta es similar a la funci&oacute;n de 
+inicializaci&oacute;n, pero especifica una fecha de caducidad pasada.
+<pre><tt>
+<blockquote>
+<b>function</b> DeleteUsernameAndTime (username) {
+	<b>var</b> today = <b>new</b> Date();
+	<b>var</b> expire = <b>new</b> Date(&quot;Feb 12, 1980&quot;); // fecha pasada
+	// Asignaci&oacute;n de la propiedad username
+	SetCookie(&quot;username&quot;, username.value, expire);
+	// Asignaci&oacute;n de la propiedad lastime
+	SetCookie(&quot;lastime&quot;, today.getTime(), expire);
+	alert(&quot;El cookie &quot; + username + &quot; se ha borrado&quot;);
+	<b>return true</b>;
+}</blockquote>
+</pre></TT>
+<BLOCKQUOTE></BLOCKQUOTE>
+<p>
+<font size=5 ><u><FONT color=darkblue><FONT>Ejemplo de 
+uso</FONT></FONT></u></font><FONT><FONT color=darkblue> </FONT></FONT>
+<p>
+Mediante este ejemplo trataremos de usar las funciones 
+que acabamos de ver, de esta manera, permitiremos al usuario inicializar un <i>cookie</i>. El nombre proporcionado por el usuario 
+as&iacute; como la fecha del &uacute;ltimo acceso se mostrar&aacute;n en cada 
+nuevo acceso.<br>
+Para ello implementaremos lo siguiente:
+<blockquote><pre><tt>
+&lt;HEAD&gt;
+&lt;TITLE&gt; JavaScript Cookies &lt;TITLE&gt; 
+&lt;SCRIPT LANGUAGE=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<i>// Aqu&iacute; van las funciones que hemos construido en esta cap&iacute;tulo</i>
+//--&gt;
+&lt;/SCRIPT&gt;
+&lt;/HEAD&gt;
+&lt;body background=&quot;bg1.jpg&quot; vlink=&quot;#0000FF&quot; alink=&quot;#FF0000&quot; link=&quot;#FF1493&quot; text=&quot;#000000&quot;&gt;
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	// Cookies asociadas al documento actual
+	<B>var</B> InCookie = document.cookie;
+	<B>var</B> msg = &quot; &quot;;
+	// buscamos la propiedad username
+	<B>var</B> username = GetCookie(&quot;username&quot;,document.cookie);
+	// buscamos la propiedad lastime
+	<B>var</B> last = GetCookie(&quot;lastime&quot;,document.cookie);
+	<B>if</B> ( username.length != 0) {// Cliente identificado por el Cookie
+		msg += &quot;&lt;h2&gt; &iexcl;&iexcl; Buenos d&iacute;as, &quot; + username + &quot;!! &lt;/h2&gt;&quot;;
+		// Muestra la fecha del &uacute;ltimo acceso
+		<B>var</B> lastime = <B>new</B> Date(last);
+		lastime.setTime(last);	// Transforma el formato fecha
+		msg += &quot;&uacute;ltimo acceso de esta p&aacute;gina: &quot; + lastime + &quot;&lt;br&gt;&quot;;
+		// Creaci&oacute;n del bot&oacute;n de eliminar el cookie
+		msg += &quot;&lt;form onSubmit = 'DeleteUsernameAndTime(username)'&gt;&quot;;
+		msg += &quot;&lt;input type='submit' value=' Anulaci&oacute;n del cookie '&gt;&quot;;
+		msg += &quot;&lt;/form&gt;&lt;br&gt;&quot;;
+	}
+	<B>else</B>{
+		// Primer acceso
+		// Creaci&oacute;n de un formulario que permite inicializar el cookie
+		msg += &quot;&lt;h2&gt; Primer acceso, &lt;/h2&gt;&quot;;
+		msg += &quot;&lt;form onSubmit='RecordUsernameAndTime(username)'&gt;&quot;;
+		msg += &quot;&lt;h3&gt;&iquest;su nombre?&lt;/h3&gt;&quot;;
+		msg += &quot;&lt;input type='text' name='username' size=12 &quot;;
+		msg += &quot;OnChange='<B>if</B>(<B>this</B>.value.length &gt; 0){<B>this</B>.focus();<B>this</B>.select();}&quot;;
+		msg += &quot;<B>else</B>{alert('Insertar una cadena de caracteres');}'&gt;&quot;;
+		msg += &quot;&lt;input type='submit' value='Inicializar el cookie'&gt;&quot;;
+		msg += &quot;&lt;/form&gt;&lt;br&gt;&quot;;
+	}
+	document.write(msg);
+//--&gt;
+&lt;/script&gt;
+&lt;/body&gt;</pre>
+</blockquote><PRE></PRE></TT>
+<P>
+<form><center>
+<input type="button" value=" Ver Ejemplo " 
+						onClick="abrirVentana('cookie.htm','Cookies',300,300)"> 
+</center>
+</form>	
+<p>
+<P>
+<br>
+<a href="../../../javascript/teoria/cursjavascript/index.htm"><img src="../../../javascript/teoria/cursjavascript/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap9.html#cookies"><img src="../../../javascript/teoria/cursjavascript/Bup.gif" border=0 alt="Los cookies" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap8.htm"><img src="../../../javascript/teoria/cursjavascript/Bant.gif" border=0 alt="Aplicaciones Prácticas" align="right" width="19" height="19"></a></P>
+
+
+</body>
+
+</html>

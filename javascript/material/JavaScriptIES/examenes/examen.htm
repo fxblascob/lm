@@ -1,0 +1,465 @@
+<html><head><title>Programación en JavaScript 1.3. Diseño de páginas Web interactivas</title>
+
+
+<script languaje="JavaScript">
+<!--Ocultar código 
+
+function avisoreset() {
+	if(confirm("¡ATENCIÓN!. Los datos del test se van a reiniciar.")) {
+	document.cuestionario.reset();
+	parent.location.reload();
+	}
+}
+
+
+
+var pregunta1 = "0"; 
+var pregunta2 = "0"; 
+var pregunta3 = "0"; 
+var pregunta4 = "0"; 
+var pregunta5 = "0"; 
+var pregunta6 = "0"; 
+var pregunta7 = "0"; 
+var pregunta8 = "0"; 
+var pregunta9 = "0"; 
+var pregunta10 = "0"; 
+var pregunta11 = "0"; 
+var pregunta12 = "0"; 
+var pregunta13 = "0";
+var pregunta14 = "0";
+var pregunta15 = "0";
+
+function respuesta1(valor) 
+{pregunta1 = valor}; 
+function respuesta2(valor) 
+{pregunta2 = valor}; 
+function respuesta3(valor) 
+{pregunta3 = valor}; 
+function respuesta4(valor) 
+{pregunta4 = valor}; 
+function respuesta5(valor) 
+{pregunta5 = valor}; 
+function respuesta6(valor) 
+{pregunta6 = valor}; 
+function respuesta7(valor) 
+{pregunta7 = valor}; 
+function respuesta8(valor) 
+{pregunta8 = valor}; 
+function respuesta9(valor) 
+{pregunta9 = valor}; 
+function respuesta10(valor) 
+{pregunta10 = valor}; 
+function respuesta11(valor) 
+{pregunta11 = valor}; 
+function respuesta12(valor) 
+{pregunta12 = valor}; 
+function respuesta13(valor) 
+{pregunta13 = valor}; 
+function respuesta14(valor) 
+{pregunta14 = valor}; 
+function respuesta15(valor) 
+{pregunta15 = valor}; 
+// -->
+</script></head><body onload="alert('Bienvenido al test de conocimientos sobre JavaScript\n\nSeleccione las respuestas que crea correctas teniendo en cuenta las siguientes consideraciones:\n\n1.- Los aciertos tienen puntuaciones variables en función de la dificultad de la pregunta.\n2.- Las preguntas no contestadas ni suman ni restan puntos.\n3.- Las respuestas equivocadas restan más o menos puntos en función del tipo de fallo.\n\nNOTA:\nEl test que va a realizar a continuación posee valor \'académico\'. Únicamente \nse utiliza para la educación on-line en JavaScript.\nGRACIAS')" bgcolor="#ffcc33">
+<h1 align="center"> Prueba de JavaScript<br>
+</h1>
+<center><form name="cuestionario">
+<table align="center" bgcolor="#ffdd00" border="1" width="600">
+<tbody><tr>
+      <td width="600"> <b><font color="Blue">1. ¿JavaScritpt fue creado por ... 
+        ?</font></b> 
+        <blockquote>
+<input name="pregunta1" value="A" onclick="respuesta1('A')" type="radio">
+          A. Netscape.<br>
+<input name="pregunta1" value="B" onclick="respuesta1('B')" type="radio">
+          B. Microsoft.<br> 
+<input name="pregunta1" value="C" onclick="respuesta1('C')" type="radio">
+          C. Sun Microsystems.<br> 
+</blockquote>
+</td></tr>
+<tr>
+      <td><b><font color="Blue">2. ¿Qué supone que JavaScript tenga una orientación 
+        Evento/Acción? </font></b> 
+        <blockquote>
+<input name="pregunta2" value="A" onclick="respuesta2('A')" type="radio">
+          A. Que pueden programarse nuevos eventos y acciones <br> 
+<input name="pregunta2" value="B" onclick="respuesta2('B')" type="radio">
+          B. Que la programación tiene definido ese patrón, pudiendo programar 
+          una acción asociada a un evento<br> 
+<input name="pregunta2" value="C" onclick="respuesta2('C')" type="radio">
+          C. Que acción y evento en JavaScript son lo mismo <br>
+          <br>
+</blockquote>
+ </td></tr>
+<tr>
+      <td> <b><font color="Blue">3. ¿Cuál de estas es una diferencia entre Java 
+        y JavaScript? </font></b> 
+        <blockquote>
+<input name="pregunta3" value="A" onclick="respuesta3('A')" type="radio">
+          A. Sólo Java puede usar variables <br>
+<input name="pregunta3" value="B" onclick="respuesta3('B')" type="radio">
+          B. El primero es compilado y el segundo interpretado <br>
+<input name="pregunta3" value="C" onclick="respuesta3('C')" type="radio">
+          C. Java se usa en Internet <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">4. El tag 
+        <script> de JavaScript</script>
+        Script en Java Script...</font></b> 
+        <blockquote>
+<input name="pregunta4" value="A" onclick="respuesta4('A')" type="radio">
+          A. Sirve para definir variables .<br>
+<input name="pregunta4" value="B" onclick="respuesta4('B')" type="radio">
+          B. Sólo puede aparecer una vez.<br>
+<input name="pregunta4" value="C" onclick="respuesta4('C')" type="radio">
+          C. Puede aparecer tantas veces como quiera en una página <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">5. ¿Los comentarios en JavaScript?</font></b> 
+        <blockquote>
+<input name="pregunta5" value="A" onclick="respuesta5('A')" type="radio">
+          A. Tienen que precederse del signo @<br>
+<input name="pregunta5" value="B" onclick="respuesta5('B')" type="radio">
+          B. Se pueden definir con el signo // <br>
+<input name="pregunta5" value="C" onclick="respuesta5('C')" type="radio">
+          C. Se ponen al final de la página.<br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">6. JavaScript facilita ... ?</font></b> 
+        <blockquote>
+<input name="pregunta6" value="A" onclick="respuesta6('A')" type="radio">
+          A. La interacción con el usuario o cliente.<br>
+<input name="pregunta6" value="B" onclick="respuesta6('B')" type="radio">
+          B. El acceso a base de datos.<br>
+<input name="pregunta6" value="C" onclick="respuesta6('C')" type="radio">
+          C. Gestionar las comunicaciones. </blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">7. El Navegador o Browser:</font></b> 
+        <blockquote>
+<input name="pregunta7" value="A" onclick="respuesta7('A')" type="radio">
+          A. No tiene un modelo de objetos.<br>
+<input name="pregunta7" value="B" onclick="respuesta7('B')" type="radio">
+          B. Tiene un modelo de objetos manipulables con JavaScript .<br>
+<input name="pregunta7" value="C" onclick="respuesta7('C')" type="radio">
+          C. Debe ser Netscape para que funcione JavaScript </blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">8. Las funciones... :</font></b> 
+        <blockquote>
+<input name="pregunta8" value="A" onclick="respuesta8('A')" type="radio">
+          A. Son grupos de sentencias que definen una tarea .<br>
+<input name="pregunta8" value="B" onclick="respuesta8('B')" type="radio">
+          B. No pueden ser llamadas desde cualquier punto de la página.<br>
+<input name="pregunta8" value="C" onclick="respuesta8('C')" type="radio">
+          C. No se pueden usar en JavaScript.<br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">9. Las cookies ..:</font></b> 
+        <blockquote>
+<input name="pregunta9" value="A" onclick="respuesta9('A')" type="radio">
+          A. Guardan información en el pc del usuario .<br>
+<input name="pregunta9" value="B" onclick="respuesta9('B')" type="radio">
+          B. acceden a base de datos .<br>
+<input name="pregunta9" value="C" onclick="respuesta9('C')" type="radio">
+          C. se codifican en Java.<br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">10. ¿Para referirse a una cookie debes 
+        especificar: ?</font></b> 
+        <blockquote>
+<input name="pregunta10" value="A" onclick="respuesta10('A')" type="radio">
+          A. Servidor Web a utilizar<br>
+<input name="pregunta10" value="B" onclick="respuesta10('B')" type="radio">
+          B. Nombre y ubicación en el disco duro <br>
+<input name="pregunta10" value="C" onclick="respuesta10('C')" type="radio">
+          C. Nombre y valor <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">11. ¿Cuál de estos no es un elemento de un navegador? 
+        </font></b> 
+        <blockquote>
+<input name="pregunta11" value="A" onclick="respuesta11('A')" type="radio">
+          A. Document.<br>
+<input name="pregunta11" value="B" onclick="respuesta11('B')" type="radio">
+          B. Server.<br>
+<input name="pregunta11" value="C" onclick="respuesta11('C')" type="radio">
+          C. Window<br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">12. ¿Cuál de éstas no es una propiedad del objeto 
+        Window</font></b> 
+        <blockquote>
+<input name="pregunta12" value="A" onclick="respuesta12('A')" type="radio">
+          A. URL .<br>
+<input name="pregunta12" value="B" onclick="respuesta12('B')" type="radio">
+          B. Name <br>
+<input name="pregunta12" value="C" onclick="respuesta12('C')" type="radio">
+          C. Status <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">13. ¿Cómo se define el evento que se produce 
+        al hacer un clic? </font></b> 
+        <blockquote>
+<input name="pregunta13" value="A" onclick="respuesta13('A')" type="radio">
+          A. Onclickbutton.<br>
+<input name="pregunta13" value="B" onclick="respuesta13('B')" type="radio">
+          B. Onclick <br>
+<input name="pregunta13" value="C" onclick="respuesta13('C')" type="radio">
+          C. Click <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td> <b><font color="Blue">14. ¿Cuándo se produce el evento Onchange? </font></b> 
+        <blockquote>
+<input name="pregunta14" value="A" onclick="respuesta14('A')" type="radio">
+          A. Al cambiar de página <br>
+<input name="pregunta14" value="B" onclick="respuesta14('B')" type="radio">
+          B. Al hacer click sobre un valor <br>
+<input name="pregunta14" value="C" onclick="respuesta14('C')" type="radio">
+          C. Al cambiar el valor de un elemento <br>
+</blockquote>
+</td></tr>
+<tr>
+      <td height="109"> <b><font color="Blue">15. Una variable es ... </font></b> 
+        <blockquote>
+<input name="pregunta15" value="A" onclick="respuesta15('A')" type="radio">
+          A. Un espacio de memoria donde se puede almacenar el valor de un dato 
+          <br>
+<input name="pregunta15" value="B" onclick="respuesta15('B')" type="radio">
+          B. Un valor que no se puede modificar <br>
+<input name="pregunta15" value="C" onclick="respuesta15('C')" type="radio">
+          C. Un valor constante en todas las páginas </blockquote>
+</td></tr>
+<tr><td bgcolor="navy"> 
+<script language="JavaScript">
+<!--Ocultar código
+function examinar() 
+{ 
+puntuacion=0; 
+nocontesta=0; 
+contestadas=0; 
+puntosmaximos=0; 
+
+if(pregunta1!= "0" )
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta1 == "A") {puntuacion=puntuacion+2}
+  if(pregunta1 == "B") {puntuacion=puntuacion+0}
+  if(pregunta1 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1} 
+
+if(pregunta2 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+1
+  if(pregunta2 == "A") {puntuacion=puntuacion+0}
+  if(pregunta2 == "B") {puntuacion=puntuacion+1}
+  if(pregunta2 == "C") {puntuacion=puntuacion+0}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta3!= "0" )
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta3 == "A") {puntuacion=puntuacion+0}
+  if(pregunta3 == "B") {puntuacion=puntuacion+2}
+  if(pregunta3 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1} 
+
+if(pregunta4 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+1
+  if(pregunta4 == "A") {puntuacion=puntuacion+0}
+  if(pregunta4 == "B") {puntuacion=puntuacion+0}
+  if(pregunta4 == "C") {puntuacion=puntuacion+1}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta5!= "0" ){
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta5 == "A") {puntuacion=puntuacion-2}
+  if(pregunta5 == "B") {puntuacion=puntuacion+2}
+  if(pregunta5 == "C") {puntuacion=puntuacion-3}
+}
+else {nocontesta=nocontesta+1} 
+
+if(pregunta6 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+3
+  if(pregunta6 == "A") {puntuacion=puntuacion+3}
+  if(pregunta6 == "B") {puntuacion=puntuacion+0}
+  if(pregunta6 == "C") {puntuacion=puntuacion-3}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta7!= "0" )
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta7 == "A") {puntuacion=puntuacion+0}
+  if(pregunta7 == "B") {puntuacion=puntuacion+2}
+  if(pregunta7 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1} 
+
+if(pregunta8 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+1
+  if(pregunta8 == "A") {puntuacion=puntuacion+1}
+  if(pregunta8 == "B") {puntuacion=puntuacion+0}
+  if(pregunta8 == "C") {puntuacion=puntuacion+0}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta9!= "0" )
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+3
+  if(pregunta9 == "A") {puntuacion=puntuacion+3}
+  if(pregunta9 == "B") {puntuacion=puntuacion+0}
+  if(pregunta9 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1} 
+
+if(pregunta10 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta10 == "A") {puntuacion=puntuacion+0}
+  if(pregunta10 == "B") {puntuacion=puntuacion-1}
+  if(pregunta10 == "C") {puntuacion=puntuacion+2}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta11!= "0" )
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta11 == "A") {puntuacion=puntuacion+0}
+  if(pregunta11 == "B") {puntuacion=puntuacion+2}
+  if(pregunta11 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1} 
+
+
+if(pregunta12 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta12 == "A") {puntuacion=puntuacion+2}
+  if(pregunta12 == "B") {puntuacion=puntuacion+0}
+  if(pregunta12 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta13 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+2
+  if(pregunta13 == "A") {puntuacion=puntuacion+0}
+  if(pregunta13 == "B") {puntuacion=puntuacion+2}
+  if(pregunta13 == "C") {puntuacion=puntuacion-1}
+}else {nocontesta=nocontesta+1}
+
+if(pregunta14 != "0")
+{
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+3
+  if(pregunta14 == "A") {puntuacion=puntuacion+0}
+  if(pregunta14 == "B") {puntuacion=puntuacion-1}
+  if(pregunta14 == "C") {puntuacion=puntuacion+3}
+}
+else {nocontesta=nocontesta+1}
+
+if(pregunta15 != "0"){
+  contestadas=contestadas+1
+  puntosmaximos=puntosmaximos+4
+  if(pregunta15 == "A") {puntuacion=puntuacion+4}
+  if(pregunta15 == "B") {puntuacion=puntuacion+0}
+  if(pregunta15 == "C") {puntuacion=puntuacion-1}
+}
+else {nocontesta=nocontesta+1}
+
+if (puntosmaximos!=0) 
+{indiceacierto=Math.round(100*(puntuacion/puntosmaximos))
+} 
+else{indiceacierto=0} 
+
+
+if(indiceacierto==100) 
+{
+mensaje="SOBRESALIENTE. Sus conocimientos de JavaScript son excelentes"} 
+if(indiceacierto<100&&indiceacierto>=75) 
+{
+mensaje="NOTABLE. Usted tiene una buena base de JavaScript, pero debe profundizar."} 
+if(indiceacierto<75&&indiceacierto>=50)
+{
+mensaje="BIEN. Puede defenderse copiando y pegando, no está nada mal."} 
+if(indiceacierto<50&&indiceacierto>=25)
+{
+mensaje="JUSTILLO. Un repaso no le irá nada mal."} 
+if(indiceacierto<25)
+{
+mensaje="DESASTROSO. Sin comentarios. Por cierto, te vendría bien un curso de diseño web"} 
+if(contestadas==0)
+{
+mensaje="Por favor, conteste alguna de las preguntas del test. ¡LISTILLO!"} 
+
+alert("Su puntuación es "+puntuacion+"." +  "\n\nEl número máximo de puntos que podía conseguir era de " + puntosmaximos + ".\n\nHa dejado sin contestar "+ nocontesta+".\n\nSu porcentaje de aciertos es de "+indiceacierto+"%.\n\n"+mensaje+". ") 
+
+}
+
+// Fin de ocultar-->
+</script>
+<br>
+<center>
+<input name="submit" value="Resultado del test" onclick="examinar()" type="button">
+<input name="Reset" value="Reinicar test" onclick="avisoreset()" type="button">
+<input name="solucion" value="Respuestas correctas" onclick="alert('RESPUESTAS CORRECTAS\n\n1:A   6:A  11:B\n2:B   7:B  12:A\n3:B   8:A  13:B\n4:C   9:A  14:C\n5:B  10:C  15:A')" type="button">
+</center>
+
+
+</td></tr></tbody></table>
+<center>
+<img src="examen_files/Colorbar.html" alt="Barra de separación" border="0" height="1" width="600">
+</center>
+<br>
+<!-- Comienzo de la barra de control -->
+<center>
+<table bgcolor="#ffcc00" border="0" cellpadding="3" width="597">
+<tbody><tr><td>
+<form method="get" action="principal.html">
+<center><input value="Menú Principal" type="submit">
+</center></form></td>
+<td>
+<form>
+<center><input value="Salir" onclick="self.close();" type="button">
+</center></form></td>
+<td><form>
+<center><input value="Código Fuente" onclick='location = "view-source:" + location.href' type="button">
+</center></form></td>
+</tr>
+</tbody></table>
+    <br>
+    Copyright © CEDECO. Spain 2001 
+  </center>
+</form></center>
+<h5>&nbsp;</h5>
+</body></html>

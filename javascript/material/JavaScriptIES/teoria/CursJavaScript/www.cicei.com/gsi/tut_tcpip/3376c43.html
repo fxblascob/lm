@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Tutorial y descripción técnica de TCP/IP </TITLE>
+<META NAME="Template" CONTENT="C:\ARCHIVOS DE PROGRAMA\MICROSOFT OFFICE\OFFICE\html.dot">
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<P><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376fm.html"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/fm2html-toc.gif">Tabla de contenidos</A><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376c42.html#H434"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/fm2html-previous.gif">TELNET</A></P>
+<H2><A NAME="tftp">4.3 TFTP(Trivial File Transfer Protocol)</A> </H2>
+<P><BR>
+<BR>
+<A NAME="figtftp"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376tftp.gif"></A><BR>
+<I>Figura: TFTP(Trivial File Transfer Protocol)</I><BR>
+</P>
+<P><A NAME="index1445">El</A> protocolo TFTP es un <I>protocolo est&aacute;ndar </I>siendo su n&uacute;mero STD el 33.<A NAME="index1446">Su</A> status es electivo y se describe en el RFC 1350 - El protocolo TFTP(Revisi&oacute;n 2). </P>
+<P>La transferencia de ficheros en <A NAME="index1447">TCP/IP</A> es una transferencia de datos de disco a disco, en oposici&oacute;n, por ejemplo, al comando SENDFILE de VM, una funci&oacute;n que en el mundo de TCP/IP se considera de correo, en la que env&iacute;as a los datos al buz&oacute;n de alguien(el lector en el caso de VM). </P>
+<P>TFTP es un protocolo extremadamente trivial para la transferencia de ficheros. Se implementa sobre la capa UDP(User Datagram Protocol) y carece de la mayor&iacute;a de las caracter&iacute;sticas de FTP (ver <A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376c44.html#ftp">FTP(File Transfer Protocol)</A>). La &uacute;nica cosa que es capaz de hacer es leer/escribir un fichero de/en un servidor. </P>
+<B><P>Nota:</B> No dispone de medios para la autentificaci&oacute;n de usuarios: es un protocolo inseguro. </P>
+<H3><A NAME="tftpusa">4.3.1 Uso</A> </H3>
+<P>El comando: </P>
+<PRE>
+TFTP &lt;nombre del host&gt;</PRE>
+<P>conduce al prompt interactivo en el que se pueden introducir subcomandos: </P>
+<TT><DL>
+<DT>Connect &lt;host&gt;</TT> </DT>
+<DD>especifica el identificador del host de destino </DD>
+<TT><DT>Mode &lt;ascii/binary&gt;</TT> </DT>
+<DD>especifica el tipo del modo de transferencia </DD>
+<TT><DT>Get &lt;remote filename&gt; [&lt;nombre del fichero local&gt;]</TT> </DT>
+<DD>recupera un fichero </DD>
+<TT><DT>Put &lt;remote filename&gt; [&lt;nombre del fichero local&gt;]</TT> </DT>
+<DD>almacena un fichero </DD>
+<TT><DT>Verbose</TT> </DT>
+<DD>Activa o desactiva el modo "verbose", en el que muestra informaci&oacute;n adicional durante la transferencia del fichero. </DD>
+<TT><DT>Quit</TT> </DT>
+<DD>salir TFTP </DD>
+</DL>
+<P>Para una lista completa de estos comandos, consulta tu gu&iacute;a de usuario del TFTP particular que est&eacute;s usando. </P>
+<H3><A NAME="tftppro">4.3.2 Descripci&oacute;n del protocolo</A> </H3>
+<P><A NAME="index1449">Cualquier </A>transferencia comienza con una solicitud para leer o escribir un fichero. Si el servidor concede la solicitud, se abre la conexi&oacute;n y el fichero se env&iacute;a en bloques consecutivos de 512 bytes(longitud fija). Los bloques del fichero se numeran correlativamente, comenzando en 1. Cada paquete de datos debe ser reconocido mediante un paquete de reconocimiento antes de que se env&iacute;e el siguiente paquete. Se asume la terminaci&oacute;n de la transferencia al recibir un paquete de menos de 512 bytes. </P>
+<P>La mayor&iacute;a de los errores provocar&aacute;n la terminaci&oacute;n de la conexi&oacute;n(falta de fiabilidad), Si un paquete se pierde en la red, se producir&aacute; un "timeout", tras el que se efectuar&aacute; la retransmisi&oacute;n del &uacute;ltimo paquete (de datos o de reconocimiento). </P>
+<P>En el RFC 783 se describi&oacute; un bug bastante grave, conocido como el S&iacute;ndrome del Aprendiz de Brujo. Puede causar una retransmisi&oacute;n excesiva en ambas partes de la conexi&oacute;n en algunas circunstancias en las que se producen retardos de red. Se document&oacute; en el RFC 1123 y se corrigi&oacute; en el 1350. Para m&aacute;s detalles, remitirse a estos RFCs. </P>
+<H4><A NAME="tftppac">4.3.2.1 Paquetes TFTP</A> </H4>
+<P><A NAME="index1453">S&oacute;lo</A> existen cinco tipos de paquetes: </P>
+<DL>
+<DT>Opcode </DT>
+</DL>
+<P><HR></P>
+<DL>
+<DD>Operaci&oacute;n </DD>
+<DT>1 </DT>
+<DD>Read Request(Solicitud de lectura(RRQ)) </DD>
+<DT>2 </DT>
+<DD>Write Request(Solicitud de escritura(WRQ)) </DD>
+<DT>3 </DT>
+<DD>Data(Datos(DATA)) </DD>
+<DT>4 </DT>
+<DD>Acknowledgment(Reconocimiento(ACK)) </DD>
+<DT>5 </DT>
+<DD>Error(Error(ERROR)) </DD>
+</DL>
+<P>La cabecera de TFTP contiene el identificador opcode asociado al paquete. <BR>
+<BR>
+<A NAME="fig"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376f104.gif"></A><BR>
+Figura: Paquetes TFTP<BR>
+</P>
+<H4><A NAME="tftpfor">4.3.2.2 Modos de transferencia</A> </H4>
+<P>Actualmente se definen <A NAME="index1454">tres</A> modos de transferencia en el RFC 1350: </P>
+<DL>
+<DT><A NAME="index1455">NetASCII</A> </DT>
+<DD>US-ASCII tal como se define en el C&oacute;digo Estadounidense Est&aacute;ndar para el Intercambio de Informaci&oacute;n(<I>"USA Standard Code for Information Interchange"</I>) con modificaciones especificadas en el RFC 854 - Especificaciones del protocolo Telnet y extendido para usar el bit de mayor orden. Es decir, se trata de un juego de caracteres de 8 bits, a diferencia del US-ASCII, que es de 7-bits. </DD>
+<DT><A NAME="index1457">Octeto</A> </DT>
+<DD>Tambi&eacute;n llamado binario, consiste simplemente en bytes de 8 bits. </DD>
+<DT>Correo </DT>
+<DD>Este modo se defini&oacute; originalmente en el RFC 783 y el RFC 1350 lo declar&oacute; obsoleto. Permit&iacute;a efectuar la transferencia enviando correo a un usuario en vez de un fichero. </DD>
+</DL>
+<P>El modo empleado se indica en el paquete "Request for Read/Write(RRQ/WRQ)". </P>
+<P>&nbsp;</P>
+<P><A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376fm.html"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/fm2html-toc.gif">Tabla de contenidos</A> <A HREF="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/3376c44.html#ftp"><IMG SRC="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tut_tcpip/fm2html-next.gif">FTP("File Transfer Protocol")</A></P></BODY>
+</HTML>

@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE>Métodos de document</TITLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+	function borra() {
+		document.clear();//borra docunmento
+		document.close();//Cierra el buffer
+	}
+	
+	function windowWrite(){
+		var myString = "¡Hola a todos!";
+		document.open(); //Creación de un buffer
+		document.writeln("<p>" + myString);
+		document.write("Espero que les esté gustando este tutorial ");
+		document.write("de JavaScript.");
+		document.writeln("<form>");
+		document.writeln("<input type='button' value=' Borrar ' onClick='document.clear();document.close()'>");
+	}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY>
+<h2><b><u>M&eacute;todos de document.</u></b></h2>
+<p>
+<form>
+	<input type="button" value=" Escribir " onClick="windowWrite()"> 
+</form></p>
+</BODY>
+</HTML>

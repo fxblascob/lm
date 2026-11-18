@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<TITLE>Manual de JavaScript - Js11a</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Otro metodo de mostrar fecha y hora del sistema</H1>
+En este ejemplo usaremos matrices, la sintaxis para crear la matriz es la siguiente: <I>nombre=new Array(elementos)</I>, posteriormente para usarla se usa <I>nombre[# de elemento]</I>.<P>
+
+Hoy es:<FONT COLOR=red>
+
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+mes=new Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre");
+dia=new Array("Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado");
+hoy=new Date();
+document.write(dia[hoy.getDay()]+', '+hoy.getDate()+" de "+mes[hoy.getMonth()]+" de "+(hoy.getYear()));
+// fin esconder -->
+</SCRIPT>
+</FONT>
+<P>
+Nota: Puedes ver el codigo de este ejemplo en Js11a.htm
+<HR COLOR=red>
+<CENTER>
+Manual de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

@@ -1,0 +1,129 @@
+<html>
+<head><title>Schemas XML</title></head>
+
+<body background="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/fondo.gif">
+<center>
+<font size=6 color=0E7ACB face="Times New Roman"><b><u>Schemas XML</u></b></font><br>
+<hr width=75%>
+</center>
+
+<p>
+Un &quot;schema XML&quot; es algo similar a un DTD, es decir, que define qu&eacute; elementos puede contener un documento
+XML, c&oacute;mo est&aacute;n organizados, y que atributos y de qu&eacute; tipo pueden tener sus elementos.
+</p>
+
+<p>
+La ventaja de los schemas con respecto a los DTDs son:
+</p>
+
+<ul>
+  <li><b>Usan sintaxis de XML, al contrario que los DTDs.</b>
+  <li><b>Permiten especificar los tipos de datos.</b>
+  <li><b>Son extensibles.</b>
+</ul>
+
+<p>
+Por ejemplo, un schema nos permite definir el tipo del contenido de un elemento o de un atributo, y especificar si debes ser
+un n&uacute;mero entero, o una cadena de texto, o una fecha, etc. Los DTDs no nos permiten hacer estas cosas.
+</p>
+
+<p>
+Veamos un ejemplo de un documento XML, y su schema correspondiente:
+</p>
+
+<p>
+<font size=2 face="Courier">
+&lt;documento xmlns=&quot;x-schema:personaSchema.xml&quot;&gt;<br>
+&lt;persona id=&quot;fulano&quot;&gt;<br>
+&lt;nombre&gt;Fulano Menganez&lt;/nombre&gt;<br>
+&lt;/persona&gt;<br>
+&lt;/documento&gt;
+</font>
+</p>
+
+<p>
+Como podemos ver en el documento XML anterior, se hace referencia a un espacio de nombres (namespace) llamado
+&quot;x-schema:personaSchema.xml&quot;. Es decir, le estamos diciendo al analizador sint&aacute;ctico XML (parser) que
+valide el documento contra el schema &quot;personaSchema.xml&quot;.
+</p>
+
+<p>
+El schema ser&iacute;a algo parecido a esto:
+</p>
+
+<p>
+<font size=2 face="Courier">
+&lt;Schema xmlns=&quot;urn:schemas-microsoft-com:xml-data&quot;<br>
+xmlns:dt=&quot;urn:schemas-microsoft-com:datatypes&quot;&gt;<br>
+&lt;AttributeType name='id' dt:type='string' required='yes'/&gt;<br>
+&lt;ElementType name='nombre' content='textOnly'/&gt;<br>
+&lt;ElementType name='persona' content='mixed'&gt;<br>
+&lt;attrubyte type='id'/&gt;<br>
+&lt;element type='nombre'/&gt;<br>
+&lt;/ElementType&gt;<br>
+&lt;ElementType name='documento' content='eltOnly'&gt;<br>
+&lt;element type='persona'/&gt;<br>
+&lt;/ElementType&gt;<br>
+&lt;/Schema&gt;
+</font>
+</p>
+
+<p>
+El primer elemento del schema define dos espacios de nombre. El primero &quot;xml-data&quot; le dice al analizador que esto
+es un schema y no otro documento XML cualquiera. El segundo &quot;datatypes&quot; nos permite definir el tipo de elementos
+y atributos utilizando el prefijo &quot;dt&quot;.
+</p>
+
+<p>
+<font size=2 color=8F3232 face="Times New Roman"><b>ElementType</b></font><br>
+</p>
+
+<p>
+Define el tipo y contenido de un elemento, incluyendo los sub-elementos que pueda contener.
+</p>
+
+<p>
+<font size=2 color=8F3232 face="Times New Roman"><b>AttributeType</b></font><br>
+</p>
+
+<p>
+Asigna un tipo y condiciones a un atributo.
+</p>
+
+<p>
+<font size=2 color=8F3232 face="Times New Roman"><b>attribute</b></font><br>
+</p>
+
+<p>
+Declara que un atributo previamente definido por <font size=2 color=8F3232 face="Times New Roman"><b>AttributeType</b></font>
+puede aparecer como atributo de un elemento determinado.
+</p>
+
+<p>
+<font size=2 color=8F3232 face="Times New Roman"><b>element</b></font><br>
+</p>
+
+<p>
+Declara que un elemento previamente definido por <font size=2 color=8F3232 face="Times New Roman"><b>ElementType</b></font>
+puede aparecer como contenido de otro elemento.
+</p>
+
+<p>
+Tal como hemos visto, es necesario empezar el schema definiendo los elementos m&aacute;s profundamente anidados dentro de
+la estructura jer&aacute;rquica de elementos del documento XML. Es decir, tenemos que trabajar &quot;de dentro hacia fuera&quot;.
+</p>
+
+<p>
+Visto de otra manera, las declaraciones de tipo <font size=2 color=8F3232 face="Times New Roman"><b>ElementType</b></font>
+y <font size=2 color=8F3232 face="Times New Roman"><b>AttributeType</b></font> deben preceder a las declaraciones de
+contenido <font size=2 color=8F3232 face="Times New Roman"><b>element</b></font> y 
+<font size=2 color=8F3232 face="Times New Roman"><b>attribute</b></font> correspondientes.
+</p>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/XSL.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/next.gif" align=right alt="Siguiente"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/index.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/index.gif" align=right alt="&Iacute;ndice"></a>
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/DTD.html"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_xml/imagen/prev.gif" align=right alt="Anterior"></a>
+
+</body>
+
+</html>

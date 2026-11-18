@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - xyz123</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>La cara oculta de JS: "stuck on load"</H1>
+Si bien, JavaScript es un lenguaje que ha revolucionado el entorno de las p&aacute;ginas web. Su implementaci&oacute;n, como pasa con muchas cosas, trajo m&aacute;s de un quebradero de cabeza.<P>
+
+Cuando apareci&oacute; JavaScript, este permit&iacute;a el env&iacute;o de mensajes de correo electr&oacute;nico sin el conocimiento del usuario, la lectura de la historia URL, de directorios y de archivos.<P>
+
+Lo cual fue l&oacute;gicamente aprovechado por los piratas informaticos para extraer informaciones de las diferentes redes.<P>
+
+Pero el problema m&aacute;s importante que apareci&oacute; en Netscape 2.0 fue el del <B>
+"stuck on load"</B>, para entendernos lo que suced&iacute;a es que se pod&iacute;a crear una ventana de 1x1 pixeles, por la cual los piratas pod&iacute;an seguir extrayendo informaci&oacute;n, sin que el usuario se enterase y aun cuando este hubiese salido de la p&aacute;gina, ya que esta ventana (era un simple punto) era impercibible por el usuario.<P>
+
+Gracias a Dios, estos problemas se han ido solucionado progresivamente, por lo que en la versi&oacute;n Netscape 3.0 estos problemas ya fueron solucionados.<P>
+
+La evoluci&oacute;n cronol&oacute;gica de la correcci&oacute;n de los errores fue la siguiente:<P>
+
+<CENTER>
+<TABLE BGCOLOR=ffffcc BORDER=1>
+<TR>
+<TH>Problema a solucionar
+<TH>Versi&oacute;n en la<BR>que se soluciona
+<TR>
+<TD>Lectura de directorios y archivos
+<TD ALIGN=center>2.01
+<TR>
+<TD>Lectura de la historia URL
+<TD ALIGN=center>2.02
+<TR>
+<TD>Correo electr&oacute;nico sin el conocimiento de usuario
+<TD ALIGN=center>2.01
+<TR>
+<TD>stuck on load
+<TD ALIGN=center>3.0
+</TABLE>
+
+<HR COLOR=red>
+<CENTER>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

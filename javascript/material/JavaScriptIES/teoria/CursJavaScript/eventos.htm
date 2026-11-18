@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<SCRIPT language="JavaScript">
+<!--
+	function Muestra(mensaje, evento){ 
+		alert(mensaje + "\n" + evento);
+	}
+	
+	function Cerrar() {
+		window.close();
+	}
+//-->
+</SCRIPT>
+</HEAD>
+<a name="arriba"></a>
+<BODY bgcolor="White" onLoad="Muestra('documento cargado','onLoad');"   onUnload="Muestra('Adios','onUnload');">
+<H2 align=center> Gestión de Eventos </H2>
+<A href="" 	onClick="Muestra('Click sobre un link','onClick');"  
+	   	onMouseOver="Muestra('Colocado sobre el link','onMouseOver');"  
+	   	onMouseOut="Muestra('Te alejas del link','onMouseOut');">
+Esto es un link</A>
+<p>
+<A href="../../../javascript/teoria/cursjavascript/eventos.htm#arriba"	onClick="Muestra('Click sobre un link','onClick');" >
+Esto es otro link</A>
+<FORM METHOD=POST ACTION="" 	onSumit="Muestra('Envía le formulario','onSumit')"  
+			   	onReset="Muestra('Restaura valores del formulario','onReset')">
+<TABLE>
+<TR>	<TD>Pulse sobre este botón
+	<TD> <INPUT TYPE="checkbox"  onClick="Muestra('Has pulsado','onClick')">
+	<TD>Campo de edición
+	<TD> <INPUT TYPE="text" name="texto" SIZE=14 				        				        onFocus="this.form.texto.value='onFocus'"
+				        onBlur="Muestra('Has escrito','onBlur')"   							        onChange="Muestra('Has escrito','onChange')">
+<p>
+<TR>
+	<TD>Selecciones
+	<TD> <SELECT Name="Seleccion"   onChange="Muestra('Has elegido','onChange')"> 
+		<OPTION VALUE=Option1> Selección 1 
+		<OPTION VALUE=Option2 SELECTED> Selección 2
+ 		<OPTION VALUE=Option3> Selección 3 
+		</SELECT>
+<p>
+<TR>
+	<TD><INPUT TYPE="Reset"	value=" Reset " onClick="Muestra('Has pulsado','onClick')">
+	<TD><INPUT TYPE="Submit" value=" Enviar " onClick="Muestra('Has pulsado','onClick')">
+<p>
+<TR>
+	<TD><INPUT TYPE="button" value=" Cerrar " onClick="Cerrar()">
+</TABLE>
+</FORM>
+</BODY>
+</HTML>

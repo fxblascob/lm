@@ -1,0 +1,20 @@
+ 
+h1 {
+	font-family:Calibri;
+	font-size:30px;
+	color:green;
+	}
+h1 span {
+	color:red;
+	}
+p {
+	font-family:verdana;
+	color: blue;
+	}
+p span {
+		color: yellow;
+}
+h2 {
+	font-family: Arial;
+	color:#ff9999;
+}

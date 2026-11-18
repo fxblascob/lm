@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio15/ejercicio15.html -->
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio 5.2 - Información sobre eventos</title>
+
+		<style type="text/css">
+			body {font-family: arial, helvetica;}
+			#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+			#info h1 {margin: 0;}
+		</style>
+
+		<script type="text/javascript">
+			/*
+			A partir del código proporcionado 04_info_eventos_js.html. Realiza lo siguiente
+			1. Al mover el ratón en cualquier punto de la ventana del navegador, se muestre la
+			posición del puntero respecto del navegador y respecto de la página:
+			Para mostrar los mensajes, utilizar la función muestraInformacion()
+			deduciendo su funcionamiento a partir de su código
+			fuente.
+			2. Al pulsar cualquier tecla, el mensaje mostrado debe cambiar
+			para indicar el nuevo evento y su información asociada:
+			3. Añadir la siguiente característica al script: cuando se pulsa
+			un botón del ratón, el color de fondo del cuadro de mensaje
+			debe ser amarillo (#FFFFCC) y cuando se pulsa una tecla, el color
+			de fondo debe ser azul (#CCE6FF). Al volver a mover el ratón,
+			el color de fondo vuelve a ser blanco.
+			*/
+			'use strict';
+			function informacion(evento) {
+				let xRelativa,yRelativa, xAbsoluta,yAbsoluta; 
+
+				switch(evento.type) {
+					case 'mousemove':
+						document.getElementById('info').style.backgroundColor = '#FFFFFF'; 
+						xAbsoluta = evento.pageX; 
+						yAbsoluta = evento.pageY;
+						xRelativa = evento.clientX; 
+						yRelativa = evento.clientY; 
+						muestraInformacion(['Ratón', 'Navegador ['+xRelativa+','+yRelativa+']', 'Pagina ['+xAbsoluta+','+yAbsoluta+']']); 
+						break;
+					case 'keypress':
+						document.getElementById('info').style.backgroundColor = '#CCE6FF';
+						let caracter = evento.charCode || evento.keyCode; 
+						let letra = String.fromCharCode(caracter); 
+						let codigo = letra.charCodeAt(0); 
+						muestraInformacion(['Teclado', 'Carácter ['+letra+']', 'Código ['+codigo+']']); 
+						break;
+					case 'click':
+						document.getElementById('info').style.backgroundColor = '#FFFFCC'; 
+						break;						
+				} 
+			}
+			function muestraInformacion(mensaje) {
+				document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+				for(var i=1; i<mensaje.length; i++) {
+					document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+				}
+			}
+			document.onmousemove = informacion; 
+			document.onkeypress = informacion; 
+			document.onclick = informacion;
+		</script>
+	</head>
+	<body>
+		<div id="info"></div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</body>
+</html>

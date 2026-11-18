@@ -1,0 +1,276 @@
+<HTML>
+<HEAD><TITLE></TITLE></HEAD>
+<BODY>
+<H1>Estructuras de control</H1>
+
+<P>PHP hereda gran parte de la sintaxis de sus estructuras de control de las
+del lenguaje C, aunque añade algunas caracter&iacute;sticas diferentes</P>
+
+<HR>
+<A NAME="ifelse">
+<H3>if, else, elseif</H3>
+<P>Esta es una de las estructuras m&aacute;s conocidas, y est&aacute; inclu&iacute;da, en una u
+otra forma, en todos los lenguajes de programación modernos de alto nivel.
+Su sintaxis es:</P>
+<PRE>
+<FONT COLOR="red">
+	if (condicion)
+		sentencias1;
+	[elseif (condicion)]
+		sentencias2;
+	[else]
+		sentencias3;
+
+	siguente instrucción...
+</FONT></PRE>
+<P>La palabra reservada <B>if</B> aparece una sola vez; <B>elseif</b>
+puede aparecer cuantas veces sea necesario; y <B>else</B>, como mucho, una vez.</P>
+<P>Su interpretación es la siguiente</P>
+<UL>
+	<LI>si la condición de <B>if</B> es verdadera, entonces se ejecuta 
+	el bloque de sentencias 1 y se sigue por la siguiente instrucción
+	a la estructura.
+	<LI>si la condición de <B>if</B> no es verdadera, se eval&uacute;an la
+	condición del siguiente <B>elseif</B> (si existiera). Si se cumple
+	se ejecuta el bloque de sentencias correspondiente y si no se pasa
+	al siguiente <B>elseif</B>. Cuando alguna de las condiciones se cumpla,
+	se ejecuta el grupo de sentencias correspondiente y se sale de la
+	estructura.
+	<LI>si ninguna de las anteriores condiciones se cumple, y si existe
+	cl&aacute;usula <B>else</B>, se ejecuta su bloque de sentencias.
+</UL>
+<P>En esta y en todas las estructuras de control, si un grupo de sentencias
+tiene m&aacute;s de una sentencia, se encierran entre llaves <B>{ }</B>.</P>
+<PRE>
+<FONT COLOR="red">
+	if ($a == $b)
+		{
+			$a++;
+			$b++;
+		}
+	elseif (($a &#60; $b)&&($c = 1))
+		$c = 0;
+	elseif (($a &#60; $b)&&($c = 0))
+		$c = 1;
+	else
+	{
+		$a = $b = $c = 0;
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="while">
+<H3>while</H3>
+<P>Es la implementación del bucle con condición inicial. Su sintaxis es:</P>
+<PRE><FONT COLOR="red">
+	while (condicion)
+		sentencias;
+</FONT></PRE>
+<P>Se eval&uacute;a la condicion y si se cumple se ejecuta el grupo de sentencias.
+Al terminar se vuelve a evaluar la condición y, si vuelve a cumplirse,
+se entra de nuevo en la ejecución de las sentencias. Se sale del bucle cuando
+una de las comprobaciones de la condición falla.</P>
+<PRE><FONT COLOR="red">
+
+	/* El siguiente bucle imprime los n&uacute;mero de 0 a 99 */
+	while ($i &#60; 100)
+		echo $i++;
+
+	/* El siguiente código equivale al anterior */
+	while ($i &#60; 100)
+	{
+		echo $i;
+		$i++;
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="dowhile">
+<H3>do ... while</H3>
+<P>Se diferencia del bucle <EM>while</EM> por el hecho de que la condición
+se empieza a comprobar despu&eacute;s de la primera iteración (con condición final).
+Por tanto, el grupo de sentencias se va a ejecutar, al menos, una vez.</P>
+<PRE><FONT COLOR="red">
+
+	do
+		sentencias;
+	while (condicion);
+</FONT></PRE>
+<P>Veamos dos ejemplos y se deja como ejercicio para el lector averiguar qu&eacute;
+hacen estos bucles</P>
+<PRE><FONT COLOR="red">
+
+	$i = 0;
+	do
+		echo ++$i;	
+	while ($i &#60; 50);
+
+	$i = 0;
+	do
+		$i++;
+		echo $i;
+	while ($i &#60; 50);
+</FONT></PRE>
+
+<HR>
+<A NAME="for">
+<H3>for</H3>
+<P>Se trata de, probablemente, el bucle m&aacute;s poderoso. Tiene el mismo comportamiento
+que en C. Su sintaxis es la siguiente:</P>
+<PRE><FONT COLOR="red">
+
+	for (expresion1; expresion2; expresion3) sentencias;
+</FONT></PRE>
+<P>La primera expresión se ejecuta al principio del bucle, de forma incondicional.
+Al inicio de cada iteración, se eval&uacute;a la expresión 2: si es verdadera
+se sigue iterando; si es falsa se sale del bucle. Al final de cada iteración
+se ejecuta expresion3.</P>
+<PRE><FONT COLOR="red">
+	/* Un ejemplo sencillo para poner un vector de n elementos a 0 */
+	for ($i = 0; $i &#60; $n; $i++)
+	{
+		a[$i] = 0;
+	}
+</FONT></PRE>
+<P>Pero esta estructura puede complicarse hasta l&iacute;mites insospechados:</P>
+<PRE><FONT COLOR="red">
+
+	for ($i = 0, $j = 100; $i &#60; $n, $j &#60; $m; $i++, $j += 2)
+	{
+		...
+	}
+</FONT></PRE>
+<P>Su sintaxis permite escribir bucles infinitos como este:</P>
+<PRE><FONT COLOR="red">
+
+	/* suele combinarse con alg&uacute;n break */
+	for (;;) {
+		...
+	}
+</FONT></PRE>
+<P>E incluso:</P>
+<PRE><FONT COLOR="red">
+
+	for (;;$i++)
+	{
+		if ($i &#60; 100) break;
+		echo $i;
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="foreach">
+<H3>foreach</H3>
+<P>En PHP4 se dispone de una estructura de control que permite iterar
+de forma muy cómoda sobre un vector. Tiene dos posibles sintaxis:</P>
+<PRE><FONT COLOR="red">
+	<B>foreach(</B>vector<B>as</B>$var<B>)</B> sentencias;
+	<B>foreach(</B>vector<B>as</B>$clave =&#62; $valor<B>)</B> sentencias;
+</FONT></PRE>
+<P>El primer bucle va recorriendo el vector colocando en <EM>$var</EM>
+el valor de la posición actual (por medio del puntero interno del vector).
+En cada iteración se ejecutan las sentencias.</P>
+<P>La segunda expresión difiere de la primera en que tambi&eacute;n se coloca el 
+valos de clave en <EM>$clave</EM>, iterando de la misma manera.</P>
+
+<HR>
+<A NAME="switch">
+<H3>switch</H3>
+<P>Equivale a un grupo de <B>if</B> combinados:</P>
+<PRE><FONT COLOR="red">
+
+	switch (expresion) {
+	case valor1:
+		sentencias;
+		[break;]
+	case valor2:
+		sentencias;
+		[break;]
+	case valor3:
+		sentencias;
+		[break;]
+	...
+	[default: sentencias;]
+	}
+</FONT></PRE>
+<P>En esta estructura se eval&uacute;a la expresión y se compara, por orden, con
+los valores. Si coincide, se ejecuta el grupo de sentencias correspondiente.
+Si no es as&iacute; se pasa al siguiente valor. Puede usarse el <EM>break</EM> para
+detener salir del switch.</P>
+<PRE><FONT COLOR="red">
+
+	switch ($i % 4) {
+		case 0: $i = 4;
+			break;
+		case 1:			/* equivale a (($i % 4) == 1 ||
+						      ($i % 4) == 2)
+		case 2:	$i = 0;
+			break;
+		default:
+			$i++;
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="break">
+<H3>break</H3>
+<P>Como se ha visto, termina con la ejecución de la estructura <EM>if</EM>,
+<EM>for</EM>, <EM>while</EM> o <EM>switch</EM> actual. Si se le pasa un
+par&aacute;metro num&eacute;rico se le indica de cu&aacute;ntos niveles de anidamiento ha de salir.</P>
+<PRE><FONT COLOR="red">
+
+	$i = 0;
+	while (++$i)
+	{
+		switch ($i % 3) {
+			case 0: echo "$i divisible entre 3";
+				break 1;		/* sale del switch */
+			case 1: echo "Sobra 1 en la división";
+				break 2;		/* sale fuera del bucle */
+			case 2: echo "Sobran 2 en la división";
+		}
+	}
+</FONT></PRE>
+
+<HR>
+<A NAME="continue">
+<H3>continue</H3>
+<P>Se utiliza en los bucles para saltarnos el resto de la iteración actual
+y comenzar con una nueva. Tambi&eacute;n admite un par&aacute;metro que indicar&aacute; el
+n&uacute;mero de niveles de bucle que ha de saltarse.</P>
+<PRE><FONT COLOR="red">
+
+	while ($i &#60; $n)
+	{
+		for (;;)
+		{
+			if (($i % 2) == 0) continue 2; /* se salta lo que queda
+							de este bucle y del
+							siguiente */
+			$j[$i] = 0;
+			do
+			{
+				$k++;
+				if ($k == $j) continue; /* solo se salta el
+							final de este bucle */
+				$k[$j] = 0;
+			}
+			while ($k != $i);
+		}
+		$i++;
+	}
+</FONT></PRE>
+<HR>
+<A NAME="require">
+<H3>require() e include()</H3>
+<P>La estructura <B>require()</B> equivale a la directiva <EM>#include</EM>
+del lenguaje C; se sustituye ella misma por el contenido del fichero pasado
+como argumento. En el caso de requiere() el fichero se lee como si fuera
+código HTML, as&iacute; que si queremos que algo se ejecute debe estar marcado
+como código PHP.</P>
+<P>Por su parte, la estructura <B>include()</B> ejecuta el código contenido
+en el archivo, y acepta como par&aacute;metro incluso una variable con el nombre
+del fichero.</P>
+
+</BODY>
+</HTML>

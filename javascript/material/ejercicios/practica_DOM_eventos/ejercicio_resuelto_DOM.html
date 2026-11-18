@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio práctico DOM y EVENTOS</title>
+		<script type="text/javascript">
+			'use strict';
+			window.onload = function() {
+                //resuelto con DOM
+                function eventoBoton1(){
+                    let div = document.getElementById("informacion");
+                    let parrafo = document.createElement("p");
+                    parrafo.style.backgroundColor="red";
+                    let texto = document.createTextNode("Has pulsado el botón1");
+                    parrafo.appendChild(texto);
+                    div.appendChild(parrafo)
+                }
+                
+                function eventoBoton2(){
+                    let div = document.getElementById("informacion");
+                    let parrafo = document.createElement("p");
+                    let texto = document.createTextNode("Has pulsado el botón2")
+                    parrafo.appendChild(texto)
+                    parrafo.style.backgroundColor="yellow";
+                    div.appendChild(parrafo);
+                }
+
+                let div_botones = document.createElement("div");    // creo el div botones
+                div_botones.id = "botones";                         // le pongo su id
+                div_botones.style.border = "thin solid silver";     // le añado los estilos
+                div_botones.style.padding = "0.5em"
+                document.body.appendChild(div_botones);             // lo meto en el body
+                
+                let div_informacion = document.createElement("div"); // creo el div información
+                div_informacion.id = "informacion";                  // le pongo su id
+                div_informacion.style.border = "thin solid red";     // le añado los estilos
+                div_informacion.style.padding = "0.5em";
+                document.body.appendChild(div_informacion);          // lo meto en el body
+
+                
+                let boton1 = document.createElement("button");      //creo el primer botón
+                boton1.id = "boton1";                                 // le pongo su id
+                let textoBoton1 = document.createTextNode("botón1"); // creo el contenido del botón
+                boton1.appendChild(textoBoton1);                       // añado el contenido al botón
+                div_botones.appendChild(boton1);                      // lo meto en su div
+                boton1.onclick=eventoBoton1;                          // le pngo un manejador de eventos al botón
+
+               
+                let boton2 = document.createElement("button");       //creo el segundo botón
+                boton2.id="boton2";                                  // le pongo su id
+                let textoBoton2 = document.createTextNode("botón2");    // creo el contenido del botón
+                boton2.appendChild(textoBoton2);                    // añado el contenido al botón
+                div_botones.appendChild(boton2);                    // lo meto en su div
+                boton2.onclick=eventoBoton2;		                 // le pngo un manejador de eventos al botón
+			}
+		</script>
+	</head>
+	<body>
+     
+		
+	</body>
+</html>

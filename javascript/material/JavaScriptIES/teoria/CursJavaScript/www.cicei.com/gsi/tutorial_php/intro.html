@@ -1,0 +1,64 @@
+<HTML>
+<HEAD><TITLE>Tutor PHP3</TITLE></HEAD>
+<BODY>
+
+<H2>¿Qué es PHP?</H2>
+<P>PHP es un lenguaje de programación embebido en HTML e interpretado
+por el servidor. Es <B>embebido</B> ya que el código PHP se encuentra dentro de
+código HTML, aunque eso sí, delimitado por <A href>secuencias de escape.
+</A>.</P>
+<PRE>
+	&#60;html&#62;
+		&#60;?php 
+			echo "Esto es código PHP";
+			$c = 2;
+			$a = 4 + 5 + $c;
+			echo $a;
+			  
+		?&#62;
+	&#60;/html&#62;
+</PRE>
+<P>Y por otro lado es el servidor el que se encarga de interpretar el código
+PHP generando el resultado, por lo que el cliente tan solo verá el código
+HTML que generó la secuencia de PHP. Podemos pensar en JavaScript como
+contrapunto a PHP en este sentido.</P>
+<H2>¿Qué se puede hacer con PHP?</H2>
+<P>Con PHP podemos hacer lo mismo que cualquier programa CGI. Pero el uso
+más generalizado que se le da a PHP es el de acceso a bases de datos.
+En este aspecto PHP ofrece interfaces con gran número de sistemas de gestión
+de bases de datos. Las soportadas en la versión 3 son:</P>
+<UL>
+	<LI>Adabas D
+	<LI>dBase
+	<LI>Empress
+	<LI>FilePro
+	<LI>Informix
+	<LI>Interbase
+	<LI>mSQL
+	<LI>MySQL
+	<LI>Oracle
+	<LI>PostgreSQL
+	<LI>Solid
+	<LI>Sybase
+	<LI>Velocis
+	<LI>Unix dbm
+</UL>
+<P>Además, PHP es capaz de acceder con una interface sencilla a servicios
+tan importantes y avanzados como son POP3, IMAP, SNMP, HTTP, NNTP... e
+incluso permite el manejo de sockets de conexión para interactuar con otros
+protocolos.</P>
+<H2>El intérprete</H2>
+<P>Es destacable el hecho de que el intérprete de PHP pueda ser:</P>
+<UL>
+	<LI>Un módulo que el propio servidor web cargue y gestione,
+	existiendo módulos para Apache, IIS o PWS;
+	<LI>Un programa CGI.
+</UL>
+<P>La elección dependerá de nuestras necesidades: mientras que la segunda
+opción ofrece un mayor <B>rendimiento</B>, la primera se muestra más
+<B>segura.</B></P>
+</BODY>
+</HTML>
+
+	
+	

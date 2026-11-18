@@ -1,0 +1,375 @@
+<html>
+
+<head>
+
+<title>Operaciones trigonom&eacute;tricas</title>
+
+<script language="JavaScript">
+<!--
+
+	function Menor(form) {
+		var primerOp = parseFloat(form.op1.value);
+		var segundoOp = parseFloat(form.op2.value);
+		var menor = Math.min(primerOp, segundoOp);
+		alert("El menor es el " + menor);
+	}
+
+	function Mayor(form) {
+		var primerOp = parseFloat(form.op1.value);
+		var segundoOp = parseFloat(form.op2.value);
+		var mayor = Math.max(primerOp, segundoOp);
+		alert("El mayor es el " + mayor);
+	}
+	
+	function Potencia(form) {
+		var base = parseFloat(form.op1.value);
+		var exponente = parseFloat(form.op2.value);
+		var resultado = Math.pow(base, exponente);
+		alert("El resultado es  " + resultado);
+	}
+
+	
+	function Cal_Pi(form){
+		form.num.value = Math.PI;	
+	}
+
+	function Cal_E(form){
+		form.num.value = Math.E;	
+	}
+
+	function Cal_LN2(form){
+		form.num.value = Math.LN2;	
+	}
+
+	function Cal_LN10(form){
+		form.num.value = Math.LN10;	
+	}
+
+	function Cal_SQRT1_2(form){
+		form.num.value = Math.SQRT1_2;	
+	}
+
+	function Cal_SQRT2(form){
+		form.num.value = Math.SQRT2;	
+	}
+
+	function Cal_cos(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.cos(alfa);
+	}
+	
+	function Cal_sin(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.sin(alfa);
+	}
+
+	function Cal_tan(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.tan(alfa);
+	}
+
+	function Cal_atan(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.atan(alfa);
+	}
+	
+	function Cal_asin(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.asin(alfa);
+	}
+
+	function Cal_acos(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.acos(alfa);
+	}
+
+	function Cal_abs(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.abs(alfa);
+	}
+
+	function Cal_ceil(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.ceil(alfa);
+	}
+
+	function Cal_exp(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.exp(alfa);
+	}
+	
+	function Cal_parteEntera(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.floor(alfa);
+	}
+
+	function Cal_LN(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.log(alfa);
+	}
+
+	function Cal_round(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.round(alfa);
+	}
+
+	function Cal_sqrt(form) {
+		var alfa = parseFloat(form.num.value);
+		form.num.value = Math.sqrt(alfa);
+	}
+	
+	function Cal_aleatorio(form) {
+		form.num.value = Math.random();
+	}
+
+
+
+//-->
+</script>
+</head>
+
+<body bgcolor="white">
+<center><b><u><h2><FONT color=mediumblue face=Tahoma size=7>M&eacute;todos 
+de <i>Math</i></FONT></h2></b></U></center>
+<p>
+Para ver mejor el funcionamiento del objeto <i>Math</i>, hemos realizado el siguiente ejemplo:
+<pre><tt>
+&lt;HEAD&gt;
+
+<b>...</b>
+&lt;script language=&quot;JavaScript&quot;&gt;
+&lt;!--
+	<b>function</b> Menor(form) {
+		<b>var</b> primerOp = parseFloat(form.op1.value);
+		<b>var</b> segundoOp = parseFloat(form.op2.value);
+		<b>var</b> menor = Math.min(primerOp, segundoOp);
+		alert(&quot;El menor es el &quot; + menor);
+	}
+
+	<b>function</b> Mayor(form) {
+		<b>var</b> primerOp = parseFloat(form.op1.value);
+		<b>var</b> segundoOp = parseFloat(form.op2.value);
+		<b>var</b> mayor = Math.max(primerOp, segundoOp);
+		alert(&quot;El mayor es el &quot; + mayor);
+	}
+	
+	<b>function</b> Potencia(form) {
+		<b>var</b> base = parseFloat(form.op1.value);
+		<b>var</b> exponente = parseFloat(form.op2.value);
+		<b>var</b> resultado = Math.pow(base, exponente);
+		alert(&quot;El resultado es  &quot; + resultado);
+	}
+
+	<b>function</b> Cal_Pi(form){
+		form.num.value = Math.PI;	
+	}
+
+	<b>function</b> Cal_E(form){
+		form.num.value = Math.E;	
+	}
+
+	<b>function</b> Cal_LN2(form){
+		form.num.value = Math.LN2;	
+	}
+
+	<b>function</b> Cal_LN10(form){
+		form.num.value = Math.LN10;	
+	}
+
+	<b>function</b> Cal_SQRT1_2(form){
+		form.num.value = Math.SQRT1_2;	
+	}
+
+	<b>function</b> Cal_SQRT2(form){
+		form.num.value = Math.SQRT2;	
+	}
+	
+	<b>function</b> Cal_cos(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.cos(alfa);
+	}
+	
+	<b>function</b> Cal_sin(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.sin(alfa);
+	}
+
+	<b>function</b> Cal_tan(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.tan(alfa);
+	}
+
+	<b>function</b> Cal_atan(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.atan(alfa);
+	}
+	
+	<b>function</b> Cal_asin(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.asin(alfa);
+	}
+
+	<b>function</b> Cal_acos(this.form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.acos(alfa);
+	}
+
+	<b>function</b> Cal_abs(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.abs(alfa);
+	}
+
+	<b>function</b> Cal_ceil(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.ceil(alfa);
+	}
+
+	<b>function</b> Cal_exp(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.exp(alfa);
+	}
+	
+	<b>function</b> Cal_parteEntera(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.floor(alfa);
+	}
+
+	<b>function</b> Cal_LN(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.log(alfa);
+	}
+
+	<b>function</b> Cal_round(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.round(alfa);
+	}
+
+	<b>function</b> Cal_sqrt(form) {
+		<b>var</b> alfa = parseFloat(form.num.value);
+		form.num.value = Math.sqrt(alfa);
+	}
+	
+	<b>function</b> Cal_aleatorio(form) {
+		form.num.value = Math.random();
+	}
+
+//--&gt;
+&lt;/script&gt;
+
+<b>...</b>
+&lt;/HEAD&gt;
+&lt;BODY&gt;
+&lt;form&gt;
+&lt;center&gt;
+Introduzca un n&uacute;mero:
+	&lt;input type=&quot;text&quot; name=&quot;num&quot; size=10&gt;&lt;br&gt;
+&lt;/center&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;pi&quot; value=&quot; PI &quot; 
+				onClick=&quot;Cal_Pi(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;e&quot; value=&quot; E &quot; 
+				onClick=&quot;Cal_E(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;ln2&quot; value=&quot; LN2 &quot; 
+				onClick=&quot;Cal_LN2(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;ln10&quot; value=&quot; LN10 &quot; 
+				onClick=&quot;Cal_LN10(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;sqrt1_2&quot; value=&quot; SQRT1_2 &quot; 
+				onClick=&quot;Cal_SQRT1_2(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;sqrt2&quot; value=&quot; SQRT2 &quot; 
+				onClick=&quot;Cal_SQRT2(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;coseno&quot; value=&quot; COS &quot; 
+				onClick=&quot;Cal_cos(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;seno&quot; value=&quot; SIN &quot; 
+				onClick=&quot;Cal_sin(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;tan&quot; value=&quot; TAN &quot; 
+				onClick=&quot;Cal_tan(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;arccos&quot; value=&quot; ARCCOS &quot; 
+				onClick=&quot;Cal_acos(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;arcsin&quot; value=&quot; ARCSIN &quot; 
+				onClick=&quot;Cal_asin(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;arctan&quot; value=&quot; ARCTAN &quot; 
+				onClick=&quot;Cal_atan(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;abs&quot; value=&quot; ABS &quot; 
+				onClick=&quot;Cal_abs(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;redonSup&quot;value=&quot; Red. Sup &quot; 
+				onClick=&quot;Cal_ceil(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;redonInf&quot;value=&quot; Red. Inf &quot; 
+				onClick=&quot;Cal_round(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;sqrt&quot; value=&quot; SQRT &quot; 
+				onClick=&quot;Cal_sqrt(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;ln&quot; value=&quot; LN &quot; 
+				onClick=&quot;Cal_LN(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;aleator&quot; value=&quot; RANDOM &quot; 
+				onClick=&quot;Cal_aleatorio(this.form)&quot;&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;pEntera&quot; value=&quot; Integer &quot; 
+				onClick=&quot;Cal_parteEntera(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; name=&quot;exp&quot; value=&quot; EXP &quot; 
+				onClick=&quot;Cal_exp(this.form)&quot;&gt;
+&lt;/table&gt;
+&lt;/center&gt;
+&lt;p&gt;
+&lt;center&gt;
+	Operando 1: &lt;input type=&quot;text&quot; name=&quot;op1&quot;&gt;&lt;br&gt;
+	Operando 2: &lt;input type=&quot;text&quot; name=&quot;op2&quot;&gt;&lt;br&gt;
+&lt;/center&gt;
+&lt;p&gt;
+&lt;center&gt;
+&lt;table&gt;
+&lt;tr&gt;&lt;td&gt;&lt;input type=&quot;button&quot; value=&quot;M&iacute;nimo&quot; onClick=&quot;Menor(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; value=&quot;M&aacute;ximo&quot; onClick=&quot;Mayor(this.form)&quot;&gt;
+	&lt;td&gt;&lt;input type=&quot;button&quot; value=&quot;Potencia&quot; onClick=&quot;Potencia(this.form)&quot;&gt;
+&lt;/table&gt;
+&lt;/center&gt;
+&lt;/form&gt;
+<b>...</b>
+</pre></TT>
+<p>
+<h3><u><FONT color=darkblue face="" 
+size=5>He aqu&iacute; el ejemplo</FONT></h3></U>
+<p>
+<form>
+<center>
+Introduzca un n&uacute;mero:
+	<input name="num" size=10 ><br><br>
+</center>
+<p>
+<center>
+<table>
+<tr><td><input type="button" name="pi"      value=" PI " onClick="Cal_Pi(this.form)">
+	<td><input type="button" name="e"       value=" E " onClick="Cal_E(this.form)">
+	<td><input type="button" name="ln2"     value=" LN2 " onClick="Cal_LN2(this.form)">
+<tr><td><input type="button" name="ln10"    value=" LN10 " onClick="Cal_LN10(this.form)">
+	<td><input type="button" name="sqrt1_2" value=" SQRT1_2 " onClick="Cal_SQRT1_2(this.form)">
+	<td><input type="button" name="sqrt2"   value=" SQRT2 " onClick="Cal_SQRT2(this.form)">
+<tr><td><input type="button" name="coseno"  value=" COS " onClick="Cal_cos(this.form)">
+	<td><input type="button" name="seno"    value=" SIN " onClick="Cal_sin(this.form)">
+	<td><input type="button" name="tan"     value=" TAN " onClick="Cal_tan(this.form)">
+<tr><td><input type="button" name="arccos"  value=" ARCCOS " onClick="Cal_acos(this.form)">
+	<td><input type="button" name="arcsin"  value=" ARCSIN " onClick="Cal_asin(this.form)">
+	<td><input type="button" name="arctan"  value=" ARCTAN " onClick="Cal_atan(this.form)">
+<tr><td><input type="button" name="abs"     value=" ABS " onClick="Cal_abs(this.form)">
+	<td><input type="button" name="redonSup" value   =" Red. Sup " onClick="Cal_ceil(this.form)">
+	<td><input type="button" name="redonInf" value   =" Red. Inf " onClick="Cal_round(this.form)">
+<tr><td><input type="button" name="sqrt"    value=" SQRT " onClick="Cal_sqrt(this.form)">
+	<td><input type="button" name="ln"      value=" LN " onClick="Cal_LN(this.form)">
+	<td><input type="button" name="aleator" value=" RANDOM " onClick="Cal_aleatorio(this.form)">
+<tr><td><input type="button" name="pEntera" value=" Integer " onClick="Cal_parteEntera(this.form)">
+	<td><input type="button" name="exp"     value=" EXP " onClick="Cal_exp(this.form)"></tr>
+</table>
+</center>
+<p>
+<center>
+	Operando 1: <input name="op1" ><br>
+	Operando 2: <input name="op2" ><br>
+</center>
+<p>
+<center>
+<table>
+<tr><td><input type="button" value="M&iacute;nimo" onClick="Menor(this.form)">
+	<td><input type="button" value="M&aacute;ximo" onClick="Mayor(this.form)">
+	<td><input type="button" value="Potencia" onClick="Potencia(this.form)"></tr>
+</table>
+</center>
+</form>
+</body>
+</html>

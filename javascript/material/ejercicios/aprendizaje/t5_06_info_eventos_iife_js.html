@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio 5.2 - Información sobre eventos</title>
+		<style type="text/css">
+			body {font-family: arial, helvetica;}
+			#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+			#info h1 {margin: 0;}
+		</style>
+
+		<script type="text/javascript">
+            /*
+            Crea una versión del ejercicio 04 en otro archivo llamado
+            06_info_eventos_iife_js.html y encapsula el código JavaScript utilizando IIFE.
+            */
+			'use strict';
+            (function(){
+                'use strict';
+                    function informacion(evento) {
+                        let xRelativa,yRelativa, xAbsoluta,yAbsoluta; 
+
+                        switch(evento.type) {
+                            case 'mousemove':
+                                document.getElementById('info').style.backgroundColor = '#FFFFFF'; 
+                                xAbsoluta = evento.pageX; 
+                                yAbsoluta = evento.pageY;
+                                xRelativa = evento.clientX; 
+                                yRelativa = evento.clientY; 
+                                muestraInformacion(['Ratón', 'Navegador ['+xRelativa+','+yRelativa+']', 'Pagina ['+xAbsoluta+','+yAbsoluta+']']); 
+                                break;
+                            case 'keypress':
+                                document.getElementById('info').style.backgroundColor = '#CCE6FF';
+                                let caracter = evento.charCode || evento.keyCode; 
+                                let letra = String.fromCharCode(caracter); 
+                                let codigo = letra.charCodeAt(0); 
+                                muestraInformacion(['Teclado', 'Carácter ['+letra+']', 'Código ['+codigo+']']); 
+                                break;
+                            case 'click':
+                                document.getElementById('info').style.backgroundColor = '#FFFFCC'; 
+                                break;						
+                        } 
+                    }
+                    function muestraInformacion(mensaje) {
+                        document.getElementById("info").innerHTML = '<h1>'+mensaje[0]+'</h1>';
+                        for(var i=1; i<mensaje.length; i++) {
+                            document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+                        }
+                    }
+                    document.onmousemove = informacion; 
+                    document.onkeypress = informacion; 
+                    document.onclick = informacion;
+            })();
+		</script>
+	</head>
+	<body>
+		<div id="info"></div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</body>
+</html>

@@ -1,0 +1,276 @@
+<html>
+
+<head>
+
+<title> El manejo de eventos </title>
+<script language="JavaScript">
+<!--
+	function abrirVentana(Url, titulo, Width, Height){
+		var win_opt = "toolbar=0,location=0,directories=0,status=0,"; 
+		win_opt += "menubar=0,scrollbars,resizable=0,copyhistory=0,";
+		win_opt += "width=" + Width + ",height=" + Height;
+		window.open(Url,titulo,win_opt);
+	}	
+//-->
+</script>
+</head>
+
+<body bgcolor="white">
+
+<a name="eventos"></a>
+<font size=7 color="#006400"><b><center><FONT color=mediumblue face=Tahoma>Cap&iacute;tulo 
+6: </FONT><U> <p><FONT color=royalblue face="Arial Black" size=6>La 
+gesti&oacute;n de eventos</FONT></center></U></b></font>
+
+
+<p>
+<a name="importancia"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>6.1. La importacia de la gesti&oacute;n de 
+eventos.</FONT></U></b></h2>
+<p>
+El inter&eacute;s de los scripts JavaScript reside en 
+gestionar localmente los eventos detectados. Los eventos son el resultado de una 
+acci&oacute;n del usuario. Por ejemplo, hacer <I>clic</I> 
+sobre un bot&oacute;n o seleccionar un campo de un formulario son eventos. <p>
+La importancia de los eventos radica en que nos 
+posibilita modificar el contenido de un documento HTML sin intercambio de datos 
+a trav&eacute;s de la red. Esto se hac&iacute;a hasta ahora mediante la 
+programaci&oacute;n CGI.
+<p>
+<a name="como"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>6.2. &iquest;C&oacute;mo se gestionan los 
+eventos?</FONT></U></b></h2>
+<p>
+La gesti&oacute;n de eventos se efect&uacute;a mediante 
+scripts ejecutados autom&aacute;ticamente cuando se produce un evento dado. Esta 
+gesti&oacute;n se indica en ciertas marcas y se especifica la acci&oacute;n 
+asociada a cada evento. La sintaxis es la siguiente:
+<p>
+<h3><blockquote><TT><center>&lt;TAG eventHandler=&quot;JavaScript 
+    code&quot;&gt; 
+</TT></blockquote></h3></CENTER>
+<p>
+donde <I>TAG</I> representa una marca 
+HTML y <I>eventHandler</I> el nombre del evento detectado.
+<p>
+As&iacute;, en el siguiente ejemplo se ejecutar&aacute; 
+la funci&oacute;n <I>evaluar</I> cuando el usuario haga clic 
+sobre el bot&oacute;n <I>calcular</I>.
+<p>
+<h3><blockquote><TT><center>&lt;INPUT TYPE=&quot;button&quot; 
+    VALUE=&quot;calcular&quot; onClick=&quot;evalua(<b>this</b>.form)&quot;&gt; 
+</TT></blockquote></h3></CENTER>
+<p>
+La estructura <I><b>this</b>.form</I> se refiere al formulario que contiene el bot&oacute;n. 
+Esta estructura representa la variable pasada como argumento a la funci&oacute;n <I>evalua</I>.
+<p>
+<a name="clasificacion"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>6.3. Clasificaci&oacute;n de 
+eventos.</FONT></U></b></h2>
+<p>
+Los eventos que vemos a continuaci&oacute;n se encuentran 
+en la versi&oacute;n 1.1 de JavaScript.
+<blockquote>
+<DL>
+
+<dt><b>onAbort</b>
+<dd>Se origina cuando se cancela la carga de una 
+        imagen.
+
+<dt><b>onBlur</b>
+<dd>Se produce al deseleccionar un campo de 
+        edici&oacute;n. Se aplica a la marca <I>INPUT 
+        TYPE=&quot;text&quot;</I> y a la marca <I>TEXTAREA</I>. En la versi&oacute;n 1.2 de JavaScript tambi&eacute;n 
+        se aplica a la marca <I>LAYER</I>.
+
+<dt><b>onClick</b>
+<dd>Se produce cuando se hace clic en un elemento 
+        del formulario o un enlace hipertexto. Se aplica tanto a la marca <I>INPUT TYPE=&quot;button,checkbox,radio&quot;</I> 
+        como a la marca <A>.
+
+<dt><b>onChage</b>
+<dd>Se origina al cambiar en contenido de un campo o 
+        selecci&oacute;n. Se aplica a las marcas
+<I>INPUT 
+        TYPE=&quot;text&quot;</I>, <I>SELECT</I> y <I>TEXTAREA</I>.
+
+<dt><b>onError</b>
+<dd>Se produce cuando se obtiene un error al cargar 
+        el documento HTML. Se aplica sobre las marcas
+<I>BODY</I> y <I>FRAMESET</I>.
+
+<dt><b>onFocus</b>
+<dd>Se produce cuando se Activa un campo de 
+        edici&oacute;n. Se aplica a la marca <I>INPUT 
+        TYPE=&quot;text&quot;</I> y a la marca <I>TEXTAREA</I>. En la versi&oacute;n 1.2 tambi&eacute;n se aplica a 
+        la marca <I>LAYER</I>.
+
+<dt><b>onLoad</b>
+<dd>Se origina cuando se carga el documento HTML. Se 
+        aplica a las marcas <I>BODY</I> y <I>FRAMESET</I>. En la versi&oacute;n 1.2 tambi&eacute;n se aplica a 
+        marca <I>LAYER</I>.
+
+<dt><b>onMouseOut</b>
+<dd>Se produce cuando alejamos el mouse de un enlace 
+        de hipertexto. Se aplica sobre las marcas <I>A</I> 
+<I>AREA</I>. En JavaScript 1.2 tambi&eacute;n se 
+        aplica a la marca <I>LAYER</I>.
+
+<dt><b>onMouseOver</b>
+<dd>Se produce cuando desplaza el mouse sobre los 
+        enlaces de hipertexto. Se aplica sobre la marca
+<I>A</I> y <I>AREA</I>. En la versi&oacute;n 1.2 
+        de JavaScript tambi&eacute;n se aplica a la marca <I>LAYER</I>.
+
+<dt><b>onReset</b>
+<dd>Se produce cuando se resetea el formulario. Se 
+        aplica sobre la marca <I>FORM</I>.
+
+<dt><b>onSelect</b>
+<dd>Se produce al seleccionar un campo de 
+        edici&oacute;n. Se aplica sobre las marcas <I>INPUT 
+        TYPE=&quot;text&quot;</I> y <I>TEXTAREA</I>.
+
+<dt><b>onSumit</b>
+<dd>Se origina al enviar el formulario.Se aplica 
+        sobre al marca <I>FORM</I>.
+
+<dt><b>onUnload</b>
+<dd>Se origina al abandonar el documento HTML. Se 
+        aplica sobre las marcas <I>BODY</I> y <I>FRAMESET</I>. En la versi&oacute;n 1.2 de JavaScript 
+        tambi&eacute;n se aplica a la marca <I>LAYER</I>.</dd>
+
+</DL>
+</blockquote>
+<p>
+Para la versi&oacute;n 1.2 de JavaScript se ha definido 
+nuevos enventos que veremos en la siguiente lista.
+<p>
+<blockquote>
+<DL>
+
+<dt><b>onDblClick</b>
+<dd>Se produce cuando se hace doble clic en un 
+        formulario o enlace hipertexto. Se aplica tanto a la marca <I>INPUT TYPE=&quot;button,checkbox,radio&quot;</I> 
+        como a la marca <A>.
+
+<dt><b>onDragDrop</b>
+<dd>Se produce cuando se vuelca (drop) un objeto 
+        sobre la ventana del navegador.
+
+<dt><b>onKeyDown</b>
+<dd>Se produce cuando se pulsa una tecla.
+
+<dt><b>onKeyPress</b>
+<dd>Se produce cuando se tiene una tecla pulsada.
+
+<dt><b>onMouseDown</b>
+<dd>Se origina al pulsar alg&uacute;n bot&oacute;n 
+        del mouse.
+
+<dt><b>OnMouseMove</b>
+<dd>Se origina al mover el cursor.
+
+<dt><b>onMove</b>
+<dd>Se produce cuando se mueve una ventana o frame.
+
+<dt><b>onResize</b>
+<dd>Se produce al cambiar el tama&ntilde;o de una 
+        ventana o frame.</dd>
+
+</DL>
+</blockquote>
+<p>
+En este tutorial s&oacute;lo se utilizar&aacute;n los 
+eventos de la versi&oacute;n 1.1 para que dichos ejemplos funcionen tanto para 
+los usuarios de Microsoft Internet Explorer (versi&oacute;n 4.0 o superior) y 
+para los usuarios de Netscape Navigator (versi&oacute;n 3.0 o superior).
+<p>
+<a name="ejemplo"></a>
+<p><h2><b><U><FONT 
+color=cornflowerblue face=Verdana>6.4. Ejemplo de gesti&oacute;n de 
+eventos.</FONT></U></b></h2>
+<p>
+El ejemplo siguiente ilustra diferentes eventos mostrando 
+a cada evento detectado un mensaje informativo al usuario:
+<p>
+<pre><TT>
+&lt;HEAD&gt;
+&lt;SCRIPT&gt;
+&lt;!--
+<b>function</b> Muestra(mensaje, evento){
+	alert(mensaje + &quot;\n&quot; + evento);
+}
+<b>fucntion</b> Cerrar(){
+	window.close();
+}
+//--&gt;
+&lt;/SCRIPT&gt;
+&lt;/HEAD&gt;
+&lt;a name=&quot;arriba&quot;&gt;&lt;/a&gt;
+&lt;BODY	<b>onLoad</b>=&quot;Muestra('documento cargado','onLoad');&quot;
+			<b>onUnload</b>=&quot;Muestra('Adios','onUnload');&quot;&gt;
+&lt;H3 align=center&gt; Gesti&oacute;n de Eventos &lt;/H3&gt;
+&lt;A href=&quot;&quot;
+		<b>onClick</b>=&quot;Muestra('Click sobre un link','onClick');&quot;
+		<b>onMouseOver</b>=&quot;Muestra('Colocado sobre el link','onMouseOver');&quot;
+		<b>onMouseOut</b>=&quot;Muestra('Te alejas del link','onMouseOut');&quot;&gt;
+Esto es un link&lt;/A&gt;
+&lt;p&gt;
+&lt;A href=&quot;#arriba&quot;	<b>onClick</b>=&quot;Muestra('Click sobre un link','onClick');&quot; &gt;
+Esto es otro link&lt;/A&gt;
+&lt;FORM METHOD=POST ACTION=&quot;&quot;
+		<b>onSumit</b>=&quot;Muestra('Env&iacute;a le formulario','onSumit');&quot;
+		<b>onReset</b>=&quot;Muestra('Restaura valores del formulario','onReset');&quot;&gt;
+&lt;TABLE&gt;
+&lt;TR&gt;
+&lt;TD&gt;Pulse sobre este bot&oacute;n
+&lt;TD&gt;
+	&lt;INPUT TYPE=&quot;checkbox&quot;
+			<b>onClick</b>=&quot;Muestra('Has pulsado','onClick');&quot;&gt;
+&lt;TD&gt;Campo de edici&oacute;n
+&lt;TD&gt;
+	&lt;INPUT TYPE=&quot;text&quot; SIZE=14
+			<b>onFocus</b>=&quot;Muestra('Escriba','onFocus');&quot;
+			<b>onBlur</b>=&quot;Muestra('Has escrito','onBlur');&quot;
+			<b>onChange</b>=&quot;Muestra('Has escrito','onChange');&quot;&gt;
+&lt;TR&gt;
+&lt;TD&gt;Selecciones
+&lt;TD&gt;
+	&lt;SELECT Name=&quot;Seleccion&quot;
+			<b>onChange</b>=&quot;Muestra('Has elegido','onChange')&quot;&gt;
+	&lt;OPTION VALUE=Option1&gt; Selecci&oacute;n 1
+	&lt;OPTION VALUE=Option2 SELECTED&gt; Selecci&oacute;n 2
+	&lt;OPTION VALUE=Option3&gt; Selecci&oacute;n 3
+	&lt;/SELECT&gt;
+&lt;TR&gt;
+	&lt;TD&gt;&lt;INPUT TYPE=&quot;Reset&quot;	value=&quot; Reset &quot; <b>onClick</b>=&quot;Muestra('Has pulsado','onClick')&quot;&gt;
+	&lt;TD&gt;&lt;INPUT TYPE=&quot;Submit&quot; value=&quot; Enviar &quot; <b>onClick</b>=&quot;Muestra('Has pulsado','onClick')&quot;&gt;
+&lt;TR&gt;
+	&lt;TD&gt;&lt;INPUT TYPE=&quot;button&quot; value=&quot; Cerrar &quot; <b>onClick</b>=&quot;Cerrar()&quot;&gt;
+&lt;/TABLE&gt;
+&lt;/FORM&gt;
+&lt;/BODY&gt;
+</pre></TT>	
+<form>
+<center><input type="button" value=" Ver el ejemplo " 
+				onClick="abrirVentana('eventos.htm', 'Eventos', 400, 400)"> 
+</center>
+</form>	
+<p>
+<p>
+<a href="../../../javascript/teoria/cursjavascript/index.htm"><img src="../../../javascript/teoria/cursjavascript/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap6.htm#eventos"><img src="../../../javascript/teoria/cursjavascript/Bup.gif" border=0 alt="La gestión de eventos" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap7.html"><img src="../../../javascript/teoria/cursjavascript/Bnext.gif" border=0 alt="Objetos predefinidos" align="right" width="19" height="19"></a>
+
+<a href="../../../javascript/teoria/cursjavascript/cap5.htm"><img src="../../../javascript/teoria/cursjavascript/Bant.gif" border=0 alt="Las funciones" align="right" width="19" height="19"></a></p>
+
+
+</body>
+
+</html>

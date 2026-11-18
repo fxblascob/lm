@@ -1,0 +1,194 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Visual Studio 6.0">
+<TITLE>Perl: Variables predefinidas</TITLE>
+</HEAD>
+<BODY bgcolor="White">
+<a name="#predefinidas"></A>
+<P align=center><U><FONT color=#4169e1 face="Arial Black" 
+size=7>Variables 
+predefinidas</FONT></U></P>
+<P>Las siguientes variables tienen un especial significado 
+para el lenguaje Perl. Estas variables se pueden clasificar en tres tipos:</P>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>1. De fichero<EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P>Estas variables contienen algunos valores perteneciente 
+la manejador de ficheros seleccionado actualmente. Cada manjador de fichero 
+necesita su propio conjunto de valores. Cuando seleccionamos otro manejador de 
+fichero, el manejador de fichero anterior mantiene sus valores pero las 
+variables reflejar&aacute;n ahora los valores del nuevo. Los variables 
+predefinidas de fichero son las siguientes:</P>
+<UL>
+    <LI><FONT face=Courier><STRONG>$%</STRONG></FONT>: N&uacute;mero de p&aacute;gina del 
+    canal de salida actual.
+    <LI><FONT face=Courier><STRONG>$=</STRONG></FONT>: Tama&ntilde;o de p&aacute;gina del 
+    canal de salida actual.
+    <LI><STRONG><FONT face=Courier>$- </FONT></STRONG>: N&uacute;mero de l&iacute;neas 
+    restantes en la p&aacute;gina del canal de salida actual.
+    <LI><STRONG><FONT face=Courier>$|</FONT></STRONG>: Si no es cero, fuerza a vaciar el 
+    buffer despu&eacute;s de cada operaci&oacute;n de escritura.
+    <LI><STRONG><FONT face=Courier>$~</FONT></STRONG>: Contiene el nombre del formato o 
+    report definido para la salida actual.
+    <LI><STRONG><FONT face=Courier>$^</FONT></STRONG>: Es el nombre del formato o report de 
+    la cabecera definido para la salida actual.&nbsp;&nbsp;</LI></UL>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>2. Locales<EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P>Estas variables son locales al bloque de c&oacute;digo 
+actual. Las variables locales predefinidas son las siguientes:</P>
+<UL>
+    <LI><STRONG><FONT face=Courier>$<DIGIT>1...$9</FONT></STRONG>: 
+    Contiene la subcadena desde el correspondiente al conjunto de 
+    par&eacute;ntesis en la &uacute;ltima cadena comparada con &eacute;xito.
+    <LI><STRONG><FONT face=Courier>$&amp;</FONT></STRONG>: Representa el valor de la 
+    &uacute;ltima cadena de caracteres comparada con &eacute;xito.
+    <LI><STRONG><FONT face=Courier>$`y $&rsquo;</FONT></STRONG>: Estos dos t&eacute;rminos 
+    se utilizan conjuntamente para separar cadenas de caracteres comparadas con 
+    &eacute;xito. ` es la anterior y &lsquo; es la siguiente. Ejemplo: 
+    </LI></UL>
+<BLOCKQUOTE>
+    <BLOCKQUOTE><FONT face=Courier>$linea = 'abcdefghi'; <BR>$linea =~ /def/; <BR>print 
+        &quot;$`:$&amp;:$'\n&quot;;&nbsp;&nbsp;&nbsp;&nbsp; # imprime 
+        abc:def:ghi</FONT></BLOCKQUOTE></BLOCKQUOTE>
+<UL>
+    <LI><STRONG><FONT face=Courier>$+</FONT></STRONG>: El &uacute;ltimo &eacute;xito de la 
+    &uacute;ltima b&uacute;squeda del &uacute;ltimo patr&oacute;n. Es 
+    &uacute;til cuando no se sabe que patr&oacute;n de un conjunto fue el 
+    encontrado.&nbsp;&nbsp;&nbsp;</LI></UL>
+<P><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5><FONT color=royalblue face="Arial Black" size=7><FONT color=steelblue face="Calisto MT" size=5>3. Globales<EM>.</EM></FONT></FONT></FONT></FONT></P>
+<P>Estas variables tiene el mismo significado en todo el 
+script, as&iacute; como en los paquetes que utiliza. Las variables globales 
+predefinidas son las siguientes:</P>
+<UL>
+    <LI><FONT face=Courier><STRONG>$_</STRONG></FONT>: Contiene el contenido del 
+    &uacute;ltimo registro le&iacute;do de un fichero. Es el argumento 
+    predeterminado que poseen varias funciones y construcciones en Perl. Por 
+    ejemplo: </LI></UL>
+<BLOCKQUOTE>
+    <BLOCKQUOTE><FONT face=Courier>if (/html/) 
+        {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        if ($linea =~ /html/) {<BR>&nbsp;&nbsp; print 
+        $_;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        print $linea;<BR>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        }</FONT></BLOCKQUOTE>
+    <BLOCKQUOTE><FONT face=Courier></FONT><FONT face=Courier>while 
+        (&lt;STDIN&gt;){&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        while ($linea = &lt;STDIN&gt;){ <BR>&nbsp;print &quot;escrito: &quot;, 
+        $_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;escrito: 
+        &quot;, $linea; 
+        <BR>}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        }</FONT></BLOCKQUOTE>
+    <BLOCKQUOTE><FONT face=Courier></FONT><FONT 
+        face=Courier>$_ = 
+        &quot;nom1&amp;nom2&quot;;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+        $linea = &quot;nom1&amp;nom2&quot;; <BR>@lista = 
+        split(/&amp;/);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; @lista = 
+        split(/&amp;/, $linea);</FONT></BLOCKQUOTE></BLOCKQUOTE>
+<UL>
+    <LI><STRONG><FONT face=Courier>$.</FONT></STRONG>: Contiene el n&uacute;mero de la 
+    &uacute;ltima l&iacute;nea le&iacute;da de un fichero.
+    <LI><STRONG><FONT face=Courier>$/</FONT></STRONG>: Separador de campo para la entrada.
+    <LI><STRONG><FONT face=Courier>$,</FONT></STRONG>: Separador de campo para la salida, 
+    aplicable a print.
+    <LI><STRONG><FONT face=Courier>$\</FONT></STRONG>: Separador de registro para la 
+    salida, aplicable a print.
+    <LI><STRONG><FONT face=Courier>$&quot;&quot;</FONT></STRONG>: Como $, se aplica a 
+    arrays en b&uacute;squedas de cadenas entre dobles comillas (cadenas que se 
+    interpreten de la misma forma).
+    <LI><STRONG><FONT face=Courier>$#</FONT></STRONG>: El formato de salida para mostrar 
+    n&uacute;meros.
+    <LI><STRONG><FONT face=Courier>$$</FONT></STRONG> : Es el n&uacute;mero de proceso perl 
+    del scripts que se esta ejecutando actualmente.
+    <LI><STRONG><FONT face=Courier>$?</FONT></STRONG>:&nbsp; El valor de estado devuelto 
+    por la &uacute;ltima tuber&iacute;a (pipe) que se cerr&oacute;, por el 
+    comando ejecutado con el backquote (`\`) o por una operaci&oacute;n del 
+    sistema.
+    <LI><STRONG><FONT face=Courier>$*</FONT></STRONG>: Puesto a 1 realiza b&uacute;squedas 
+    en varias l&iacute;neas con una misma cadena, a 0 para indicar al compilador 
+    que las cadenas son de una &uacute;nica l&iacute;nea para optimizar 
+    b&uacute;squedas.
+    <LI><STRONG><FONT face=Courier>$[</FONT></STRONG>: Contiene el valor del primer 
+    &iacute;ndice de una array de escalares, por defecto es 0.
+    <LI><STRONG><FONT face=Courier>$]</FONT></STRONG>: Contiene la cadena mostrada cuando 
+    se invoca &quot;perl -v&quot;, es decir la versi&oacute;n del compilador, 
+    etc. Puede ser &uacute;til para comprobar al comienzo del script, que la 
+    versi&oacute;n del int&eacute;rprete que ejecuta el script es la correcta.
+    <LI><STRONG><FONT face=Courier>$;</FONT></STRONG>: Es el separador para emular arrays 
+    multi-dimensionales.
+    <LI><STRONG><FONT face=Courier>$!</FONT></STRONG>: Contiene el valor actual de ERRNO, 
+    es decir, el &uacute;ltimo error acontecido.
+    <LI><STRONG><FONT face=Courier>$0</FONT></STRONG>: Contiene el nombre del fichero que 
+    hemos dado a nuestro perl script.
+    <LI><STRONG><FONT face=Courier>$&lt;</FONT></STRONG>: Uid real del proceso actual.
+    <LI><STRONG><FONT face=Courier>$&gt;</FONT></STRONG>: Uid efectivo del proceso actual.
+    <LI><STRONG><FONT face=Courier>$@</FONT></STRONG>: Contiene el mensaje de error de 
+    sintaxis de perl del &uacute;ltimo comando evaluado. Si es nulo quiere decir 
+    que el &uacute;ltimo comando se ejecut&oacute; correctamente y estaba bien 
+    escrito.
+    <LI><STRONG><FONT face=Courier>$(</FONT></STRONG>: Gid real del proceso actual.
+    <LI><STRONG><FONT face=Courier>$)</FONT></STRONG>: Gid efectivo del proceso actual.
+    <LI><STRONG><FONT face=Courier>@ARGV</FONT></STRONG>: Contiene los par&aacute;metros 
+    pasados a nuestro script Perl. Por ejemplo:</LI></UL>
+<BLOCKQUOTE>
+    <BLOCKQUOTE>
+        <P><FONT face=Courier><FONT size=3><FONT># Lee argumentos de la 
+        l&iacute;nea de comando y los lista.</FONT></FONT></FONT><FONT><FONT 
+        size=3><FONT face=Courier></FONT></FONT></FONT></P>
+        <P><FONT face=Courier><FONT size=3><FONT>$NumArg = $#ARGV; # Almacena el 
+        n&uacute;mero de argumentos<BR>$Cuenta = 0;<BR>while ($Cuenta &lt; 
+        $NumArg) {<BR>&nbsp; print &quot;Argumento0 
+        &quot;,$Cuenta,&quot;--&gt;&quot;,$ARGV[$Cuenta], 
+        &quot;\n&quot;;<BR>&nbsp; $Cuenta++; 
+        <BR>}</FONT></FONT></FONT><FONT><FONT size=3><FONT face=Courier> 
+        </FONT></FONT></FONT></P></BLOCKQUOTE></BLOCKQUOTE>
+<UL>
+    <LI><STRONG><FONT face=Courier>%ENV</FONT></STRONG>: Array asociativo que contiene las 
+    variables de entorno bajo el que se ejecuta nuestro script Perl.
+    <LI><STRONG><FONT face=Courier>$:</FONT></STRONG>: El conjunto actual de caracteres 
+    tras los que una cadena se rompe para llenar los campos siguientes (que 
+    empiecen con ^) en un formato.
+    <LI><STRONG><FONT face=Courier>$^D</FONT></STRONG>: Los valores actuales de los flags 
+    de depuraci&oacute;n.
+    <LI><STRONG><FONT face=Courier>$^F</FONT></STRONG>: El m&aacute;ximo descriptor de 
+    fichero del sistema, normalmente 2. Los descriptores de fichero del sistema 
+    son pasados a los procesos hijos, mientras que los superiores no. Durante 
+    una apertura, los descriptores de fichero del sistema se guardan, incluso si 
+    falla la operaci&oacute;n.
+    <LI><STRONG><FONT face=Courier>$^I</FONT></STRONG>: Contiene el valor actual de la 
+    extensi&oacute;n del editor. Con undef se desactiva.
+    <LI><STRONG><FONT face=Courier>$^L</FONT></STRONG>: Qu&eacute; formato utilizar para 
+    realizar un salto de l&iacute;nea. Por defecto: \f.
+    <LI><STRONG><FONT face=Courier>$^P</FONT></STRONG>: Flags internos que el depurador 
+    borra. Se puede desactivar el depurador borr&aacute;ndolos.
+    <LI><STRONG><FONT face=Courier>$^T</FONT></STRONG>: El tiempo, en segundos, 
+    transcurrido desde que el script comenz&oacute; a ejecutarse.
+    <LI><STRONG><FONT face=Courier>$^X</FONT></STRONG>: El nombre con el que Perl se 
+    ejecut&oacute;, argv[0].
+    <LI><STRONG><FONT face=Courier>$ARGV</FONT></STRONG>: Contiene el nombre del fichero 
+    actual cuando se lee de<ARGV> &lt;ARGV&gt; .
+    <LI><STRONG><FONT face=Courier>@INC</FONT></STRONG>: El array INC contiene la lista de 
+    lugares en donde buscar scripts en Perl para ser evaluados por el comando 
+    &quot;do EXPR&quot; o &quot;require&quot;. Contiene inicialmente los 
+    argumentos de cualquier l&iacute;nea de comando -I , seguido de la 
+    librer&iacute;a Perl por defecto, probablemente 
+    &quot;/usr/local/lib/perl&quot;, y un punto &quot;.&quot;,para representar 
+    el directorio actual.
+    <LI><STRONG><FONT face=Courier>%INC</FONT></STRONG>: El array asociativo INC contiene 
+    entradas para cada nombre de fichero que ha sido incluido v&iacute;a 
+    &quot;do&quot; o &quot;require&quot;. La clave es el nombre del fichero 
+    especificado y el valor es la localizaci&oacute;n del fichero encontrado. El 
+    comando &quot;require&quot; usa este array para determinar cuando un fichero 
+    ha sido incluido.
+    <LI><STRONG><FONT face=Courier>$ENV{expr}</FONT></STRONG>: Es un array asociativo que 
+    contiene tu entorno actual. El entorno de los procesos hijo se puede cambiar 
+    colocando un valor en este array.
+    <LI><STRONG><FONT face=Courier>$SIG{expr}</FONT></STRONG>: Es otro array asociativo 
+    usado para inicializar manejadores de se&ntilde;ales para distintas 
+    se&ntilde;ales. Este array s&oacute;lo contiene valores para las 
+    se&ntilde;ales inicializadas por el script. </LI></UL>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/indice.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/inicio.gif" border=0 alt="Índice" align="left" width="40" height="32"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap9.htm#predefinidas"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bup.gif" border=0 alt="Variables predefinidas" align="right" width="19" height="19"></a>
+
+<a href="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/cap8.htm"><img src="../../../../../../javascript/teoria/cursjavascript/www.cicei.com/gsi/tutorial_perl/Bant.gif" border=0 alt="Entrada/Salida" align="right" width="19" height="19"></a>
+
+</BODY>
+</HTML>

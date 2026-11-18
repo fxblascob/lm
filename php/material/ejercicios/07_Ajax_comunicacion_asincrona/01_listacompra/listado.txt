@@ -1,0 +1,6 @@
+1 - Pan
+2 - Carne
+2 - Pipas
+3 - Leche
+4 - Agua
+5 - Monster

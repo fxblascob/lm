@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript- Js4</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Funciones incorporadas</H1>
+JavaScript incluye las siguientes funciones, que no son metodos de ningun objeto sino propias del lenguaje:<P>
+
+<H3>eval</H3>
+Trata de evaluar una cadena y devolver un valor numerico, si el argumento es una expresion, la expresion se evalua, si el argumento consiste en uno o mas comandos, se ejecutan.<P>
+
+Sintaxis: eval(cadena)
+
+<H3>parseFloat</H3>
+Convierte una cadena a un numero en punto flotante. Si se encuentra un caracter que no es numero, signo (+ o -), punto decimal o exponente, la funcion ignora la cadena a partir de esa posicion y la evalua hasta el caracter anterior. Si el primer caracter no se puede convertir, la funcion devuelve uno de estos valores: o en las plataformas Windows y "NaN" (Not a Number) para otras plataformas.<P>
+
+Sintaxis: parseFloat(cadena)
+
+<H3>parseInt</H3>
+Convierte una cadena a un entero en la base especificada. Si no se especifica la base o se especifica cmo 0, se opta por lo siguiente: Si la cadena comienza con "0x", la base es 16 (hexadecimal), si la cadena empieza con 0, la base es 8 (octal), si la cadena comienza con otro valor, la base es 10 (decimal). Si se encuentra un caracter que no es numerico, la funcion ignora la cadena a partir de esa posicion y la evalua hasta la anterior. Si el primer caracter no se puede convertir, la funcion devuelve uno de estos valores: 0 para plataformas Windows y "NaN" (Not a Number) para otras plataformas.<P>
+
+Sintaxis: parseInt(cadena [,base])
+
+<H3>isNaN</H3>
+Evalua un argumento para determinar si es "NaN", en plataformas UNIX, devolviendo un valor Booleano true o false.<P>
+
+Sintaxis: isNaN(valor prueba)
+
+<H3>escape</H3>
+Devuelve el codigo ASCII de un argumento en el juego de caracteres ISO Latin-1<P>
+
+Sintaxis: escape("cadena")
+
+<H3>unescape</H3>
+Devuelve la cadena ASCII para el o los valores especificados. Donde la cadena contiene caracteres en una de las formas especificadas: "%entero", donde entero es un numero entre 0 y 255 o "hex", donde hex es un numero hexadecimal entre 0x0 y FxF.<P>
+
+Sintaxis: unescape("cadena")
+
+<H1>Funciones de usuario</H1>
+JavaScript permite al usuario definir sus propias funciones, las cuales pueden o no tomar parametros y pueden o no devolver valores.<P>
+
+<H3>FUNCTION</H3>
+Se usa para declarar la funcion. Hay que asignarle un nombre y hasta un maximo de 255 parametros.<P>
+
+Sintaxis: function nombre ([parametro1][,parametro2]...[,parametron]){instrucciones }<P>
+
+<H3>RETURN</H3>
+Se usa para especificar el valor devuelto por una funcion.<P>
+
+Sintaxis: return expresión<P>
+
+<H3>ARGUMENTS</H3>
+Es una matriz que contienelos parametros parados a la funcion, en orden: el primer parametro es [0] el siguiente es [1] etc.<P>
+
+Sintaxis: función.arguments[indice]<P>
+
+<H3>LENGTH</H3>
+Define el numero de parametros pasados a la función.<P>
+
+Sintaxis: función.arguments.length<P>
+
+<H3>Ejemplo</H3>
+Crearemos una función que efectua la suma de los valores pasados como parametro y devuelva el resultado.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+function Sumar (a,b) {return a+b}<BR>
+document.write("La suma de 4+7 es ",Sumar(4,7))<BR>
+&lt;/SCRIPT&gt;
+</TABLE>
+</DIR>
+
+<A HREF="" onClick="window.open('js10c.htm','','width=500,height=100');return false">ver el ejemplo</a>
+
+
+</BODY>
+</HTML>

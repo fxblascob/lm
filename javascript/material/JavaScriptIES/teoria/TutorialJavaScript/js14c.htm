@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScript - Js14c</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<H1>Texto en proceso de escritura</H1>
+<SCRIPT LANGUAGE=JavaScript>
+var max=0;
+function textlist()
+{
+   max=textlist.arguments.length;
+   for (i=0; i<max; i++)
+	    this[i]=textlist.arguments[i];
+}
+tl=new textlist
+("Este es mi manual de JavaScript...");
+var x=0; pos=0;
+var l=tl[0].length;
+function textticker()
+{ 
+	document.tickform.tickfield.value=tl[x].substring(0,pos)+"_";
+	if(pos++==l)
+	{
+		pos=0;
+		setTimeout("textticker()",1000);
+		x++;
+		if(x==max)
+			x=0;
+		l=tl[x].length;
+	} else
+		setTimeout("textticker()",50);
+}
+document.write("<FORM NAME=\"tickform\">");
+document.write("<INPUT TYPE=\"TEXT\" NAME=\"tickfield\" SIZE=\"30\">");
+document.write("</FORM>");
+textticker();
+</SCRIPT>
+<P>
+<HR COLOR=red>
+<CENTER>
+Manual practico de JavaScript v1.3<BR>
+Enrique Garrido-Lecca Risco<BR>
+Universidad ALAS Peruanas S.A.<BR>
+<SCRIPT LANGUAGE=JavaScript>
+<!-- esconder codigo
+document.write("Ultima modificación: "+document.lastModified);
+// fin esconder -->
+</SCRIPT>
+<HR COLOR=blue>
+</BODY>
+</HTML>

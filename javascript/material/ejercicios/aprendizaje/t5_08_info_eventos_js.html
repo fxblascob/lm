@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Ejercicio 16 - Información sobre eventos</title>
+		<style type="text/css">
+			body {font-family: arial, helvetica;}
+			#info {width:160px; border:thin solid silver; padding:.5em; position:fixed;}
+			#info h1 {margin: 0;}
+		</style>
+		<script type="text/javascript">
+			/*
+			A partir de la página web proporcionada, 08_info_eventos_js.html crear un script que informe
+			al usuario en que zona de la pantalla ha pulsado el ratón. Las zonas definidas son las siguientes:
+			izquierda arriba, izquierda abajo, derecha arriba y derecha abajo. Para determinar el tamaño de
+			la ventana del navegador, utilizar la función informacion() (que está sin terminar),
+			proporcionada.
+			*/
+			'use strict';
+			function informacion(evento) {
+			
+				let posicionHorizontal = ""; 
+				let posicionVertical = "";
+
+				if(evento.clientX > screen.width/2) {
+					posicionHorizontal = "derecha";
+				} else {
+					posicionHorizontal = "izquierda";
+				}
+				if(evento.clientY > screen.height/2) { 
+					posicionVertical = "abajo";
+				} else {
+					posicionVertical = "arriba";
+				}
+				muestraInformacion(['Posicion', posicionHorizontal, posicionVertical]);
+			}
+
+
+			function muestraInformacion(mensaje) {
+				for(var i=0; i<mensaje.length; i++) {
+					document.getElementById("info").innerHTML += '<p>'+mensaje[i]+'</p>';
+				}
+			}
+
+
+			document.onclick = informacion;
+		</script>
+</head>
+<body>
+<div id="info"></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+</body></html>

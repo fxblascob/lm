@@ -1,0 +1,589 @@
+<html><head><!--
+                Curso de HTML DINAMICO
+                DYNAMIC HTML course
+
+		Pedro Angel Castillo Valdivieso
+			http://decsai.ugr.es/~pedro
+
+		Fco. Javier García Castellano
+			http://decsai.ugr.es/~fjgc
+
+		Equipo GeNeura
+			http://decsai.ugr.es
+//--><title>Apéndice: Eventos en JavaScript</title>
+
+
+
+
+<style>
+      H1 { color:#110099; }
+      H2 { color:#3300BB; }
+      H3 { color:#0000FF; }
+      PRE{ color: #004040;margin-left: 10%}
+      CODE{ color: #004040;}
+</style></head><body><!-- background="recbg.jpg">-->
+ <table bgcolor="#800000" border="0" cellpadding="0" cellspacing="0" width="100%">
+
+ <!-------------------------------------------------------------------->
+<tbody><tr><td valign="middle" width="100%">&nbsp;</td></tr>
+
+ <!-------------------------------------------------------------------->
+ <!--CONTENIDOS-->
+
+<tr><td valign="middle" width="98%">
+
+ <center><table border="0" cellpadding="0" cellspacing="0" width="98%">
+  <!--Esquinas de arriba-->
+  <tbody><tr bgcolor="#ffffff" valign="middle">
+      <td height="10"><img src="eventos_files/esq_sup_izq.gif" border="0" height="10" width="10"></td>
+      <td align="right" height="10"><img src="eventos_files/esq_sup_der.gif" border="0" height="10" width="10"></td>
+  </tr>
+
+  <tr><td colspan="2" bgcolor="#ffffff" valign="middle" width="100%">
+  <!--INICIO DE CONTENIDOS-->
+
+
+<br>
+
+<h1> APÉNDICE. EVENTOS EN JAVASCRIPT. MANEJO DE EVENTOS EN Navigator 4 y en Explorer 4.</h1>
+
+Esta parte pretende ser una continuación de la parte de eventos en <a href="http://geneura.ugr.es/%7Evictor/cursillos/javascript/">JavaScript</a>,
+aunque si deseais conocer más acerca de la gestión de eventos, podreis ver este <a href="http://flanagan.ugr.es/dhtml/eventos/">tutorial</a>.
+<p>
+<!--Al mismo tiempo, intentaremos dar una breve introducci&oacute;n a los nuevos sistemas de manejo de eventos tanto para el Explorer 4.x como para el Navigator 4.x, cuyos nuevos eventos se explicaran en la secci&oacute;n siguiente: <a href="http://atc.ugr.es/~jesus/curso/eventos.html">Nuevos Manejadores de Eventos</a>.
+<p>-->
+<br>
+</p><h3> Tratamiento de eventos.</h3>
+
+<p>El tratamiento de eventos en JavaScript se puede hacer de dos formas:
+</p><ol>
+	<li>En las etiquetas: Se pueden incluir los manejadores de evento con los eventos de muchas de las etiquetas, para
+	esto se emplea la siguiente sintasix:
+	<code>&lt;ETIQUETA manejador="Sentencias JavaScript"&gt;</code>
+	Ejemplo:<form><input value="Boton" onclick="alert('Has pulsado el boton'); return false;" type="button">
+		</form>
+
+	Código fuente:
+	<pre> &lt;FORM&gt;&lt;INPUT TYPE="BUTTON" VALUE="Boton"
+              onClick="alert('Has pulsado el boton'); return false;"&lt;/INPUT&gt;
+ &lt;/FORM&gt;
+	</pre>
+	</li>
+
+	<li>Creando manejadores de eventos: Se realiza un captura de eventos utilizando los siguientes paso:
+		<ul>
+			<li><b>Preparación del objeto para la captura delos eventos deseados:</b>Se indica cuales
+			son los eventos que se desea que capture el objeto (ventana,docuemnto o layer). Por ejemplo,
+			para el caso de una ventana:<br>
+			<code>window.captureEvents(Event.CLICK)</code>
+                        <br>
+			Para indicar varios eventos se utiliza el caracter <b>|</b>. Por ejemplo, para capturar varios
+			eventos en un layer:<br>
+			<code>window.milayer.captureEvents(Event.MOUSEDOWN | Event.MOUSEUP)</code>
+			<br>
+			Cuando se indiquen varios objetos que capturen un mismo evento se realiza según la
+			jerarquía en la que se han definido.<br><br>
+			</li>
+
+				
+			<li><b>Definición de la función que atenderáa al evento:</b>Se define la dunción
+			JavaScript que manejará el evento, con un argumento que es un objeto evento, se define siempre de la
+			misma forma y debe devolver <code>true</code> o <code>false</code>:<br>
+			<code>function miManejador(e) {
+			      ......tratamiento del evento ...
+			}
+			</code>
+
+			<br><br>
+			</li>
+			<li><b>Registro de la función como manejador para ese evento:</b>Para esto basta con
+			asignar el nombre de la función al manejador del evento. Por ejemplo:<br>
+			<code>document.milayer.onmousedown=miManejador</code>
+			</li>
+
+		</ul>
+		
+		En el siguiente ejemplo, el objeto <code>document</code> captura el evento
+		<code>MouseDown</code>:
+<pre>&lt;script language="JavaScript1.2"&gt; &lt;!--
+
+  /*Preparación del objeto document para la captura del evento MOUSEDOWN*/	
+  document.captureEvents(Event.MOUSEDOWN); 	
+
+
+  /*Definición de la función manejador del evento*/
+  function fun(e) {
+    alert ("Se ha capturado un evento del tipo: " + e.type);
+    alert ("La posición x es " + e.layerX);
+    alert ("La posición y es " + e.layerY);
+    if (e.modifiers &amp;&amp; Event.ALT_MASK)
+      alert ("La tecla ALT estaba pulsada cuando se produjo el evento.");
+    return true;
+  }
+
+
+  /*Registro de la función como manejador de ese evento*/
+  document.onMouseDown = fun;
+//--&gt;
+&lt;/script&gt;
+</pre>
+
+	Pulsa <a href="javascript:window.open('ejemplos/eventosj.htm','', 'width=300,height=200');history.go(0)">aquí</a> para ejecutar el ejemplo.<br>
+	</li>
+
+
+</ol>
+
+<br><br>
+<h3> El objeto EVENT (evento).</h3>
+
+	<p>Los eventos son objetos con las siguientes propiedades:
+<table border="1" width="80%">
+<tbody><tr>
+  <td><b>Propiedad</b></td>
+  <td><b>Descripción</b></td>
+</tr>
+
+<tr>
+  <td><tt>type</tt></td>
+  <td>Una cadena de texto indicando el tipo del evento.</td>
+</tr>
+
+<tr>
+  <td><tt>target</tt></td>
+  <td>Una cadena de texto indicando el objeto al que se ha enviado el evento.</td>
+</tr>
+
+<tr>
+  <td><tt>layerX</tt></td>
+  <td>Un número que especifica bien la anchura del objeto cuando es pasado con el evento
+      <tt>resize</tt> o la posición horizontal del cursor en pixels relativa al layer en el
+      que ha ocurrido el evento. <tt>layerX</tt> es igual que <tt>x</tt>.</td>
+</tr>
+
+<tr>
+  <td><tt>layerY</tt></td>
+  <td>Un número que especifica bien la altura del objeto cuando es pasado con el evento
+      <tt>resize</tt> o la posición vertical del cursor en pixels relativa al layer en el
+      que ha ocurrido el evento. <tt>layerY</tt> es igual que <tt>y</tt>.</td>
+</tr>
+
+<tr>
+  <td><tt>pageX</tt></td>
+  <td>Un número que especifica la posición horizontal del cursor en pixels relativa a
+      la página.</td>
+</tr>
+
+<tr>
+  <td><tt>pageY</tt></td>
+  <td>Un número que especifica la posición vertical del cursor en pixels relativa a
+      la página.</td>
+</tr>
+
+<tr>
+  <td><tt>screenX</tt></td>
+  <td>Un número que especifica la posición horizontal del cursor en pixels relativa a
+      la pantalla.</td>
+</tr>
+
+<tr>
+  <td><tt>screenY</tt></td>
+  <td>Un número que especifica la posición vertical del cursor en pixels relativa a
+      la pantalla.</td>
+</tr>
+
+<tr>
+  <td><tt>which</tt></td>
+  <td>Un número que especifica el botón del ratón que ha sido pulsado o bien el valor
+      ASCII de la tecla que ha sido pulsada.</td>
+</tr>
+
+<tr>
+  <td><tt>modifiers</tt></td>
+  <td>Una cadena de texto que contiene las teclas modificadoras asociadas con un evento
+      de ratón o de teclado. Los valores válidos son <tt>ALT_MASK</tt>, <tt>CONTROL_MASK</tt>,
+      <tt>SHIFT_MASK</tt> y <tt>META_MASK</tt>.</td>
+</tr>
+
+<tr>
+  <td><tt>data</tt></td>
+  <td>Retorna un array de cadenas de texto que contienen las URLs de los objetos "soltados".
+      Se pasa con el evento <tt>dragDrop</tt>.</td>
+</tr>
+</tbody></table>
+
+<br><br>
+</p><h3> Tipos de eventos.</h3>
+
+
+	<p>Los eventos que existen son los siguientes:</p>
+	<ul>
+		<li><b>Eventos de JavaScript 1.0:</b></li>
+		<table border="1" width="80%">
+		 <tbody><tr>
+			<th>Evento</th>
+			<th>Descripción</th>
+			<th>Asociado a</th>
+		 </tr>
+
+		 <tr>
+			<td>Click</td>
+			<td>Pulsación sobre un enlace o un elemento de un form</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>MouseOver</td>
+			<td>Colocación del ratón sobre un enlace</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>Load</td>
+			<td>Carga de la página.</td>
+			<td>Página</td>
+        	 </tr>
+
+		 <tr>
+			<td>UnLoad</td>
+			<td>Salida de la página.</td>
+			<td>Página</td>
+        	 </tr>
+		 <tr>
+			<td>Focus</td>
+			<td>Seleción de un elemento de un form.</td>
+			<td>Teclado/Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>Blur</td>
+			<td>Des-seleción de un elemento de un form.</td>
+			<td>Teclado/Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>Change</td>
+			<td>Edición de un elemento de un elemento text, textarea o cambio de un select en un forma.</td>
+			<td>Teclado/Ratón</td>
+        	 </tr>
+		 <tr>
+			<td>Select</td>
+			<td>Seleción del campo de entrada de un elemento de un form.</td>
+			<td>Teclado/Ratón</td>
+        	 </tr>
+		 <tr>
+			<td>Submit</td>
+			<td>Envío de un form.</td>
+			<td>Teclado/Ratón</td>
+        	 </tr>
+
+		</tbody></table>
+                <br><br>
+		<li><b>Eventos de JavaScript 1.1:</b></li>
+		<table border="1" width="80%">
+		 <tbody><tr>
+			<th>Evento</th>
+			<th>Descripción</th>
+			<th>Asociado a</th>
+		 </tr>
+
+		 <tr>
+			<td>Abort</td>
+			<td>Interrupción de la carga de una página o imagen</td>
+			<td>Página</td>
+        	 </tr>
+
+		 <tr>
+			<td>Error</td>
+			<td>Error en la carga o ejecuciónde una página o imagen</td>
+			<td>Página</td>
+        	 </tr>
+
+		 <tr>
+			<td>MouseOut</td>
+			<td>Salida del ratón de un área o enlace.</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>Reset</td>
+			<td>Pulsació de un reset en un form.</td>
+			<td>Teclado/ratón</td>
+        	 </tr>
+
+
+		</tbody></table>
+                <br><br>
+
+		<li><b>Eventos de JavaScript 1.2:</b></li>
+		<table border="1" width="80%">
+		 <tbody><tr>
+			<th>Evento</th>
+			<th>Descripción</th>
+			<th>Asociado a</th>
+		 </tr>
+
+		 <tr>
+			<td>DblClick</td>
+			<td>Pulsación de doble Click sobre un enlace o un elemento de un form</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>DragDrop</td>
+			<td>Se produce cuando se deja caer algo sobre la ventana.</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>MouseDown</td>
+			<td>Pulsación de un botón del Ratón sobre  un documento, enlace o form.</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>MouseMove</td>
+			<td>Movimiento del cursor del  Ratón.</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>MouseUp</td>
+			<td>Liberación de un botón del Rtón sobre  un docuemnto, enlace o form.</td>
+			<td>Ratón</td>
+        	 </tr>
+
+		 <tr>
+			<td>KeyDown</td>
+			<td>Pulsación de una tecla.</td>
+			<td>Teclado</td>
+        	 </tr>
+
+		 <tr>
+			<td>KeyUp</td>
+			<td>Liberación de una tecla.</td>
+			<td>Teclado</td>
+        	 </tr>
+		 <tr>
+			<td>KeyPress</td>
+			<td>Cobinación de KeyDown y KeyUp.</td>
+			<td>Teclado</td>
+        	 </tr>
+
+		 <tr>
+			<td>Move</td>
+			<td>Movimiento de la ventana o un frame.</td>
+			<td>Ventana</td>
+        	 </tr>
+
+		 <tr>
+			<td>Resize</td>
+			<td>Redimensionamiento de la ventana o un frame.</td>
+			<td>Ventana</td>
+        	 </tr>
+
+
+
+		</tbody></table>
+                <br><br>
+
+
+	</ul>
+<br><br>
+<h3> Diferencias entre Netscape e IE.</h3>
+
+
+En el manejo de eventos entre <b>N4</b> y <b>E4</b>
+es uno de los apartados donde más diferencias encontramos entre ambos.
+Para empezar, ya a un nivel casi abstracto son totalmente diferentes: <ul>
+   <li><b>E4</b> sigue un modelo de tratamiento de eventos "en burbuja", 
+   </li><li><b>N4</b> utiliza un modelo "de captura". 
+</li></ul>
+
+Lo que esto quiere decir es que el <b>E4</b> permite que el
+elemento que recibe un evento decida si desea o no procesarlo, en cuyo
+caso lo pasa al padre para que lo procese él. La jerarquía es la
+siguiente: link, layer, document, window, manejador por defecto. En <b>N4</b>
+la cosa va alrevés, los eventos se generan y se intentan procesar
+primero en la parte más alta de la jerarquía, dando la oportunidad de
+ser procesados al elemento window que si no lo maneja lo pasa al
+document, y así hasta el elemento generador del evento.
+<p>
+La diferencia práctica entre ambos es que mientras que en <b>E4</b> cualquier elemento HTML puede generar y procesar cualquier evento, en <b>N4</b>, sólo unos pocos elementos pueden hacerlo (a no ser que utilicemos los nuevos modelos de eventos).
+</p><p>Los problemas nos vienen debido a si queremos código que
+funcione bien en ambos tipos de navegadores, no podemos pasar los
+eventos a los manejadores de los elementos padres de los que lo han
+recibido, ya que la jerarquía está invertida.
+</p><p>
+La solución es manejar los eventos en funciones simples, y usar sólo los eventos definidos y soportados por <b>N4</b>, ya que esos funcionan bien en ambos.
+
+<!--
+
+<p>
+En este punto vamos a comentar los atributos de los objetos <code>event</code> tanto en <b>N4</b> como en <B>E4</B>, as&iacute; c&oacute;mo hacer <b><i>scripts localizados dentro de layers</i></b>, para manejar los eventos relacionados con dicho layer.
+
+
+<oL type="1">
+	<LI><h3>Atributos del objeto <code>event</code></h3> Ya vimos en la parte de JavaScrit c&oacute;mo manejar eventos con el nuevo modelo, que por otro lado, era diferente en <b>N4</b> y <B>E4</B>. Como era de esperar, tambi&eacute;n son diferentes los distintos atributos del objeto <code>event</code> en cada navegador.
+<p>
+En el <b>N4</b>, el objeto <code>event</code> tiene las siguientes propieades:
+<ul><ul>
+       <li><b>type</b>: tipo de evento (MOUSEOVER, etc)
+       <li><b>target</b>: destino del evento (layer)
+       <li><b>layerX</b>: posici&oacute;n X del puntero relativa al layer en el que ocurre el evento
+       <li><b>layerY</b>: posici&oacute;n Y del puntero relativa al layer en el que ocurre el evento
+       <li><b>pageX</b>: posici&oacute;n X del puntero relativa al documento
+       <li><b>pageY</b>: posici&oacute;n Y del puntero relativa al documento
+       <li><b>screenX</b>: posici&oacute;n X del puntero relativa a la pantalla
+       <li><b>screenY</b>: posici&oacute;n Y del puntero relativa a la pantalla
+       <li><b>which</b>: n&uacute;mero de bot&oacute;n o de tecla pulsada
+</ul></ul>
+<p>
+En el <B>E4</B>, el objeto <code>event</code> tiene las siguientes propiedades:
+<ul><ul>
+       <li><b>srcElement</b>: destino del evento (layer)
+       <li><b>clientX</b>: posici&oacute;n X del puntero relativa a la ventana
+       <li><b>clientY</b>: posici&oacute;n X del puntero relativa a la ventana
+       <li><b>x</b>: posici&oacute;n X del puntero relativa al padre del layer
+       <li><b>y</b>: posici&oacute;n X del puntero relativa al padre del layer
+       <li><b>offsetX</b>: posici&oacute;n X del puntero relativa al layer
+       <li><b>offsetY</b>: posici&oacute;n X del puntero relativa al layer
+       <li><b>keyCode</b>: c&oacute;digo de tecla pulsada
+</ul></ul>
+<p>
+<font color=#00AA00>Ver ejemplo de manejo y acceso a las propiedades de eventos (I<B>E4</B> y <b>N4</b>): <a href="ejemplos/evdiv.htm">Eventos en <b>N4</b> y <B>E4</B></a>.</font>
+<p></LI>
+
+
+	<LI><h3>Scripts localizados.</h3>
+--> 
+
+</p><p>
+
+<b>E4</b> permite capturar eventos en layers, sin utilizar links, como si toda la zona rectangular del layer actuase como un link. <b>N4</b> no lo permite de un modo tan directo como <b>E4</b> (colocando <i>onEvento</i> en el mismo tag). 
+</p><p> 
+Sin embargo tenemos una forma de conseguir eso que queremos, y es mediante la definición de scripts <i>localizados</i> dentro de los propios layers. Veamos esto con un ejemplo:
+
+</p><pre>&lt;DIV STYLE="position:absolute; left:10; top:20;" 
+   onMouseOver=" alert('Estoy sobre el layer (E4).'); "
+   onMouseOut=" alert('Estoy fuera del layer (E4).'); "&gt;
+
+ Contenido del layer &lt;br&gt; de ejemplo.
+
+&lt;SCRIPT&gt;
+   function onMouseOver() {
+           alert("Estoy sobre el layer (N4).");
+   }
+
+   function onMouseOut() {
+           alert("Estoy fuera del layer (N4).");
+   }
+&lt;/SCRIPT&gt;
+
+&lt;/DIV&gt;
+      </pre>
+Al definir ese layer en un documento, tendríamos que respondería a los eventos de ratón <code>onMouseOver y onMouseOut</code>, sin embargo, para <b>E4</b> y <b>N4</b> utilizaría distintos manejadores. Con <b>E4</b>, utiliza los <i>onEvento</i> definidos en la misma cabecera del tag, sin embargo, debido a las diferencias en la forma de tratar los eventos, en <b>N4</b>, utilizaría como manejadores los definidos en el <i>script localizado</i> dentro del layer.
+
+<p>
+Esta es una forma de tratar los eventos (no todos se pueden manejar de este modo) para conseguir mantener la compatibilidad.
+</p><p>
+Otra forma es utilizar el modelo de eventos nuevo para tratarlos tal y como requiere tanto <b>N4</b> como <b>E4</b>. Un ejemplo de esto <!--lo podemos ver en las p&aacute;ginas de <a href="http://krypton.ugr.es/~pedro/fede/">Federico Garc&iacute;a Lorca</a>, y que pasamos a comentar-->:
+</p><pre>&lt;SCRIPT&gt;
+if (document.layers) {n=1;ie=0}
+if (document.all) {n=0;ie=1}
+
+if (n) {
+      pullout1 = document.layer.document.luna
+      pullout2 = document.layer.document.layer2
+      document.layer.document.luna.document.receptor.
+                   document.captureEvents(Event.MOUSEUP)
+      document.layer.document.luna.document.receptor.
+                   document.onmouseup = deslizaNN
+}
+
+if (ie) {
+      pullout1 = luna.style
+      pullout2 = layer2.style
+      document.all.receptor.onmouseup = deslizaIE
+}
+
+function deslizaIE() {
+      pullout(pullout2);
+}
+
+function deslizaNN(e){ 
+      pullout(pullout2);
+}
+&lt;/SCRIPT&gt;
+      </pre>Como
+vemos, la sistemática a seguir es la siguiente: capturar los eventos
+que deseemos para cada layer que queramos que responda. Esto, como ya
+sabemos, se hace de diferente forma en <b>N4</b> y <b>E4</b>, con lo cual debemos distinguir el navegador utilizado.<p>Al indicar cual es el manejador, debemos tener en cuenta que <b>E4</b> no pasa el objeto <code>evento</code> a través de la cabecera de la función, tal y como sí hace <b>N4</b>,
+por lo que es conveniente que definamos funciones separadas como
+manejadores (tal y como vemos en ese ejemplo) y desde ellas llamemos al
+código común o específico para cada navegador.</p><p>En el ejemplo no hacemos uso de los objetos <code>event</code>, aunque eso es un caso particular de este problema.</p><p>
+
+
+</p><p>
+
+
+  <!--FIN DE CONTENIDOS-->
+  </p></td></tr>
+
+  <!--Esquinas de abajo-->
+  <tr bgcolor="#ffffff" valign="middle">
+      <td height="10"><img src="eventos_files/esq_inf_izq.gif" border="0" height="10" width="10"></td>
+      <td align="right" height="10"><img src="eventos_files/esq_inf_der.gif" border="0" height="10" width="10"></td>
+  </tr>
+  </tbody></table></center>
+
+</td></tr>
+
+ <!-------------------------------------------------------------------->
+<tr><td>&nbsp;</td></tr>
+ <!-------------------------------------------------------------------->
+ <!-------------------------------------------------------------------->
+ <!--Pie de página -->
+<tr><td>
+ <!-- Pie de página-->
+ <center><table border="0" cellpadding="0" cellspacing="0" width="98%">
+  <!--Esquinas de arriba-->
+  <tbody><tr bgcolor="#ff7000" valign="middle">
+      <td height="10"><img src="eventos_files/esq_sup_izq.gif" border="0" height="10" width="10"></td>
+      <td align="right" height="10"><img src="eventos_files/esq_sup_der.gif" border="0" height="10" width="10"></td>
+  </tr>
+
+  <!--Autores y enlaces-->
+  <tr><td colspan="2" bgcolor="#ff7000" valign="middle" width="100%">
+  <address></address><center>
+  <font size="-1"><a class="sub" href="http://geneura.ugr.es/%7Epedro/">Pedro Angel Castillo Valdivieso</a>:
+  <a class="sub" href="mailto:pedro@geneura.ugr.es">pedro@geneura.ugr.es</a><br>
+  <a class="sub" href="http://decsai.ugr.es/%7Efjgc/">Fco. Javier García Castellano</a>:
+  <a class="sub" href="mailto:pedro@geneura.ugr.es">fjgc@decsai.ugr.es</a><br>
+  <a class="sub" href="http://geneura.ugr.es/">Equipo GeNeura</a><br>
+  <a class="sub" href="http://atc.ugr.es/">Departamento de Arquitectura y Tecnología de los Computadores</a><br>
+  <a class="sub" href="http://www.ugr.es/">Universidad de Granada</a><br>
+  tlf: +34-58-243163<br>
+  fax: +34-58-243230<br></font>
+  </center>
+  </td></tr>
+
+  <!--Esquinas de abajo-->
+  <tr bgcolor="#ff7000" valign="middle">
+      <td height="10"><img src="eventos_files/esq_inf_izq.gif" border="0" height="10" width="10"></td>
+      <td align="right" height="10"><img src="eventos_files/esq_inf_der.gif" border="0" height="10" width="10"></td>
+  </tr>
+
+ </tbody></table></center>
+</td></tr>
+ <!-------------------------------------------------------------------->
+<tr><td>&nbsp;</td></tr>
+ <!-------------------------------------------------------------------->
+<!--Fin Tabla oscura-->
+ 
+</tbody></table>
+
+<!--
+Para mas informacion acerca de los nuevos modelos de eventos se puede encontrar en <a href="http://geneura.ugr.es/~pedro/dhtml/eventos/">http://geneura.ugr.es/~pedro/dhtml/eventos/</a>.
+-->
+</body></html>

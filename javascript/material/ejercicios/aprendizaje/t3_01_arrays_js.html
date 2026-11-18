@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio 3.8 </title>
+        <script type="text/javascript"> 
+        /*
+        Realiza los siguientes pasos en un fichero llamado 01_arrays_js.html. Muestra por
+        consola el resultado después de aplicar cada uno, pero con los elementos separados
+        por “=>” usando join:
+        • Crea un array con 4 elementos numéricos
+        • Concatena 2 elementos más al final y 2 al principio (unshift y push)
+        • Elimina las posiciones de la 3 a la 5 (incluida) (splice)
+        • Inserta 2 elementos más entre el penúltimo y el último (splice)
+        • Invierte el array (reverse)
+        */
+
+            'use strict';
+            window.onload = function() {
+                let array = [3,4,5,6];
+                document.getElementById("mostrar").innerHTML +="<br>array: "+ array;
+                array.push([7,8])
+                document.getElementById("mostrar").innerHTML +="<br> push: "+ array;
+                array.unshift([1,2]);
+                document.getElementById("mostrar").innerHTML +="<br> unshift: "+ array;
+                array.reverse();
+                document.getElementById("mostrar").innerHTML +="<br>reverse: "+ array;
+                array.sort();
+                document.getElementById("mostrar").innerHTML +="<br> sort: "+ array;
+            }
+        </script>
+    </head>
+    <body>
+        <div id="mostrar" style="border: 4px solid red"></div>
+    </body>
+</html>

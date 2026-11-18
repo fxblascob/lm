@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>            Ejemplos Text        </title>
+        <link rel="stylesheet" type="text/css" href="../../estilos.css">
+        <meta charset="UTF-8">
+		<script src="../../codigos.js"></script>
+		<script>
+			function cargar(n)
+			{
+				var f='./ejemplos/ejemplo_2'+n+'.html';
+				var g='./ejemplos/ejemplo_2'+n+'_2.html';
+				document.getElementById("iframeResult").src=f;
+				document.getElementById("iframeResult_2").src=g;
+				var h='a'+n;
+				x=document.getElementById(h).innerHTML;
+				y=document.getElementById("piframedrcha");
+				y.innerHTML=x;
+				/*z=document.getElementById("piframeizqda");
+				z.innerHTML=x;*/
+			}
+		</script>
+	</head> 
+    <body ondblclick="ocultarMenu()">
+		<div id="contenedor_general">
+			<div id="contenedor_cabecera">
+				<img src="../imagenes/logo.jpg" width="147" height="92"> 
+				<h1>08 Ejemplos de Texto</h1>
+			</div>
+	        <iframe id="if" src="../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+			<div id="contenedor_cuerpo">
+			
+				<h2>Ejemplos CSS - Text - Ejemplos de <a href="http://www.w3schools.com">www.w3schools.com</a></h2>
+
+				<div id="lista_enlaces_ejemplos">
+				<ul>
+					<li> <a id="a0" href="#" onclick="cargar(0)">Colores y alineación texto</a>	</li>
+					<li> <a id="a1" href="#" onclick="cargar(1)">Decoración y control de letras</a>	</li>
+					<li> <a id="a2" href="#" onclick="cargar(2)">Alinear texto e imagen</a>	</li>
+					<li> <a id="a3" href="#" onclick="cargar(3)">Quitar underline de un link</a>	</li>
+					<li> <a id="a4" href="#" onclick="cargar(4)">Fuentes y Tamaño</a>	</li>
+					<li> <a id="a5" href="#" onclick="cargar(5)">Estilo y peso</a>	</li>
+				</ul>
+				</div>
+				<div class="p_iframe">
+					<p id="piframeizqda">Código </p>	
+					<p id="piframedrcha">Resultado</p>
+				</div>
+				<div class="nofloat"></div>
+				<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
+				<iframe id="iframeResult"   class="result_output" name="view"></iframe>	
+				<div class="nofloat"></div>
+			</div>
+			<div id="contenedor_pie">
+				<p>Manual de CSS </p>
+			</div>
+		</div>
+		
+
+	</body>
+</html>

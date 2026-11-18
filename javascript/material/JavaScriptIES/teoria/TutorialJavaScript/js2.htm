@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Manual practico de JavaScrip - Js2</TITLE>
+<LINK REL=stylesheet HREF=hoja.css TYPE=text/css>
+</HEAD>
+<BODY>
+<DIV ALIGN=justify>
+<H1>Conceptos básicos</H1>
+JavaScript es un lenguaje interpretado en el cliente por el navegador al momento de cargarse la pagina, es multiplataforma, orientado a eventos con manejo de objetos, cuyo codigo se incluye directamente en el mismo documento HTML.<P>
+
+Hasta entonces ya se usaba HTML y JAVA, pero la aparici&oacute;n del JavaScript produjo una importante revoluci&oacute;n, ya que dio al usuario la posibilidad de crear aplicaciones "on-line" osea modificar p&aacute;ginas web en tiempo real, sin usar CGI&#180;s.<P>
+
+<H2>Caracteristicas</H2>
+
+<UL>
+<LI>Es simple, no hace falta tener conocimientos de programaci&oacute;n para poder hacer un programa en JavaScript.<P>
+
+<LI>Maneja objetos dentro de nuestra p&aacute;gina Web y sobre ese objeto podemos definir diferentes eventos. Dichos objetos facilitan la programacion de paginas interactivas, a la vez que se evita  la posibilidad de ejecutar comandos que puedan ser peligrosos para la maquina del usuario, tales como formateo de unidades, modificar archivos etc.<P>
+
+<LI>Es din&aacute;mico, responde a eventos en tiempo real. Eventos como presionar un bot&oacute;n, pasar el puntero del mouse sobre un determinado texto o el simple hecho de cargar la p&aacute;gina o caducar un tiempo. Con esto podemos cambiar totalmente el aspecto de nuestra p&aacute;gina al gusto del usuario, evit&aacute;ndonos tener en el servidor un p&aacute;gina para cada gusto, hacer calculos en base a variables cuyo valor es determinado por el usuario, etc.
+</UL><P>
+
+<H2>Principales aplicaciones</H2>
+
+Si bien hoy en d&iacute;a, JavaScript, es un lenguaje muy usado, sus principales aplicaciones son:<P> 
+
+<UL> 
+<LI>Responder a eventos locales dentro de la p&aacute;gina, como apretar un bot&oacute;n,
+<LI>La realizaci&oacute;n de c&aacute;lculos en tiempo real.
+<LI>La validaci&oacute;n de formularios dentro de una p&aacute;gina.
+<LI>La personalizaci&oacute;n de la p&aacute;gina por el usuario, 
+que le permitir&aacute; tener una p&aacute;gina web a su medida.
+<LI>La inclusi&oacute;n de datos del propio sistema, como son la hora y la fecha.
+</UL><P>
+
+Aunque seg&uacute;n pasa el tiempo sus aplicaciones se van incrementando.<P>
+
+<H2>Donde incluirlo</H2>
+Antes siquiera de que conozcamos la sintaxis o una primera orden de JavaScript, debemos saber primero cómo se incluye un script dentro de un documento HTML.<P>
+
+El codigo JavaScript se inserta directamente en nuestra pagina HTML. Hay cuatro (4) maneras de hacerlo:<P>
+
+<H3>1. En el cuerpo del documento</H3>
+Es decir entre los comandos &lt;BODY&gt; y &lt;/BODY&gt; usando el comando <B>&lt;SCRIPT&gt;</B><P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt;&lt;TITLE&gt;Titulo&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- escondemos el codigo&gt;<BR>
+document.write("Hola que tal");<BR>
+// fin de esconder --&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Este codigo se ejecuta inmediatamente al cargar la pagina y lo que produce es un texto sobre la pagina, para ello use el metodo <B>write</B> del objeto <B>document</B>, que representa al documento actual.<P>
+
+Nota que use un comentario &lt;!-- --&gt; para ocultar el codigo a los navegadores que no soportan JavaScript.<P>
+
+<H3>2. En archivo aparte</H3>
+En este caso todo el codigo del script esta situado en otro archivo y se hace una llamada.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt;&lt;TITLE&gt;Titulo&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;SCRIPT SRC=codigo.js&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Nota que aqui no fue neceario esconder ningun codigo y que los navegadores que no soporte el comando <B>SCRIPT</B> simplemente lo ignoraran.<P>
+
+<H3>3. Usando manejadores de evento</H3>
+Los comandos de JavaScript son evaluados inmediatamente al cargarse la pagina. Las funciones son almacenadas, pero no ejecutadas, hasta cierto evento.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt;&lt;TITLE&gt;Titulo&lt;/TITLE&gt;&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+&lt;A HREF="" evento=metodo o llamada a funcion interna&gt;algo&lt;/A&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Nota que aqui es un evento el que dispara.<P>
+
+<H3>4. Haciendo una llamada a función</H3>
+Dentro de la cabecera, despues del titulo. Es decir, entre los comandos 
+&lt;/TITLE&gt; y &lt;/HEAD&gt; y luego la llamada a la funcion en el cuerpo.<P>
+
+<DIR>
+<TABLE BORDER=0 BGCOLOR=FFFFCC>
+<TR><TD>
+&lt;HTML&gt;<BR>
+&lt;HEAD&gt;<BR>
+&lt;TITLE&gt;Titulo&lt;/TITLE&gt;<BR>
+&lt;SCRIPT LANGUAGE=JavaScript&gt;<BR>
+&lt;!-- escondemos el codigo&gt;<BR>
+function Ver()&nbsp;{<BR>
+&nbsp;&nbsp;&nbsp;alert("Le dije que NO !");<BR>
+}<BR>
+// fin de esconder --&gt;<BR>
+&lt;/SCRIPT&gt;<BR>
+&lt;/HEAD&gt;<BR>
+&lt;BODY&gt;<BR>
+No haga Clic &lt;A HREF="Ver()"&gt;AQUI&lt;/A&gt;<BR>
+&lt;/BODY&gt;<BR>
+&lt;/HTML&gt;
+</TABLE>
+</DIR>
+
+Observa que aqui se definio la funcion en la cabecera, pero recien se ejecuta al hacer clic en el enlace, que es el evento que llama a la funcion a la cual se le para un parametro.<P>
+
+<B>NOTA:</B> Excepto en texto encomillado, JavaScript es sensible a mayusculas y misnusculas, por lo que tendras que tener el cuidado al usar por ejemplo <B>document.write</B> de escribirlo asi, en minusculas o no se interpretara. Cualquier error simplemente es ignorado. Se puede usar la comilla simple para los valores de atributos.
+</BODY>
+</HTML>
