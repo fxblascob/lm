@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -130,29 +127,149 @@
         </nav>
 
         <!-- Tarjeta de Contenido Educativo -->
+                <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 13</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Arquitectura y Maquetación</span>
             </div>
 
-            <h2>Ejemplos CSS - Homepages - Ejemplos de <a href="http://www.w3schools.com">www.w3schools.com</a></h2>
-				<div id="lista_enlaces_ejemplos">
-					<ul>
-						<li> <a id="a0" href="#" onclick="cargar(0)">Homepage uno</a>	</li>
-						<li> <a id="a1" href="#" onclick="cargar(1)">Homepage dos</a></li>
-						<li> <a id="a2" href="#" onclick="cargar(2)">Homepage tres</a></li>
-					</ul>
-				</div>
-				<div class="p_iframe">
-					<p id="piframeizqda">Código </p>	
-					<p id="piframedrcha">Resultado</p>
-				</div>
-				<div style="clear:both;"></div>
-				<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
-				<iframe id="iframeResult" class="result_output" name="view"></iframe>	
-				<div style="clear:both;"></div>
-			</div>
+            <h1 class="fw-bold mb-3 display-6">13. Maquetación de Páginas Web (<em>Homepages</em>)</h1>
+            
+            <p class="lead text-secondary mb-4">
+                La maquetación (<em>layout</em>) es el arte de estructurar armónicamente los diferentes bloques de un sitio web: cabeceras, menús de navegación, barras laterales, áreas de contenido y pies de página. Comprender su evolución histórica y los estándares actuales es clave para cualquier desarrollador frontend.
+            </p>
+
+            <!-- Sección 1: Evolución de la Maquetación -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-hourglass-split text-primary"></i> 1. Evolución Histórica de los Sistemas de Maquetación
+            </h2>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-danger mb-2 align-self-start">1995 - 2002</span>
+                        <h6 class="fw-bold text-dark mb-1">Maquetación con Tablas <code>&lt;table&gt;</code></h6>
+                        <p class="small text-secondary mb-0">
+                            Se usaban tablas HTML invisibles anidadas para forzar columnas. <strong>Totalmente obsoleto:</strong> código farragoso, nula accesibilidad e imposible adaptación a pantallas móviles.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-warning text-dark mb-2 align-self-start">2002 - 2015</span>
+                        <h6 class="fw-bold text-dark mb-1">Maquetación con Flotantes (<code>float</code>)</h6>
+                        <p class="small text-secondary mb-0">
+                            Uso de divisiones (<code>&lt;div&gt;</code>) con <code>float: left</code> y porcentajes. Requirió complejos trucos de <em>clearfix</em> y cálculos matemáticos para compensar márgenes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border border-primary-subtle bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-primary mb-2 align-self-start">Actualidad (Estándar)</span>
+                        <h6 class="fw-bold text-dark mb-1">Flexbox y CSS Grid</h6>
+                        <p class="small text-secondary mb-0">
+                            Sistemas nativos bidimensionales y unidimensionales. Alineación perfecta, reordenación semántica, espacios automáticos con <code>gap</code> y diseño 100% responsive sin trucos.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2: Anatomía de una Homepage Moderna -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-layout-text-window-reverse text-primary"></i> 2. Anatomía de una Portada (<em>Homepage</em>)
+            </h2>
+            <div class="card border bg-body-tertiary rounded-3 p-3 p-md-4 mb-4 shadow-sm">
+                <div class="row g-3 text-center small">
+                    <div class="col-12">
+                        <div class="p-3 bg-dark text-white rounded-3 shadow-sm">
+                            <strong><code>&lt;header&gt;</code> + <code>&lt;nav&gt;</code></strong> &mdash; Cabecera corporativa, logotipo y barra de navegación
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-4 bg-primary-subtle text-primary-emphasis rounded-3 border border-primary-subtle h-100 d-flex flex-column justify-content-center">
+                            <strong><code>&lt;aside&gt;</code></strong>
+                            <span class="text-secondary small mt-1">Barra lateral (Sidebar), filtros o enlaces secundarios</span>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="p-4 bg-white rounded-3 border h-100 d-flex flex-column justify-content-center shadow-sm">
+                            <strong class="text-dark"><code>&lt;main&gt;</code></strong>
+                            <span class="text-secondary small mt-1">Contenido principal, artículos destacados y llamadas a la acción</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="p-2 bg-secondary text-white rounded-3">
+                            <strong><code>&lt;footer&gt;</code></strong> &mdash; Pie de página, créditos legales, enlaces y redes sociales
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Visor Interactivo en Vivo -->
+            <h2 class="h4 fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                <i class="bi bi-play-circle text-primary"></i> 3. Visor Interactivo de Estructuras de Página
+            </h2>
+            <p class="text-secondary small mb-3">
+                Selecciona uno de los ejemplos clásicos para inspeccionar cómo se estructuran las columnas y la cabecera en el código:
+            </p>
+
+            <!-- Barra de Píldoras Ergonómica -->
+            <div class="d-flex flex-wrap gap-2 mb-4 p-2 bg-body-tertiary rounded-3 border">
+                <button type="button" class="btn btn-sm btn-ejemplo btn-primary text-white" onclick="cargar(0)">1. Homepage Clásica con Barra Lateral</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(1)">2. Homepage en Tres Columnas</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(2)">3. Homepage con Menú y Bloques</button>
+            </div>
+
+            <!-- Contenedor Split-View Código vs Resultado -->
+            <div class="card border rounded-3 shadow-sm overflow-hidden mb-4">
+                <div class="card-header bg-dark text-white py-2 px-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-display text-primary"></i>
+                        <span class="fw-semibold small" id="ejemploTitulo">1. Homepage Clásica con Barra Lateral</span>
+                    </div>
+                    <span class="badge bg-secondary small">Inspector en Vivo</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <!-- Columna Código -->
+                        <div class="col-lg-6 border-end border-secondary-subtle">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-code-slash text-primary me-1"></i> Código Fuente</span>
+                                <span class="badge bg-light text-secondary border">HTML + CSS</span>
+                            </div>
+                            <iframe id="iframeResult_2" name="view_2" class="w-100 bg-white" style="height: 420px; border: 0;" title="Código fuente del ejemplo"></iframe>
+                        </div>
+
+                        <!-- Columna Resultado -->
+                        <div class="col-lg-6">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-eye text-success me-1"></i> Resultado Renderizado</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Vista Previa</span>
+                            </div>
+                            <iframe id="iframeResult" name="view" class="w-100 bg-white" style="height: 420px; border: 0;" title="Resultado en vivo"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Siguiente Paso: Responsive Web Design -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 d-flex flex-sm-row align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-phone fs-2 text-primary"></i>
+                    <div>
+                        <div class="fw-bold small text-dark">Siguiente lección: Diseño Web Adaptativo</div>
+                        <div class="text-secondary small">Descubre cómo adaptar estas estructuras a cualquier tamaño de pantalla mediante Media Queries y Mobile-First.</div>
+                    </div>
+                </div>
+                <a href="./15_disenyo_adaptativo2.html" class="btn btn-sm btn-primary text-nowrap fw-medium shadow-sm">
+                    <span>Ir a Diseño Adaptativo</span> <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -182,20 +299,37 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+        <!-- Bootstrap 5.3 JS Bundle (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>function cargar(n)	{
-			var f='./ejemplos/ejemplo_5'+n+'.html';
-			var g='./ejemplos/ejemplo_5'+n+'_2.html';
-			document.getElementById("iframeResult").src=f;
-			document.getElementById("iframeResult_2").src=g;
-			var h='a'+n;
-			x=document.getElementById(h).innerHTML;
-			y=document.getElementById("piframedrcha");
-			y.innerHTML=x;
-			z=document.getElementById("piframeizqda");
-			z.innerHTML=x;
-		}</script>
+    <script>
+        const ejemplos = {
+            0: { title: "1. Homepage Clásica con Barra Lateral", file: "ejemplo_50" },
+            1: { title: "2. Homepage en Tres Columnas", file: "ejemplo_51" },
+            2: { title: "3. Homepage con Menú y Bloques Modulares", file: "ejemplo_52" }
+        };
 
+        function cargar(n) {
+            const item = ejemplos[n];
+            if (!item) return;
+            document.getElementById("iframeResult").src = "./ejemplos/" + item.file + ".html";
+            document.getElementById("iframeResult_2").src = "./ejemplos/" + item.file + "_2.html";
+            document.getElementById("ejemploTitulo").textContent = item.title;
+            
+            // Actualizar botones activos
+            document.querySelectorAll(".btn-ejemplo").forEach((btn) => {
+                if (btn.getAttribute("onclick") === `cargar(${n})`) {
+                    btn.classList.add("btn-primary", "text-white");
+                    btn.classList.remove("btn-outline-primary");
+                } else {
+                    btn.classList.remove("btn-primary", "text-white");
+                    btn.classList.add("btn-outline-primary");
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            cargar(0);
+        });
+    </script>
 </body>
 </html>
