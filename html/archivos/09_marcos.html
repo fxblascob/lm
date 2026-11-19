@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>09. Marcos | HTML | LMSGI</title>
-    <meta name="description" content="Marcos e iframes para incrustar contenidos externos y navegación modular.">
+    <title>09. Marcos en la Web (&lt;iframe&gt;) | HTML5 | LMSGI</title>
+    <meta name="description" content="Incrustación de contextos con iframe en HTML5, eliminación de frameset, accesibilidad con title, aislamiento de seguridad con sandbox y diseño responsivo con Bootstrap.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
     </style>
 </head>
 <body>
@@ -132,11 +131,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 09</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5 Semántico</span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Ciberseguridad & Sandbox</span>
                     </div>
-                    <h2 class="fw-bold mb-1">09. Marcos</h2>
+                    <h2 class="fw-bold mb-1">09. Marcos en la Web: El elemento &lt;iframe&gt;</h2>
                     <p class="text-secondary mb-0 small">
-                        Marcos e iframes para incrustar contenidos externos y navegación modular.
+                        Incrustación de contextos de navegación independientes con <code>&lt;iframe&gt;</code>, erradicación de <code>&lt;frameset&gt;</code>, accesibilidad con <code>title</code>, aislamiento seguro con <code>sandbox</code> y diseño adaptativo con Bootstrap.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,47 +152,271 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <h2 id="marcos-iframes">Marcos incrustados <i>("inline frame", &lt;iframe&gt;)</i></h2>
-			<p>Inserta un marco en línea dentro de un documento, es equivalente a insertar una página dentro de otra con el tamaño establecido.</p>
-			<p>El iframe es un objeto que se manipula con la misma libertad que cualquier otro elemento dentro del documento. Se suele utilizar para publicidad o sitios de colaboración
-			<p>Atributos: name, src, frameborder, marginwidth, marginheight, scrolling, width, height</p>
-<p>Sintaxis:
-		<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;iframe src="URL"&gt;  &lt;/iframe&gt; 	
-</code></pre>
+            
+            <!-- Sección 1: Evolución histórica: Del frameset al iframe -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-clock-history text-primary"></i> 1. Evolución histórica: La desaparición de &lt;frameset&gt;
+                </h3>
+                <p>
+                    En las décadas de 1990 y principios de 2000 (HTML 4.01), existían dos formas de trabajar con marcos:
+                </p>
+                <ol class="small">
+                    <li><strong>Conjuntos de marcos (<code>&lt;frameset&gt;</code>, <code>&lt;frame&gt;</code>, <code>&lt;noframes&gt;</code>):</strong> Dividían la ventana completa del navegador en paneles estáticos independientes sustituyendo al elemento <code>&lt;body&gt;</code>.</li>
+                    <li><strong>Marcos en línea (<code>&lt;iframe&gt;</code> - <em>inline frames</em>):</strong> Permiten incrustar un documento web secundario dentro del flujo normal de una página con su propio <code>&lt;body&gt;</code>.</li>
+                </ol>
 
-<p>Ejemplo: Visalización de la página "capas.html".</p>
-		<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;iframe name="iframe_a" src="10_capas.html" width="800" height="200" 
-  marginwidth="6" marginheight="4" frameborder="1" scrolling="auto"&gt; 
-&lt;/iframe&gt;
-</code></pre>
-<p>Se visualizaría así: </p>
-<iframe name="iframe_a" src="./10_capas.html" width="800" height="200" marginwidth="6" marginheight="4" frameborder="1" scrolling="auto"></iframe>
+                <div class="alert alert-danger py-3 px-3 small border-start border-4 border-danger my-3">
+                    <h6 class="fw-bold text-dark mb-1"><i class="bi bi-trash3-fill text-danger me-1"></i> Erradicación total de &lt;frameset&gt; en HTML5:</h6>
+                    <p class="mb-0">
+                        La especificación moderna de HTML5 <strong>eliminó por completo los elementos <code>&lt;frameset&gt;</code> y <code>&lt;frame&gt;</code></strong>. Se consideraron una de las peores tecnologías de la historia web debido a que:
+                    </p>
+                    <ul class="mt-2 mb-0">
+                        <li><strong>Rompían el historial del navegador:</strong> El botón "Atrás" dejaba de funcionar de forma lógica.</li>
+                        <li><strong>Impedían guardar en favoritos o compartir URLs:</strong> La barra de direcciones siempre mostraba la página marco raíz, ocultando la URL del contenido real.</li>
+                        <li><strong>Destruían el SEO:</strong> Los motores de búsqueda indexaban páginas sueltas sin su menú de navegación.</li>
+                        <li><strong>Graves problemas de accesibilidad:</strong> Para lectores de pantalla suponía una navegación caótica e incomprensible.</li>
+                    </ul>
+                </div>
 
-<p>Un iframe puede ser usado como marco "target" de un link. Para ello en el atributo del link se debe poner el atributo "name" del iframe</p>
-<p>Así podríamos poner:</p>
-		<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;p&gt;
-&lt;a href="11_formularios.html" target="iframe_a"&gt;Cargar "formularios.html"&lt;/a&gt;
-&lt;a href="10_capas.html" target="iframe_a"&gt;Cargar "Capas.html"&lt;/a&gt;
-&lt;/p&gt;
-</code></pre>
-<p>Pulsa sobre el siguiente enlace: <a href="16_ejercicios.html" target="iframe_a"> Cargar "formularios.html"</a>
-<p>Para volver a cargar la página de antes:<a href="10_capas.html" target="iframe_a"> Cargar "Capas.html"</a>
-</p>
+                <p class="small text-muted mb-0">
+                    En la web moderna, <strong>el único estándar admitido es el marco en línea: <code>&lt;iframe&gt;</code></strong>.
+                </p>
+            </section>
 
-		
-<p>Ejemplo de uso para ver un vídeo</p>
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
-	        frameborder="0" allowfullscreen&gt;
-&lt;/iframe&gt;
-</code></pre>
-<p> Se ve así: </p>
-	<iframe width="400" height="240" src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
-	        frameborder="0" allowfullscreen>
-	</iframe>
+            <!-- Sección 2: Sintaxis moderna de <iframe> -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-window-sidebar text-primary"></i> 2. Sintaxis básica y atributos esenciales de &lt;iframe&gt;
+                </h3>
+                <p>
+                    Un <code>&lt;iframe&gt;</code> crea un <strong>contexto de navegación anidado</strong> (<em>nested browsing context</em>). Es decir, renderiza un documento HTML completo independiente dentro del documento padre.
+                </p>
+
+                <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                    <h6 class="fw-bold text-primary mb-2">Sintaxis moderna recomendada en HTML5:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;iframe src="https://www.openstreetmap.org/export/embed.html?..." 
+        title="Ubicación geográfica del centro educativo" 
+        width="600" 
+        height="400" 
+        loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Atributo</th>
+                                <th style="width: 25%;">Valor / Tipo</th>
+                                <th>Propósito y Buenas Prácticas Modernas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>src</code></td>
+                                <td>URL relativa o absoluta</td>
+                                <td>Ruta o dirección web de la página o recurso externo que se desea incrustar.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>title</code></td>
+                                <td>Texto descriptivo</td>
+                                <td><strong>Obligatorio para accesibilidad (WCAG).</strong> Describe el contenido del marco para que los usuarios con lectores de pantalla sepan qué contiene sin necesidad de interactuar con él.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>width</code> / <code>height</code></td>
+                                <td>Entero en píxeles</td>
+                                <td>Dimensiones fijas del marco. En HTML5 <strong>no llevan 'px' ni '%'</strong>; el diseño adaptable se controla con CSS.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>loading</code></td>
+                                <td><code>lazy</code> | <code>eager</code></td>
+                                <td>Optimización de rendimiento (Core Web Vitals). <code>loading="lazy"</code> pospone la carga de mapas o vídeos pesados hasta que el usuario hace scroll hacia ellos.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>name</code></td>
+                                <td>Identificador de texto</td>
+                                <td>Asigna un nombre al marco para actuar como destino de enlaces con el atributo <code>target</code> (p. ej. <code>&lt;a target="mi_marco"&gt;</code>).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-danger"><code>frameborder</code>, <code>scrolling</code>, <code>marginwidth</code>, <code>marginheight</code></td>
+                                <td>Valores obsoletos</td>
+                                <td><span class="badge bg-danger">Obsoletos en HTML5</span>. Para quitar bordes o ajustar barras de scroll se debe utilizar CSS con <code>border: 0;</code> o <code>overflow: hidden;</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección 3: Ciberseguridad con sandbox -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-lock-fill text-danger"></i> 3. Ciberseguridad web: El atributo <code>sandbox</code>
+                </h3>
+                <p>
+                    Incrustar páginas de sitios web de terceros en tu propia web entraña importantes riesgos de seguridad (robo de cookies, ejecución de scripts maliciosos XSS, apertura de ventanas emergentes o redirección de tu sitio a una web fraudulenta).
+                </p>
+                <p>
+                    Para solucionar esto, HTML5 introdujo el atributo <strong><code>sandbox</code></strong>, que crea una caja de arena de seguridad de máximo aislamiento.
+                </p>
+
+                <div class="row g-4 align-items-center my-3">
+                    <div class="col-lg-6">
+                        <div class="card border-danger shadow-sm h-100">
+                            <div class="card-header bg-danger text-white fw-bold">
+                                Modo Restrictivo Máximo: <code>&lt;iframe sandbox&gt;</code>
+                            </div>
+                            <div class="card-body small">
+                                <p>Si se añade <code>sandbox</code> sin ningún valor adicional, <strong>se bloquea absolutamente todo</strong>:</p>
+                                <ul class="mb-0">
+                                    <li>Desactiva la ejecución de JavaScript.</li>
+                                    <li>Impide enviar formularios.</li>
+                                    <li>Bloquea pop-ups o nuevas pestañas.</li>
+                                    <li>Impide el acceso a cookies, LocalStorage o SessionStorage del navegador.</li>
+                                    <li>Impide que el iframe redireccione la página principal.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card border-success shadow-sm h-100">
+                            <div class="card-header bg-success text-white fw-bold">
+                                Permisos Selectivos Controlados
+                            </div>
+                            <div class="card-body small">
+                                <p>Podemos otorgar permisos específicos separándolos por espacios:</p>
+                                <ul class="mb-0">
+                                    <li><code>allow-scripts</code>: Permite ejecutar JavaScript dentro del marco.</li>
+                                    <li><code>allow-same-origin</code>: Permite al contenido mantener su origen original.</li>
+                                    <li><code>allow-forms</code>: Permite enviar formularios dentro del marco.</li>
+                                    <li><code>allow-popups</code>: Permite abrir enlaces con <code>target="_blank"</code>.</li>
+                                    <li><code>allow-modals</code>: Permite abrir diálogos modales (como <code>window.alert</code>).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-body-tertiary rounded-3 border">
+                    <h6 class="fw-bold text-dark mb-1">Ejemplo de incrustación segura:</h6>
+                    <pre class="bg-dark text-light p-2 rounded small mb-0 overflow-auto"><code>&lt;!-- Permite scripts y formularios pero bloquea acceso a almacenamiento y redirecciones --&gt;
+&lt;iframe src="https://widget-externo.com/formulario" 
+        title="Formulario de encuesta externa"
+        sandbox="allow-scripts allow-forms"&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sección 4: Casos de uso contemporáneos -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-collection-play text-primary"></i> 4. Casos de uso contemporáneos de &lt;iframe&gt;
+                </h3>
+
+                <!-- Caso 1: YouTube -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-youtube text-danger"></i> A. Incrustación de vídeos de plataformas (YouTube / Vimeo)
+                    </h5>
+                    <p class="small text-secondary">
+                        Para reproducir un vídeo de YouTube se utiliza la URL en formato <code>embed</code> junto con la política de permisos <code>allow</code> y <code>allowfullscreen</code>:
+                    </p>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-3 overflow-auto"><code>&lt;iframe width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
+        title="Tutorial de LMSGI en YouTube" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+
+                <!-- Caso 2: Mapas interactivos -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-geo-alt-fill text-success"></i> B. Incrustación de mapas interactivos (OpenStreetMap / Google Maps)
+                    </h5>
+                    <p class="small text-secondary">
+                        Permite añadir un mapa navegable y táctil en páginas de contacto sin necesidad de programación JavaScript compleja:
+                    </p>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-3 overflow-auto"><code>&lt;iframe width="100%" 
+        height="300" 
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-0.525%2C38.395%2C-0.515%2C38.405&amp;layer=mapnik" 
+        title="Ubicación en OpenStreetMap"
+        loading="lazy"&gt;
+&lt;/iframe&gt;</code></pre>
+                </div>
+
+                <!-- Caso 3: Enlaces con target hacia un iframe -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-link-45deg text-primary"></i> C. Enlaces que cargan contenido dentro de un &lt;iframe&gt;
+                    </h5>
+                    <p class="small text-secondary">
+                        Mediante el atributo <code>name</code> del iframe y el atributo <code>target</code> de una etiqueta <code>&lt;a&gt;</code>, podemos hacer que al hacer clic en un enlace su destino se abra dentro del marco sin recargar la página entera:
+                    </p>
+
+                    <div class="p-3 bg-body-tertiary rounded-3 border">
+                        <h6 class="fw-bold text-primary mb-2">Código del visor con target:</h6>
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-3 overflow-auto"><code>&lt;!-- Enlaces con target dirigido al nombre del marco --&gt;
+&lt;div class="btn-group mb-3"&gt;
+    &lt;a href="./10_capas.html" target="visor_temario" class="btn btn-sm btn-outline-primary"&gt;
+        Ver Lección 10 (Capas)
+    &lt;/a&gt;
+    &lt;a href="./11_formularios.html" target="visor_temario" class="btn btn-sm btn-outline-primary"&gt;
+        Ver Lección 11 (Formularios)
+    &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- Marco receptor con el atributo name correspondiente --&gt;
+&lt;iframe name="visor_temario" 
+        src="./10_capas.html" 
+        title="Visor interactivo de temas" 
+        width="100%" 
+        height="280" 
+        class="border rounded shadow-sm"&gt;
+&lt;/iframe&gt;</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 5: Diseño Adaptativo con Bootstrap 5 Ratio -->
+            <section class="mb-4">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-aspect-ratio text-info"></i> 5. Marcos adaptativos para móviles (Bootstrap 5 Ratio)
+                </h3>
+                <p>
+                    Uno de los fallos más habituales al insertar vídeos o mapas con <code>&lt;iframe&gt;</code> es definir un ancho fijo como <code>width="560"</code>. En teléfonos móviles con pantallas de 360px a 400px de ancho, el marco desborda la pantalla horizontalmente.
+                </p>
+                <p>
+                    La solución moderna en <strong>Bootstrap 5</strong> es envolver el <code>&lt;iframe&gt;</code> en un contenedor con la clase <strong><code>.ratio</code></strong> y la proporción deseada (p. ej. <code>.ratio-16x9</code>, <code>.ratio-4x3</code> o <code>.ratio-21x9</code>):
+                </p>
+
+                <div class="row g-4 align-items-center my-2">
+                    <div class="col-lg-6">
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!-- Contenedor responsivo 16:9 automático --&gt;
+&lt;div class="ratio ratio-16x9 rounded-4 shadow-sm overflow-hidden"&gt;
+    &lt;iframe src="https://www.youtube.com/embed/dTA9Yd0ODiE" 
+            title="Vídeo demostrativo del temario" 
+            allowfullscreen&gt;
+    &lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-3 bg-body-tertiary rounded-3 border">
+                            <span class="badge bg-secondary-subtle text-secondary border mb-2">Simulación adaptable 16:9</span>
+                            <div class="ratio ratio-16x9 rounded-3 shadow-sm overflow-hidden border">
+                                <iframe src="https://www.youtube.com/embed/dTA9Yd0ODiE" title="Vídeo demostrativo del temario" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="small text-secondary mt-3 mb-0">
+                    <i class="bi bi-check-circle-fill text-success me-1"></i> Gracias a la clase <code>.ratio</code>, el reproductor de vídeo o mapa mantendrá siempre su proporción perfecta tanto en un monitor panorámico de sobremesa como en la pantalla vertical de cualquier smartphone.
+                </p>
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
