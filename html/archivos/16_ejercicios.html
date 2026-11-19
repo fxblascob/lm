@@ -28,7 +28,15 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .soluciones { display: none; }
+        .exercise-item {
+            border-left: 4px solid #0d6efd !important;
+            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .exercise-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+        }
+        .soluciones { display: block; }
     </style>
 </head>
 <body>
@@ -93,7 +101,7 @@
                 <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
                 <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
                 <a href="./16_ejercicios.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 15. Ejercicios prácticos</a>
-                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
+                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
                 <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
                 <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
             </div>
@@ -131,286 +139,949 @@
             <div class="row align-items-center gy-3">
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
-                        <span class="badge bg-primary text-white">Lección 15</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary text-white">25 Ejercicios Prácticos</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Ejercicios Prácticos</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">HTML5 Semántico</span>
                     </div>
                     <h2 class="fw-bold mb-1">15. Ejercicios de aprendizaje</h2>
                     <p class="text-secondary mb-0 small">
-                        Colección de 25 ejercicios prácticos guiados para afianzar todos los conceptos de HTML.
+                        Colección de 25 ejercicios prácticos guiados para afianzar todos los conceptos de HTML5 semántico.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
                     <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
                         <i class="bi bi-journal-text"></i> Índice HTML
                     </a>
-                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
-                        <i class="bi bi-pencil-square"></i> Ejercicios
-                    </a>
+                    <a href="16_ejercicios_resueltos.html" class="btn btn-sm btn-outline-success d-flex align-items-center gap-1">
+        <i class="bi bi-check-circle"></i> Ver Soluciones
+    </a>
                 </div>
             </div>
         </div>
 
-        <!-- Contenido Didáctico -->
-        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <h2 id="ej_01">Ejercicio 1:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_1.pdf">enlace.</a> Guárdala con el nombre: ejercicio1.html.
-            </p>
-            <p class="soluciones sol_01" ><a href="../ejercicios/resueltos/ejercicio1.html"> Solución</a></p>
+        <!-- Filtro / Índice Rápido Superior -->
+        <div class="card border-0 shadow-sm rounded-3 p-3 mb-4 bg-white" id="indice-ejercicios">
+            <h6 class="fw-bold text-dark mb-2 d-flex align-items-center gap-2 small">
+                <i class="bi bi-funnel-fill text-primary"></i> Saltar directamente a un bloque temático:
+            </h6>
+            <div class="d-flex flex-wrap gap-1 small">
+                <a href="#ej_01" class="btn btn-sm btn-outline-secondary py-1 px-2">Texto (1-4)</a>
+                <a href="#ej_05" class="btn btn-sm btn-outline-secondary py-1 px-2">Imágenes (5-6)</a>
+                <a href="#ej_06_2" class="btn btn-sm btn-outline-secondary py-1 px-2">Mapas (6_2 a 6_4)</a>
+                <a href="#ej_07" class="btn btn-sm btn-outline-secondary py-1 px-2">Listas (7-10)</a>
+                <a href="#ej_11" class="btn btn-sm btn-outline-secondary py-1 px-2">Tablas (11-18)</a>
+                <a href="#ej_19" class="btn btn-sm btn-outline-secondary py-1 px-2">Capas (19-20)</a>
+                <a href="#ej_21" class="btn btn-sm btn-outline-secondary py-1 px-2">Formularios (21-22)</a>
+                <a href="#ej_23" class="btn btn-sm btn-outline-secondary py-1 px-2">Multimedia y Extras (23-25)</a>
+            </div>
+        </div>
 
-            <h2 id="ej_02">Ejercicio 2:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_2.pdf">enlace.</a> Guárdala con el nombre: ejercicio2.html.
-            </p>
-            <p class="soluciones sol_02"><a href="../ejercicios/resueltos/ejercicio2.html"> Solución</a></p>
-
-            <h2 id=""ej_03"">Ejercicio 3:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_3.pdf">enlace.</a> Guárdala con el nombre: ejercicio3.html.
-            </p>
-            <p class="soluciones sol_03"><a href="../ejercicios/resueltos/ejercicio3.html"> Solución</a></p>
-
-            <h2 id="ej_04">Ejercicio 4:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_4.pdf">enlace.</a> Guárdala con el nombre: ejercicio4.html.
-            </p>
-            <p class="soluciones sol_04"><a href="../ejercicios/resueltos/ejercicio4.html"> Solución</a></p>
-
-            <h2 id="ej_05">Ejercicio 5:</h2>
-            <p>
-                Realiza una página web que contenga tres párrafos (escribe el texto que tú quieras).
-                 A continuación, descárgate la siguiente <a href="../imagenes/imagen_marenostrum.jpg">imagen.</a> Modifica las dimensiones de la imagen 
-                 en cada posición. Incluye la imagen en los siguientes sitios:
-                <ul>
-                    <li>Dentro del primer párrafo, al principio.</li>
-                    <li>Dentro del segundo párrafo, al final.</li>
-                    <li>Entre el segundo y el tercer párrafo, dentro de un párrafo independiente. </li>
-                </ul>
-                Guarda el ejercicio con el nombre: ejercicio5.html.
-            </p>
-            <p class="soluciones sol_05"><a href="../ejercicios/resueltos/ejercicio5.html"> Solución</a></p>
-
-            <h2 id="ej_06">Ejercicio 6:</h2>
-            <p>
-                A partir del ejercicio 5, transforma las imágenes en enlaces que vayan a la página del IES San Vicente. 
-                Guarda el ejercicio con el nombre: ejercicio6.html.
-            </p>
-            <p class="soluciones sol_06"><a href="../ejercicios/resueltos/ejercicio5.html"> Solución</a></p>
-
-
-            <div class="ejercicios">
-                <h2 id="ej_06_2">Ejercicio 6_2:</h2>
-				<p>En el siguiente enlace tienes una imagen con cuatro zonas cada una de un color: <a href="../imagenes/Ej6_2_colores.jpg">imagen</a>.
-				debes crear cuatro archivos html con un párrafo que ponga "Región Amarilla" y guardalo con nombre amarillo.html. Haz lo mismo con el verde, rojo y azul</p>
-			    <p>Utiliza el código (realizando algunos cambios) y observa que se abren los html de nombre amarillo, verde, azul y rojo cuando haces click en cada una de las zonas	</p>
-                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_2.html</b>.</p></code></pre>
-            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-        &lt;body&gt;
-            &lt;img src=&quot;mapa.png&quot; usemap=&quot;#mapa1&quot; alt=&quot;mapa 4 colores&quot;&gt;			
-            &lt;map name=&quot;mapa1&quot;&gt;
-                &lt;area href=&quot;amarillo.html&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
-                        coords=&quot;0,0,190,190&quot;&gt;
-                &lt;area href=&quot;verde.html&quot; alt=&quot;VERDE&quot; shape=&quot;rect&quot; 
-                        coords=&quot;210,0,400,190&quot;&gt;
-                &lt;area href=&quot;azul.html&quot; alt=&quot;AZUL&quot; shape=&quot;rect&quot; 
-                        coords=&quot;0,210,190,400&quot;&gt;
-                    &lt;area href=&quot;rojo.html&quot; alt=&quot;ROJO&quot; shape=&quot;rect&quot; 
-                        coords=&quot;210,210,400,400&quot;&gt;
-            &lt;/map&gt;
-        &lt;/body&gt;
-                </code></pre>
-            <p class="soluciones sol_06_02"><a href="../ejercicios/resueltos/ejercicio6_2/index.html"> Solución</a></p>
-
-			<div class="ejercicios">
-				<h2 id ="ej_06_3">Ejercicio 6_3:</h2>
-				<p>Añade el atributo title como se indica en el código para cada una de las zonas.</p>
-				<p>Observa que al situar el ratón en cada zona, aparece un el texto que se ha puesto en cada una de las zonas. </p>
-                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_3.html</b>.</p></code></pre>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;area href=&quot;amarillo.html&quot; title= &quot;Región Amarilla&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
-	           coords=&quot;0,0,190,190&quot;&gt;</code></pre>
-		    <p>Cuando se quiere marcar una zona que es irregular habrá que utilizar como Shape "poly" que es una polilínea e ir escribiendo las coordenadas de todos los puntos</p>
-            <p class="soluciones sol_06_03"><a href="../ejercicios/resueltos/ejercicio6_3/index.html"> Solución</a></p>
-			<div class="ejercicios">
-				<h2 id="ej_06_4">Ejercicio 6_4:</h2>
-				<p> Crea un mapa de imágenes y especifica regiones para cada uno de los cuatro logos que aparecen en la siguiente <a href="../imagenes/Ej6_3_mapa.jpg"> imagen </a>de modo que utilices los distintos tipos de valores en el atributo shape (rect, circle y poly).</p>
-				<p> Al hacer click en cada una de las zonas se deben abrir las páginas a las que hacen referencia (www.w3schools.com, www.w3c.es, www.google.com/chrome y www.w3.org/TR/html5)</p>
-                <p>Guarda el ejercicio con el nombre: <b>ejercicio6_4.html</b>.</p></code></pre>
-            <p class="soluciones sol_06_04"><a href="../ejercicios/resueltos/ejercicio6_4/index.html"> Solución</a></p>
-
-            <h2 id="ej_07">Ejercicio 7:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_7.pdf">enlace.</a> Guárdala con el nombre ejercicio7.html.
-            </p>
-            <p class="soluciones sol_07"><a href="../ejercicios/resueltos/ejercicio7.html"> Solución</a></p>
-
-            <h2 id="ej_08">Ejercicio 8:</h2>
-            <p>
-                Transforma el ejercicio 7 para que cada elemento de la lista se convierta un enlace a 
-                una página web distinta. Guárdala con el nombre ejercicio8.html.
-            </p>
-            <p class="soluciones sol_08"><a href="../ejercicios/resueltos/ejercicio8.html"> Solución</a></p>
-
-            <h2 id="ej_09">Ejercicio 9:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_9.pdf">enlace.</a> Guárdala con el nombre ejercicio9.html.
-            </p>
-            <p class="soluciones sol_09"><a href="../ejercicios/resueltos/ejercicio9.html"> Solución</a></p>
-
-            <h2 id="ej_10">Ejercicio 10:</h2>
-            <p>
-                Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente 
-                <a href="../ejercicios/ejercicio_10.pdf">enlace.</a> Guárdala con el nombre ejercicio10.html.
-            </p>
-            <p class="soluciones  sol_10"><a href="../ejercicios/resueltos/ejercicio10.html"> Solución</a></p>
-            
-            <h2 id="ej_11">Ejercicio 11:</h2>
-            <p>
-                Realiza una página web que contenga una tabla con tu horario del curso.
-                 Dicha tabla deterá tener 10 filas y 6 celdas por fila. 
-                 En el siguiente <a href="../ejercicios/ejercicio_11.pdf">enlace.</a> tienes la vista previa de cómo debería quedar. 
-                Guárdala con el nombre ejercicio11.html.
-            </p>
-            <p class="soluciones  sol_11"><a href="../ejercicios/resueltos/ejercicio11.html"> Solución</a></p>
-            <h2 id="ej_12">Ejercicio 12:</h2>
-            <p>
-                Realiza modificaciones al ejercicio 11 para destacar determinadas celdas, tal y 
-                como aparece en el siguiente <a href="../ejercicios/ejercicio_12.pdf">enlace.</a> Guarda el archivo con el nombre ejercicio12.html.
-            </p>
-            <p class="soluciones sol_12"><a href="../ejercicios/resueltos/ejercicio12.html"> Solución</a></p>
-            <h2 id="ej_13" >Ejercicio 13:</h2>
-            <p>
-                Modifica el ejercicio 12 para que la primera columna tenga un ancho de 124 píxeles y 
-                las 5 últimas tengan 180 píxeles y estén alineadas al centro. 
-                Guarda el archivo con el nombre ejercicio13.html.
-            </p>
-            <p class="soluciones sol_13"><a href="../ejercicios/resueltos/ejercicio13.html"> Solución</a></p>
-            <h2 id="ej_14">Ejercicio 14:</h2>
-            <p>
-                Realiza una página web que contenga una tabla como la que aparece en el 
-                siguiente <a href="../ejercicios/ejercicio_14.pdf">enlace.</a>  
-                Guárdala con el nombre ejercicio14.html.
-            </p>
-            <p class="soluciones  sol_14"><a href="../ejercicios/resueltos/ejercicio14.html"> Solución</a></p>
-            <h2 id="ej_15">Ejercicio 15:</h2>
-            <p>
-                Realiza una página web que contenga una tabla como la que aparece 
-                en el siguiente<a href="../ejercicios/ejercicio_15.pdf">enlace.</a>  Guárdala con el nombre ejercicio15.html.
-            </p>
-            <p class="soluciones sol_15"  ><a href="../ejercicios/resueltos/ejercicio15.html"> Solución</a></p>
-            <h2 id="ej_16">Ejercicio 16:</h2>
-            <p>
-                Realiza una página web que contenga una tabla como la que aparece 
-                en el siguiente <a href="../ejercicios/ejercicio_16.pdf">enlace.</a> Guárdala con el 
-                nombre ejercicio16.html.
-            </p>
-            <p class="soluciones  sol_16"><a href="../ejercicios/resueltos/ejercicio16.html"> Solución</a></p>
-            <h2 id="ej_17">Ejercicio 17:</h2>
-            <p>
-                Realiza una página web que contenga una tabla como la que aparece 
-                en el siguiente <a href="../ejercicios/ejercicio_17.pdf">enlace.</a> Guárdala con el 
-                nombre ejercicio17.html.
-            </p>
-            <p class="soluciones sol_17"><a href="../ejercicios/resueltos/ejercicio17.html"> Solución</a></p>
-            <h2 id="ej_18">Ejercicio 18:</h2>
-            <p>
-                Realiza una página web que contenga una tabla como la que aparece 
-                en el siguiente <a href="../ejercicios/ejercicio_18.pdf">enlace.</a> Guárdala con el 
-                nombre ejercicio18.html.
-            </p>
-            <p class="soluciones  sol_18"><a href="../ejercicios/resueltos/ejercicio18.html"> Solución</a></p>
-            <h2 id="ej_19">Ejercicio 19:</h2>
-            <p>
-                Crea una carpeta con el nombre ejercicio19. En su interior, realiza las siguientes acciones:
-            </p>
-            <ul>
-                <li>Copia los ejercicios del 1 al 10.
-                <li>Modifícalos (sin borrar su contenido) para que tengan la siguiente estructura:
-                    <ul>
-                        <li>Una capa de nombre contenedor que englobe todo el contenido de la página.
-                        <li>Una capa de nombre cabecera, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y un encabezado de nivel 1 con el nombre del ejercicio (ejercicio 1, ejercicio 2, etc).
-                        <li>Una capa de nombre indice, que estará definida dentro de contenedor. Esta capa contendrá una una regla horizontal y una lista desordenada con enlaces a cada uno de los documentos (del 1 al 10).
-                        <li>Una capa de nombre cuerpo, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y el código HTML del ejercicio antes de que fuera modificado.
-                        <li> Una capa de nombre pie, que estará definida dentro de contenedor. Esta capa contendrá una regla horizontal y un encabezado de nivel 4 con tu nombre, la fecha de hoy y la imagen-enlace a la web de W3C que dé prueba de que la validación HTML es correcta.
-                    </ul>
-                <li>Valida cada documento en la web de W3C.
-            </ul>
-
-Puedes ver cómo debe quedar cada página en el siguiente <a href="../ejercicios/ejercicio_19.pdf">enlace.</a>.
-            </p>
-            <p class="soluciones  sol_19"><a href="../ejercicios/resueltos/ejercicio19/ejercicio1.html"> Solución</a></p>
-            <div class="ejercicios">
-                <h2 id ="ej_20">Ejercicio 20:</h2>
-                
-                <p>Crea el esqueleto de una página web con la siguiente estructura:</p>
-                
-                <div class="text-center p-3 my-4 bg-body-tertiary rounded-4 border">
-			        <img src="../imagenes/capas.png" alt="imagen de capas"></code></pre>
-                
-                <p>La página deberá tener declaración de tipo de documento, codificación de caracteres, cabecera, título y cuerpo.</p>
-				
-				<p>Al terminar el ejercicio, añade el siguiente código a la <b>cabecera</b> de la página web para que se visualicen los bordes de la caja y así ver que el ejercicio es correcto:</p>
-				
-				<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-                    &lt;style type=&quot;text/css&quot;&gt;
-                    div {
-                        border: solid 2px black;
-                        margin: 5px;
-                        padding: 10px;
-                        }
-                    &lt;/style&gt;
-					</code></pre>
-                
-                <p>Guarda la página con el nombre <b>ejercicio20.html</b>.</p>
-                <p class="soluciones  sol_20"><a href="../ejercicios/resueltos/ejercicio20.html"> Solución</a></p>
-                <div class="ejercicios">
-                    <h2 id="ej_21">Ejercicio 21:</h2>
-    
-                    <p>Crea una página HTML que tenga el aspecto <a href="../ejercicios/ejercicio_21.png">siguiente</a>. Las opciones de la lista desplegable serán: <i>1º ESO, 2º ESI, 1º ASI, 2º ASI</i>. Guarda la página con el nombre <b>ejercicio21.html</b>.</p></code></pre>
-                <p class="soluciones  sol_21"><a href="../ejercicios/resueltos/ejercicio21.html"> Solución</a></p>
-                
-                <div class="ejercicios">
-                    <h2 id ="ej_22">Ejercicio 22:</h2>
-    
-                    <p> Realiza un formulario que envíe los datos a la dirección de correo electrónico <i>midireccion@correo.com</i> con asunto <i>Ejercicio22</i>. Dicho formulario debe contener los controles siguientes, cada uno de ellos en un párrafo:</p>
-                    
-                    <ul>
-                        <li><b>Nombre</b>. El tamaño de la caja será 15 y la longitud máxima del texto será 20.</li>
-                        <li><b>Apellidos</b>. Su tamaño de caja será 20 y la longitud máxima del texto, 30.</li>
-                        <li><b>Teléfono</b>. Tendrá un tamaño de caja igual a 10 la longitud máxima del texto, 9.</li>
-                        <li><b>DNI</b>. Tendrá un tamaño 10 y una longitud máxima de 9. Será de tipo password.</li>
-                        <li><b>Sugerencias</b>. Será un campo de texto con 5 líneas y 30 columnas.</li>
-                        <li><b>Una caja de verificación</b> para seleccionar si se desea recibir las novedades de la web (activado por defecto).</li>
-                        <li><b>Un menú desplegable</b> en el que den una calificación de la web (de 1 a 10). La calificación por defecto será de 5.</li>
-                        <li><b>Dos botones de radio</b> para seleccionar si acepta los términos del contrato de licencia de envío de información (activado el <i>NO</i> por defecto).</li>
-                        <li>Un botón de <b>envío</b>.</li>
-                        <li>Un botón de <b>borrado</b>.</li>
-                    </ul>
-                    
-                    <p>Guarda la página con el nombre <b>ejercicio22.html</b>.</p>
-                    <p class="soluciones  sol_22"><a href="../ejercicios/resueltos/ejercicio22.html"> Solución</a></p></code></pre>
-                <div class="ejercicios">
-                    <h2 id="ej_23">Ejercicio 23:</h2>
-    
-                    <p>Haz una copia del ejercicio 22 y guárdala con el nombre <b>ejercicio23.html</b>. Añádele el icono que más te guste a la barra de navegación.</p>
-                    <p class="soluciones  sol_23"><a href="../ejercicios/resueltos/ejercicio23.html"> Solución</a></p></code></pre>
-                <div class="ejercicios">
-                    <h2 id ="ej_24">Ejercicio 24:</h2>
-    
-                    <p>Crea una página web que visualice el <b>mensaje</b> &quot;<i>Va a ser redirigido a la página www.iessanvicente.com en <b>10 segundos</b></i>&quot;, en formato encabezado de nivel 1, y una <b>imagen</b> del instituto a continuación. A los 10 segundos, la página deberá redirigirse automáticamente a dicha web. Guarda el ejercicio con el nombre <b>ejercicio24.html</b>.</p>
-                    <p class="soluciones  sol_24"><a href="../ejercicios/resueltos/ejercicio24.html"> Solución</a></p></code></pre>
-                <div class="ejercicios">
-                    <h2 id="ej_25">Ejercicio 25</h2>
-                    <p>Escoge un tema, visita en Internet información sobre ese tema, descárgate o enlaza un vídeo, un audio y un pdf.</p>
-                    <p class="soluciones sol_25"><a href="../ejercicios/resueltos/ejercicio25.html"> Solución</a></p>
+        <!-- Contenedor de Ejercicios en Tarjetas -->
+        <section>
+            <!-- Ejercicio 1 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_01">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 1</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Texto y Estructura</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio1.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
                 </div>
             </div>
-        </article>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web cuya apariencia sea similar a la que aparece en el documento de muestra. Aplica encabezados, saltos de línea y párrafos semánticos.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_1.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio1.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 2 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_02">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 2</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Formato de Texto</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio2.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web aplicando formatos de texto semánticos (negrita, cursiva, subrayado, subíndices, superíndices) conforme al modelo propuesto.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_2.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio2.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 3 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_03">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 3</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Hipervínculos Básicos</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio3.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea una página web con hipervínculos a páginas externas y rutas relativas siguiendo el diseño indicado en el documento.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio3.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 4 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_04">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 4</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Enlaces Internos (Marcadores)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio4.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página extensa con enlaces internos que salten a diferentes secciones dentro del mismo documento utilizando marcadores (atributos id).</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_4.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio4.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 5 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_05">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 5</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Inserción de Imágenes</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio5.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web con tres párrafos e inserta la imagen de muestra descargable en tres posiciones distintas: al principio del primer párrafo, al final del segundo, y como bloque independiente entre el segundo y el tercero.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../imagenes/imagen_marenostrum.jpg" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-download"></i> Descargar imagen de muestra (imagen_marenostrum.jpg)
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio5.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 6 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_06">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 6</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Imágenes con Enlace</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio6.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">A partir del Ejercicio 5, transforma las imágenes en hipervínculos interactivos que al hacer clic abran la página web del IES San Vicente.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio5.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 6_2 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_06_2">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 6_2</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Mapas de Imágenes: Regiones Rectangulares</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio6_2.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">A partir de la imagen de 4 colores, crea 4 archivos HTML (amarillo.html, verde.html, rojo.html, azul.html) y define un mapa con 4 áreas rectangulares (shape='rect') que apunten a cada archivo.</p>
+                <div class="my-3">
+                <span class="badge bg-secondary-subtle text-secondary border small mb-1">Código de referencia:</span>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;img src=&quot;mapa.png&quot; usemap=&quot;#mapa1&quot; alt=&quot;mapa 4 colores&quot;&gt;
+&lt;map name=&quot;mapa1&quot;&gt;
+  &lt;area href=&quot;amarillo.html&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; coords=&quot;0,0,190,190&quot;&gt;
+  &lt;area href=&quot;verde.html&quot; alt=&quot;VERDE&quot; shape=&quot;rect&quot; coords=&quot;210,0,400,190&quot;&gt;
+  &lt;area href=&quot;azul.html&quot; alt=&quot;AZUL&quot; shape=&quot;rect&quot; coords=&quot;0,210,190,400&quot;&gt;
+  &lt;area href=&quot;rojo.html&quot; alt=&quot;ROJO&quot; shape=&quot;rect&quot; coords=&quot;210,210,400,400&quot;&gt;
+&lt;/map&gt;</code></pre>
+            </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../imagenes/Ej6_2_colores.jpg" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-download"></i> Descargar imagen de 4 colores (Ej6_2_colores.jpg)
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio6_2/index.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 6_3 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_06_3">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 6_3</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Mapas de Imágenes: Atributo Title</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio6_3.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Modifica el ejercicio anterior incorporando el atributo title en cada región del mapa para que aparezca un cuadro de ayuda emergente al pasar el cursor sobre cada color.</p>
+                <div class="my-3">
+                <span class="badge bg-secondary-subtle text-secondary border small mb-1">Código de referencia:</span>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;area href=&quot;amarillo.html&quot; title=&quot;Región Amarilla&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; coords=&quot;0,0,190,190&quot;&gt;</code></pre>
+            </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio6_3/index.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 6_4 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_06_4">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 6_4</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Mapas de Imágenes: Formas Complejas</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio6_4.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea un mapa de imagen interactivo sobre la imagen de muestra utilizando diferentes tipos de figuras geométricas (rect, circle y poly) para vincular cada logotipo a su sitio web oficial.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../imagenes/Ej6_3_mapa.jpg" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-download"></i> Descargar mapa de logotipos (Ej6_3_mapa.jpg)
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio6_4/index.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 7 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_07">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 7</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Listas Básicas</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio7.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web cuya apariencia sea similar a la que aparece en el PDF modelo, organizando contenidos mediante listas no ordenadas y ordenadas.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_7.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio7.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 8 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_08">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 8</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Listas con Hipervínculos</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio8.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Transforma el Ejercicio 7 para que cada elemento de la lista sea un hipervínculo interactivo a una página web distinta.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio8.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 9 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_09">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 9</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Listas Anidadas</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio9.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web con listas jerárquicas multinivel respetando la regla sintáctica de anidar cada sublista dentro de un elemento li padre.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_9.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio9.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 10 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_10">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 10</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Listas de Descripción</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio10.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea una página web con un glosario de términos técnicos estructurado mediante listas de descripción (dl, dt, dd).</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_10.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio10.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 11 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_11">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 11</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas Básicas: Horario Escolar</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio11.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web que contenga una tabla con tu horario del curso (10 filas y 6 columnas) conforme a la vista previa del documento de muestra.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_11.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio11.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 12 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_12">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 12</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: Celdas de Cabecera</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio12.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Modifica el Ejercicio 11 sustituyendo las celdas correspondientes por celdas de cabecera semánticas (th) para destacar días y tramos horarios.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_12.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio12.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 13 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_13">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 13</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: Grupos de Columnas (colgroup)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio13.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Modifica el Ejercicio 12 para que la primera columna tenga un ancho específico y las cinco restantes tengan anchos proporcionados mediante colgroup y col.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio13.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 14 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_14">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 14</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: thead, tbody y tfoot</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio14.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web con una tabla estructurada semánticamente en cabecera (thead), cuerpos de datos (tbody) y pie de resumen (tfoot) según el modelo PDF.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_14.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio14.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 15 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_15">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 15</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: Fusión de Columnas (colspan)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio15.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una tabla que combine varias celdas horizontalmente mediante el atributo colspan respetando el número total de columnas por fila.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_15.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio15.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 16 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_16">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 16</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: Fusión de Filas (rowspan)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio16.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una tabla combinando celdas verticalmente mediante el atributo rowspan omitiendo las celdas absorbidas en las filas inferiores.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_16.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio16.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 17 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_17">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 17</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas: Fusión Combinada (colspan + rowspan)</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio17.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Realiza una página web con una tabla avanzada que combine simultáneamente celdas en horizontal (colspan) y vertical (rowspan).</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_17.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio17.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 18 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_18">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 18</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Tablas Complejas: Reto Final</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio18.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Diseña una tabla tabular de alta complejidad combinando cabeceras agrupadas multinivel, filas de sumatorio y estilos limpios.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_18.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio18.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 19 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_19">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 19</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Capas y Estructuración</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio19.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea una carpeta llamada ejercicio19 y reorganiza los ejercicios del 1 al 10 para que sigan una estructura homogénea de capas: contenedor, cabecera, indice, cuerpo y pie. Valida los archivos en el servicio oficial del W3C.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_19.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-file-earmark-pdf"></i> Ver modelo PDF
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio19/ejercicio1.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 20 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_20">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 20</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Esqueleto de Cajas con Bordes</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio20.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea el esqueleto base de una página web estructurada en capas y aplica bordes CSS (border: solid 2px black; margin: 5px; padding: 10px) para verificar visualmente la maquetación en cajas.</p>
+                <div class="my-3">
+                <span class="badge bg-secondary-subtle text-secondary border small mb-1">Código de referencia:</span>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;style type=&quot;text/css&quot;&gt;
+div {
+    border: solid 2px black;
+    margin: 5px;
+    padding: 10px;
+}
+&lt;/style&gt;</code></pre>
+            </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../imagenes/capas.png" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-download"></i> Ver esquema de capas (capas.png)
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio20.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 21 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_21">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 21</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Formularios: Menús Desplegables</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio21.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea una página HTML con un formulario de selección y matriculación académica conforme a la captura visual propuesta.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="../ejercicios/ejercicio_21.png" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                <i class="bi bi-download"></i> Ver captura modelo (ejercicio_21.png)
+            </a>
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio21.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 22 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_22">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 22</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Formularios: Controles y Validaciones</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio22.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea un formulario completo con campos de texto tipados, límites de tamaño (size y maxlength), casillas checkbox, botones de radio mutuamente excluyentes, select de calificación y botones de acción.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio22.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 23 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_23">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 23</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Metadatos: Incorporación de Favicon</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio23.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">A partir del Ejercicio 22, incorpora un icono en la cabecera (link rel='icon') para que se muestre en la pestaña del explorador web.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio23.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 24 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_24">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 24</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Redirección con Temporizador</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio24.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Crea una página con un mensaje informativo y el logotipo escolar que se redirija automáticamente transcurridos 10 segundos al portal web oficial del IES San Vicente.</p>
+                <div class="my-3">
+                <span class="badge bg-secondary-subtle text-secondary border small mb-1">Código de referencia:</span>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;10;url=https://www.iessanvicente.com&quot;&gt;</code></pre>
+            </div>
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio24.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+
+<!-- Ejercicio 25 -->
+        <div class="card shadow-sm border-0 mb-4 rounded-3 exercise-item" id="ej_25">
+            <div class="card-header bg-body-tertiary border-bottom d-flex flex-wrap align-items-center justify-content-between gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 25</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Multimedia Integrada: Vídeo, Audio y PDF</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="small text-muted font-monospace"><i class="bi bi-file-earmark-code me-1"></i>ejercicio25.html</span>
+                    <a href="#indice-ejercicios" class="btn btn-link btn-sm text-secondary p-0 text-decoration-none" title="Volver al índice">
+                        <i class="bi bi-arrow-up-circle fs-5"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <p class="card-text text-secondary mb-3">Diseña una página web temática que integre un reproductor de vídeo nativo HTML5 con controles, una pista de audio y un documento PDF embebido mediante la etiqueta object.</p>
+                
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 pt-3 border-top mt-3">
+                    <div class="d-flex flex-wrap gap-2">
+                        
+                    </div>
+                    <div class="soluciones ms-auto">
+                <a href="../ejercicios/resueltos/ejercicio25.html" class="btn btn-sm btn-outline-success d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-check2-circle"></i> Solución
+                </a>
+            </div>
+                </div>
+            </div>
+        </div>
+        </section>
 
         <!-- Navegación entre Temas -->
         <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
@@ -418,8 +1089,8 @@ Puedes ver cómo debe quedar cada página en el siguiente <a href="../ejercicios
                 <i class="bi bi-arrow-left"></i>
                 <span><strong>Anterior:</strong> 13. XHTML y HTML5</span>
             </a>
-            <a href="16_ejercicios_resueltos.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
-                <span><strong>Siguiente:</strong> Ejercicios resueltos</span>
+            <a href="17_proyecto.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 16. Proyecto final</span>
                 <i class="bi bi-arrow-right"></i>
             </a>
         </nav>
