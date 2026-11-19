@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>05. Hipervínculos | HTML | LMSGI</title>
-    <meta name="description" content="Enlaces absolutos y relativos con la etiqueta a, atributos href, target, destinos y anclas internas.">
+    <title>05. Hipervínculos y navegación web | HTML | LMSGI</title>
+    <meta name="description" content="Enlaces en HTML5: elemento a, rutas relativas y absolutas, atributos target, download, rel, protocolos mailto y tel, y anclas internas con id.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
     </style>
 </head>
 <body>
@@ -70,37 +69,72 @@
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
         <div class="offcanvas-header border-bottom border-secondary">
             <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
-                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
         </div>
         <div class="offcanvas-body p-3">
-            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
-            <div class="list-group list-group-flush mb-4 small">
-                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
-                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
-                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
-                <a href="./03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
-                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
-                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 05. Hipervínculos</a>
-                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
-                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
-                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
-                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
-                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
-                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
-                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
-                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
-                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
-                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
-                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
-                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
-                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de HTML</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-journal-text text-primary"></i> 00. Introducción a HTML
+                </a>
+                <a href="01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-folder2-open text-primary"></i> 01. Organización de un sitio
+                </a>
+                <a href="02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-html text-primary"></i> 02. Etiquetas básicas
+                </a>
+                <a href="03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-text-paragraph text-primary"></i> 03. Estructura del texto
+                </a>
+                <a href="04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-fonts text-primary"></i> 04. Formato del texto
+                </a>
+                <a href="05_hipervinculos.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary d-flex align-items-center gap-2 py-2 rounded-2 fw-semibold">
+                    <i class="bi bi-check-circle-fill"></i> 05. Hipervínculos
+                </a>
+                <a href="06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-image text-primary"></i> 06. Multimedia y fotos
+                </a>
+                <a href="07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-list-ol text-primary"></i> 07. Listas (ol, ul, dl)
+                </a>
+                <a href="08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-table text-primary"></i> 08. Tablas
+                </a>
+                <a href="09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-window-stack text-primary"></i> 09. Marcos e iframes
+                </a>
+                <a href="10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-layers text-primary"></i> 10. Capas y contenedores
+                </a>
+                <a href="11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-ui-checks text-primary"></i> 11. Formularios
+                </a>
+                <a href="12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-stars text-primary"></i> 12. Elementos extras
+                </a>
+                <a href="13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-patch-check text-primary"></i> 13. XHTML y HTML5
+                </a>
+                <a href="16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-pencil-square"></i> 16. Ejercicios Prácticos
+                </a>
+                <a href="16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-success border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check2-circle"></i> 16. Ejercicios Resueltos
+                </a>
+                <a href="17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-kanban text-primary"></i> 17. Proyecto Integrador
+                </a>
+                <a href="18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-bookmarks text-primary"></i> 18. Bibliografía y Enlaces
+                </a>
             </div>
 
             <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
             <div class="d-flex flex-column gap-1 small">
-                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-primary me-2"></i> Módulo CSS</a>
                 <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
                 <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
                 <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
@@ -126,90 +160,197 @@
             </ol>
         </nav>
 
-        <!-- Cabecera del Tema -->
-        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
-            <div class="row align-items-center gy-3">
-                <div class="col-lg-8">
-                    <div class="d-flex flex-wrap gap-2 mb-2">
-                        <span class="badge bg-primary text-white">Lección 05</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 1: HTML</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Navegación e Hipertexto</span>
+            </div>
+
+            <h1 class="fw-bold mb-3 display-6">05. Hipervínculos y Navegación Web</h1>
+            <p class="lead text-secondary mb-4">
+                El hipertexto es el pilar fundacional de la World Wide Web. Los hipervínculos permiten a los usuarios saltar de un documento a otro, navegar entre secciones internas, descargar recursos o comunicarse por correo electrónico y teléfono.
+            </p>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">1. La etiqueta de ancla: <code>&lt;a&gt;</code></h3>
+            <p>
+                Los enlaces se crean con el elemento <code>&lt;a&gt;</code> (<em>Anchor</em>) y su atributo obligatorio <code>href</code> (<em>Hypertext Reference</em>):
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;a href=&quot;https://www.w3.org&quot;&gt;Visitar el sitio oficial del W3C&lt;/a&gt;</code></pre>
+
+            <p class="small text-secondary mb-3">
+                En HTML5, el elemento <code>&lt;a&gt;</code> puede envolver no solo texto, sino también imágenes, listas completas o bloques enteros de contenido (tarjetas):
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!-- Envolver una tarjeta o imagen completa en un enlace --&gt;
+&lt;a href=&quot;perfil.html&quot; class=&quot;text-decoration-none text-dark&quot;&gt;
+    &lt;img src=&quot;avatar.jpg&quot; alt=&quot;Foto de perfil&quot;&gt;
+    &lt;h4&gt;Juan Pérez&lt;/h4&gt;
+    &lt;p&gt;Ver perfil completo &rarr;&lt;/p&gt;
+&lt;/a&gt;</code></pre>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">2. Tipos de rutas web: Absolutas frente a Relativas</h3>
+            
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-primary">
+                            <i class="bi bi-globe fs-5"></i>
+                            <h5 class="fw-bold mb-0">Rutas Absolutas (URLs Externas)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Apuntan a un recurso independiente en Internet. Incluyen siempre el protocolo seguro (<code>https://</code>), el dominio y la ruta completa:
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;a href=&quot;https://developer.mozilla.org/es/&quot;&gt;MDN Web Docs&lt;/a&gt;
+                        </div>
                     </div>
-                    <h2 class="fw-bold mb-1">05. Hipervínculos</h2>
-                    <p class="text-secondary mb-0 small">
-                        Enlaces absolutos y relativos con la etiqueta a, atributos href, target, destinos y anclas internas.
-                    </p>
                 </div>
-                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
-                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
-                        <i class="bi bi-journal-text"></i> Índice HTML
-                    </a>
-                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
-                        <i class="bi bi-pencil-square"></i> Ejercicios
-                    </a>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-success">
+                            <i class="bi bi-folder-symlink-fill fs-5"></i>
+                            <h5 class="fw-bold mb-0">Rutas Relativas (Navegación Interna)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Apuntan a archivos dentro de nuestro propio sitio web tomando como referencia la posición del documento actual:
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;a href=&quot;contacto.html&quot;&gt;Misma carpeta&lt;/a&gt;&lt;br&gt;
+                            &lt;a href=&quot;../index.html&quot;&gt;Carpeta superior&lt;/a&gt;
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Contenido Didáctico -->
-        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <p>Los hipervínculos son enlaces que permiten acceder a otro documento cuando se pincha sobre ellos. Son los que posibilitan navegar de una página web a otra. Para insertar un hipervínculo en una página web se utiliza la etiqueta &lt;a&gt;. Esta etiqueta admite varios parámetros que se pueden consultar en la guía de referencia rápida.</p>
-                <p>La etiqueta de cierre es obligatoria</p>
-                <p>Es un elemento de línea por lo que puede estar dentro de un párrafo, lista, etc..., a su vez <b>&lt;a&gt;</b> puede contener otros elementos en línea excepto a sí mismo.</p>
-                <p><b>Atributos:</b></p>
-                <ul>
-                    <li><b>name:</b> Sirve para nombrar un ancla o marcador que será el destino del enlace</li>
-                    <li><b>href:</b> Sirve para especificar la URI (Uniform Resource Identifier) destino del hipervínculo.</li>
-                    <li><b>target:</b> Establece el marco (frame) de destino (por defecto se toma la ventana actual). Valores posible: _blank, _self, _parent, _top.</li>
-                </ul>
-                <p>Su estructura básica es:</p>
-                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;<i>destino</i>&quot;<b>&gt;</b>Texto del enlace<b>&lt;/a&gt;</b></code></pre>
-                
-                <p>El valor de <i>destino</i> puede ser:</p>
-                
-                <ul>
-                    <li><b>Una página web</b>: <i>http://www.google.es</i></li>
-                    <li><b>Una página web almacenada localmente (ruta global)</b>: <i>c:\datos\pagina1.html</i></li>
-                    <li><b>Una página web almacenada localmente (ruta relativa)</b>: <i>./carpeta1/pagina1.html</i></li>
-                    <li><b>Un documento (pdf, imagen, archivo ejecutable, zip,...) almacenado localmente (ruta global)</b>: <i>c:\datos\documento1.pdf</i></li>
-                    <li><b>Un documento (pdf, imagen, archivo ejecutable, zip,...) almacenado localmente (ruta relativa):</b> <i>./documentos/documento1.pdf</i></li>
-                
-                </ul>
-                
-                <p><b>¡Ojo!</b> En las <b>rutas globales</b>, el separador entre carpetas es distinto para sistemas operativos <b>Windows</b> (se utiliza <b>\</b>) y <b>Linux</b> (se utiliza <b>/</b>). Además, <b>no es conveniente</b> trabajar con nombres de carpetas que contengan <b>caracteres no ingleses</b> (eñes, acentos,...) o <b>espacios en blanco</b> solo suelen dar disgustos.</p>
-                
-                <p>En cuanto a las <b>rutas relativas</b>, hay que recordar que el directorio <b>punto</b> (.) significa <b>directorio actual</b> y el directorio <b>dos puntos</b> (..) la <b>carpeta superior</b>. Por ejemplo, la ruta <i>./carpeta1/doc1.html</i> hace referencia al archivo <i>doc1.html</i> que se encuentra dentro de una carpeta llamada <i>carpeta1</i> que está en el mismo directorio que la página actual.</p>
-                
-                <h2>Anclas</h2>
-                
-                <p>Es posible crear enlaces que nos lleven a un punto concreto dentro de un determinado documento. Para ello se utilizan las <b>anclas</b>.</p>
-                
-                <p>En primer lugar es necesario definir dentro del documento HTML el punto al que queremos llegar. Para ello se utiliza también la etiqueta &lt;a&gt;, pero con el atributo <i>name</i>, que contendrá el nombre que le queramos dar al ancla:</p>
-                
-                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a name</b>=&quot;<i>nombre_ancla</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b>
-                <br> Ejemplo:
-            <b>&lt;a name</b>=&quot;<i>ancla1</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b></code></pre>
-                
-                <p>Una vez establecida el ancla, para llegar a ella crearemos un enlace que contendrá como destino el nombre del ancla a la que queramos llegar precedida del carácter <b>#</b>. Si el ancla a la que queremos ir está en otra página distinta, el destino del enlace será el nombre de la página seguido a continuación del símbolo # y el nombre del ancla. Por ejemplo:</p>
-                
-                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace al ancla1 dentro de la misma página.<b>&lt;/a&gt;</b><br>
-    <b>&lt;a href</b>=&quot;./pagina2.html#ancla1&quot;<b>&gt;</b>Enlace al ancla1 que está dentro de la página <i>pagina2.html</i>.<b>&lt;/a&gt;</b></code></pre>
-                <p>También es posible utilizar como marcador de posición un elemento ya existente en la página, en lugar de crear un nuevo marcador.</p>
-                <p>Supongamos que tenemos</p>
-                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;h2 id=&quot;<i>ancla1</i>&quot;&gt;</b>Texto ..... <b>&lt;/h2&gt;</b></code></pre>
-                <p>El resultado es el mismo que con el marcador <b>&lt;a name&gt;</b></p>
-                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace que nos lleva a la posición del documento donde está el elemento &lt;h2&gt; identificado con ancla1.<b>&lt;/a&gt;</b><br></code></pre>
-                
-                <div class="ejercicios">
-                    <h2><a href = "16_ejercicios.html#ej_03">Ejercicio 3:</a></h2>
-
-                    <p>Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente <a href="../ejercicios/ejercicio_3.pdf">enlace</a>. Guárdala con el nombre <b>ejercicio3.html</b>.</p></code></pre>
-                
-                <div class="ejercicios">
-                    <h2><a href = "16_ejercicios.html#ej_04">Ejercicio 4:</a></h2>
-
-                    <p>Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente <a href="../ejercicios/ejercicio_4.pdf">enlace</a>. Guárdala con el nombre <b>ejercicio4.html</b>.</p>
-
+            <div class="alert alert-danger border-danger-subtle d-flex align-items-start gap-3 my-3">
+                <i class="bi bi-x-octagon-fill text-danger fs-4 mt-1"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">¡Error grave de principiante: Rutas locales de disco!</h6>
+                    <p class="small mb-0">
+                        <strong>Nunca utilices rutas de disco local</strong> como <code>C:\Users\alumno\pagina.html</code> o <code>file:///home/...</code>. Esos enlaces solo funcionarán en tu ordenador personal y <strong>fallarán inmediatamente</strong> al subir la web a un servidor o a GitHub Pages. Usa siempre rutas relativas limpias.
+                    </p>
                 </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">3. El atributo <code>target</code> y seguridad con <code>rel=&quot;noopener&quot;</code></h3>
+            <p>
+                El atributo <code>target</code> define dónde debe abrirse el documento de destino:
+            </p>
+            <ul>
+                <li><code>target=&quot;_self&quot;</code> (Por defecto): Abre la página en la pestaña actual reemplazando la vista.</li>
+                <li><code>target=&quot;_blank&quot;</code>: Abre el enlace en una <strong>nueva pestaña o ventana</strong> del navegador.</li>
+            </ul>
+
+            <div class="card border-0 bg-warning-subtle text-dark rounded-3 p-3 my-3">
+                <h6 class="fw-bold mb-1"><i class="bi bi-shield-check text-warning-emphasis me-1"></i> Seguridad web: Vulnerabilidad Reverse Tabnabbing</h6>
+                <p class="small mb-0">
+                    Al utilizar <code>target=&quot;_blank&quot;</code> hacia páginas externas, la página abierta adquiere acceso al objeto <code>window.opener</code> de tu pestaña, pudiendo redirigir a tus usuarios a sitios fraudulentos de phishing.
+                    <br>
+                    <strong>Solución obligatoria:</strong> Añade siempre <code>rel=&quot;noopener noreferrer&quot;</code>:
+                </p>
+                <div class="p-2 bg-dark text-light rounded mt-2 font-monospace small">
+                    &lt;a href=&quot;https://sitioexterno.com&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Enlace seguro&lt;/a&gt;
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">4. Anclas internas y navegación por identificador (<code>id</code>)</h3>
+            <p>
+                Es habitual crear enlaces que salten a una sección específica dentro de una página extensa (como un índice de contenidos o un botón "Volver arriba"):
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <h6 class="fw-bold text-dark mb-2">Paso 1: Identificar el destino con <code>id</code></h6>
+                    <p class="small text-secondary mb-2">
+                        Asigna un atributo <code>id</code> único al encabezado o sección de destino:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small"><code>&lt;h2 id=&quot;seccion-contacto&quot;&gt;Contacto&lt;/h2&gt;</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="fw-bold text-dark mb-2">Paso 2: Crear el enlace con almohadilla <code>#</code></h6>
+                    <p class="small text-secondary mb-2">
+                        En el atributo <code>href</code>, escribe el carácter <code>#</code> seguido del ID:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small"><code>&lt;a href=&quot;#seccion-contacto&quot;&gt;Ir a Contacto&lt;/a&gt;</code></pre>
+                </div>
+            </div>
+
+            <div class="alert alert-secondary border d-flex align-items-start gap-3 my-3">
+                <i class="bi bi-info-circle-fill text-secondary fs-4 mt-1"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Nota: El viejo &lt;a name&gt; está obsoleto</h6>
+                    <p class="small mb-0">
+                        En HTML 4 era necesario escribir etiquetas vacías como <code>&lt;a name=&quot;ancla&quot;&gt;&lt;/a&gt;</code>. En HTML5, <strong>cualquier elemento de la página</strong> (un <code>&lt;h2&gt;</code>, <code>&lt;section&gt;</code> o <code>&lt;article&gt;</code>) con un <code>id</code> es automáticamente un ancla accesible.
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">5. Protocolos especiales: Correo, Teléfono y Descarga forzada</h3>
+            <p>
+                El atributo <code>href</code> no solo acepta páginas web, sino también esquemas de protocolo de comunicación directa:
+            </p>
+
+            <div class="table-responsive my-3">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 25%;">Protocolo / Atributo</th>
+                            <th style="width: 35%;">Ejemplo en código</th>
+                            <th>Comportamiento en el dispositivo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Correo (<code>mailto:</code>)</strong></td>
+                            <td><code>&lt;a href=&quot;mailto:info@ies.es&quot;&gt;Escríbenos&lt;/a&gt;</code></td>
+                            <td>Abre el cliente de correo predeterminado (Outlook, Gmail, Thunderbird) con el destinatario listo.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Teléfono (<code>tel:</code>)</strong></td>
+                            <td><code>&lt;a href=&quot;tel:+34960000000&quot;&gt;Llamar al centro&lt;/a&gt;</code></td>
+                            <td>En smartphones y tablets, abre directamente el marcador para realizar una llamada con un solo toque.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Descarga (<code>download</code>)</strong></td>
+                            <td><code>&lt;a href=&quot;guia.pdf&quot; download=&quot;Guia_HTML.pdf&quot;&gt;Bajar PDF&lt;/a&gt;</code></td>
+                            <td>Fuerza la descarga inmediata del archivo en disco en lugar de abrirlo en el visor del navegador.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">6. Accesibilidad en enlaces (Criterios WCAG)</h3>
+            <p>
+                Un enlace accesible debe tener un <strong>texto descriptivo y significativo</strong> por sí mismo:
+            </p>
+            <ul>
+                <li><span class="text-danger fw-bold"><i class="bi bi-x-circle"></i> Mala práctica:</span> <code>&lt;p&gt;Para ver nuestro horario, haz &lt;a href=&quot;horarios.pdf&quot;&gt;clic aquí&lt;/a&gt;.&lt;/p&gt;</code> (Si un lector de pantalla lee solo la lista de enlaces, leerá "clic aquí", sin saber a qué conduce).</li>
+                <li><span class="text-success fw-bold"><i class="bi bi-check-circle"></i> Buena práctica:</span> <code>&lt;p&gt;Consulta el &lt;a href=&quot;horarios.pdf&quot;&gt;horario escolar en PDF&lt;/a&gt;.&lt;/p&gt;</code></li>
+            </ul>
+
+            <!-- Acceso a Ejercicios Prácticos -->
+            <div class="card border-0 bg-warning-subtle text-dark rounded-4 p-4 mt-5">
+                <h4 class="fw-bold mb-2">Prácticas recomendadas de este tema</h4>
+                <div class="row g-3 mt-1">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-white p-3 rounded-3 shadow-sm">
+                            <h5 class="fw-bold fs-6 mb-1">Ejercicio 3: Rutas relativas y absolutas</h5>
+                            <p class="small text-secondary mb-3">Construcción de un árbol de navegación enlazando documentos externos e internos.</p>
+                            <a href="16_ejercicios.html#ej_03" class="btn btn-sm btn-dark mt-auto">Ir al Ejercicio 3 &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 bg-white p-3 rounded-3 shadow-sm">
+                            <h5 class="fw-bold fs-6 mb-1">Ejercicio 4: Navegación interna con anclas</h5>
+                            <p class="small text-secondary mb-3">Maquetación de un índice de contenidos que salte a secciones identificadas por ID.</p>
+                            <a href="16_ejercicios.html#ej_04" class="btn btn-sm btn-dark mt-auto">Ir al Ejercicio 4 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -219,7 +360,7 @@
                 <span><strong>Anterior:</strong> 04. Formato del texto</span>
             </a>
             <a href="06_multimedia.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
-                <span><strong>Siguiente:</strong> 06. Imágenes</span>
+                <span><strong>Siguiente:</strong> 06. Multimedia y fotos</span>
                 <i class="bi bi-arrow-right"></i>
             </a>
         </nav>
