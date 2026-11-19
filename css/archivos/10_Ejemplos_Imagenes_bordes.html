@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -130,35 +127,164 @@
         </nav>
 
         <!-- Tarjeta de Contenido Educativo -->
+                <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 10</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Multimedia y Bordes</span>
             </div>
 
-            <h2>Ejemplos CSS - Bordes e Imágenes - Ejemplos de <a href="http://www.w3schools.com">www.w3schools.com</a></h2>
-				<div id="lista_enlaces_ejemplos">
-				<ul>
-					<li> <a id="a0" href="#" onclick="cargar(0)">Tamaño y bordes</a>	</li>
-					<li> <a id="a1" href="#" onclick="cargar(1)">Padding</a>	</li>
-					<li> <a id="a2" href="#" onclick="cargar(2)">Imagen y texto alrededor</a>	</li>
-					<li> <a id="a3" href="#" onclick="cargar(3)">Float Left - Right</a></li>
-					<li> <a id="a4" href="#" onclick="cargar(4)">Z-index</a>	</li>
-					<li> <a id="a5" href="#" onclick="cargar(5)">Imagen con caption</a>	</li>
-					<li> <a id="a6" href="#" onclick="cargar(6)">Primera letra flotante</a>	</li>
-					<li> <a id="a7" href="#" onclick="cargar(7)">Galería de Imágenes</a>	</li>
-					<li> <a id="a8" href="#" onclick="cargar(8)">Galería en 2 filas</a>	</li>
-					</ul>
-				</div>
-				<div class="p_iframe" style="display:inline">
-					<p id="piframeizqda">Código </p>	
-					<p id="piframedrcha">Resultado</p>
-				</div>
-				<div style="clear:both;"></div>
-				<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
-				<iframe id="iframeResult" class="result_output" name="view"></iframe>	
-				<div style="clear:both;"></div>
-			</div>
+            <h1 class="fw-bold mb-3 display-6">10. Imágenes y Bordes en CSS</h1>
+            
+            <p class="lead text-secondary mb-4">
+                El tratamiento de imágenes y el diseño de bordes definen la personalidad visual de una interfaz web. CSS moderno proporciona propiedades de ajuste como <code>object-fit</code> y <code>aspect-ratio</code>, esquinas redondeadas con <code>border-radius</code> y sombras profundas mediante <code>box-shadow</code> sin recurrir a trucos de edición de imagen.
+            </p>
+
+            <!-- Sección 1: Propiedades de Bordes y Sombras -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-bounding-box text-primary"></i> 1. Bordes, Sombras y Redondeo
+            </h2>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-1"><code>border</code> (Grosor, Estilo, Color)</h6>
+                        <p class="small text-secondary mb-2">Bordes sólidos, punteados o discontinuos:</p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>border: 2px solid #0d6efd;</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-1"><code>border-radius</code> (Esquinas)</h6>
+                        <p class="small text-secondary mb-2">Curvatura de esquinas. Con <code>50%</code> crea avatares o círculos perfectos:</p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>border-radius: 0.5rem; /* o 50% */</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-1"><code>box-shadow</code> (Elevación)</h6>
+                        <p class="small text-secondary mb-2">Sombra para generar profundidad visual y sensación de elevación:</p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>box-shadow: 0 4px 6px rgba(0,0,0,0.1);</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2: Ajuste Moderno de Imágenes (object-fit y aspect-ratio) -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-image text-primary"></i> 2. Ajuste Profesional de Imágenes en CSS Moderno
+            </h2>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-primary mb-2"><code>object-fit: cover;</code> — Cero Distorsión</h6>
+                        <p class="small text-secondary mb-2">
+                            Al fijar un ancho y alto a una imagen, esta suele achatarse o deformarse. Con <code>object-fit: cover;</code>, la imagen conserva su proporción de aspecto rellenando el contenedor y recortando los sobrantes suavemente (igual que <code>background-size: cover</code>).
+                        </p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">.avatar</span> {
+    <span class="text-info">width</span>: <span class="text-success">80px</span>;
+    <span class="text-info">height</span>: <span class="text-success">80px</span>;
+    <span class="text-info">object-fit</span>: <span class="text-success">cover</span>;
+    <span class="text-info">border-radius</span>: <span class="text-success">50%</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-success mb-2"><code>aspect-ratio: 16 / 9;</code> — Estabilidad CLS</h6>
+                        <p class="small text-secondary mb-2">
+                            Propiedad moderna estándar de CSS que reserva el espacio exacto de la imagen antes de que se descargue, evitando saltos bruscos en el contenido de la página (<em>Cumulative Layout Shift</em>).
+                        </p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">.miniatura-video</span> {
+    <span class="text-info">width</span>: <span class="text-success">100%</span>;
+    <span class="text-info">aspect-ratio</span>: <span class="text-success">16 / 9</span>;
+    <span class="text-info">object-fit</span>: <span class="text-success">cover</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Visor Interactivo en Vivo -->
+            <h2 class="h4 fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                <i class="bi bi-play-circle text-primary"></i> 3. Visor Interactivo de Ejemplos
+            </h2>
+            <p class="text-secondary small mb-3">
+                Selecciona uno de los 9 ejemplos de maquetación y formateo de imágenes para inspeccionar su código y comportamiento:
+            </p>
+
+            <!-- Barra de Píldoras Ergonómica -->
+            <div class="d-flex flex-wrap gap-2 mb-4 p-2 bg-body-tertiary rounded-3 border">
+                <button type="button" class="btn btn-sm btn-ejemplo btn-primary text-white" onclick="cargar(0)">1. Tamaño y Bordes</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(1)">2. Marco con Padding</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(2)">3. Texto Alrededor</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(3)">4. Float Izq/Der</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(4)">5. Superposición (Z-Index)</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(5)">6. Imagen con Caption</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(6)">7. Letra Flotante</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(7)">8. Galería Básica</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(8)">9. Galería en Filas</button>
+            </div>
+
+            <!-- Contenedor Split-View Código vs Resultado -->
+            <div class="card border rounded-3 shadow-sm overflow-hidden mb-4">
+                <div class="card-header bg-dark text-white py-2 px-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-display text-primary"></i>
+                        <span class="fw-semibold small" id="ejemploTitulo">1. Tamaño y Bordes</span>
+                    </div>
+                    <span class="badge bg-secondary small">Inspector en Vivo</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <!-- Columna Código -->
+                        <div class="col-lg-6 border-end border-secondary-subtle">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-code-slash text-primary me-1"></i> Código Fuente</span>
+                                <span class="badge bg-light text-secondary border">HTML + CSS</span>
+                            </div>
+                            <iframe id="iframeResult_2" name="view_2" class="w-100 bg-white" style="height: 400px; border: 0;" title="Código fuente del ejemplo"></iframe>
+                        </div>
+
+                        <!-- Columna Resultado -->
+                        <div class="col-lg-6">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-eye text-success me-1"></i> Resultado Renderizado</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Vista Previa</span>
+                            </div>
+                            <iframe id="iframeResult" name="view" class="w-100 bg-white" style="height: 400px; border: 0;" title="Resultado en vivo"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enlace a Bootstrap Images -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 d-flex flex-sm-row align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-images fs-2 text-primary"></i>
+                    <div>
+                        <div class="fw-bold small text-dark">Utilidades de Imágenes en Bootstrap 5.3</div>
+                        <div class="text-secondary small">Aprende a usar clases nativas como <code>.img-fluid</code>, <code>.rounded</code>, <code>.rounded-circle</code> y <code>.shadow</code>.</div>
+                    </div>
+                </div>
+                <a href="./16_bootstrap.html" class="btn btn-sm btn-outline-primary text-nowrap">
+                    <i class="bi bi-arrow-right-circle me-1"></i> Ver Bootstrap Media
+                </a>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -188,20 +314,43 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+        <!-- Bootstrap 5.3 JS Bundle (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>function cargar(n) {
-				var f='./ejemplos/ejemplo_4'+n+'.html';
-				var g='./ejemplos/ejemplo_4'+n+'_2.html';
-				document.getElementById("iframeResult").src=f;
-				document.getElementById("iframeResult_2").src=g;
-				var h='a'+n;
-				x=document.getElementById(h).innerHTML;
-				y=document.getElementById("piframedrcha");
-				y.innerHTML=x;
-				/*z=document.getElementById("piframeizqda");
-				z.innerHTML=x;*/
-			}</script>
+    <script>
+        const ejemplos = {
+            0: { title: "1. Dimensiones y Bordes en Imágenes (width, border)", file: "ejemplo_40" },
+            1: { title: "2. Marco de Fotografía con Padding", file: "ejemplo_41" },
+            2: { title: "3. Alineación de Imagen Flotante con Texto Alrededor", file: "ejemplo_42" },
+            3: { title: "4. Posicionamiento con Float Left y Float Right", file: "ejemplo_43" },
+            4: { title: "5. Superposición de Capas con Z-Index", file: "ejemplo_44" },
+            5: { title: "6. Imágenes Semánticas con Pie de Foto (Caption)", file: "ejemplo_45" },
+            6: { title: "7. Letra Inicial Flotante (Drop Cap)", file: "ejemplo_46" },
+            7: { title: "8. Galería de Imágenes Básica Fluida", file: "ejemplo_47" },
+            8: { title: "9. Galería Fotográfica en Cuadrícula", file: "ejemplo_48" }
+        };
 
+        function cargar(n) {
+            const item = ejemplos[n];
+            if (!item) return;
+            document.getElementById("iframeResult").src = "./ejemplos/" + item.file + ".html";
+            document.getElementById("iframeResult_2").src = "./ejemplos/" + item.file + "_2.html";
+            document.getElementById("ejemploTitulo").textContent = item.title;
+            
+            // Actualizar botones activos
+            document.querySelectorAll(".btn-ejemplo").forEach((btn) => {
+                if (btn.getAttribute("onclick") === `cargar(${n})`) {
+                    btn.classList.add("btn-primary", "text-white");
+                    btn.classList.remove("btn-outline-primary");
+                } else {
+                    btn.classList.remove("btn-primary", "text-white");
+                    btn.classList.add("btn-outline-primary");
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            cargar(0);
+        });
+    </script>
 </body>
 </html>
