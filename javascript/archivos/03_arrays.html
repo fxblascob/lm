@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. Arrays y Objetos | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 3: Colecciones, referencias, métodos modernos, ordenación y objetos">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .table {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-warning);
+            color: #000;
+            border-color: var(--bs-warning);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+<a href="01_introduccion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+<a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+<a href="03_arrays.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+<a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+<a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+<a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+<a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+<a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">JavaScript</a></li>
+                <li class="breadcrumb-item active" aria-current="page">03. Arrays y Objetos</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-dark border border-warning-subtle">Módulo 4: JavaScript</span>
+                <span class="badge bg-warning text-white">Tema 3: Colecciones</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-2 text-dark">03. Arrays y Objetos</h1>
+            <p class="lead text-secondary mb-4">Tema 3: Colecciones, referencias, métodos modernos, ordenación y objetos</p>
+
+            <div class="card bg-body-tertiary border-0 p-3 mb-4 rounded-3">
+                <span class="small fw-bold text-uppercase text-secondary mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-compass text-warning"></i> En esta lección:
+                </span>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#concepto-arrays" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 1. Creación de Arrays</a>
+                <a href="#referencias" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 2. Paso por Referencia</a>
+                <a href="#recorrido" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 3. Recorrido de Arrays</a>
+                <a href="#operaciones" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 4. Operaciones Básicas</a>
+                <a href="#ordenacion" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 5. Ordenación (sort)</a>
+                <a href="#metodos-modernos" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 6. Métodos Modernos (map/filter)</a>
+                <a href="#objetos" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 7. Objetos Literales</a>
+                <a href="#actividades-t3" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 8. Actividades</a>
+                </div>
+            </div>
+
+            <!-- 1. Creación de arrays -->
+            <section id="concepto-arrays" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">1. Creación y Acceso a Arrays</h2>
+                <p>Un <strong>array</strong> es una estructura de datos ordenada capaz de albergar una colección de elementos indexados secuencialmente a partir del índice <code>0</code>. En JavaScript, los arrays son dinámicos (crecen o decrecen en tiempo de ejecución) y pueden almacenar tipos de datos heterogéneos.</p>
+
+                <div class="bg-dark text-light p-3 rounded-3 my-3">
+                    <pre class="mb-0 text-light"><code>// Declaración literal recomendada
+let frutas = ["Manzana", "Plátano", "Naranja"];
+
+console.log(frutas[0]);      // "Manzana" (primer elemento)
+console.log(frutas.length); // 3 (número de elementos)
+
+// Modificación de un elemento
+frutas[1] = "Pera";
+console.log(frutas);        // ["Manzana", "Pera", "Naranja"]</code></pre>
+                </div>
+            </section>
+
+            <!-- 2. Referencias -->
+            <section id="referencias" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">2. Asignación y Paso por Referencia</h2>
+                <div class="alert alert-warning d-flex align-items-start gap-3">
+                    <i class="bi bi-exclamation-triangle-fill fs-4 flex-shrink-0 mt-1"></i>
+                    <div>
+                        <strong>Comportamiento de memoria crucial:</strong> A diferencia de los tipos primitivos (números, strings) que se copian por valor, <strong>los arrays y objetos se copian y asignan por referencia</strong>. Dos variables que apunten al mismo array compartirán el mismo objeto subyacente.
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded-3 bg-body-tertiary">
+                            <h6 class="fw-bold text-danger">Asignación por Referencia</h6>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let a = [1, 2, 3];
+let b = a; // Copia la referencia
+b.push(4);
+console.log(a); // [1, 2, 3, 4] ¡Afecta a ambos!</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded-3 bg-body-tertiary">
+                            <h6 class="fw-bold text-success">Clonación Independiente (Spread Operator)</h6>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let a = [1, 2, 3];
+let b = [...a]; // Clon superficial
+b.push(4);
+console.log(a); // [1, 2, 3] ¡Intacto!</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Recorrido -->
+            <section id="recorrido" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">3. Métodos para Recorrer Arrays</h2>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-primary">1. Bucle for tradicional</h6>
+                            <p class="small text-secondary mb-2">Permite control exacto de índices, saltos y dirección inversa.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>for (let i = 0; i &lt; a.length; i++) {
+    console.log(a[i]);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-success">2. Bucle for...of (ES6)</h6>
+                            <p class="small text-secondary mb-2">Sintaxis directa y limpia para iterar directamente sobre los valores.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>for (const item of a) {
+    console.log(item);
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-warning">3. Método forEach()</h6>
+                            <p class="small text-secondary mb-2">Enfoque funcional que recibe una función callback con elemento e índice.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>a.forEach((val, idx) =&gt; {
+    console.log(idx + ": " + val);
+});</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Operaciones -->
+            <section id="operaciones" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">4. Operaciones Esenciales de Mutación</h2>
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped align-middle border">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Operación</th>
+                                <th>Método</th>
+                                <th>Efecto sobre el Array</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Añadir al final</td>
+                                <td><code>array.push(elem)</code></td>
+                                <td>Inserta uno o más elementos al final.</td>
+                            </tr>
+                            <tr>
+                                <td>Quitar del final</td>
+                                <td><code>array.pop()</code></td>
+                                <td>Extrae y devuelve el último elemento.</td>
+                            </tr>
+                            <tr>
+                                <td>Añadir al inicio</td>
+                                <td><code>array.unshift(elem)</code></td>
+                                <td>Inserta elementos al principio desplazando los demás.</td>
+                            </tr>
+                            <tr>
+                                <td>Quitar del inicio</td>
+                                <td><code>array.shift()</code></td>
+                                <td>Extrae y devuelve el primer elemento.</td>
+                            </tr>
+                            <tr>
+                                <td>Modificación intermedia</td>
+                                <td><code>array.splice(inicio, cantidad, ...nuevos)</code></td>
+                                <td>Elimina o inserta elementos en cualquier posición intermedia.</td>
+                            </tr>
+                            <tr>
+                                <td>Unir en texto</td>
+                                <td><code>array.join(separador)</code></td>
+                                <td>Concatena todos los elementos en un string separado por delimitador.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. Ordenación -->
+            <section id="ordenacion" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">5. Ordenación con sort()</h2>
+                <p>El método <code>sort()</code> ordena los elementos del array <em>in situ</em> (modifica el original). Sin embargo, <strong>por defecto convierte los elementos a texto y los ordena alfabéticamente según código Unicode</strong>, produciendo resultados inesperados con números:</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded-3 bg-danger-subtle">
+                            <h6 class="fw-bold text-danger">Comportamiento por Defecto (Texto)</h6>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let nums = [10, 5, 40, 25, 1000];
+nums.sort();
+console.log(nums); 
+// [10, 1000, 25, 40, 5] ¡Incorrecto numéricamente!</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded-3 bg-success-subtle">
+                            <h6 class="fw-bold text-success">Con Función de Comparación</h6>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let nums = [10, 5, 40, 25, 1000];
+// Función comparadora: (a - b) para orden ascendente
+nums.sort((a, b) =&gt; a - b);
+console.log(nums); 
+// [5, 10, 25, 40, 1000] ¡Correcto!</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Métodos modernos -->
+            <section id="metodos-modernos" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">6. Métodos Funcionales Modernos: map, filter y find</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border-0 bg-body-tertiary rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-primary">map()</h6>
+                            <p class="small text-secondary mb-2">Transforma cada elemento y devuelve un <strong>nuevo array</strong> con los resultados:</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>const nums = [1, 2, 3];
+const dobles = nums.map(x =&gt; x * 2);
+// [2, 4, 6]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border-0 bg-body-tertiary rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-success">filter()</h6>
+                            <p class="small text-secondary mb-2">Filtra y devuelve un <strong>nuevo array</strong> con los elementos que cumplan el predicado:</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>const nums = [5, 12, 8, 130];
+const mayores = nums.filter(x =&gt; x &gt;= 10);
+// [12, 130]</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border-0 bg-body-tertiary rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-warning">find()</h6>
+                            <p class="small text-secondary mb-2">Devuelve el <strong>primer elemento</strong> que coincida con la condición o <code>undefined</code>:</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>const users = [{id:1}, {id:2}];
+const u = users.find(x =&gt; x.id === 2);
+// {id: 2}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Objetos literales -->
+            <section id="objetos" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">7. Objetos Literales en JavaScript</h2>
+                <p>Un objeto es una estructura no indexada de pares <code>clave: valor</code>. Permite agrupar propiedades y funciones (métodos) bajo una entidad:</p>
+
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light"><code>// Declaración de objeto literal
+const persona = {
+    nombre: "Carlos",
+    edad: 28,
+    ciudad: "Valencia",
+    saludar: function() {
+        return "Hola, soy " + this.nombre;
+    }
+};
+
+// Acceso a propiedades mediante notación por punto y corchetes
+console.log(persona.nombre);      // "Carlos"
+console.log(persona["ciudad"]);  // "Valencia"
+console.log(persona.saludar());  // "Hola, soy Carlos"</code></pre>
+                </div>
+            </section>
+
+            <!-- 8. Actividades -->
+            <section id="actividades-t3">
+                <div class="card border-primary p-4 rounded-3 shadow-sm bg-primary-subtle">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                        <div>
+                            <span class="badge bg-primary text-white mb-2">Boletín Práctico</span>
+                            <h4 class="fw-bold text-dark mb-1">Ejercicios Prácticos del Tema 3</h4>
+                            <p class="small text-secondary mb-0">Pon en práctica arrays, ordenación, forEach, filter, objetos y el cálculo de la letra del DNI resolviendo los ejercicios 3.1 al 3.10.</p>
+                        </div>
+                        <a href="07_ejercicios.html#ej_3_1" class="btn btn-primary btn-sm px-4 shadow-sm text-nowrap">
+                            <i class="bi bi-collection-play me-1"></i> Ver Ejercicios del Tema 3
+                        </a>
+                    </div>
+                </div>
+            </section>
+    
+        </article>
+
+
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="02_funciones.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 02. Funciones y Modularidad</span>
+            </a>
+            <a href="04_dom.html" class="btn btn-primary shadow-sm btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 04. DOM y BOM</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

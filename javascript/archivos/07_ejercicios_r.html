@@ -1,0 +1,2148 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07. Ejercicios Resueltos de JavaScript | JavaScript | LMSGI</title>
+    <meta name="description" content="Solucionario con explicaciones didácticas, código listo y enlaces a archivos ejecutables">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .table {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-warning);
+            color: #000;
+            border-color: var(--bs-warning);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+<a href="01_introduccion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+<a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+<a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+<a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+<a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+<a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+<a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+<a href="07_ejercicios_r.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">JavaScript</a></li>
+                <li class="breadcrumb-item active" aria-current="page">07. Ejercicios Resueltos de JavaScript</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-dark border border-warning-subtle">Módulo 4: JavaScript</span>
+                <span class="badge bg-success text-white">Solucionario Oficial</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-2 text-dark">07. Ejercicios Resueltos de JavaScript</h1>
+            <p class="lead text-secondary mb-4">Solucionario con explicaciones didácticas, código listo y enlaces a archivos ejecutables</p>
+
+
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 pb-3 mb-4 border-bottom">
+                <div>
+                    <h2 class="h4 fw-bold mb-1">Solucionario Completo y Comentado</h2>
+                    <p class="text-secondary mb-0">Soluciones oficiales a los 43 ejercicios del manual, con fragmentos de código listos para inspeccionar y enlaces directos a los archivos ejecutables.</p>
+                </div>
+                <a href="07_ejercicios.html" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2 text-nowrap shadow-sm">
+                    <i class="bi bi-card-text"></i>
+                    <span>Ver Enunciados</span>
+                </a>
+            </div>
+
+
+        <!-- Barra de Filtros por Categoría -->
+        <div class="card p-3 mb-4 shadow-sm border-0 bg-body-tertiary">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-funnel-fill text-success"></i>
+                    <span class="fw-semibold small">Filtrar soluciones:</span>
+                </div>
+                <div class="d-flex flex-wrap gap-1" id="filterBtnGroup" role="group" aria-label="Filtro de ejercicios">
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn active" data-filter="all">Todos <span class="badge bg-secondary ms-1">43</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema1">Tema 1: Fundamentos <span class="badge bg-secondary ms-1">6</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema2">Tema 2: Funciones <span class="badge bg-secondary ms-1">10</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema3">Tema 3: Arrays <span class="badge bg-secondary ms-1">10</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema4">Tema 4: DOM <span class="badge bg-secondary ms-1">6</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema5">Tema 5: Eventos <span class="badge bg-secondary ms-1">8</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="tema6">Tema 6: Formularios <span class="badge bg-secondary ms-1">3</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.1: Primer script con mensajes sucesivos y caracteres especiales -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_1" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_1" class="text-decoration-none text-secondary">#ej_1_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Primer script con mensajes sucesivos y caracteres especiales</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Modificar el script inicial para que muestre sucesivamente dos mensajes de alerta emergentes: primero 'Hola Mundo!' y a continuación 'Soy el primer script', incluyendo comentarios explicativos y caracteres especiales.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_01.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_01.html</a> <a href="../material/ejercicios/aprendizaje/t1_01.js" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-js"></i> JS: t1_01.js</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>// t1_01.js
+alert(&quot;¡Hola Mundo!&quot;);
+alert(&quot;Soy el primer script con caracteres: &#x27;comillas&#x27; y \&quot;dobles\&quot;&quot;);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_01.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_01.html</a> <a href="../material/ejercicios/aprendizaje/t1_01.js" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-js"></i> JS: t1_01.js</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.2: Escape de comillas simples y dobles en variables -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_2" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_2" class="text-decoration-none text-secondary">#ej_1_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Escape de comillas simples y dobles en variables</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear un documento HTML y script que almacene en una variable llamada 'mensaje' un texto que combine comillas simples y dobles escapadas mediante la barra invertida (\) y saltos de línea (\n).</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_02_comillas_j2.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_02_comillas_j2.html</a> <a href="../material/ejercicios/aprendizaje/t1_02.js" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-js"></i> JS: t1_02.js</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let mensaje = &quot;Hola Mundo!\nQué fácil es incluir &#x27;comillas simples&#x27;\ny \&quot;comillas dobles\&quot;&quot;;
+alert(mensaje);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_02_comillas_j2.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_02_comillas_j2.html</a> <a href="../material/ejercicios/aprendizaje/t1_02.js" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-js"></i> JS: t1_02.js</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.3: Operaciones aritméticas con entrada de datos vía prompt -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_3" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_3" class="text-decoration-none text-secondary">#ej_1_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Operaciones aritméticas con entrada de datos vía prompt</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Pedir al usuario dos números mediante prompt(), convertirlos a tipo numérico con Number() o parseFloat() y calcular y mostrar por pantalla o alerta la suma, resta, producto y división.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_03_Operaciones_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_03_Operaciones_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let n1 = Number(prompt(&quot;Introduce el primer número:&quot;));
+let n2 = Number(prompt(&quot;Introduce el segundo número:&quot;));
+console.log(`Suma: ${n1 + n2}, Resta: ${n1 - n2}, Producto: ${n1 * n2}, División: ${n1 / n2}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_03_Operaciones_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_03_Operaciones_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.4: Suma acumulada de 1 a N con bucle -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_4" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_4" class="text-decoration-none text-secondary">#ej_1_4</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Suma acumulada de 1 a N con bucle</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Pedir un número entero positivo N al usuario y, mediante un bucle for o while, calcular la suma acumulada de todos los números del 1 al N (1 + 2 + ... + N).</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_04_sumaAcumulada_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_04_sumaAcumulada_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let n = parseInt(prompt(&quot;Introduce un entero positivo:&quot;), 10);
+let suma = 0;
+for (let i = 1; i &lt;= n; i++) { suma += i; }
+alert(`La suma acumulada de 1 a ${n} es: ${suma}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_4" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_04_sumaAcumulada_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_04_sumaAcumulada_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.5: Suma acumulada indefinida hasta introducir 0 -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_5" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_5" class="text-decoration-none text-secondary">#ej_1_5</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Suma acumulada indefinida hasta introducir 0</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Solicitar números sucesivamente al usuario mediante un bucle while y acumular su suma total hasta que el usuario introduzca un 0 o cancele el cuadro de diálogo.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_05_sumaAcumulada2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_05_sumaAcumulada2_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let total = 0, num;
+do {
+    num = Number(prompt(&quot;Introduce un número (0 para finalizar):&quot;));
+    if (!isNaN(num)) total += num;
+} while (num !== 0);
+alert(&quot;Total acumulado: &quot; + total);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_5" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_05_sumaAcumulada2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_05_sumaAcumulada2_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1.6: Cálculo del factorial de un número entero -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_1_6" data-category="tema1">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 1.6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 1: Fundamentos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_1_6" class="text-decoration-none text-secondary">#ej_1_6</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Cálculo del factorial de un número entero</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Calcular el factorial de un número N entero (N! = 1 * 2 * ... * N). Validar que sea mayor o igual a 0 y mostrar el resultado en consola o alerta.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t1_06_factorial_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_06_factorial_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let num = parseInt(prompt(&quot;Introduce un número entero para calcular su factorial:&quot;), 10);
+let factorial = 1;
+for (let i = 1; i &lt;= num; i++) { factorial *= i; }
+alert(`El factorial de ${num} es: ${factorial}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_1_6" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t1_06_factorial_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t1_06_factorial_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.1: Funciones aritméticas básicas con parámetros y retorno -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_1" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_1" class="text-decoration-none text-secondary">#ej_2_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Funciones aritméticas básicas con parámetros y retorno</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Definir cuatro funciones independientes (sumar, restar, multiplicar, dividir) que reciban dos números como parámetros y devuelvan el resultado mediante return.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_01_operaciones_funcion_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_01_operaciones_funcion_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function sumar(a, b) { return a + b; }
+function restar(a, b) { return a - b; }
+function multiplicar(a, b) { return a * b; }
+function dividir(a, b) { return b !== 0 ? a / b : &quot;Error: división por cero&quot;; }</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_01_operaciones_funcion_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_01_operaciones_funcion_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.2: Cálculo de precio con IVA y parámetro por defecto -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_2" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_2" class="text-decoration-none text-secondary">#ej_2_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Cálculo de precio con IVA y parámetro por defecto</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear una función 'calcularPrecio' que reciba el precio base y el porcentaje de IVA (con valor por defecto 21%) y devuelva el precio total con impuestos incluidos.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_02_calcular_precio_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_02_calcular_precio_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function calcularPrecio(base, iva = 0.21) {
+    return base + (base * iva);
+}
+console.log(calcularPrecio(100)); // 121</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_02_calcular_precio_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_02_calcular_precio_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.3: Generador de tabla de multiplicar en HTML -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_3" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_3" class="text-decoration-none text-secondary">#ej_2_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Generador de tabla de multiplicar en HTML</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear una función que reciba un número entero y genere dinámicamente una tabla HTML formateada con las 10 líneas de su tabla de multiplicar.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_03_tabla_multiplicar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_03_tabla_multiplicar_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function generarTablaMultiplicar(n) {
+    let html = &quot;&lt;table class=&#x27;table table-bordered&#x27;&gt;&quot;;
+    for (let i = 1; i &lt;= 10; i++) {
+        html += `&lt;tr&gt;&lt;td&gt;${n} x ${i}&lt;/td&gt;&lt;td&gt;${n * i}&lt;/td&gt;&lt;/tr&gt;`;
+    }
+    return html + &quot;&lt;/table&gt;&quot;;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_03_tabla_multiplicar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_03_tabla_multiplicar_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.4: Manipulación de cadenas de texto (Strings) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_4" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_4" class="text-decoration-none text-secondary">#ej_2_4</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Manipulación de cadenas de texto (Strings)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Implementar funciones para analizar textos: contar longitud, convertir a mayúsculas/minúsculas, extraer iniciales y buscar subcadenas.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_04_ejercicio_strings_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_04_ejercicio_strings_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function analizarCadena(texto) {
+    return {
+        longitud: texto.length,
+        mayus: texto.toUpperCase(),
+        minus: texto.toLowerCase(),
+        primeraPalabra: texto.split(&quot; &quot;)[0]
+    };
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_4" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_04_ejercicio_strings_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_04_ejercicio_strings_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.5: Refactorización a funciones flecha (Arrow functions / Lambdas) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_5" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_5" class="text-decoration-none text-secondary">#ej_2_5</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Refactorización a funciones flecha (Arrow functions / Lambdas)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Tomar las funciones de ejercicios anteriores y reescribirlas empleando la sintaxis moderna de funciones flecha con retorno implícito en una línea.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_05_ejercicio_lambdas_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_05_ejercicio_lambdas_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const sumar = (a, b) =&gt; a + b;
+const calcularPrecio = (base, iva = 0.21) =&gt; base * (1 + iva);
+const cuadrado = x =&gt; x * x;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_5" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_05_ejercicio_lambdas_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_05_ejercicio_lambdas_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.6: Determinación de paridad (par / impar) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_6" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_6" class="text-decoration-none text-secondary">#ej_2_6</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Determinación de paridad (par / impar)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Escribir una función que determine si un número entero suministrado por el usuario es par o impar y muestre la frase correspondiente.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_06_par_impar3_1.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_06_par_impar3_1.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function determinarParidad(n) {
+    return n % 2 === 0 ? &quot;El número es par&quot; : &quot;El número es impar&quot;;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_6" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_06_par_impar3_1.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_06_par_impar3_1.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.7: Detección de mayúsculas, minúsculas o mezcla -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_7" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.7</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_7" class="text-decoration-none text-secondary">#ej_2_7</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Detección de mayúsculas, minúsculas o mezcla</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Definir una función que reciba una cadena de texto y determine si está formada exclusivamente por mayúsculas, solo por minúsculas o por una mezcla de ambas.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_07_mayus_minus_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_07_mayus_minus_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function tipoCasing(cadena) {
+    if (cadena === cadena.toUpperCase()) return &quot;Solo mayúsculas&quot;;
+    if (cadena === cadena.toLowerCase()) return &quot;Solo minúsculas&quot;;
+    return &quot;Mezcla de mayúsculas y minúsculas&quot;;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_7" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_07_mayus_minus_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_07_mayus_minus_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.8: Verificador de palíndromos -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_8" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.8</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_8" class="text-decoration-none text-secondary">#ej_2_8</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Verificador de palíndromos</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear una función que determine si una frase es un palíndromo (se lee igual de izquierda a derecha ignorando espacios, signos y mayúsculas).</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_08_palindromo_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_08_palindromo_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function esPalindromo(cadena) {
+    let limpia = cadena.toLowerCase().replace(/[^a-z0-9]/g, &quot;&quot;);
+    let invertida = limpia.split(&quot;&quot;).reverse().join(&quot;&quot;);
+    return limpia === invertida;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_8" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_08_palindromo_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_08_palindromo_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.9: Tabla de multiplicar con rango configurable (desde / hasta) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_9" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.9</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_9" class="text-decoration-none text-secondary">#ej_2_9</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Tabla de multiplicar con rango configurable (desde / hasta)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Construir una función avanzada que reciba el número a multiplicar y los límites de inicio y fin del rango (ej. del 5 al 15) generando la tabla respectiva.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_09_tabla_multiplicar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_09_tabla_multiplicar_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function tablaRango(num, desde = 1, hasta = 10) {
+    for (let i = desde; i &lt;= hasta; i++) {
+        console.log(`${num} x ${i} = ${num * i}`);
+    }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_9" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_09_tabla_multiplicar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_09_tabla_multiplicar_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2.10: Extracción de ruta, nombre de archivo y extensión -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_2_10" data-category="tema2">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 2.10</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 2: Funciones</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_2_10" class="text-decoration-none text-secondary">#ej_2_10</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Extracción de ruta, nombre de archivo y extensión</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Dada una ruta de archivo completa (ej. '/var/www/html/index.php'), crear una función que extraiga el directorio padre, el nombre del archivo y su extensión.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t2_10_ejercicio_strings_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_10_ejercicio_strings_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function descomponerRuta(path) {
+    const partes = path.split(&quot;/&quot;);
+    const archivo = partes.pop();
+    const extension = archivo.split(&quot;.&quot;).pop();
+    return { directorio: partes.join(&quot;/&quot;), archivo, extension };
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_2_10" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t2_10_ejercicio_strings_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t2_10_ejercicio_strings_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.1: Operaciones básicas y recorrido de un array -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_1" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_1" class="text-decoration-none text-secondary">#ej_3_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Operaciones básicas y recorrido de un array</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear un array de nombres, acceder por índice, modificar elementos, añadir al final con push() y recorrerlo con un bucle for tradicional y for..of.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_01_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_01_arrays_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let alumnos = [&quot;Ana&quot;, &quot;Bernardo&quot;, &quot;Clara&quot;];
+alumnos.push(&quot;David&quot;);
+for (const a of alumnos) { console.log(a); }</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_01_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_01_arrays_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.2: Ordenación numérica y alfabética de arrays con sort() -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_2" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_2" class="text-decoration-none text-secondary">#ej_3_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Ordenación numérica y alfabética de arrays con sort()</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Demostrar la diferencia entre sort() por defecto (alfabético) y sort() con función de comparación numérica para ordenar números de forma ascendente y descendente.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_02_arrays_ordenacion_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_02_arrays_ordenacion_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>let nums = [40, 100, 1, 5, 25, 10];
+nums.sort((a, b) =&gt; a - b); // Ascendente
+console.log(nums); // [1, 5, 10, 25, 40, 100]</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_02_arrays_ordenacion_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_02_arrays_ordenacion_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.3: Funciones que reciben y devuelven colecciones de arrays -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_3" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_3" class="text-decoration-none text-secondary">#ej_3_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Funciones que reciben y devuelven colecciones de arrays</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Definir una función que reciba un array numérico y devuelva un nuevo array con el cuadrado de cada número sin mutar el original.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_03_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_03_funciones_arrays_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function elevarCuadrados(arr) {
+    return arr.map(x =&gt; x ** 2);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_03_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_03_funciones_arrays_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.4: Filtrado manual de arrays por condición -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_4" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_4" class="text-decoration-none text-secondary">#ej_3_4</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Filtrado manual de arrays por condición</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear una función que filtre un array numérico devolviendo únicamente los elementos pares mayores a un valor umbral dado.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_04_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_04_funciones_arrays_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function filtrarParesMayores(arr, umbral) {
+    return arr.filter(n =&gt; n % 2 === 0 &amp;&amp; n &gt; umbral);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_4" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_04_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_04_funciones_arrays_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.5: Array de objetos literales (Personas / Contactos) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_5" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_5" class="text-decoration-none text-secondary">#ej_3_5</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Array de objetos literales (Personas / Contactos)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Definir una lista de personas con propiedades nombre, edad y ciudad. Iterar sobre la colección para calcular la edad media y buscar residentes de una ciudad.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_05_objetos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_05_objetos_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const personas = [
+    { nombre: &quot;Laura&quot;, edad: 22, ciudad: &quot;Valencia&quot; },
+    { nombre: &quot;Marcos&quot;, edad: 35, ciudad: &quot;Alicante&quot; }
+];
+let media = personas.reduce((acc, p) =&gt; acc + p.edad, 0) / personas.length;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_5" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_05_objetos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_05_objetos_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.6: Búsqueda y conteo de ocurrencias en arrays -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_6" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_6" class="text-decoration-none text-secondary">#ej_3_6</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Búsqueda y conteo de ocurrencias en arrays</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Dado un array de elementos repetidos, crear una función que cuente cuántas veces aparece un elemento específico.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_06_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_06_funciones_arrays_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function contarOcurrencias(arr, valor) {
+    return arr.filter(item =&gt; item === valor).length;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_6" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_06_funciones_arrays_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_06_funciones_arrays_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.7: Transformación e iteración funcional con forEach -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_7" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.7</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_7" class="text-decoration-none text-secondary">#ej_3_7</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Transformación e iteración funcional con forEach</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Utilizar forEach() para aplicar formato y generar una lista de elementos en consola o en una lista HTML.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_07_arrays_foreach_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_07_arrays_foreach_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const items = [&quot;Monitor&quot;, &quot;Teclado&quot;, &quot;Ratón&quot;];
+items.forEach((item, idx) =&gt; {
+    console.log(`${idx + 1}. ${item}`);
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_7" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_07_arrays_foreach_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_07_arrays_foreach_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.8: Uso de filter() para filtrado de catálogos -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_8" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.8</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_8" class="text-decoration-none text-secondary">#ej_3_8</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Uso de filter() para filtrado de catálogos</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Implementar un filtro sobre un catálogo de productos para obtener aquellos que tengan stock disponible y precio inferior a un valor dado.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_08_arrays_filter_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_08_arrays_filter_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const prods = [{nom: &quot;A&quot;, precio: 10, stock: true}, {nom: &quot;B&quot;, precio: 50, stock: false}];
+const accesibles = prods.filter(p =&gt; p.stock &amp;&amp; p.precio &lt; 20);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_8" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_08_arrays_filter_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_08_arrays_filter_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.9: Localización con find() y findIndex() -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_9" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.9</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_9" class="text-decoration-none text-secondary">#ej_3_9</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Localización con find() y findIndex()</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Buscar el primer objeto en una colección que satisfaga un identificador único con find() y determinar su índice numérico con findIndex().</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_09_arrays_buscar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_09_arrays_buscar_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const usuarios = [{id: 101, user: &quot;admin&quot;}, {id: 102, user: &quot;guest&quot;}];
+const admin = usuarios.find(u =&gt; u.id === 101);
+const idx = usuarios.findIndex(u =&gt; u.id === 101);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_9" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_09_arrays_buscar_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_09_arrays_buscar_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3.10: Algoritmo de cálculo de letra del DNI español -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_3_10" data-category="tema3">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 3.10</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 3: Arrays y Objetos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_3_10" class="text-decoration-none text-secondary">#ej_3_10</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Algoritmo de cálculo de letra del DNI español</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">A partir de un array con las 23 letras de control oficiales, calcular la letra del DNI dividiendo el número entre 23 y tomando el resto como índice del array.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t3_10_calculoDNI_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_10_calculoDNI_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const LETRAS = [&quot;T&quot;,&quot;R&quot;,&quot;W&quot;,&quot;A&quot;,&quot;G&quot;,&quot;M&quot;,&quot;Y&quot;,&quot;F&quot;,&quot;P&quot;,&quot;D&quot;,&quot;X&quot;,&quot;B&quot;,&quot;N&quot;,&quot;J&quot;,&quot;Z&quot;,&quot;S&quot;,&quot;Q&quot;,&quot;V&quot;,&quot;H&quot;,&quot;L&quot;,&quot;C&quot;,&quot;K&quot;,&quot;E&quot;];
+function calcularLetraDNI(numero) {
+    if (numero &lt; 0 || numero &gt; 99999999) return null;
+    return LETRAS[numero % 23];
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_3_10" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t3_10_calculoDNI_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t3_10_calculoDNI_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.1: Exploración y conteo de nodos en el DOM -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_1" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_1" class="text-decoration-none text-secondary">#ej_4_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Exploración y conteo de nodos en el DOM</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">A partir de una página HTML con enlaces y párrafos, usar JavaScript para contar el número total de enlaces, la dirección a la que apunta el penúltimo enlace y el número de enlaces que apuntan a un dominio específico.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_01_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_01_pruebaDOM_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const enlaces = document.getElementsByTagName(&quot;a&quot;);
+console.log(&quot;Número total de enlaces: &quot; + enlaces.length);
+if (enlaces.length &gt;= 2) {
+    console.log(&quot;Penúltimo enlace: &quot; + enlaces[enlaces.length - 2].href);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_01_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_01_pruebaDOM_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.2: Selección moderna con querySelector y querySelectorAll -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_2" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_2" class="text-decoration-none text-secondary">#ej_4_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Selección moderna con querySelector y querySelectorAll</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Reescribir el ejercicio anterior sustituyendo getElementsByTagName por los selectores querySelector y querySelectorAll y aplicando clases CSS dinámicas.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_02_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_02_pruebaDOM2_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const todosEnlaces = document.querySelectorAll(&quot;a&quot;);
+const enlacesW3C = document.querySelectorAll(&quot;a[href*=&#x27;w3schools.com&#x27;]&quot;);
+console.log(`Enlaces a W3C: ${enlacesW3C.length}`);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_02_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_02_pruebaDOM2_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.3: Creación e inserción de nuevos elementos dinámicos -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_3" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_3" class="text-decoration-none text-secondary">#ej_4_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Creación e inserción de nuevos elementos dinámicos</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear un nuevo párrafo con document.createElement(), asignarle texto y estilo, e insertarlo dentro de un contenedor mediante appendChild().</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_03_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_03_pruebaDOM2_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const nuevoP = document.createElement(&quot;p&quot;);
+nuevoP.textContent = &quot;Este párrafo ha sido añadido dinámicamente.&quot;;
+nuevoP.classList.add(&quot;text-primary&quot;, &quot;fw-bold&quot;);
+document.querySelector(&quot;#contenedor&quot;).appendChild(nuevoP);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_03_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_03_pruebaDOM2_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.4: Modificación de texto y clases en tiempo real -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_4" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_4" class="text-decoration-none text-secondary">#ej_4_4</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Modificación de texto y clases en tiempo real</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Al pulsar un botón, modificar el texto de un elemento existente mediante textContent y alternar su apariencia con classList.toggle().</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_04_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_04_pruebaDOM2_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const el = document.querySelector(&quot;#info&quot;);
+el.textContent = &quot;Contenido actualizado con éxito&quot;;
+el.classList.toggle(&quot;alert-success&quot;);</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_4" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_04_pruebaDOM2_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_04_pruebaDOM2_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.5: Mostrar y ocultar contenido interactivo (Toggle) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_5" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_5" class="text-decoration-none text-secondary">#ej_4_5</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Mostrar y ocultar contenido interactivo (Toggle)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear un mecanismo para mostrar y ocultar secciones de texto al pulsar un enlace 'Seguir leyendo' o 'Ocultar'.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_05_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_05_pruebaDOM_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const seccion = document.querySelector(&quot;#masTexto&quot;);
+const btn = document.querySelector(&quot;#btnToggle&quot;);
+if (seccion.style.display === &quot;none&quot;) {
+    seccion.style.display = &quot;block&quot;;
+    btn.textContent = &quot;Ocultar&quot;;
+} else {
+    seccion.style.display = &quot;none&quot;;
+    btn.textContent = &quot;Seguir leyendo&quot;;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_5" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_05_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_05_pruebaDOM_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4.6: Gestión dinámica de filas y celdas en tablas HTML -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_4_6" data-category="tema4">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 4.6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 4: DOM y BOM</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_4_6" class="text-decoration-none text-secondary">#ej_4_6</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Gestión dinámica de filas y celdas en tablas HTML</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Añadir nuevas filas (&lt;tr&gt;) y celdas (&lt;td&gt;) a una tabla de datos mediante botones de formulario y permitir la eliminación de filas seleccionadas.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t4_06_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_06_pruebaDOM_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const tabla = document.querySelector(&quot;#miTabla tbody&quot;);
+const fila = tabla.insertRow();
+const c1 = fila.insertCell(0);
+const c2 = fila.insertCell(1);
+c1.textContent = &quot;Nuevo Producto&quot;;
+c2.textContent = &quot;19.99 €&quot;;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_4_6" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t4_06_pruebaDOM_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t4_06_pruebaDOM_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.1: Interacción de ratón sobre imágenes (mouseenter / mouseleave) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_1" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_1" class="text-decoration-none text-secondary">#ej_5_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Interacción de ratón sobre imágenes (mouseenter / mouseleave)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Colocar tres imágenes en la página y asociar manejadores de eventos para aumentar su tamaño o cambiar el borde al situar el ratón encima y restaurarlo al salir.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_01_eventos_imagenes_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_01_eventos_imagenes_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const imgs = document.querySelectorAll(&quot;.zoom-img&quot;);
+imgs.forEach(img =&gt; {
+    img.addEventListener(&quot;mouseenter&quot;, () =&gt; img.classList.add(&quot;shadow-lg&quot;));
+    img.addEventListener(&quot;mouseleave&quot;, () =&gt; img.classList.remove(&quot;shadow-lg&quot;));
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_01_eventos_imagenes_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_01_eventos_imagenes_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.2: Eventos de formulario: focus, blur y change -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_2" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_2" class="text-decoration-none text-secondary">#ej_5_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Eventos de formulario: focus, blur y change</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Resaltar los campos de entrada al recibir el foco (focus), eliminar el resaltado al perderlo (blur) y convertir el texto a mayúsculas al cambiar (change).</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_02_eventos_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_02_eventos_form_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const input = document.querySelector(&quot;#txtNombre&quot;);
+input.addEventListener(&quot;focus&quot;, () =&gt; input.classList.add(&quot;border-primary&quot;));
+input.addEventListener(&quot;blur&quot;, () =&gt; input.classList.remove(&quot;border-primary&quot;));
+input.addEventListener(&quot;change&quot;, () =&gt; input.value = input.value.toUpperCase());</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_02_eventos_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_02_eventos_form_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.3: Demostración de flujo de propagación: Bubbling vs Capturing -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_3" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_3" class="text-decoration-none text-secondary">#ej_5_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Demostración de flujo de propagación: Bubbling vs Capturing</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crear tres cajas anidadas (abuelo, padre, hijo) con manejadores de clic para visualizar en consola el orden de disparo por burbujeo y probar stopPropagation().</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_03_bubbling_capturing_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_03_bubbling_capturing_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>hijo.addEventListener(&quot;click&quot;, (e) =&gt; {
+    console.log(&quot;Clic en hijo&quot;);
+    e.stopPropagation(); // Detiene el burbujeo al padre
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_03_bubbling_capturing_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_03_bubbling_capturing_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.4: Extracción de coordenadas y teclas del objeto Event -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_4" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_4" class="text-decoration-none text-secondary">#ej_5_4</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Extracción de coordenadas y teclas del objeto Event</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Capturar los movimientos del ratón en la página para mostrar las coordenadas X e Y en tiempo real, e interceptar eventos de teclado para indicar qué tecla se ha pulsado.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_04_info_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_04_info_eventos_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>document.addEventListener(&quot;mousemove&quot;, (e) =&gt; {
+    infoCoord.textContent = `X: ${e.clientX}, Y: ${e.clientY}`;
+});
+document.addEventListener(&quot;keydown&quot;, (e) =&gt; {
+    infoTecla.textContent = `Tecla pulsada: ${e.key} (Código: ${e.code})`;
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_4" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_04_info_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_04_info_eventos_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.5: API de arrastrar y soltar (Drag and Drop) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_5" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_5" class="text-decoration-none text-secondary">#ej_5_5</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">API de arrastrar y soltar (Drag and Drop)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Implementar un sistema de arrastrar y soltar donde elementos con draggable='true' puedan moverse entre dos zonas contenedoras diferenciadas.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_05_drag_drop_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_05_drag_drop_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>item.addEventListener(&quot;dragstart&quot;, (e) =&gt; e.dataTransfer.setData(&quot;id&quot;, e.target.id));
+zona.addEventListener(&quot;dragover&quot;, (e) =&gt; e.preventDefault());
+zona.addEventListener(&quot;drop&quot;, (e) =&gt; {
+    e.preventDefault();
+    zona.appendChild(document.getElementById(e.dataTransfer.getData(&quot;id&quot;)));
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_5" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_05_drag_drop_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_05_drag_drop_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.6: Encapsulación de eventos con IIFE -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_6" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_6" class="text-decoration-none text-secondary">#ej_5_6</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Encapsulación de eventos con IIFE</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Reescribir el código de gestión de eventos dentro de una función autoejecutable (Immediately Invoked Function Expression) para proteger el ámbito global.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_06_info_eventos_iife_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_06_info_eventos_iife_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>(function() {
+    // Código privado y seguro
+    const btn = document.querySelector(&quot;#btn&quot;);
+    btn.addEventListener(&quot;click&quot;, () =&gt; alert(&quot;Acción privada&quot;));
+})();</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_6" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_06_info_eventos_iife_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_06_info_eventos_iife_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.7: Delegación de eventos en listas dinámicas -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_7" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.7</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_7" class="text-decoration-none text-secondary">#ej_5_7</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Delegación de eventos en listas dinámicas</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Asociar un único escuchador de eventos en el elemento contenedor padre (&lt;ul&gt;) y detectar mediante event.target cuál de los elementos hijos (&lt;li&gt;) fue pulsado.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_07_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_07_eventos_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>document.querySelector(&quot;#lista&quot;).addEventListener(&quot;click&quot;, (e) =&gt; {
+    if (e.target.tagName === &quot;LI&quot;) {
+        e.target.classList.toggle(&quot;text-decoration-line-through&quot;);
+    }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_7" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_07_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_07_eventos_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5.8: Interceptar envío con preventDefault() -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_5_8" data-category="tema5">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 5.8</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 5: Eventos</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_5_8" class="text-decoration-none text-secondary">#ej_5_8</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Interceptar envío con preventDefault()</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Interceptar el evento submit de un formulario, prevenir el envío automático si las condiciones no se cumplen y mostrar un resumen en pantalla.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t5_08_info_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_08_info_eventos_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>form.addEventListener(&quot;submit&quot;, (e) =&gt; {
+    if (!validarCampos()) {
+        e.preventDefault();
+        alert(&quot;Corrija los errores antes de enviar.&quot;);
+    }
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_5_8" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t5_08_info_eventos_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t5_08_info_eventos_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 6.1: Validación básica de campos obligatorios y checkboxes -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_6_1" data-category="tema6">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 6.1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 6: Formularios</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_6_1" class="text-decoration-none text-secondary">#ej_6_1</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Validación básica de campos obligatorios y checkboxes</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Comprobar que los campos de texto no estén vacíos, que se haya seleccionado al menos una opción en un radio button y que el checkbox de condiciones esté marcado.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t6_01_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_01_form_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>function validarFormulario(form) {
+    if (form.nombre.value.trim() === &quot;&quot;) return false;
+    if (!form.acepto.checked) return false;
+    return true;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_6_1" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t6_01_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_01_form_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 6.2: Validación de formatos con Expresiones Regulares -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_6_2" data-category="tema6">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 6.2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 6: Formularios</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_6_2" class="text-decoration-none text-secondary">#ej_6_2</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Validación de formatos con Expresiones Regulares</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Validar campos complejos mediante expresiones regulares: formato de email, número de teléfono español de 9 dígitos y código postal.</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t6_02_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_02_form_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const regexTel = /^[6789]\d{8}$/;
+const regexCP = /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_6_2" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t6_02_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_02_form_js.html</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 6.3: Validación completa con HTML5 Constraint Validation y Bootstrap -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_6_3" data-category="tema6">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success text-white fs-6">Solución 6.3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Tema 6: Formularios</span>
+                    <span class="badge bg-success-subtle text-success border"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_6_3" class="text-decoration-none text-secondary">#ej_6_3</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Validación completa con HTML5 Constraint Validation y Bootstrap</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Construir un formulario profesional con Bootstrap 5, aplicar atributos nativos HTML5 y la Constraint Validation API (setCustomValidity) con feedback visual (.is-invalid).</p>
+                
+                <!-- Caja de Solución -->
+                <div class="card bg-success-subtle border-success-subtle p-3 my-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                        <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                            <i class="bi bi-check-circle-fill"></i> Código Fuente de la Solución:
+                        </span>
+                        <div class="d-flex flex-wrap gap-1">
+                            <a href="../material/ejercicios/aprendizaje/t6_03_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_03_form_js.html</a>
+                        </div>
+                    </div>
+                    <div class="bg-dark text-light p-3 rounded-3 my-2">
+                        <pre class="mb-0 text-light font-monospace small"><code>form.addEventListener(&quot;submit&quot;, (e) =&gt; {
+    if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    form.classList.add(&quot;was-validated&quot;);
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center justify-content-between gap-2 py-3 border-top">
+                <a href="07_ejercicios.html#ej_6_3" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-card-text"></i> Volver al Enunciado
+                </a>
+                <div class="d-flex gap-1">
+                    <a href="../material/ejercicios/aprendizaje/t6_03_form_js.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> HTML: t6_03_form_js.html</a>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Script de Filtro Ergonómico -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('#filterBtnGroup .filter-btn');
+            const cards = document.querySelectorAll('.exercise-card');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.classList.remove('d-none');
+                        } else {
+                            card.classList.add('d-none');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    
+        </article>
+
+
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="07_ejercicios.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 07. Ejercicios Prácticos</span>
+            </a>
+            <a href="../../php/index.html" class="btn btn-warning text-dark btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> Siguiente Módulo: PHP</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

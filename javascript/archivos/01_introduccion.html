@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01. Introducción y Programación Básica | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 1: Fundamentos, inclusión en HTML, sintaxis, variables y control de flujo">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .table {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-warning);
+            color: #000;
+            border-color: var(--bs-warning);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+<a href="01_introduccion.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+<a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+<a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+<a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+<a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+<a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+<a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+<a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">JavaScript</a></li>
+                <li class="breadcrumb-item active" aria-current="page">01. Introducción y Programación Básica</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-dark border border-warning-subtle">Módulo 4: JavaScript</span>
+                <span class="badge bg-warning text-white">Tema 1: Fundamentos</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-2 text-dark">01. Introducción y Programación Básica</h1>
+            <p class="lead text-secondary mb-4">Tema 1: Fundamentos, inclusión en HTML, sintaxis, variables y control de flujo</p>
+
+            <div class="card bg-body-tertiary border-0 p-3 mb-4 rounded-3">
+                <span class="small fw-bold text-uppercase text-secondary mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-compass text-warning"></i> En esta lección:
+                </span>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#que-es-js" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 1. ¿Qué es JavaScript?</a>
+                <a href="#como-incluir" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 2. Inclusión en HTML</a>
+                <a href="#ubicacion-scripts" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 3. Ubicación y noscript</a>
+                <a href="#errores-consola" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 4. Detección de Errores</a>
+                <a href="#sintaxis-basica" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 5. Sintaxis Básica</a>
+                <a href="#comunicacion" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 6. Comunicación y Diálogos</a>
+                <a href="#variables-tipos" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 7. Variables y Tipos</a>
+                <a href="#operadores" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 8. Operadores</a>
+                <a href="#control-flujo" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 9. Estructuras de Control</a>
+                <a href="#actividades-t1" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 10. Actividades</a>
+                </div>
+            </div>
+
+            <!-- 1. ¿Qué es JavaScript? -->
+            <section id="que-es-js" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">1. ¿Qué es JavaScript?</h2>
+                <p><strong>JavaScript</strong> es un lenguaje de programación interpretado, ligero y orientado a objetos basado en prototipos, diseñado originalmente para ejecutarse en el navegador web del cliente. Su propósito fundamental es dotar de dinamismo e interactividad a las páginas web que, con solo HTML y CSS, serían documentos estáticos.</p>
+                
+                <div class="row g-3 my-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <div class="d-flex align-items-center gap-2 mb-2 text-primary">
+                                <i class="bi bi-filetype-html fs-4"></i>
+                                <h6 class="fw-bold mb-0">HTML</h6>
+                            </div>
+                            <p class="small text-secondary mb-0">Define la <strong>estructura y el contenido semántico</strong> de la página web (encabezados, párrafos, tablas, formularios).</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <div class="d-flex align-items-center gap-2 mb-2 text-info">
+                                <i class="bi bi-filetype-css fs-4"></i>
+                                <h6 class="fw-bold mb-0">CSS</h6>
+                            </div>
+                            <p class="small text-secondary mb-0">Controla la <strong>presentación visual y el diseño adaptable</strong> (colores, fuentes, modelo de cajas, flexbox, rejilla).</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <div class="d-flex align-items-center gap-2 mb-2 text-warning">
+                                <i class="bi bi-filetype-js fs-4"></i>
+                                <h6 class="fw-bold mb-0">JavaScript</h6>
+                            </div>
+                            <p class="small text-secondary mb-0">Gestiona el <strong>comportamiento, lógica e interactividad</strong> en respuesta a acciones del usuario o eventos asíncronos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-info d-flex align-items-center gap-3">
+                    <i class="bi bi-info-circle-fill fs-4 flex-shrink-0"></i>
+                    <div class="small">
+                        <strong>Nota histórica y técnica:</strong> A pesar de la similitud en el nombre, <strong>JavaScript no guarda relación con el lenguaje Java</strong> de Oracle. JavaScript fue creado en 1995 por Brendan Eich en Netscape bajo el nombre de <em>Mocha</em> (luego <em>LiveScript</em>) y estandarizado internacionalmente bajo la especificación <strong>ECMAScript (ES)</strong>.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Cómo incluir JavaScript -->
+            <section id="como-incluir" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">2. Cómo incluir JavaScript en documentos HTML</h2>
+                <p>Existen tres métodos principales para integrar código JavaScript en una página web:</p>
+
+                <div class="accordion mb-4" id="accordionInclusion">
+                    <div class="accordion-item border-secondary-subtle">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#metodo1" aria-expanded="true">
+                                <i class="bi bi-code-square text-primary me-2"></i> Método 1: En el mismo documento (Etiqueta &lt;script&gt;)
+                            </button>
+                        </h3>
+                        <div id="metodo1" class="accordion-collapse collapse show" data-bs-parent="#accordionInclusion">
+                            <div class="accordion-body">
+                                <p class="small text-secondary">El código se introduce directamente entre las etiquetas <code>&lt;script&gt;</code> y <code>&lt;/script&gt;</code>. Es ideal para scripts pequeños o específicos de una sola página.</p>
+                                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                                    <pre class="mb-0 text-light"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Código en el propio documento&lt;/title&gt;
+    &lt;script&gt;
+        console.log("¡Hola mundo desde JavaScript!");
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;Contenido de la página.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-secondary-subtle">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#metodo2">
+                                <i class="bi bi-file-earmark-code text-success me-2"></i> Método 2: En un archivo externo (Recomendado)
+                            </button>
+                        </h3>
+                        <div id="metodo2" class="accordion-collapse collapse" data-bs-parent="#accordionInclusion">
+                            <div class="accordion-body">
+                                <p class="small text-secondary">Se escribe el código en un archivo independiente con extensión <code>.js</code> y se referencia con el atributo <code>src</code>. Permite reutilizar el código entre múltiples páginas y aprovecha la memoria caché del navegador.</p>
+                                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                                    <pre class="mb-0 text-light"><code>&lt;!-- En el documento HTML --&gt;
+&lt;script src="js/codigo.js"&gt;&lt;/script&gt;
+
+// En el archivo js/codigo.js
+alert("¡Mensaje cargado desde archivo externo!");</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-secondary-subtle">
+                        <h3 class="accordion-header">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#metodo3">
+                                <i class="bi bi-cursor text-warning me-2"></i> Método 3: En atributos de eventos HTML (Desaconsejado)
+                            </button>
+                        </h3>
+                        <div id="metodo3" class="accordion-collapse collapse" data-bs-parent="#accordionInclusion">
+                            <div class="accordion-body">
+                                <p class="small text-secondary">Incrustar código en atributos como <code>onclick</code> o <code>onmouseover</code> mezcla estructura y comportamiento, dificultando el mantenimiento. En desarrollo moderno se sustituye siempre por <code>addEventListener()</code>.</p>
+                                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                                    <pre class="mb-0 text-light"><code>&lt;button onclick="alert('Acción ejecutada')" class="btn btn-primary"&gt;Pulsar aquí&lt;/button&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Ubicación y noscript -->
+            <section id="ubicacion-scripts" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">3. Ubicación de scripts y la etiqueta &lt;noscript&gt;</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card h-100 p-3 bg-body-tertiary border-0 rounded-3 shadow-sm">
+                            <h5 class="fw-bold text-dark"><i class="bi bi-layout-text-window-reverse text-primary me-2"></i>¿Dónde colocar &lt;script&gt;?</h5>
+                            <ul class="small text-secondary mb-0 ps-3">
+                                <li class="mb-2"><strong>Al final del &lt;body&gt; (Recomendado clásico):</strong> Permite que todo el HTML se parsee y visualice antes de que el script se descargue y ejecute, evitando sensaciones de lentitud.</li>
+                                <li class="mb-2"><strong>En el &lt;head&gt; con defer (Estándar moderno):</strong> Al añadir el atributo <code>defer</code> (<code>&lt;script src="..." defer&gt;</code>), el navegador descarga el archivo en segundo plano sin bloquear el renderizado y lo ejecuta ordenadamente justo al finalizar la carga del DOM.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card h-100 p-3 bg-body-tertiary border-0 rounded-3 shadow-sm">
+                            <h5 class="fw-bold text-dark"><i class="bi bi-eye-slash text-danger me-2"></i>La etiqueta &lt;noscript&gt;</h5>
+                            <p class="small text-secondary mb-2">Define un bloque de contenido alternativo que solo se muestra a usuarios que naveguen con JavaScript desactivado o en navegadores que no lo soporten:</p>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>&lt;noscript&gt;
+    &lt;div class="alert alert-warning"&gt;
+        Esta aplicación requiere JavaScript para funcionar correctamente.
+    &lt;/div&gt;
+&lt;/noscript&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Detección de errores y consola -->
+            <section id="errores-consola" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">4. Detección de errores y Consola del Desarrollador</h2>
+                <p>A diferencia de los lenguajes compilados (como C o Java), JavaScript no genera un ejecutable previo. Los errores sintácticos o lógicos se manifiestan en tiempo de ejecución en el navegador. La herramienta principal de depuración es la <strong>Consola Web</strong> (accesible pulsando <kbd>F12</kbd> o <kbd>Ctrl + Mayús + I</kbd> en Chrome, Firefox o Edge).</p>
+
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped align-middle border">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Instrucción de Consola</th>
+                                <th>Propósito y Comportamiento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>console.log(mensaje, valor)</code></td>
+                                <td>Imprime información general y valores de variables para inspección rápida.</td>
+                            </tr>
+                            <tr>
+                                <td><code>console.error(error)</code></td>
+                                <td>Muestra un mensaje resaltado en rojo con la traza de la pila de llamadas (*stack trace*).</td>
+                            </tr>
+                            <tr>
+                                <td><code>console.warn(aviso)</code></td>
+                                <td>Emite una advertencia visual destacada en amarillo.</td>
+                            </tr>
+                            <tr>
+                                <td><code>console.table(array_u_objeto)</code></td>
+                                <td>Representa colecciones tabulares de objetos en una tabla visual limpia.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. Sintaxis básica -->
+            <section id="sintaxis-basica" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">5. Reglas de Sintaxis Básica</h2>
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item bg-transparent ps-0">
+                        <strong>Sensibilidad a mayúsculas (*Case Sensitive*):</strong> Las variables <code>miVariable</code>, <code>Mivariable</code> y <code>mivariable</code> son tres identificadores totalmente diferentes.
+                    </li>
+                    <li class="list-group-item bg-transparent ps-0">
+                        <strong>Punto y coma (<code>;</code>):</strong> Separa sentencias ejecutables. Aunque JavaScript posee inserción automática de punto y coma (ASI), es una buena práctica incluirlo explícitamente para evitar ambigüedades.
+                    </li>
+                    <li class="list-group-item bg-transparent ps-0">
+                        <strong>Comentarios:</strong> De una línea con doble barra (<code>// comentario</code>) o en bloque multilínea (<code>/* comentario */</code>).
+                    </li>
+                </ul>
+
+                <div class="card border-warning-subtle bg-warning-subtle p-3 my-3 rounded-3 shadow-sm">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                        <div>
+                            <h5 class="fw-bold mb-1 text-dark"><i class="bi bi-pencil-square text-warning me-2"></i>Actividad Práctica Guiada: Ejercicios 1.1 y 1.2</h5>
+                            <p class="small text-secondary mb-0">Crea tu primer script externo <code>codigo.js</code> y aprende a escapar comillas dobles y simples en mensajes emergentes.</p>
+                        </div>
+                        <a href="07_ejercicios.html#ej_1_1" class="btn btn-warning btn-sm text-dark fw-medium shadow-sm">
+                            <i class="bi bi-arrow-right-circle me-1"></i> Ir al Ejercicio 1.1
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Comunicación con el usuario -->
+            <section id="comunicacion" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">6. Comunicación con el Usuario: Diálogos Modales</h2>
+                <p>JavaScript en navegadores proporciona tres funciones nativas del objeto <code>window</code> para interactuar rápidamente con el usuario de manera síncrona:</p>
+
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded-3 bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-primary">alert(mensaje)</h6>
+                            <p class="small text-secondary">Abre una ventana emergente informativa con un botón de aceptar. Detiene la ejecución hasta que se pulsa.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <code>alert("¡Operación exitosa!");</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded-3 bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-success">confirm(pregunta)</h6>
+                            <p class="small text-secondary">Muestra una pregunta con botones de <em>Aceptar</em> y <em>Cancelar</em>. Devuelve <code>true</code> o <code>false</code>.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <code>let borrar = confirm("¿Desea eliminar?");</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-3 border rounded-3 bg-body-tertiary shadow-sm">
+                            <h6 class="fw-bold text-warning">prompt(texto, defecto)</h6>
+                            <p class="small text-secondary">Solicita la entrada de un texto por teclado. Devuelve la cadena introducida o <code>null</code> si cancela.</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <code>let nombre = prompt("¿Tu nombre?");</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Variables y tipos -->
+            <section id="variables-tipos" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">7. Variables y Tipos de Datos</h2>
+                <p>Una variable es un contenedor con nombre para almacenar datos en memoria. En JavaScript moderno se emplean dos palabras clave principales:</p>
+
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped align-middle border">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Palabra clave</th>
+                                <th>Ámbito (*Scope*)</th>
+                                <th>Reasignable</th>
+                                <th>Buenas Prácticas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>const</code></td>
+                                <td>Bloque (<code>{ ... }</code>)</td>
+                                <td>No (constante)</td>
+                                <td><span class="badge bg-success">Recomendado</span> Usar por defecto siempre que la variable no cambie de valor.</td>
+                            </tr>
+                            <tr>
+                                <td><code>let</code></td>
+                                <td>Bloque (<code>{ ... }</code>)</td>
+                                <td>Sí</td>
+                                <td><span class="badge bg-primary">Recomendado</span> Usar cuando el valor deba mutar (contadores, acumuladores).</td>
+                            </tr>
+                            <tr>
+                                <td><code>var</code></td>
+                                <td>Función o Global</td>
+                                <td>Sí</td>
+                                <td><span class="badge bg-danger">Obsoleto</span> Evitar en código moderno por problemas de elevación (*hoisting*).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="h5 fw-bold text-dark mt-4">Tipos de Datos Primitivos</h4>
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="p-3 border rounded bg-light-subtle">
+                            <strong class="d-block text-primary">Number</strong>
+                            <small class="text-secondary">Enteros y decimales de coma flotante (ej. <code>42</code>, <code>3.1415</code>).</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="p-3 border rounded bg-light-subtle">
+                            <strong class="d-block text-success">String</strong>
+                            <small class="text-secondary">Cadenas de caracteres entre comillas simples, dobles o template literals (<code>`hola`</code>).</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="p-3 border rounded bg-light-subtle">
+                            <strong class="d-block text-warning">Boolean</strong>
+                            <small class="text-secondary">Valores lógicos de verdad o falsedad: <code>true</code> o <code>false</code>.</small>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="p-3 border rounded bg-light-subtle">
+                            <strong class="d-block text-danger">Null / Undefined</strong>
+                            <small class="text-secondary"><code>undefined</code> (variable sin inicializar) y <code>null</code> (ausencia explícita de valor).</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="alert alert-secondary mt-3 small">
+                    <strong>Conversión de tipos:</strong> Las lecturas de <code>prompt()</code> siempre son cadenas de texto. Para operar numéricamente, debemos convertir explícitamente usando <code>Number(valor)</code>, <code>parseInt(valor, 10)</code> o <code>parseFloat(valor)</code>.
+                </div>
+            </section>
+
+            <!-- 8. Operadores -->
+            <section id="operadores" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">8. Operadores en JavaScript</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark">Operadores Aritméticos y Asignación</h5>
+                        <ul class="small text-secondary mb-0">
+                            <li><code>+</code> Suma (o concatenación si hay strings)</li>
+                            <li><code>-</code>, <code>*</code>, <code>/</code> Resta, producto y división real</li>
+                            <li><code>%</code> Módulo (resto de la división entera, ej. <code>10 % 3 = 1</code>)</li>
+                            <li><code>**</code> Exponenciación (ej. <code>2 ** 3 = 8</code>)</li>
+                            <li><code>++</code>, <code>--</code> Incremento y decremento unario</li>
+                            <li><code>+=</code>, <code>-=</code>, <code>*=</code> Asignación compuesta</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark">Comparación Estricta y Lógicos</h5>
+                        <ul class="small text-secondary mb-0">
+                            <li><code>===</code> y <code>!==</code> <strong>Igualdad y desigualdad estricta</strong> (compara valor Y tipo sin coerción).</li>
+                            <li><code>==</code> y <code>!=</code> Igualdad abstracta con coerción implícita (<span class="badge bg-danger">evitar</span>).</li>
+                            <li><code>&amp;&amp;</code> AND lógico (ambas condiciones verdaderas).</li>
+                            <li><code>||</code> OR lógico (al menos una condición verdadera).</li>
+                            <li><code>!</code> Negación lógica invertida (NOT).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 9. Control de flujo -->
+            <section id="control-flujo" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">9. Estructuras de Control de Flujo</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card p-3 border-0 bg-body-tertiary rounded-3 shadow-sm h-100">
+                            <h5 class="fw-bold text-primary">Condicionales (if / else / switch)</h5>
+                            <div class="bg-dark text-light p-3 rounded-3 small">
+                                <pre class="mb-0 text-light"><code>let edad = 18;
+if (edad &gt;= 18) {
+    console.log("Mayor de edad");
+} else {
+    console.log("Menor de edad");
+}
+
+switch (dia) {
+    case 1: console.log("Lunes"); break;
+    case 2: console.log("Martes"); break;
+    default: console.log("Otro día");
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card p-3 border-0 bg-body-tertiary rounded-3 shadow-sm h-100">
+                            <h5 class="fw-bold text-success">Bucles e Iteraciones (for / while)</h5>
+                            <div class="bg-dark text-light p-3 rounded-3 small">
+                                <pre class="mb-0 text-light"><code>// Bucle for clásico
+for (let i = 0; i &lt; 5; i++) {
+    console.log("Iteración: " + i);
+}
+
+// Bucle while con condición previa
+let n = 1;
+while (n &lt;= 3) {
+    console.log("Paso: " + n);
+    n++;
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 10. Actividades -->
+            <section id="actividades-t1">
+                <div class="card border-primary p-4 rounded-3 shadow-sm bg-primary-subtle">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                        <div>
+                            <span class="badge bg-primary text-white mb-2">Boletín Práctico</span>
+                            <h4 class="fw-bold text-dark mb-1">Ejercicios Prácticos del Tema 1</h4>
+                            <p class="small text-secondary mb-0">Pon en práctica variables, operadores y bucles resolviendo los ejercicios 1.1 al 1.6 (suma acumulada, factorial, diálogos).</p>
+                        </div>
+                        <a href="07_ejercicios.html#ej_1_1" class="btn btn-primary btn-sm px-4 shadow-sm text-nowrap">
+                            <i class="bi bi-collection-play me-1"></i> Ver Ejercicios del Tema 1
+                        </a>
+                    </div>
+                </div>
+            </section>
+    
+        </article>
+
+
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="../index.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> Portada JavaScript</span>
+            </a>
+            <a href="02_funciones.html" class="btn btn-primary shadow-sm btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 02. Funciones y Modularidad</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

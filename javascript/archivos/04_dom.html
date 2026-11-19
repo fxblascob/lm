@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04. Document Object Model (DOM) y BOM | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 4: Jerarquía del navegador, temporizadores, árbol de nodos y manipulación dinámica">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .table {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-warning);
+            color: #000;
+            border-color: var(--bs-warning);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+<a href="01_introduccion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+<a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+<a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+<a href="04_dom.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+<a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+<a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+<a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+<a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">JavaScript</a></li>
+                <li class="breadcrumb-item active" aria-current="page">04. Document Object Model (DOM) y BOM</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-dark border border-warning-subtle">Módulo 4: JavaScript</span>
+                <span class="badge bg-warning text-white">Tema 4: El DOM</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-2 text-dark">04. Document Object Model (DOM) y BOM</h1>
+            <p class="lead text-secondary mb-4">Tema 4: Jerarquía del navegador, temporizadores, árbol de nodos y manipulación dinámica</p>
+
+            <div class="card bg-body-tertiary border-0 p-3 mb-4 rounded-3">
+                <span class="small fw-bold text-uppercase text-secondary mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-compass text-warning"></i> En esta lección:
+                </span>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#bom-dom" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 1. BOM vs DOM</a>
+                <a href="#bom-elementos" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 2. Elementos del BOM (window)</a>
+                <a href="#arbol-dom" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 3. El Árbol del DOM</a>
+                <a href="#selectores" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 4. Selectores (querySelector)</a>
+                <a href="#manipulacion" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 5. Manipulación de Contenidos</a>
+                <a href="#atributos-estilos" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 6. Atributos y Clases CSS</a>
+                <a href="#actividades-t4" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 7. Actividades</a>
+                </div>
+            </div>
+
+            <!-- 1. BOM vs DOM -->
+            <section id="bom-dom" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">1. Introducción: Diferencias entre BOM y DOM</h2>
+                <div class="row g-4 my-2">
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3 border-0 bg-body-tertiary rounded-3 shadow-sm">
+                            <h5 class="fw-bold text-primary"><i class="bi bi-window me-2"></i>BOM (Browser Object Model)</h5>
+                            <p class="small text-secondary mb-0">Representa los objetos proporcionados por el <strong>navegador</strong> independientes del documento web en sí: tamaño de ventana, barras de desplazamiento, historial de navegación, temporizadores e información de geolocalización o pantalla.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 p-3 border-0 bg-body-tertiary rounded-3 shadow-sm">
+                            <h5 class="fw-bold text-success"><i class="bi bi-diagram-3 me-2"></i>DOM (Document Object Model)</h5>
+                            <p class="small text-secondary mb-0">Representa la estructura interna del <strong>documento HTML</strong> como un árbol jerárquico de nodos que JavaScript puede inspeccionar, alterar, añadir o eliminar en tiempo real.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Elementos del BOM -->
+            <section id="bom-elementos" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">2. Elementos Principales del BOM (Objeto window)</h2>
+                <p>El objeto <code>window</code> es el objeto global supremo en el navegador. Todos los identificadores y funciones estándar (como <code>alert</code>, <code>console</code>, o <code>document</code>) cuelgan de él.</p>
+
+                <h4 class="h5 fw-bold text-dark mt-4">Temporizadores e Intervalos</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary">
+                            <h6 class="fw-bold text-primary">setTimeout(funcion, retardoMs)</h6>
+                            <p class="small text-secondary mb-2">Ejecuta la función <strong>una sola vez</strong> tras transcurrir los milisegundos indicados:</p>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let timerId = setTimeout(() =&gt; {
+    console.log("Han pasado 3 segundos");
+}, 3000);
+
+// Para cancelar antes de que se dispare:
+clearTimeout(timerId);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary">
+                            <h6 class="fw-bold text-success">setInterval(funcion, intervaloMs)</h6>
+                            <p class="small text-secondary mb-2">Ejecuta la función <strong>de forma periódica y repetitiva</strong> cada N milisegundos:</p>
+                            <div class="bg-dark text-light p-2 rounded small">
+                                <pre class="mb-0 text-light"><code>let relojId = setInterval(() =&gt; {
+    console.log(new Date().toLocaleTimeString());
+}, 1000);
+
+// Para detener el bucle:
+clearInterval(relojId);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Árbol del DOM -->
+            <section id="arbol-dom" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">3. El Árbol del Documento (DOM)</h2>
+                <p>Cuando el navegador procesa un archivo HTML, crea en memoria un árbol de objetos donde cada etiqueta, texto y atributo se convierte en un <strong>nodo</strong>:</p>
+
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item bg-transparent ps-0"><strong>Nodo Documento:</strong> La raíz del árbol accesible como <code>document</code>.</li>
+                    <li class="list-group-item bg-transparent ps-0"><strong>Nodos Elemento:</strong> Cada una de las etiquetas HTML (<code>&lt;html&gt;</code>, <code>&lt;body&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>).</li>
+                    <li class="list-group-item bg-transparent ps-0"><strong>Nodos Texto:</strong> El contenido alfanumérico contenido dentro de una etiqueta.</li>
+                    <li class="list-group-item bg-transparent ps-0"><strong>Nodos Atributo:</strong> Las propiedades de las etiquetas (ej. <code>id</code>, <code>class</code>, <code>src</code>).</li>
+                </ul>
+            </section>
+
+            <!-- 4. Selectores -->
+            <section id="selectores" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">4. Selección de Nodos: querySelector y querySelectorAll</h2>
+                <p>Los métodos estándar y recomendados por W3C permiten localizar elementos del DOM reutilizando exactamente los <strong>mismos selectores de CSS</strong>:</p>
+
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped align-middle border">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Método de Selección</th>
+                                <th>Devuelve</th>
+                                <th>Ejemplo de Uso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>document.querySelector(selector)</code></td>
+                                <td>El <strong>primer elemento</strong> coincidente o <code>null</code>.</td>
+                                <td><code>document.querySelector("#btnEnviar");</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>document.querySelectorAll(selector)</code></td>
+                                <td>Una <strong>NodeList estática</strong> con todas las coincidencias.</td>
+                                <td><code>document.querySelectorAll(".card p.lead");</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>document.getElementById(id)</code></td>
+                                <td>El elemento con ese identificador exacto (método clásico rápido).</td>
+                                <td><code>document.getElementById("menuPrincipal");</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 5. Manipulación -->
+            <section id="manipulacion" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">5. Manipulación Dinámica: Crear, Modificar y Borrar</h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="card p-3 border-0 bg-body-tertiary rounded-3 shadow-sm h-100">
+                            <h5 class="fw-bold text-primary">Crear e Insertar Elementos</h5>
+                            <div class="bg-dark text-light p-3 rounded-3 small">
+                                <pre class="mb-0 text-light"><code>// 1. Crear el nuevo elemento
+const nuevoParrafo = document.createElement("p");
+
+// 2. Asignar contenido textual seguro
+nuevoParrafo.textContent = "Texto generado dinámicamente";
+
+// 3. Insertar en el contenedor padre
+const contenedor = document.querySelector("#seccion");
+contenedor.appendChild(nuevoParrafo);</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card p-3 border-0 bg-body-tertiary rounded-3 shadow-sm h-100">
+                            <h5 class="fw-bold text-danger">Modificar y Eliminar Elementos</h5>
+                            <div class="bg-dark text-light p-3 rounded-3 small">
+                                <pre class="mb-0 text-light"><code>// Modificar texto seguro
+elemento.textContent = "Nuevo contenido";
+
+// Modificar HTML interno (usar con precaución por XSS)
+elemento.innerHTML = "&lt;strong&gt;Resaltado&lt;/strong&gt;";
+
+// Eliminar el elemento del árbol
+elemento.remove();</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Atributos y clases -->
+            <section id="atributos-estilos" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">6. Manipulación de Atributos y Clases CSS</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark">Gestión de Clases con classList</h5>
+                        <div class="bg-dark text-light p-3 rounded-3 small">
+                            <pre class="mb-0 text-light"><code>// Añadir clase
+el.classList.add("activo", "shadow");
+
+// Quitar clase
+el.classList.remove("oculto");
+
+// Alternar (toggle: pone si falta, quita si está)
+el.classList.toggle("dark-mode");
+
+// Comprobar si existe
+if (el.classList.contains("activo")) { ... }</code></pre>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="fw-bold text-dark">Atributos HTML y dataset</h5>
+                        <div class="bg-dark text-light p-3 rounded-3 small">
+                            <pre class="mb-0 text-light"><code>// Atributos generales
+img.setAttribute("src", "foto.jpg");
+let src = img.getAttribute("src");
+img.removeAttribute("alt");
+
+// Atributos de datos (data-*)
+// HTML: &lt;div data-id="42" data-user="ana"&gt;
+console.log(div.dataset.id);   // "42"
+console.log(div.dataset.user); // "ana"</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. Actividades -->
+            <section id="actividades-t4">
+                <div class="card border-primary p-4 rounded-3 shadow-sm bg-primary-subtle">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                        <div>
+                            <span class="badge bg-primary text-white mb-2">Boletín Práctico</span>
+                            <h4 class="fw-bold text-dark mb-1">Ejercicios Prácticos del Tema 4</h4>
+                            <p class="small text-secondary mb-0">Explora el DOM, crea elementos dinámicamente y manipula tablas y listas resolviendo los ejercicios 4.1 al 4.6.</p>
+                        </div>
+                        <a href="07_ejercicios.html#ej_4_1" class="btn btn-primary btn-sm px-4 shadow-sm text-nowrap">
+                            <i class="bi bi-collection-play me-1"></i> Ver Ejercicios del Tema 4
+                        </a>
+                    </div>
+                </div>
+            </section>
+    
+        </article>
+
+
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="03_arrays.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 03. Arrays y Objetos</span>
+            </a>
+            <a href="05_eventos.html" class="btn btn-primary shadow-sm btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 05. Gestión de Eventos</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

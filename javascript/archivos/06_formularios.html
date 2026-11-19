@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06. Validación de Formularios | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 6: Acceso a controles, expresiones regulares, Constraint Validation API y feedback">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .table {
+            margin-bottom: 1.5rem;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-warning);
+            color: #000;
+            border-color: var(--bs-warning);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+<a href="01_introduccion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+<a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+<a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+<a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+<a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+<a href="06_formularios.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+<a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+<a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">JavaScript</a></li>
+                <li class="breadcrumb-item active" aria-current="page">06. Validación de Formularios</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-warning-subtle text-dark border border-warning-subtle">Módulo 4: JavaScript</span>
+                <span class="badge bg-warning text-white">Tema 6: Formularios</span>
+            </div>
+
+            <h1 class="display-6 fw-bold mb-2 text-dark">06. Validación de Formularios</h1>
+            <p class="lead text-secondary mb-4">Tema 6: Acceso a controles, expresiones regulares, Constraint Validation API y feedback</p>
+
+            <div class="card bg-body-tertiary border-0 p-3 mb-4 rounded-3">
+                <span class="small fw-bold text-uppercase text-secondary mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-compass text-warning"></i> En esta lección:
+                </span>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="#proposito" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 1. Propósito de la Validación</a>
+                <a href="#acceso-forms" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 2. Acceso a Formularios</a>
+                <a href="#comprobacion" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 3. Comprobación de Valores</a>
+                <a href="#regex" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 4. Expresiones Regulares (RegEx)</a>
+                <a href="#html5-api" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 5. HTML5 y Constraint Validation</a>
+                <a href="#ux-bootstrap" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 6. Feedback y Bootstrap 5</a>
+                <a href="#actividades-t6" class="badge bg-body-secondary text-body text-decoration-none border py-2 px-3 fw-normal"><i class="bi bi-hash text-warning"></i> 7. Actividades</a>
+                </div>
+            </div>
+
+            <!-- 1. Propósito -->
+            <section id="proposito" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">1. Propósito y Límites de la Validación en Cliente</h2>
+                <p>La validación de formularios en el navegador del usuario tiene como objetivo proporcionar una <strong>experiencia de usuario (UX) ágil e instantánea</strong>, informando de errores ortográficos, formatos incorrectos o campos vacíos antes de enviar la petición a la red.</p>
+
+                <div class="alert alert-danger d-flex align-items-center gap-3">
+                    <i class="bi bi-shield-exclamation fs-3 flex-shrink-0"></i>
+                    <div>
+                        <strong>Regla de oro de seguridad web:</strong> La validación en cliente (JavaScript) <strong>NUNCA sustituye a la validación en el servidor (backend)</strong>. Cualquier usuario puede desactivar JavaScript, manipular el código en DevTools o enviar peticiones HTTP directas vía cURL/Postman. La seguridad real se implementa siempre en el servidor.
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Acceso a formularios -->
+            <section id="acceso-forms" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">2. Acceso a Formularios y Controles</h2>
+                <p>Podemos acceder a los formularios a través de <code>document.querySelector()</code> o mediante la colección clásica <code>document.forms</code>:</p>
+
+                <div class="bg-dark text-light p-3 rounded-3 my-3">
+                    <pre class="mb-0 text-light"><code>const miForm = document.querySelector("#registroForm");
+
+// Acceso a controles individuales mediante su atributo 'name' o 'id'
+const inputNombre = miForm.elements["nombre"];
+const inputEmail = miForm.elements["email"];
+const selectPais = miForm.elements["pais"];
+const checkTerminos = miForm.elements["terminos"];</code></pre>
+                </div>
+            </section>
+
+            <!-- 3. Comprobación de valores -->
+            <section id="comprobacion" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">3. Consulta y Comprobación de Valores</h2>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary h-100">
+                            <h6 class="fw-bold text-primary">Campos de Texto y Selects</h6>
+                            <p class="small text-secondary mb-2">Se consulta la propiedad <code>.value</code> (conviene aplicar <code>.trim()</code> para ignorar espacios en blanco vacíos):</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>if (inputNombre.value.trim() === "") {
+    alert("El nombre es obligatorio");
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary h-100">
+                            <h6 class="fw-bold text-success">Checkboxes y Radio Buttons</h6>
+                            <p class="small text-secondary mb-2">Se comprueba la propiedad booleana <code>.checked</code>:</p>
+                            <div class="bg-dark text-light p-2 rounded small mt-auto">
+                                <pre class="mb-0 text-light"><code>if (!checkTerminos.checked) {
+    alert("Debe aceptar las condiciones");
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. RegEx -->
+            <section id="regex" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">4. Expresiones Regulares (RegEx) para Validación de Patrones</h2>
+                <p>Una <strong>expresión regular</strong> es un patrón de búsqueda textual extremadamente potente. En JavaScript se define entre barras <code>/patrón/</code> y se valida con <code>regex.test(cadena)</code>:</p>
+
+                <div class="table-responsive my-3">
+                    <table class="table table-hover table-striped align-middle border">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Tipo de Dato</th>
+                                <th>Patrón RegEx Recomendado</th>
+                                <th>Explicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Teléfono español</strong></td>
+                                <td><code>/^[6789]\d{8}$/</code></td>
+                                <td>Empieza por 6, 7, 8 o 9 seguido de exactamente 8 dígitos numéricos.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Código Postal</strong></td>
+                                <td><code>/^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/</code></td>
+                                <td>Exactamente 5 dígitos entre 01000 y 52999.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Correo Electrónico</strong></td>
+                                <td><code>/^[^\s@]+@[^\s@]+\.[^\s@]+$/</code></td>
+                                <td>Estructura básica <em>usuario@dominio.extensión</em> sin espacios.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>DNI / NIE</strong></td>
+                                <td><code>/^[0-9XYZ]\d{7}[A-Z]$/i</code></td>
+                                <td>8 dígitos (o letra inicial NIE) y letra de control final.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-dark text-light p-3 rounded-3 my-2 small">
+                    <pre class="mb-0 text-light"><code>const regexTel = /^[6789]\d{8}$/;
+if (!regexTel.test(inputTel.value)) {
+    console.error("Teléfono no válido");
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- 5. HTML5 y Constraint Validation -->
+            <section id="html5-api" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">5. Validación HTML5 y Constraint Validation API</h2>
+                <p>HTML5 incorpora validación declarativa nativa mediante atributos en las etiquetas: <code>required</code>, <code>type="email"</code>, <code>minlength</code>, <code>maxlength</code>, <code>min</code>, <code>max</code>, y <code>pattern="..."</code>.</p>
+
+                <p>A través de JavaScript, la <strong>Constraint Validation API</strong> permite interactuar con esta validación del navegador:</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary">
+                            <h6 class="fw-bold text-primary">elemento.checkValidity()</h6>
+                            <p class="small text-secondary">Devuelve <code>true</code> si el campo satisface todas sus restricciones HTML5, o <code>false</code> si infringe alguna.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-3 border rounded bg-body-tertiary">
+                            <h6 class="fw-bold text-warning">elemento.setCustomValidity("mensaje")</h6>
+                            <p class="small text-secondary">Establece un mensaje de error personalizado. Si se pasa una cadena no vacía, el campo se considera inválido.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Feedback Bootstrap -->
+            <section id="ux-bootstrap" class="mb-5">
+                <h2 class="h3 fw-bold text-primary-emphasis border-bottom pb-2 mb-3">6. Ergonomía de Validación y Clases de Bootstrap 5</h2>
+                <p>Para desactivar las burbujas nativas del navegador y utilizar el diseño profesional de Bootstrap 5, añadimos el atributo <code>novalidate</code> al formulario y gestionamos las clases <code>.is-valid</code> y <code>.is-invalid</code>:</p>
+
+                <div class="bg-dark text-light p-3 rounded-3 my-3">
+                    <pre class="mb-0 text-light"><code>const form = document.querySelector("#formContacto");
+
+form.addEventListener("submit", function(event) {
+    if (!form.checkValidity()) {
+        event.preventDefault(); // Impide el envío si hay errores
+        event.stopPropagation();
+    }
+    form.classList.add("was-validated"); // Activa estilos de Bootstrap
+}, false);</code></pre>
+                </div>
+            </section>
+
+            <!-- 7. Actividades -->
+            <section id="actividades-t6">
+                <div class="card border-primary p-4 rounded-3 shadow-sm bg-primary-subtle">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3">
+                        <div>
+                            <span class="badge bg-primary text-white mb-2">Boletín Práctico</span>
+                            <h4 class="fw-bold text-dark mb-1">Ejercicios Prácticos del Tema 6</h4>
+                            <p class="small text-secondary mb-0">Construye y valida formularios con regex, mensajes personalizados y estilos de Bootstrap en los ejercicios 6.1 al 6.3.</p>
+                        </div>
+                        <a href="07_ejercicios.html#ej_6_1" class="btn btn-primary btn-sm px-4 shadow-sm text-nowrap">
+                            <i class="bi bi-collection-play me-1"></i> Ver Ejercicios del Tema 6
+                        </a>
+                    </div>
+                </div>
+            </section>
+    
+        </article>
+
+
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="05_eventos.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 05. Gestión de Eventos</span>
+            </a>
+            <a href="07_ejercicios.html" class="btn btn-primary shadow-sm btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 07. Ejercicios Prácticos</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
