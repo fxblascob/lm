@@ -1,118 +1,280 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Introducción a HTML
-        </title>
-		<link rel="stylesheet" type="text/css" href="./../estilos.css">
-        <meta charset="UTF-8">	
-		 <script src="../codigos.js"></script>	
-    </head>
-    <body ondblclick="ocultarMenu()">
-			<div id="contenedor_general">
-					<div id="contenedor_cabecera">
-						<img src="./imagenes/logo.jpg" width="147" height="92"> 
-						
-						<h1>00 Introducción a HTML</h1>
-					</div>
-					<iframe id="if" src="./menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
-					<div id="contenedor_cuerpo">
-						<h1>Introducción histórica </h1>
-						<p>A finales de los 80 se desarrolló el lenguaje de marcas SGML. En esa misma época Tim Bernes Lee utilizó SGML para definir un nuevo lenguaje de etiquetas que llamó Hypertext Markup Language (HTML, lenguaje de marcado de hipertexto) para crear documentos transportables a través de Internet en los que fuera posible el hipertexto.</p>
-						<p>Hoy en día casi todo en Internet se ve a través de documentos HTML, que popularmente se denominan páginas web. Lógicamente desde 1989 hasta nuestros días HTML ha incorporado muchas mejoras (como la ejecución de código -Javascript-, las <a href="../css/index.html">hojas de estilo (CSS)</a>,
-							la incorpoación de elementos multimedia (imágenes, audios, vídeos) y otras muchas más.</p>
-						<p>En la actualidad HTML sigue siendo el lenguaje fundamental de las páginas web; pero ahora Internet es la web, es decir todo en Internet se ve a través de una página web. Por eso hoy en día HTML es la capa superficial bajo la que se agolpan tecnologías muy diversas y muy distintas de HTML.</p>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00 Introducción a HTML | LMSGI</title>
+    <meta name="description" content="Introducción histórica a HTML, versiones y estándares de la W3C, sintaxis de etiquetas y atributos.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-						<h1>Normalización. Versiones de HTML</h1>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body>
 
-						<p>Los programas capaces de traducir el código HTML y producir una salida en pantalla de los mismos son los navegadores (browsers en inglés). Actualmente, existe una gran variedad de navegadores para las diferentes plataformas: Firefox (Mozilla), Chrome, Edge/Explorer, Opera, Safari, etc.</p>
-						<p>Entre todos estos navegadores se ha establecido una competición. Probablemente muchos de vosotros os habéis encontrado con el problema de una página web que sólo se visualiza bien con un navegador concreto. El problema surgió en cuanto unos navegadores incorporaron elementos HTML que el resto no traducía, con lo que aparecieron diferentes dialectos HTML. Así una página se podía mostrar de forma totalmente diferente según el navegador.</p>
-						<p>La solución pasó por intentar estandarizar el lenguaje. Por ello el propio Tim Bernes Lee fundó la World Wide Web Consortium (abreviado W3C) como organismo de estandarización del lenguaje HTML ante la industria.</p>
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
 
-						<p>En la actualidad las directrices de W3C son seguidas por la mayoría de navegadores aunque no al 100%, lo que sigue generando problemas a los creadores de páginas web.</p>
-						<p>La situación, sin embargo se ha complicado en estos últimos años con la aparición de diferentes estándares, en concreto actualmente se consideran estándares a HTML 4.01 (en desuso), <a href="./archivos/13_xhtml_html5.html">XHTML 1.0 y 1.1 y HTML 5</a>.
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../index.html">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
 
-						<h1>Introducción a HTML</h1>
-						<p>Cuando visitamos una página web vemos textos, imágenes, colores de fondo, en algunos casos elementos que se desplazan por la pantalla, en fin, todo el conjunto de elementos que hacen de dicha página un espacio multimedia e interactivo. Aunque podríamos pensar que todos esos elementos están incluidos en la página, no es así. Realmente, el único de todos ellos que pertenece a la propia página es el <b>texto</b>. Y, entonces, ¿por qué se ve lo que aparece en la página? La respuesta es que una página web no es más que un <b>documento de texto</b> acompañado de una colección de <b>etiquetas</b> que sirven para que el navegador:</p>
-						<ul>
-							<li>interprete de qué forma tiene que presentar el texto.</li>
-							<li>sepa de dónde tiene que obtener las imágenes y sonidos y cómo mostrarlos.</li>
-							<li>distribuya todos los contenidos de una forma determinada dentro de la pantalla.</li>
-						</ul>
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-primary fw-medium" href="./index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../php/index.html">PHP</a>
+            </nav>
 
-						<p>El lenguaje que contiene dichas etiquetas se denomina <b>HTML</b>. Las siglas HTML se corresponden con la definición "Lenguaje para marcado de hipertexto" (<i>Hyper-text Markup Language</i>). Este lenguaje se utiliza para estructurar documentos de texto que puedan ser interpretados por navegadores y distribuidos a través de Internet.</p>
-						
-						<p>Los documentos escritos en HTML están formados por <b>texto plano</b>. De esta manera, un documento HTML puede ser visualizado con un editor de textos convencional. Nosotros utilizaremos el editor <b>Visual Studio Code</b>.</p>
-						
-						<h2>Formato de las etiquetas HTML</h2>            
-						
-						<p>Las etiquetas HTML se escriben encerradas entre ángulos (&lt; y &gt;). Normalmente se utilizan dos etiquetas: una de <b>inicio</b> y otra de <b>fin</b>. La única diferencia entre ambas es que la de cierre lleva una barra inclinada (/) antes del código. De esta manera, el texto que aparezca entre ambas etiquetas presentará el efecto que dichas etiquetas indiquen. Existe una etiqueta para cada tipo de efecto. Algunos ejemplos de efectos son los siguientes:</p>
-						
-						<div class="codigo">
-							<b>&lt;b&gt;</b>Este texto aparecerá en negrita en la pantalla.<b>&lt;/b&gt;</b><br>
-							<b>&lt;i&gt;</b>Este texto aparecerá en cursiva en la pantalla.<b>&lt;/i&gt;</b><br>
-							<b>&lt;font family=&quot;Arial&quot;&gt;</b>Este texto aparecerá en con letra Arial en la pantalla.<b>&lt;/font&gt;</b>
+            <!-- Botón Rápido de Retorno -->
+            <a href="../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
 
-						</div>
-						
-						
-						<p>En los siguientes apartados iremos estudiando las distintas etiquetas. Se incluye un resumen de las más importantes en el enlace <a href="./archivos/14_guia_html.pdf" target="blank">Guía de referencia rápida de HTML</a>.</p>
-						<h2>Etiquetas dentro de etiquetas</h2>
-						
-						<p>Se pueden abrir etiquetas dentro de otras etiquetas. Sin embargo, hay que tener en cuenta que se deben cerrar en orden inverso al orden de apertura. Para facilitar esta tarea, se suelen dejar sangrías cada vez que se inicia una nueva apertura. Por ejemplo:</p>
-						
-						<div class="codigo">
-            <pre>
-            <b>&lt;etiqueta1&gt;</b>
-            Este nivel está afectado por la etiqueta 1
-            <b>&lt;etiqueta2&gt;</b>
-                Este nivel está afectado por la etiqueta 1 y 2
-                <b>&lt;etiqueta3&gt;</b>
-                Este nivel está afectado por la etiqueta 1, 2 y 3
-                <b>&lt;/etiqueta3&gt;</b>
-                Este nivel está afectado por la etiqueta 1 y 2
-            <b>&lt;/etiqueta2&gt;</b>
-            Este nivel está afectado por la etiqueta 1
-            <b>&lt;/etiqueta1&gt;</b>
-            </pre>
-						</div>
-			
-						<div class="codigo">
-            <pre>
-            texto normal
-            <b>&lt;b&gt;
-            Texto en negrita
-            <i>&lt;i&gt;
-                Texto en negrita y cursiva
-                &lt;small&gt; <small>
-                Este texto aparecerá en negrita, cursiva y tamaño pequeño.</small>
-                &lt;/small&gt;
-                Texto en negrita y cursiva
-            &lt;/i&gt;</i>
-            Texto en negrita
-            &lt;/b&gt;
-            </b>
-            </pre>
-						</div>
+    <!-- 2. Menú Lateral Offcanvas con todas las lecciones de HTML -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="./index.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check-circle-fill"></i> 00. Introducción a HTML
+                </a>
+                <a href="./archivos/01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
+                <a href="./archivos/02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
+                <a href="./archivos/03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
+                <a href="./archivos/04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
+                <a href="./archivos/05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
+                <a href="./archivos/06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
+                <a href="./archivos/07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
+                <a href="./archivos/08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
+                <a href="./archivos/09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
+                <a href="./archivos/10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
+                <a href="./archivos/11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
+                <a href="./archivos/12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
+                <a href="./archivos/13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
+                <a href="./archivos/14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
+                <a href="./archivos/16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
+                <a href="./archivos/17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
+                <a href="./archivos/18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            </div>
 
-			
-						<h2>Atributos de las etiquetas</h2>
-						
-						<p>La mayoría de las etiquetas admiten atributos. Los atributos ofrecen distintos efectos para las etiquetas sobre las que se aplican. El formato general de las etiquetas con atributos es el siguiente:</p>
-						
-						<div class="codigo">
-            <pre>
-            &lt;etiqueta1 <b>atributo1</b>=<b>&quot;</b>valor1<b>&quot;</b> <b>atributo2</b>=<b>&quot;</b>valor2<b>&quot;</b>&gt;
-            Texto afectado por la etiqueta1
-            &lt;/etiqueta1&gt;
-            </pre>
-					</div>
-						<p>Cada etiqueta tiene sus propios atributos disponibles, que se pueden consultar en la <a href="./archivos/14_guia_html.pdf" target="blank">Guía de referencia rápida de HTML</a>. Los <b>valores</b> de los atributos pueden tomar unos valores determinados (numéricos, texto, valores hexadecimales,...), pero <b>siempre irán entre comillas</b>.</p>
-					</div>
-				<!-- Fin del cuerpo de la página-->
-					<div id="contenedor_pie">
-						<p>Manual de HTML - CSS - CSS</p>
-					</div>
-			</div>
-    </body>
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">HTML</li>
+                <li class="breadcrumb-item active" aria-current="page">00. Introducción a HTML</li>
+            </ol>
+        </nav>
+
+        <!-- Cabecera del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary text-white">Módulo 1</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">W3C</span>
+                    </div>
+                    <h2 class="fw-bold mb-1">00. Introducción a HTML</h2>
+                    <p class="text-secondary mb-0 small">
+                        Aparición histórica de HTML, normalización de navegadores ante el consorcio W3C, sintaxis de marcado, anidamiento de etiquetas y atributos.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="./archivos/14_guia_html.pdf" target="_blank" class="btn btn-sm btn-outline-danger d-flex align-items-center gap-1 shadow-sm">
+                        <i class="bi bi-file-earmark-pdf"></i> Guía rápida (PDF)
+                    </a>
+                    <a href="./archivos/16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+                        <i class="bi bi-pencil-square"></i> Ejercicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Didáctico -->
+        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
+            
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">Introducción histórica</h3>
+                <p>
+                    A finales de los años 80 se desarrolló el lenguaje de marcas SGML. En esa misma época, <strong>Tim Berners-Lee</strong> utilizó SGML para definir un nuevo lenguaje de etiquetas que denominó <strong>Hypertext Markup Language (HTML)</strong>, con el objetivo de crear documentos transportables a través de Internet que permitieran el hipertexto.
+                </p>
+                <p>
+                    Hoy en día la mayor parte de la información en Internet se transmite a través de documentos HTML. Lógicamente, desde 1989 hasta nuestros días HTML ha incorporado mejoras fundamentales como la ejecución de código en cliente (<a href="../javascript/index.html">JavaScript</a>), hojas de estilo en cascada (<a href="../css/index.html">CSS</a>), y elementos multimedia nativos (audio, vídeo y gráficos vectoriales).
+                </p>
+                <p class="mb-0">
+                    En la actualidad, HTML sigue siendo la capa estructural esencial sobre la que se organizan las tecnologías de la plataforma web.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">Normalización. Versiones de HTML</h3>
+                <p>
+                    Los programas capaces de interpretar el código HTML y renderizarlo en pantalla son los <strong>navegadores</strong> (browsers): Firefox, Chrome, Edge, Safari, Opera, etc.
+                </p>
+                <div class="alert alert-info d-flex align-items-start gap-3 rounded-3 shadow-sm mb-3" role="alert">
+                    <i class="bi bi-info-circle-fill fs-4 text-info mt-1"></i>
+                    <div>
+                        <strong>El papel del consorcio W3C:</strong> Para evitar que cada navegador utilizara dialectos incompatibles, Tim Berners-Lee fundó el <strong>World Wide Web Consortium (W3C)</strong> con el fin de fijar estándares abiertos en la industria.
+                    </div>
+                </div>
+                <p class="mb-0">
+                    Tras versiones históricas como HTML 4.01 y la etapa de XHTML 1.0, el estándar consolidado en la industria moderna es <strong>HTML5</strong>, complementado con las especificaciones del grupo WHATWG.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">¿Qué es un documento HTML?</h3>
+                <p>
+                    Una página web es fundamentalmente un <strong>documento de texto plano</strong> acompañado de una colección de <strong>etiquetas</strong> (tags) que indican al navegador:
+                </p>
+                <ul class="mb-4">
+                    <li>Cómo estructurar y jerarquizar los bloques de texto (títulos, párrafos, listas).</li>
+                    <li>De dónde obtener los recursos externos (imágenes, sonidos, vídeos) y cómo mostrarlos.</li>
+                    <li>Cómo organizar los enlaces e hipervínculos que conectan unas páginas con otras.</li>
+                </ul>
+                <p>
+                    Para crear documentos HTML no se requieren herramientas complejas; basta un editor de texto plano con soporte de código. En el módulo utilizaremos principalmente <strong>Visual Studio Code</strong>.
+                </p>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">Formato de las etiquetas HTML</h3>
+                <p>
+                    Las etiquetas se delimitan con los signos menor y mayor (<code>&lt;</code> y <code>&gt;</code>). Generalmente van por parejas: una de <strong>apertura</strong> (<code>&lt;etiqueta&gt;</code>) y otra de <strong>cierre</strong> con barra inclinada (<code>&lt;/etiqueta&gt;</code>).
+                </p>
+
+                <div class="card bg-body-tertiary border-0 rounded-3 p-3 mb-4 shadow-sm">
+                    <h6 class="fw-bold text-secondary mb-2 small text-uppercase">Ejemplo de etiquetas básicas de texto</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 mb-0 overflow-auto"><code>&lt;b&gt;Este texto aparecerá en negrita.&lt;/b&gt;
+&lt;i&gt;Este texto aparecerá en cursiva.&lt;/i&gt;
+&lt;strong&gt;Texto con énfasis semántico importante.&lt;/strong&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">Anidamiento de etiquetas</h3>
+                <p>
+                    Es posible abrir etiquetas dentro de otras, siempre asegurando que <strong>se cierren en orden inverso al de apertura</strong> (estructura LIFO / árbol de elementos):
+                </p>
+
+                <div class="card bg-body-tertiary border-0 rounded-3 p-3 mb-4 shadow-sm">
+                    <h6 class="fw-bold text-secondary mb-2 small text-uppercase">Ejemplo de anidamiento correcto</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 mb-0 overflow-auto"><code>&lt;p&gt;
+    Texto normal 
+    &lt;b&gt;en negrita y &lt;i&gt;también en cursiva&lt;/i&gt;&lt;/b&gt;.
+&lt;/p&gt;</code></pre>
+                </div>
+            </section>
+
+            <section class="mb-0">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3">Atributos de las etiquetas</h3>
+                <p>
+                    Los atributos aportan propiedades, configuración o metadatos adicionales a una etiqueta. Se declaran siempre dentro de la etiqueta de apertura con la sintaxis <code>nombre="valor"</code>:
+                </p>
+
+                <div class="card bg-body-tertiary border-0 rounded-3 p-3 mb-3 shadow-sm">
+                    <h6 class="fw-bold text-secondary mb-2 small text-uppercase">Sintaxis general de atributos</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 mb-0 overflow-auto"><code>&lt;etiqueta atributo1="valor1" atributo2="valor2"&gt;
+    Contenido del elemento
+&lt;/etiqueta&gt;</code></pre>
+                </div>
+                <p class="small text-muted mb-0">
+                    Recuerda que los valores de los atributos deben delimitarse siempre entre comillas.
+                </p>
+            </section>
+
+        </article>
+
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="../index.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-house-door"></i>
+                <span>Menú Principal</span>
+            </a>
+            <a href="./archivos/01_organizacion.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 01. Organización de un sitio web</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>
