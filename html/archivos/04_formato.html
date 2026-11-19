@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>04. Formato del texto | HTML | LMSGI</title>
-    <meta name="description" content="Estilos tipográficos en HTML: negrita, cursiva, subrayado, texto tachado, subíndices, superíndices y preformateado.">
+    <title>04. Formato del texto y semántica en línea | HTML | LMSGI</title>
+    <meta name="description" content="Semántica de elementos en línea en HTML5: strong vs b, em vs i, mark, del, ins, small, sub, sup, code, kbd, y etiquetas obsoletas como font.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
     </style>
 </head>
 <body>
@@ -70,37 +69,72 @@
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
         <div class="offcanvas-header border-bottom border-secondary">
             <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
-                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
         </div>
         <div class="offcanvas-body p-3">
-            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
-            <div class="list-group list-group-flush mb-4 small">
-                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
-                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
-                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
-                <a href="./03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
-                <a href="./04_formato.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 04. Formato del texto</a>
-                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
-                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
-                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
-                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
-                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
-                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
-                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
-                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
-                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
-                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
-                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
-                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
-                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
-                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de HTML</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-journal-text text-primary"></i> 00. Introducción a HTML
+                </a>
+                <a href="01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-folder2-open text-primary"></i> 01. Organización de un sitio
+                </a>
+                <a href="02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-html text-primary"></i> 02. Etiquetas básicas
+                </a>
+                <a href="03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-text-paragraph text-primary"></i> 03. Estructura del texto
+                </a>
+                <a href="04_formato.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary d-flex align-items-center gap-2 py-2 rounded-2 fw-semibold">
+                    <i class="bi bi-check-circle-fill"></i> 04. Formato del texto
+                </a>
+                <a href="05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-link-45deg text-primary"></i> 05. Hipervínculos
+                </a>
+                <a href="06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-image text-primary"></i> 06. Multimedia y fotos
+                </a>
+                <a href="07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-list-ol text-primary"></i> 07. Listas (ol, ul, dl)
+                </a>
+                <a href="08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-table text-primary"></i> 08. Tablas
+                </a>
+                <a href="09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-window-stack text-primary"></i> 09. Marcos e iframes
+                </a>
+                <a href="10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-layers text-primary"></i> 10. Capas y contenedores
+                </a>
+                <a href="11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-ui-checks text-primary"></i> 11. Formularios
+                </a>
+                <a href="12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-stars text-primary"></i> 12. Elementos extras
+                </a>
+                <a href="13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-patch-check text-primary"></i> 13. XHTML y HTML5
+                </a>
+                <a href="16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-pencil-square"></i> 16. Ejercicios Prácticos
+                </a>
+                <a href="16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-success border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check2-circle"></i> 16. Ejercicios Resueltos
+                </a>
+                <a href="17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-kanban text-primary"></i> 17. Proyecto Integrador
+                </a>
+                <a href="18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-bookmarks text-primary"></i> 18. Bibliografía y Enlaces
+                </a>
             </div>
 
             <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
             <div class="d-flex flex-column gap-1 small">
-                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-primary me-2"></i> Módulo CSS</a>
                 <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
                 <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
                 <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
@@ -126,181 +160,247 @@
             </ol>
         </nav>
 
-        <!-- Cabecera del Tema -->
-        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
-            <div class="row align-items-center gy-3">
-                <div class="col-lg-8">
-                    <div class="d-flex flex-wrap gap-2 mb-2">
-                        <span class="badge bg-primary text-white">Lección 04</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 1: HTML</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Elementos en línea semánticos</span>
+            </div>
+
+            <h1 class="fw-bold mb-3 display-6">04. Formato del Texto y Semántica en Línea</h1>
+            <p class="lead text-secondary mb-4">
+                En el desarrollo web moderno, <strong>HTML aporta significado semántico</strong> mientras que <strong>CSS define la apariencia estética</strong> (fuentes, tamaños y colores). En este tema aprenderás a utilizar las etiquetas de texto en línea de HTML5 según su propósito real.
+            </p>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">1. Negrita e Importancia: <code>&lt;strong&gt;</code> vs <code>&lt;b&gt;</code></h3>
+            <p>
+                Aunque visualmente ambos elementos ponen el texto en negrita por defecto en la mayoría de navegadores, <strong>tienen significados semánticos completamente distintos</strong>:
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-primary">
+                            <i class="bi bi-shield-fill-exclamation fs-5"></i>
+                            <h5 class="fw-bold mb-0">&lt;strong&gt; (Importancia semántica)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Indica que el texto tiene una <strong>importancia seria, urgencia o gravedad</strong>. Los lectores de pantalla para personas con discapacidad visual cambian el tono de voz para remarcar esta advertencia.
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;p&gt;&lt;strong&gt;Atención:&lt;/strong&gt; Guarde su trabajo.&lt;/p&gt;
+                        </div>
                     </div>
-                    <h2 class="fw-bold mb-1">04. Formato del texto</h2>
-                    <p class="text-secondary mb-0 small">
-                        Estilos tipográficos en HTML: negrita, cursiva, subrayado, texto tachado, subíndices, superíndices y preformateado.
-                    </p>
                 </div>
-                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
-                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
-                        <i class="bi bi-journal-text"></i> Índice HTML
-                    </a>
-                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
-                        <i class="bi bi-pencil-square"></i> Ejercicios
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-secondary">
+                            <i class="bi bi-type-bold fs-5"></i>
+                            <h5 class="fw-bold mb-0">&lt;b&gt; (Resalte estilístico)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Llama la atención visual sobre una palabra clave o nombre propio <strong>sin conferirle mayor importancia semántica</strong>. No altera el tono de los lectores de pantalla.
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;p&gt;El nuevo modelo &lt;b&gt;Aero-X&lt;/b&gt; ya está disponible.&lt;/p&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">2. Cursiva y Énfasis: <code>&lt;em&gt;</code> vs <code>&lt;i&gt;</code></h3>
+            <p>
+                De igual manera, la cursiva o itálica tiene dos dimensiones en HTML5:
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-success">
+                            <i class="bi bi-megaphone-fill fs-5"></i>
+                            <h5 class="fw-bold mb-0">&lt;em&gt; (Énfasis entonativo)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Representa un <strong>énfasis vocal que altera el significado</strong> de una oración según la palabra destacada:
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;p&gt;Yo &lt;em&gt;no&lt;/em&gt; dije que vinieras hoy.&lt;/p&gt;
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-secondary">
+                            <i class="bi bi-type-italic fs-5"></i>
+                            <h5 class="fw-bold mb-0">&lt;i&gt; (Voz o tono alternativo)</h5>
+                        </div>
+                        <p class="small text-secondary mb-2">
+                            Aplica cursiva a expresiones en <strong>idiomas extranjeros</strong> (<em>ad hoc</em>, <em>software</em>), términos técnicos, pensamientos de personajes o nombres científicos (<em>Homo sapiens</em>).
+                        </p>
+                        <div class="p-2 bg-white rounded border small font-monospace">
+                            &lt;p&gt;El término &lt;i&gt;online&lt;/i&gt; es de uso común.&lt;/p&gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">3. Resaltado, correcciones y letra pequeña</h3>
+            
+            <div class="table-responsive my-3">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 15%;">Etiqueta</th>
+                            <th style="width: 30%;">Propósito semántico</th>
+                            <th style="width: 25%;">Ejemplo en código</th>
+                            <th>Resultado visual</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;mark&gt;</code></td>
+                            <td>Texto resaltado o destacado por relevancia en el contexto (efecto marcador fluorescente).</td>
+                            <td><code>&lt;mark&gt;aprobado&lt;/mark&gt;</code></td>
+                            <td><mark>aprobado</mark></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;s&gt;</code></td>
+                            <td>Contenido que ya <strong>no es exacto o vigente</strong>, como un precio antiguo rebajado.</td>
+                            <td><code>Antes &lt;s&gt;50€&lt;/s&gt; 29€</code></td>
+                            <td>Antes <s>50€</s> 29€</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;del&gt;</code> y <code>&lt;ins&gt;</code></td>
+                            <td>Edición y revisión de documentos: <code>&lt;del&gt;</code> representa texto eliminado e <code>&lt;ins&gt;</code> texto añadido.</td>
+                            <td><code>&lt;del&gt;Lunes&lt;/del&gt; &lt;ins&gt;Martes&lt;/ins&gt;</code></td>
+                            <td><del class="text-danger">Lunes</del> <ins class="text-success">Martes</ins></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;small&gt;</code></td>
+                            <td>Comentarios secundarios, descargos de responsabilidad legal, licencias y avisos de copyright.</td>
+                            <td><code>&lt;small&gt;Términos legales&lt;/small&gt;</code></td>
+                            <td><small class="text-secondary">Términos legales</small></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;abbr&gt;</code></td>
+                            <td>Abreviaturas y siglas. El atributo <code>title</code> ofrece la descripción completa al pasar el ratón.</td>
+                            <td><code>&lt;abbr title=&quot;Cascading Style Sheets&quot;&gt;CSS&lt;/abbr&gt;</code></td>
+                            <td><abbr title="Cascading Style Sheets">CSS</abbr></td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;sub&gt;</code></td>
+                            <td>Subíndice tipográfico para fórmulas químicas y matemáticas.</td>
+                            <td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td>
+                            <td>H<sub>2</sub>O</td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;sup&gt;</code></td>
+                            <td>Superíndice tipográfico para potencias matemáticas u ordinales.</td>
+                            <td><code>x&lt;sup&gt;2&lt;/sup&gt; + 1&lt;sup&gt;er&lt;/sup&gt;</code></td>
+                            <td>x<sup>2</sup> + 1<sup>er</sup></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">4. Términos técnicos y código: <code>&lt;code&gt;</code>, <code>&lt;kbd&gt;</code> y <code>&lt;samp&gt;</code></h3>
+            <p>
+                HTML5 dispone de etiquetas específicas para documentación de informática y desarrollo:
+            </p>
+            <ul>
+                <li><code>&lt;code&gt;</code>: Fragmento de código fuente o nombre de variable en línea (ej. <code>let contador = 0;</code>).</li>
+                <li><code>&lt;kbd&gt;</code>: Representa una tecla o atajo del teclado que el usuario debe pulsar (ej. <kbd>Ctrl</kbd> + <kbd>C</kbd> para copiar).</li>
+                <li><code>&lt;samp&gt;</code>: Muestra una salida literal o mensaje generado por un programa o terminal (ej. <samp>404 Not Found</samp>).</li>
+            </ul>
+
+            <div class="p-3 bg-body-tertiary rounded-3 border my-3">
+                <p class="mb-0">
+                    Pulsa <kbd>Ctrl</kbd> + <kbd>S</kbd> para guardar la función <code>calcularTotal()</code>. Si hay un error, la consola devolverá <samp>ReferenceError: x is not defined</samp>.
+                </p>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">5. Etiquetas obsoletas del pasado (y su sustitución con CSS)</h3>
+            <p>
+                En las primeras versiones de HTML no existía CSS, por lo que se inventaron etiquetas de presentación puramente visuales. <strong>Hoy en día están 100% obsoletas y prohibidas en HTML5</strong>, ya que violan el principio de separación de capas:
+            </p>
+
+            <div class="table-responsive my-3">
+                <table class="table table-bordered align-middle">
+                    <thead class="table-danger">
+                        <tr>
+                            <th style="width: 25%;">Etiqueta Obsoleta</th>
+                            <th style="width: 35%;">¿Por qué no debe usarse?</th>
+                            <th>Equivalente moderno recomendado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>&lt;font color=&quot;red&quot; size=&quot;5&quot; face=&quot;Arial&quot;&gt;</code></td>
+                            <td>Mezcla estilos visuales de tamaño, fuente y color en el HTML.</td>
+                            <td>
+                                Usar <strong>CSS</strong>: <code>color: red; font-size: 1.5rem; font-family: Arial;</code> o clases utilitarias (ej. <code>text-danger fs-4</code>).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;center&gt;</code></td>
+                            <td>Forzaba el centrado visual de cualquier elemento.</td>
+                            <td>
+                                En texto: CSS <code>text-align: center</code> (o clase <code>text-center</code>). En cajas: <code>margin: auto</code> (o clase <code>mx-auto</code>).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;tt&gt;</code></td>
+                            <td>Intentaba simular un teletipo mecánico de los años 80.</td>
+                            <td>
+                                Usar <code>&lt;code&gt;</code> para código o la clase CSS <code>font-monospace</code>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;big&gt;</code></td>
+                            <td>Incrementaba artificialmente el tamaño de fuente.</td>
+                            <td>
+                                Usar CSS <code>font-size</code> o clases de tamaño tipográfico de Bootstrap (<code>fs-1</code> a <code>fs-6</code>).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>&lt;strike&gt;</code></td>
+                            <td>Tachaba texto sin valor semántico.</td>
+                            <td>
+                                Usar <code>&lt;s&gt;</code> (si ya no aplica) o <code>&lt;del&gt;</code> (si fue eliminado en edición).
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Paleta de colores de referencia -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-4 my-4">
+                <h5 class="fw-bold mb-2">Definición de colores en el desarrollo web</h5>
+                <p class="text-secondary small mb-3">
+                    Aunque la etiqueta <code>&lt;font&gt;</code> ya no se utiliza, la forma en que los navegadores interpretan los colores se mantiene idéntica en CSS: mediante <strong>nombres oficiales en inglés</strong> (ej. <code>red</code>, <code>navy</code>, <code>teal</code>), <strong>códigos hexadecimales</strong> (ej. <code>#FF0000</code> para rojo, <code>#008000</code> para verde) o funciones modernas (<code>rgb()</code>, <code>hsl()</code>).
+                </p>
+                <div class="text-center p-3 bg-white rounded-3 border">
+                    <img src="../imagenes/colores.png" alt="Nombres de colores web oficiales" class="img-fluid" style="max-width: 580px;">
+                </div>
+            </div>
+
+            <!-- Acceso a Ejercicios Prácticos -->
+            <div class="card border-0 bg-warning-subtle text-dark rounded-4 p-4 mt-5">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                    <div>
+                        <span class="badge bg-warning text-dark border mb-1">Práctica recomendada</span>
+                        <h4 class="fw-bold mb-1">Ejercicio 2: Formato y semántica de texto</h4>
+                        <p class="small mb-0 text-secondary">
+                            Aplica las etiquetas semánticas de énfasis (<code>strong</code>, <code>em</code>), resaltado (<code>mark</code>), subíndices, superíndices y abreviaturas.
+                        </p>
+                    </div>
+                    <a href="16_ejercicios.html#ej_02" class="btn btn-dark btn-sm text-nowrap d-flex align-items-center gap-2 shadow-sm">
+                        <span>Ir al Ejercicio 2</span>
+                        <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Contenido Didáctico -->
-        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <p>En este apartado veremos algunas etiquetas que sirven para <b>dar forma al texto</b>: cursiva, negrita, subrayado, tipos de letra, tamaños, etc.</p>
-            <p>No obstante, se debe tener cuidado con estas etiquetas, ya que <b>la mayoría han quedado obsoletas</b>. Esto se debe a que <b>HTML</b> debe utilizarse únicamente para estructurar el texto, <b>no para dar formato ni mejorar la estética de la página</b>: eso es tarea de las <strong><a href="../../css/index.html">hojas de estilo CSS</a></strong> que veremos en el tema siguiente.</p>
-            <p>Así, esta sección se ha dividido en dos partes: en la primera se explican las etiquetas que se siguen utilizando y en la segunda las que han quedado obsoletas. <b>Las etiquetas obsoletas sólo se utilizarán en los ejercicios de esta sección</b>, pero en ninguno más.</p>
-            <p>Señalar que <b>se pueden combinar estas etiquetas</b> para producir varios efectos a la vez: se puede subrayar y poner en negrita, o poner en cursiva y cambiar el tipo de letra, etc. Sólo es necesario cerrar las etiquetas de manera correcta (es decir, inversamente a como se han abierto, tal como se explicó en la sección de <a href="../index.html">Introducción a HTML</a>).</p>
-            <p>Son elementos de línea, por tanto, no hacen salto de línea y se pueden introducir dentro de un párrafo <b>&lt;p&gt;</b> </p>
-            
-			<h3>Texto con formato previo</h3>
-			<p>Sirve para que el navegador visualice el texto tal y como aparece en el contenido de esta etiqueta, respetando tabuladores, espacios y saltos de línea.</p>
-			<p>La única excepción es que introduzcamos en el contenido otros elementos HTML, los cuales se ejecutarán también.
-			<p>Etiqueta final obligatoria</p>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-<b>&lt;pre&gt;</b>
-EJEMPLO
-  de 
-     Texto
-       Preformateado 			
-<b>&lt;/pre&gt;</b>
-</code></pre>
-            <p>Produce el siguiente resultado;</p>
-            <div class="ejemplo">
-<pre>
-EJEMPLO 
-  de 
-     Texto
-       Preformateado 			
-</code></pre>
-			<h2>Etiquetas que se siguen utilizando</h2>
-            <b>&lt;strong&gt;</b> <b>&lt;em&gt;</b> <b>&lt;tt&gt;</b><b>&lt;big&gt;</b><b>&lt;small&gt;</b>
-            <h3>Negrita</h3>
-			
-			<p>Para resaltar un trozo de texto en negrita se utilizan las etiquetas <b>&lt;strong&gt;</b> <b>&lt;/strong&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <strong>&lt;strong&gt;</strong>palabra<strong>&lt;/strong&gt;</strong> está en <strong>&lt;strong&gt;</strong>negrita<strong>&lt;/strong&gt;</strong> dentro del mismo párrafo.<strong>&lt;/p&gt;</strong></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta
-<strong>palabra</strong> está en <strong>negrita</strong>  dentro del mismo párrafo.</code></pre>
-            
-            <p>Esta etiqueta tiene un sinónimo (obsoleto): en lugar de utilizar <b>&lt;strong&gt;</b> y <b>&lt;/strong&gt;</b> se puede utilizar también <b>&lt;b&gt;</b> <b>&lt;/b&gt;</b></p>
-            
-            <h3>Cursiva</h3>
-			
-			<p>Para resaltar un trozo de texto en cursiva se utilizan las etiquetas <b>&lt;em&gt;</b> <b>&lt;/em&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;em&gt;</b>palabra<b>&lt;/em&gt;</b> está en <b>&lt;em&gt;</b>cursiva<b>&lt;/em&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <em>palabra</em> está en <em>cursiva</em>  dentro del mismo párrafo.</code></pre>
-            
-            <p>Esta etiqueta tiene un sinónimo (obsoleto): en lugar de utilizar <b>&lt;em&gt;</b> y <b>&lt;/em&gt;</b> se puede utilizar también <b>&lt;i&gt;</b> <b>&lt;/i&gt;</b></p>
-            
-            <h3>Texto monoespaciado</h3>
-			
-			<p>Para que un trozo de texto se represente con letras monoespaciadas (también llamado <i>teletipo</i>, dado que <b>cada letra ocupa el mismo espacio</b>) se utilizan las etiquetas <b>&lt;tt&gt;</b> <b>&lt;/tt&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;tt&gt;</b>palabra<b>&lt;/tt&gt;</b> está en <b>&lt;tt&gt;</b>modo teletipo<b>&lt;/tt&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <tt>palabra</tt> está en <tt>modo teletipo</tt>  dentro del mismo párrafo.</code></pre>
-            
-            <h3>Tamaño de letra grande</h3>
-			
-			<p>Para resaltar un trozo de texto con un tamaño de letra mayor se utilizan las etiquetas <b>&lt;big&gt;</b> <b>&lt;/big&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;big&gt;</b>palabra<b>&lt;/big&gt;</b> está en <b>&lt;big&gt;</b>tamaño grande<b>&lt;/big&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <big>palabra</big> está en <big>tamaño grande</big>  dentro del mismo párrafo.</code></pre>
-            
-            <h3>Tamaño de letra pequeño</h3>
-			
-			<p>Para resaltar un trozo de texto con un tamaño de letra más pequeño se utilizan las etiquetas <b>&lt;small&gt;</b> <b>&lt;/small&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;small&gt;</b>palabra<b>&lt;/small&gt;</b> está en <b>&lt;small&gt;</b>tamaño pequeño<b>&lt;/small&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <small>palabra</small> está en <small>tamaño pequeño</small>  dentro del mismo párrafo.</code></pre>
-
-		
-            <h2>Etiquetas obsoletas (no deben utilizarse)</h2>
-            
-            <h3>Negrita</h3>
-			
-			<p>Tal y como se ha indicado anteriormente, las etiquetas <b>&lt;b&gt;</b> <b>&lt;/b&gt;</b> se pueden utilizar para resaltar un texto en negrita.</p>
-     
-			<h3>Cursiva</h3>
-            
-			<p>De igual manera, las etiquetas <b>&lt;i&gt;</b> <b>&lt;/i&gt;</b> se pueden utilizar para resaltar un texto en cursiva.</p>
-		
-			<h3>Subrayado</h3>
-			
-			<p>Para resaltar un trozo de texto en subrayado se utilizan las etiquetas <b>&lt;u&gt;</b> <b>&lt;/u&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;u&gt;</b>palabra<b>&lt;/u&gt;</b> está <b>&lt;u&gt;</b>subrayada<b>&lt;/u&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <u>palabra</u> está <u>subrayada</u>  dentro del mismo párrafo.</code></pre>
-            			<h3>Tachado</h3>
-			
-			<p>Para tachar un trozo de texto con una línea a media altura se utilizan las etiquetas <b>&lt;s&gt;</b> <b>&lt;/s&gt;</b> y <b>&lt;strike&gt;</b> <b>&lt;/strike&gt;</b>.  Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte de un párrafo. Y esta <b>&lt;s&gt;</b>palabra<b>&lt;/s&gt;</b> está <b>&lt;strike&gt;</b>tachada<b>&lt;/strike&gt;</b> dentro del mismo párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto forma parte de un párrafo. Y esta <s>palabra</s> está <strike>tachada</strike>  dentro del mismo párrafo.</code></pre>
-
-            <h3>Cambiar el tipo de letra: la etiqueta &lt;font&gt;</h3>
-			<p> Etiqueta de cierre obligatorio</p>
-			<p> Está desaprobada</p>
-			<p>Para resaltar un trozo de texto cambiando su tipo, color o tamaño de letra se utilizan las etiquetas <b>&lt;font&gt;</b> <b>&lt;/font&gt;</b>. Estas etiquetas pueden (y deben) utilizarse dentro de las etiquetas de párrafo. Para controlar los aspectos del texto que se pretenden cambiar se utilizan los siguientes <b>atributos</b> dentro de la etiqueta:</p>
-			
-			<ul>
-			    <li>Atributo <b>size</b>. Permite cambiar el <b>tamaño</b> de la letra. Puede tomar valores <b>entre 1 y 7</b>.</li>
-			    <li>Atributo <b>face</b>. Permite cambiar la <b>familia o tipo</b> de letra. Los valores que toma se corresponden con un tipo de letra: Arial, Tahoma, etc.</li>
-			    <li>Atributo <b>color</b>. Permite cambiar el <b>color</b> de la letra. Puede tomar <b>valores hexadecimales</b> precedidos por el signo <b>#</b> seguido de tres parejas de dígitos hexadecimales que siguen el esquema <b>RRGGBB</b> (los dos primeros indican el nivel de <b>rojo</b>, los de enmedio el de <b>verde</b> y los de la derecha el de <b>azul</b>) o <b>nombres de colores</b>. En el siguiente enlace puedes consultar más información sobre los colores HTML: <a href="http://es.wikipedia.org/wiki/Colores_HTML">colores HTML en la wikipedia</a>. Y en el siguiente enlace tienes un editor de colores que proporciona su valor hexadecimal: <a href="http://html-color-codes.info/codigos-de-colores-hexadecimales/#Colores_hexadecimales_avanzados">Editor de colores</a>. En la imagen que se muestra a continuación aparecen los colores que se pueden utilizar con su nombre:</li>
-			</ul>
-			
-			<div class="text-center p-3 my-4 bg-body-tertiary rounded-4 border">
-			    <img src="../imagenes/colores.png" alt="Colores"></code></pre>
-			
-			<p></p>
-			
-			<p>Se puede utilizar <b>uno, dos o tres atributos a la vez</b> dentro de la misma etiqueta <b>&lt;font&gt;</b>. Hay que recordar que <b>el valor de los atributos se pone siempre entre comillas</b>. Por ejemplo, el código siguiente:</p>
-
-			
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b><b>&lt;font color=&quot;green&quot; face=&quot;Arial&quot;&gt;</b>Esta frase está en color verde y letra Arial.<b>&lt;/font&gt;</b> <b>&lt;font color=&quot;#FF0000&quot; size=&quot;6&quot;&gt;</b>Esta frase está en color rojo y tiene tamaño 6.<b>&lt;/font&gt;</b> <b>&lt;font face=&quot;Times&quot;&gt;</b>Y esta frase está en letra Times.<b>&lt;/font&gt;</b><b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-<font color="green" face="Arial">Esta frase está en color verde y letra Arial.</font> <font color="#FF0000" size="6">Esta frase está en color rojo y tiene tamaño 6.</font> <font face="Times">Y esta frase está en letra Times.</font></code></pre>
-            <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_02">Ejercicio 2:</a></h2>
-            </div>
         </article>
 
         <!-- Navegación entre Temas -->
