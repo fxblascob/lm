@@ -1,23 +1,158 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>
-            Estructura de contenidos
-        </title>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="../../estilos.css">
-		<script src="../../codigos.js"></script>
-    </head>
-    <body ondblclick="ocultarMenu()">
-	<div id="contenedor_general">
-        <div id="contenedor_cabecera">
-			<img src="../imagenes/logo.jpg" width="147" height="92"> 
-			<h1>03 Estructura del texto</h1>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. Estructura del texto | HTML | LMSGI</title>
+    <meta name="description" content="Separación de párrafos, saltos de línea con br, líneas horizontales hr y comentarios en HTML.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-primary fw-medium" href="../index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
         </div>
-		<iframe id="if" src="./../menu.html"  ></iframe>
-        <div id="contenedor_cuerpo">
-			<h1>Tipos de elementos</h1>
-			<p>En HTML disponemos de elementos en bloque y elementos en línea. </p>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
+                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
+                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
+                <a href="./03_estructura.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 03. Estructura del texto</a>
+                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
+                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
+                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
+                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
+                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
+                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
+                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
+                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
+                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
+                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
+                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
+                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
+                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
+                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
+                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
+                <li class="breadcrumb-item active" aria-current="page">03. Estructura del texto</li>
+            </ol>
+        </nav>
+
+        <!-- Cabecera del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary text-white">Lección 03</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                    </div>
+                    <h2 class="fw-bold mb-1">03. Estructura del texto</h2>
+                    <p class="text-secondary mb-0 small">
+                        Separación de párrafos, saltos de línea con br, líneas horizontales hr y comentarios en HTML.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+                        <i class="bi bi-journal-text"></i> Índice HTML
+                    </a>
+                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+                        <i class="bi bi-pencil-square"></i> Ejercicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Didáctico -->
+        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
+            <p>En HTML disponemos de elementos en bloque y elementos en línea. </p>
 			<p> Un elemento HTML no es lo mismo que una etiqueta HTML ya que está formado por dos etiquetas (una de apertura y otra de cierre), 
 				el texto entre las etiquetas y atributos opcionales </p>
 			<p> De modo que tendremos dos tipos de elementos: </p>
@@ -53,24 +188,21 @@
 			
 			<p>Cuando se desee insertar un cambio de línea en una página web se utilizará la etiqueta <b>&lt;br&gt;</b>. Esta etiqueta no tiene etiqueta de cierre. Por ejemplo, el código siguiente:</p>
 			
-			<div class="codigo">
-Este <br>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>Este <br>
 texto <br>
 aparece en <br>
 la misma línea. <br><br>
 
 Este <b>&lt;br&gt;</b> texto<b>&lt;br&gt;</b><br>
 aparece <b>&lt;br&gt;</b> en <b>&lt;br&gt;</b><br>
-líneas <b>&lt;br&gt;</b> distintas.
-            </div>
+líneas <b>&lt;br&gt;</b> distintas.</code></pre>
             
             <p>Produce el siguiente resultado;</p>
             
             <div class="ejemplo">
 Este texto aparece en la misma línea.<br><br>
 
-Este<br>texto<br>aparece<br>en<br>líneas<br>distintas.
-            </div>
+Este<br>texto<br>aparece<br>en<br>líneas<br>distintas.</code></pre>
             
             <p>Esta etiqueta <b>no debe usarse más que cuando sea necesario</b>. En su lugar se suele agrupar el texto en párrafos, tal como veremos en el siguiente punto.</p>
 			
@@ -78,17 +210,14 @@ Este<br>texto<br>aparece<br>en<br>líneas<br>distintas.
 			
 			<p>El párrafo es la estructura más utilizada. Para indicar que un texto pertenece al mismo párrafo, se introduce dentro de las etiquetas <b>&lt;p&gt;</b> <b>&lt;/p&gt;</b>. Cuando el párrafo termina con la etiqueta de cierre, <b>se introduce automáticamente un salto de línea</b>. Por ejemplo, el código siguiente:</p>
 			
-			<div class="codigo">
-<b>&lt;p&gt;</b>Este texto forma parte del párrafo 1.<b>&lt;/p&gt;</b> <b>&lt;p&gt;</b>Este texto 
-forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b>
-            </div>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte del párrafo 1.<b>&lt;/p&gt;</b> <b>&lt;p&gt;</b>Este texto 
+forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b></code></pre>
             
             <p>Produce el siguiente resultado;</p>
             
             <div class="ejemplo">
 <p>Este texto forma parte del párrafo 1.</p>
-<p>Este texto forma parte del párrafo 2. Por eso está en otra línea.</p>
-            </div>
+<p>Este texto forma parte del párrafo 2. Por eso está en otra línea.</p></code></pre>
 			<p>Es un elemento de bloque y no puede contener otros elementos de bloque.</p>
 			<p>La etiqueta de cierre es opcional.</p>
 			<p>El navegador se encarga de que la línea de texto ocupe todo el ancho disponible, y si el ancho cambia, el texto se ajusta al nuevo ancho ocupando más o menos líneas</p>
@@ -102,17 +231,14 @@ forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b>
 			Los encabezados van a definir el esquema del documento, por lo tanto, debemos utilizarlas de forma coherente. No tiene sentido tener un &lt;h2&gt; si no tenemos antes un &lt;h1&gt;, por ejemplo.<br>
 			Las etiquetas de cierre son obligatorias <br>
 			Así, el código:</p>
-			<div class="codigo">
-<b>&lt;body&gt;</b><br>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;body&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h1&gt;</b>Encabezado de nivel 1.<b>&lt;/h1&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h2&gt;</b>Encabezado de nivel 2.<b>&lt;/h2&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h3&gt;</b>Encabezado de nivel 3.<b>&lt;/h3&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h4&gt;</b>Encabezado de nivel 4.<b>&lt;/h4&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h5&gt;</b>Encabezado de nivel 5.<b>&lt;/h5&gt;</b><br>
 &nbsp;&nbsp;<b>&lt;h6&gt;</b>Encabezado de nivel 6.<b>&lt;/h6&gt;</b><br>
-<b>&lt;/body&gt;</b>
-
-            </div>
+<b>&lt;/body&gt;</b></code></pre>
             
             <p>Produce el siguiente resultado;</p>
             
@@ -122,8 +248,7 @@ forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b>
 <h3>Encabezado de nivel 3.</h3>
 <h4>Encabezado de nivel 4.</h4>
 <h5>Encabezado de nivel 5.</h5>
-<h6>Encabezado de nivel 6.</h6>
-            </div>
+<h6>Encabezado de nivel 6.</h6></code></pre>
             
             <p><b>Los encabezados también introducen un salto de línea al final</b>. El tamaño de la letra y el tipo de destacado dependen del navegador que se utilice. <b>La etiqueta de encabezado no debe utilizarse dentro de una etiqueta de párrafo y viceversa</b>.</p>
             
@@ -131,32 +256,53 @@ forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b>
             
             <p>Es una línea que se suele utilizar de separador. Para ello se utiliza la etiqueta <b>&lt;hr&gt;</b>. Así, el código:</p>
 						
-			<div class="codigo">
-<b>&lt;p&gt;</b>Un párrafo.<b>&lt;/p&gt;</b><br>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Un párrafo.<b>&lt;/p&gt;</b><br>
 <b>&lt;hr&gt;</b><br>
-<b>&lt;p&gt;</b>Otro párrafo.<b>&lt;/p&gt;</b>
-            </div>
+<b>&lt;p&gt;</b>Otro párrafo.<b>&lt;/p&gt;</b></code></pre>
             
             <p>Produce el siguiente resultado;</p>
             
             <div class="ejemplo">
 <p>Un párrafo.</p>
 <hr>
-<p>Otro párrafo.</p>
-            </div>
+<p>Otro párrafo.</p></code></pre>
             
             <p>La línea o regla horizontal también introduce un salto de línea al final.</p>
 			
             <div class="ejercicios">
                 <h2><a href = "16_ejercicios.html#ej_01" >Ejercicio 1:</a></h2>
-            </div>			
-	
-		</div>
-      <!-- Fin del cuerpo de la página-->
-			<div id="contenedor_pie">
-				<p>Manual de HTML - CSS</p>
-			</div>
-	</div>
-    </body>
+            </div>
+        </article>
 
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="02_etiquetasbasicas.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 02. Etiquetas básicas</span>
+            </a>
+            <a href="04_formato.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 04. Formato del texto</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>

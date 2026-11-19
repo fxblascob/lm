@@ -1,34 +1,163 @@
 <!DOCTYPE html>
-<html lang = "es">
-    <head>
-        <title>
-            Etiquetas básicas
-        </title>       
-		<link rel="stylesheet" type="text/css" href="../../estilos.css">
-        <meta charset="UTF-8" >
-        <style>
-            iframe{
-                margin: 0px;
-            }
-        </style>
-        <script src="../../codigos.js"></script>
-    </head>
-    <body ondblclick="ocultarMenu()">
-	<div id="contenedor_general">
-        <div id="contenedor_cabecera">
-			<img src="../imagenes/logo.jpg" width="147" height="92" alt="logo"> 
-            <h1>02 Etiquetas básicas</h1>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02. Etiquetas básicas | HTML | LMSGI</title>
+    <meta name="description" content="Estructura mínima de un documento HTML, etiquetas html, head, body, encabezados y párrafos.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-primary fw-medium" href="../index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
         </div>
-        <iframe id="if" src="./../menu.html"  ></iframe>
-        <div id="contenedor_cuerpo">
-            <h1>Etiquetas básicas</h1>
-			<p>En este punto sabemos que una <b>página web</b> está formada exclusivamente por  <b>texto</b>: parte de ese texto aparecerá <b>en pantalla</b> (son los <b>contenidos</b> que se quieren mostrar) y el resto estará formado por <b>etiquetas</b> que <b>no aparecerán en pantalla</b>, pero que <b>tendrán algún efecto sobre la página</b> (pondrán parte del texto en negrita, estructurarán los contenidos en forma de tablas o listas, cambiarán el tipo de letra o el tamaño del texto, etc.).</p>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
+                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
+                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 02. Etiquetas básicas</a>
+                <a href="./03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
+                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
+                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
+                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
+                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
+                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
+                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
+                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
+                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
+                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
+                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
+                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
+                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
+                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
+                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
+                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
+                <li class="breadcrumb-item active" aria-current="page">02. Etiquetas básicas</li>
+            </ol>
+        </nav>
+
+        <!-- Cabecera del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary text-white">Lección 02</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                    </div>
+                    <h2 class="fw-bold mb-1">02. Etiquetas básicas</h2>
+                    <p class="text-secondary mb-0 small">
+                        Estructura mínima de un documento HTML, etiquetas html, head, body, encabezados y párrafos.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+                        <i class="bi bi-journal-text"></i> Índice HTML
+                    </a>
+                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+                        <i class="bi bi-pencil-square"></i> Ejercicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Didáctico -->
+        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
+            <p>En este punto sabemos que una <b>página web</b> está formada exclusivamente por  <b>texto</b>: parte de ese texto aparecerá <b>en pantalla</b> (son los <b>contenidos</b> que se quieren mostrar) y el resto estará formado por <b>etiquetas</b> que <b>no aparecerán en pantalla</b>, pero que <b>tendrán algún efecto sobre la página</b> (pondrán parte del texto en negrita, estructurarán los contenidos en forma de tablas o listas, cambiarán el tipo de letra o el tamaño del texto, etc.).</p>
 			<p>Las etiquetas, así como sus atributos, se suelen indicar <b>en minúscula</b>.</p>
 			<p>Es importante saber que las páginas web <b>están estructuradas</b>: es decir, que deben seguir una serie de <b>reglas</b> para que sean interpretadas correctamente por los navegadores web. A continuación se explica dicha estructura genérica.</p>
 			<h2>Esquema general de una página web</h2>
 			<p>El esquema general de una página web tiene el siguiente aspecto:</p>
-			<div class="codigo">
-                    <pre>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 <i><b>DECLARACIÓN DE TIPO DE DOCUMENTO</b></i>
 
 <b>&lt;html&gt;</b> 
@@ -44,8 +173,7 @@
    <b>&lt;/body&gt;</b> 
 
 <b>&lt;/html&gt;</b>
-					</pre>
-            </div>			
+					</code></pre>			
 			<p>Toda la página web debe estar almacenada entre las etiquetas <b>&lt;html&gt;</b> <b>&lt;/html&gt;</b>, con la excepción de la declaración de tipo de documento. Como puede verse en la figura, hay <b>tres partes</b> diferenciadas en toda página web:</p>
 			<ul>
 			     <li><b>Declaración de tipo de documento.</b> Es una línea de texto que especifica el tipo de documento que hay en el archivo. Se explica en el siguiente apartado. Es la <b>única parte</b> de la página web que <b>no está almacenada</b> dentro de las etiquetas <b>&lt;html&gt;</b> <b>&lt;/html&gt;</b>.</li>
@@ -67,24 +195,21 @@
 			
 			<ul>
 			    <li><b>Documento HTML estricto (HTML 4)</b>. Los documentos de este tipo se ajustan a la especificación más rígida del W3C. Significa que <b>no se pueden usar</b> determinadas etiquetas y atributos HTML que están <b>en fase de quedarse obsoletos</b>. HTML 4.01 recomienda separar por completo el contenido del formato. Si cumplimos escrupulosamente con esta recomendación, almacenando toda la información sobre el formato en una hoja de estilos CSS, entonces podemos utilizar la declaración estricta.  Estos documentos deberán incorporar el siguiente código al principio:
-			        <div class="codigo">
-&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; 
+			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; 
   &quot;http://www.w3.org/TR/html4/strict.dtd&quot;&gt;
                     </div>
 			    
 			    </li>
 			    
 			    <li><b>Documento HTML transicional (HTML 4)</b>. Los documentos de este tipo se ajustan a la especificación más permisiva del W3C. Significa que <b>se pueden usar</b> determinadas etiquetas y atributos HTML que están <b>en fase de quedarse obsoletos</b>. Si queremos combinar contenido e información de formato en nuestro documento HTML, entonces debemos utilizar la declaración de transición. Estos documentos deberán incorporar el siguiente código al principio:
-			        <div class="codigo">
-&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; 
+			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; 
   &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
                     </div>
 			    
 			    </li>
 	
 				<li><b>En <a href="../../html/archivos/13_xhtml_html5.html">HTML 5</a> </b>. La declaración es más sencilla: 
-			        <div class="codigo">
-&lt;!DOCTYPE html &gt;
+			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!DOCTYPE html &gt;
                     </div>
 			    
 			    </li>
@@ -95,8 +220,7 @@
     Observa que la página web está escrita en html5 y que en la etiqueta html hemos añadido el idioma español
     </li>
 		
-		<div class="codigo">
-		<pre>
+		<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 &lt;!DOCTYPE html &gt;
 &lt;html lang = "es"&gt;
     &lt;head&gt; 
@@ -127,21 +251,16 @@
                  en la cabecera de la página, de la siguiente manera:
             </p>
 			
-			<div class="codigo">
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=<i><b>codificacion</b></i>&quot;&gt;
-            </div>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=<i><b>codificacion</b></i>&quot;&gt;</code></pre>
             
             <p>El parámetro codificacion deberá ser igual a la codificación que se haya elegido en el editor. Las más usuales para poder escribir los caracteres españoles son <b>utf-8</b> (recomendada por ser compatible a nivel mundial) y <b>iso-8859-1</b> (compatible a nivel de Europa occidental).</p>
             
             <p>Así, para indicar que una página está codificada en utf-8 escribiríamos:</p>
             
-            <div class="codigo">
-&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
-            </div>
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;</code></pre>
 			<p>http-equiv: sirve para indicar el contenido de la página y su codificación de caracteres, en este caso: HTML y utf-8.</p>
             <p><b>En <a href="../../html/archivos/13_xhtml_html5.html">HTML 5</a> </b>. La declaración es más sencilla: Y ES LA QUE VAMOS A UTILIZAR
-                <div class="codigo">
-&lt;meta charset="UTF8" &gt;
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;meta charset="UTF8" &gt;
                 </div>
             
             </p>
@@ -149,26 +268,21 @@
 			
 			<p>La etiqueta <b>&lt;title&gt;</b> sirve para introducir el título de la página. El título de la página es el que aparece en la <b>barra superior de la ventana del navegador</b>.</p>
 			
-			<div class="codigo">
-<b>&lt;title&gt;</b>Título de la página<b>&lt;/title&gt;</b>
-            </div>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;title&gt;</b>Título de la página<b>&lt;/title&gt;</b></code></pre>
 			
 			<p>La etiqueta <b>&lt;meta&gt;</b> se utiliza para varias funciones. Además, se pueden poner varias etiquetas meta en la misma página:</p>
 			
-			<div class="codigo">
-&lt;meta name=&quot;author&quot; content=&quot;<i><b>nombre del autor de la página</b></i>&quot;&gt;<br>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;meta name=&quot;author&quot; content=&quot;<i><b>nombre del autor de la página</b></i>&quot;&gt;<br>
 &lt;meta name=&quot;copyright&quot; content=&quot;<i><b>nombre del propietario de la página</b></i>&quot;&gt;<br>
 &lt;meta name=&quot;description&quot; content=&quot;<i><b>descripción del contenido de la página</b></i>&quot;&gt;<br>
 &lt;meta name=&quot;keywords&quot; content=&quot;<i><b>Ciclos, Formativos, Informática, FP, DAW</b></i>&quot;&gt;<br>
-&lt;meta name=&quot;date&quot; content=&quot;<i><b>12 de Enero de 2013 -  Fecha de creación de la página</b></i>&quot;&gt;<br>
-            </div>
+&lt;meta name=&quot;date&quot; content=&quot;<i><b>12 de Enero de 2013 -  Fecha de creación de la página</b></i>&quot;&gt;<br></code></pre>
 			<p> El texto indicado en <b>"description"</b> es utilizado por los motores de búsqueda para indexar la página. Es el texto que suele aparecer como resultado de la búsqueda realizada por un usuario.</p>
 			<p> La lista de palabras indicadas en <b>"keywords"</b> son por las que queremos que nuestra página sea localizable. La inclusión de palabras no relacionadas con nuestro sitio con el fin de mejorar el  posicionamiento web, se considera spam y puede ser penalizado por los motores de búsqueda.</p>
 			
 			<p>La etiqueta <b>&lt;style&gt;</b> se utiliza para dar estilo a los elementos de la página web. </p>
 			
-			<div class="codigo">
-<pre>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
     &lt;!DOCTYPE html&gt;
     &lt;html lang="es"&gt;
         &lt;head&gt;
@@ -191,8 +305,7 @@
             &lt;p&gt;This is a paragraph.&lt;/p&gt;
         &lt;/body&gt;
     &lt;/html&gt;
-</pre>
-</div>
+</code></pre>
 
 <p> Copia el código de arriba en un archivo de texto (con el bloc de notas por ejemplo) con el nombre Ejemplo_2.html y luego observa el resultado en el navegador.</p>
 	
@@ -208,8 +321,7 @@
 			<li><b>title:</b> sirve para agregar un comentario asociado a un elemento. Los navegadores muestran este comentario en una ventana emergente cuando el ratón se sitúa sobre el elemento.</li>
 			<li><b>style:</b> sirve para aplicar información de estilo a un elemento.</li>
 			</ul>
-<div class="codigo">
-    <pre>
+<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
     &lt;!DOCTYPE html&gt;
     &lt;html lang="es"&gt;
         &lt;head&gt; 
@@ -222,19 +334,13 @@
             &lt;a title="Manual" href="http://www.w3schools.com/" &gt;Esto es un enlace a un manual de HTML.&lt;/a&gt;
         &lt;/body&gt;
     &lt;/html&gt;
-    </pre>
-</div>
+    </code></pre>
 			<p><u><b>Atributos obsoletos (no <a href="../../html/archivos/13_xhtml_html5.html">HTML 5</a>):</u> background, text, link, alink, vlink, bgcolor. </b></p>
 			<p>Estos atributos no deben usarse, ya que la forma correcta es a través de <a href="../../css/index.html">hojas de estilo</a> o con estilos en línea como en el siguiente ejemplo. </p>
-			<div class="codigo">
-&lt;body style=&quot;background-color:blue&quot; &gt; <br>........<br>&lt;body&gt;
-            </div>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;body style=&quot;background-color:blue&quot; &gt; <br>........<br>&lt;body&gt;</code></pre>
 			<p> Observa que produce el mismo efecto el código de más abajo que si sustituimos la línea de <b>body</b> por la siguiente:</p>
-			<div class="codigo">
-		&lt;body bgcolor=&quot;blue&quot;&gt;
-</div>    
-<div class="codigo">
-<pre>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;body bgcolor=&quot;blue&quot;&gt;</code></pre>    
+<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="es"&gt;
     &lt;head&gt; 
@@ -244,19 +350,16 @@
         &lt;h1&gt; Hola Mundo  &lt;/h1&gt;
     &lt;/body&gt;
 &lt;/html&gt;
- </pre>
-      </div>
+ </code></pre>
 <p> Guárdalos con los nombres Ejemplo_3.html y Ejemplo_4.html </p>
 
 <p><b>Eventos Intrínsecos</b></p>
 <p>Hay una serie de atributos que corresponden a eventos. Por ejemplo cuando se carga una página, cuando se hace click sobre un elemento, etc...</p>
 <p>Para utilizar estos eventos intrínsecos hay que conocer un lenguaje script, que sirva par ejecutar una determinada acción cuando se produzca un evento</p>
 <p>Ejemplo, modifica la etiqueta body del ejemplo anterior con el código de más abajo y observa el resultado. Sálvalo como Ejemplo_5.html. Asegúrate de utilizar el carácter comilla simple</p>
-<div class="codigo">
-<pre>
+<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
     &lt;body onload=&quot;alert('Carga completa');&quot;&gt;
-</pre>
-</div>
+</code></pre>
 			
 			
 			
@@ -265,11 +368,9 @@
 			
 			<p>Los comentarios se introducen entre los símbolos <b>&lt;!--</b> y <b>--&gt;</b>. Los comentarios no se pueden anidar.</p>
 			
-			<div class="codigo">
-<b>&lt;!--</b> 
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;!--</b> 
 Todo esto, aunque ocupe varias líneas, no aparece en pantalla ni afecta a la página web. Se suelen utilizar para realizar anotaciones útiles para el administrador, como fechas, explicaciones, etc.
-<b>--&gt;</b>
-            </div>
+<b>--&gt;</b></code></pre>
             
             <h2>Caracteres especiales</h2>
             
@@ -394,18 +495,40 @@ Todo esto, aunque ocupe varias líneas, no aparece en pantalla ni afecta a la p�
             
             <p>En el caso de que el resultado de la validación sea correcto, nos indicará con un mensaje que podemos incluir el siguiente elemento en nuestra página para indicar que está escrita de acuerdo a los estándares del W3C:</p>
             
-            <div class="imagenes">
+            <div class="text-center p-3 my-4 bg-body-tertiary rounded-4 border">
 			    <img src="../imagenes/validhtml.png" alt="HTML válido">
 			</div>
-		
-		</div>
-			<div id="contenedor_pie">
-				<p>Manual de HTML - Lenguaje de Marcas - DAW-ASIR</p>
-			</div>
-	</div>
-	
+        </article>
 
-	
-    </body>
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="01_organizacion.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 01. Organización de un sitio web</span>
+            </a>
+            <a href="03_estructura.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 03. Estructura del texto</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
 
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>

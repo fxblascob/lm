@@ -1,24 +1,158 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Hipervínculos
-        </title>
-        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
-        <meta charset="UTF-8">
-        <script src="../../codigos.js"></script>
-    </head>
-    <body ondblclick="ocultarMenu()">
-        <div id="contenedor_general">
-            <div id="contenedor_cabecera">
-                <img src="../imagenes/logo.jpg" width="147" height="92"> 
-                <h1>05 Hipervínculos</h1>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05. Hipervínculos | HTML | LMSGI</title>
+    <meta name="description" content="Enlaces absolutos y relativos con la etiqueta a, atributos href, target, destinos y anclas internas.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-primary fw-medium" href="../index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
+                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
+                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
+                <a href="./03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
+                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
+                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 05. Hipervínculos</a>
+                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
+                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
+                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
+                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
+                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
+                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
+                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
+                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
+                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
+                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
+                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
+                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
+                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
             </div>
-            <iframe id="if" src="./../menu.html" ></iframe>
-            <div id="contenedor_cuerpo">
-                <h1>Hipervínculos</h1>
-                
-                <p>Los hipervínculos son enlaces que permiten acceder a otro documento cuando se pincha sobre ellos. Son los que posibilitan navegar de una página web a otra. Para insertar un hipervínculo en una página web se utiliza la etiqueta &lt;a&gt;. Esta etiqueta admite varios parámetros que se pueden consultar en la guía de referencia rápida.</p>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
+                <li class="breadcrumb-item active" aria-current="page">05. Hipervínculos</li>
+            </ol>
+        </nav>
+
+        <!-- Cabecera del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary text-white">Lección 05</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                    </div>
+                    <h2 class="fw-bold mb-1">05. Hipervínculos</h2>
+                    <p class="text-secondary mb-0 small">
+                        Enlaces absolutos y relativos con la etiqueta a, atributos href, target, destinos y anclas internas.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+                        <i class="bi bi-journal-text"></i> Índice HTML
+                    </a>
+                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+                        <i class="bi bi-pencil-square"></i> Ejercicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Didáctico -->
+        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
+            <p>Los hipervínculos son enlaces que permiten acceder a otro documento cuando se pincha sobre ellos. Son los que posibilitan navegar de una página web a otra. Para insertar un hipervínculo en una página web se utiliza la etiqueta &lt;a&gt;. Esta etiqueta admite varios parámetros que se pueden consultar en la guía de referencia rápida.</p>
                 <p>La etiqueta de cierre es obligatoria</p>
                 <p>Es un elemento de línea por lo que puede estar dentro de un párrafo, lista, etc..., a su vez <b>&lt;a&gt;</b> puede contener otros elementos en línea excepto a sí mismo.</p>
                 <p><b>Atributos:</b></p>
@@ -28,9 +162,7 @@
                     <li><b>target:</b> Establece el marco (frame) de destino (por defecto se toma la ventana actual). Valores posible: _blank, _self, _parent, _top.</li>
                 </ul>
                 <p>Su estructura básica es:</p>
-                <div class="codigo">
-    <b>&lt;a href</b>=&quot;<i>destino</i>&quot;<b>&gt;</b>Texto del enlace<b>&lt;/a&gt;</b>
-                </div>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;<i>destino</i>&quot;<b>&gt;</b>Texto del enlace<b>&lt;/a&gt;</b></code></pre>
                 
                 <p>El valor de <i>destino</i> puede ser:</p>
                 
@@ -53,51 +185,62 @@
                 
                 <p>En primer lugar es necesario definir dentro del documento HTML el punto al que queremos llegar. Para ello se utiliza también la etiqueta &lt;a&gt;, pero con el atributo <i>name</i>, que contendrá el nombre que le queramos dar al ancla:</p>
                 
-                <div class="codigo">
-    <b>&lt;a name</b>=&quot;<i>nombre_ancla</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a name</b>=&quot;<i>nombre_ancla</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b>
                 <br> Ejemplo:
-            <b>&lt;a name</b>=&quot;<i>ancla1</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b>
-                </div>
+            <b>&lt;a name</b>=&quot;<i>ancla1</i>&quot;<b>&gt;</b><b>&lt;/a&gt;</b></code></pre>
                 
                 <p>Una vez establecida el ancla, para llegar a ella crearemos un enlace que contendrá como destino el nombre del ancla a la que queramos llegar precedida del carácter <b>#</b>. Si el ancla a la que queremos ir está en otra página distinta, el destino del enlace será el nombre de la página seguido a continuación del símbolo # y el nombre del ancla. Por ejemplo:</p>
                 
-                <div class="codigo">
-    <b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace al ancla1 dentro de la misma página.<b>&lt;/a&gt;</b><br>
-    <b>&lt;a href</b>=&quot;./pagina2.html#ancla1&quot;<b>&gt;</b>Enlace al ancla1 que está dentro de la página <i>pagina2.html</i>.<b>&lt;/a&gt;</b>
-                </div>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace al ancla1 dentro de la misma página.<b>&lt;/a&gt;</b><br>
+    <b>&lt;a href</b>=&quot;./pagina2.html#ancla1&quot;<b>&gt;</b>Enlace al ancla1 que está dentro de la página <i>pagina2.html</i>.<b>&lt;/a&gt;</b></code></pre>
                 <p>También es posible utilizar como marcador de posición un elemento ya existente en la página, en lugar de crear un nuevo marcador.</p>
                 <p>Supongamos que tenemos</p>
-                <div class="codigo">
-    <b>&lt;h2 id=&quot;<i>ancla1</i>&quot;&gt;</b>Texto ..... <b>&lt;/h2&gt;</b>
-                </div>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;h2 id=&quot;<i>ancla1</i>&quot;&gt;</b>Texto ..... <b>&lt;/h2&gt;</b></code></pre>
                 <p>El resultado es el mismo que con el marcador <b>&lt;a name&gt;</b></p>
-                <div class="codigo">
-    <b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace que nos lleva a la posición del documento donde está el elemento &lt;h2&gt; identificado con ancla1.<b>&lt;/a&gt;</b><br>
-                </div>
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;a href</b>=&quot;#ancla1&quot;<b>&gt;</b>Enlace que nos lleva a la posición del documento donde está el elemento &lt;h2&gt; identificado con ancla1.<b>&lt;/a&gt;</b><br></code></pre>
                 
                 <div class="ejercicios">
                     <h2><a href = "16_ejercicios.html#ej_03">Ejercicio 3:</a></h2>
 
-                    <p>Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente <a href="../ejercicios/ejercicio_3.pdf">enlace</a>. Guárdala con el nombre <b>ejercicio3.html</b>.</p>
-
-                </div>
+                    <p>Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente <a href="../ejercicios/ejercicio_3.pdf">enlace</a>. Guárdala con el nombre <b>ejercicio3.html</b>.</p></code></pre>
                 
                 <div class="ejercicios">
                     <h2><a href = "16_ejercicios.html#ej_04">Ejercicio 4:</a></h2>
 
                     <p>Realiza una página web cuya apariencia sea similar a la que aparece en el siguiente <a href="../ejercicios/ejercicio_4.pdf">enlace</a>. Guárdala con el nombre <b>ejercicio4.html</b>.</p>
 
-                </div>		
-                
-            </div>
-        <!-- Fin del cuerpo de la página-->
-                <div id="contenedor_pie">
-                    <p>Manual de HTML -CSS</p>
                 </div>
+        </article>
+
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="04_formato.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 04. Formato del texto</span>
+            </a>
+            <a href="06_multimedia.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 06. Imágenes</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
         </div>
-	
+    </footer>
 
-	
-    </body>
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+</body>
 </html>

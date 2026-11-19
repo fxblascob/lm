@@ -1,28 +1,161 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>
-            Tablas
-        </title>
-        <link rel="stylesheet" type="text/css" href="../../estilos.css">		
-        <meta charset="UTF-8">
-        <script src="../../codigos.js"></script>
-    </head>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08. Tablas | HTML | LMSGI</title>
+    <meta name="description" content="Creación de tablas con table, tr, th, td, combinación de celdas con colspan y rowspan y accesibilidad.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <body ondblclick="ocultarMenu()">
-	<div id="contenedor_general">
-        <div id="contenedor_cabecera">
- 			<img src="../imagenes/logo.jpg" width="147" height="92"> 
-            <h1>08 Tablas</h1>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-primary fw-medium" href="../index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
         </div>
-        <iframe id="if" src="./../menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
-        <div id="contenedor_cuerpo">
-            <h1>Tablas</h1>
-			<h2>Tablas convencionales</h2>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
+                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
+                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
+                <a href="./03_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">03. Estructura del texto</a>
+                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
+                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
+                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
+                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
+                <a href="./08_tablas.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 08. Tablas</a>
+                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
+                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
+                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
+                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
+                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
+                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
+                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
+                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
+                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
+                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
+                <li class="breadcrumb-item active" aria-current="page">08. Tablas</li>
+            </ol>
+        </nav>
+
+        <!-- Cabecera del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary text-white">Lección 08</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                    </div>
+                    <h2 class="fw-bold mb-1">08. Tablas</h2>
+                    <p class="text-secondary mb-0 small">
+                        Creación de tablas con table, tr, th, td, combinación de celdas con colspan y rowspan y accesibilidad.
+                    </p>
+                </div>
+                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+                        <i class="bi bi-journal-text"></i> Índice HTML
+                    </a>
+                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
+                        <i class="bi bi-pencil-square"></i> Ejercicios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenido Didáctico -->
+        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
+            <h2>Tablas convencionales</h2>
 			<p>Las tablas en HTML son estructuras que están formadas por varias filas, cada una de las cuales tiene un conjunto de celdas.</p>
 			<p>Las tablas se crean con las etiquetas <b>&lt;table&gt;  &lt;/table&gt;</b>. Dentro de las etiquetas de apertura y cierre, inmediatamente después se puede colocar una etiqueta <b>&lt;caption&gt;  &lt;/caption&gt;</b> que incluya el título de la tabla. A continuación, se identifica cada fila de la tabla con las etiquetas <b>&lt;tr&gt;  &lt;/tr&gt;</b>. Por último, cada celda dentro de una fila se identifica con las etiquetas <b>&lt;td&gt;  &lt;/td&gt;</b>. A continuación puedes ver un ejemplo:</p>
-			<div class="codigo">
-                    <pre>
+			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 <b>&lt;table border=&quot;1&quot;&gt;</b>
   <b>&lt;caption&gt;</b>Título de la tabla<b>&lt;/caption&gt;</b>
   <b>&lt;tr&gt;</b>
@@ -44,8 +177,7 @@
       <b>&lt;td&gt;</b>Fila3-celda4<b>&lt;/td&gt;</b>
   <b>&lt;/tr&gt;</b>
 <b>&lt;/table&gt;</b>
-					</pre>
-            </div>
+					</code></pre>
             
             <p>El resultado sería:</p>
             
@@ -70,8 +202,7 @@
       <td>Fila3-celda3</td>
       <td>Fila3-celda4</td>
   </tr>
-</table>
-            </div>
+</table></code></pre>
             
             <p><b><u>Atributos:</u></b></p>
 			<ul>
@@ -102,8 +233,7 @@
 
 				</ul>
 		<p>Prueba el siguiente código y guárdalo como Ejemplo_10.html</p>
-		<div class="codigo">
-		<pre>
+		<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 &lt;table border="3" cellspacing="0" cellpadding="0" width="230"&gt;
 	&lt;tr&gt; 
 	  &lt;td colspan="3" height="10"&gt;&lt;/td&gt;
@@ -119,8 +249,7 @@
 	  &lt;td colspan="3" height="10"&gt;&lt;/td&gt;
 	&lt;/tr&gt;
 &lt;/table&gt;
-		</pre>
-		</div>
+		</code></pre>
 		
 		<p>El resultado sería:</p>
 		<div class="ejemplo">
@@ -139,24 +268,21 @@
 			<tr> 
 				<td colspan="3" height="10"></td>
 			</tr>
-		</table>
-		</div>
+		</table></code></pre>
 			
 			
 			
 					
             
 			<div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_11">Ejercicio 11:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_11">Ejercicio 11:</a></h2></code></pre>
             
             <h2>Celdas de cabecera</h2>
             
             <p>Es posible sustituir algunos elementos &lt;td&gt; por elementos <b>&lt;th&gt;</b>. Estos elementos hacen referencia a celdas de cabecera, y como tales aparecerán destacadas del resto (suelen aparecer en negrita y centradas).</p>
             
 <p>Prueba el siguiente código y guárdalo como Ejemplo_11.html</p>
-<div class="codigo">
-<pre>			
+<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>			
 &lt;table border="3" cellspacing="0" cellpadding="5" width="390"&gt;
  &lt;tr&gt; 
   &lt;th width="10"&gt;Cod&lt;/th&gt;
@@ -179,8 +305,7 @@
   &lt;td&gt;Extended Markup Language&lt;/td&gt;
  &lt;/tr&gt;
 &lt;/table&gt;
-</pre>		
-		</div>
+</code></pre>
 		<div class="ejemplo">
 			<table border="3" cellspacing="0" cellpadding="5" width="50%">
                 <tr> 
@@ -203,43 +328,36 @@
                     <td>HML</td>
                     <td>Extended Markup Language</td>
                 </tr>
-		    </table>
-		</div>
+		    </table></code></pre>
 			
 			
             <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_12">Ejercicio 12:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_12">Ejercicio 12:</a></h2></code></pre>
             <h2>Grupos de columnas</h2>
             <p>Los grupos de columnas permiten hacer referencia a un grupo de columnas dentro de una tabla. Para ello se utilizan las etiquetas <b><i>&lt;colgroup&gt;</i></b> y <i><b>&lt;col&gt;</b></i>. Estas etiquetas son interesantes porque permiten definir la anchura de un conjunto de columnas a la vez, evitando tener que definir la anchura de cada columna por separado. Se deben incluir <b>al principio del código de la tabla</b>, justo después de la etiqueta <i>&lt;caption&gt;</i> (si existiera).</p>
             <p>Ambas etiquetas se suelen utilizar con los atributos <i><b>width</b></i> (que indica la anchura de las columnas en píxeles o porcentaje), <i><b>align</b></i> (que indica la alineación de las columnas)  y <i><b>span</b></i> (que indica el número de columnas que se abarca en el conjunto indicado). </p>
             <p><b>¡Ojo! Estas etiquetas no funcionan correctamente en Firefox</b> (la anchura de las columnas sí que parece funcionar, mientras que la alineación no).</p>
             <p>La etiqueta <i><b>&lt;colgroup&gt;</b></i> se utiliza para indicar un conjunto de columnas. Así, si queremos indicar que las <b>5 primeras columnas</b> de una tabla deben tener anchura <b>20 píxeles</b> y las 3 siguientes 10 píxeles, incluiremos el siguiente código :</p>
-            <div class="codigo">
-                    <pre>
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 &lt;colgroup span=&quot;5&quot; width=&quot;20&quot;&gt;
 &lt;/colgroup&gt;
 &lt;colgroup span=&quot;3&quot; width=&quot;10&quot;&gt;
 &lt;/colgroup&gt;
-					</pre>
-            </div>
+					</code></pre>
             
             <p>La etiqueta <i><b>&lt;col&gt;</b></i> se suele utilizar para especificar un determinado número de celdas dentro de un elemento <i>&lt;colgroup&gt;</i>. Normalmente se utiliza para que un determinado conjunto de celdas reciba un atributo especial además de los especificados en <i>&lt;colgroup&gt;</i>. Así, si queremos indicar que las <b>5 primeras columnas</b> de una tabla deben tener anchura <b>20 píxeles</b> pero la columna 3, además de tener el ancho de 20 píxeles, debe recibir algún tratamiento posterior (normalmente mediante hojas de estilo), indicaremos lo siguiente:</p>
             
-            <div class="codigo">
-                    <pre>
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 &lt;colgroup span=&quot;5&quot; width=&quot;20&quot;&gt;
   &lt;col span=&quot;2&quot;&gt;
   &lt;col align=&quot;center&quot;&gt;
   &lt;col span=&quot;2&quot;&gt;
 &lt;/colgroup&gt;
-					</pre>
-            </div>
+					</code></pre>
             <p>En el ejemplo anterior, las 5 primeras columnas tendrán 20 píxeles de ancho. Dentro de <i>&lt;colgroup&gt;</i> se detallan las demás columnas: las dos primeras quedan igual; la número 3 alinea su contenido al centro; y las dos últimas, quedan también igual. <b>¡Ojo!</b> el número de columnas que se indique en la etiqueta <i>&lt;colgroup&gt;</i> deberá ser igual a la suma de los números de columnas indicados por las etiquetas <i>&lt;col&gt;</i> de su interior.</p>
             <ul><li><a href="https://www.w3schools.com/tags/tag_colgroup.asp">Ejemplo colgroup</a></li></ul>
             <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_13">Ejercicio 13:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_13">Ejercicio 13:</a></h2></code></pre>
             <h2>Grupos de filas: cabecera, cuerpo y pie de tablas</h2>
             <p>En ocasiones, es interesante dividir las filas de la tabla en diferentes partes organizativas. HTML contempla tres: <b>cabecera, cuerpo y pie</b>. Esta división se utiliza para diferenciar dichos campos y tratarlos por separado. Así, por ejemplo, en tablas muy largas que deban ser imprimidas en varias hojas, el navegador imprimirá la cabecera y el pie de la tabla en cada una de las hojas.</p>
             <p>Las etiquetas que se utilizan para esto son:</p>
@@ -249,8 +367,7 @@
                 <li><b>&lt;tfoot&gt;</b> <b>&lt;/tfoot&gt;</b> para el pie. Debe aparecer en último lugar.</li>
             </ul>
             <p>Cada una de dichas etiquetas <b>agrupa un conjunto de filas</b>. A continuación tienes un ejemplo. En él se ha definido un encabezado, un pie y dos cuerpos de la tabla. Para identificar cada uno, se ha utilizado el atributo <i><b>rules</b></i>, que indica qué bordes y separaciones aparecerán en la tabla (el valor <i>groups</i> indica que deben separarse los grupos de filas y columnas).</p>
-            <div class="codigo">
-                    <pre>
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
 <b>&lt;table</b> border=&quot;1&quot;<b>&gt;</b>
   <b>&lt;caption&gt;</b>Título de la tabla<b>&lt;/caption&gt;</b>
   <b>&lt;thead&gt;</b>
@@ -305,15 +422,12 @@
   <b>&lt;/tr&gt;</b>
 <b>&lt;/tfoot&gt;</b>
 <b>&lt;/table&gt;</b>
-					</pre>
-            </div>
+					</code></pre>
             <p>El resultado sería:</p>
             <div class="ejemplo">
-              <img src="../imagenes/tablas.png">
-            </div>
+              <img src="../imagenes/tablas.png"></code></pre>
             <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_14">Ejercicio 14:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_14">Ejercicio 14:</a></h2></code></pre>
             <h2>Celdas que abarcan varias filas o columnas</h2>
             <p>Para hacer que una celda ocupe varias celdas, se utilizan los atributos <i><b>rowspan</b></i> y <i><b>colspan</b></i> dentro de las etiquetas <i><b>&lt;td&gt;</b></i> (o <i>&lt;th&gt;</i>, si se utilizan las celdas destacadas). Con el primero, se consigue que una celda ocupe <b>varias filas</b>; con el segundo, se consigue que una celda ocupe <b>varias columnas</b>.</p>
             <p>Las celdas ocupadas por una celda ampliada <b>no se incluirán en el sitio que les toque</b>.</p>
@@ -322,31 +436,48 @@
                 <li><a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_table_rowspan2">Ejemplo rowspan</a>
             </ul>
             <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_15">Ejercicio 15:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_15">Ejercicio 15:</a></h2></code></pre>
             
              <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_16">Ejercicio 16:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_16">Ejercicio 16:</a></h2></code></pre>
             
              <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_17">Ejercicio 17:</a></h2>
-            </div>
+                <h2><a href="16_ejercicios.html#ej_17">Ejercicio 17:</a></h2></code></pre>
             
              <div class="ejercicios">
                 <h2><a href="16_ejercicios.html#ej_18">Ejercicio 18:</a></h2>
             </div>
-            
-           
-		</div>
-		<!-- Fin del cuerpo de la página-->
-			<div id="contenedor_pie">
-				<p>Manual de HTML - Lenguaje de Marcas - DAW-ASIR</p>
-			</div>
-	</div>
-	
+        </article>
 
-	
-    </body>
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="07_listas.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior:</strong> 07. Listas</span>
+            </a>
+            <a href="09_marcos.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 09. Marcos</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
 
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>
