@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09. Acceso a Bases de Datos Relacionales con PDO | LMSGI</title>
+    <meta name="description" content="Tema 9: Conexión segura con PDO a MySQL/MariaDB, sentencias preparadas contra SQL Injection, consultas SELECT (fetch/fetchAll), operaciones INSERT/UPDATE/DELETE y transacciones.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario PHP</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="../index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start shadow" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header bg-dark text-white border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-filetype-php text-info fs-4"></i>
+                <div>
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasNavLabel">Módulo PHP</h5>
+                    <span class="text-secondary small">Desarrollo Web Backend</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="mb-3">
+                <span class="text-uppercase text-secondary fw-bold small px-2">Unidades Temáticas</span>
+                <ul class="nav nav-pills flex-column gap-1 mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="00_primeros_pasos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-rocket-takeoff text-info"></i>
+                                    <span>Primeros pasos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">00</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="01_elementos_basicos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-square text-info"></i>
+                                    <span>Elementos básicos del lenguaje</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">01</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="02_funciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-gear-wide-connected text-info"></i>
+                                    <span>Uso de funciones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">02</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="03_arrays.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid-3x3-gap text-info"></i>
+                                    <span>Arrays, errores y otros conceptos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">03</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="04_formularios.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-ui-checks text-info"></i>
+                                    <span>Recogida de datos de formularios</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">04</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="05_redirecciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-arrow-left-right text-info"></i>
+                                    <span>Redirecciones e inclusiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">05</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="06_cookies_sesiones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person-badge text-info"></i>
+                                    <span>Cookies y sesiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">06</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="07_ajax.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-lightning-charge text-info"></i>
+                                    <span>Comunicación asíncrona con AJAX</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">07</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="08_poo.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-boxes text-info"></i>
+                                    <span>Programación orientada a objetos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">08</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between active bg-info text-dark fw-bold shadow-sm" href="09_bd.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-database-fill-gear text-dark"></i>
+                                    <span>Acceso a bases de datos con PHP</span>
+                                </div>
+                                <span class="badge bg-dark text-white small">09</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3 pt-3 border-top">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="10_ejercicios_r.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check2-square text-success"></i>
+                                    <span>Solucionario y Prácticas</span>
+                                </div>
+                                <span class="badge bg-success-subtle text-success-emphasis border small">10</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 mt-4">
+                <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos y Base de Datos</h6>
+                <div class="d-grid gap-2">
+                    <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-database text-primary"></i>
+                        <span>academia.sql (BD)</span>
+                    </a>
+                    <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                        <span>Manual MySQL (PDF)</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm btn-outline-info text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-grid text-info"></i>
+                        <span>Panel Central PHP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        <!-- Migas de Pan (Breadcrumbs) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 py-2 px-3 bg-white rounded-3 shadow-sm border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">PHP</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Acceso a bases de datos con PHP</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta Hero del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-dark text-white overflow-hidden">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6">Unidad 09</span>
+                    <span class="badge bg-secondary text-light fw-normal px-2.5 py-1.5 small">Desarrollo Web Backend</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">09. Acceso a Bases de Datos Relacionales con PDO</h1>
+                <p class="lead text-light-emphasis mb-0">Tema 9: Conexión segura con PDO a MySQL/MariaDB, sentencias preparadas contra SQL Injection, consultas SELECT (fetch/fetchAll), operaciones INSERT/UPDATE/DELETE y transacciones.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Columna Principal de Contenido -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                <article class="content-card p-4 p-md-5 shadow-sm">
+                    <p>Existen diferentes alternativas para conectar y acceder a bases de datos desde PHP. El propio lenguaje ya incorpora una serie de funciones específicas que permiten conectar y utilizar directamente distintos SGBD conocidos, como MySQL o PostgreSQL. Sin embargo, en esta sección vamos a aprender a gestionar bases de datos utilizando <strong>PDO</strong> (<em>PHP Data Objects</em>), una capa de acceso a bases de datos independiente del SGBD que se vaya a utilizar. De este modo, el código que vamos a definir para conectar, consultar, insertar, etc, va a servirnos para cualquier servidor de base de datos que utilicemos, cambiando únicamente los datos de la conexión.</p>
+
+<h2 id="sec09-1" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>1. Preparación de la base de datos</span></h2>
+
+<p>Antes de conectar con una base de datos, evidentemente tenemos que tenerla creada y lista. Si utilizamos XAMPP, este paso puede hacerse fácilmente a través de la herramienta <strong>phpMyAdmin</strong> que ya viene instalada. Para usarla, accedemos a su URL predeterminada, que suele ser <em>http://localhost/phpmyadmin</em>.</p>
+
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 mb-4 rounded-3 p-3">
+    <i class="bi bi-exclamation-triangle-fill fs-4 text-warning flex-shrink-0 mt-1"></i>
+    <div class="alert-content flex-grow-1">
+        <p><strong>NOTA</strong>: en el <em>manager</em> de XAMPP, tendremos que tener en marcha tanto el servidor Apache como el servidor MySQL para poder conectar con <em>phpMyAdmin</em>.</p>
+    </div>
+</div>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/03_phpmyadmin.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="03_phpmyadmin.png"></figure></figure>
+
+<p>En el panel izquierdo tenemos un enlace <em>Nueva</em> para crear bases de datos, y debajo de este enlace, un listado con las bases de datos actuales para poder acceder a cualquiera de ellas.</p>
+
+<p>Para crear una base de datos, simplemente indicamos su nombre y su sistema de codificación (típicamente UTF8):</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/03_phpmyadmin2.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="03_phpmyadmin2.png"></figure></figure>
+
+<p>Después, ya podemos crear tabla(s) en la base de datos, indicando cuántas columnas necesitamos (aunque luego podemos añadir más, o quitar):</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/03_phpmyadmin3.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="03_phpmyadmin3.png"></figure></figure>
+
+<p>El siguiente paso será definir el nombre, tipo de datos y restricciones de cada campo de la tabla:</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/03_phpmyadmin4.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="03_phpmyadmin4.png"></figure></figure>
+
+<p>Con esto, ya tendremos la tabla creada en la base de datos. Haciendo clic en ella desde el panel principal podremos consultar la información que haya guardada en cada momento.</p>
+
+<p>Además, desde las opciones del menú superior <em>Importar</em> y <em>Exportar</em> podemos incorporar nuevas bases de datos (previamente exportadas) o exportar el contenido de las existentes para hacer copias de seguridad o llevarlas a otro servidor.</p>
+
+<div id="ej_09_1" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 1</span>
+            <a href="10_ejercicios_r.html#ej_09_1" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una base de datos llamada <em>videojuegos</em> con una tabla <em>videojuegos</em> como la del ejemplo anterior, usando <em>phpMyAdmin</em>.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec09-2" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>2. Configuración de la conexión</span></h2>
+
+<p>A la hora de conectar con cualquier base de datos, tenemos que tener en cuenta cuatro o cinco parámetros clave:</p>
+
+<ul>
+  <li>Dirección del servidor de bases de datos. Típicamente suele estar alojado en la misma máquina donde tenemos el servidor web Apache, así que esta dirección suele ser <em>localhost</em>.</li>
+  <li>Puerto de conexión con el servidor. Normalmente cada servidor queda escuchando por su puerto por defecto y no es necesario configurarlo. Así, el puerto por defecto de MySQL es el 3306, por ejemplo.</li>
+  <li>Nombre de la base de datos a la que queremos conectar.</li>
+  <li>Login y password del usuario con el que queremos conectar. En el caso de XAMPP, por defecto se crea un usuario <em>root</em> con contraseña vacía.</li>
+</ul>
+
+<p>Teniendo todo esto en cuenta, el siguiente código nos va a permitir conectar con una base de datos como la que hemos creado en el paso anterior:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$host</span> <span class="o">=</span> <span class="s2">"localhost"</span><span class="p">;</span>
+<span class="nv">$nombreBD</span> <span class="o">=</span> <span class="s2">"videojuegos"</span><span class="p">;</span>
+<span class="nv">$usuario</span> <span class="o">=</span> <span class="s2">"root"</span><span class="p">;</span>
+<span class="nv">$password</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+
+<span class="nv">$pdo</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PDO</span><span class="p">(</span><span class="s2">"mysql:host=</span><span class="nv">$host</span><span class="s2">;dbname=</span><span class="nv">$nombreBD</span><span class="s2">;charset=utf8"</span><span class="p">,</span>
+    <span class="nv">$usuario</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span></code></pre>
+</div>
+
+<p>El objeto <em>PDO</em> anterior se construye usando tres parámetros:</p>
+
+<ul>
+  <li>URL de conexión, donde indicamos el tipo de base de datos que vamos a usar (MySQL, en este caso), dirección del servidor, nombre de la base de datos y codificación. Notar que simplemente cambiando el tipo de base de datos (PostgreSQL, Oracle…) esta misma línea nos va a servir para conectar con distintos SGBD.</li>
+  <li>Usuario y contraseña de acceso</li>
+</ul>
+
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 mb-4 rounded-3 p-3">
+    <i class="bi bi-exclamation-triangle-fill fs-4 text-warning flex-shrink-0 mt-1"></i>
+    <div class="alert-content flex-grow-1">
+        <p><strong>NOTA</strong>: estas líneas de conexión van a resultar muy frecuentes en nuestras aplicaciones si accedemos a la base de datos desde distintas páginas PHP, por lo que convendría definirlas en un archivo <em>.inc</em> e incluirlo en las páginas que necesiten esa conexión.</p>
+    </div>
+</div>
+
+<h2 id="sec09-3" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>3. Ejecución de instrucciones SQL</span></h2>
+
+<p>Para ejecutar instrucciones SQL, seguiremos dos pasos:</p>
+
+<ol>
+  <li>Preparamos la instrucción SQL a ejecutar (SELECT, INSERT, UPDATE, DELETE…). Utilizaremos la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">prepare</code> para ello.</li>
+  <li>La ejecutamos, indicando si es necesario algunos parámetros variables en la operación (valores para algunas condiciones o campos). Emplearemos la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">execute</code> para esta ejecución.</li>
+</ol>
+
+<p>Así lanzaríamos una instrucción INSERT para insertar datos fijos en nuestra tabla <em>videojuegos</em> del ejemplo anterior, una vez obtenida la conexión en el objeto <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$pdo</code> anterior.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$insercion</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="nf">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO videojuegos(titulo, genero, precio)"</span> <span class="mf">.</span>
+    <span class="s2">" VALUES('Fifa 2020', 'Deportes', 40.95)"</span><span class="p">);</span>
+<span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">();</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.1. Parametrizar operaciones</span></h3>
+
+<p>Lo normal es que no hagamos operaciones con todos los datos fijos, sino que parte de la <em>query</em> dependa de ciertos parámetros externos (datos que nos llegan de un formulario, por ejemplo). En este caso, se prepara la instrucción dejando ciertas partes variables, y luego se le asigna un valor a cada parte con la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">bindParam</code>:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$insercion</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="nf">prepare</span><span class="p">(</span><span class="s2">"INSERT INTO videojuegos(titulo, genero, precio)"</span> <span class="mf">.</span>
+    <span class="s2">" VALUES(:titulo, :genero, :precio)"</span><span class="p">);</span>
+<span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">bindParam</span><span class="p">(</span><span class="s1">':titulo'</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'titulo'</span><span class="p">]);</span>
+<span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">bindParam</span><span class="p">(</span><span class="s1">':genero'</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'genero'</span><span class="p">]);</span>
+<span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">bindParam</span><span class="p">(</span><span class="s1">':precio'</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'precio'</span><span class="p">]);</span>
+<span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">();</span></code></pre>
+</div>
+
+<p>Notar que etiquetamos las partes variables anteponiendo <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">:</code> delante de cada una, y luego usamos una instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">bindParam</code> para asignar un valor a cada parámetro (en este caso, con datos supuestamente recogidos de un envío de formulario).</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.2. Resultado de las operaciones</span></h3>
+
+<p>En el caso de operaciones de actualización (inserciones, borrados o modificaciones), el resultado que podemos obtener tras la llamada a <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">execute</code> nos proporcionará información sobre si se ha podido realizar correctamente o no la operación, a través de un booleano. Así podríamos saber si la inserción anterior ha sido exitosa:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">if</span> <span class="p">(</span><span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="c1">// OK</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="c1">// Error</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>Además, en el caso de las inserciones nos puede venir bien obtener el <em>id</em> automático del nuevo registro generado. Para ello podemos utilizar el método <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">lastInserId</code> del objeto <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$pdo</code>, tras ejecutar la inserción:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$insercion</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">();</span>
+<span class="nv">$nuevoID</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="nf">lastInserId</span><span class="p">();</span></code></pre>
+</div>
+
+<p>Para las consultas (<em>SELECT</em>), lo que obtendremos es un array con los registros que cumplen las condiciones para entrar en el listado, con sus datos. Podemos recorrer uno a uno estos registros usando la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">fetch</code>, y luego acceder a cada campo de cada registro usando un array asociativo (con el nombre de cada campo en la base de datos). Aquí vemos un ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$consulta</span> <span class="o">=</span> <span class="nv">$pdo</span><span class="o">-&gt;</span><span class="nf">prepare</span><span class="p">(</span><span class="s2">"SELECT * FROM videojuegos WHERE genero=:genero"</span><span class="p">);</span>
+<span class="nv">$consulta</span><span class="o">-&gt;</span><span class="nf">bindParam</span><span class="p">(</span><span class="s1">':genero'</span><span class="p">,</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'genero'</span><span class="p">]);</span>
+<span class="nv">$consulta</span><span class="o">-&gt;</span><span class="nf">execute</span><span class="p">();</span>
+<span class="k">while</span><span class="p">(</span><span class="nv">$registro</span> <span class="o">=</span> <span class="nv">$consulta</span><span class="o">-&gt;</span><span class="nf">fetch</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$registro</span><span class="p">[</span><span class="s1">'titulo'</span><span class="p">];</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<h2 id="sec09-4" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>4. Liberar las conexiones</span></h2>
+
+<p>Una vez hemos terminado de trabajar con la base de datos (en cada página donde lo hayamos hecho), para liberar la conexión y que la pueda utilizar otro cliente que quiera acceder, debemos anular (asignar a <em>NULL</em>) tanto el objeto de la conexión (<code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$pdo</code> en los ejemplos anteriores) como el que hemos utilizado para realizar la operación (variables <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$insercion</code> o <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$consulta</code> en los ejemplos anteriores). Por ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$consulta</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">;</span>
+<span class="nv">$pdo</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">;</span></code></pre>
+</div>
+
+<div id="ej_09_2" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 2</span>
+            <a href="10_ejercicios_r.html#ej_09_2" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una carpeta llamada <strong>02_videojuegos</strong> en tu espacio de trabajo XAMPP. 
+    Define dentro una página llamada <strong>form_videojuego.php</strong> que simplemente tenga un 
+    formulario para dar de alta un videojuego en la base de datos 
+    (con los campos del título, género y precio, siendo el género un desplegable con varias opciones predefinidas). 
+    El formulario se enviará a <strong>insertar_videojuego.php</strong>, 
+    que realizará la inserción recogiendo los datos del formulario. 
+    Si todo ha ido bien, redirigirá a <strong>index.php</strong>, 
+    que mostrará un listado de videojuegos actualizado. 
+    Si algo ha ido mal, redirigirá a <strong>error.php</strong> con el mensaje <em>Error insertando videojuego</em>.</p>
+        </div>
+    </div>
+</div>
+
+<div id="ej_09_3" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 3</span>
+            <a href="10_ejercicios_r.html#ej_09_3" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Copia la carpeta anterior a otra que se llame <strong>03_videojuegos</strong> y modifica el archivo <strong>index.php</strong> del ejercicio anterior para añadir un formulario de búsqueda 
+    que permita filtrar videojuegos por precio. 
+    Si especificamos un precio, se mostrarán sólo los videojuegos que sean más baratos que el precio indicado.</p>
+        </div>
+    </div>
+</div>
+    
+                </article>
+            </div>
+
+            <!-- Columna Lateral: Índice Rápido y Recursos -->
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="sticky-summary d-flex flex-column gap-3">
+                    <!-- Índice de la Lección -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                                <i class="bi bi-list-nested text-info"></i>
+                                <span>En este tema</span>
+                            </h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column gap-1 small">
+                                <a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec09-1">1. Preparación de la base de datos</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec09-2">2. Configuración de la conexión</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec09-3">3. Ejecución de instrucciones SQL</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec09-4">4. Liberar las conexiones</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Descargables -->
+                    <div class="card border-0 shadow-sm rounded-3 bg-body-tertiary">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos del Tema</h6>
+                            <div class="d-grid gap-2 small">
+                                <a href="10_ejercicios_r.html" class="btn btn-sm btn-outline-primary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-code"></i>
+                                    <span>Soluciones de ejercicios</span>
+                                </a>
+                                <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-database"></i>
+                                    <span>Base de datos (SQL)</span>
+                                </a>
+                                <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>Manual MySQL (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Navegación Ergonómica Inferior -->
+    <nav class="container-xl my-4 py-3 border-top border-bottom" aria-label="Navegación entre temas">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <div>
+                <a href="08_poo.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i>
+                    <div class="text-start d-none d-sm-block">
+                        <div class="small text-secondary">Anterior</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">08. Programación orientada a objetos (POO)</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="#inicio" class="btn btn-light btn-sm border d-flex align-items-center gap-1 text-secondary" title="Subir al inicio">
+                    <i class="bi bi-chevron-up"></i>
+                    <span class="d-none d-md-inline">Arriba</span>
+                </a>
+            </div>
+            <div>
+                <a href="10_ejercicios_r.html" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                    <div class="text-end d-none d-sm-block">
+                        <div class="small text-white-50">Siguiente</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">10. Solucionario y Prácticas de PHP</div>
+                    </div>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Pie de Página Estándar -->
+    <footer class="bg-dark text-light-emphasis py-4 mt-auto border-top border-secondary">
+        <div class="container-xl">
+            <div class="row align-items-center gy-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                        <span class="fw-bold text-white">LMSGI</span>
+                        <span class="text-secondary">| Lenguajes de Marcas</span>
+                    </div>
+                    <p class="small text-secondary mb-0">Curso de Desarrollo Web Backend con PHP y MySQL. Material didáctico adaptado bajo estándares web y Bootstrap 5.3.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 small mb-2">
+                        <a href="../index.html" class="text-decoration-none text-light-emphasis">Índice PHP</a>
+                        <a href="10_ejercicios_r.html" class="text-decoration-none text-light-emphasis">Solucionario</a>
+                        <a href="../../index.html" class="text-decoration-none text-light-emphasis">Portada LMSGI</a>
+                    </div>
+                    <p class="small text-secondary mb-0">Generalitat Valenciana &bull; Conselleria d'Educació</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

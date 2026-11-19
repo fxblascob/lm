@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06. Persistencia de Estado: Cookies y Sesiones en PHP | LMSGI</title>
+    <meta name="description" content="Tema 6: Gestión de cookies con setcookie() y $_COOKIE, ciclo de vida de sesiones con session_start() y $_SESSION, carritos de compra y autenticación de usuarios.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario PHP</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="../index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start shadow" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header bg-dark text-white border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-filetype-php text-info fs-4"></i>
+                <div>
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasNavLabel">Módulo PHP</h5>
+                    <span class="text-secondary small">Desarrollo Web Backend</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="mb-3">
+                <span class="text-uppercase text-secondary fw-bold small px-2">Unidades Temáticas</span>
+                <ul class="nav nav-pills flex-column gap-1 mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="00_primeros_pasos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-rocket-takeoff text-info"></i>
+                                    <span>Primeros pasos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">00</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="01_elementos_basicos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-square text-info"></i>
+                                    <span>Elementos básicos del lenguaje</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">01</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="02_funciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-gear-wide-connected text-info"></i>
+                                    <span>Uso de funciones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">02</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="03_arrays.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid-3x3-gap text-info"></i>
+                                    <span>Arrays, errores y otros conceptos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">03</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="04_formularios.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-ui-checks text-info"></i>
+                                    <span>Recogida de datos de formularios</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">04</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="05_redirecciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-arrow-left-right text-info"></i>
+                                    <span>Redirecciones e inclusiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">05</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between active bg-info text-dark fw-bold shadow-sm" href="06_cookies_sesiones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person-badge text-dark"></i>
+                                    <span>Cookies y sesiones</span>
+                                </div>
+                                <span class="badge bg-dark text-white small">06</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="07_ajax.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-lightning-charge text-info"></i>
+                                    <span>Comunicación asíncrona con AJAX</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">07</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="08_poo.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-boxes text-info"></i>
+                                    <span>Programación orientada a objetos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">08</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="09_bd.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-database-fill-gear text-info"></i>
+                                    <span>Acceso a bases de datos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">09</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3 pt-3 border-top">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="10_ejercicios_r.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check2-square text-success"></i>
+                                    <span>Solucionario y Prácticas</span>
+                                </div>
+                                <span class="badge bg-success-subtle text-success-emphasis border small">10</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 mt-4">
+                <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos y Base de Datos</h6>
+                <div class="d-grid gap-2">
+                    <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-database text-primary"></i>
+                        <span>academia.sql (BD)</span>
+                    </a>
+                    <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                        <span>Manual MySQL (PDF)</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm btn-outline-info text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-grid text-info"></i>
+                        <span>Panel Central PHP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        <!-- Migas de Pan (Breadcrumbs) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 py-2 px-3 bg-white rounded-3 shadow-sm border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">PHP</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Cookies y sesiones</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta Hero del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-dark text-white overflow-hidden">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6">Unidad 06</span>
+                    <span class="badge bg-secondary text-light fw-normal px-2.5 py-1.5 small">Desarrollo Web Backend</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">06. Persistencia de Estado: Cookies y Sesiones en PHP</h1>
+                <p class="lead text-light-emphasis mb-0">Tema 6: Gestión de cookies con setcookie() y $_COOKIE, ciclo de vida de sesiones con session_start() y $_SESSION, carritos de compra y autenticación de usuarios.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Columna Principal de Contenido -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                <article class="content-card p-4 p-md-5 shadow-sm">
+                    <p>Veremos ahora dos mecanismos para intercambiar variables entre cliente y servidor: las cookies y las sesiones.</p>
+
+<h2 id="sec06-1" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>1. Cookies</span></h2>
+
+<p>Las cookies son básicamente un texto que se intercambian navegador y servidor entre distintas peticiones, con información acerca de las mismas y de lo que se ha estado haciendo. Al cerrar el navegador o la conexión, éste se guarda en ficheros locales dicha información, para poder seguir compartiéndola en futuras visitas. Sin embargo, las cookies tienen una fecha de caducidad preestablecida (dependiendo de la cookie), y pasado ese tiempo (salvo que se renueve con una nueva visita a la página), caducan y desaparecen.</p>
+
+<p>La principal utilidad de las cookies es recordar a los usuarios que acceden a una web, y las cosas que hacen, pero esta capacidad también sirve para que otros rastreen esa actividad y puedan interceptar información delicada (como usuarios y contraseñas). Por ello, actualmente los navegadores permiten desactivar y/o borrar las cookies, y los sitios web que las utilizan están obligados a avisar a los usuarios de ello. Como programadores web, las cookies deben usarse para almacenar información no relevante del usuario (preferencias del sitio, lugares favoritos o, como mucho, el login para que no lo tenga que volver a escribir, pero no el password).</p>
+
+<p>Hay que tener en cuenta, además, ciertos aspectos relacionados con las cookies:</p>
+
+<ul>
+  <li>Son independientes para cada servidor, es decir, el navegador almacena y gestiona de forma separada las cookies de cada sitio web que visitamos, y unas no tienen nada que ver con otras.</li>
+  <li>No se pueden transmitir virus, ni acceder al disco duro, desde las cookies. Es el navegador quien controla sus propios ficheros de cookies y quien los gestiona.</li>
+</ul>
+
+<p>Ahora que ya sabemos un poco más sobre las cookies, veamos cómo crearlas y mantenerlas en PHP. Para crear una cookie se empleará la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">setcookie</code>, a la que le pasaremos como parámetros el nombre de la cookie, su valor, y el tiempo en que expirará, desde ahora. Este último dato suele utilizar la función time() para contar el tiempo desde ahora, y añadirle los segundos que queramos. Si ponemos 0 o no ponemos nada, durará hasta que el usuario termine su sesión (cierre sesión, o cierre el navegador). Si ponemos un valor negativo o pasado, la cookie se borrará. Esto se usa para borrar a mano las cookies y no esperar a que lo haga el navegador.</p>
+
+<p>Veamos un ejemplo donde creamos una cookie llamada <em>colorFavorito</em> con un color hexadecimal que luego podríamos usar, por ejemplo, para establecer ese color de fondo para el usuario. Asignaremos a la cookie una vida de 1 hora (3600 segundos):</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nb">setcookie</span><span class="p">(</span><span class="s2">"colorFavorito"</span><span class="p">,</span> <span class="s2">"#432FA1"</span><span class="p">,</span> <span class="nb">time</span><span class="p">()</span><span class="o">+</span><span class="mi">3600</span><span class="p">);</span></code></pre>
+</div>
+
+<p>Si más adelante queremos consultar esta cookie (para extraer el color y poderlo poner como estilo, por ejemplo), usaremos el array predefinido <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$_COOKIE</code>, pasándole entre corchetes el nombre de la cookie, y obtendremos el valor asociado a la misma.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$color</span> <span class="o">=</span> <span class="nv">$_COOKIE</span><span class="p">[</span><span class="s2">"colorFavorito"</span><span class="p">];</span>
+<span class="k">echo</span> <span class="s2">"&lt;style&gt;body { background-color: "</span> <span class="mf">.</span> <span class="nv">$color</span> <span class="mf">.</span> <span class="s2">"; }&lt;/style&gt;"</span><span class="p">;</span></code></pre>
+</div>
+
+<div id="ej_06_1" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 1</span>
+            <a href="10_ejercicios_r.html#ej_06_1" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una carpeta <strong>06_cookies_sesiones</strong> para los ejercicios de esta sesión, y dentro una subcarpeta <strong>01_preferencias</strong> con las siguientes páginas PHP:</p>
+
+  <ul>
+    <li><strong>preferencias.php</strong> con un formulario que le pida al usuario su nombre y su color favorito (a elegir de una lista desplegable, o con el control input type=”color” de HTML5). El formulario deberá enviarse a <em>guarda_prefs.php</em>.</li>
+    <li><strong>guarda_prefs.php</strong> que recogerá los datos del formulario anterior, y los guardará en dos cookies llamadas <em>nombreusu</em> y <em>colorusu</em>, con 5 minutos de duración. Esta página redirigirá (con <em>header</em>) a la página <em>index.php</em> una vez almacenadas las cookies.</li>
+    <li><strong>index.php</strong> que, si hay cookies guardadas del usuario, mostrará una página con el color de fondo preferido y un mensaje personalizado de bienvenida (por ejemplo, “Bienvenido, Nacho”). Si no hay cookies guardadas, mostrará una página con fondo blanco y el mensaje “Página de inicio”. En cualquiera de los dos casos, habrá un enlace para ir al formulario preferencias.php.</li>
+    <li>añade una página <strong>borrar_prefs.php</strong> que elimine las preferencias (cookies) del usuario actual, y redirija a <em>index.php</em>. Pon un enlace “Borrar preferencias” en el <em>index.php</em> que llame a esta página, pero que se muestre sólo cuando el usuario actual tenga preferencias guardadas.</li>
+  </ul>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec06-2" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>2. Sesiones</span></h2>
+
+<p>Las sesiones son otro mecanismo de intercambio de información entre navegador y servidor, cuyo tiempo de vida es igual a toda la visita de un usuario a una web (en cuanto el usuario cierra sesión, desconecta o cierra el navegador, se pierde la información). Al igual que ocurre con las cookies, las sesiones que tengamos en dos sitios web diferentes son independientes entre sí, al igual que las sesiones que tengan dos usuarios diferentes en un mismo sitio web.</p>
+
+<p>Las principales diferencias entre las sesiones y las cookies son que las sesiones no se almacenan en ficheros en el disco, sino que se guarda un registro de ellas en el servidor. Cada cliente accede a su propia sesión a través de un identificador único, una clave alfanumérica que se pasan cliente y servidor en las peticiones. Además, podemos almacenar en sesión cualquier información (no sólo textos), y no se pueden desactivar desde el navegador.</p>
+
+<p>Para manejar datos en una sesión, primero deberemos crearla con la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">session_start()</code>. Esta función crea la sesión si no estaba creada, y en caso de que ya exista, utiliza esa sesión. Es aconsejable poner esta función al principio de todas las páginas que necesiten sesiones.</p>
+
+<p>Después, utilizaremos el array <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$_SESSION</code> para guardar y recuperar datos de la sesión. Por ejemplo, si queremos guardar el login del usuario que nos ha enviado por un formulario, pondríamos algo como:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"loginUsuario"</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s2">"login"</span><span class="p">];</span></code></pre>
+</div>
+
+<p>Si queremos eliminar algún dato de la sesión, usaremos la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">unset</code> con dicho dato del array:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s2">"loginUsuario"</span><span class="p">]);</span></code></pre>
+</div>
+
+<p>Si queremos cerrar la sesión entera (y perder todo lo que haya en el array <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$_SESSION</code>), usamos la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">session_destroy()</code>. Es aconsejable borrar antes a mano todas las variables que hayamos creado en la sesión, para que no se queden ocupando memoria. Para ello, en lugar de hacer <em>unset</em> con cada variable, también podemos hacer:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$_SESSION</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+<span class="nb">session_destroy</span><span class="p">();</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.1. Ejemplo</span></h3>
+
+<p>Veamos un ejemplo un poco más completo de todo esto. Imaginemos que queremos guardarnos en sesión el e-mail de un usuario que nos llega a través de un formulario. En la página donde recogemos los datos de ese formulario haríamos algo así:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="c1">// Esto nos permitirá acceder al array $_SESSION</span>
+<span class="nb">session_start</span><span class="p">();</span>
+
+<span class="c1">// Comprobamos si llega un e-mail en la petición</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'email'</span><span class="p">]))</span>
+<span class="p">{</span>
+    <span class="c1">// Almacenamos el e-mail en una casilla del array $_SESSION,</span>
+    <span class="c1">// con el nombre que queramos (por ejemplo, 'emailUsuario')</span>
+    <span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'emailUsuario'</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$_REQUEST</span><span class="p">[</span><span class="s1">'email'</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="c1">// ... Resto del código de la página</span></code></pre>
+</div>
+
+<p>En las páginas donde queramos acceder a esta variable (para mostrarla en pantalla, o para enviar un e-mail a ese usuario, por ejemplo), basta con que volvamos a inicializar la sesión y consultemos el valor:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nb">session_start</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'emailUsuario'</span><span class="p">]))</span>
+<span class="p">{</span>
+    <span class="c1">// Hacer lo que queramos con $_SESSION['emailUsuario']</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="c1">// Si no existe, podemos redirigir a otra página, por ejemplo</span>
+    <span class="nb">header</span><span class="p">(</span><span class="s2">"Location:otraPagina.php"</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>Finalmente, cuando queramos eliminar estos datos de sesión del usuario, podemos llamar a <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">session_destroy</code>. Es conveniente también eliminar una a una las variables, o limpiar el array de sesión para liberar la memoria:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nb">session_start</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">isset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'emailUsuario'</span><span class="p">]))</span>
+    <span class="nb">unset</span><span class="p">(</span><span class="nv">$_SESSION</span><span class="p">[</span><span class="s1">'emailUsuario'</span><span class="p">]);</span>
+<span class="c1">// También serviría esto:</span>
+<span class="c1">// $_SESSION = array();</span>
+<span class="nb">session_destroy</span><span class="p">();</span></code></pre>
+</div>
+
+<div id="ej_06_2" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 2</span>
+            <a href="10_ejercicios_r.html#ej_06_2" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una carpeta llamada <strong>02_carro</strong> con una página llamada <strong>carro.php</strong> 
+    con una lista de enlaces de diferentes artículos y su precio. Por ejemplo:</p>
+
+  <ul>
+    <li>Zapatillas Nike (60 euros)</li>
+    <li>Sudadera Domyos (15 euros)</li>
+    <li>Pala de pádel Vairo (50 euros)</li>
+    <li>Pelota de baloncesto Molten (20 euros)</li>
+  </ul>
+
+  <p>Puedes alimentar la lista desde un array de artículos previamente definido en PHP, como este:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$articulos</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Zapatillas Nike"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mi">60</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Sudadera Domyos"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mi">15</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Pala de pádel Vairo"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mi">50</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"id"</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Pelota de baloncesto Molten"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mi">20</span><span class="p">)</span>
+<span class="p">);</span></code></pre>
+</div>
+
+  <p>Cada vez que el usuario haga clic en un artículo, se enviará a la propia página, recogerá el código o <em>id</em> del artículo (que se le enviará como parámetro) y con ello buscará el artículo en el catálogo y acumulará en sesión el total de lo que ha ido comprando, junto con un listado de los artículos que ha seleccionado, para mostrarlo todo por pantalla. Por ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-terminal"></i> Terminal / Texto</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code>- Zapatillas Nike (60 euros)
+- Pala de pádel Vairo (50 euros)
+Total comprado: 110 euros</code></pre>
+</div>
+
+  <p>Añade un enlace a la página que sea “Vaciar carro” que limpie el carro y deje así el total a 0.</p>
+        </div>
+    </div>
+</div>
+
+<div id="ej_06_3" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 3</span>
+            <a href="10_ejercicios_r.html#ej_06_3" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una carpeta <strong>03_login</strong> en la carpeta de ejercicios. 
+    Dentro vamos a crear un pequeño sistema de login y uso de sesiones. Crea los siguientes archivos:</p>
+
+  <ul>
+    <li><strong>usuarios.txt</strong> donde vamos a guardar varios logins y passwords de prueba, separados por “:”, uno por fila, 
+      como en este ejemplo:</li>
+  </ul>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-terminal"></i> Terminal / Texto</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code>usu1:pass1
+usu2:pass2
+prueba:passprueba</code></pre>
+</div>
+
+
+  <ul>
+    <li><strong>cabecera.inc</strong> que hará lo siguiente:
+      <ul>
+        <li>Comprobará si existe en sesión un atributo llamado <em>loginusu</em>. Si no existe, redirigirá a la página <em>login.php</em> que 
+          haremos después. Si existe, sacará un menú de enlaces a las páginas <em>pag1.php</em> y <em>pag2.php</em> y a <em>cerrar_sesión</em> este enlace  llama a la propia página cerrando la sesión </li>
+        <li>Crea las páginas <strong>index.php</strong>, <strong>pag1.php</strong> y <strong>pag2.php</strong> que incluyan la cabecera anterior (con <em>require</em>), y como contenido, ponles simplemente un mensaje de bienvenida diferente para cada página (para identificarlas).</li>
+        <li>Finalmente, la página de <strong>login.php</strong> tendrá un formulario para pedirle al usuario su login y password, y se llamará a sí misma. Los datos que reciba del formulario, los comparará con los del fichero <em>usuarios.txt</em> para ver si coincide con alguno. Si coincide, creará un atributo <em>loginusu</em> en sesión con el login del usuario y redirigirá a <em>index.php</em>. Si no coincide con ninguno, se volverá a cargar el propio formulario, con un mensaje de error en rojo indicando que el login o la contraseña son incorrectos.</li>
+      </ul>
+    </li>
+  </ul>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec06-3" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>3. Cuándo usar cookies o sesiones</span></h2>
+
+<p>Ya hemos visto estos dos mecanismos de compartir y actualizar información entre cliente y servidor, pero… ¿cuándo es conveniente utilizar cookies y cuándo sesiones? Básicamente debemos regirnos por estas sencillas reglas:</p>
+
+<ul>
+  <li>Usaremos cookies para almacenar información simple (texto) y no relevante para el funcionamiento de la web (porque los navegadores pueden desactivar las cookies). Por ejemplo, las últimas búsquedas que ha hecho un usuario en una web, o el login del usuario para recordárselo en el formulario la próxima vez que intente loguearse (aunque el login también deberemos almacenarlo en sesiones para recordar quién ha entrado hasta que cierre sesión).</li>
+  <li>Usaremos sesiones cuando queramos almacenar datos complejos, o cruciales para el funcionamiento de la web, ya que no pueden ser desactivadas por el navegador. Por ejemplo, el login del usuario (no el password) es útil almacenarlo en sesiones, para tener la certeza de poder identificarlo en cada página que visita (si estuviera en cookies, podrían desactivarse y perder quién ha entrado). Los elementos de un carro de la compra que tengamos añadidos de una tienda virtual, también se deberían almacenar en sesiones, pues son (o pueden ser) datos complejos, no simple texto.</li>
+  <li>No usaremos ni una ni otra para almacenar información privada del usuario, como por ejemplo contraseña, número de tarjeta de crédito, etc.</li>
+</ul>
+
+
+      
+    
+                </article>
+            </div>
+
+            <!-- Columna Lateral: Índice Rápido y Recursos -->
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="sticky-summary d-flex flex-column gap-3">
+                    <!-- Índice de la Lección -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                                <i class="bi bi-list-nested text-info"></i>
+                                <span>En este tema</span>
+                            </h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column gap-1 small">
+                                <a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec06-1">1. Cookies</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec06-2">2. Sesiones</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec06-3">3. Cuándo usar cookies o sesiones</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Descargables -->
+                    <div class="card border-0 shadow-sm rounded-3 bg-body-tertiary">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos del Tema</h6>
+                            <div class="d-grid gap-2 small">
+                                <a href="10_ejercicios_r.html" class="btn btn-sm btn-outline-primary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-code"></i>
+                                    <span>Soluciones de ejercicios</span>
+                                </a>
+                                <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-database"></i>
+                                    <span>Base de datos (SQL)</span>
+                                </a>
+                                <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>Manual MySQL (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Navegación Ergonómica Inferior -->
+    <nav class="container-xl my-4 py-3 border-top border-bottom" aria-label="Navegación entre temas">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <div>
+                <a href="05_redirecciones.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i>
+                    <div class="text-start d-none d-sm-block">
+                        <div class="small text-secondary">Anterior</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">05. Redirecciones e inclusiones</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="#inicio" class="btn btn-light btn-sm border d-flex align-items-center gap-1 text-secondary" title="Subir al inicio">
+                    <i class="bi bi-chevron-up"></i>
+                    <span class="d-none d-md-inline">Arriba</span>
+                </a>
+            </div>
+            <div>
+                <a href="07_ajax.html" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                    <div class="text-end d-none d-sm-block">
+                        <div class="small text-white-50">Siguiente</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">07. Comunicación asíncrona con AJAX</div>
+                    </div>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Pie de Página Estándar -->
+    <footer class="bg-dark text-light-emphasis py-4 mt-auto border-top border-secondary">
+        <div class="container-xl">
+            <div class="row align-items-center gy-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                        <span class="fw-bold text-white">LMSGI</span>
+                        <span class="text-secondary">| Lenguajes de Marcas</span>
+                    </div>
+                    <p class="small text-secondary mb-0">Curso de Desarrollo Web Backend con PHP y MySQL. Material didáctico adaptado bajo estándares web y Bootstrap 5.3.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 small mb-2">
+                        <a href="../index.html" class="text-decoration-none text-light-emphasis">Índice PHP</a>
+                        <a href="10_ejercicios_r.html" class="text-decoration-none text-light-emphasis">Solucionario</a>
+                        <a href="../../index.html" class="text-decoration-none text-light-emphasis">Portada LMSGI</a>
+                    </div>
+                    <p class="small text-secondary mb-0">Generalitat Valenciana &bull; Conselleria d'Educació</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

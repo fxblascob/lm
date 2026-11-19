@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00. Primeros Pasos con PHP y Entorno de Servidor | LMSGI</title>
+    <meta name="description" content="Tema 0: Arquitectura cliente-servidor web, instalación y configuración de XAMPP (Apache, MySQL, PHP), htdocs, primer script y ciclo de vida de una petición.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario PHP</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="../index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start shadow" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header bg-dark text-white border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-filetype-php text-info fs-4"></i>
+                <div>
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasNavLabel">Módulo PHP</h5>
+                    <span class="text-secondary small">Desarrollo Web Backend</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="mb-3">
+                <span class="text-uppercase text-secondary fw-bold small px-2">Unidades Temáticas</span>
+                <ul class="nav nav-pills flex-column gap-1 mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between active bg-info text-dark fw-bold shadow-sm" href="00_primeros_pasos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-rocket-takeoff text-dark"></i>
+                                    <span>Primeros pasos con PHP</span>
+                                </div>
+                                <span class="badge bg-dark text-white small">00</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="01_elementos_basicos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-square text-info"></i>
+                                    <span>Elementos básicos del lenguaje</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">01</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="02_funciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-gear-wide-connected text-info"></i>
+                                    <span>Uso de funciones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">02</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="03_arrays.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid-3x3-gap text-info"></i>
+                                    <span>Arrays, errores y otros conceptos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">03</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="04_formularios.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-ui-checks text-info"></i>
+                                    <span>Recogida de datos de formularios</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">04</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="05_redirecciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-arrow-left-right text-info"></i>
+                                    <span>Redirecciones e inclusiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">05</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="06_cookies_sesiones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person-badge text-info"></i>
+                                    <span>Cookies y sesiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">06</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="07_ajax.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-lightning-charge text-info"></i>
+                                    <span>Comunicación asíncrona con AJAX</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">07</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="08_poo.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-boxes text-info"></i>
+                                    <span>Programación orientada a objetos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">08</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="09_bd.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-database-fill-gear text-info"></i>
+                                    <span>Acceso a bases de datos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">09</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3 pt-3 border-top">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="10_ejercicios_r.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check2-square text-success"></i>
+                                    <span>Solucionario y Prácticas</span>
+                                </div>
+                                <span class="badge bg-success-subtle text-success-emphasis border small">10</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 mt-4">
+                <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos y Base de Datos</h6>
+                <div class="d-grid gap-2">
+                    <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-database text-primary"></i>
+                        <span>academia.sql (BD)</span>
+                    </a>
+                    <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                        <span>Manual MySQL (PDF)</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm btn-outline-info text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-grid text-info"></i>
+                        <span>Panel Central PHP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        <!-- Migas de Pan (Breadcrumbs) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 py-2 px-3 bg-white rounded-3 shadow-sm border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">PHP</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Primeros pasos con PHP</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta Hero del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-dark text-white overflow-hidden">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6">Unidad 00</span>
+                    <span class="badge bg-secondary text-light fw-normal px-2.5 py-1.5 small">Desarrollo Web Backend</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">00. Primeros Pasos con PHP y Entorno de Servidor</h1>
+                <p class="lead text-light-emphasis mb-0">Tema 0: Arquitectura cliente-servidor web, instalación y configuración de XAMPP (Apache, MySQL, PHP), htdocs, primer script y ciclo de vida de una petición.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Columna Principal de Contenido -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                <article class="content-card p-4 p-md-5 shadow-sm">
+                    <p>PHP es un lenguaje de desarrollo web en el lado del servidor. De hecho, es el lenguaje de desarrollo web en el lado del servidor más ampliamente utilizado a día de hoy, y aproximadamente el 80% de las páginas que podamos encontrar en Internet lo utilizan. De ahí la importancia de conocerlo y saberlo utilizar.</p>
+
+<h2 id="sec00-1" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>1. Características principales de PHP</span></h2>
+
+<p>PHP es un lenguaje de <em>script</em> del lado del servidor. Un lenguaje de <em>script</em> es básicamente un lenguaje de programación interpretado o ejecutado “al vuelo”. Es similar a otros lenguajes de <em>script</em> en el lado del servidor, como JSP o ASP.NET.</p>
+
+<p>Además, PHP es un lenguaje multiparadigma. Podemos desarrollar aplicaciones siguiendo el paradigma estructurado (bucles y condiciones), modular (funciones) y orientado a objetos. Tiene una sintaxis bastante particular, y diferente a muchos otros lenguajes. Como lenguaje de servidor, a menudo lo utilizaremos intercalado dentro del contenido de una página HTML.</p>
+
+<p>Podemos encontrar gran variedad de sitios web realizados con PHP: tiendas virtuales en las que poder crearnos un carro de la compra y pagar sobre una plataforma de pago de una entidad bancaria, cursos virtuales en plataformas Moodle (CMS hecho en PHP), o páginas web más o menos complejas realizadas directamente en PHP, o con algún gestor de contenidos en PHP como Wordpress o Joomla.</p>
+
+<p>Entre sus principales características, aparte de su popularidad, podemos citar las siguientes:</p>
+
+<ul>
+  <li>Es open source, por lo que podemos acceder a su código y usarlo, modificarlo o distribuirlo.</li>
+  <li>Fácil de aprender, si se compara con otros lenguajes de programación como C o Perl.</li>
+  <li>Multiplataforma, se puede ejecutar en diversos sistemas operativos. Esta es una diferencia importante con otras tecnologías como .NET (exclusiva de Windows), aunque hay otros lenguajes de servidor que también son multiplataforma, como Java/JSP.</li>
+  <li>Permite acceder a diversos sistemas de bases de datos (MySQL, Oracle, PostgreSQL…)</li>
+  <li>Admite diversas librerías y entornos para implementar sistemas de comercio electrónico, envío de e-mails, frameworks de desarrollo, etc.</li>
+</ul>
+
+<h2 id="sec00-2" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>2. Recursos necesarios para trabajar con PHP</span></h2>
+
+<p>Para poder trabajar con PHP necesitamos un <strong>servidor web</strong> que dé soporte a este lenguaje. Un <em>servidor web</em> es una herramienta que permite escuchar peticiones (locales o remotas) que llegan a un puerto del ordenador (normalmente el puerto 80, que es el puerto por defecto), y las procesa mediante algún recurso interno (en nuestro caso, las páginas PHP que alojaremos en dicho servidor), para ofrecer una respuesta a dicha petición. Por ejemplo, podemos solicitar un listado de libros de una base de datos, y en este caso la página PHP que reciba la petición deberá encargarse de conectar a la base de datos, obtener el listado y enviarlo a quien realizó la petición (cliente) en el formato esperado.</p>
+
+<p>Existen varios servidores web que podemos utilizar para trabajar con PHP, siendo los más populares <strong>Apache</strong> y <strong>Nginx</strong>. Además, necesitaremos instalar el propio lenguaje <strong>PHP</strong>, y normalmente será necesario acceder a algún tipo de base de datos.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.1 Utilizando XAMPP</span></h3>
+
+<p>Para aunar estos tres problemas (servidor web, PHP y base de datos) en una única solución, una alternativa bastante habitual consiste en instalar una herramienta llamada <strong>XAMPP</strong>. Este software incorpora:</p>
+
+<ul>
+  <li>Servidor web Apache</li>
+  <li>Servidor de base de datos MySQL</li>
+  <li>Lenguaje PHP</li>
+</ul>
+
+<p>Una de las ventajas que ofrecen es que, además de instalar Apache, PHP y MySQL y dejarlo todo integrado, nos proporciona un cliente web llamado <strong>phpMyAdmin</strong> para poder administrar las bases de datos desde Apache. Esto nos vendrá bien para crear o importar las bases desde una interfaz gráfica.</p>
+
+<p>En cuanto a la <strong>versión requerida</strong>, depende un poco del tipo de aplicaciones que queramos desarrollar. Podemos descargar la última versión disponible desde la <a href="https://www.apachefriends.org/es/index.html">web oficial</a> e instalarla dependiendo de nuestro sistema operativo.</p>
+
+<p><strong>Linux</strong></p>
+
+<p>En el caso de Linux, debemos dar permisos de ejecución y ejecutar el archivo <em>.run</em> que descarguemos desde algún terminal, con permisos de administrador (<em>sudo</em>). Suponiendo que el archivo se llame <em>xampp-linux-x64-8.1.2-installer.run</em>, por ejemplo, los pasos son los siguientes (desde la carpeta donde lo hemos descargado):</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-terminal"></i> Terminal / Texto</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code>sudo chmod +x xampp-linux-x64-8.1.2-installer.run
+sudo ./xampp-linux-x64-8.1.2-installer.run</code></pre>
+</div>
+
+<p><strong>Windows y MacOSX</strong></p>
+
+<p>En el caso de <strong>Windows</strong> o <strong>Mac OSX</strong> simplemente hay que lanzar el instalador y seguir los pasos, eligiendo las opciones que nos interese instalar (al menos, Apache, MySQL y PHP), si nos dan a elegir. Así es como podemos dejarlo en el caso de Windows, por ejemplo:</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/01_xampp_windows.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="01_xampp_windows.png"></figure></figure>
+
+<h4 class="h6 fw-bold text-secondary mt-3 mb-2">El manager de XAMPP</h4>
+
+<p>XAMPP proporciona una herramienta <em>manager</em> o <em>panel de control</em> que nos permite gestionar en todo momento los servicios activos.</p>
+
+<p>En el caso de <strong>Linux</strong> se encuentra en <strong>/opt/lampp/manager-linux-x64.run</strong>. Podemos acceder a la carpeta desde el terminal para ejecutarlo (con permisos de superusuario), o bien crear algún acceso directo en otra ubicación que nos resulte más cómoda.</p>
+
+<p>En el caso de <strong>Windows</strong>, dicho manager está en la carpeta de instalación (típicamente <em>C:\xampp</em>), en un archivo llamado <em>xampp-control.exe</em>, que podemos ejecutar. En el caso de <strong>Mac OSX</strong>, se habrá creado un acceso en la sección de <em>Aplicaciones</em> para poder poner en marcha este manager.</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/01_xampp_mac1.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="01_xampp_mac1.png"></figure></figure>
+
+<p>El manager nos permitirá lanzar o detener cada servidor. Para las pruebas que haremos deberemos tener iniciados tanto Apache como MySQL. En Linux y Mac OS X tendrá una apariencia como ésta aproximadamente:</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/01_xampp_manager.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="01_xampp_manager.png"></figure></figure>
+
+<p>En el caso de Windows la apariencia es algo diferente, aunque igualmente funcional:</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/01_xampp_manager_windows.jpg" class="figure-img img-fluid rounded-3 shadow-sm border" alt="01_xampp_manager_windows.jpg"></figure></figure>
+
+<p>Por defecto, Apache estará escuchando en el puerto 80 (o 443 para conexiones SSL), y MySQL en el 3306. Podemos modificar estos puertos en los respectivos archivos de configuración (“<em>httpd.conf</em>” y “<em>my.cnf</em>”), dentro de las carpetas de la instalación de XAMPP (la ubicación concreta de estos archivos varía entre versiones y entre sistemas operativos).</p>
+
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 mb-4 rounded-3 p-3">
+    <i class="bi bi-exclamation-triangle-fill fs-4 text-warning flex-shrink-0 mt-1"></i>
+    <div class="alert-content flex-grow-1">
+        <p><strong>IMPORTANTE</strong>: en el caso de Windows, es posible que tengamos que dar permisos de <em>Control total</em> al archivo <em>xampp-control.ini</em>, que se creará en la carpeta de instalación de XAMPP la primera vez que ejecutemos el <em>manager</em>. Esto deberá hacerse para evitar el mensaje de error que puede aparecer al intentar acceder a ese archivo sin permisos por parte de la aplicación.</p>
+    </div>
+</div>
+
+<h4 class="h6 fw-bold text-secondary mt-3 mb-2">Ubicación de las webs</h4>
+
+<p>La carpeta por defecto donde debemos ubicar nuestras webs es la subcarpeta <strong>htdocs</strong> dentro de la carpeta de instalación de XAMPP (típicamente <em>C:\xampp</em> en Windows, u <em>/opt/lampp</em> en Linux). Ahí deberemos colocar las páginas y carpetas que necesitemos, incluso podemos crear una carpeta para cada aplicación.</p>
+
+<p>En realidad, podemos configurar Apache para admitir otras rutas distintas, y alojar así nuestros distintos proyectos en diversas carpetas a nuestra elección. Pero esto queda fuera del alcance de este curso, así que los ejemplos y ejercicios que probaremos los crearemos en carpetas independientes dentro de la carpeta por defecto.</p>
+
+<div id="ej_00_1" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 1</span>
+            <a href="10_ejercicios_r.html#ej_00_1" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Descarga e instala XAMPP en tu ordenador. Abre el <em>manager</em> y pon en marcha Apache y MySQL para comprobar que arrancan satisfactoriamente. Intenta acceder a la página de inicio (típicamente <em>http://localhost</em>, si no has tenido que cambiar el puerto por defecto).</p>
+
+  <p>Después, crea la carpeta <em>prueba</em> dentro de la carpeta <em>htdocs</em> y añade dentro un archivo <em>index.html</em> con un mensaje de bienvenida. Prueba a acceder a dicha página (con Apache en marcha) accediendo a <em>http://localhost/prueba/index.html</em>.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec00-3" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>3. Mi primer programa PHP</span></h2>
+
+<p>Como comentábamos antes, PHP es un lenguaje con una sintaxis bastante particular. Normalmente los archivos tienen extensión <em>.php</em> (aunque más adelante veremos que hay otras alternativas), y dentro de ellos, el código comienza con la expresión <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">&lt;?php</code>. Todo lo que esté englobado entre esta expresión y la de cierre <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">?&gt;</code> es código PHP, y podemos intercalar tantos bloques de este tipo como queramos en nuestras páginas.</p>
+
+<p>Por ejemplo, esta página <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">bienvenida.php</code> carga un contenido HTML y, en medio, define un fragmento de código con un texto de bienvenida que muestra por pantalla:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Página de bienvenida<span class="nt">&lt;/h1&gt;</span>
+    <span class="cp">&lt;?php</span>
+        <span class="k">echo</span> <span class="s2">"&lt;p&gt;Bienvenido a esta página&lt;/p&gt;"</span><span class="p">;</span>
+    <span class="cp">?&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre>
+</div>
+
+<div id="ej_00_2" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 2</span>
+            <a href="10_ejercicios_r.html#ej_00_2" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>En la misma carpeta <em>htdocs/prueba</em> del ejercicio anterior, crea una página llamada <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">informacion.php</code> y, utilizando la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">echo</code> de PHP que hemos visto en el ejemplo anterior, muestra algo de información sobre tí, generando algunos párrafos con formato HTML: nombre, aficiones, estudios, etc. Prueba a cargar la página (con el servidor Apache en marcha) y comprueba que el contenido se genera con el formato esperado.</p>
+        </div>
+    </div>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.1. Esquema de funcionamiento general</span></h3>
+
+<p>¿Cómo hace un servidor web como Apache para, a través de PHP, procesar una petición y generar un contenido para el cliente? Los pasos que se siguen son:</p>
+
+<ol>
+  <li>El cliente realiza una petición de un recurso PHP. Típicamente consiste en solicitar una página PHP desde el navegador, a través de un enlace o formulario. Por ejemplo, un formulario que envía sus datos a <em>pagina.php</em></li>
+  <li>El servidor recibe la petición, toma el archivo <em>pagina.php</em> y lo interpreta, es decir, lanza el intérprete PHP para ejecutar el código PHP de la página</li>
+  <li>Se sustituye el código PHP ejecutado por el código HTML que se ha generado en su lugar</li>
+  <li>Se envía el código HTML generado como respuesta al cliente.</li>
+</ol>
+
+<p>Por ejemplo, al recibir una petición a la página <em>bienvenida.php</em> del ejemplo anterior, se lanza el intérprete PHP y se genera el siguiente contenido HTML como resultado, que es lo que se devuelve al navegador:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"es"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;&lt;/title&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>Página de bienvenida<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Bienvenido a esta página<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span></code></pre>
+</div>
+
+<p>Como podemos ver e imaginar, en el navegador NO se puede ver el código PHP del servidor, ya que éste ha sido procesado, interpretado y sustituido por el HTML correspondiente en el servidor.</p>
+      
+    
+                </article>
+            </div>
+
+            <!-- Columna Lateral: Índice Rápido y Recursos -->
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="sticky-summary d-flex flex-column gap-3">
+                    <!-- Índice de la Lección -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                                <i class="bi bi-list-nested text-info"></i>
+                                <span>En este tema</span>
+                            </h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column gap-1 small">
+                                <a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec00-1">1. Características principales de PHP</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec00-2">2. Recursos necesarios para trabajar con PHP</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec00-3">3. Mi primer programa PHP</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Descargables -->
+                    <div class="card border-0 shadow-sm rounded-3 bg-body-tertiary">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos del Tema</h6>
+                            <div class="d-grid gap-2 small">
+                                <a href="10_ejercicios_r.html" class="btn btn-sm btn-outline-primary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-code"></i>
+                                    <span>Soluciones de ejercicios</span>
+                                </a>
+                                <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-database"></i>
+                                    <span>Base de datos (SQL)</span>
+                                </a>
+                                <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>Manual MySQL (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Navegación Ergonómica Inferior -->
+    <nav class="container-xl my-4 py-3 border-top border-bottom" aria-label="Navegación entre temas">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <div>
+                <a href="../index.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="bi bi-house"></i>
+                    <span>Inicio PHP</span>
+                </a>
+            </div>
+            <div>
+                <a href="#inicio" class="btn btn-light btn-sm border d-flex align-items-center gap-1 text-secondary" title="Subir al inicio">
+                    <i class="bi bi-chevron-up"></i>
+                    <span class="d-none d-md-inline">Arriba</span>
+                </a>
+            </div>
+            <div>
+                <a href="01_elementos_basicos.html" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                    <div class="text-end d-none d-sm-block">
+                        <div class="small text-white-50">Siguiente</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">01. Elementos básicos del lenguaje</div>
+                    </div>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Pie de Página Estándar -->
+    <footer class="bg-dark text-light-emphasis py-4 mt-auto border-top border-secondary">
+        <div class="container-xl">
+            <div class="row align-items-center gy-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                        <span class="fw-bold text-white">LMSGI</span>
+                        <span class="text-secondary">| Lenguajes de Marcas</span>
+                    </div>
+                    <p class="small text-secondary mb-0">Curso de Desarrollo Web Backend con PHP y MySQL. Material didáctico adaptado bajo estándares web y Bootstrap 5.3.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 small mb-2">
+                        <a href="../index.html" class="text-decoration-none text-light-emphasis">Índice PHP</a>
+                        <a href="10_ejercicios_r.html" class="text-decoration-none text-light-emphasis">Solucionario</a>
+                        <a href="../../index.html" class="text-decoration-none text-light-emphasis">Portada LMSGI</a>
+                    </div>
+                    <p class="small text-secondary mb-0">Generalitat Valenciana &bull; Conselleria d'Educació</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

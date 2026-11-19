@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07. Comunicación Asíncrona Frontend-Backend (AJAX y JSON) | LMSGI</title>
+    <meta name="description" content="Tema 7: Peticiones HTTP asíncronas con XMLHttpRequest y Fetch API, serialización JSON (json_encode, json_decode) y arquitectura de servicios desacoplados.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario PHP</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="../index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start shadow" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header bg-dark text-white border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-filetype-php text-info fs-4"></i>
+                <div>
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasNavLabel">Módulo PHP</h5>
+                    <span class="text-secondary small">Desarrollo Web Backend</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="mb-3">
+                <span class="text-uppercase text-secondary fw-bold small px-2">Unidades Temáticas</span>
+                <ul class="nav nav-pills flex-column gap-1 mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="00_primeros_pasos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-rocket-takeoff text-info"></i>
+                                    <span>Primeros pasos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">00</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="01_elementos_basicos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-square text-info"></i>
+                                    <span>Elementos básicos del lenguaje</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">01</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="02_funciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-gear-wide-connected text-info"></i>
+                                    <span>Uso de funciones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">02</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="03_arrays.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid-3x3-gap text-info"></i>
+                                    <span>Arrays, errores y otros conceptos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">03</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="04_formularios.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-ui-checks text-info"></i>
+                                    <span>Recogida de datos de formularios</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">04</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="05_redirecciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-arrow-left-right text-info"></i>
+                                    <span>Redirecciones e inclusiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">05</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="06_cookies_sesiones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person-badge text-info"></i>
+                                    <span>Cookies y sesiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">06</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between active bg-info text-dark fw-bold shadow-sm" href="07_ajax.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-lightning-charge text-dark"></i>
+                                    <span>Comunicación asíncrona con AJAX</span>
+                                </div>
+                                <span class="badge bg-dark text-white small">07</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="08_poo.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-boxes text-info"></i>
+                                    <span>Programación orientada a objetos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">08</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="09_bd.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-database-fill-gear text-info"></i>
+                                    <span>Acceso a bases de datos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">09</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3 pt-3 border-top">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="10_ejercicios_r.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check2-square text-success"></i>
+                                    <span>Solucionario y Prácticas</span>
+                                </div>
+                                <span class="badge bg-success-subtle text-success-emphasis border small">10</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 mt-4">
+                <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos y Base de Datos</h6>
+                <div class="d-grid gap-2">
+                    <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-database text-primary"></i>
+                        <span>academia.sql (BD)</span>
+                    </a>
+                    <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                        <span>Manual MySQL (PDF)</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm btn-outline-info text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-grid text-info"></i>
+                        <span>Panel Central PHP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        <!-- Migas de Pan (Breadcrumbs) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 py-2 px-3 bg-white rounded-3 shadow-sm border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">PHP</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Comunicación asíncrona con AJAX</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta Hero del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-dark text-white overflow-hidden">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6">Unidad 07</span>
+                    <span class="badge bg-secondary text-light fw-normal px-2.5 py-1.5 small">Desarrollo Web Backend</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">07. Comunicación Asíncrona Frontend-Backend (AJAX y JSON)</h1>
+                <p class="lead text-light-emphasis mb-0">Tema 7: Peticiones HTTP asíncronas con XMLHttpRequest y Fetch API, serialización JSON (json_encode, json_decode) y arquitectura de servicios desacoplados.</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Columna Principal de Contenido -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                <article class="content-card p-4 p-md-5 shadow-sm">
+                    <p><strong>AJAX</strong> son las siglas de <em>Asynchronous JavaScript And XML</em> (JavaScript asíncrono y XML). Hace referencia a una técnica que permite realizar peticiones desde la parte cliente de una web empleando JavaScript, recibir la información de forma asíncrona (es decir, sin quedarse esperando a recibir la respuesta), recoger los datos recibidos y actualizar con ellos una parte de la página, sin necesidad de recargarla en su totalidad.</p>
+
+<p>Para ello, emitiremos peticiones a un servidor web desde JavaScript, y dejaremos definido un método que se ejecutará cuando se reciba la respuesta. Dentro de ese método, típicamente se recogen los datos recibidos y se muestran en una parte de la página. Veremos a continuación cómo definir cada uno de estos pasos.</p>
+
+<h2 id="sec07-1" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>1. Envío de la petición desde JavaScript</span></h2>
+
+<p>Para enviar una petición AJAX desde JavaScript haremos uso de un objeto especial ya predefinido en el lenguaje llamado <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">XMLHttpRequest</code>. Debemos inicializarlo, y definir sobre él:</p>
+
+<ul>
+  <li>El recurso del servidor que queremos solicitar, indicando la URL</li>
+  <li>Qué función queremos que se ejecute cuando se reciba la respuesta, a través del evento <em>onreadystatechange</em> del propio objeto</li>
+  <li>Enviar la petición</li>
+</ul>
+
+<p>Aquí vemos un ejemplo donde llamamos a una página llamada <em>prueba.php</em> (alojada en la raíz del servidor donde se encuentra el propio archivo JavaScript). El contenido que se reciba se volcará en el interior del elemento con <em>id</em> “contenido”.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">const</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>                
+        <span class="kd">let</span> <span class="nx">elemento</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">contenido</span><span class="dl">"</span><span class="p">);</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">prueba.php</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span></code></pre>
+</div>
+
+<p>El método <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">open</code> es el que se encarga de definir a qué recurso queremos acceder (<em>prueba.php</em>), y su tercer parámetro a <em>true</em> indica que queremos llamarlo de forma asíncrona para no detener el código esperando respuesta. Cuando se invoca el método <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">send</code> se envía la petición, y cuando se reciba se ejecutará la función del evento <em>onreadystatechange</em>. Dentro de este evento, comprobamos si la petición ha finalizado (<code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">readyState == 4</code>) y además si lo ha hecho correctamente (<code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">this.status == 200</code>). Si es así, recogemos la respuesta y la mostramos en el elemento seleccionado.</p>
+
+<div id="ej_07_1" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 1</span>
+            <a href="10_ejercicios_r.html#ej_07_1" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+  <p>Crea una carpeta 07_ajax para los ejercicios de esta sesión:</p>
+  <p>Dentro de esta carpeta, define una carpeta llamada <strong>01_listacompra</strong> con una página llamada <strong>lista_compra.html</strong> 
+    que tenga algún encabezado <em>h1</em> que diga “Lista de la compra”, y un espacio para cargar una lista no ordenada de elementos. 
+    Cuando pulsemos un botón “Cargar lista” llamaremos por AJAX a una página <strong>listado.php</strong>, .
+    de la misma carpeta, que devolverá una lista de la compra leída de un fichero de texto, y transformada a lista no ordenada en HTML. 
+    Al recibirla, se mostrará la lista en el lugar habilitado de la página HTML.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec07-2" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>2. AJAX y JSON<a class="anchorjs-link " href="https://nachoiborraies.github.io/javascript/md/es/03b#2-ajax-y-json" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></span></h2>
+
+<p><strong>JSON</strong> son las siglas de <em>JavaScript Object Notation</em>, una sintaxis propia de Javascript para poder representar objetos como cadenas de texto, y poder así serializar y enviar información de objetos a través de flujos de datos (archivos de texto, comunicaciones cliente-servidor, etc).</p>
+
+<p>Un objeto JavaScript se define mediante una serie de propiedades y valores. Por ejemplo, los datos de una persona (como nombre y edad) podríamos almacenarlos así:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">let</span> <span class="nx">persona</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nacho</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">edad</span><span class="p">:</span> <span class="mi">39</span>
+<span class="p">};</span></code></pre>
+</div>
+
+<p>Este mismo objeto, convertido a JSON, formaría una cadena de texto con este contenido:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="p">{</span><span class="nl">"nombre"</span><span class="p">:</span><span class="s2">"Nacho"</span><span class="p">,</span><span class="nl">"edad"</span><span class="p">:</span><span class="mi">39</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Del mismo modo, si tenemos una colección (vector) de objetos como ésta:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">let</span> <span class="nx">personas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nacho</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">39</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Mario</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Laura</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nora</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="p">];</span></code></pre>
+</div>
+
+<p>Transformada a JSON sigue la misma sintaxis, pero entre corchetes:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="p">[{</span><span class="nl">"nombre"</span><span class="p">:</span><span class="s2">"Nacho"</span><span class="p">,</span><span class="nl">"edad"</span><span class="p">:</span><span class="mi">39</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nl">"nombre"</span><span class="p">:</span><span class="s2">"Mario"</span><span class="p">,</span><span class="nl">"edad"</span><span class="p">:</span><span class="mi">4</span><span class="p">},</span><span class="w">  
+ </span><span class="p">{</span><span class="nl">"nombre"</span><span class="p">:</span><span class="s2">"Laura"</span><span class="p">,</span><span class="nl">"edad"</span><span class="p">:</span><span class="mi">2</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nl">"nombre"</span><span class="p">:</span><span class="s2">"Nora"</span><span class="p">,</span><span class="nl">"edad"</span><span class="p">:</span><span class="mi">10</span><span class="p">}]</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>JavaScript ofrece un par de métodos útiles para convertir datos a formato JSON y viceversa. Estos métodos son <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">JSON.stringify</code> (para convertir un objeto o array JavaScript a JSON) y <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">JSON.parse</code> (para el proceso inverso, es decir, convertir una cadena JSON en un objeto JavaScript). Aquí vemos un ejemplo de cada uno:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">let</span> <span class="nx">personas</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nacho</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">39</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Mario</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Laura</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">{</span> <span class="na">nombre</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Nora</span><span class="dl">"</span><span class="p">,</span> <span class="na">edad</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+<span class="p">];</span>
+
+<span class="c1">// Convertir array a JSON</span>
+<span class="kd">let</span> <span class="nx">personasJSON</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">personas</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personasJSON</span><span class="p">);</span>
+
+<span class="c1">// Convertir JSON a array</span>
+<span class="kd">let</span> <span class="nx">personas2</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">personasJSON</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">personas2</span><span class="p">);</span></code></pre>
+</div>
+
+<p>JSON puede resultar una herramienta realmente útil combinada con AJAX, ya que va a permitir que el servidor envíe información al cliente en formato JSON (sin un formato específico) y que ese mismo cliente adapte la información y le dé el formato adecuado a sus necesidades. De este modo, un servidor puede proporcionar la misma información a distintos clientes (aplicación web, de escritorio, móvil) y que cada una la adapte visualmente a su entorno particular.</p>
+
+<p>El siguiente fragmento de código define un array de datos en PHP y lo envía en formato JSON, usando la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">json_encode</code> de PHP:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$datos</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Nacho"</span><span class="p">,</span>
+    <span class="s2">"telefono"</span> <span class="o">=&gt;</span> <span class="s2">"611223344"</span><span class="p">,</span>
+    <span class="s2">"edad"</span> <span class="o">=&gt;</span> <span class="mi">43</span>
+<span class="p">);</span>
+<span class="k">echo</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$datos</span><span class="p">);</span></code></pre>
+</div>
+
+<p>Suponiendo que el código anterior esté en una página llamada <em>datos.php</em>, este otro código invoca a esa página desde JavaScript usando AJAX, recoge el resultado JSON, lo convierte a JavaScript y muestra el resultado en una sección identificada como <em>contenido</em>:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">const</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>                
+        <span class="kd">let</span> <span class="nx">elemento</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">contenido</span><span class="dl">"</span><span class="p">);</span>
+        <span class="kd">let</span> <span class="nx">datos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">&lt;ul&gt;</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">&lt;li&gt;Nombre: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">datos</span><span class="p">.</span><span class="nx">nombre</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">&lt;/li&gt;</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">&lt;li&gt;Teléfono: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">datos</span><span class="p">.</span><span class="nx">telefono</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">&lt;/li&gt;</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">&lt;li&gt;Edad: </span><span class="dl">"</span> <span class="o">+</span> <span class="nx">datos</span><span class="p">.</span><span class="nx">edad</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">&lt;/li&gt;</span><span class="dl">"</span><span class="p">;</span>
+        <span class="nx">elemento</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">+=</span> <span class="dl">"</span><span class="s2">&lt;/ul&gt;</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">GET</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">datos.php</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span></code></pre>
+</div>
+
+<div id="ej_07_2" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 2</span>
+            <a href="10_ejercicios_r.html#ej_07_2" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Haz una copia del ejercicio anterior en otra carpeta llamada <strong>02_listacompraJSON</strong> y añade estos cambios:</p>
+
+  <ul>
+    <li>El fichero <strong>listado.php</strong> leerá los datos de la compra de un fichero y los enviará al cliente en formato JSON. En este caso enviaremos un array de objetos JavaScript, donde cada uno tendrá un único campo con el título del artículo</li>
+    <li>El fichero <strong>lista_compra.html</strong> pedirá el listado por AJAX, como antes, pero ahora lo que recibirá será un array de datos en formato texto, que deberá convertir a JSON y mostrar en el lugar correspondiente de la página.</li>
+  </ul>
+        </div>
+    </div>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.1. Envío de formularios con AJAX<a class="anchorjs-link " href="https://nachoiborraies.github.io/javascript/md/es/03b#21-env%C3%ADo-de-formularios-con-ajax" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></span></h3>
+
+<p>También es posible utilizar AJAX para enviar formularios de forma asíncrona desde el cliente, recoger la respuesta y mostrarla en un lugar de la página sin tener que recargarla toda. Supongamos que tenemos un formulario identificado con <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">name="form1"</code>, y queremos enviar sus datos por AJAX a <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">procesar_formulario.php</code>. Dicho formulario puede tener establecidos sus mecanismos de validación en el cliente, así que lo que haremos será alterar el comportamiento del evento <em>submit</em> para deshacer el comportamiento por defecto y enviar el formulario de otro modo. Para ello, crearemos un objeto de tipo <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">FormData</code> de JavaScript, con los datos del formulario, y los enviaremos por AJAX a la página destino, recogiendo la respuesta:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="kd">let</span> <span class="nx">formulario</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">form1</span><span class="p">;</span>
+<span class="nx">formulario</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">submit</span><span class="dl">"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evento</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nx">evento</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="kd">let</span> <span class="nx">datos</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FormData</span><span class="p">(</span><span class="nx">formulario</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">xhttp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="mi">4</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">)</span> <span class="p">{</span>                
+            <span class="c1">// Recoger respuesta del servidor y procesarla</span>
+            <span class="kd">let</span> <span class="nx">datosRecibidos</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+            <span class="c1">// Mostrar los datos en algún componente</span>
+            <span class="p">...</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="dl">"</span><span class="s2">POST</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">procesar_formulario.php</span><span class="dl">"</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="nx">xhttp</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">datos</span><span class="p">);</span>
+<span class="p">});</span></code></pre>
+</div>
+
+<div id="ej_07_3" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 3</span>
+            <a href="10_ejercicios_r.html#ej_07_3" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Haz una copia del ejercicio anterior en otra carpeta llamada <strong>03_listacompraJSONForm</strong> y haz que el fichero 
+    <strong>lista_compra.html</strong> tenga ahora, además de lo anterior, 
+    un formulario para poder dar de alta nuevos títulos de artículos en la lista de la compra. 
+    Cuando enviemos el formulario, desde AJAX crearemos un <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">FormData</code> 
+    con sus datos y lo enviaremos a otra página <strong>nuevo.php</strong>, que lo añadirá al fichero con la lista de la compra, 
+    y redirigirá a <strong>listado.php</strong> para que devuelva la lista actualizada en formato JSON. 
+    Al recibir la lista JSON (tras enviar el formulario) se actualizará en <em>lista_compra.html</em>. 
+    De este modo, la lista se actualizará tanto al pulsar el botón de “Cargar lista” como al enviar el formulario.</p>
+        </div>
+    </div>
+</div>
+
+
+      
+    
+                </article>
+            </div>
+
+            <!-- Columna Lateral: Índice Rápido y Recursos -->
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="sticky-summary d-flex flex-column gap-3">
+                    <!-- Índice de la Lección -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                                <i class="bi bi-list-nested text-info"></i>
+                                <span>En este tema</span>
+                            </h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column gap-1 small">
+                                <a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec07-1">1. Envío de la petición desde JavaScript</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec07-2">2. AJAX y JSON</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Descargables -->
+                    <div class="card border-0 shadow-sm rounded-3 bg-body-tertiary">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos del Tema</h6>
+                            <div class="d-grid gap-2 small">
+                                <a href="10_ejercicios_r.html" class="btn btn-sm btn-outline-primary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-code"></i>
+                                    <span>Soluciones de ejercicios</span>
+                                </a>
+                                <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-database"></i>
+                                    <span>Base de datos (SQL)</span>
+                                </a>
+                                <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>Manual MySQL (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Navegación Ergonómica Inferior -->
+    <nav class="container-xl my-4 py-3 border-top border-bottom" aria-label="Navegación entre temas">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <div>
+                <a href="06_cookies_sesiones.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i>
+                    <div class="text-start d-none d-sm-block">
+                        <div class="small text-secondary">Anterior</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">06. Cookies y sesiones</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="#inicio" class="btn btn-light btn-sm border d-flex align-items-center gap-1 text-secondary" title="Subir al inicio">
+                    <i class="bi bi-chevron-up"></i>
+                    <span class="d-none d-md-inline">Arriba</span>
+                </a>
+            </div>
+            <div>
+                <a href="08_poo.html" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                    <div class="text-end d-none d-sm-block">
+                        <div class="small text-white-50">Siguiente</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">08. Programación orientada a objetos (POO)</div>
+                    </div>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Pie de Página Estándar -->
+    <footer class="bg-dark text-light-emphasis py-4 mt-auto border-top border-secondary">
+        <div class="container-xl">
+            <div class="row align-items-center gy-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                        <span class="fw-bold text-white">LMSGI</span>
+                        <span class="text-secondary">| Lenguajes de Marcas</span>
+                    </div>
+                    <p class="small text-secondary mb-0">Curso de Desarrollo Web Backend con PHP y MySQL. Material didáctico adaptado bajo estándares web y Bootstrap 5.3.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 small mb-2">
+                        <a href="../index.html" class="text-decoration-none text-light-emphasis">Índice PHP</a>
+                        <a href="10_ejercicios_r.html" class="text-decoration-none text-light-emphasis">Solucionario</a>
+                        <a href="../../index.html" class="text-decoration-none text-light-emphasis">Portada LMSGI</a>
+                    </div>
+                    <p class="small text-secondary mb-0">Generalitat Valenciana &bull; Conselleria d'Educació</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

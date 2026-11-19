@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. Arrays, Manejo de Errores y Ámbito en PHP | LMSGI</title>
+    <meta name="description" content="Tema 3: Matrices indexadas, asociativas y multidimensionales, foreach, funciones de array, supresión con @, php.ini, die() y excepciones estructuradas (try-catch).">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body id="inicio">
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario PHP</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="../index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start shadow" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header bg-dark text-white border-bottom border-secondary">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-filetype-php text-info fs-4"></i>
+                <div>
+                    <h5 class="offcanvas-title fw-bold" id="offcanvasNavLabel">Módulo PHP</h5>
+                    <span class="text-secondary small">Desarrollo Web Backend</span>
+                </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="mb-3">
+                <span class="text-uppercase text-secondary fw-bold small px-2">Unidades Temáticas</span>
+                <ul class="nav nav-pills flex-column gap-1 mt-2">
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="00_primeros_pasos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-rocket-takeoff text-info"></i>
+                                    <span>Primeros pasos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">00</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="01_elementos_basicos.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-code-square text-info"></i>
+                                    <span>Elementos básicos del lenguaje</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">01</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="02_funciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-gear-wide-connected text-info"></i>
+                                    <span>Uso de funciones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">02</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between active bg-info text-dark fw-bold shadow-sm" href="03_arrays.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-grid-3x3-gap text-dark"></i>
+                                    <span>Arrays, errores y otros conceptos</span>
+                                </div>
+                                <span class="badge bg-dark text-white small">03</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="04_formularios.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-ui-checks text-info"></i>
+                                    <span>Recogida de datos de formularios</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">04</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="05_redirecciones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-arrow-left-right text-info"></i>
+                                    <span>Redirecciones e inclusiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">05</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="06_cookies_sesiones.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-person-badge text-info"></i>
+                                    <span>Cookies y sesiones</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">06</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="07_ajax.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-lightning-charge text-info"></i>
+                                    <span>Comunicación asíncrona con AJAX</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">07</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="08_poo.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-boxes text-info"></i>
+                                    <span>Programación orientada a objetos</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">08</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="09_bd.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-database-fill-gear text-info"></i>
+                                    <span>Acceso a bases de datos con PHP</span>
+                                </div>
+                                <span class="badge bg-info-subtle text-info-emphasis border small">09</span>
+                            </a>
+                        </li>
+                        <li class="nav-item mt-3 pt-3 border-top">
+                            <a class="nav-link rounded-3 px-3 py-2 d-flex align-items-center justify-content-between text-dark" href="10_ejercicios_r.html">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-check2-square text-success"></i>
+                                    <span>Solucionario y Prácticas</span>
+                                </div>
+                                <span class="badge bg-success-subtle text-success-emphasis border small">10</span>
+                            </a>
+                        </li>
+                </ul>
+            </div>
+
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 mt-4">
+                <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos y Base de Datos</h6>
+                <div class="d-grid gap-2">
+                    <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-database text-primary"></i>
+                        <span>academia.sql (BD)</span>
+                    </a>
+                    <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-file-earmark-pdf text-danger"></i>
+                        <span>Manual MySQL (PDF)</span>
+                    </a>
+                    <a href="../index.html" class="btn btn-sm btn-outline-info text-start d-flex align-items-center gap-2">
+                        <i class="bi bi-grid text-info"></i>
+                        <span>Panel Central PHP</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        <!-- Migas de Pan (Breadcrumbs) -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 py-2 px-3 bg-white rounded-3 shadow-sm border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">PHP</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Arrays, errores y otros conceptos</li>
+            </ol>
+        </nav>
+
+        <!-- Tarjeta Hero del Tema -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 bg-dark text-white overflow-hidden">
+            <div class="card-body p-4 p-md-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6">Unidad 03</span>
+                    <span class="badge bg-secondary text-light fw-normal px-2.5 py-1.5 small">Desarrollo Web Backend</span>
+                </div>
+                <h1 class="display-6 fw-bold mb-2 text-white">03. Arrays, Manejo de Errores y Ámbito en PHP</h1>
+                <p class="lead text-light-emphasis mb-0">Tema 3: Matrices indexadas, asociativas y multidimensionales, foreach, funciones de array, supresión con @, php.ini, die() y excepciones estructuradas (try-catch).</p>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Columna Principal de Contenido -->
+            <div class="col-12 col-lg-8 col-xl-9">
+                <article class="content-card p-4 p-md-5 shadow-sm">
+                    <p>En este documento veremos algunos aspectos adicionales y básicos del uso de PHP, como la gestión de arrays y errores.</p>
+
+<h2 id="sec03-1" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>1. Uso de arrays en PHP</span></h2>
+
+<p>Las tablas o arrays nos permiten almacenar varios datos en una sola variable, de forma que podemos acceder a esos datos utilizando distintos tipos de índices. En PHP existen tres tipos de arrays:</p>
+
+<ul>
+  <li><strong>Numéricos</strong>: la posición que ocupa cada elemento en el array la indica un número, y podemos acceder a esa posición indicando ese número entre corchetes. Las posiciones empiezan a numerarse desde la 0.</li>
+  <li><strong>Asociativos</strong>: la posición que ocupa cada elemento en la lista viene dada por un nombre, y podemos localizar cada elemento a través del nombre que le hemos dado, llamado <em>clave</em></li>
+  <li><strong>Mixtos</strong>: son arrays de varias dimensiones, donde en algunas se utilizan índices numéricos y en otras índices asociativos.</li>
+</ul>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>1.1. Arrays numéricos</span></h3>
+
+<p>Estos arrays podemos crearlos de tres formas posibles:</p>
+
+<ul>
+  <li>Indicando entre paréntesis sus elementos, y anteponiendo la palabra <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">array</code></li>
+</ul>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Uno'</span><span class="p">,</span> <span class="s1">'Dos'</span><span class="p">,</span> <span class="s1">'Tres'</span><span class="p">);</span></code></pre>
+</div>
+
+<ul>
+  <li>Indicando a mano el índice que queremos rellenar, y el valor que va a tener (los índices intermedios que queden sin valor se quedarán como huecos vacíos)</li>
+</ul>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Uno'</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Dos'</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Tres'</span><span class="p">;</span></code></pre>
+</div>
+
+<ul>
+  <li>Indicando el nombre del array con corchetes vacíos cada vez que queramos añadir un elemento. Así, se añade al final de los que ya existen:</li>
+</ul>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla</span><span class="p">[]</span> <span class="o">=</span> <span class="s1">'Uno'</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[]</span> <span class="o">=</span> <span class="s1">'Dos'</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[]</span> <span class="o">=</span> <span class="s1">'Tres'</span><span class="p">;</span></code></pre>
+</div>
+
+<p>Después, para sacar por pantalla algún valor, o usarlo en alguna expresión, pondremos el nombre del array y, entre corchetes, la posición que queremos:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">echo</span> <span class="nv">$tabla</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>		<span class="c1">// Sacaría 'Dos' en los casos anteriores</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>1.2. Arrays asociativos</span></h3>
+
+<p>En este caso, al crear el array debemos indicar, además de cada valor, la clave que le vamos a asociar, y por la que lo podemos encontrar, separados por el símbolo “=&gt;”. Por ejemplo, este array guarda para cada nombre de alumno su nota:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$notas</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Manuel García'</span><span class="o">=&gt;</span><span class="mf">8.5</span><span class="p">,</span> <span class="s1">'Ana López'</span><span class="o">=&gt;</span><span class="mi">7</span><span class="p">,</span> <span class="s1">'Juan Solís'</span><span class="o">=&gt;</span><span class="mi">9</span><span class="p">);</span></code></pre>
+</div>
+
+<p>También podemos rellenarlo, como en el caso anterior, indicando entre corchetes cada clave, y luego su valor:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$notas</span><span class="p">[</span><span class="s1">'Manuel García'</span><span class="p">]</span> <span class="o">=</span> <span class="mf">8.5</span><span class="p">;</span>
+<span class="nv">$notas</span><span class="p">[</span><span class="s1">'Ana López'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+<span class="mf">...</span></code></pre>
+</div>
+
+<p>Después, si queremos sacar la nota del alumno Manuel García, por ejemplo, pondremos algo como:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">echo</span> <span class="nv">$notas</span><span class="p">[</span><span class="s1">'Manuel García'</span><span class="p">];</span></code></pre>
+</div>
+
+<p>En este tipo de arrays no podremos usar índices numéricos, porque no hay posiciones numéricas.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>1.3. Arrays multidimensionales</span></h3>
+
+<p>Los arrays creados anteriormente son unidimensionales (sólo hay una lista o fila de elementos). Pero podemos tener tantas dimensiones como queramos. Es habitual encontrarnos con arrays bidimensionales (tablas), para almacenar información. En este caso, tendremos un corchete para cada dimensión. Por ejemplo, para crear una tabla como la siguiente…</p>
+
+<figure class="figure d-block text-center my-4"><figure class="figure d-block text-center my-4"><img src="./img/01_tabla_php.png" class="figure-img img-fluid rounded-3 shadow-sm border" alt="01_tabla_php.png"></figure></figure>
+
+<p>… necesitaremos un código como este:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">34.1</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">141</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">36.4</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">150</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">33.5</span><span class="p">;</span>
+<span class="nv">$tabla</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">155</span><span class="p">;</span></code></pre>
+</div>
+
+<p>También podemos tener arrays multidimensionales de tipo asociativo, o array mixtos (donde algunas dimensiones son numéricas y otras asociativas). Por ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla2</span> <span class="o">=</span> 
+<span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'nombre'</span> <span class="o">=&gt;</span> <span class="s1">'Juan García'</span><span class="p">,</span>
+        <span class="s1">'dni'</span><span class="o">=&gt;</span> <span class="s1">'11111111A'</span><span class="p">,</span>
+        <span class="s1">'idiomas'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'inglés'</span><span class="p">,</span> <span class="s1">'valenciano'</span><span class="p">,</span> <span class="s1">'español'</span><span class="p">)</span>
+    <span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s1">'nombre'</span> <span class="o">=&gt;</span> <span class="s1">'Elisa Rodríguez'</span><span class="p">,</span>
+        <span class="s1">'dni'</span> <span class="o">=&gt;</span> <span class="s1">'22222222B'</span><span class="p">,</span>
+        <span class="s1">'idiomas'</span> <span class="o">=&gt;</span> <span class="k">array</span><span class="p">(</span><span class="s1">'francés'</span><span class="p">,</span> <span class="s1">'español'</span><span class="p">)</span>
+    <span class="p">)</span>
+<span class="p">);</span></code></pre>
+</div>
+
+<p>Podríamos mostrar el segundo idioma hablado por la segunda persona con:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">echo</span> <span class="nv">$tabla2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'idiomas'</span><span class="p">][</span><span class="mi">1</span><span class="p">];</span></code></pre>
+</div>
+
+<p>Podemos crear igualmente estos arrays usando corchetes, definiendo lo que queremos en cada dimensión:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$tabla2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'nombre'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Juan García'</span><span class="p">;</span>
+<span class="nv">$tabla2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'dni'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'11111111A'</span><span class="p">;</span>
+<span class="nv">$tabla2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'idiomas'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'inglés'</span><span class="p">;</span>
+<span class="nv">$tabla2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'idiomas'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'valenciano'</span><span class="p">;</span>
+<span class="mf">...</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>1.4. Recorrido de arrays<a class="anchorjs-link " href="https://nachoiborraies.github.io/php/md/es/01d#14-recorrido-de-arrays" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></span></h3>
+
+<p>Para recorrer arrays unidimensionales podemos utilizar la expresión <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">foreach</code>, que nos devuelve el valor de cada posición, independiente de si es un array numérico o asociativo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">foreach</span> <span class="p">(</span><span class="nv">$notas</span> <span class="k">as</span> <span class="nv">$nota</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$nota</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>También podemos usar una estructura <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">for</code> que cuente hasta el tamaño del array (función <em>count</em>):</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">for</span><span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$notas</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$notas</span><span class="p">[</span><span class="nv">$i</span><span class="p">];</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>Para arrays asociativos, también podemos usar esta instrucción <em>foreach</em>, indicando en la parte derecha del <em>as</em> dos variables (una para la clave y otra para el valor):</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">foreach</span> <span class="p">(</span><span class="nv">$notas</span> <span class="k">as</span> <span class="nv">$alumno</span><span class="o">=&gt;</span><span class="nv">$nota</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"El alumno </span><span class="nv">$alumno</span><span class="s2"> tiene un </span><span class="nv">$nota</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>En el caso de arrays bidimensionales numéricos, para recorrer todos los elementos de un array como el de la tabla numérica anterior, necesitaremos un doble bucle (también llamado bucle anidado): uno que recorra las filas, y otro las columnas:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="c1">// Filas</span>
+<span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$tabla</span><span class="p">);</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// Columnas</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nv">$j</span> <span class="o">&lt;</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$tabla</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="nv">$j</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nv">$tabla</span><span class="p">[</span><span class="nv">$i</span><span class="p">][</span><span class="nv">$j</span><span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>1.5. Funciones para arrays</span></h3>
+
+<p>PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas de las más habituales son:</p>
+
+<ul>
+  <li><strong>count(array)</strong> nos indica cuántos elementos tiene el array. Es útil para utilizarlo en bucles y saber cuántas repeticiones podemos hacer sobre el array.</li>
+  <li><strong>sort(array)</strong> y <strong>rsort(array)</strong> ordenan y reindexan un array numérico (la segunda en orden decreciente)</li>
+  <li><strong>asort(array)</strong> y <strong>arsort(array)</strong> ordenan y reindexan un array asociativo (la segunda en orden decreciente), por sus valores.</li>
+  <li><strong>ksort(array)</strong> y <strong>krsort(array)</strong> ordenan un array asociativo por sus claves (la segunda en orden decreciente).</li>
+  <li><strong>usort(array, funcion)</strong> ordena un array según la función que defina el usuario como segundo parámetro.</li>
+  <li><strong>uasort(array, función) </strong>igual que usort() pero manteniendo las claves, ya que asort() en un array bidimensional sustituye la clave de la primera dimensión por claves numéricas de indexación estandar</li>
+  <li><strong>array_filter(array, funcion_filtrado)</strong> devuelve un array con los elementos del array original (pasado como parámetro) que pasan la función de filtrado indicada.</li>
+  <li>Podemos, además, usar la función <strong>print_r</strong> para sacar la información del array de forma legible</li>
+</ul>
+
+<p>Veamos algunos ejemplos:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">];</span>
+<span class="c1">// Ordenamos un array de enteros de mayor a menor</span>
+<span class="nb">rsort</span><span class="p">(</span><span class="nv">$numeros</span><span class="p">);</span>  <span class="c1">// [9, 6, 5, 3, 2]</span>
+
+<span class="nv">$notas</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span><span class="s1">'Manuel García'</span><span class="o">=&gt;</span><span class="mf">8.5</span><span class="p">,</span> <span class="s1">'Ana López'</span><span class="o">=&gt;</span><span class="mi">7</span><span class="p">,</span> <span class="s1">'Juan Solís'</span><span class="o">=&gt;</span><span class="mi">9</span><span class="p">);</span>
+<span class="c1">// Ordenamos un array de alumnos y notas de menor a mayor nota</span>
+<span class="nb">asort</span><span class="p">(</span><span class="nv">$notas</span><span class="p">);</span>  <span class="c1">// Ana López = 7, Manuel García = 8.5, Juan Solís = 9</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$notas</span><span class="p">);</span>
+<span class="c1">// Ordenamos un array de alumnos por nombre de menor a mayor</span>
+<span class="nb">ksort</span><span class="p">(</span><span class="nv">$notas</span><span class="p">);</span>  <span class="c1">// Ana López = 7, Juan Solís = 9, Manuel García = 8.5</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$notas</span><span class="p">);</span>
+
+<span class="nv">$numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="c1">// Filtramos los múltiplos de 5 del array </span>
+<span class="nv">$multiplos5</span> <span class="o">=</span> <span class="nb">array_filter</span><span class="p">(</span><span class="nv">$numeros</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$n</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="c1">// $multiplos5 = [5, 10, 95]</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$multiplos5</span><span class="p">);</span>
+
+<span class="nv">$alimentos</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Arroz"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mf">1.95</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Carne picada"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mf">3.45</span><span class="p">),</span>
+    <span class="k">array</span><span class="p">(</span><span class="s2">"nombre"</span> <span class="o">=&gt;</span> <span class="s2">"Tomate frito"</span><span class="p">,</span> <span class="s2">"precio"</span> <span class="o">=&gt;</span> <span class="mf">2.15</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="c1">// Ordenamos array por precio de menor a mayor</span>
+<span class="nb">usort</span><span class="p">(</span><span class="nv">$alimentos</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$item1</span><span class="p">,</span> <span class="nv">$item2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$item1</span><span class="p">[</span><span class="s2">"precio"</span><span class="p">]</span> <span class="o">&lt;=&gt;</span> <span class="nv">$item2</span><span class="p">[</span><span class="s2">"precio"</span><span class="p">];</span>
+<span class="p">});</span>
+<span class="nb">print_r</span><span class="p">(</span><span class="nv">$alimentos</span><span class="p">);</span></code></pre>
+</div>
+
+<div id="ej_03_1" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 1</span>
+            <a href="10_ejercicios_r.html#ej_03_1" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una carpeta llamada <strong>03_arrays</strong> donde colocar los ejercicios de esta sección. 
+    Define dentro una página llamada <strong>01_tabla_multiplicar.php</strong> en tu carpeta de ejercicios. 
+    Crea en ella un array numérico bidimensional donde en cada fila almacenes la tabla de multiplicar de un número del 0 al 9. 
+    Para rellenar el array de dos dimensiones debes utlizar un bucle anidado, no lo rellenes a mano.
+    debería quedarte un array como éste (sin sacar nada por pantalla):</p>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive my-4"><table class="table table-hover table-striped table-bordered align-middle table-custom mb-0">
+<tbody><tr>
+    <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+    <td>0</td><td>0</td><td>0</td><td>0</td><td>0</td>
+    <td>0</td>
+</tr>
+<tr>
+    <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td>
+    <td>5</td><td>6</td><td>7</td><td>8</td><td>9</td>
+    <td>10</td>
+</tr>
+<tr>
+    <td>0</td><td>2</td><td>4</td><td>6</td><td>8</td>
+    <td>10</td><td>12</td><td>14</td><td>16</td><td>18</td>
+    <td>20</td>
+</tr>
+<tr>
+    <td colspan="11">...</td>
+</tr>
+</tbody></table></div>
+
+<div class="alert alert-warning border-0 shadow-sm d-flex align-items-start gap-3 mb-4 rounded-3 p-3">
+    <i class="bi bi-exclamation-triangle-fill fs-4 text-warning flex-shrink-0 mt-1"></i>
+    <div class="alert-content flex-grow-1">
+        <p>Después, recorre la tabla mostrando en la página la tabla de multiplicar de cada número, de forma que te quede algo así:</p>
+    </div>
+</div>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-terminal"></i> Terminal / Texto</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code>Tabla del 0:
+0 x 1 = 0
+0 x 2 = 0
+...
+Tabla del 1:
+1 x 0 = 0
+...</code></pre>
+</div>
+
+<div id="ej_03_2" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 2</span>
+            <a href="10_ejercicios_r.html#ej_03_2" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+
+  <p>Crea una página llamada <strong>02_coches.php</strong>. Define dentro un array bidimensional mixto donde:</p>
+
+  <ul>
+    <li>La primera dimensión sea asociativa. Aquí pondremos matrículas de coches</li>
+    <li>La segunda dimensión será numérica. En cada casilla guardaremos la marca, modelo y número de puertas del coche en cuestión. Por ejemplo, el coche con matrícula “111BCD” puede ser un “Ford” (casilla 0), modelo “Focus” (casilla 1) de 5 puertas (casilla 2).</li>
+  </ul>
+
+  <p>Rellena el array con al menos 3 o 4 coches, y después utiliza las estructuras adecuadas para recorrerlo mostrando los datos de los coches 
+    ordenados por matrícula y posteriormente ordenador por marca y modelo.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec03-2" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>2. Gestión de errores</span></h2>
+
+<p>En ocasiones podemos hacer operaciones o utilizar funciones que pueden provocar un error grave en la aplicación. Por ejemplo, una división por cero, o una lectura de un fichero que no existe. Si no controlamos esos errores, se puede “disparar” un mensaje de error en el programa que muestre su mal funcionamiento, o lo que es peor, que revele algún dato privado, como la ubicación de un fichero en el servidor, o algún nombre de usuario o contraseña. Para evitar que ciertas operaciones que puedan causar errores alteren de esa forma el funcionamiento de la aplicación web, existen varias alternativas.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.1. Uso del operador @<a class="anchorjs-link " href="https://nachoiborraies.github.io/php/md/es/01d#21-uso-del-operador-" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></span></h3>
+
+<p>El operador <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">@</code> se pone delante de una operación que puede provocar error, de manera que, si lo provoca, el programa no diga nada, no se muestre ningún mensaje. Por ejemplo, si vamos a dividir dos variables sin tener en cuenta que el divisor pueda ser cero, podríamos ponerlo así:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$división</span> <span class="o">=</span> <span class="o">@</span><span class="p">(</span><span class="nv">$num1</span><span class="o">/</span><span class="nv">$num2</span><span class="p">);</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.2. Modificación del archivo php.ini<a class="anchorjs-link " href="https://nachoiborraies.github.io/php/md/es/01d#22-modificaci%C3%B3n-del-archivo-phpini" aria-label="Anchor" data-anchorjs-icon="" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></span></h3>
+
+<p>Para no mostrar los mensajes de error por pantalla, podemos editar el archivo de configuración de PHP (php.ini), y modificar el parámetro de configuración <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">display_errors</code>. Deberemos ponerlo <em>false</em>, <em>off</em> o “0” (dependiendo de la versión de PHP que tengamos), para desactivar los mensajes de error. Pero deberemos tener en cuenta que, si hacemos esto, se desactivarán para todas las aplicaciones PHP que tengamos en el servidor, por lo que no suele ser una práctica demasiado recomendable.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.3. Uso de la instrucción <em>die</em></span></h3>
+
+<p>Una tercera forma de controlar los errores que se producen en una página PHP es utilizar una instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">die</code> o <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">exit</code> en el caso de que se produzca un error en una instrucción. Por ejemplo, el siguiente código intenta ver si un fichero existe, y si no, muestra el mensaje de error indicado en la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">die</code>/<code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">exit</code>:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nb">file_exists</span><span class="p">(</span><span class="s2">"fichero.txt"</span><span class="p">)</span> <span class="k">or</span> <span class="k">die</span> <span class="p">(</span><span class="s2">"No se encuentra el fichero"</span><span class="p">);</span></code></pre>
+</div>
+
+<p>Además, con la función <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">die</code> o <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">exit</code> deja de ejecutarse el resto de la página, con lo que termina ahí su carga. Se utiliza para instrucciones que sean de vital importancia para el funcionamiento del resto del código, y normalmente al principio de la página para no dejarla con la mitad de contenido. De lo contrario, es mejor utilizar el operador <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">@</code> para ocultar errores menos importantes.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>2.4. Uso de excepciones</span></h3>
+
+<p>Las excepciones son un mecanismo que podemos emplear para, en el momento en que se produzca un error en alguna parte del código, se capture automáticamente y se pueda tratar en un bloque de código aparte.</p>
+
+<p>Para trabajar con excepciones, debemos colocar todo el código que puede provocar error en un bloque llamado <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">try</code>. Si algo falla, automáticamente se salta a un bloque contiguo llamado <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">catch</code>, donde podremos tratar el error y sacar el mensaje oportuno. El siguiente ejemplo trata de abrir un fichero, leerlo y guardar el contenido en un array.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">try</span>
+<span class="p">{</span>
+    <span class="nv">$contenido</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="s2">"fich1.txt"</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Se ha producido un error: '</span> <span class="mf">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<p>Si se produce cualquier tipo de error (por ejemplo, que no exista el fichero de lectura, o no tengamos permisos para acceder a él), se provoca un error y se va directamente al bloque <em>catch</em>, mostrando el mensaje de error. Podemos utilizar la variable de tipo <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">Exception</code> que tiene el <em>catch</em> como parámetro, y su método <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">getMessage()</code> para mostrar el error concreto que se ha producido.</p>
+
+<p>También podemos usar la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">throw new Exception($mensaje)</code> para provocar una excepción en el caso de que alguna comprobación que hagamos nos dé un resultado incorrecto. Así provocamos un salto al <em>catch</em>, o un mensaje de error en la web si no lo hacemos dentro de un try. Se utiliza también para algunas funciones que no provocan excepciones por sí mismas (como por ejemplo, <em>file_get_contents</em>), para provocar el error nosotros de antemano con alguna comprobación previa.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">try</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nb">file_exists</span><span class="p">(</span><span class="s2">"fich1.txt"</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nc">Exception</span><span class="p">(</span><span class="s2">"El fichero de entrada no existe"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nv">$contenido</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s2">"fich1.txt"</span><span class="p">);</span>
+    <span class="nb">file_put_contents</span><span class="p">(</span><span class="s2">"fich2.txt"</span><span class="p">,</span> <span class="nv">$contenido</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'Se ha producido un error: '</span> <span class="mf">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+</div>
+
+<div id="ej_03_3" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 3</span>
+            <a href="10_ejercicios_r.html#ej_03_3" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+  <p>Haz tres copias del <em>Ejercicio 9</em> del tema anterior y las llamas, 
+    <strong>03_copia_seguridad_arroba.php</strong>, 
+    <strong>03_copia_seguridad_die.php</strong> y 
+    <strong>03_copia_seguridad_excepciones.php</strong>.
+     En todas ellas, cambia el nombre del fichero <em>datos.txt</em> por uno que no exista en la carpeta 
+     (por ejemplo, <em>aa.txt</em>), y controla el error que puede producirse en cada caso usando una arroba, 
+     la instrucción <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">die</code> o las excepciones,
+      para ver cómo se controla en cada caso el error y qué hace la página.</p>
+        </div>
+    </div>
+</div>
+
+<h2 id="sec03-3" class="h4 fw-bold text-primary mt-5 mb-3 border-bottom pb-2 d-flex align-items-center gap-2"><i class="bi bi-bookmark-check text-info"></i><span>3. Más sobre variables</span></h2>
+
+<p>Existen algunas cuestiones algo más avanzadas sobre el uso de variables en PHP que debemos conocer.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.1. Variables globales y locales</span></h3>
+
+<p>Veremos más adelante que existen unas variables predefinidas en PHP para ciertas tareas. Por ejemplo, la variable $_REQUEST nos permitirá acceder a los datos que el usuario nos envía desde un formulario.</p>
+
+<p>Otras variables que podamos crear nosotros, tendrán su ámbito según la zona donde las creemos. Por ejemplo, si creamos una variable dentro de una función, esa variable no existirá fuera de la misma, y no podremos utilizarla. Sin embargo, si creamos una variable fuera de una función, e intentamos acceder a ella dentro, podría parecer que sí es una variable global o externa a la función, pero no es así. Veamos este ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$numero</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="mf">...</span>
+<span class="k">function</span> <span class="n">incrementaNumero</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="nv">$numero</span> <span class="o">=</span> <span class="nv">$numero</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+	<span class="k">echo</span> <span class="nv">$numero</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="mf">...</span>
+<span class="nf">incrementaNumero</span><span class="p">();</span></code></pre>
+</div>
+
+<p>Si ejecutamos un código como este, el comando <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">echo $numero</code> nos dirá que <em>numero</em> vale 1, cuando todo parece indicar que debería valer 11. La razón es que la variable externa <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$numero</code> no es la misma que la variable interna <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$numero</code> de la función. Esta última, al no tener un valor inicial asignado, empieza por 0, y al incrementarse vale 1, pero la variable <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$numero</code> externa sigue valiendo 10, nadie la ha modificado.</p>
+
+<p>Si queremos poder acceder a una variable externa a una función desde dentro de una función, deberemos definir en la función que esa variable es global, de la siguiente forma:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$numero</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="mf">...</span>
+<span class="k">function</span> <span class="n">incrementaNumero</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">global</span> <span class="nv">$numero</span><span class="p">;</span>
+    <span class="nv">$numero</span> <span class="o">=</span> <span class="nv">$numero</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$numero</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="mf">...</span>
+<span class="nf">incrementaNumero</span><span class="p">();</span></code></pre>
+</div>
+
+<p>Ahora, si ejecutamos el código, sí obtendremos lo esperado: que <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$numero</code> vale 11.</p>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.2. Closures</span></h3>
+
+<p>Los <em>closures</em> son un mecanismo vinculado a las funciones anónimas, mediante el cual éstas pueden utilizar elementos externos, tales como variables. Para hacer eso, se emplea la cláusula <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">use</code> seguida de la variable (o variables) que se quieren emplear.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$numero</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="nv">$incrementaNumero</span> <span class="o">=</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$numero</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nv">$numero</span> <span class="o">=</span> <span class="nv">$numero</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$numero</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="nv">$incrementaNumero</span><span class="p">();</span>    <span class="c1">// 11</span></code></pre>
+</div>
+
+<h3 class="h5 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2"><i class="bi bi-chevron-right text-info small"></i><span>3.3. Variables variables</span></h3>
+
+<p>Una funcionalidad muy característica de PHP y que no todos los lenguajes tienen es la posibilidad de definir variables cuyo nombre es a su vez variable. Así, una variable puede tomar su nombre según el valor de otra variable. Por ejemplo:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="nv">$var1</span> <span class="o">=</span> <span class="s2">"uno"</span><span class="p">;</span>
+<span class="nv">$$var1</span> <span class="o">=</span> <span class="s2">"otro uno"</span><span class="p">;</span></code></pre>
+</div>
+
+<p>La variable <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$var1</code> es una variable normal, y guarda el valor “uno”. Sin embargo, la variable <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$$var1</code> tomará su nombre según lo que valga <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$var1</code> (en este caso, se llamaría <code class="text-info-emphasis bg-info-subtle px-1.5 py-0.5 rounded">$uno</code>). Para utilizar estas variables en instrucciones tipo <em>echo</em>, dentro de comillas dobles, se pone el nombre dinámico (empezando por el segundo dólar) entre llaves:</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="k">echo</span> <span class="s2">"La segunda variable vale ${$var1}"</span><span class="p">;</span></code></pre>
+</div>
+
+<p>¿Qué utilidades puede tener esto? Puede parecer que es un mecanismo un tanto enrevesado sin demasiada utilidad pero, por ejemplo, puede ser bastante útil para hacer páginas multi-idioma. Así, nos guardaremos en diferentes variables el texto a mostrar en cada idioma, y haremos que se imprima una de ellas en función de algún parámetro adicional o variable.</p>
+
+<div class="code-block mb-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center text-secondary border-bottom border-secondary border-opacity-25 pb-1 mb-2 small">
+        <span class="fw-semibold text-info d-flex align-items-center gap-1"><i class="bi bi-filetype-php"></i> PHP</span>
+        <button class="btn btn-outline-secondary btn-sm py-0 px-2 text-light" style="font-size: 0.75rem;" onclick="navigator.clipboard.writeText(this.closest('.code-block').querySelector('code').innerText)"><i class="bi bi-clipboard"></i> Copiar</button>
+    </div>
+    <pre class="m-0"><code><span class="cp">&lt;?php</span>
+    <span class="nv">$texto_es</span> <span class="o">=</span> <span class="s2">"Bienvenido"</span><span class="p">;</span>
+    <span class="nv">$texto_en</span> <span class="o">=</span> <span class="s2">"Welcome"</span><span class="p">;</span>
+    <span class="nv">$idioma</span> <span class="o">=</span> <span class="s2">"es"</span><span class="p">;</span>
+    <span class="nv">$texto</span> <span class="o">=</span> <span class="s2">"texto_"</span> <span class="mf">.</span> <span class="nv">$idioma</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="nv">$$texto</span><span class="p">;</span>
+<span class="cp">?&gt;</span></code></pre>
+</div>
+
+<div id="ej_03_4" class="card exercise-card border-0 shadow-sm mb-4 bg-body-tertiary border-start border-4 border-info">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center justify-content-between mb-3 flex-wrap gap-2">
+            <span class="badge bg-info text-dark fw-bold px-3 py-2 fs-6"><i class="bi bi-code-square me-1"></i>Ejercicio 4</span>
+            <a href="10_ejercicios_r.html#ej_03_4" class="btn btn-sm btn-outline-primary"><i class="bi bi-check2-circle me-1"></i>Ver Solución</a>
+        </div>
+        <div class="exercise-text text-dark">
+            
+  <p>Crea una página en la carpeta de ejercicios llamada <strong>04_curriculum.php</strong> donde, utilizando variables variables, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), tanto en español como en otro idioma que elijas.</p>
+        </div>
+    </div>
+</div>
+      
+    
+                </article>
+            </div>
+
+            <!-- Columna Lateral: Índice Rápido y Recursos -->
+            <div class="col-12 col-lg-4 col-xl-3">
+                <div class="sticky-summary d-flex flex-column gap-3">
+                    <!-- Índice de la Lección -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white border-bottom py-3">
+                            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2 text-dark">
+                                <i class="bi bi-list-nested text-info"></i>
+                                <span>En este tema</span>
+                            </h6>
+                        </div>
+                        <div class="card-body p-2">
+                            <nav class="nav nav-pills flex-column gap-1 small">
+                                <a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec03-1">1. Uso de arrays en PHP</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec03-2">2. Gestión de errores</a>
+<a class="nav-link text-secondary py-1 px-2 rounded text-truncate" href="#sec03-3">3. Más sobre variables</a>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <!-- Recursos Descargables -->
+                    <div class="card border-0 shadow-sm rounded-3 bg-body-tertiary">
+                        <div class="card-body p-3">
+                            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Recursos del Tema</h6>
+                            <div class="d-grid gap-2 small">
+                                <a href="10_ejercicios_r.html" class="btn btn-sm btn-outline-primary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-code"></i>
+                                    <span>Soluciones de ejercicios</span>
+                                </a>
+                                <a href="../material/ficheros/academia.sql" download class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-database"></i>
+                                    <span>Base de datos (SQL)</span>
+                                </a>
+                                <a href="../material/php_jaumeII/35-php-mysql.pdf" target="_blank" class="btn btn-sm btn-outline-secondary text-start d-flex align-items-center gap-2">
+                                    <i class="bi bi-file-earmark-pdf"></i>
+                                    <span>Manual MySQL (PDF)</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. Navegación Ergonómica Inferior -->
+    <nav class="container-xl my-4 py-3 border-top border-bottom" aria-label="Navegación entre temas">
+        <div class="d-flex justify-content-between align-items-center gap-2">
+            <div>
+                <a href="02_funciones.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i>
+                    <div class="text-start d-none d-sm-block">
+                        <div class="small text-secondary">Anterior</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">02. Uso de funciones</div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <a href="#inicio" class="btn btn-light btn-sm border d-flex align-items-center gap-1 text-secondary" title="Subir al inicio">
+                    <i class="bi bi-chevron-up"></i>
+                    <span class="d-none d-md-inline">Arriba</span>
+                </a>
+            </div>
+            <div>
+                <a href="04_formularios.html" class="btn btn-primary d-flex align-items-center gap-2 shadow-sm">
+                    <div class="text-end d-none d-sm-block">
+                        <div class="small text-white-50">Siguiente</div>
+                        <div class="fw-semibold text-truncate" style="max-width: 180px;">04. Recogida de datos de formularios</div>
+                    </div>
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 5. Pie de Página Estándar -->
+    <footer class="bg-dark text-light-emphasis py-4 mt-auto border-top border-secondary">
+        <div class="container-xl">
+            <div class="row align-items-center gy-3">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 mb-1">
+                        <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                        <span class="fw-bold text-white">LMSGI</span>
+                        <span class="text-secondary">| Lenguajes de Marcas</span>
+                    </div>
+                    <p class="small text-secondary mb-0">Curso de Desarrollo Web Backend con PHP y MySQL. Material didáctico adaptado bajo estándares web y Bootstrap 5.3.</p>
+                </div>
+                <div class="col-12 col-md-6 text-center text-md-end">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3 small mb-2">
+                        <a href="../index.html" class="text-decoration-none text-light-emphasis">Índice PHP</a>
+                        <a href="10_ejercicios_r.html" class="text-decoration-none text-light-emphasis">Solucionario</a>
+                        <a href="../../index.html" class="text-decoration-none text-light-emphasis">Portada LMSGI</a>
+                    </div>
+                    <p class="small text-secondary mb-0">Generalitat Valenciana &bull; Conselleria d'Educació</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
