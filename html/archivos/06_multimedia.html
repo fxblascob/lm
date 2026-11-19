@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>06. Imágenes | HTML | LMSGI</title>
-    <meta name="description" content="Inserción de imágenes con img, formatos web (JPG, PNG, GIF, SVG), atributo alt, dimensiones y alineaciones.">
+    <title>06. Imágenes en la Web | HTML5 | LMSGI</title>
+    <meta name="description" content="Inserción de imágenes con img en HTML5, formatos web modernos (JPEG, PNG, WebP, SVG, AVIF), accesibilidad con alt, Core Web Vitals, figure, figcaption, picture y mapas de imagen.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,10 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
+        .exercise-card {
+            border-left: 4px solid #ffc107;
+            background-color: #fffdf5;
+        }
     </style>
 </head>
 <body>
@@ -132,11 +135,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 06</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5 Semántico</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">Core Web Vitals & WCAG</span>
                     </div>
-                    <h2 class="fw-bold mb-1">06. Imágenes</h2>
+                    <h2 class="fw-bold mb-1">06. Imágenes en la Web</h2>
                     <p class="text-secondary mb-0 small">
-                        Inserción de imágenes con img, formatos web (JPG, PNG, GIF, SVG), atributo alt, dimensiones y alineaciones.
+                        Inserción con <code>&lt;img&gt;</code>, formatos web modernos (JPEG, PNG, WebP, SVG, AVIF), accesibilidad con <code>alt</code>, optimización con <code>loading="lazy"</code>, <code>&lt;figure&gt;</code>, <code>&lt;picture&gt;</code> y mapas de imágenes.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,82 +156,448 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <p>Para incluir gráficos e imágenes en nuestras páginas utilizaremos la etiqueta &lt;img&gt;. No tiene etiqueta de cierre. Se trata de un elemento en línea.</p>
-			<p>Su sintaxis es:</p>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;img src=&quot;<b><i>nombre_fichero_imagen</i></b>&quot; [alt | title]=&quot;<b><i>texto_alternativo_imagen</i></b>&quot;&gt;</code></pre>
-			
-			<p>El atributo <b><i>src</i></b> especifica la URI de acceso a la imagen, el nombre del fichero que contiene el gráfico. Los formatos estándar en la red son GIF, JPEG y PNG.</p>
-			
-			<p>El atributo <b><i>alt</i></b> especifica el texto que se mostrará en lugar del gráfico en aquellos navegadores que no sean capaces de mostrarlos y en el supuesto de que el usuario los haya desactivado. Es obligatorio ponerlo para cumplir con los estándares del W3C.</p>
-			<p>El atributo <b><i>title</i></b> hace que aparezca un texto al poner el ratón encima. </p>
+            
+            <!-- Sección 1: La etiqueta <img> -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-image text-primary"></i> 1. Inserción básica: La etiqueta &lt;img&gt;
+                </h3>
+                <p>
+                    La etiqueta <code>&lt;img&gt;</code> permite incrustar recursos gráficos en una página web. Es un <strong>elemento vacío</strong> (<em>void element</em>) que <strong>no tiene etiqueta de cierre</strong> (no existe <code>&lt;/img&gt;</code>).
+                </p>
+                <p>
+                    En el modelo de maquetación HTML, se clasifica tradicionalmente como un <strong>elemento de reemplazo en línea</strong> (<em>inline replaced element</em>): fluye en el texto como una palabra, pero sus dimensiones intrínsecas (ancho y alto) determinan su caja visual.
+                </p>
 
-			<p>El atributo <b><i>name</i></b> identifica la imagen para su manejo posterior en hoja de estilo o script.</p>
+                <!-- Sintaxis Básica -->
+                <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                    <h6 class="fw-bold text-primary mb-2">Sintaxis moderna recomendada en HTML5:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;img src="imagenes/logotipo.webp" 
+     alt="Logotipo oficial de la empresa" 
+     width="400" 
+     height="120" 
+     loading="lazy"&gt;</code></pre>
+                </div>
 
-			<p>Los atributos <b><i>height</i>, <i>width</i></b> establecen la altura y ancho respectivamente,  en píxeles o en porcentaje, cuando se especifican el navegador debe modificar las medidas originales de la imagen a las especificadas.</p>
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Atributo</th>
+                                <th style="width: 25%;">Tipo / Valor</th>
+                                <th>Función y Buenas Prácticas Modernas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>src</code></td>
+                                <td>URL relativa o absoluta</td>
+                                <td><strong>Obligatorio.</strong> Indica la ruta donde se encuentra el archivo de imagen. Puede ser local (p. ej. <code>imagenes/foto.jpg</code>) o remota (URL completa con <code>https://</code>).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>alt</code></td>
+                                <td>Texto descriptivo</td>
+                                <td><strong>Obligatorio para la accesibilidad (WCAG).</strong> Texto alternativo leído por los lectores de pantalla para personas con discapacidad visual y mostrado si la imagen falla al cargar.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>width</code> / <code>height</code></td>
+                                <td>Entero (en píxeles)</td>
+                                <td>Dimensiones intrínsecas. En HTML5 <strong>no llevan unidades ni '%'</strong> (se escriben como <code>width="800"</code>). Permiten al navegador reservar el espacio exacto y evitar saltos de maquetación (CLS).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>loading</code></td>
+                                <td><code>lazy</code> | <code>eager</code></td>
+                                <td>Optimización nativa de rendimiento. <code>loading="lazy"</code> pospone la descarga hasta que el usuario se acerca a ella haciendo scroll.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>title</code></td>
+                                <td>Cadena de texto</td>
+                                <td>Muestra un cuadro emergente (<em>tooltip</em>) informativo al pasar el cursor por encima en navegadores de escritorio. No reemplaza a <code>alt</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-danger"><code>align</code>, <code>border</code>, <code>hspace</code>, <code>vspace</code></td>
+                                <td>Valores obsoletos</td>
+                                <td><span class="badge bg-danger">Obsoletos en HTML5</span>. Están totalmente desaconsejados; la alineación, bordes y espaciados deben gestionarse siempre mediante CSS.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-			<p>El atributo <b><i>usemap</i></b> sirve para asociar a la imagen un mapa de imágenes (como un marcador).</p>
+            <!-- Sección 2: Accesibilidad con alt -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-universal-access text-success"></i> 2. La regla de oro del atributo <code>alt</code> (Accesibilidad WCAG)
+                </h3>
+                <p>
+                    El atributo <code>alt</code> nunca debe omitirse. Sin embargo, su valor depende del <strong>propósito semántico</strong> de la imagen:
+                </p>
 
-			<p>Existen más <b>atributos</b> admitidos por la etiqueta. Se pueden consultar en la guía de HTML. No obstante, <b>la mayoría no se utilizan</b>, ya que se han quedado obsoletos y es recomendable utilizar las hojas de estilo para conseguir los efectos deseados.</p>
-			<div class="ejercicios">
-                <h2><a href = "16_ejercicios.html#ej_05">Ejercicio 5:</a></h2></code></pre>		
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-success shadow-sm">
+                            <div class="card-header bg-success-subtle border-success text-success fw-bold d-flex align-items-center gap-2">
+                                <i class="bi bi-check-circle-fill"></i> Imagen Informativa o Funcional
+                            </div>
+                            <div class="card-body small">
+                                <p>Si la imagen aporta información, contexto relevante o ilustra un paso importante, <strong>describe con precisión su mensaje o función</strong>:</p>
+                                <pre class="bg-dark text-light p-2 rounded mb-2 overflow-auto"><code>&lt;!-- Correcto: Describe el contenido --&gt;
+&lt;img src="grafico_ventas_2025.png" 
+     alt="Gráfico de barras: incremento del 15% en ventas durante 2025"&gt;</code></pre>
+                                <p class="text-muted mb-0">Evita redundancias como <em>"Foto de..."</em> o <em>"Imagen de..."</em>, ya que los lectores de pantalla ya anuncian al usuario que se trata de un elemento gráfico.</p>
+                            </div>
+                        </div>
+                    </div>
 
-			<h2>Imágenes y enlaces</h2>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-primary shadow-sm">
+                            <div class="card-header bg-primary-subtle border-primary text-primary fw-bold d-flex align-items-center gap-2">
+                                <i class="bi bi-stars"></i> Imagen Puramente Decorativa
+                            </div>
+                            <div class="card-body small">
+                                <p>Si la imagen es solo adorno visual (fondos, líneas divisorias, iconos repetitivos decorativos), debe llevar un <strong><code>alt</code> vacío explícito</strong>:</p>
+                                <pre class="bg-dark text-light p-2 rounded mb-2 overflow-auto"><code>&lt;!-- Correcto: alt vacío para imágenes decorativas --&gt;
+&lt;img src="adorno_floral.svg" alt="" role="presentation"&gt;</code></pre>
+                                <p class="text-muted mb-0">Con <code>alt=""</code> el lector de pantalla ignora silenciosamente la imagen decorativa. Si omites el atributo por completo, el lector leerá la ruta cruda del archivo (p. ej. <em>"adorno_floral punto ese uve ge"</em>), empeorando la experiencia del usuario.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-			<p>Para hacer que un gráfico se convierta en un enlace, hay que escribir la etiqueta &lt;img&gt; dentro de las etiquetas &lt;a&gt; y &lt;/a&gt;, como en el siguiente ejemplo:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;a href=&quot;<i><b>destino_del_enlace</b></i>&quot;&gt; &lt;img src=&quot;<b><i>nombre_fichero_imagen</i></b>&quot; alt=&quot;<b><i>texto_alternativo_imagen</i></b>&quot;&gt; &lt;/a&gt;</code></pre>
-			
-			<div class="ejercicios">
-				<h2><a href="16_ejercicios.html#ej_06">Ejercicio 6:</a></h2></code></pre>
+            <!-- Sección 3: Formatos Web Modernos -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-file-earmark-image text-info"></i> 3. Formatos de imagen en la Web actual
+                </h3>
+                <p>
+                    Elegir el formato adecuado es vital para optimizar el peso de la página y garantizar tiempos de carga rápidos:
+                </p>
 
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle small mb-4">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Formato</th>
+                                <th>Extensión</th>
+                                <th>Tipo</th>
+                                <th>Transparencia</th>
+                                <th>Uso principal recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-success-subtle">
+                                <td class="fw-bold"><span class="badge bg-success">WebP</span> (Estándar Web)</td>
+                                <td><code>.webp</code></td>
+                                <td>Raster (Con y sin pérdidas)</td>
+                                <td><i class="bi bi-check-lg text-success fw-bold"></i> Sí</td>
+                                <td><strong>Formato estrella actual.</strong> Desarrollado por Google. Reduce entre un 25% y 35% el peso frente a JPEG o PNG con idéntica calidad visual.</td>
+                            </tr>
+                            <tr class="table-info-subtle">
+                                <td class="fw-bold"><span class="badge bg-info text-dark">SVG</span> (Vectorial)</td>
+                                <td><code>.svg</code></td>
+                                <td>Vectorial (XML)</td>
+                                <td><i class="bi bi-check-lg text-success fw-bold"></i> Sí</td>
+                                <td><strong>Logotipos, iconos e ilustraciones técnicas.</strong> Al ser vectorial no pierde calidad en ninguna resolución (pantallas retina, 4K) y pesa muy pocos kilobytes.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><span class="badge bg-secondary">JPEG / JPG</span></td>
+                                <td><code>.jpg</code>, <code>.jpeg</code></td>
+                                <td>Raster (Con pérdidas)</td>
+                                <td><i class="bi bi-x-lg text-danger fw-bold"></i> No</td>
+                                <td>Fotografías complejas y escenas con miles de colores y degradados suaves.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><span class="badge bg-secondary">PNG</span></td>
+                                <td><code>.png</code></td>
+                                <td>Raster (Sin pérdidas)</td>
+                                <td><i class="bi bi-check-lg text-success fw-bold"></i> Sí (Canal alfa)</td>
+                                <td>Imágenes con transparencias complejas, capturas de pantalla o gráficos que contengan tipografía nítida.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><span class="badge bg-secondary">GIF</span></td>
+                                <td><code>.gif</code></td>
+                                <td>Raster (256 colores)</td>
+                                <td><i class="bi bi-dash text-warning fw-bold"></i> 1 color binario</td>
+                                <td>Animaciones sencillas tradicionales. Hoy reemplazado por WebP animado o vídeo MP4/WebM por su ineficiente compresión.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><span class="badge bg-dark">AVIF</span></td>
+                                <td><code>.avif</code></td>
+                                <td>Raster (Basado en AV1)</td>
+                                <td><i class="bi bi-check-lg text-success fw-bold"></i> Sí</td>
+                                <td>Compresión de última generación, superior a WebP para sitios de alto tráfico con fotos HD.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-			<h2>Mapa de imágenes</h2>
-			<p> Un mapa de imágenes permite definir zonas diferentes en una imagen apuntando cada una de ellas a una URL diferente. </p>
-			<p>Para crear un mapa de imágenes, hay que usar la etiqueta <b>&lt;map&gt;</b>. La etiqueta final es obligatoria.</p>
-			<p><b>&lt;area&gt;</b></p>
-			<p>Para especificar una región geométrica del mapa y el vínculo asociado a esa región. No tiene etiqueta final</p>
-			<p><b>Atributos:</b></p>
-			<ul>
-				<li><b>shape:</b> Especifica el tipo de región con los valores: default, rect, circle y poly</li>
-					<ul>
-						<li>default (región completa)</li>
-						<li>rect (rectangular)=(x,y) vértice superior izquierdo, (x,y) vértice inferior derecho.</li>
-						<li>circle (circular) = (x,y) centro, radio.</li>
-						<li>poly (poligonal)=(x,y) 1ºpunto, (x,y) 2ºpunto,....,(x,y) último punto,</li>
-					</ul>
-				<li><b>coords:</b> indica la posición en pantalla, son valores de longitud partiendo de la esquina superior izquierda de la pantalla y separados por comas</li>
-			</ul>
-			<p>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;body&gt;
-  &lt;img src=&quot;mapa.png&quot; usemap=&quot;#mapa1&quot; alt=&quot;mapa 4 colores&quot;&gt;			
-  &lt;map name=&quot;mapa1&quot;&gt;
-	  &lt;area href=&quot;amarillo.html&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
-	           coords=&quot;0,0,190,190&quot;&gt;
-	  &lt;area href=&quot;verde.html&quot; alt=&quot;VERDE&quot; shape=&quot;rect&quot; 
-	           coords=&quot;210,0,400,190&quot;&gt;
-	  &lt;area href=&quot;azul.html&quot; alt=&quot;AZUL&quot; shape=&quot;rect&quot; 
-	           coords=&quot;0,210,190,400&quot;&gt;
-          &lt;area href=&quot;rojo.html&quot; alt=&quot;ROJO&quot; shape=&quot;rect&quot; 
-	           coords=&quot;210,210,400,400&quot;&gt;
-  &lt;/map&gt;
-&lt;/body&gt;
-</code></pre>
-		   <p>Observa que el marcador "#mapa1" usado en el atributo <b>usemap</b> de la imagen debe ser igual que el usado en el atributo <b>name</b> del mapa.
-			
-			<div class="ejercicios">
-				<h2><a href="16_ejercicios.html#ej_06_2">Ejercicio 6_2:</a></h2></code></pre>
-			<div class="ejercicios">
-				<h2><a href="16_ejercicios.html#ej_06_3">Ejercicio 6_3:</a></h2></code></pre>
-			
+            <!-- Sección 4: Dimensiones y Rendimiento (CLS & Lazy Loading) -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-speedometer2 text-danger"></i> 4. Rendimiento y Core Web Vitals: Evitar el salto de contenido (CLS)
+                </h3>
+                
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-7">
+                        <h5 class="fw-bold text-dark">¿Por qué indicar siempre <code>width</code> y <code>height</code>?</h5>
+                        <p class="small text-secondary">
+                            Antiguamente, muchas personas utilizaban <code>width</code> y <code>height</code> de forma errónea para encoger fotografías gigantescas en pantalla (deformando la imagen o malgastando datos móviles).
+                        </p>
+                        <p class="small">
+                            En el desarrollo web moderno, declarar <strong>los atributos <code>width</code> y <code>height</code> con el tamaño original o relación de aspecto de la imagen</strong> permite que el navegador calcule el espacio necesario <em>antes</em> de que el archivo termine de descargarse.
+                        </p>
+                        <div class="alert alert-info py-2 px-3 small border-start border-4 border-info">
+                            <i class="bi bi-info-circle-fill me-1"></i> <strong>Adiós al Cumulative Layout Shift (CLS):</strong> Sin las dimensiones declaradas, el texto de la página se coloca arriba y luego pega un "salto brusco" hacia abajo cuando la imagen aparece de golpe, estropeando la experiencia del usuario.
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="card border-0 bg-dark text-light p-3 rounded-4 shadow-sm">
+                            <h6 class="text-warning fw-bold small mb-2"><i class="bi bi-code-slash me-1"></i> Práctica recomendada (HTML + CSS)</h6>
+                            <pre class="bg-black text-light p-2 rounded small mb-2 overflow-auto"><code>&lt;!-- HTML: dimensiones intrínsecas --&gt;
+&lt;img src="paisaje.webp" 
+     alt="Atardecer en la playa"
+     width="1200" 
+     height="800"
+     loading="lazy"
+     class="img-fluid"&gt;</code></pre>
+                            <p class="text-secondary small mb-0">
+                                En CSS responsivo (o con la clase <code>.img-fluid</code> de Bootstrap), la imagen se adaptará al ancho del contenedor mediante <code>max-width: 100%; height: auto;</code> sin deformarse.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;area href=&quot;amarillo.html&quot; title= &quot;Región Amarilla&quot; alt=&quot;AMARILLO&quot; shape=&quot;rect&quot; 
-	           coords=&quot;0,0,190,190&quot;&gt;</code></pre>
-		<p>Cuando se quiere marcar una zona que es irregular habrá que utilizar como Shape "poly" que es una polilínea e ir escribiendo las coordenadas de todos los puntos</p>
-			<div class="ejercicios">
-				<h2><a href="16_ejercicios.html#ej_06_4">Ejercicio 6_4:</a></h2>
-				
-			</div>
+                <!-- Lazy loading -->
+                <div class="mt-4 p-3 bg-body-tertiary rounded-3 border">
+                    <h6 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-lightning-charge-fill text-warning"></i> Carga diferida con <code>loading="lazy"</code>
+                    </h6>
+                    <p class="small mb-2">
+                        El atributo <code>loading="lazy"</code> indica al navegador que no descargue la imagen de inmediato si se encuentra fuera de la pantalla inicial (<em>below the fold</em>). Se descargará únicamente cuando el usuario se desplace hacia ella.
+                    </p>
+                    <p class="small text-muted mb-0">
+                        <strong>Excepción:</strong> No utilices <code>loading="lazy"</code> en la imagen principal o cabecera que el usuario ve nada más abrir la página (<em>hero image</em> o LCP), ya que en ese caso retrasaría innecesariamente la primera pintura de la web.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Sección 5: Enlaces con Imágenes -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-link-45deg text-primary"></i> 5. Imágenes como hipervínculos
+                </h3>
+                <p>
+                    Para convertir una imagen en un enlace interactivo, se introduce la etiqueta <code>&lt;img&gt;</code> dentro de las etiquetas <code>&lt;a&gt;</code> y <code>&lt;/a&gt;</code>:
+                </p>
+
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;a href="https://www.iessanvicente.com" target="_blank" rel="noopener noreferrer"&gt;
+    &lt;img src="imagenes/logo_instituto.png" 
+         alt="Ir al portal del IES San Vicente" 
+         width="200" 
+         height="60"&gt;
+&lt;/a&gt;</code></pre>
+
+                <div class="alert alert-secondary py-2 px-3 small border-start border-4 border-secondary">
+                    <i class="bi bi-exclamation-circle-fill me-1"></i> <strong>Accesibilidad en imágenes-enlace:</strong> Dado que el enlace no tiene texto visible, el contenido del atributo <code>alt</code> de la imagen se convierte en el <em>nombre accesible</em> del enlace. Debe describir la acción o destino (p. ej. <em>"Ir al portal del IES San Vicente"</em> en lugar de simplemente <em>"logotipo"</em>).
+                </div>
+
+                <!-- Callout a Ejercicios 5 y 6 -->
+                <div class="row g-3 my-2">
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-pencil-square text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 5: Inserción de imágenes</h5>
+                            <p class="small text-secondary mb-3">Inserción de imágenes con diferentes rutas, formatos y dimensiones en un documento HTML.</p>
+                            <a href="./16_ejercicios.html#ej_05" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver enunciado del Ejercicio 5
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-pencil-square text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 6: Imágenes con enlace</h5>
+                            <p class="small text-secondary mb-3">Transformación de imágenes en hipervínculos que redirigen a sitios externos.</p>
+                            <a href="./16_ejercicios.html#ej_06" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver enunciado del Ejercicio 6
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 6: figure y figcaption -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-card-image text-primary"></i> 6. Semántica HTML5: &lt;figure&gt; y &lt;figcaption&gt;
+                </h3>
+                <p>
+                    Tradicionalmente, para poner un pie de foto a una imagen se recurría a tablas o divisiones con clases manuales. HTML5 introdujo dos elementos semánticos dedicados:
+                </p>
+                <ul>
+                    <li><code>&lt;figure&gt;</code>: Representa contenido autocontenido (fotos, esquemas, fragmentos de código, citas) que se referencia desde el flujo principal del documento.</li>
+                    <li><code>&lt;figcaption&gt;</code>: Define la leyenda, título o pie explicativo de la figura (debe ser el primer o último hijo dentro de <code>&lt;figure&gt;</code>).</li>
+                </ul>
+
+                <div class="row g-3 align-items-center my-2">
+                    <div class="col-lg-6">
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;figure class="text-center"&gt;
+    &lt;img src="../imagenes/logo.jpg" 
+         alt="Logotipo de LMSGI" 
+         width="120" 
+         height="120" 
+         class="rounded-circle shadow-sm"&gt;
+    &lt;figcaption class="text-secondary small mt-2"&gt;
+        Figura 1. Emblema del módulo formativo LMSGI.
+    &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-4 bg-body-tertiary rounded-3 border text-center">
+                            <span class="badge bg-secondary-subtle text-secondary border mb-3">Resultado visual simulado</span>
+                            <figure class="mb-0">
+                                <img src="../../imagenes/logo.jpg" alt="Logotipo de LMSGI" width="100" height="100" class="rounded-circle shadow-sm object-fit-cover">
+                                <figcaption class="text-secondary small mt-2">
+                                    <em>Figura 1. Emblema del módulo formativo LMSGI.</em>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 7: <picture> y Arte Adaptativo -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-aspect-ratio text-info"></i> 7. Imágenes adaptativas con &lt;picture&gt;
+                </h3>
+                <p>
+                    El elemento <code>&lt;picture&gt;</code> contiene una o varias etiquetas <code>&lt;source&gt;</code> y una etiqueta <code>&lt;img&gt;</code> final de respaldo (<em>fallback</em>). Permite al navegador elegir de forma inteligente qué imagen descargar según dos criterios:
+                </p>
+
+                <ol class="small">
+                    <li><strong>Soporte de formatos modernos:</strong> Enviar WebP o AVIF a navegadores compatibles, y JPG antiguo como respaldo si no lo son.</li>
+                    <li><strong>Dirección de arte (Media Queries):</strong> Mostrar una imagen recortada en vertical para móviles y una panorámica en pantallas de escritorio.</li>
+                </ol>
+
+                <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;picture&gt;
+    &lt;!-- Si el navegador soporta AVIF, descarga este formato ultra-optimizado --&gt;
+    &lt;source srcset="banner.avif" type="image/avif"&gt;
+    
+    &lt;!-- Si soporta WebP, lo descarga como segunda preferencia --&gt;
+    &lt;source srcset="banner.webp" type="image/webp"&gt;
+    
+    &lt;!-- Respaldo universal obligatorio para cualquier navegador antiguo --&gt;
+    &lt;img src="banner.jpg" alt="Promoción del curso LMSGI" width="1200" height="400"&gt;
+&lt;/picture&gt;</code></pre>
+            </section>
+
+            <!-- Sección 8: Mapas de Imágenes -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-bounding-box-circles text-warning"></i> 8. Mapas de imágenes (&lt;map&gt; y &lt;area&gt;)
+                </h3>
+                <p>
+                    Un <strong>mapa de imágenes</strong> permite definir diferentes zonas geométricas activas (zonas calientes o <em>hotspots</em>) sobre una misma imagen, de modo que hacer clic en cada área redirija a una URL distinta.
+                </p>
+
+                <h5 class="fw-bold text-primary mt-3">Elementos y atributos que componen el mapa:</h5>
+                <ul class="small">
+                    <li><code>&lt;img usemap="#nombre_mapa"&gt;</code>: La imagen vincula el mapa mediante el atributo <code>usemap</code>, que debe comenzar con la almohadilla <code>#</code> y coincidir con el nombre del mapa.</li>
+                    <li><code>&lt;map name="nombre_mapa"&gt;</code>: Contenedor de las regiones interactivas.</li>
+                    <li><code>&lt;area&gt;</code>: Elemento vacío que define cada zona geométrica. Sus atributos esenciales son:
+                        <ul>
+                            <li><code>shape</code>: Forma geométrica de la región:
+                                <ul>
+                                    <li><code>rect</code>: Rectángulo definido por las coordenadas de su esquina superior izquierda y su esquina inferior derecha: <code>coords="x1,y1,x2,y2"</code>.</li>
+                                    <li><code>circle</code>: Círculo definido por las coordenadas del centro y su radio: <code>coords="x_centro,y_centro,radio"</code>.</li>
+                                    <li><code>poly</code>: Polígono irregular formado por una serie de pares de coordenadas consecutivas (x,y) de cada vértice: <code>coords="x1,y1,x2,y2,x3,y3,..."</code>.</li>
+                                    <li><code>default</code>: Define toda la región restante de la imagen que no esté cubierta por otras áreas.</li>
+                                </ul>
+                            </li>
+                            <li><code>coords</code>: Coordenadas en píxeles medidas desde el vértice superior izquierdo de la imagen (origen 0,0).</li>
+                            <li><code>href</code>: Dirección URL a la que conduce el clic en esa región.</li>
+                            <li><code>alt</code>: <strong>Obligatorio</strong> por accesibilidad para que los lectores de pantalla puedan anunciar a dónde lleva cada zona del mapa.</li>
+                            <li><code>title</code>: Texto informativo emergente que aparece al situar el ratón encima del área.</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Código de ejemplo -->
+                <div class="p-3 bg-body-tertiary rounded-3 border my-3">
+                    <h6 class="fw-bold text-dark mb-2">Ejemplo completo de mapa de imagen rectangular:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!-- 1. Imagen que activa el mapa mediante usemap --&gt;
+&lt;img src="../imagenes/Ej6_2_colores.jpg" usemap="#mapacolores" alt="Panel de 4 colores interactivo" width="400" height="400"&gt;
+
+&lt;!-- 2. Definición del mapa con el atributo name correspondiente --&gt;
+&lt;map name="mapacolores"&gt;
+    &lt;area shape="rect" coords="0,0,190,190" href="amarillo.html" alt="Región Amarilla" title="Región Amarilla"&gt;
+    &lt;area shape="rect" coords="210,0,400,190" href="verde.html" alt="Región Verde" title="Región Verde"&gt;
+    &lt;area shape="rect" coords="0,210,190,400" href="azul.html" alt="Región Azul" title="Región Azul"&gt;
+    &lt;area shape="rect" coords="210,210,400,400" href="rojo.html" alt="Región Roja" title="Región Roja"&gt;
+&lt;/map&gt;</code></pre>
+                </div>
+
+                <div class="alert alert-warning py-3 px-3 small border-start border-4 border-warning">
+                    <h6 class="fw-bold text-dark mb-1"><i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Consideración profesional contemporánea:</h6>
+                    <p class="mb-0">
+                        Los mapas de imágenes tradicionales con <code>&lt;map&gt;</code> y coordenadas fijas en píxeles fueron concebidos para pantallas de escritorio estáticas. En el diseño web responsive moderno, al encogerse una imagen para adaptarse a una pantalla móvil, las coordenadas fijas dejan de encajar con el gráfico. Por ello, en proyectos actuales se suelen utilizar <strong>gráficos vectoriales interactivos SVG</strong> o capas CSS posicionadas en porcentaje.
+                    </p>
+                </div>
+
+                <!-- Callout a Ejercicios 6_2, 6_3 y 6_4 -->
+                <div class="row g-3 my-2">
+                    <div class="col-md-4">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-bounding-box text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 6_2</h5>
+                            <p class="small text-secondary mb-3">Creación de un mapa con 4 regiones rectangulares vinculadas a diferentes archivos HTML.</p>
+                            <a href="./16_ejercicios.html#ej_06_2" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 6_2
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-chat-text text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 6_3</h5>
+                            <p class="small text-secondary mb-3">Incorporación de cuadros de ayuda emergentes con el atributo <code>title</code> en cada región.</p>
+                            <a href="./16_ejercicios.html#ej_06_3" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 6_3
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-diagram-3 text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 6_4</h5>
+                            <p class="small text-secondary mb-3">Definición de regiones irregulares complejas utilizando formas poligonales (<code>poly</code>).</p>
+                            <a href="./16_ejercicios.html#ej_06_4" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 6_4
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
