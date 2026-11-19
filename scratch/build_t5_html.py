@@ -1,0 +1,609 @@
+import os
+
+def generate_t5_page():
+    doc = """<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05. Gestión de Eventos | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 5: Programación reactiva dirigida por eventos, tipos de eventos (ratón, teclado, formulario, ventana), manejadores (inline, DOM, addEventListener), propagación (bubbling vs capturing), objeto event, Drag and Drop API y encapsulación con IIFE.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .code-token-keyword { color: #cba6f7; font-weight: 600; }
+        .code-token-string { color: #a6e3a1; }
+        .code-token-number { color: #fab387; }
+        .code-token-comment { color: #6c7086; font-style: italic; }
+        .code-token-function { color: #89b4fa; }
+        .code-token-tag { color: #f38ba8; }
+        .code-token-attr { color: #f9e2af; }
+
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+                <a href="01_introduccion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-warning"></i> 01. Introducción y Sintaxis</a>
+                <a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+                <a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+                <a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+                <a href="05_eventos.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-dark"></i> 05. Gestión de Eventos</a>
+                <a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+                <a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+                <a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenido Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb bg-body-tertiary p-2 px-3 rounded-pill border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">JavaScript</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">05. Gestión de Eventos</li>
+            </ol>
+        </nav>
+
+        <!-- Hero Header del Tema -->
+        <div class="card bg-warning-subtle border-warning-subtle shadow-sm mb-4">
+            <div class="card-body p-4 p-lg-5">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge text-bg-warning px-3 py-2 fs-6 fw-bold text-dark"><i class="bi bi-file-earmark-pdf me-1"></i> Manual Oficial: Tema 5</span>
+                    <span class="badge bg-dark text-white px-3 py-2 fs-6">Teoría Completa & Ejercicios 5.1 - 5.7</span>
+                </div>
+                <h1 class="display-5 fw-bold text-dark mb-3">Tema 5: Gestión de Eventos en JavaScript</h1>
+                <p class="lead text-dark-emphasis mb-4">
+                    Programación reactiva en el cliente: tipos de eventos (ratón, teclado, formulario, carga de ventana), las 4 estrategias de manejadores (atributos inline, funciones HTML, propiedades DOM y escuchadores addEventListener), el modelo de propagación jerárquica (Bubbling vs Capturing), el objeto event (coordenadas, teclas modificadoras, preventDefault, stopPropagation), la API Drag and Drop y la encapsulación modular con IIFE.
+                </p>
+                
+                <!-- Píldoras de Acceso Rápido a Secciones -->
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top border-warning-subtle">
+                    <a href="#sec5-1" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.1 Programación por Eventos</a>
+                    <a href="#sec5-2" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.2 Tipos de Eventos</a>
+                    <a href="#sec5-3" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.3 Manejadores (addEventListener)</a>
+                    <a href="#sec5-4-1" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.4.1 Propagación (Bubbling/Capturing)</a>
+                    <a href="#sec5-4-2" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.4.2 Objeto Event</a>
+                    <a href="#sec5-4-3" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.4.3 Drag &amp; Drop API</a>
+                    <a href="#sec5-4-4" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5.4.4 Encapsulación con IIFE</a>
+                    <a href="#sec-ejercicios" class="btn btn-sm btn-warning text-dark fw-bold rounded-pill"><i class="bi bi-pencil-square"></i> Ejercicios 5.1 a 5.7</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Columna Principal de Contenido (9 cols en lg) -->
+            <div class="col-lg-9 d-flex flex-column gap-4">
+
+                <!-- 5.1 Eventos y programación tradicional -->
+                <section id="sec5-1" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.1</span>
+                        <h2 class="h4 mb-0 fw-bold">Eventos y Programación Tradicional</h2>
+                    </div>
+                    <p>
+                        Los programas tradicionales ejecutan una secuencia estricta de instrucciones una tras otra de principio a fin. En el desarrollo web, las aplicaciones necesitan reaccionar en tiempo real a las acciones impredecibles del usuario (hacer clic, arrastrar, mover el ratón, teclear) o a cambios de estado del documento (finalización de carga, redimensionamiento).
+                    </p>
+                    <p>
+                        Este paradigma se denomina <strong>programación dirigida por eventos (event-driven programming)</strong>. Un evento es una notificación emitida por el navegador a la que podemos suscribir una función manejadora (<em>event handler</em> o <em>listener</em>) para que ejecute una respuesta inmediata.
+                    </p>
+                </section>
+
+                <!-- 5.2 Tipos de eventos -->
+                <section id="sec5-2" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.2</span>
+                        <h2 class="h4 mb-0 fw-bold">Principales Familias de Eventos</h2>
+                    </div>
+                    <p>
+                        A continuación se clasifican los eventos nativos más relevantes según su ámbito:
+                    </p>
+
+                    <div class="table-responsive table-custom mb-3">
+                        <table class="table table-hover align-middle mb-0 small">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Nombre del Evento</th>
+                                    <th>Momento en que se Dispara</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3" class="fw-bold bg-body-tertiary">Ventana / Documento</td>
+                                    <td><code>load</code></td>
+                                    <td>El documento HTML, imágenes y hojas de estilo han terminado de cargarse por completo.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>beforeunload</code> / <code>unload</code></td>
+                                    <td>Se produce antes o durante el cierre o navegación fuera de la pestaña actual.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>resize</code> / <code>scroll</code></td>
+                                    <td>Se modifica el tamaño de la ventana o se realiza desplazamiento en la vista.</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" class="fw-bold bg-body-tertiary">Teclado</td>
+                                    <td><code>keydown</code></td>
+                                    <td>El usuario presiona una tecla (se repite si se mantiene pulsada).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>keyup</code></td>
+                                    <td>El usuario suelta la tecla previamente pulsada.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>keypress</code></td>
+                                    <td>Combinación de pulsar y soltar (<em>deprecated</em>, se desaconseja en favor de <code>keydown</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4" class="fw-bold bg-body-tertiary">Ratón (Mouse)</td>
+                                    <td><code>click</code> / <code>dblclick</code></td>
+                                    <td>Pulsación simple o doble clic sobre cualquier elemento.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mousedown</code> / <code>mouseup</code></td>
+                                    <td>Se aprieta o se libera cualquier botón del ratón.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mouseenter</code> / <code>mouseleave</code></td>
+                                    <td>El puntero entra o sale de la superficie de un elemento delimitado.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>mousemove</code></td>
+                                    <td>El ratón se desplaza continuamente sobre el elemento.</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" class="fw-bold bg-body-tertiary">Formularios</td>
+                                    <td><code>focus</code> / <code>blur</code></td>
+                                    <td>Un control interactivo (input, select) recibe o pierde el foco.</td>
+                                </tr>
+                                <tr>
+                                    <td><code>change</code> / <code>input</code></td>
+                                    <td>El valor del campo cambia tras perder el foco (<code>change</code>) o en cada pulsación (<code>input</code>).</td>
+                                </tr>
+                                <tr>
+                                    <td><code>submit</code> / <code>reset</code></td>
+                                    <td>Se solicita el envío o el restablecimiento de los campos de un <code>&lt;form&gt;</code>.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- 5.3 Uso básico de eventos -->
+                <section id="sec5-3" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.3</span>
+                        <h2 class="h4 mb-0 fw-bold">Estrategias para Vincular Manejadores de Eventos</h2>
+                    </div>
+                    <p>
+                        A lo largo de la historia de JavaScript se han utilizado cuatro métodos para asociar código a un evento:
+                    </p>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-body-tertiary h-100">
+                                <h6 class="fw-bold text-danger mb-1">1. Atributo HTML Directo</h6>
+                                <p class="small text-secondary mb-2">Código incrustado en el HTML. <em>Muy desaconsejado</em> por ensuciar el marcado:</p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code><span class="code-token-tag">&lt;button</span> <span class="code-token-attr">onclick=</span><span class="code-token-string">"alert('Hola');"</span><span class="code-token-tag">&gt;</span>Pulsar<span class="code-token-tag">&lt;/button&gt;</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-body-tertiary h-100">
+                                <h6 class="fw-bold text-warning mb-1">2. Atributo HTML llamando a Función</h6>
+                                <p class="small text-secondary mb-2">Separa la función pero sigue ensuciando el HTML con atributos <code>on...</code>:</p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code><span class="code-token-tag">&lt;div</span> <span class="code-token-attr">onmouseenter=</span><span class="code-token-string">"cambiar(this)"</span><span class="code-token-tag">&gt;</span>...<span class="code-token-tag">&lt;/div&gt;</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-body-tertiary h-100">
+                                <h6 class="fw-bold text-info mb-1">3. Propiedad del Objeto DOM</h6>
+                                <p class="small text-secondary mb-2">HTML limpio, pero solo admite <strong>un único manejador</strong> (el último asignado sobreescribe al anterior):</p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> btn = <span class="code-token-function">document</span>.<span class="code-token-function">getElementById</span>(<span class="code-token-string">"btn1"</span>);
+btn.onclick = <span class="code-token-keyword">function</span>() { ... };</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border border-success rounded bg-success-subtle h-100">
+                                <h6 class="fw-bold text-success mb-1">4. Escuchadores con addEventListener (Estándar Profesional)</h6>
+                                <p class="small text-dark-emphasis mb-2">Permite múltiples escuchadores independientes sobre un mismo evento, separar capas y definir fases:</p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code>btn.<span class="code-token-function">addEventListener</span>(<span class="code-token-string">'click'</span>, <span class="code-token-keyword">function</span>(e) {
+    <span class="code-token-keyword">this</span>.classList.<span class="code-token-function">toggle</span>(<span class="code-token-string">"activo"</span>);
+});</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjetas de Ejercicios 5.1 y 5.2 -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 h-100">
+                                <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.1: Hover Dinámico en Imágenes</h4>
+                                <p class="small text-dark-emphasis mb-2">
+                                    En <code>01_eventos_imagenes_js.html</code>, tres imágenes de 100x100px. Al entrar con el ratón (<code>mouseenter</code>) escalar a 200x200px con borde rojo de 3px, restableciendo el tamaño al salir (<code>mouseleave</code>).
+                                </p>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="../material/ejercicios/aprendizaje/t5_01_eventos_imagenes_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                    <a href="07_ejercicios_r.html#ej_5_1" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 h-100">
+                                <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.2: Foco y Desenfoque en Formularios</h4>
+                                <p class="small text-dark-emphasis mb-2">
+                                    En <code>02_eventos_form_js.html</code>, al entrar en un input (<code>focus</code>) pintar el fondo de amarillo; al salir (<code>blur</code>), si está vacío pintarlo de rojo y si contiene texto dejarlo en blanco.
+                                </p>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="../material/ejercicios/aprendizaje/t5_02_eventos_form_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                    <a href="07_ejercicios_r.html#ej_5_2" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.4.1 Propagación de eventos -->
+                <section id="sec5-4-1" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.4.1</span>
+                        <h2 class="h4 mb-0 fw-bold">Propagación Jerárquica: Bubbling vs Capturing</h2>
+                    </div>
+                    <p>
+                        Dado que los elementos del DOM están anidados unos dentro de otros (por ejemplo: <code>&lt;div&gt; &gt; &lt;p&gt; &gt; &lt;img&gt;</code>), cuando se pulsa sobre la imagen el evento se propaga por toda la jerarquía de ancestros:
+                    </p>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100">
+                                <h6 class="fw-bold text-primary mb-1">Bubbling (Burbujeo - Por Defecto)</h6>
+                                <p class="small text-secondary mb-2">
+                                    El evento sube como una burbuja desde el elemento <strong>más específico</strong> (la imagen) hacia el contenedor más general (<code>p</code> y luego <code>div</code>):
+                                </p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code>elem.<span class="code-token-function">addEventListener</span>(<span class="code-token-string">"click"</span>, fn); <span class="code-token-comment">// 3er parámetro false</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 border rounded bg-white h-100">
+                                <h6 class="fw-bold text-success mb-1">Capturing (Captura)</h6>
+                                <p class="small text-secondary mb-2">
+                                    El evento baja desde el ancestro <strong>más general</strong> hacia el objetivo concreto, activando el 3er parámetro en <code>true</code>:
+                                </p>
+                                <div class="code-block p-2">
+<pre class="m-0"><code>elem.<span class="code-token-function">addEventListener</span>(<span class="code-token-string">"click"</span>, fn, <span class="code-token-keyword">true</span>);</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta del Ejercicio 5.3 -->
+                    <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3">
+                        <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.3: Demostración de Bubbling y Capturing</h4>
+                        <p class="small text-dark-emphasis mb-2">
+                            En <code>03_bubbling_capturing_js.html</code>, diseñar un contenedor con un párrafo y una imagen anidados. Comprobar cómo se disparan los mensajes en orden de burbujeo (hijo a padre) o en orden de captura (padre a hijo).
+                        </p>
+                        <div class="d-flex gap-2">
+                            <a href="../material/ejercicios/aprendizaje/t5_03_bubbling_capturing_js.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play me-1"></i> Probar Solución</a>
+                            <a href="07_ejercicios_r.html#ej_5_3" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.4.2 Obtener información del evento -->
+                <section id="sec5-4-2" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.4.2</span>
+                        <h2 class="h4 mb-0 fw-bold">El Objeto Event (Información de la Interacción)</h2>
+                    </div>
+                    <p>
+                        Toda función manejadora recibe automáticamente como primer argumento el <strong>objeto Event</strong> (habitualmente nombrado <code>e</code> o <code>event</code>), que contiene las propiedades físicas y temporales del evento ocurrido:
+                    </p>
+
+                    <div class="table-responsive table-custom mb-3">
+                        <table class="table table-hover align-middle mb-0 small">
+                            <thead>
+                                <tr>
+                                    <th>Propiedad / Método</th>
+                                    <th>Información que Proporciona</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><code>e.clientX</code> / <code>e.clientY</code></td><td>Coordenadas relativas a la ventana del navegador.</td></tr>
+                                <tr><td><code>e.pageX</code> / <code>e.pageY</code></td><td>Coordenadas absolutas respecto al documento entero (incluyendo scroll).</td></tr>
+                                <tr><td><code>e.target</code></td><td>El elemento exacto del DOM donde se originó el clic o evento.</td></tr>
+                                <tr><td><code>e.key</code> / <code>e.code</code></td><td>Carácter tecleado y código físico de la tecla pulsada.</td></tr>
+                                <tr><td><code>e.altKey</code> / <code>e.ctrlKey</code> / <code>e.shiftKey</code></td><td>Booleanos que indican si se mantenía pulsada dicha tecla modificadora.</td></tr>
+                                <tr><td><code>e.preventDefault()</code></td><td><strong>Anula la acción por defecto</strong> (ej. evita que un enlace navegue o un formulario recargue).</td></tr>
+                                <tr><td><code>e.stopPropagation()</code></td><td><strong>Detiene la propagación</strong> del evento por el árbol de ancestros.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Tarjeta del Ejercicio 5.4 -->
+                    <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3">
+                        <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.4: Inspector en Vivo de Posición y Teclas</h4>
+                        <p class="small text-dark-emphasis mb-2">
+                            En <code>04_info_eventos_js.html</code>, capturar las coordenadas de ratón en tiempo real al hacer clic y mostrar el código de las teclas pulsadas en el teclado, indicando si se pulsaba simultáneamente Ctrl o Shift.
+                        </p>
+                        <div class="d-flex gap-2">
+                            <a href="../material/ejercicios/aprendizaje/t5_04_info_eventos_js.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play me-1"></i> Probar Solución</a>
+                            <a href="07_ejercicios_r.html#ej_5_4" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.4.3 Drag and Drop API -->
+                <section id="sec5-4-3" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.4.3</span>
+                        <h2 class="h4 mb-0 fw-bold">API Nativa de Arrastrar y Soltar (Drag &amp; Drop)</h2>
+                    </div>
+                    <p>
+                        HTML5 y JavaScript proporcionan una API nativa para arrastrar elementos en la pantalla sin librerías externas:
+                    </p>
+                    <ol class="small ps-3 mb-3">
+                        <li>El elemento arrastrable debe tener el atributo <code>draggable="true"</code>.</li>
+                        <li>En el evento <code>dragstart</code>, guardamos el identificador del elemento en <code>e.dataTransfer.setData("id", e.target.id)</code>.</li>
+                        <li>En el contenedor de destino, escuchamos <code>dragover</code> y llamamos a <code>e.preventDefault()</code> para permitir soltar.</li>
+                        <li>En el evento <code>drop</code>, recuperamos el dato con <code>e.dataTransfer.getData("id")</code> y añadimos el nodo con <code>appendChild</code>.</li>
+                    </ol>
+
+                    <!-- Tarjeta del Ejercicio 5.5 -->
+                    <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3">
+                        <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.5: Juego de Arrastrar Logos de Navegadores</h4>
+                        <p class="small text-dark-emphasis mb-2">
+                            En <code>05_drag_drop_js.html</code>, arrastrar los iconos de navegadores (Chrome, Firefox, Safari, Edge) a sus casillas correspondientes y comprobar aciertos con un botón.
+                        </p>
+                        <div class="d-flex gap-2">
+                            <a href="../material/ejercicios/aprendizaje/t5_05_drag_drop_js.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play me-1"></i> Probar Solución</a>
+                            <a href="07_ejercicios_r.html#ej_5_5" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5.4.4 Encapsulación de código (IIFE) -->
+                <section id="sec5-4-4" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">5.4.4</span>
+                        <h2 class="h4 mb-0 fw-bold">Encapsulación de Código y Patrón IIFE</h2>
+                    </div>
+                    <p>
+                        Para evitar contaminar el ámbito global de <code>window</code> y prevenir colisiones de nombres con otras librerías, los desarrolladores encapsulan sus scripts mediante una <strong>IIFE (Immediately Invoked Function Expression)</strong>:
+                    </p>
+                    <div class="code-block mb-3">
+<pre class="m-0"><code>(<span class="code-token-keyword">function</span>() {
+    <span class="code-token-comment">// Todas las variables y funciones definidas aquí son 100% privadas:</span>
+    <span class="code-token-keyword">let</span> contadorPrivado = <span class="code-token-number">0</span>;
+    <span class="code-token-function">document</span>.<span class="code-token-function">getElementById</span>(<span class="code-token-string">"btn"</span>).<span class="code-token-function">addEventListener</span>(<span class="code-token-string">"click"</span>, () =&gt; {
+        contadorPrivado++;
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(contadorPrivado);
+    });
+})(); <span class="code-token-comment">// Se auto-ejecuta de inmediato</span></code></pre>
+                    </div>
+
+                    <!-- Tarjetas de Ejercicios 5.6 y 5.7 -->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 h-100">
+                                <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.6: Encapsulación con IIFE</h4>
+                                <p class="small text-dark-emphasis mb-2">
+                                    En <code>06_info_eventos_iife_js.html</code>, aislar todo el código del Ejercicio 5.4 dentro de una función autoejecutable IIFE para blindar el ámbito global.
+                                </p>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="../material/ejercicios/aprendizaje/t5_06_info_eventos_iife_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                    <a href="07_ejercicios_r.html#ej_5_6" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 h-100">
+                                <h4 class="h6 fw-bold text-dark mb-1"><i class="bi bi-pencil-square me-1"></i> Ejercicio 5.7: Acordeón Plegable con Enlaces</h4>
+                                <p class="small text-dark-emphasis mb-2">
+                                    En <code>07_eventos_js.html</code>, alternar la visibilidad de bloques de texto (mostrar/ocultar) al hacer clic repetidamente sobre sus respectivos enlaces.
+                                </p>
+                                <div class="d-flex gap-2 mt-auto">
+                                    <a href="../material/ejercicios/aprendizaje/t5_07_eventos_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                    <a href="07_ejercicios_r.html#ej_5_7" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Paginación Inferior -->
+                <nav class="d-flex justify-content-between align-items-center mt-2 pt-3 border-top" aria-label="Navegación de temas">
+                    <a href="04_dom.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-arrow-left"></i>
+                        <span>Tema 4: DOM y BOM</span>
+                    </a>
+                    <a href="06_formularios.html" class="btn btn-warning text-dark fw-bold d-flex align-items-center gap-2">
+                        <span>Tema 6: Validación de Formularios</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </nav>
+
+            </div>
+
+            <!-- Columna Lateral Derecha (3 cols en lg): Índice Rápido Flotante -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-summary">
+                    <div class="card border content-card shadow-sm p-3">
+                        <h6 class="fw-bold text-uppercase text-secondary small mb-3">
+                            <i class="bi bi-bookmark me-1"></i> En esta página
+                        </h6>
+                        <nav class="nav flex-column small gap-1">
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-1"><i class="bi bi-chevron-right me-1"></i> 5.1 Programación por Eventos</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-2"><i class="bi bi-chevron-right me-1"></i> 5.2 Tipos de Eventos</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-3"><i class="bi bi-chevron-right me-1"></i> 5.3 Manejadores</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-4-1"><i class="bi bi-chevron-right me-1"></i> 5.4.1 Bubbling y Capturing</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-4-2"><i class="bi bi-chevron-right me-1"></i> 5.4.2 Objeto Event</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-4-3"><i class="bi bi-chevron-right me-1"></i> 5.4.3 Drag &amp; Drop</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec5-4-4"><i class="bi bi-chevron-right me-1"></i> 5.4.4 Encapsulación IIFE</a>
+                            <a class="nav-link px-2 py-1 text-warning fw-bold text-truncate" href="#sec-ejercicios"><i class="bi bi-pencil-square me-1"></i> Ejercicios 5.1 - 5.7</a>
+                        </nav>
+                        
+                        <div class="border-top mt-3 pt-3">
+                            <a href="../material/t5_eventos.pdf" target="_blank" class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-1">
+                                <i class="bi bi-filetype-pdf"></i> Ver PDF Original
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- 4. Pie de Página Común -->
+    <footer class="bg-dark text-white-50 py-4 mt-auto border-top border-secondary">
+        <div class="container-xl d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="text-light fw-semibold">LMSGI</span>
+                <span class="small">&copy; Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Diseñado con <strong>Bootstrap 5.3</strong> &bull; Temario Web Oficial</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
+"""
+    with open("javascript/archivos/05_eventos.html", "w", encoding="utf-8") as f:
+        f.write(doc)
+    print("05_eventos.html generated successfully! Length:", len(doc))
+
+if __name__ == '__main__':
+    generate_t5_page()

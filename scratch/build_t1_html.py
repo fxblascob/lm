@@ -1,0 +1,1411 @@
+import os, html
+
+def generate_t1_page():
+    # Let's create the entire 01_introduccion.html content
+    doc = """<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01. Introducción y Programación Básica | JavaScript | LMSGI</title>
+    <meta name="description" content="Tema 1: Fundamentos de JavaScript, inclusión en HTML5, sintaxis, variables, operadores, coerción de tipos y estructuras de control de flujo.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .code-token-keyword { color: #cba6f7; font-weight: 600; }
+        .code-token-string { color: #a6e3a1; }
+        .code-token-number { color: #fab387; }
+        .code-token-comment { color: #6c7086; font-style: italic; }
+        .code-token-function { color: #89b4fa; }
+        .code-token-tag { color: #f38ba8; }
+        .code-token-attr { color: #f9e2af; }
+
+        .table-custom {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .table-custom thead {
+            background-color: #212529;
+            color: #ffffff;
+        }
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.85rem;
+        }
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../../index.html">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-warning text-dark fw-medium" href="../index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-js text-warning"></i> Módulo JavaScript
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de JavaScript</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-js text-warning"></i> 00. Introducción al Módulo</a>
+                <a href="01_introduccion.html" class="list-group-item list-group-item-action active bg-warning text-dark border-warning fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-code-square text-dark"></i> 01. Introducción y Sintaxis</a>
+                <a href="02_funciones.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-braces text-warning"></i> 02. Funciones y Modularidad</a>
+                <a href="03_arrays.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-collection text-warning"></i> 03. Arrays y Objetos</a>
+                <a href="04_dom.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-diagram-3 text-warning"></i> 04. DOM y BOM</a>
+                <a href="05_eventos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-lightning-charge text-warning"></i> 05. Gestión de Eventos</a>
+                <a href="06_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-ui-checks text-warning"></i> 06. Validación de Formularios</a>
+                <a href="07_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 07. Ejercicios Prácticos</a>
+                <a href="07_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-check2-circle text-warning"></i> 07. Ejercicios Resueltos</a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-css text-info me-2"></i> Módulo CSS</a>
+                <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-danger me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenido Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb bg-body-tertiary p-2 px-3 rounded-pill border small">
+                <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary">JavaScript</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">01. Introducción y Sintaxis</li>
+            </ol>
+        </nav>
+
+        <!-- Hero Header del Tema -->
+        <div class="card bg-warning-subtle border-warning-subtle shadow-sm mb-4">
+            <div class="card-body p-4 p-lg-5">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge text-bg-warning px-3 py-2 fs-6 fw-bold text-dark"><i class="bi bi-file-earmark-pdf me-1"></i> Manual Oficial: Tema 1</span>
+                    <span class="badge bg-dark text-white px-3 py-2 fs-6">Teoría Completa & Ejercicios 1.1 - 1.6</span>
+                </div>
+                <h1 class="display-5 fw-bold text-dark mb-3">Tema 1: Introducción y Programación Básica</h1>
+                <p class="lead text-dark-emphasis mb-4">
+                    Fundamentos de JavaScript en la web, métodos de inclusión en HTML5, sintaxis esencial, interacción mediante alertas y consola, tipos de datos primitivos, operadores de comparación y coerción, y estructuras de control de flujo.
+                </p>
+                
+                <!-- Píldoras de Acceso Rápido a Secciones -->
+                <div class="d-flex flex-wrap gap-2 pt-2 border-top border-warning-subtle">
+                    <a href="#sec1-1" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.1 ¿Qué es JS?</a>
+                    <a href="#sec1-2" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.2 Inclusión en HTML</a>
+                    <a href="#sec1-3" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.3 Ubicación scripts</a>
+                    <a href="#sec1-4" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.4 noscript</a>
+                    <a href="#sec1-5" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.5 Depuración y Consola</a>
+                    <a href="#sec1-6" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.6 Sintaxis</a>
+                    <a href="#sec1-7" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.7 El Primer Script</a>
+                    <a href="#sec1-8" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.8 Programación Básica</a>
+                    <a href="#sec1-9" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1.9 Control de Flujo</a>
+                    <a href="#sec-ejercicios" class="btn btn-sm btn-warning text-dark fw-bold rounded-pill"><i class="bi bi-pencil-square"></i> Ejercicios 1.1 a 1.6</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Columna Principal de Contenido (9 cols en lg) -->
+            <div class="col-lg-9 d-flex flex-column gap-4">
+
+                <!-- 1.1 ¿Qué es JavaScript? -->
+                <section id="sec1-1" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.1</span>
+                        <h2 class="h4 mb-0 fw-bold">¿Qué es JavaScript?</h2>
+                    </div>
+                    <p>
+                        <strong>JavaScript</strong> es un lenguaje de programación que se utiliza principalmente para crear <strong>páginas web dinámicas</strong>.
+                    </p>
+                    <p>
+                        Una página web dinámica es aquella que incorpora efectos interactivos como textos que aparecen y desaparecen, animaciones visuales, acciones que se activan al pulsar botones, galerías multimedia y ventanas emergentes con mensajes de aviso al usuario.
+                    </p>
+                    <div class="alert alert-info border-0 shadow-sm d-flex align-items-start gap-3 my-3">
+                        <i class="bi bi-info-circle-fill fs-4 text-info flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Lenguaje Interpretado</h6>
+                            <p class="mb-0 small">
+                                Técnicamente, JavaScript es un lenguaje de programación <strong>interpretado</strong> en tiempo de ejecución por el motor del navegador (como V8 en Chrome/Edge o SpiderMonkey en Firefox). Por tanto, no es necesario compilar los programas antes de probarlos: se ejecutan de forma inmediata al abrir o refrescar el documento HTML.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="alert alert-light border shadow-sm d-flex align-items-start gap-3 mb-0">
+                        <i class="bi bi-exclamation-triangle text-secondary fs-4 flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h6 class="fw-bold mb-1">Aclaración: JavaScript no es Java</h6>
+                            <p class="mb-0 small text-secondary">
+                                A pesar de su nombre, JavaScript <strong>no guarda ninguna relación directa con el lenguaje de programación Java</strong>. Legalmente, JavaScript es una marca registrada originaria de la empresa Sun Microsystems (actualmente Oracle).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 1.2 Cómo incluir JavaScript en documentos HTML -->
+                <section id="sec1-2" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.2</span>
+                        <h2 class="h4 mb-0 fw-bold">Cómo incluir JavaScript en documentos HTML</h2>
+                    </div>
+                    <p>
+                        Existen tres mecanismos estándar para incorporar código JavaScript dentro de un sitio web. A continuación analizamos cada uno en detalle:
+                    </p>
+
+                    <!-- 1.2.1 En el mismo documento -->
+                    <div class="border rounded p-3 mb-4 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.2.1 En el mismo documento</h3>
+                        <p>
+                            El código JavaScript se encierra entre etiquetas <code>&lt;script&gt;</code> y <code>&lt;/script&gt;</code> y se puede situar en cualquier parte del documento. Aunque es técnicamente correcto incluir bloques de código en cualquier zona de la página, habitualmente se ha definido dentro de la cabecera del documento (dentro de la etiqueta <code>&lt;head&gt;</code>):
+                        </p>
+                        <div class="code-block mb-2">
+<pre class="m-0"><code><span class="code-token-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-token-tag">&lt;html</span> <span class="code-token-attr">lang=</span><span class="code-token-string">"es"</span><span class="code-token-tag">&gt;</span>
+<span class="code-token-tag">&lt;head&gt;</span>
+    <span class="code-token-tag">&lt;meta</span> <span class="code-token-attr">charset=</span><span class="code-token-string">"UTF-8"</span><span class="code-token-tag">&gt;</span>
+    <span class="code-token-tag">&lt;title&gt;</span>Ejemplo de código JavaScript en el propio documento<span class="code-token-tag">&lt;/title&gt;</span>
+    <span class="code-token-tag">&lt;script&gt;</span>
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Hola mundo"</span>);
+    <span class="code-token-tag">&lt;/script&gt;</span>
+<span class="code-token-tag">&lt;/head&gt;</span>
+<span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;p&gt;</span>Un párrafo de texto.<span class="code-token-tag">&lt;/p&gt;</span>
+<span class="code-token-tag">&lt;/body&gt;</span>
+<span class="code-token-tag">&lt;/html&gt;</span></code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.2.2 En un archivo externo (recomendado) -->
+                    <div class="border rounded p-3 mb-4 bg-body-tertiary">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <h3 class="h5 fw-bold text-dark mb-0">1.2.2 En un archivo externo (Recomendado)</h3>
+                            <span class="badge bg-success">Mejor Práctica</span>
+                        </div>
+                        <p>
+                            Los archivos de código JavaScript son documentos normales de texto plano guardados con la extensión <code>.js</code>, que se pueden crear y editar con cualquier editor (Visual Studio Code, Notepad++, Nano, etc.).
+                        </p>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-5">
+                                <div class="card h-100 border">
+                                    <div class="card-header bg-dark text-white py-1 px-3 small fw-bold">
+                                        <i class="bi bi-filetype-js text-warning me-1"></i> Archivo: codigo.js
+                                    </div>
+                                    <div class="card-body p-2 bg-dark-subtle">
+                                        <div class="code-block m-0 p-2">
+<pre class="m-0"><code><span class="code-token-function">alert</span>(<span class="code-token-string">"Un mensaje de prueba"</span>);</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card h-100 border">
+                                    <div class="card-header bg-dark text-white py-1 px-3 small fw-bold">
+                                        <i class="bi bi-filetype-html text-primary me-1"></i> Documento HTML (index.html)
+                                    </div>
+                                    <div class="card-body p-2 bg-dark-subtle">
+                                        <div class="code-block m-0 p-2">
+<pre class="m-0"><code><span class="code-token-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-token-tag">&lt;html</span> <span class="code-token-attr">lang=</span><span class="code-token-string">"es"</span><span class="code-token-tag">&gt;</span>
+<span class="code-token-tag">&lt;head&gt;</span>
+    <span class="code-token-tag">&lt;meta</span> <span class="code-token-attr">charset=</span><span class="code-token-string">"UTF-8"</span><span class="code-token-tag">&gt;</span>
+    <span class="code-token-tag">&lt;title&gt;</span>Enlace a script externo<span class="code-token-tag">&lt;/title&gt;</span>
+    <span class="code-token-tag">&lt;script</span> <span class="code-token-attr">src=</span><span class="code-token-string">"/js/codigo.js"</span><span class="code-token-tag">&gt;&lt;/script&gt;</span>
+<span class="code-token-tag">&lt;/head&gt;</span>
+<span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;p&gt;</span>Un párrafo de texto.<span class="code-token-tag">&lt;/p&gt;</span>
+<span class="code-token-tag">&lt;/body&gt;</span>
+<span class="code-token-tag">&lt;/html&gt;</span></code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="alert alert-success border-0 mb-0 py-2 small">
+                            <strong>Ventajas clave:</strong>
+                            <ul class="mb-0 ps-3">
+                                <li>Simplifica y limpia la estructura del documento HTML.</li>
+                                <li>Permite reutilizar y cachear el mismo archivo JavaScript en todas las páginas de la aplicación.</li>
+                                <li>Favorece la separación de responsabilidades (estructura en HTML, estilo en CSS y comportamiento en JS).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 1.2.3 Dentro de elementos del HTML -->
+                    <div class="border rounded p-3 bg-body-tertiary">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <h3 class="h5 fw-bold text-dark mb-0">1.2.3 Dentro de elementos del HTML (Inline)</h3>
+                            <span class="badge bg-secondary">Desaconsejado</span>
+                        </div>
+                        <p>
+                            Consiste en incrustar fragmentos de JavaScript directamente en atributos de evento de etiquetas HTML:
+                        </p>
+                        <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-token-tag">&lt;html&gt;</span>
+<span class="code-token-tag">&lt;head&gt;</span>
+    <span class="code-token-tag">&lt;meta</span> <span class="code-token-attr">charset=</span><span class="code-token-string">"UTF-8"</span><span class="code-token-tag">&gt;</span>
+    <span class="code-token-tag">&lt;title&gt;</span>Código inline<span class="code-token-tag">&lt;/title&gt;</span>
+<span class="code-token-tag">&lt;/head&gt;</span>
+<span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;p</span> <span class="code-token-attr">onclick=</span><span class="code-token-string">"alert('Un mensaje de prueba')"</span><span class="code-token-tag">&gt;</span>Un párrafo de texto.<span class="code-token-tag">&lt;/p&gt;</span>
+<span class="code-token-tag">&lt;/body&gt;</span>
+<span class="code-token-tag">&lt;/html&gt;</span></code></pre>
+                        </div>
+                        <p class="small text-danger mb-0">
+                            <strong>Inconveniente principal:</strong> Ensucia innecesariamente el marcado HTML y complica enormemente el mantenimiento del código. En el desarrollo moderno solo se utiliza en casos muy aislados; la forma profesional es vincular escuchadores con <code>addEventListener</code> desde archivos externos.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 1.3 Ubicación de las etiquetas script -->
+                <section id="sec1-3" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.3</span>
+                        <h2 class="h4 mb-0 fw-bold">Ubicación de las etiquetas &lt;script&gt;</h2>
+                    </div>
+                    <p>
+                        Al incluir archivos JavaScript externos o bloques propios, conviene tener muy presente en qué posición colocarlos dentro del árbol del documento HTML:
+                    </p>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="card h-100 border-primary-subtle bg-primary-subtle p-3">
+                                <h6 class="fw-bold text-primary"><i class="bi bi-arrow-up-circle me-1"></i> En la cabecera (&lt;head&gt;)</h6>
+                                <p class="small mb-0 text-dark-emphasis">
+                                    Adecuado si el script <strong>únicamente contiene definiciones de funciones</strong> que se activarán o lanzarán más adelante conforme el usuario interactúe con los botones o formularios de la página.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100 border-success-subtle bg-success-subtle p-3">
+                                <h6 class="fw-bold text-success"><i class="bi bi-arrow-down-circle me-1"></i> Al final del cuerpo (antes de &lt;/body&gt;)</h6>
+                                <p class="small mb-0 text-dark-emphasis">
+                                    <strong>Altamente recomendado</strong> si el script contiene instrucciones que necesitan ejecutarse inmediatamente al cargar o si manipula elementos del DOM. Así se garantiza que todo el HTML ya ha sido renderizado antes de que el script intente buscarlo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-light border mt-3 mb-0 small">
+                        <strong>Atributos modernos de carga asíncrona:</strong> En HTML5 también disponemos de los atributos <code>defer</code> (descarga en segundo plano y ejecuta en orden una vez procesado el DOM) y <code>async</code> (descarga y ejecuta inmediatamente sin orden garantizado), colocados dentro de <code>&lt;script src="..." defer&gt;</code>.
+                    </div>
+                </section>
+
+                <!-- 1.4 La etiqueta noscript -->
+                <section id="sec1-4" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.4</span>
+                        <h2 class="h4 mb-0 fw-bold">La etiqueta &lt;noscript&gt;</h2>
+                    </div>
+                    <p>
+                        Algunos navegadores no disponen de soporte completo para JavaScript, otros permiten bloquearlo mediante extensiones y algunos usuarios deshabilitan activamente su ejecución por motivos de privacidad o accesibilidad.
+                    </p>
+                    <p>
+                        El estándar HTML define la etiqueta <code>&lt;noscript&gt;</code> para mostrar un mensaje informativo o un diseño alternativo cuando el navegador del usuario <strong>no puede ejecutar JavaScript</strong>:
+                    </p>
+                    <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;noscript&gt;</span>
+        <span class="code-token-tag">&lt;div</span> <span class="code-token-attr">class=</span><span class="code-token-string">"aviso-noscript"</span><span class="code-token-tag">&gt;</span>
+            <span class="code-token-tag">&lt;p&gt;&lt;strong&gt;</span>Bienvenido a Mi Sitio<span class="code-token-tag">&lt;/strong&gt;&lt;/p&gt;</span>
+            <span class="code-token-tag">&lt;p&gt;</span>
+                La página que estás viendo requiere para su correcto funcionamiento el uso de JavaScript.
+                Si lo has deshabilitado intencionadamente, por favor vuelve a activarlo en la configuración de tu navegador.
+            <span class="code-token-tag">&lt;/p&gt;</span>
+        <span class="code-token-tag">&lt;/div&gt;</span>
+    <span class="code-token-tag">&lt;/noscript&gt;</span>
+    
+    <span class="code-token-comment">&lt;!-- Resto del contenido habitual de la página --&gt;</span>
+<span class="code-token-tag">&lt;/body&gt;</span></code></pre>
+                    </div>
+                    <p class="small text-secondary mb-0">
+                        <i class="bi bi-info-circle me-1"></i> La etiqueta <code>&lt;noscript&gt;</code> se debe incluir en el interior de <code>&lt;body&gt;</code> (habitualmente al principio). El contenido dentro de ella puede contener cualquier elemento HTML (párrafos, encabezados, enlaces, imágenes).
+                    </p>
+                </section>
+
+                <!-- 1.5 Detectar errores en JavaScript -->
+                <section id="sec1-5" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.5</span>
+                        <h2 class="h4 mb-0 fw-bold">Detectar errores en JavaScript</h2>
+                    </div>
+                    <p>
+                        A diferencia de los programas de escritorio (como los creados en C o Java), en lenguajes web que corren en el cliente como JavaScript no existe una ventana de terminal nativa abierta de forma predeterminada para ver las trazas de ejecución.
+                    </p>
+                    <p>
+                        Todos los navegadores web modernos (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari) incluyen <strong>Herramientas para Desarrolladores (DevTools)</strong> que se abren pulsando la tecla <kbd>F12</kbd> o haciendo clic derecho sobre la página y seleccionando <em>Inspeccionar</em>.
+                    </p>
+
+                    <h3 class="h5 fw-bold text-dark mt-4 mb-2">1.5.1 Consola y mensajes de depuración</h3>
+                    <p>
+                        La pestaña <strong>Console (Consola)</strong> de las DevTools es la herramienta más útil para programar en JavaScript, pues informa en tiempo real de los fallos sintácticos, excepciones y referencias no definidas.
+                    </p>
+                    <p>
+                        Además de la instrucción clásica <code>alert()</code> (que bloquea la pantalla con una ventana emergente modal), podemos utilizar métodos del objeto <code>console</code> para enviar información sin interrumpir la navegación del usuario:
+                    </p>
+                    <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-comment">// 1. Mensaje de log informativo general</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"El script se ha inicializado correctamente."</span>);
+
+<span class="code-token-comment">// 2. Mensaje de error destacado en rojo en la consola</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">error</span>(<span class="code-token-string">"El email está vacío"</span>);
+
+<span class="code-token-comment">// 3. Advertencia amarilla</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">warn</span>(<span class="code-token-string">"Atención: este campo es obligatorio para envíos internacionales."</span>);</code></pre>
+                    </div>
+                </section>
+
+                <!-- 1.6 Sintaxis -->
+                <section id="sec1-6" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.6</span>
+                        <h2 class="h4 mb-0 fw-bold">Sintaxis Fundamental de JavaScript</h2>
+                    </div>
+                    <p>
+                        La sintaxis es el conjunto de normas y reglas que determinan cómo deben escribirse las instrucciones para que el intérprete las considere válidas. Es muy parecida a la de lenguajes como C, C++ y Java:
+                    </p>
+                    
+                    <div class="table-responsive table-custom mb-4">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 30%;">Regla de Sintaxis</th>
+                                    <th>Descripción y Pauta de Buenas Prácticas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold">Espacios en blanco y saltos</td>
+                                    <td>
+                                        El intérprete ignora los espacios y saltos de línea sobrantes. Se pueden tabular las líneas y espaciar los bloques para facilitar la legibilidad del código.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Distinción de mayúsculas (Case-sensitive)</td>
+                                    <td>
+                                        JavaScript distingue estrictamente mayúsculas de minúsculas. Las variables <code>miNumero</code>, <code>minumero</code> y <code>MINUMERO</code> son tres identificadores totalmente diferentes.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Tipado dinámico</td>
+                                    <td>
+                                        No se indica el tipo de dato al declarar una variable (no hay <code>int</code>, <code>float</code> o <code>string</code> como en Java). Una misma variable puede almacenar un número y luego un texto a lo largo de su ciclo de vida.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Punto y coma ( ; )</td>
+                                    <td>
+                                        Aunque JavaScript cuenta con inserción automática de punto y coma (ASI), <strong>es una buena práctica obligatoria terminar cada sentencia con <code>;</code></strong> para evitar errores imprevistos al comprimir o minificar scripts.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Comentarios de código</td>
+                                    <td>
+                                        Se admiten dos modalidades de comentarios para documentar la lógica:
+                                        <ul class="mb-0 ps-3 mt-1 small">
+                                            <li><strong>Una sola línea:</strong> precedidos por dos barras <code>// Comentario</code>.</li>
+                                            <li><strong>Multilínea:</strong> encerrados entre <code>/* ... */</code>.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="code-block">
+<pre class="m-0"><code><span class="code-token-comment">// Ejemplo de comentario de una sola línea</span>
+<span class="code-token-function">alert</span>(<span class="code-token-string">"Mensaje de prueba"</span>);
+
+<span class="code-token-comment">/* Los comentarios de varias líneas son muy útiles 
+   cuando se necesita detallar la lógica o explicar
+   el funcionamiento de algoritmos complejos */</span>
+<span class="code-token-function">alert</span>(<span class="code-token-string">"Segundo mensaje"</span>);</code></pre>
+                    </div>
+                </section>
+
+                <!-- 1.7 El primer script -->
+                <section id="sec1-7" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.7</span>
+                        <h2 class="h4 mb-0 fw-bold">El Primer Script Completo</h2>
+                    </div>
+                    <p>
+                        A continuación se presenta un script básico pero 100% funcional integrado en una estructura HTML5 válida:
+                    </p>
+                    <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="code-token-tag">&lt;html</span> <span class="code-token-attr">lang=</span><span class="code-token-string">"es"</span><span class="code-token-tag">&gt;</span>
+<span class="code-token-tag">&lt;head&gt;</span>
+    <span class="code-token-tag">&lt;meta</span> <span class="code-token-attr">charset=</span><span class="code-token-string">"UTF-8"</span><span class="code-token-tag">&gt;</span>
+    <span class="code-token-tag">&lt;title&gt;</span>El primer script<span class="code-token-tag">&lt;/title&gt;</span>
+    <span class="code-token-tag">&lt;script&gt;</span>
+        <span class="code-token-function">alert</span>(<span class="code-token-string">"¡Hola Mundo!"</span>);
+    <span class="code-token-tag">&lt;/script&gt;</span>
+<span class="code-token-tag">&lt;/head&gt;</span>
+<span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;p&gt;</span>Esta página contiene el primer script ejecutado en el navegador.<span class="code-token-tag">&lt;/p&gt;</span>
+<span class="code-token-tag">&lt;/body&gt;</span>
+<span class="code-token-tag">&lt;/html&gt;</span></code></pre>
+                    </div>
+                    <p>
+                        La instrucción <code>alert()</code> es una utilidad básica de JavaScript que detiene temporalmente la ejecución y muestra una pequeña ventana modal con el mensaje indicado entre comillas.
+                    </p>
+
+                    <!-- Tarjeta del Ejercicio 1.1 -->
+                    <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 mt-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <h4 class="h6 fw-bold text-dark mb-0"><i class="bi bi-pencil-square me-1"></i> 1.7.1 Ejercicio 1.1: Separación de Script y Notificaciones</h4>
+                            <span class="badge bg-warning text-dark border border-dark-subtle">Ejercicio Oficial</span>
+                        </div>
+                        <p class="small text-dark-emphasis mb-2">
+                            Modificar el primer script para cumplir con los siguientes requerimientos:
+                        </p>
+                        <ol class="small text-dark-emphasis mb-3 ps-3">
+                            <li>Mover todo el código JavaScript a un archivo externo denominado <code>codigo.js</code>.</li>
+                            <li>Después del primer mensaje de bienvenida, mostrar otro cuadro con el texto: <code>"Soy el primer script"</code>.</li>
+                            <li>Incluir comentarios explicativos de una y varias líneas.</li>
+                            <li>Añadir en el HTML un bloque <code>&lt;noscript&gt;</code> para advertir a los usuarios que no tengan activado JavaScript.</li>
+                        </ol>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="../material/ejercicios/aprendizaje/t1_01.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play-circle me-1"></i> Probar Solución en Vivo</a>
+                            <a href="07_ejercicios_r.html#ej1-1" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash me-1"></i> Ver Código Resuelto</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 1.8 Programación básica -->
+                <section id="sec1-8" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.8</span>
+                        <h2 class="h4 mb-0 fw-bold">Programación Básica en JavaScript</h2>
+                    </div>
+                    <p>
+                        En esta sección se estudian los bloques de construcción esenciales: entrada y salida de datos, variables, tipos primitivos, coerción y operadores.
+                    </p>
+
+                    <!-- 1.8.1 Comunicación con el usuario -->
+                    <div class="border rounded p-3 mb-4 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.8.1 Métodos de Comunicación con el Usuario</h3>
+                        <p>
+                            JavaScript ofrece varios mecanismos directos para intercambiar información con el usuario y con el entorno de desarrollo:
+                        </p>
+                        <div class="table-responsive table-custom mb-3">
+                            <table class="table table-hover align-middle mb-0 small">
+                                <thead>
+                                    <tr>
+                                        <th>Instrucción</th>
+                                        <th>Destino / Comportamiento</th>
+                                        <th>Ejemplo de Código</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>alert(mensaje)</code></td>
+                                        <td>Muestra una ventana emergente modal que detiene la ejecución hasta pulsar Aceptar.</td>
+                                        <td><code>alert("Hola, buenos días");</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>console.log(msg)</code> / <code>console.error(msg)</code></td>
+                                        <td>Escribe en la consola interna de depuración del navegador sin molestar al usuario.</td>
+                                        <td><code>console.log("Datos cargados");</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>document.write(html)</code></td>
+                                        <td>Escribe contenido de texto o etiquetas directamente en el flujo del documento HTML.</td>
+                                        <td><code>document.write("&lt;p&gt;Texto HTML&lt;/p&gt;");</code></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>prompt(mensaje)</code></td>
+                                        <td>
+                                            Abre un cuadro emergente con un campo de texto para que el usuario escriba un dato. 
+                                            <strong>Devuelve una cadena de texto (String)</strong> o <code>null</code> si el usuario pulsa en Cancelar.
+                                        </td>
+                                        <td><code>let nombre = prompt("Dime tu nombre:");</code></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> nombre = <span class="code-token-function">prompt</span>(<span class="code-token-string">"Dime tu nombre"</span>);
+<span class="code-token-keyword">if</span> (nombre !== <span class="code-token-keyword">null</span>) {
+    <span class="code-token-function">alert</span>(<span class="code-token-string">"Hola "</span> + nombre + <span class="code-token-string">", ¡bienvenido al curso!"</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.8.2 Variables -->
+                    <div class="border rounded p-3 mb-4 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.8.2 Variables y Buenas Prácticas</h3>
+                        <p>
+                            Las variables se emplean para almacenar valores en memoria que pueden variar a lo largo de la ejecución. Existen tres formas de crearlas en JavaScript:
+                        </p>
+                        <div class="table-responsive table-custom mb-3">
+                            <table class="table table-hover align-middle mb-0 small">
+                                <thead>
+                                    <tr>
+                                        <th>Sintaxis</th>
+                                        <th>Estado</th>
+                                        <th>Comportamiento y Ámbito</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>let n1 = 5;</code></td>
+                                        <td><span class="badge bg-success">Aconsejado</span></td>
+                                        <td>Crea una variable local restringida al bloque de código actual <code>{ ... }</code>. Evita colisiones de nombres.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>var n2 = 5;</code></td>
+                                        <td><span class="badge bg-warning text-dark">Desaconsejado</span></td>
+                                        <td>Forma clásica anterior a ES6. Posee ámbito de función (function scope) o global, y sufre de hoisting confuso.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>n3 = 5;</code></td>
+                                        <td><span class="badge bg-danger">Muy Desaconsejado</span></td>
+                                        <td>Asignación directa sin declarar. Crea una variable global implícita propensa a errores graves.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="h6 fw-bold text-dark mt-3">Declaración vs Inicialización</h4>
+                        <p class="small">
+                            La palabra reservada <code>let</code> solo debe indicarse al definir por primera vez la variable (declaración). Si al declarar se le asigna un valor inicial, decimos que ha sido inicializada:
+                        </p>
+                        <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-comment">// Declaración separada de la asignación:</span>
+<span class="code-token-keyword">let</span> numero_1;
+<span class="code-token-keyword">let</span> numero_2;
+
+numero_1 = <span class="code-token-number">3</span>;
+numero_2 = <span class="code-token-number">1</span>;
+
+<span class="code-token-comment">// Declaración e inicialización directa:</span>
+<span class="code-token-keyword">let</span> resultado = numero_1 + numero_2; <span class="code-token-comment">// Vale 4</span></code></pre>
+                        </div>
+
+                        <h4 class="h6 fw-bold text-dark mt-3">Reglas de Identificadores</h4>
+                        <p class="small">
+                            El nombre asignado a una variable debe obedecer obligatoriamente a estas dos normas:
+                        </p>
+                        <ul class="small ps-3 mb-2">
+                            <li>Solo puede estar formado por letras, números y los caracteres especiales <code>$</code> (dólar) y <code>_</code> (guion bajo).</li>
+                            <li><strong>El primer carácter jamás puede ser un número.</strong></li>
+                        </ul>
+                        <div class="row g-2 small">
+                            <div class="col-md-6">
+                                <div class="p-2 border border-success-subtle bg-success-subtle rounded">
+                                    <span class="text-success fw-bold"><i class="bi bi-check-circle me-1"></i> Nombres Válidos:</span>
+                                    <code class="d-block mt-1">let $numero1;</code>
+                                    <code>let _$letra;</code>
+                                    <code class="d-block">let $$$otroNumero;</code>
+                                    <code>let $_a_$4;</code>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-2 border border-danger-subtle bg-danger-subtle rounded">
+                                    <span class="text-danger fw-bold"><i class="bi bi-x-circle me-1"></i> Nombres Incorrectos:</span>
+                                    <code class="d-block mt-1 text-danger">let 1numero; // Empieza por un número</code>
+                                    <code class="text-danger">let numero; 1_123; // Contiene un punto y coma</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1.8.3 Tipos de variables -->
+                    <div class="border rounded p-3 mb-4 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.8.3 Tipos de Variables Primitivas</h3>
+
+                        <!-- Numéricas -->
+                        <div class="mb-3">
+                            <h4 class="h6 fw-bold text-dark">1.8.3.1 Numéricas</h4>
+                            <p class="small mb-2">
+                                Almacenan valores enteros o decimales. Los decimales utilizan siempre el carácter <code>.</code> (punto) en vez de coma como separador:
+                            </p>
+                            <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> iva = <span class="code-token-number">16</span>;          <span class="code-token-comment">// Entero</span>
+<span class="code-token-keyword">let</span> total = <span class="code-token-number">234.65</span>;    <span class="code-token-comment">// Decimal (punto flotante)</span></code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Cadenas de texto o strings -->
+                        <div class="mb-3">
+                            <h4 class="h6 fw-bold text-dark">1.8.3.2 Cadenas de Texto o Strings</h4>
+                            <p class="small mb-2">
+                                Almacenan palabras, caracteres o textos completos encerrados entre comillas dobles (<code>"</code>) o simples (<code>'</code>):
+                            </p>
+                            <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> mensaje = <span class="code-token-string">"Bienvenido a nuestro sitio web"</span>;
+<span class="code-token-keyword">let</span> nombreProducto = <span class="code-token-string">'Producto ABC'</span>;
+<span class="code-token-keyword">let</span> letraSeleccionada = <span class="code-token-string">'c'</span>;</code></pre>
+                            </div>
+                            
+                            <h5 class="h6 fw-bold text-dark">Comillas anidadas y Mecanismo de Escape</h5>
+                            <p class="small mb-2">
+                                Cuando el propio texto contiene comillas o saltos de línea, podemos alternar comillas simples/dobles o utilizar la barra inclinada invertida (<code>\</code>) como carácter de escape:
+                            </p>
+                            
+                            <div class="table-responsive table-custom mb-3">
+                                <table class="table table-sm table-hover align-middle mb-0 small">
+                                    <thead>
+                                        <tr>
+                                            <th>Si se desea incluir...</th>
+                                            <th>Secuencia de escape</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Una nueva línea</td><td><code>\n</code></td><td>Salto de línea en cuadros alert o cadenas</td></tr>
+                                        <tr><td>Un tabulador</td><td><code>\t</code></td><td>Espaciado horizontal tabular</td></tr>
+                                        <tr><td>Una comilla simple</td><td><code>\'</code></td><td>Permite incluir <code>'</code> dentro de un string delimitado por <code>'</code></td></tr>
+                                        <tr><td>Una comilla doble</td><td><code>\"</code></td><td>Permite incluir <code>"</code> dentro de un string delimitado por <code>"</code></td></tr>
+                                        <tr><td>Una barra invertida</td><td><code>\\</code></td><td>Permite imprimir el carácter <code>\</code> literal</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="code-block">
+<pre class="m-0"><code><span class="code-token-comment">// Ejemplos de uso del escape:</span>
+<span class="code-token-keyword">let</span> texto1 = <span class="code-token-string">'Una frase con \'comillas simples\' dentro'</span>;
+<span class="code-token-keyword">let</span> texto2 = <span class="code-token-string">"Una frase con \"comillas dobles\" dentro"</span>;
+<span class="code-token-keyword">let</span> multiLinea = <span class="code-token-string">"Primera línea\nSegunda línea con tabulación:\tOK"</span>;</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta del Ejercicio 1.2 -->
+                        <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3 mb-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h4 class="h6 fw-bold text-dark mb-0"><i class="bi bi-pencil-square me-1"></i> Ejercicio 1.2: Cadenas de Texto con Comillas</h4>
+                                <span class="badge bg-warning text-dark border border-dark-subtle">Ejercicio Oficial</span>
+                            </div>
+                            <p class="small text-dark-emphasis mb-2">
+                                Crear un documento llamado <code>02_comillas_js.html</code> modificando el primer script:
+                            </p>
+                            <ol class="small text-dark-emphasis mb-3 ps-3">
+                                <li>El mensaje mostrado se debe almacenar previamente en una variable denominada <code>mensaje</code>.</li>
+                                <li>El contenido del mensaje debe incluir comillas simples, comillas dobles y saltos de línea combinados.</li>
+                            </ol>
+                            <div class="d-flex flex-wrap gap-2">
+                                <a href="../material/ejercicios/aprendizaje/t1_02_comillas_j2.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play-circle me-1"></i> Ejecutar Solución</a>
+                                <a href="07_ejercicios_r.html#ej1-2" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash me-1"></i> Ver Código Resuelto</a>
+                            </div>
+                        </div>
+
+                        <!-- Booleanos -->
+                        <div class="mb-3">
+                            <h4 class="h6 fw-bold text-dark">1.8.4 Booleanos (Tipos Lógicos)</h4>
+                            <p class="small mb-2">
+                                Una variable de tipo <code>boolean</code> almacena exclusivamente uno de dos valores posibles: <code>true</code> (verdadero) o <code>false</code> (falso). Es la base para la toma de decisiones lógicas:
+                            </p>
+                            <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> clienteRegistrado = <span class="code-token-keyword">false</span>;
+<span class="code-token-keyword">let</span> ivaIncluido = <span class="code-token-keyword">true</span>;</code></pre>
+                            </div>
+                        </div>
+
+                        <!-- Conversiones entre tipos simples -->
+                        <div class="mb-3">
+                            <h4 class="h6 fw-bold text-dark">1.8.5 Conversiones entre Tipos Simples (Coerción y Parseo)</h4>
+                            <p class="small">
+                                En muchas situaciones es imprescindible transformar un tipo simple en otro (por ejemplo, convertir texto recibido de un formulario o <code>prompt()</code> en un número real con el que realizar cálculos matemáticos):
+                            </p>
+                            <div class="table-responsive table-custom mb-3">
+                                <table class="table table-hover align-middle mb-0 small">
+                                    <thead>
+                                        <tr>
+                                            <th>Función</th>
+                                            <th>Acción</th>
+                                            <th>Ejemplo</th>
+                                            <th>Resultado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>Number(dato)</code></td>
+                                            <td>Convierte a número general (entero o decimal)</td>
+                                            <td><code>Number("32.5")</code></td>
+                                            <td><code>32.5</code> (número)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>parseInt(cadena)</code></td>
+                                            <td>Parsea y extrae la parte entera</td>
+                                            <td><code>parseInt("42 px")</code></td>
+                                            <td><code>42</code> (entero)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>parseFloat(cadena)</code></td>
+                                            <td>Parsea un número con parte fraccionaria</td>
+                                            <td><code>parseFloat("3.1416 rad")</code></td>
+                                            <td><code>3.1416</code> (real)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>String(dato)</code></td>
+                                            <td>Convierte cualquier valor a texto</td>
+                                            <td><code>String(23)</code></td>
+                                            <td><code>"23"</code> (cadena)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>Boolean(dato)</code></td>
+                                            <td>Evalúa la veracidad (truthy/falsy)</td>
+                                            <td><code>Boolean("true")</code></td>
+                                            <td><code>true</code> (booleano)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h5 class="h6 fw-bold text-dark">Aplicación directa con prompt()</h5>
+                            <p class="small">
+                                Todo lo introducido por un usuario en un <code>prompt()</code> llega a JavaScript como <strong>cadena de texto</strong>. Si el usuario escribe <code>"32"</code> y queremos sumarle 5, haríamos:
+                            </p>
+                            <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> numeroTexto = <span class="code-token-function">prompt</span>(<span class="code-token-string">"Dime un número:"</span>);
+<span class="code-token-keyword">let</span> doble = <span class="code-token-function">parseInt</span>(numeroTexto) * <span class="code-token-number">2</span>;
+<span class="code-token-function">alert</span>(<span class="code-token-string">"El doble es "</span> + doble);</code></pre>
+                            </div>
+
+                            <div class="alert alert-danger border-0 shadow-sm p-3 small mb-3">
+                                <h6 class="fw-bold mb-1"><i class="bi bi-shield-exclamation me-1"></i> El Valor Especial: NaN (Not a Number)</h6>
+                                <p class="mb-2">
+                                    Si intentamos convertir a número una cadena incompatible o realizamos una operación matemática inválida (como operar con <code>undefined</code>), JavaScript produce el valor especial <code>NaN</code>.
+                                </p>
+                                <div class="code-block m-0">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> valorInvalido = <span class="code-token-function">parseInt</span>(<span class="code-token-string">"hola"</span>); <span class="code-token-comment">// Produce NaN</span>
+
+<span class="code-token-comment">// Comprobación con la función isNaN():</span>
+<span class="code-token-keyword">if</span> (<span class="code-token-function">isNaN</span>(valorInvalido)) {
+    <span class="code-token-function">alert</span>(<span class="code-token-string">"El valor introducido no es numérico"</span>);
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Tarjeta del Ejercicio 1.3 -->
+                            <div class="card exercise-card border-warning bg-warning-subtle shadow-sm p-3">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h4 class="h6 fw-bold text-dark mb-0"><i class="bi bi-pencil-square me-1"></i> Ejercicio 1.3: Operaciones Aritméticas con Entrada de Usuario</h4>
+                                    <span class="badge bg-warning text-dark border border-dark-subtle">Ejercicio Oficial</span>
+                                </div>
+                                <p class="small text-dark-emphasis mb-2">
+                                    Crear un documento llamado <code>03_Operaciones_js.html</code> que:
+                                </p>
+                                <ol class="small text-dark-emphasis mb-3 ps-3">
+                                    <li>Pida al usuario dos números sucesivamente mediante dos llamadas a <code>prompt()</code>.</li>
+                                    <li>Convierta las entradas a números reales con <code>parseFloat()</code>.</li>
+                                    <li>Muestre cuatro mensajes con la suma, resta, multiplicación y división de ambos números.</li>
+                                </ol>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="../material/ejercicios/aprendizaje/t1_03_Operaciones_js.html" target="_blank" class="btn btn-sm btn-dark"><i class="bi bi-play-circle me-1"></i> Ejecutar Solución</a>
+                                    <a href="07_ejercicios_r.html#ej1-3" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash me-1"></i> Ver Código Resuelto</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 1.8.6 Operadores -->
+                        <div class="mt-4">
+                            <h3 class="h5 fw-bold text-dark mb-2">1.8.6 Operadores en JavaScript</h3>
+                            <p class="small">
+                                Los operadores permiten realizar cálculos, manipular variables y evaluar condiciones lógicas complejas:
+                            </p>
+
+                            <!-- 1.8.6.1 Asignación -->
+                            <div class="card border p-3 mb-3 bg-white">
+                                <h6 class="fw-bold text-dark">1.8.6.1 Asignación (=)</h6>
+                                <p class="small mb-2">
+                                    Guarda un valor en una variable. A la izquierda siempre figura el identificador, y a la derecha el valor o expresión evaluada:
+                                </p>
+                                <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> numero1 = <span class="code-token-number">3</span>;
+<span class="code-token-keyword">let</span> numero2 = <span class="code-token-number">4</span>;
+numero1 = <span class="code-token-number">5</span>;        <span class="code-token-comment">// Ahora numero1 vale 5</span>
+numero1 = numero2;  <span class="code-token-comment">// Ahora numero1 vale 4</span></code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 1.8.6.2 Incremento y decremento -->
+                            <div class="card border p-3 mb-3 bg-white">
+                                <h6 class="fw-bold text-dark">1.8.6.2 Incremento y Decremento (++ / --)</h6>
+                                <p class="small mb-2">
+                                    Aumentan o disminuyen en una unidad el valor de una variable numérica. <strong>La posición del operador cambia el resultado devuelto en la expresión:</strong>
+                                </p>
+                                <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> a = <span class="code-token-number">1</span>;
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(a++); <span class="code-token-comment">// Imprime 1 y luego incrementa "a" (ahora a vale 2)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(++a); <span class="code-token-comment">// Incrementa "a" primero (vale 3) y luego imprime 3</span></code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 1.8.6.3 Lógicos -->
+                            <div class="card border p-3 mb-3 bg-white">
+                                <h6 class="fw-bold text-dark">1.8.6.3 Operadores Lógicos (!, &amp;&amp;, ||)</h6>
+                                <p class="small mb-2">
+                                    Operan sobre valores booleanos y devuelven siempre un resultado booleano (<code>true</code> o <code>false</code>):
+                                </p>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <div class="p-2 border rounded bg-body-tertiary">
+                                            <h6 class="fw-bold small text-primary mb-1">Negación (!)</h6>
+                                            <p class="small text-secondary mb-1">Invierte el valor de verdad:</p>
+                                            <ul class="small ps-3 mb-0">
+                                                <li><code>!true</code> $\rightarrow$ <code>false</code></li>
+                                                <li><code>!false</code> $\rightarrow$ <code>true</code></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-2 border rounded bg-body-tertiary">
+                                            <h6 class="fw-bold small text-primary mb-1">AND Lógico (&amp;&amp;)</h6>
+                                            <p class="small text-secondary mb-1">Solo es <code>true</code> si ambos lo son:</p>
+                                            <ul class="small ps-3 mb-0">
+                                                <li><code>true &amp;&amp; true</code> $\rightarrow$ <code>true</code></li>
+                                                <li><code>true &amp;&amp; false</code> $\rightarrow$ <code>false</code></li>
+                                                <li><code>false &amp;&amp; ...</code> $\rightarrow$ <code>false</code></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-2 border rounded bg-body-tertiary">
+                                            <h6 class="fw-bold small text-primary mb-1">OR Lógico (||)</h6>
+                                            <p class="small text-secondary mb-1">Es <code>true</code> si al menos uno lo es:</p>
+                                            <ul class="small ps-3 mb-0">
+                                                <li><code>true || false</code> $\rightarrow$ <code>true</code></li>
+                                                <li><code>false || true</code> $\rightarrow$ <code>true</code></li>
+                                                <li><code>false || false</code> $\rightarrow$ <code>false</code></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 1.8.6.7 Aritméticos -->
+                            <div class="card border p-3 mb-3 bg-white">
+                                <h6 class="fw-bold text-dark">1.8.6.7 Operadores Aritméticos y Coerción de Tipos</h6>
+                                <p class="small mb-2">
+                                    Incluyen suma (<code>+</code>), resta (<code>-</code>), multiplicación (<code>*</code>), división (<code>/</code>) y módulo (<code>%</code>, resto de la división entera):
+                                </p>
+                                <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-comment">// Módulo (%)</span>
+<span class="code-token-keyword">let</span> r1 = <span class="code-token-number">10</span> % <span class="code-token-number">5</span>; <span class="code-token-comment">// 0 (división exacta)</span>
+<span class="code-token-keyword">let</span> r2 = <span class="code-token-number">9</span> % <span class="code-token-number">5</span>;  <span class="code-token-comment">// 4 (resto de 9 / 5)</span>
+
+<span class="code-token-comment">// Coerción aritmética automática de JavaScript:</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">4</span> * <span class="code-token-number">6</span>);                <span class="code-token-comment">// 24</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"24"</span> / <span class="code-token-number">12</span>);            <span class="code-token-comment">// 2 (convierte "24" a número)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"42"</span> * <span class="code-token-keyword">true</span>);           <span class="code-token-comment">// 42 (true se convierte en 1)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"42"</span> * <span class="code-token-keyword">false</span>);          <span class="code-token-comment">// 0 (false se convierte en 0)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"42"</span> - <span class="code-token-keyword">null</span>);           <span class="code-token-comment">// 42 (null se convierte en 0)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"42"</span> * <span class="code-token-keyword">undefined</span>);      <span class="code-token-comment">// NaN</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Hello "</span> * <span class="code-token-string">"world!"</span>);    <span class="code-token-comment">// NaN</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">13</span> * <span class="code-token-number">10</span> - <span class="code-token-string">"12"</span>);       <span class="code-token-comment">// 118</span>
+
+<span class="code-token-comment">// Asignación compuesta:</span>
+<span class="code-token-keyword">let</span> n = <span class="code-token-number">5</span>;
+n += <span class="code-token-number">3</span>; <span class="code-token-comment">// 8</span>
+n -= <span class="code-token-number">1</span>; <span class="code-token-comment">// 7</span>
+n *= <span class="code-token-number">2</span>; <span class="code-token-comment">// 14</span>
+n /= <span class="code-token-number">2</span>; <span class="code-token-comment">// 7</span>
+n %= <span class="code-token-number">4</span>; <span class="code-token-comment">// 3</span></code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 1.8.6.8 Relacionales -->
+                            <div class="card border p-3 bg-white">
+                                <h6 class="fw-bold text-dark">1.8.6.8 Operadores Relacionales (== vs ===)</h6>
+                                <p class="small mb-2">
+                                    Comparan dos operandos y devuelven un booleano. La diferencia fundamental en JavaScript radica entre igualdad abstracta e igualdad estricta:
+                                </p>
+                                <div class="table-responsive table-custom mb-3">
+                                    <table class="table table-sm table-hover align-middle mb-0 small">
+                                        <thead>
+                                            <tr>
+                                                <th>Operador</th>
+                                                <th>Comparación</th>
+                                                <th>Diferencia de Tipo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>==</code> / <code>!=</code></td>
+                                                <td>Igualdad / Desigualdad débil</td>
+                                                <td>No tiene en cuenta los tipos: convierte automáticamente los datos antes de comparar.</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>===</code> / <code>!==</code></td>
+                                                <td>Igualdad / Desigualdad estricta</td>
+                                                <td><strong>Comprueba valor y tipo idénticos</strong>. Si difiere el tipo, devuelve falso directamente.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="code-block">
+<pre class="m-0"><code><span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">3</span> == <span class="code-token-string">"3"</span>);             <span class="code-token-comment">// true (valores equivalentes tras conversión)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">3</span> === <span class="code-token-string">"3"</span>);            <span class="code-token-comment">// false (uno es Number y el otro String)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">3</span> != <span class="code-token-string">"3"</span>);             <span class="code-token-comment">// false</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">3</span> !== <span class="code-token-string">"3"</span>);            <span class="code-token-comment">// true</span>
+
+<span class="code-token-comment">// Reglas especiales del lenguaje:</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-keyword">null</span> == <span class="code-token-keyword">undefined</span>);     <span class="code-token-comment">// true (regla especial de JavaScript)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-keyword">null</span> === <span class="code-token-keyword">undefined</span>);    <span class="code-token-comment">// false (tipos distintos)</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">0</span> == <span class="code-token-keyword">false</span>);            <span class="code-token-comment">// true</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-number">0</span> === <span class="code-token-keyword">false</span>);           <span class="code-token-comment">// false</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>([] &gt;= <span class="code-token-keyword">false</span>);           <span class="code-token-comment">// true</span>
+<span class="code-token-function">console</span>.<span class="code-token-function">log</span>({} &gt;= <span class="code-token-keyword">false</span>);           <span class="code-token-comment">// false</span></code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 1.9 Estructuras de control de flujo -->
+                <section id="sec1-9" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <span class="badge text-bg-warning fs-6">1.9</span>
+                        <h2 class="h4 mb-0 fw-bold">Estructuras de Control de Flujo</h2>
+                    </div>
+                    <p>
+                        Las estructuras de control permiten alterar la ejecución lineal de un script para tomar decisiones dinámicas y repetir secuencias de código según el estado de las variables.
+                    </p>
+
+                    <!-- 1.9.1 Estructura if -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.1 Estructura if</h3>
+                        <p class="small mb-2">
+                            Evalúa una condición lógica entre paréntesis. Si el resultado es <code>true</code>, se ejecutan las sentencias encerradas entre las llaves <code>{ ... }</code>:
+                        </p>
+                        <div class="code-block mb-2">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> mostrarMensaje = <span class="code-token-keyword">true</span>;
+<span class="code-token-keyword">if</span> (mostrarMensaje === <span class="code-token-keyword">true</span>) {
+    <span class="code-token-function">alert</span>(<span class="code-token-string">"Hola Mundo"</span>);
+}</code></pre>
+                        </div>
+                        <div class="alert alert-warning border-0 p-2 small mb-0">
+                            <strong>¡Cuidado!</strong> El fallo más recurrente en principiantes es confundir el operador de asignación (<code>=</code>) con el de comparación (<code>==</code> o <code>===</code>).
+                        </div>
+                    </div>
+
+                    <!-- 1.9.2 Estructura if...else -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.2 Estructura if...else</h3>
+                        <p class="small mb-2">
+                            Permite bifurcar en dos caminos excluyentes: si la condición es cierta se ejecuta el primer bloque, y si es falsa se ejecuta el bloque posterior a <code>else</code>:
+                        </p>
+                        <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> edad = <span class="code-token-number">17</span>;
+<span class="code-token-keyword">if</span> (edad &gt;= <span class="code-token-number">18</span>) {
+    <span class="code-token-function">alert</span>(<span class="code-token-string">"Acceso permitido: mayor de edad."</span>);
+} <span class="code-token-keyword">else</span> {
+    <span class="code-token-function">alert</span>(<span class="code-token-string">"Acceso denegado: debes ser mayor de 18 años."</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.9.3 Estructura switch -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.3 Estructura switch</h3>
+                        <p class="small mb-2">
+                            Especialmente útil cuando una misma variable debe compararse frente a múltiples valores concretos, evitando una cadena excesiva de <code>else if</code>:
+                        </p>
+                        <div class="code-block">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> metodoPago = <span class="code-token-string">"tarjeta"</span>;
+
+<span class="code-token-keyword">switch</span> (metodoPago) {
+    <span class="code-token-keyword">case</span> <span class="code-token-string">"efectivo"</span>:
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Pagará en la entrega."</span>);
+        <span class="code-token-keyword">break</span>;
+    <span class="code-token-keyword">case</span> <span class="code-token-string">"tarjeta"</span>:
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Conectando con la pasarela bancaria..."</span>);
+        <span class="code-token-keyword">break</span>;
+    <span class="code-token-keyword">case</span> <span class="code-token-string">"bizum"</span>:
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Introduce tu número de teléfono móvil."</span>);
+        <span class="code-token-keyword">break</span>;
+    <span class="code-token-keyword">default</span>:
+        <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(<span class="code-token-string">"Método de pago no reconocido."</span>);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.9.4 Estructura for -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.4 Estructura for</h3>
+                        <p class="small mb-2">
+                            Estructura de bucle clásica gobernada por tres partes: <code>for (inicialización; condición; actualización)</code>. Se repite mientras la condición sea verdadera:
+                        </p>
+                        <div class="code-block mb-3">
+<pre class="m-0"><code><span class="code-token-keyword">let</span> limit = <span class="code-token-number">5</span>;
+<span class="code-token-keyword">for</span> (<span class="code-token-keyword">let</span> i = <span class="code-token-number">1</span>; i &lt;= limit; i++) {
+    <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(i); <span class="code-token-comment">// Imprime: 1 2 3 4 5</span>
+}
+
+<span class="code-token-comment">// Recorrido clásico de un Array con for:</span>
+<span class="code-token-keyword">let</span> dias = [<span class="code-token-string">"Lunes"</span>, <span class="code-token-string">"Martes"</span>, <span class="code-token-string">"Miércoles"</span>, <span class="code-token-string">"Jueves"</span>, <span class="code-token-string">"Viernes"</span>, <span class="code-token-string">"Sábado"</span>, <span class="code-token-string">"Domingo"</span>];
+<span class="code-token-keyword">for</span> (<span class="code-token-keyword">let</span> i = <span class="code-token-number">0</span>; i &lt; dias.length; i++) {
+    <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(dias[i]);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.9.5 Estructura while -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.5 Estructura while</h3>
+                        <p class="small mb-2">
+                            Evalúa la condición antes de cada repetición. Si la condición es falsa desde el principio, el bloque <strong>no se ejecutará ninguna vez</strong>:
+                        </p>
+                        <div class="code-block">
+<pre class="m-0"><code><span class="code-token-comment">// Suma acumulada de los números menores o iguales a 5 (1 + 2 + 3 + 4 + 5 = 15):</span>
+<span class="code-token-keyword">let</span> resultado = <span class="code-token-number">0</span>;
+<span class="code-token-keyword">let</span> numero = <span class="code-token-number">5</span>;
+<span class="code-token-keyword">let</span> i = <span class="code-token-number">1</span>;
+
+<span class="code-token-keyword">while</span> (i &lt;= numero) {
+    resultado += i; <span class="code-token-comment">// Equivale a: resultado = resultado + i;</span>
+    i++;            <span class="code-token-comment">// Imprescindible actualizar la variable de control para evitar bucle infinito</span>
+}
+<span class="code-token-function">alert</span>(<span class="code-token-string">"Suma acumulada: "</span> + resultado);</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.9.6 Estructura do...while -->
+                    <div class="border rounded p-3 mb-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.6 Estructura do...while</h3>
+                        <p class="small mb-2">
+                            A diferencia del bucle anterior, la condición se comprueba al final, por lo que <strong>las instrucciones se ejecutan siempre al menos una vez</strong>. Es obligatorio terminar con punto y coma: <code>while (condición);</code>.
+                        </p>
+                        <div class="code-block">
+<pre class="m-0"><code><span class="code-token-comment">// Cálculo del factorial de 5 (5! = 5 * 4 * 3 * 2 * 1 = 120):</span>
+<span class="code-token-keyword">let</span> factorial = <span class="code-token-number">1</span>;
+<span class="code-token-keyword">let</span> n = <span class="code-token-number">5</span>;
+
+<span class="code-token-keyword">do</span> {
+    factorial *= n;
+    n--;
+} <span class="code-token-keyword">while</span> (n &gt; <span class="code-token-number">0</span>);
+
+<span class="code-token-function">alert</span>(<span class="code-token-string">"El factorial es: "</span> + factorial);</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 1.9.7 Sentencias break y continue -->
+                    <div class="border rounded p-3 bg-body-tertiary">
+                        <h3 class="h5 fw-bold text-dark mb-2">1.9.7 Sentencias break y continue</h3>
+                        <p class="small mb-2">
+                            Permiten manipular el flujo normal de cualquier bucle (for, while o do..while):
+                        </p>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 border p-2">
+                                    <h6 class="fw-bold small text-danger mb-1"><i class="bi bi-stop-circle me-1"></i> break (Interrupción Definitiva)</h6>
+                                    <p class="small text-secondary mb-2">Termina abruptamente el bucle y traslada el control a la siguiente línea externa:</p>
+                                    <div class="code-block p-2">
+<pre class="m-0"><code><span class="code-token-keyword">for</span> (<span class="code-token-keyword">let</span> val = <span class="code-token-number">1</span>; val &lt;= <span class="code-token-number">5</span>; val++) {
+    <span class="code-token-keyword">if</span> (val === <span class="code-token-number">3</span>) {
+        <span class="code-token-keyword">break</span>; <span class="code-token-comment">// Se detiene al llegar a 3</span>
+    }
+    <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(val); <span class="code-token-comment">// Imprime: 1, 2</span>
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border p-2">
+                                    <h6 class="fw-bold small text-warning mb-1"><i class="bi bi-skip-forward-circle me-1"></i> continue (Salto de Iteración)</h6>
+                                    <p class="small text-secondary mb-2">Omite el resto del cuerpo en la vuelta actual y salta de inmediato a la siguiente:</p>
+                                    <div class="code-block p-2">
+<pre class="m-0"><code><span class="code-token-keyword">for</span> (<span class="code-token-keyword">let</span> val = <span class="code-token-number">1</span>; val &lt;= <span class="code-token-number">5</span>; val++) {
+    <span class="code-token-keyword">if</span> (val === <span class="code-token-number">3</span>) {
+        <span class="code-token-keyword">continue</span>; <span class="code-token-comment">// Se salta el 3</span>
+    }
+    <span class="code-token-function">console</span>.<span class="code-token-function">log</span>(val); <span class="code-token-comment">// Imprime: 1, 2, 4, 5</span>
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECCIÓN OFICIAL DE EJERCICIOS DEL TEMA 1 -->
+                <section id="sec-ejercicios" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge text-bg-warning fs-6"><i class="bi bi-pencil-square"></i></span>
+                            <h2 class="h4 mb-0 fw-bold">Boletín Oficial de Ejercicios del Tema 1</h2>
+                        </div>
+                        <a href="07_ejercicios.html" class="btn btn-sm btn-outline-warning text-dark fw-semibold"><i class="bi bi-collection me-1"></i> Ver Catálogo Completo (43)</a>
+                    </div>
+                    <p class="text-secondary small mb-4">
+                        A continuación se presentan los ejercicios prácticos planteados en el manual oficial del Tema 1, con acceso inmediato a sus soluciones ejecutables y código fuente:
+                    </p>
+
+                    <div class="row g-3">
+                        
+                        <!-- Ejercicio 1.1 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.1</span>
+                                    <span class="badge text-bg-warning text-dark">01_primer_script.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Separación de lógica en <code>codigo.js</code>, visualización secuencial de mensajes con <code>alert()</code>, inclusión de comentarios y bloque <code>&lt;noscript&gt;</code>.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_01.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-1" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejercicio 1.2 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.2</span>
+                                    <span class="badge text-bg-warning text-dark">02_comillas_js.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Almacenar mensajes en variable e incluir comillas simples, comillas dobles y saltos de línea mediante caracteres de escape (<code>\'</code>, <code>\"</code>, <code>\n</code>).
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_02_comillas_j2.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-2" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejercicio 1.3 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.3</span>
+                                    <span class="badge text-bg-warning text-dark">03_Operaciones_js.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Petición interactiva de dos números con <code>prompt()</code>, parseo a decimal con <code>parseFloat()</code> y cálculo de suma, resta, producto y cociente.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_03_Operaciones_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-3" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejercicio 1.4 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.4</span>
+                                    <span class="badge text-bg-warning text-dark">04_sumaAcumulada_js.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Calcular la suma acumulada del 1 al 5 ($1+2+3+4+5 = 15$) implementando sucesivamente las tres variantes de bucles: <code>for</code>, <code>while</code> y <code>do...while</code>.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_04_sumaAcumulada_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-4" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejercicio 1.5 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.5</span>
+                                    <span class="badge text-bg-warning text-dark">05_sumaAcumulada2_js.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Pedir un número N al usuario con <code>prompt()</code> y calcular la suma acumulada de 1 a N, mostrando el resultado formateado en la página con <code>document.write()</code>.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_05_sumaAcumulada2_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-5" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ejercicio 1.6 -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border exercise-card shadow-sm">
+                                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-2">
+                                    <span class="fw-bold small">Ejercicio 1.6</span>
+                                    <span class="badge text-bg-warning text-dark">06_factorial_js.html</span>
+                                </div>
+                                <div class="card-body p-3 d-flex flex-column justify-content-between">
+                                    <p class="small text-secondary mb-3">
+                                        Cálculo del factorial de un número entero ($n! = n \times (n-1) \times \dots \times 1$) utilizando bucles <code>for</code>, <code>while</code> y <code>do...while</code>.
+                                    </p>
+                                    <div class="d-flex gap-2">
+                                        <a href="../material/ejercicios/aprendizaje/t1_06_factorial_js.html" target="_blank" class="btn btn-sm btn-dark flex-grow-1"><i class="bi bi-play me-1"></i> Probar</a>
+                                        <a href="07_ejercicios_r.html#ej1-6" class="btn btn-sm btn-outline-dark"><i class="bi bi-code-slash"></i> Solución</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Paginación Inferior -->
+                <nav class="d-flex justify-content-between align-items-center mt-2 pt-3 border-top" aria-label="Navegación de temas">
+                    <a href="../index.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-arrow-left"></i>
+                        <span>Volver a Portada del Módulo</span>
+                    </a>
+                    <a href="02_funciones.html" class="btn btn-warning text-dark fw-bold d-flex align-items-center gap-2">
+                        <span>Tema 2: Funciones y Modularidad</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </nav>
+
+            </div>
+
+            <!-- Columna Lateral Derecha (3 cols en lg): Índice Rápido Flotante -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-summary">
+                    <div class="card border content-card shadow-sm p-3">
+                        <h6 class="fw-bold text-uppercase text-secondary small mb-3">
+                            <i class="bi bi-bookmark me-1"></i> En esta página
+                        </h6>
+                        <nav class="nav flex-column small gap-1">
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-1"><i class="bi bi-chevron-right me-1"></i> 1.1 ¿Qué es JS?</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-2"><i class="bi bi-chevron-right me-1"></i> 1.2 Inclusión en HTML</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-3"><i class="bi bi-chevron-right me-1"></i> 1.3 Ubicación scripts</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-4"><i class="bi bi-chevron-right me-1"></i> 1.4 noscript</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-5"><i class="bi bi-chevron-right me-1"></i> 1.5 Depuración y Consola</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-6"><i class="bi bi-chevron-right me-1"></i> 1.6 Sintaxis</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-7"><i class="bi bi-chevron-right me-1"></i> 1.7 El Primer Script</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-8"><i class="bi bi-chevron-right me-1"></i> 1.8 Programación Básica</a>
+                            <a class="nav-link px-2 py-1 text-secondary text-truncate" href="#sec1-9"><i class="bi bi-chevron-right me-1"></i> 1.9 Control de Flujo</a>
+                            <a class="nav-link px-2 py-1 text-warning fw-bold text-truncate" href="#sec-ejercicios"><i class="bi bi-pencil-square me-1"></i> Ejercicios 1.1 - 1.6</a>
+                        </nav>
+                        
+                        <div class="border-top mt-3 pt-3">
+                            <a href="../material/t1_introduccion.pdf" target="_blank" class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-1">
+                                <i class="bi bi-filetype-pdf"></i> Ver PDF Original
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- 4. Pie de Página Común -->
+    <footer class="bg-dark text-white-50 py-4 mt-auto border-top border-secondary">
+        <div class="container-xl d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <img src="../../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="text-light fw-semibold">LMSGI</span>
+                <span class="small">&copy; Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Diseñado con <strong>Bootstrap 5.3</strong> &bull; Temario Web Oficial</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
+"""
+    with open("javascript/archivos/01_introduccion.html", "w", encoding="utf-8") as f:
+        f.write(doc)
+    print("01_introduccion.html generated successfully! Length:", len(doc))
+
+if __name__ == '__main__':
+    generate_t1_page()
