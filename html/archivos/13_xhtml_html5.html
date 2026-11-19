@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>13. XHTML y HTML5 | HTML | LMSGI</title>
-    <meta name="description" content="Evolución de XHTML hacia HTML5, nuevas etiquetas semánticas (header, nav, article, section, footer).">
+    <title>13. De XHTML al Estándar Vivo HTML5 | LMSGI</title>
+    <meta name="description" content="Evolución de los estándares web: el paso de HTML 4 a la rigidez de XHTML, el nacimiento de WHATWG, la arquitectura semántica y la consolidación del HTML Living Standard.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
     </style>
 </head>
 <body>
@@ -132,11 +131,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 13</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Historia de los Estándares</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">WHATWG Living Standard</span>
                     </div>
-                    <h2 class="fw-bold mb-1">13. XHTML y HTML5</h2>
+                    <h2 class="fw-bold mb-1">13. De XHTML al Estándar Vivo HTML5</h2>
                     <p class="text-secondary mb-0 small">
-                        Evolución de XHTML hacia HTML5, nuevas etiquetas semánticas (header, nav, article, section, footer).
+                        Evolución de los lenguajes de marcas en la web: la reformulación estricta en XHTML, la bifurcación histórica del W3C y WHATWG, la semántica estructural y las buenas prácticas modernas.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,134 +152,218 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <p>XHTML 1.0 se convirtió en recomendación para construir páginas web en Enero del año 2000. Su objetivo era mejorar las deficiencias de HTML y aprovechar las ventajas de XML y tenía que mantener la compatibilidad con HTML 4.</p>
-			<p>En resumen, XHTML es un lenguaje formado por los mismos elementos que HTML pero que se ajusta a las normas sintácticas de XML.</p>
-			<p>Otra ventaja de XHTML es la posibilidad de incorporar elementos procedentes de otros espacios de nombres como MathML y SVG que nos permitirá construir documentos con contenido científico o gráficos vectoriales de una forma más simple.</p>
-			
-			<h2>Estructura y elementos del documento</h2>
-			<p>Es la misma que en HTML, con la salvedad de que la declaración DTD es obligatoria. Seguimos teniendo tres definiciones equivalentes a las de HTML
-			<ul>
-			    <li><b>Documento HTML estricto (HTML 4)</b>. 
-			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot; 
-  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+            
+            <!-- Sección 1: ¿Qué fue XHTML? -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-filetype-xml text-primary"></i> 1. ¿Qué fue XHTML? La convergencia entre HTML y XML
+                </h3>
+                <p>
+                    A finales de los años 90, el lenguaje <strong>HTML 4.01</strong> era extremadamente permisivo: los navegadores interpretaban código lleno de errores sintácticos (etiquetas sin cerrar, mayúsculas y minúsculas mezcladas, comillas ausentes).
+                </p>
+                <p>
+                    En enero del año 2000, el consorcio W3C publicó <strong>XHTML 1.0</strong> (<em>Extensible Hypertext Markup Language</em>). Su objetivo fue <strong>reformular HTML aplicando las reglas sintácticas estrictas de XML</strong>, permitiendo integrar tecnologías como MathML (fórmulas matemáticas) y SVG (gráficos vectoriales).
+                </p>
+
+                <!-- DTDs de XHTML 1.0 -->
+                <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                    <h6 class="fw-bold text-dark mb-2">Las declaraciones DTD obligatorias en XHTML 1.0:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-2 overflow-auto"><code>&lt;!-- XHTML 1.0 Strict: No tolera etiquetas de presentación ni atributos obsoletos --&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+
+&lt;!-- XHTML 1.0 Transitional: Modo transicional con soporte de estilos en línea --&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</code></pre>
+                    <p class="small text-muted mb-0">Además, la etiqueta <code>&lt;html&gt;</code> exigía declarar el espacio de nombres XML: <code>&lt;html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"&gt;</code>.</p>
+                </div>
+
+                <!-- 5 Reglas Estrictas de XHTML -->
+                <h5 class="fw-bold text-dark mt-4 mb-2">Las 5 reglas sintácticas de oro de XHTML:</h5>
+                <ol class="small">
+                    <li><strong>Minúsculas obligatorias:</strong> Todas las etiquetas y nombres de atributos deben escribirse en minúsculas (p. ej. <code>&lt;body&gt;</code>, no <code>&lt;BODY&gt;</code>).</li>
+                    <li><strong>Cierre obligatorio de todos los elementos:</strong> Los elementos normales deben llevar su etiqueta de cierre (<code>&lt;p&gt;...&lt;/p&gt;</code>) y los elementos vacíos deben cerrarse sobre sí mismos con una barra final (p. ej. <code>&lt;br /&gt;</code> o <code>&lt;img src="..." alt="..." /&gt;</code>).</li>
+                    <li><strong>Anidamiento riguroso:</strong> Las etiquetas deben cerrarse en el orden inverso al que se abrieron (prohibido cruzar etiquetas como <code>&lt;b&gt;&lt;i&gt;texto&lt;/b&gt;&lt;/i&gt;</code>).</li>
+                    <li><strong>Comillas obligatorias en todos los atributos:</strong> Todos los valores deben encerrarse entre comillas dobles (p. ej. <code>class="destacado"</code>, no <code>class=destacado</code>).</li>
+                    <li><strong>Prohibición de atributos booleanos minimizados:</strong> Los atributos sin valor deben declararse explícitamente asignándose su propio nombre (p. ej. <code>checked="checked"</code> o <code>disabled="disabled"</code>).</li>
+                </ol>
+            </section>
+
+            <!-- Sección 2: El Fracaso de XHTML 2.0 y el Nacimiento de HTML5 -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-signpost-split text-danger"></i> 2. La Gran Bifurcación: Por qué fracasó XHTML y nació HTML5
+                </h3>
+                
+                <div class="row g-4 align-items-center my-3">
+                    <div class="col-lg-6">
+                        <div class="card h-100 border-danger shadow-sm">
+                            <div class="card-header bg-danger text-white fw-bold">
+                                El callejón sin salida: XHTML 2.0
+                            </div>
+                            <div class="card-body small">
+                                <p>El W3C quiso llevar la pureza de XML al extremo diseñando <strong>XHTML 2.0</strong>, el cual rompía totalmente la compatibilidad con todas las páginas web previas.</p>
+                                <p>Además, el procesamiento XML puro provocaba el temido <strong>"Yellow Screen of Death"</strong>: si una página web tenía una sola etiqueta sin cerrar o un símbolo <code>&amp;</code> sin escapar, el navegador se negaba a mostrar la web entera, presentando una pantalla amarilla de error.</p>
+                                <p class="text-muted mb-0">Para la Web real de millones de páginas comerciales y usuarios cotidianos, este enfoque era insostenible.</p>
+                            </div>
+                        </div>
                     </div>
-			    
-			    </li>
-			    
-			    <li><b>Documento HTML transicional (HTML 4)</b>. 
-			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; 
-  &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+
+                    <div class="col-lg-6">
+                        <div class="card h-100 border-success shadow-sm">
+                            <div class="card-header bg-success text-white fw-bold">
+                                El Enfoque Pragmático: El nacimiento del WHATWG
+                            </div>
+                            <div class="card-body small">
+                                <p>En 2004, ingenieros de <strong>Apple, Mozilla y Opera</strong> crearon el <strong>WHATWG</strong> (<em>Web Hypertext Application Technology Working Group</em>) para diseñar un estándar basado en la realidad de la Web:</p>
+                                <ul class="mb-2">
+                                    <li><strong>"Don't break the Web":</strong> Compatibilidad absoluta hacia atrás.</li>
+                                    <li><strong>Plataforma de aplicaciones:</strong> Vídeo nativo, almacenamiento local, APIs interactivas y formularios avanzados.</li>
+                                    <li><strong>Tolerancia de errores estandarizada:</strong> Especificar cómo deben reaccionar los navegadores ante fallos de sintaxis.</li>
+                                </ul>
+                                <p class="mb-0 fw-semibold text-success">Este proyecto se convirtió en la base de HTML5.</p>
+                            </div>
+                        </div>
                     </div>
-			    
-			    </li>
-</ul>
+                </div>
 
-<p>En cuanto al elemento &lt;html&gt; es también obligatorio y además aparecen tres atributos, el primero <b>xmlns</b> especifica el tipo de documento, y el segundo y el tercero <b> xml:lang y lang </b> deben llevar como valores el código del lenguaje en el que será escrito.
+                <div class="alert alert-success py-3 px-3 small border-start border-4 border-success mt-4">
+                    <h6 class="fw-bold text-dark mb-1"><i class="bi bi-trophy-fill text-success me-1"></i> La Unificación: WHATWG HTML Living Standard (2019 - Presente)</h6>
+                    <p class="mb-0">
+                        En mayo de 2019, el consorcio W3C y el WHATWG firmaron un acuerdo definitivo: el W3C reconoció al WHATWG como el organismo rector y unificó sus esfuerzos bajo un único estándar continuo: el <strong>WHATWG HTML Living Standard</strong>. Ya no existen versiones estáticas fijas (no habrá un "HTML6"); HTML es ahora una especificación viva que evoluciona de manera fluida y consensuada entre todos los navegadores.
+                    </p>
+                </div>
+            </section>
 
-			        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt; xml:lang&quot;es&quot; lang&quot;es&quot;&gt; 
+            <!-- Sección 3: Buenas Prácticas Sintácticas en la Actualidad -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-code-slash text-primary"></i> 3. Sintaxis en HTML5: Flexibilidad técnica vs. Buenas Prácticas
+                </h3>
+                <p>
+                    A nivel técnico, el motor de análisis sintáctico de HTML5 es extraordinariamente flexible (permite omitir comillas en atributos simples o no cerrar etiquetas de elementos vacíos). Sin embargo, <strong>la industria del desarrollo web moderno exige escribir código limpio y disciplinado</strong> (estilo XHTML):
+                </p>
+
+                <div class="table-responsive my-3">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Característica</th>
+                                <th>Permitido por el parser HTML5</th>
+                                <th>Buena Práctica Profesional (Industria / React / Vue)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold">Doctype</td>
+                                <td><code>&lt;!doctype html&gt;</code> (insensible a mayúsculas)</td>
+                                <td><code>&lt;!DOCTYPE html&gt;</code> en mayúsculas al inicio de la línea 1.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Minúsculas / Mayúsculas</td>
+                                <td><code>&lt;DIV&gt;</code> o <code>&lt;div&gt;</code> son interpretados igual</td>
+                                <td><strong>Siempre minúsculas:</strong> <code>&lt;div class="menu"&gt;</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Comillas en atributos</td>
+                                <td><code>&lt;input type=text&gt;</code> funciona si no hay espacios</td>
+                                <td><strong>Siempre con comillas dobles:</strong> <code>&lt;input type="text"&gt;</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Elementos vacíos (void)</td>
+                                <td><code>&lt;img src="..."&gt;</code> (la barra <code>/&gt;</code> es opcional)</td>
+                                <td>En HTML5 puro es habitual escribir <code>&lt;img src="..." alt="..."&gt;</code>; en entornos con compiladores JSX/React se escribe <code>&lt;img src="..." alt="..." /&gt;</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold">Atributos booleanos</td>
+                                <td><code>&lt;input type="checkbox" checked&gt;</code></td>
+                                <td>Se utiliza la forma booleana moderna limpia: <code>required</code>, <code>disabled</code>, <code>checked</code>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección 4: Comparativa Visual HTML4 vs HTML5 -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-layout-text-window text-primary"></i> 4. Comparativa Visual: Estructura HTML4 frente a HTML5
+                </h3>
+                <p>
+                    La gran aportación de HTML5 al desarrollo de software fue dotar al código de <strong>significado semántico intrínseco</strong>:
+                </p>
+
+                <div class="row g-4 my-3">
+                    <div class="col-md-6 text-center">
+                        <div class="card h-100 border-0 shadow-sm p-3 bg-body-tertiary">
+                            <h5 class="fw-bold text-secondary mb-3">HTML 4: Maquetación mediante &lt;div&gt; (Divitis)</h5>
+                            <img src="../imagenes/html4.png" alt="Esquema estructural de HTML4 con capas div genéricas" class="img-fluid rounded border shadow-sm mb-3 mx-auto" style="max-height: 380px;">
+                            <p class="small text-muted mb-0">Estructura genérica dependiente de identificadores arbitrarios sin semántica universal.</p>
+                        </div>
                     </div>
+                    <div class="col-md-6 text-center">
+                        <div class="card h-100 border-0 shadow-sm p-3 bg-body-tertiary">
+                            <h5 class="fw-bold text-primary mb-3">HTML5: Estructura Semántica Estándar</h5>
+                            <img src="../imagenes/html5.png" alt="Esquema estructural de HTML5 con header, nav, main, section, article, aside y footer" class="img-fluid rounded border shadow-sm mb-3 mx-auto" style="max-height: 380px;">
+                            <p class="small text-muted mb-0">Estructura semántica nativa reconocida inmediatamente por motores de búsqueda y lectores accesibles.</p>
+                        </div>
+                    </div>
+                </div>
 
-<!--<p>Además &lt;head&gt; &lt;body&gt; son obligatorios al igual que &lt;head&gt; tiene que tener un &lt;title&gt;-->
-<p>Además las etiquetas &lt;html&gt;, &lt;head&gt; y &lt;body&gt; son obligatorias.
+                <!-- El elemento hgroup moderno -->
+                <div class="p-3 bg-body-tertiary rounded-3 border my-3">
+                    <h6 class="fw-bold text-primary mb-2 d-flex align-items-center gap-2">
+                        <i class="bi bi-type-h1"></i> El elemento &lt;hgroup&gt; en la especificación actual de WHATWG:
+                    </h6>
+                    <p class="small mb-2">
+                        El elemento <code>&lt;hgroup&gt;</code> permite agrupar un título principal (<code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>) con uno o varios párrafos que funcionan como subtítulo, epígrafe o eslogan de la sección:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small mb-0 overflow-auto"><code>&lt;hgroup&gt;
+    &lt;h1&gt;Lenguajes de Marcas&lt;/h1&gt;
+    &lt;p&gt;Fundamentos del Desarrollo Web y Gestión de la Información&lt;/p&gt;
+&lt;/hgroup&gt;</code></pre>
+                </div>
+            </section>
 
-<h3>Normas en XHTML</h3>
-<ul>
-<li>Todas las etiquetas y atributos deben ir en minúsculas.</li>
-<li>Todos los elementos deben cerrarse, incluso los elementos vacíos. Con éstos se añade la barra"/" al final en lugar de poner la etiqueta de cierre. 
-<br>Ejemplo:
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;br /&gt; 
-<br>
-&lt;img src=&quot;grafico.jpg&quot; alt=&quot;gráfico&quot; /&gt; 
-</div>
-</li>
-<li>No se permiten errores de anidamiento de etiquetas</li>
-<li>Todos los valores de atributos deben estar entre comillas, simples o dobles y las dos del mismo tipo. Se recomienda usar las dobles.</li>
-<li>Todos los atributos deben tener un valor.
-<br>Ejemplo:
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&ltinput type=&quot;checkbox&quot; value=&quot;1&quot; checked=&quot;checked&quot;&gt;Aquí va el texto &lt/input&gt;
-</div>
-</li>
-</ul>
+            <!-- Sección 5: Enlaces y Documentación Oficial -->
+            <section class="mb-4">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-journal-bookmark text-primary"></i> 5. Referencias Oficiales y Recursos de Aprendizaje
+                </h3>
+                <p>
+                    Para consultar la referencia canónica de cada elemento o validar documentos conforme a los estándares de la industria:
+                </p>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 rounded-3 h-100">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-globe me-1 text-primary"></i> WHATWG HTML</h6>
+                            <p class="small text-secondary mb-2">La especificación viva oficial mantenida por los desarrolladores de navegadores.</p>
+                            <a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver estándar WHATWG
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 rounded-3 h-100">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-file-earmark-code me-1 text-primary"></i> MDN Web Docs</h6>
+                            <p class="small text-secondary mb-2">La mejor guía de referencia, tutoriales y compatibilidad de navegadores mantenida por Mozilla.</p>
+                            <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Documentación MDN
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 rounded-3 h-100">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-check2-circle me-1 text-success"></i> Validador W3C</h6>
+                            <p class="small text-secondary mb-2">El servicio oficial Nu Html Checker para auditar la validez sintáctica de tus documentos.</p>
+                            <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Abrir Validador W3C
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-<h1>HTML 5</h1>
-<p>Esta versión aporta nuevos elementos enfocados a la presentación, el diseño de la página (layout), facilitar la inclusión de audio y video, mejorar formularios y otras funciones más específicas.<p>
-<p>Esta versión tiene el objetivo de convertirse en una plataforma de desarrollo que integre todas las tecnologías web</p>
-<p>Ante el problema de que sea el usuario el que tenga que descargarse y actualizar los pluggins para reproducción de animaciones y videos, HTML 5 pretende  ser una solución incorporando una API (Application Program Interface), una biblioteca de funciones lo bastante amplia para que todos los navegadores se comporte igual</p>
-<p>Se simplifican los atributos, todos los elementos de HTML 5 tienen un conjunto común llamado <b>global attributes</b>.
-<p>En cuanto a la sintaxis es muy flexible y engloba el HTML y el XHTML.
-
-<h3>Características</h3>
-<ul>
-<li>Se permiten las mayúsculas en las etiquetas.</li>
-<li>La etiqueta de cierre es opcional en los elementos vacíos</li>
-<li>Es opcional establecer un valor a los atributos.</li>
-<li>Las comillas son opcionales en los atributos </li>
-</ul>
-
-<h2>Elementos de sección</h2>
-<p>Para evitar el uso indiscriminado de etiquetas &lt;div&gt;, aparecen nuevas etiquetas mas específicas que facilitan la comprensión del código.</p>
-<h3>&lt;header&gt;</h3>
-<p>Sirve para insertar información introductoria como el título, el logo o enlaces secundarios.</p>
-<h3>&lt;nav&gt;</h3>
-<p>Sirve para insertar una sección con enlaces a otras páginas o bloques importantes dentro del documento.</p>
-<h3>&lt;section&gt;</h3>
-<p>Sirve para insertar una sección general dentro de un documento. Puede anidarse para crear subsecciones.</p>
-<h3>&lt;article&gt;</h3>
-<p>Sirve para insertar un componente autónomo con el objetivo de que pueda a ser reutilizado en otro lugar, ej.: un post de foro, un artículo de periódico, un comentario de usuario, etc...Pueden anidarse.</p>
-<h3>&lt;aside&gt;</h3>
-<p>Sirve para insertar una sección relacionada indirectamente con el contenido que tiene a su alrededor. Ej.: para una barra lateral, publicidad o enlacs de navegación. </p>
-<h3>&lt;footer&gt;</h3>
-<p>Sirve para insertar un pie de página o de sección que suele contener el autor, el copyright, el año, el mapa del sitio, etc...</p>
-<h3>&lt;hgroup&gt;</h3>
-<p>Sirve para agrupar un conjunto de encabezamientos h1-h6</p>
-<h2>Estructura general</h2>
-
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;body&gt;
- &lt;header&gt;....&lt;/header&gt;
- &lt;nav&gt;...&lt;/nav&gt;
- &lt;section&gt;
-  &lt;article&gt;...&lt;/article&gt;
-  &lt;article&gt;...&lt;/article&gt;
-  &lt;article&gt;...&lt;/article&gt;
-  &lt;aside&gt;...&lt;/aside&gt;
- &lt;/section&gt;
- &lt;footer&gt;...&lt;/footer&gt;
-&lt;/body&gt;
-</code></pre>
-
-<p>&lt;article&gt puede reproducir la estructura general: puede tener un &lt;header&gt;, varios &lt;section&gt; y un &lt;footer&gt;
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;article&gt;
- &lt;hgroup&gt;
-  &lt;h1&gt;Desarrollo web &lt;/h1&gt;
-  &lt;h2&gt;Tipos de lenguajes &lt;/h2&gt;
- &lt;/hgroup&gt;
- &lt;p&gt;Todos los lenguajes web provienen de SGML &lt;/p&gt;
- &lt;section&gt;
-  &lt;h1&gt;HTML &lt;/h1&gt;  
-  &lt;p&gt;Lenguaje de Marcas de HiperTexto &lt;/p&gt;
- &lt;/section&gt;
- &lt;section&gt;
-  &lt;h1&gt;XML &lt;/h1&gt;  
-  &lt;p&gt;Lenguaje de Marcas de Extensible &lt;/p&gt;
- &lt;/section&gt;
-&lt;/article&gt;
-</code></pre>
-<h2>Forma de estructurar una página con HTML4 y con HTML5</h2>
-<img src="../imagenes/html4.png" width="500" height="500" align="center">
-<img src="../imagenes/html5.png" width="500" height="500" align="center">
-
-
-<h2>Formularios</h2>
-<h3>&lt;input&gt;</h3>
-<p>Incorpora nuevos type (search, number, time, url, email, etc..) y nuevos atributos como placeholder, que inserta un texto inicial que se borra al situar el foco en la caja, required para indicar que no puede quedarse vacío ese valor, etc...</p>
-<p><b>&lt;input type=&quot;search&quot;&gt;</b> Para cajas de búsqueda</p>
-<p><b>&lt;input type=&quot;number&quot;&gt;</b> Para aumentar o disminuir números usando botones</p>
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;input name="numero" type=&quot;number&quot; min=0 max=20 value=2&gt;</code></pre>
-
-<p>En el siguiente enlace podéis ver todos los type que incorpora HTML 5 y los navegadores que lo soportan: <a href="http://www.w3schools.com/html/html_form_input_types.asp">w3schools</a></p>
-<p>Otro enlace interesante <a href="http://desarrolloweb.dlsi.ua.es/cursos//2011/html5-css3-es/html5-formularios"> enlace </a>
         </article>
 
         <!-- Navegación entre Temas -->
