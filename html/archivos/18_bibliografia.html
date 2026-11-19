@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>17. Bibliografía y enlaces | HTML | LMSGI</title>
-    <meta name="description" content="Recursos oficiales de la W3C, tutoriales recomendados, bibliografía y documentación web.">
+    <title>17. Bibliografía y Enlaces de Referencia | HTML5 | LMSGI</title>
+    <meta name="description" content="Recursos oficiales de la W3C, WHATWG, documentación canónica MDN, herramientas de validación y bibliografía recomendada para HTML5.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,13 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
+        .resource-card {
+            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+        }
     </style>
 </head>
 <body>
@@ -122,7 +128,7 @@
             <ol class="breadcrumb mb-0 small">
                 <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
                 <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
-                <li class="breadcrumb-item active" aria-current="page">17. Bibliografía y enlaces</li>
+                <li class="breadcrumb-item active" aria-current="page">17. Bibliografía</li>
             </ol>
         </nav>
 
@@ -132,11 +138,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 17</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Recursos & Referencias</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">Estándares Web</span>
                     </div>
-                    <h2 class="fw-bold mb-1">17. Bibliografía y enlaces</h2>
+                    <h2 class="fw-bold mb-1">17. Bibliografía y Enlaces de Referencia</h2>
                     <p class="text-secondary mb-0 small">
-                        Recursos oficiales de la W3C, tutoriales recomendados, bibliografía y documentación web.
+                        Colección de estándares oficiales, documentación técnica, herramientas de validación, plataformas de recursos libres y bibliografía recomendada.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,20 +159,177 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <ul id="bibliografia">
-			<h3>
-                <li><a href="https://librosweb.es/libro/xhtml/">Libros Web: Introducción a XHTML (material de referencia para el curso)</a></li>
-                <li><a href="http://www.htmlquick.com/es/">HTMLQuick.com: Tutoriales online sobre HTML</a></li>
-				<li><a href="http://www.w3schools.com/">Tutorial de HTML 5 de W3Schools</a></li>
-				<li><a href="https://www.w3c.es/Divulgacion/GuiasReferencia/XHTML1/">Guía de referencia de XHTML del W3C</a></li>
-				<li><a href="https://www.danielclemente.com/html/tuto-xhtml_a3.pdf">Manual HTML - CSS para descargar/imprimir</a>
-				<li><a href="https://www.youtube.com/watch?v=DJ69Cfb5pHo&list=PLPkovh3qdf3DDlbbQRr_Wr0t2Z-a6x_GS">Video curso del IES Mare Nostrum, por Jose Ramón García</a>
-				<li><a href="http://garceta.es/libro.php?ISBN=978-84-1545-217-1">Libro de GARCETA (No obligatorio)</a>
-				<li><a href="http://https://www.sintesis.com/administraci%C3%B3n%20de%20sistemas%20inform%C3%A1ticos%20en%20red-340/lenguajes%20de%20marcas%20y%20sistemas%20de%20gesti%C3%B3n%20de%20informaci%C3%B3n-ebook-2549.html">Libro editorial SINTESIS (dispone de versión electrónica, no obligatorio)</a></li>                
-				<li><a href="http://html.conclase.net/tutorial/html/">Otro tutorial de HTML</a></li>
-				<li><a href="http://lawebdelprogramador.com/icocur.php">Cursores e iconos para páginas web</a></li>
-			</h3>
-			</ul>
+            
+            <!-- Bloque 1: Estándares y Documentación Canónica -->
+            <section class="mb-5">
+                <h4 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-globe2 text-primary"></i> 1. Estándares Oficiales y Documentación Canónica
+                </h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-primary">Estándar Vivo</span>
+                                <i class="bi bi-patch-check-fill text-primary"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">WHATWG HTML Living Standard</h6>
+                            <p class="small text-secondary mb-3">La especificación oficial y continua del lenguaje HTML mantenida conjuntamente por los fabricantes de navegadores.</p>
+                            <a href="https://html.spec.whatwg.org/multipage/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Consultar estándar WHATWG
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-success">Referencia Principal</span>
+                                <i class="bi bi-journal-bookmark-fill text-success"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark mb-1">MDN Web Docs (Mozilla Developer Network)</h6>
+                            <p class="small text-secondary mb-3">La mejor y más completa documentación técnica, guías prácticas y tablas de compatibilidad entre navegadores.</p>
+                            <a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-success mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Abrir MDN Web Docs (Español)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bloque 2: Herramientas de Validación y Auditoría -->
+            <section class="mb-5">
+                <h4 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-check text-success"></i> 2. Herramientas de Validación y Accesibilidad
+                </h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-check2-circle text-success me-1"></i> W3C Nu Html Checker</h6>
+                            <p class="small text-secondary mb-3">Servicio oficial del W3C para validar la sintaxis y detectar errores en tus páginas web.</p>
+                            <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Validador W3C
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-universal-access text-primary me-1"></i> WAVE Accessibility Tool</h6>
+                            <p class="small text-secondary mb-3">Suite de auditoría para verificar el cumplimiento de las pautas de accesibilidad WCAG.</p>
+                            <a href="https://wave.webaim.org/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Auditoría WAVE
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-speedometer2 text-danger me-1"></i> PageSpeed Insights</h6>
+                            <p class="small text-secondary mb-3">Herramienta de Google para auditar rendimiento, Core Web Vitals y tiempos de carga.</p>
+                            <a href="https://pagespeed.web.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-dark mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> PageSpeed Insights
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bloque 3: Tutoriales y Material Multimedia -->
+            <section class="mb-5">
+                <h4 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-play-btn-fill text-danger"></i> 3. Cursos, Tutoriales y Recursos Multimedia
+                </h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-youtube text-danger me-1"></i> Vídeo Curso del IES Mare Nostrum</h6>
+                            <p class="small text-secondary mb-3">Lista de reproducción didáctica impartida por el profesor José Ramón García sobre Lenguajes de Marcas.</p>
+                            <a href="https://www.youtube.com/watch?v=DJ69Cfb5pHo&list=PLPkovh3qdf3DDlbbQRr_Wr0t2Z-a6x_GS" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-danger mt-auto">
+                                <i class="bi bi-youtube me-1"></i> Ver Curso en YouTube
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card resource-card h-100 border-0 bg-body-tertiary p-3 rounded-3 shadow-sm">
+                            <h6 class="fw-bold text-dark mb-1"><i class="bi bi-book-half text-info me-1"></i> LibrosWeb: Introducción a XHTML / HTML</h6>
+                            <p class="small text-secondary mb-3">Manual online abierto con fundamentos teóricos y explicaciones paso a paso de los conceptos básicos.</p>
+                            <a href="https://librosweb.es/libro/xhtml/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Leer en LibrosWeb
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bloque 4: Iconos y Recursos de Diseño -->
+            <section class="mb-5">
+                <h4 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-palette-fill text-warning"></i> 4. Iconografía, Favicons y Recursos Libres
+                </h4>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-light p-3 rounded-3">
+                            <h6 class="fw-bold text-dark mb-1">Bootstrap Icons</h6>
+                            <p class="small text-secondary mb-2">Más de 2.000 iconos vectoriales SVG gratuitos integrables con una sola línea de código.</p>
+                            <a href="https://icons.getbootstrap.com/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Explorar Iconos
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-light p-3 rounded-3">
+                            <h6 class="fw-bold text-dark mb-1">Favicon.io</h6>
+                            <p class="small text-secondary mb-2">Generador gratuito de favicons modernos en formatos PNG, ICO y SVG a partir de texto o logos.</p>
+                            <a href="https://favicon.io/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Generar Favicon
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card resource-card h-100 border-0 bg-light p-3 rounded-3">
+                            <h6 class="fw-bold text-dark mb-1">SVGRepo</h6>
+                            <p class="small text-secondary mb-2">Repositorio de miles de gráficos e iconos vectoriales SVG con licencia comercial libre.</p>
+                            <a href="https://www.svgrepo.com/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Buscar Vectores
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bloque 5: Bibliografía y Manuales Físicos -->
+            <section class="mb-3">
+                <h4 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-journal-text text-secondary"></i> 5. Bibliografía y Manuales Impresos Recomendados
+                </h4>
+                <div class="list-group list-group-flush border rounded-3 small">
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <strong class="d-block text-dark">Manual HTML y CSS para descargar e imprimir</strong>
+                            <span class="text-secondary">Por Daniel Clemente Laboreo. Formato A3 / PDF condensado de alta utilidad para consulta rápida.</span>
+                        </div>
+                        <a href="https://www.danielclemente.com/html/tuto-xhtml_a3.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary ms-3">
+                            <i class="bi bi-file-earmark-pdf me-1"></i> Descargar PDF
+                        </a>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <strong class="d-block text-dark">Lenguajes de Marcas y Sistemas de Gestión de Información (Editorial Garceta)</strong>
+                            <span class="text-secondary">ISBN: 978-84-1545-217-1. Manual de consulta para ciclos formativos de grado superior.</span>
+                        </div>
+                        <a href="https://www.garceta.es" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary ms-3">
+                            <i class="bi bi-box-arrow-up-right me-1"></i> Editorial Garceta
+                        </a>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <strong class="d-block text-dark">Lenguajes de Marcas y Sistemas de Gestión de Información (Editorial Síntesis)</strong>
+                            <span class="text-secondary">Disponible en formato impreso y libro electrónico oficial para el currículo de ASIR, DAM y DAW.</span>
+                        </div>
+                        <a href="https://www.sintesis.com/administraci%C3%B3n%20de%20sistemas%20inform%C3%A1ticos%20en%20red-340/lenguajes%20de%20marcas%20y%20sistemas%20de%20gesti%C3%B3n%20de%20informaci%C3%B3n-ebook-2549.html" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary ms-3">
+                            <i class="bi bi-box-arrow-up-right me-1"></i> Editorial Síntesis
+                        </a>
+                    </div>
+                </div>
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -175,7 +339,7 @@
                 <span><strong>Anterior:</strong> 16. Proyecto final</span>
             </a>
             <a href="../index.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
-                <span><strong>Siguiente:</strong> Inicio de HTML</span>
+                <span><strong>Inicio:</strong> Índice de HTML</span>
                 <i class="bi bi-arrow-right"></i>
             </a>
         </nav>
