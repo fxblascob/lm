@@ -1,79 +1,280 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>
-            Introducción a CSS
-        </title>
-        <link rel="stylesheet" type="text/css" href="../estilos.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<script>
-            function cargar_0()  {
-                var f="./archivos/ejemplos/ejemplo_01.html";
-                var g="./archivos/ejemplos/ejemplo_01_2.html";
-                document.getElementById("iframeResult").src=f;
-                document.getElementById("iframeResult_2").src=g;
-            }
-	    </script>
-        <script src="../codigos.js"></script>
-    </head>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>00. Introducción a CSS | CSS | LMSGI</title>
+    <meta name="description" content="Introducción a las hojas de estilo en cascada (CSS), separación de contenido y diseño, historia, versiones CSS2/CSS3 y validación oficial W3C.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <body onload="cargar_0()" ondblclick="ocultarMenu()">
-	<div id="contenedor_general">
-		<!--Cabecera -->
-        <div id="contenedor_cabecera">
-            <img src="./imagenes/logo.jpg" width="147" height="92">
-			<h1>Introducción a CSS</h1>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../index.html">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-primary fw-medium" href="./index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
         </div>
-	
-        <iframe id="if" src="./menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
+    </header>
 
-        <!--Cuerpo de la página -->
-        <div id="contenedor_cuerpo">
-            <h1>Introducción a CSS</h1>
-            <p>Las hojas de estilo en cascada CSS -<i>Cascade Style Sheet</i> en inglés- se utilizan en la actualidad para diseñar y dar formato a las páginas web escritas con HTML. Las razones de su aparición son las siguientes:</p>
-            <ol>
-                <li>HTML ofrece muy pocas opciones para dar formato al texto. Su función es estructurar el texto en secciones tales como tablas, listas, párrafos, etc., pero en cuanto a diseño visual resulta un tanto pobre.
-                <li>El diseñador de páginas web se encontraba con archivos HTML extremadamente liosos, ya que en el mismo texto se agrupan contenidos, estructuras e instrucciones de formato, por lo que su modificación y elaboración resultaba ser muy complicada.
-                <li>La modificación del formato utilizado en un sitio web compuesto por un gran número de páginas resultaba muy engorroso, ya que se tenían que cambiar manualmente los estilos de cada una de las páginas que formaban el sitio.
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-palette text-primary"></i> Módulo CSS
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de CSS</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="./index.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary d-flex align-items-center gap-2 py-2 rounded-2">
+                    <i class="bi bi-check-circle-fill"></i> 00. Introducción a CSS
+                </a>
+                <a href="./archivos/01_tipos_hojas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 01. Tipos de hojas de estilo
+                </a>
+                <a href="./archivos/02_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 02. Estructura de documentos CSS
+                </a>
+                <a href="./archivos/03_selectores.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 03. Reglas y selectores
+                </a>
+                <a href="./archivos/04_criterios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 04. Criterios de selección
+                </a>
+                <a href="./archivos/06_herencia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 06. Herencia y cascada
+                </a>
+                <a href="./archivos/07_Ejemplos_Background.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 07. Fondos (Backgrounds)
+                </a>
+                <a href="./archivos/08_Ejemplos_Text.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 08. Tipografía y Texto
+                </a>
+                <a href="./archivos/09_Ejemplos_Links_Tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 09. Enlaces y Tablas
+                </a>
+                <a href="./archivos/10_Ejemplos_Imagenes_bordes.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 10. Imágenes y Bordes
+                </a>
+                <a href="./archivos/11_visual.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 11. Diseño visual I (Cajas)
+                </a>
+                <a href="./archivos/12_flotante.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 12. Diseño visual II (Flotantes)
+                </a>
+                <a href="./archivos/13_Ejemplos_Homepages.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 13. Maquetación de Páginas
+                </a>
+                <a href="./archivos/15_disenyo_adaptativo2.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-css text-primary"></i> 15. Diseño Responsivo
+                </a>
+                <a href="./archivos/16_bootstrap.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-bootstrap-fill text-primary"></i> 16. Framework Bootstrap
+                </a>
+                <a href="./archivos/17_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-pencil-square"></i> 17. Ejercicios Prácticos
+                </a>
+                <a href="./archivos/17_ejercicios_r.html" class="list-group-item list-group-item-action bg-transparent text-success border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check-circle"></i> 17. Ejercicios Resueltos
+                </a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="./index.html" class="text-decoration-none">CSS</a></li>
+                <li class="breadcrumb-item active" aria-current="page">00. Introducción a CSS</li>
             </ol>
-            <p>Frente a esta situación, el organismo W3C decidió crear un sistema por el que las instrucciones de formato se encontraran separadas de los otros elementos. Así, en la versión 4 de HTML, se desaconseja utilizar elementos de formato y se sugiere la utilización de las hojas de estilo en cascada o CSS.</p>
+        </nav>
+
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Fundamentos y Estándares</span>
+            </div>
+            
+            <h1 class="fw-bold mb-3 display-6">00. Introducción a las Hojas de Estilo en Cascada (CSS)</h1>
+            
+            <p class="lead text-secondary mb-4">
+                Las hojas de estilo en cascada (<em>Cascading Style Sheets</em>, CSS) se utilizan en el desarrollo web moderno para dotar de presentación, diseño visual y adaptabilidad a las páginas escritas en HTML.
+            </p>
+
+            <h4 class="fw-bold text-dark mt-4 mb-3">¿Por qué surgieron las hojas de estilo?</h4>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-danger">
+                            <i class="bi bi-x-circle-fill fs-5"></i>
+                            <h6 class="fw-bold mb-0">Limitaciones de HTML</h6>
+                        </div>
+                        <p class="small text-secondary mb-0">HTML fue concebido para estructurar datos (párrafos, listas, tablas), no para el diseño tipográfico ni la maquetación visual avanzada.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-warning-emphasis">
+                            <i class="bi bi-code-slash fs-5"></i>
+                            <h6 class="fw-bold mb-0">Código enredado</h6>
+                        </div>
+                        <p class="small text-secondary mb-0">Antes de CSS, los atributos de estilo se incrustaban dentro del HTML, haciendo que el marcado fuera confuso y difícil de mantener.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-primary">
+                            <i class="bi bi-arrow-repeat fs-5"></i>
+                            <h6 class="fw-bold mb-0">Coste de mantenimiento</h6>
+                        </div>
+                        <p class="small text-secondary mb-0">Cambiar el aspecto de un portal de 50 páginas requería modificar manualmente 50 archivos. CSS permite cambiarlo todo con un único archivo externo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                Ante esta situación, el organismo internacional <strong>W3C (World Wide Web Consortium)</strong> promovió la separación radical entre la estructura de contenidos (HTML) y la capa de presentación (CSS).
+            </p>
    
-            <p>La denominación de hojas de estilo hace referencia a que podemos, a partir de las etiquetas básicas de HTML, realizar modificaciones en las propiedades de las mismas. De esta manera, con una sola instrucción se podrá cambiar el formato de todas las etiquetas HTML a las que hagamos referencia. Un ejemplo de las posibilidades que ofrecen las hojas de estilo se puede encontrar visitando la página <a href="http://www.csszengarden.com/" target="_blank">Zengarden</a>, donde se puede observar el efecto que produce en la misma página HTML utilizar una hoja de estilo u otra.</p>
+            <div class="alert alert-info border-info-subtle d-flex align-items-start gap-3 my-4 rounded-3">
+                <i class="bi bi-info-circle-fill fs-4 text-info mt-1"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">El potencial del diseño con CSS: Zen Garden</h6>
+                    <p class="mb-0 small">
+                        Un ejemplo paradigmático de la potencia de las hojas de estilo se encuentra en <a href="http://www.csszengarden.com/" target="_blank" rel="noopener noreferrer" class="alert-link fw-semibold">CSS Zen Garden</a>, donde exactamente el mismo documento HTML adquiere decenas de aspectos y layouts radicalmente distintos simplemente enlazando diferentes hojas de estilo CSS.
+                    </p>
+                </div>
+            </div>
             
-            <p>Las hojas de estilo son archivos de texto con un formato muy simple, por lo que se facilita la claridad del código generado para nuestro sitio web. Además, actualmente ofrecen muchas más posibilidades que las etiquetas de HTML convencionales.</p>
+            <h4 class="fw-bold text-dark mt-4 mb-3">El Principio de Cascada y Herencia</h4>
+            <p>
+                La denominación <strong>&quot;en cascada&quot;</strong> hace referencia a que las reglas de estilo se aplican a los elementos descendientes siguiendo un estricto criterio de herencia y precedencia. Por ejemplo, al definir una fuente en el elemento <code>&lt;body&gt;</code>, todos los párrafos, listas y encabezados hijos heredarán dicha tipografía de forma automática sin necesidad de redefinirla.
+            </p>
             
-            <p>La denominación &quot;en cascada&quot; hace referencia a que a la hora de crear un estilo, las especificaciones que se realicen para un determinado elemento serán aplicables a todos aquellos elementos que se encuentren &quot;por debajo&quot; de él atendiendo a un criterio de herencia. Por ejemplo, si especificamos un tipo de letra para el elemento &lt;body&gt;, todos aquellos elementos que puedan heredar las características se presentarán con el mismo tipo de fuente. Así, el elemento &lt;p&gt; heredará el tipo de letra salvo que especifiquemos lo contrario, por lo que no necesitaríamos volver a indicar esta característica.</p>
-            
-            <p>Por último, es necesario decir que en la actualidad hay dos versiones de las hojas de estilo: 
-			CSS2 y CSS3 que es la última versión standard para CSS. Es totalmente compatible con las versiones anteriores.
-			CSS3 está todavía en desarrollo por la W3C. Sin embargo la mayoría de las nuevas propiedades de CSS3 han sido implementadas en los modernos navegadores.
-			</p>
-			<!-- <iframe name="iframe_01" src="archivos/ejemplos/ejemplo_01.html" width="400" height="200" 
-			marginwidth="6" marginheight="4" frameborder="2" scrolling="auto"> 
-			</iframe> -->
-		
-			<div style="clear:both;"></div>		
-			<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
-			<iframe id="iframeResult" class="result_output" name="view"></iframe>	
-		   <div style="clear:both;"></div>
+            <p>
+                Los estándares actuales de CSS3 y CSS4 introducen diseño flexible (Flexbox), rejillas bidimensionales (CSS Grid), variables nativas (CSS Custom Properties), animaciones fluidas y consultas de medios (Media Queries) para diseño responsivo en cualquier resolución de pantalla.
+            </p>
 
-           <!--    VALIDACIÓN DEL CÓDIGO   -->
-            <br><hr>
-            <h1>Validación del código CSS</h1>
-            <p>Igual que en el caso de HTML, el organismo W3C dispone de una página donde comprobar que el código escrito en nuestra hoja de estilos se ajusta a los estándares definidos. La página en cuestión es <a href="http://jigsaw.w3.org/css-validator/" target="_blank">http://jigsaw.w3.org/css-validator/</a>, que nos permite subir un archivo o indicar el código directamente.</p>
-            <p>Si la comprobación de código resulta correcta, podremos poner la siguiente imagen en nuestro sitio web:</p>
-            <p class="imagenes"><img src="./imagenes/vcss.png"></p>
-  
+            <hr class="my-4">
 
-		</div>
-		<div id="contenedor_pie">
-				<p>Manual de CSS</p>
-		</div>
-	</div>
-	
-</div>
-		
-		
-    </body>
+            <!-- Sección de Validación W3C -->
+            <div class="bg-body-tertiary p-4 rounded-4 border">
+                <div class="row align-items-center gy-3">
+                    <div class="col-md-9">
+                        <h5 class="fw-bold mb-2">Validación oficial del código CSS (W3C)</h5>
+                        <p class="text-secondary small mb-2">
+                            Al igual que ocurre con HTML, el consorcio W3C proporciona un validador oficial y gratuito para verificar la corrección sintáctica de nuestras reglas CSS en <a href="http://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener noreferrer" class="fw-semibold">http://jigsaw.w3.org/css-validator/</a>.
+                        </p>
+                        <p class="small text-secondary mb-0">
+                            Cuando una hoja de estilo cumple las especificaciones sin errores de sintaxis, se puede incluir el sello de conformidad W3C CSS en la web.
+                        </p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <img src="./imagenes/vcss.png" alt="W3C CSS Válido" class="img-fluid rounded border p-2 bg-white shadow-sm">
+                    </div>
+                </div>
+            </div>
 
+        </article>
+
+        <!-- Navegación entre Temas -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="../html/index.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior Módulo:</strong> HTML</span>
+            </a>
+            <a href="./archivos/01_tipos_hojas.html" class="btn btn-primary btn-sm d-flex align-items-center gap-2 shadow-sm">
+                <span><strong>Siguiente:</strong> 01. Tipos de hojas de estilo</span>
+                <i class="bi bi-arrow-right"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>

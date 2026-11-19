@@ -1,35 +1,236 @@
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <title>            Menú        </title>
-		<link rel="stylesheet" type="text/css" href="../estilos.css">
-        <meta charset="UTF-8">
-    </head>
-    <body >
-        <div id="contenedor_indice">
-            <div id="contenedor_indice_css">
-                <span class="titulo_indice">CSS</span>
-                <ul>
-                    <li><a href="../index.html" target="_top">🏠 Menú principal</a></li>
-                    <li><a href="./index.html" target="_top">00_Introducción a CSS</a></li>
-                    <li><a href="./archivos/01_tipos_hojas.html" target="_top">01_Tipos de hojas de estilo</a></li>
-                    <li><a href="./archivos/02_estructura.html" target="_top">02_Estructura documento CSS</a></li>
-                    <li><a href="./archivos/03_selectores.html" target="_top">03_Reglas de estilos</a></li>
-                    <li><a href="./archivos/04_criterios.html" target="_top">04_Criterios de selección</a></li>
-                    <li><a href="./archivos/06_herencia.html" target="_top">06_Herencia y precedencia</a></li>
-                    <li><a href="./archivos/07_Ejemplos_Background.html" target="_top">07_Ejemplos de Background</a></li>
-                    <li><a href="./archivos/08_Ejemplos_Text.html" target="_top">08_Ejemplos de Texto</a></li>
-                    <li><a href="./archivos/09_Ejemplos_Links_Tablas.html" target="_top">09_Ejemplos de Links y Tablas</a></li>
-                    <li><a href="./archivos/10_Ejemplos_Imagenes_bordes.html" target="_top">10_Ejemplos de Imágenes y Bordes</a></li>
-                    <li><a href="./archivos/11_visual.html" target="_top">11_Diseño visual I</a></li>
-                    <li><a href="./archivos/12_flotante.html" target="_top">12_Diseño visual II</a></li>
-                    <li><a href="./archivos/13_Ejemplos_Homepages.html" target="_top">13_Ejemplos de Homepages</a></li>
-                    <li><a href="./archivos/15_disenyo_adaptativo2.html" target="_top">15_Diseño adaptativo</a></li>
-                    <li><a href="./archivos/16_bootstrap.html" target="_top">16_Bootstrap</a></li>
-                    <li><a href="./archivos/guia_referencia_css_w3c/guia_css.xhtml" target="_blank">Guía rápida CSS 2.1</a>
-                    <li><a href="./archivos/17_ejercicios.html" target="_blank">17_Ejercicios de aprendizaje</a>
-                </ul>     
-            </div>      
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice de CSS | LMSGI</title>
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .card-menu {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .card-menu:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.08) !important;
+        }
+    </style>
+</head>
+<body class="p-3 p-md-4">
+
+    <div class="container-fluid" style="max-width: 960px;">
+        <div class="d-flex align-items-center justify-content-between mb-4 pb-2 border-bottom">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-palette text-primary fs-2"></i>
+                <div>
+                    <h4 class="fw-bold mb-0">Módulo CSS</h4>
+                    <span class="text-secondary small">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+                </div>
+            </div>
+            <a href="../index.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span>Inicio</span>
+            </a>
         </div>
-    </body>
+
+        <!-- 1. Fundamentos y Reglas -->
+        <h6 class="text-uppercase text-secondary fw-bold small mb-3">1. Fundamentos y Reglas Básicas</h6>
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary-subtle text-primary mb-2">Tema 00</span>
+                        <h6 class="fw-bold mb-1"><a href="./index.html" class="text-decoration-none text-dark stretched-link">Introducción a CSS</a></h6>
+                        <p class="text-secondary small mb-0">Historia, versiones y validador oficial W3C.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary-subtle text-primary mb-2">Tema 01</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/01_tipos_hojas.html" class="text-decoration-none text-dark stretched-link">Tipos de hojas de estilo</a></h6>
+                        <p class="text-secondary small mb-0">Estilos en línea, hojas internas y externas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary-subtle text-primary mb-2">Tema 02</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/02_estructura.html" class="text-decoration-none text-dark stretched-link">Estructura del documento</a></h6>
+                        <p class="text-secondary small mb-0">Sintaxis: selector, propiedad y valor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary-subtle text-primary mb-2">Tema 03</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/03_selectores.html" class="text-decoration-none text-dark stretched-link">Reglas y Selectores</a></h6>
+                        <p class="text-secondary small mb-0">Selectores de etiqueta, clase, identificador y universales.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary-subtle text-primary mb-2">Tema 04</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/04_criterios.html" class="text-decoration-none text-dark stretched-link">Criterios de selección</a></h6>
+                        <p class="text-secondary small mb-0">Descendientes, hijos directos, hermanos y pseudoclases.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Cascada y Estilos Visuales -->
+        <h6 class="text-uppercase text-secondary fw-bold small mb-3">2. Herencia y Propiedades Visuales</h6>
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2">Tema 06</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/06_herencia.html" class="text-decoration-none text-dark stretched-link">Herencia y Precedencia</a></h6>
+                        <p class="text-secondary small mb-0">Cálculo de especificidad y cascada de estilos.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2">Tema 07</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/07_Ejemplos_Background.html" class="text-decoration-none text-dark stretched-link">Fondos (Backgrounds)</a></h6>
+                        <p class="text-secondary small mb-0">Colores, imágenes repetidas, posición y degradados.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2">Tema 08</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/08_Ejemplos_Text.html" class="text-decoration-none text-dark stretched-link">Tipografía y Texto</a></h6>
+                        <p class="text-secondary small mb-0">Familias tipográficas, alineación e interlineado.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2">Tema 09</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/09_Ejemplos_Links_Tablas.html" class="text-decoration-none text-dark stretched-link">Enlaces y Tablas</a></h6>
+                        <p class="text-secondary small mb-0">Estados :hover, :active y formateo de celdas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-info-subtle text-info-emphasis mb-2">Tema 10</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/10_Ejemplos_Imagenes_bordes.html" class="text-decoration-none text-dark stretched-link">Imágenes y Bordes</a></h6>
+                        <p class="text-secondary small mb-0">Border-radius, sombras y estilos de bordes gráficos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Maquetación y Responsividad -->
+        <h6 class="text-uppercase text-secondary fw-bold small mb-3">3. Maquetación, Responsive y Frameworks</h6>
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-success-subtle text-success mb-2">Tema 11</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/11_visual.html" class="text-decoration-none text-dark stretched-link">Diseño Visual (Cajas)</a></h6>
+                        <p class="text-secondary small mb-0">Box model: margin, padding y border.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-success-subtle text-success mb-2">Tema 12</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/12_flotante.html" class="text-decoration-none text-dark stretched-link">Flotantes y Posición</a></h6>
+                        <p class="text-secondary small mb-0">Float, clear y esquemas posicionales.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-success-subtle text-success mb-2">Tema 13</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/13_Ejemplos_Homepages.html" class="text-decoration-none text-dark stretched-link">Homepages</a></h6>
+                        <p class="text-secondary small mb-0">Maquetación real de cabeceras y columnas.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-success-subtle text-success mb-2">Tema 15</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/15_disenyo_adaptativo2.html" class="text-decoration-none text-dark stretched-link">Diseño Adaptativo</a></h6>
+                        <p class="text-secondary small mb-0">Media queries y layouts fluidos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Bootstrap y Práctica -->
+        <h6 class="text-uppercase text-secondary fw-bold small mb-3">4. Bootstrap y Ejercicios</h6>
+        <div class="row g-3 mb-4">
+            <div class="col-12 col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-primary text-white mb-2">Tema 16</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/16_bootstrap.html" class="text-decoration-none text-dark stretched-link">Framework Bootstrap</a></h6>
+                        <p class="text-secondary small mb-0">Rejilla (Grid), contenedores y componentes esenciales.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-warning-subtle text-dark border mb-2">Tema 17</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/17_ejercicios.html" class="text-decoration-none text-dark stretched-link">Ejercicios Prácticos</a></h6>
+                        <p class="text-secondary small mb-0">Boletín de ejercicios guiados de maquetación con CSS.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="card h-100 border-0 shadow-sm rounded-3 card-menu">
+                    <div class="card-body p-3">
+                        <span class="badge bg-success text-white mb-2">Solucionario</span>
+                        <h6 class="fw-bold mb-1"><a href="./archivos/17_ejercicios_r.html" class="text-decoration-none text-dark stretched-link">Ejercicios Resueltos</a></h6>
+                        <p class="text-secondary small mb-0">Soluciones comentadas del boletín de aprendizaje.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 bg-body-tertiary rounded-3 p-3">
+            <h6 class="fw-bold mb-2 small text-uppercase text-secondary">Documentación y recursos adicionales</h6>
+            <div class="d-flex flex-wrap gap-2">
+                <a href="./archivos/CSS_Guia_ref_rap.pdf" download class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-file-earmark-pdf me-1"></i> Guía Rápida CSS (PDF)
+                </a>
+                <a href="http://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-patch-check me-1"></i> Validador W3C CSS
+                </a>
+                <a href="http://www.csszengarden.com/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-flower1 me-1"></i> CSS Zen Garden
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
