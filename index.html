@@ -1,37 +1,473 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Introducción 
-        </title>
-		<link rel="stylesheet" type="text/css" href="./estilos.css">
-        <meta charset="UTF-8">		
-		<script src="./codigos.js"></script>
-    </head>
-    <body>
-		<div id="contenedor_general">
-			<div id="contenedor_cabecera">
-				<img src="./imagenes/logo.jpg" alt="Logo" width="147" height="92"> 
-				<h1>Menú principal</h1>
-			</div>
-			<iframe id="if" src="./menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
-		
-			<div id="contenedor_cuerpo">
-				<h1>Lenguajes de Marcas y Sistemas de Gestión de Información</h1>
-				<p>Bienvenido al portal del módulo. Desde el menú lateral o desde los siguientes enlaces puedes acceder a cada bloque temático:</p>
-				<ul>
-					<li><a href="./html/index.html"><strong>HTML</strong></a>: Estructura de documentos, etiquetas básicas, formato, tablas, formularios y HTML5.</li>
-					<li><a href="./css/index.html"><strong>CSS</strong></a>: Hojas de estilo, reglas de cascada, selectores, diseño adaptativo y frameworks.</li>
-					<li><a href="./xml/index.html"><strong>XML</strong></a>: Documentos bien formados, definición de estructuras con DTD y consultas con XPath.</li>
-					<li><a href="./javascript/index.html"><strong>JavaScript</strong></a>: Programación en cliente, sintaxis, manipulación del DOM, BOM y gestión de eventos.</li>
-					<li><a href="./php/index.html"><strong>PHP</strong></a>: Programación en servidor, formularios, sesiones, POO y acceso a bases de datos (PDO).</li>
-				</ul>
-				<h2>Tema 1: Introducción a los Lenguajes de Marcas</h2>
-				<p>Accede al material teórico introductorio del curso: <a href="./tema1_introduccion_lm.pdf" target="_blank">📄 Abrir Tema 1 en PDF</a></p>
-			</div>
-			<footer id="contenedor_pie">
-				<p>Lenguajes de Marcas y Sistemas de Gestión de Información (LMSGI)</p>
-			</footer>
-		</div>		
-    </body>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMSGI | Lenguajes de Marcas y Sistemas de Gestión de Información</title>
+    <meta name="description" content="Temario, apuntes y recursos didácticos de Lenguajes de Marcas y Sistemas de Gestión de Información para Ciclos Formativos de Grado Superior (DAW, DAM, ASIR).">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --brand-primary: #0d6efd;
+            --brand-purple: #6f42c1;
+        }
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .card-module {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        .card-module:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+        }
+        .icon-box {
+            width: 54px;
+            height: 54px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand / Título -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="./index.html">
+                <img src="./imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./php/index.html">PHP</a>
+            </nav>
+
+            <!-- Acceso Rápido Descargas -->
+            <div class="dropdown">
+                <button class="btn btn-sm btn-outline-warning dropdown-toggle d-flex align-items-center gap-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-download"></i>
+                    <span class="d-none d-sm-inline">Tema 1</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li><h6 class="dropdown-header">Introducción a los LM</h6></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-2" href="./tema1_introduccion_lm.pdf" target="_blank"><i class="bi bi-file-earmark-pdf text-danger"></i> Descargar PDF</a></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-2" href="./tema1_introduccion_lm.odt"><i class="bi bi-file-earmark-word text-primary"></i> Descargar ODT</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Desplegable (Offcanvas) con el Temario Completo -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-book text-warning"></i> Índice del Temario
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <div class="accordion accordion-flush" id="accordionTemario">
+                
+                <!-- Tema 0: Introducción -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colIntro">
+                            <i class="bi bi-file-earmark-text text-danger me-2"></i> 0. Introducción a los LM
+                        </button>
+                    </h2>
+                    <div id="colIntro" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./tema1_introduccion_lm.pdf" target="_blank" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-filetype-pdf text-danger"></i> Tema 1: Teoría completa (PDF)</a></li>
+                                <li><a href="./tema1_introduccion_lm.odt" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-file-earmark text-primary"></i> Tema 1: Formato editable (ODT)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 1: HTML -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colHtml">
+                            <i class="bi bi-filetype-html text-primary me-2"></i> 1. HTML5 (Estructura Web)
+                        </button>
+                    </h2>
+                    <div id="colHtml" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./html/index.html" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-house-door"></i> Portada de HTML</a></li>
+                                <li><a href="./html/archivos/01_organizacion.html" class="text-decoration-none text-light-emphasis py-1 d-block">01. Organización de un sitio web</a></li>
+                                <li><a href="./html/archivos/02_etiquetasbasicas.html" class="text-decoration-none text-light-emphasis py-1 d-block">02. Etiquetas básicas</a></li>
+                                <li><a href="./html/archivos/03_estructura.html" class="text-decoration-none text-light-emphasis py-1 d-block">03. Estructura del texto</a></li>
+                                <li><a href="./html/archivos/08_tablas.html" class="text-decoration-none text-light-emphasis py-1 d-block">08. Tablas</a></li>
+                                <li><a href="./html/archivos/11_formularios.html" class="text-decoration-none text-light-emphasis py-1 d-block">11. Formularios</a></li>
+                                <li><a href="./html/archivos/13_xhtml_html5.html" class="text-decoration-none text-light-emphasis py-1 d-block">13. XHTML y HTML5</a></li>
+                                <li><a href="./html/archivos/16_ejercicios.html" target="_blank" class="text-decoration-none text-warning py-1 d-block"><i class="bi bi-pencil-square"></i> Ejercicios prácticos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 2: CSS -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colCss">
+                            <i class="bi bi-palette text-warning me-2"></i> 2. CSS3 & Bootstrap
+                        </button>
+                    </h2>
+                    <div id="colCss" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./css/index.html" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-house-door"></i> Portada de CSS</a></li>
+                                <li><a href="./css/archivos/01_tipos_hojas.html" class="text-decoration-none text-light-emphasis py-1 d-block">01. Tipos de hojas de estilo</a></li>
+                                <li><a href="./css/archivos/03_selectores.html" class="text-decoration-none text-light-emphasis py-1 d-block">03. Reglas y Selectores</a></li>
+                                <li><a href="./css/archivos/11_visual.html" class="text-decoration-none text-light-emphasis py-1 d-block">11. Diseño visual</a></li>
+                                <li><a href="./css/archivos/15_disenyo_adaptativo2.html" class="text-decoration-none text-light-emphasis py-1 d-block">15. Diseño adaptativo (Media Queries)</a></li>
+                                <li><a href="./css/archivos/16_bootstrap.html" class="text-decoration-none text-light-emphasis py-1 d-block">16. Framework Bootstrap</a></li>
+                                <li><a href="./css/archivos/17_ejercicios.html" target="_blank" class="text-decoration-none text-warning py-1 d-block"><i class="bi bi-pencil-square"></i> Ejercicios prácticos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 3: XML -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colXml">
+                            <i class="bi bi-filetype-xml text-success me-2"></i> 3. XML & XPath
+                        </button>
+                    </h2>
+                    <div id="colXml" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./xml/index.html" class="text-decoration-none text-light-emphasis py-1 d-block">Tema 1. Introducción a XML</a></li>
+                                <li><a href="./xml/tema02_xml_dtd.html" class="text-decoration-none text-light-emphasis py-1 d-block">Tema 2. Definición DTD</a></li>
+                                <li><a href="./xml/tema03_xml_xpath.html" class="text-decoration-none text-light-emphasis py-1 d-block">Tema 3. Consultas con XPath</a></li>
+                                <li><a href="./xml/tema03_xml_xpath_ejercicios_tema7_xpath_13.html" class="text-decoration-none text-warning py-1 d-block"><i class="bi bi-pencil-square"></i> Ejercicios XPath resueltos</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 4: JavaScript -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colJs">
+                            <i class="bi bi-filetype-js text-warning me-2"></i> 4. JavaScript (Cliente)
+                        </button>
+                    </h2>
+                    <div id="colJs" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./javascript/index.html" class="text-decoration-none text-light-emphasis py-1 d-block">00. Visor de Material Completo</a></li>
+                                <li><a href="./javascript/material/t1_introduccion.pdf" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">01. Introducción y Sintaxis (PDF)</a></li>
+                                <li><a href="./javascript/material/t4_dom.pdf" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">04. El DOM (PDF)</a></li>
+                                <li><a href="./javascript/material/t5_eventos.pdf" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">05. Eventos (PDF)</a></li>
+                                <li><a href="./javascript/material/t6_formularios.pdf" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">06. Validación de Formularios (PDF)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bloque 5: PHP -->
+                <div class="accordion-item bg-transparent border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-light shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#colPhp">
+                            <i class="bi bi-filetype-php text-info me-2"></i> 5. PHP & Bases de Datos
+                        </button>
+                    </h2>
+                    <div id="colPhp" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
+                        <div class="accordion-body py-2">
+                            <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
+                                <li><a href="./php/index.html" class="text-decoration-none text-light-emphasis py-1 d-block">00. Portada y Visor de PHP</a></li>
+                                <li><a href="./php/ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">Primeros pasos con PHP</a></li>
+                                <li><a href="./php/ficheros/04_Recogida de datos de formularios _ Desarrollo web con PHP.html" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">Formularios en PHP</a></li>
+                                <li><a href="./php/ficheros/06_Cookies y sesiones _ Desarrollo web con PHP.html" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">Cookies y Sesiones</a></li>
+                                <li><a href="./php/ficheros/09_Acceso a bases de datos con PHP _ Desarrollo web con PHP.html" target="_blank" class="text-decoration-none text-light-emphasis py-1 d-block">Acceso a BBDD (PDO)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="./index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Volver a la Portada
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal (Dashboard de Estudio) -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Hero Banner Principal -->
+        <section class="hero-banner p-4 p-md-5 rounded-4 shadow-sm mb-4">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-8">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">Ciclos Formativos FP</span>
+                        <span class="badge bg-secondary-subtle text-light border border-secondary px-2 py-1">DAW · DAM · ASIR</span>
+                    </div>
+                    <h1 class="display-6 fw-bold mb-2">Lenguajes de Marcas y Sistemas de Gestión de Información</h1>
+                    <p class="lead text-light-emphasis mb-4">
+                        Portal centralizado de apuntes, teoría estructurada, ejercicios prácticos y recursos de desarrollo web en cliente y servidor.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-warning px-3 fw-semibold d-inline-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
+                            <i class="bi bi-list-nested"></i> Abrir Índice Completo
+                        </button>
+                        <a href="#modulos" class="btn btn-outline-light px-3 d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-grid-3x3-gap"></i> Explorar Módulos
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center d-none d-lg-block">
+                    <div class="p-3 bg-white bg-opacity-10 rounded-4 border border-light border-opacity-25 backdrop-blur">
+                        <i class="bi bi-mortarboard text-warning display-4 mb-2 d-block"></i>
+                        <h6 class="fw-semibold text-light mb-1">Módulo Profesional</h6>
+                        <p class="small text-light-emphasis mb-0">1º Curso Grado Superior de Informática</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarjeta Destacada: Tema 1 Introducción -->
+        <section class="card border-0 shadow-sm rounded-4 mb-4 bg-body-tertiary border-start border-4 border-danger">
+            <div class="card-body p-4">
+                <div class="row align-items-center gy-3">
+                    <div class="col-md-8">
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <span class="badge bg-danger text-white">Tema 0</span>
+                            <span class="text-muted small">Fundamentos Iniciales</span>
+                        </div>
+                        <h4 class="fw-bold mb-1">Introducción a los Lenguajes de Marcas</h4>
+                        <p class="text-secondary mb-0">
+                            Orígenes históricos de SGML, evolución de HTML y el estándar W3C, características de los lenguajes de etiquetas y clasificación general.
+                        </p>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column flex-sm-row flex-md-column gap-2 justify-content-end">
+                        <a href="./tema1_introduccion_lm.pdf" target="_blank" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center gap-2 shadow-sm">
+                            <i class="bi bi-file-earmark-pdf"></i> Abrir Tema 1 (PDF)
+                        </a>
+                        <a href="./tema1_introduccion_lm.odt" class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center gap-2">
+                            <i class="bi bi-download"></i> Descargar ODT
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de Módulos Temáticos -->
+        <section id="modulos" class="mb-4">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div>
+                    <h3 class="fw-bold mb-0">Bloques Temáticos</h3>
+                    <p class="text-muted small mb-0">Selecciona una materia para consultar sus apuntes y ejercicios</p>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                
+                <!-- Módulo 1: HTML -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-primary-subtle text-primary">
+                                    <i class="bi bi-filetype-html fs-2"></i>
+                                </div>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                            </div>
+                            <h5 class="card-title fw-bold">1. HTML</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Estructuración semántica de documentos web, textos, enlaces, tablas, formularios interactivos y multimedia.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Organización del sitio y etiquetas</li>
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Tablas y formularios complejos</li>
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Multimedia y HTML5 moderno</li>
+                            </ul>
+                            <a href="./html/index.html" class="btn btn-primary d-flex align-items-center justify-content-center gap-2 mt-auto">
+                                Ver Módulo HTML <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo 2: CSS -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-warning-subtle text-warning-emphasis">
+                                    <i class="bi bi-palette fs-2"></i>
+                                </div>
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle">CSS3 & Bootstrap</span>
+                            </div>
+                            <h5 class="card-title fw-bold">2. CSS</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Reglas de estilo en cascada, selectores avanzados, herencia, maquetación visual adaptativa (Flexbox/Grid) y frameworks.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-warning me-1"></i> Tipos de hojas y reglas de selección</li>
+                                <li><i class="bi bi-check2 text-warning me-1"></i> Diseño adaptativo y Responsive Design</li>
+                                <li><i class="bi bi-check2 text-warning me-1"></i> Maquetación ágil con Bootstrap</li>
+                            </ul>
+                            <a href="./css/index.html" class="btn btn-warning text-dark fw-medium d-flex align-items-center justify-content-center gap-2 mt-auto">
+                                Ver Módulo CSS <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo 3: XML -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-success-subtle text-success">
+                                    <i class="bi bi-filetype-xml fs-2"></i>
+                                </div>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">XML & XPath</span>
+                            </div>
+                            <h5 class="card-title fw-bold">3. XML</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Estructuras de almacenamiento e intercambio de información bien formadas, validación mediante DTD y consultas XPath.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-success me-1"></i> Documentos XML bien formados</li>
+                                <li><i class="bi bi-check2 text-success me-1"></i> Definición y validación con DTD</li>
+                                <li><i class="bi bi-check2 text-success me-1"></i> Expresiones y consultas con XPath</li>
+                            </ul>
+                            <a href="./xml/index.html" class="btn btn-success d-flex align-items-center justify-content-center gap-2 mt-auto">
+                                Ver Módulo XML <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo 4: JavaScript -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-warning-subtle text-dark">
+                                    <i class="bi bi-filetype-js fs-2 text-warning-emphasis"></i>
+                                </div>
+                                <span class="badge bg-secondary-subtle text-dark border border-secondary-subtle">Cliente Web</span>
+                            </div>
+                            <h5 class="card-title fw-bold">4. JavaScript</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Programación en el navegador: sintaxis básica, manipulación dinámica del árbol DOM, captura de eventos y formularios.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-dark me-1"></i> Fundamentos y estructuras de datos</li>
+                                <li><i class="bi bi-check2 text-dark me-1"></i> Manipulación del Document Object Model</li>
+                                <li><i class="bi bi-check2 text-dark me-1"></i> Eventos y validación interactiva</li>
+                            </ul>
+                            <a href="./javascript/index.html" class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2 mt-auto">
+                                Ver Módulo JavaScript <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Módulo 5: PHP -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-primary-subtle text-purple" style="color: #6f42c1; background-color: #f3e8ff;">
+                                    <i class="bi bi-filetype-php fs-2"></i>
+                                </div>
+                                <span class="badge text-purple border" style="background-color: #f3e8ff; color: #6f42c1; border-color: #d8b4fe !important;">Servidor & BBDD</span>
+                            </div>
+                            <h5 class="card-title fw-bold">5. PHP & MySQL</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Desarrollo backend con PHP: recepción de peticiones HTTP, gestión de sesiones y cookies, POO y conexión segura mediante PDO.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Peticiones GET / POST y formularios</li>
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Control de sesiones de usuario</li>
+                                <li><i class="bi bi-check2 text-primary me-1"></i> Acceso a bases de datos con PDO</li>
+                            </ul>
+                            <a href="./php/index.html" class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 mt-auto" style="border-color: #6f42c1; color: #6f42c1;">
+                                Ver Módulo PHP <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tarjeta Info / GitHub -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm border-dashed bg-body-tertiary">
+                        <div class="card-body d-flex flex-column p-4 justify-content-center text-center">
+                            <div class="icon-box bg-dark text-white mx-auto mb-3">
+                                <i class="bi bi-github fs-2"></i>
+                            </div>
+                            <h5 class="card-title fw-bold">Código en GitHub</h5>
+                            <p class="card-text text-secondary small mb-3">
+                                Este proyecto educativo es código abierto y está disponible para la comunidad en GitHub.
+                            </p>
+                            <a href="https://github.com/fxblascob/lm" target="_blank" class="btn btn-dark d-flex align-items-center justify-content-center gap-2 mt-auto">
+                                <i class="bi bi-github"></i> Ver Repositorio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="./imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
 </html>
