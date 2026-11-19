@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -130,145 +127,177 @@
         </nav>
 
         <!-- Tarjeta de Contenido Educativo -->
+                <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 11</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Modelo de Cajas y Posicionamiento</span>
             </div>
 
-            <h1>Diseño visual I</h1>
-            <p>Las hojas de estilo suelen utilizarse también para realizar diseños vistosos de las páginas web. Para ello se utiliza el llamado <b>modelo de cajas</b>. Este modelo tiene su base en que cualquier elemento HTML (tabla, fila, párrafo, división,...) es en realidad una caja con la siguiente estructura:</p>
-            <p class="imagenes"><img src="../imagenes/modelo_cajas.png" alt="modelo de cajas"></p>
-            <p>Así, cada caja tiene un <b>contenido</b> (texto en el caso de un párrafo, el contenido de una celda, etc.), alrededor del cual hay un espacio de <b>relleno</b> (en inglés, <i>padding</i>). Alrededor del relleno hay un <b>borde</b> (<i>border</i>), que puede estar visible o no, y por último está el <b>margen</b> (<i>margin</i>), que es el espacio que se deja desde la caja a lo que le rodea. Estos parámetros se pueden controlar con las propiedades que aparecen <a href="./guia_referencia_css_w3c/guia_css.xhtml#modeloCajas" target="_blank">aquí</a>.</p>
-            <p>Normalmente se suele utilizar el modelo de cajas para estructurar adecuadamente los contenidos de una página web. Para ello se suelen utilizar las etiquetas <b>&lt;div&gt;</b> para dividir la página en secciones. A cada etiqueta <i>&lt;div&gt;</i> se le asigna un <b>identificador</b> para poder referirse a ella desde la hoja de estilos y así poder situarla en la página con sus características propias (color de fondo, bordes, tipos de letra, etc.).</p>
-            <p>De esta manera, la primera tarea a realizar será planificar la estructura de nuestra página. Suele ser una buena idea realizar un boceto para esta tarea. Un ejemplo de ello sería:</p>
-            <p class="imagenes-kk"><img src="../imagenes/estructura_pagina.png" alt="Estructura" width="700px" ></p>
-            <p>A partir del boceto, se realizaría la estructuración del código HTML de la página. Para ello se haremos uso de las etiquetas <i>&lt;div&gt;</i>, tal como hemos comentado antes. En el caso del ejemplo, el <b>código HTML</b> necesario sería el siguiente:</p>
-            <div class="codigo"><a name="ejemplo_divisiones"></a>
-                <pre>
-                  
-        &lt;!DOCTYPE html&gt;
-        &lt;html&gt;
-          &lt;head&gt;
-            &lt;title&gt;Ejemplo de modelo visual&lt;/title&gt;
-          &lt;/head&gt;	
-          &lt;body&gt;
-            &lt;div id=&quot;contenedor&quot;&gt;
-                &lt;p&gt;contenedor
-                &lt;header&gt;
-                    &lt;p&gt;header&lt;/p&gt;
-                &lt;/header&gt;
-                &lt;div id = &quot;contenedor_izquierda&quot;&gt;
-                    &lt;p&gt;contenedor_izquierda&lt;/p&gt;
-                    &lt;nav&gt;
-                        &lt;p&gt;nav&lt;/p&gt;
-                        &lt;ul&gt;
-                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 1&lt;/a&gt;&lt;/li&gt;
-                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 2&lt;/a&gt;&lt;/li&gt;
-                            &lt;li&gt;&lt;a href=&quot;#&quot;&gt;menú 3&lt;/a&gt;&lt;/li&gt;
-                        &lt;/ul&gt;
-                    &lt;/nav&gt;
-                    &lt;div class=&quot;foto&quot;&gt;
-                        &lt;p&gt;div&lt;/p&gt;
-                        FOTO1
-                    &lt;/div&gt;
-                    &lt;div class=&quot;foto&quot;&gt;
-                        &lt;p&gt;div&lt;/p&gt;
-                        FOTO2
-                    &lt;/div&gt;
-                &lt;/div&gt;
-                &lt;main&gt;
-                    &lt;p&gt;main&lt;/p&gt;
-                    Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                    &lt;br&gt;Aquí vendría el código del cuerpo
-                &lt;/main&gt;
-            &lt;/div&gt;
-          &lt;/body&gt;
-        &lt;/html&gt;
-                </pre>
-			</div>
-			
-            <p>El código CSS que quedaría para nuestro ejemplo tendría un aspecto similar al siguiente:</p>
-			
-			<div class="codigo"><a name="ejemplo_divisiones_css"></a>
-                <pre>
-                    * {margin:5px; padding:5;}
-                    p {color:red;}
-                    #contenedor {
-                        background-color: rgb(123, 192, 192);
-                        width:100%;
-                        height: 350px;
-                    }
-                    header {
-                        position:absolute;
-                        left:15px;
-                        width:98%;
-                        height: 60px;
-                        background-color:bisque;
-                        text-align: center;
-                    }
-                    #contenedor_izquierda {
-                        position: relative;
-                        top:75px;
-                        float:left;
-                        width:20%;
-                        background-color:rgb(205, 225, 243);
-                    }
-                    main {
-                        position: relative;
-                        top:75px;
-                        float:right;
-                        width:70%;
-                        background-color:bisque;
-                    }
-                    nav {
-                        width: 80%;
-                        background-color:bisque;
-                    }
-                    nav li {list-style: none;}
-                    .foto {
-                        width: 80%;
-                        background-color:bisque;
-                    }
-               </pre>
-			</div>
-            <p>puedes probar el ejemplo <a href="./ejemplos/pruebas_visual1.html">aquí </a></p>
-			<p>Una vez realizada la estructuración del código, añadiríamos los contenidos a cada una de las secciones: párrafos, imágenes, listas, tablas, etc. Una vez completada nuestra página, pasaríamos a definir la hoja de estilos necesaria.</p>
-			
-			<p>En la hoja de estilos se definiría el posicionamiento de cada una de las secciones. Para ello se hará uso del <a href="./guia_referencia_css_w3c/guia_css.xhtml#formatoVisual" target="_blank">modelo de formato visual</a>. En esta sección se encuentra el código CSS necesario para situar una caja dentro de la página web.</p>
-			
-			<p>El elemento <b><i>position</i></b> permite definir el comportamiento de la caja en el documento. Los valores que puede tomar son:</p>
-			
-			<ul>
-				<li><b>static</b>. Valor por defecto de todos los elementos HTML. Los elementos estáticos aparecen en pantalla según el flujo normal de representación de HTML. Los elementos posicionados con Static no están afectados por las propiedades top, bottom, left y right.
-				<li><b>relative</b>. La caja estará situada dentro del flujo del documento. Esto quiere decir que su posición vendrá marcada por los elementos HTML que tenga delante y detrás. Su posición se desplazará de forma relativa a la que tendría en ese flujo normal. Se podrá solapar con otros elementos pero el espacio que se le reservaba permanecerá en el flujo normal. Los elementos posicionados con Relative a menudo son usados como bloques contenedores de elementos posicionados con absolute.
-				<li><b>absolute</b>. La posición de la caja vendrá dada por las coordenadas que se definan. Sin embargo, la caja no estará dentro del flujo del documento, por lo que se podrá solapar con otros elementos de la página. El resto de elementos se comportan como si los elementos posicionados de forma absoluta no existieran. El elemento padre del que se posiciona de forma absoluta debe estar posicionado aunque sea con relative.
-				<li><b>fixed</b>. Este valor implica un posicionamiento absoluto (como el del apartado anterior) pero manteniendo la posición aunque se desplace la página. De esta manera, la caja estará siempre visible. Se suele utilizar para los índices de las páginas.
-			</ul>
-			
-			<p>Es aconsejable hacer pruebas con los distintos tipos de posicionamiento para ver su comportamiento. Una vez determinado este valor, se puede definir la posición de las cajas en función de unas coordenadas. Dichas coordenadas hacen referencia al elemento padre o a la ventana del navegador, y son las siguientes:</p>
-			
-			<ul>
-				<li><b>top</b>. Distancia de la caja respecto al límite superior de su elemento contenedor.
-				<li><b>right</b>. Distancia de la caja respecto al límite derecho de su elemento contenedor.
-				<li><b>bottom</b>. Distancia de la caja respecto al límite inferior de su elemento contenedor.
-				<li><b>left</b>. Distancia de la caja respecto al límite izquierdo de su elemento contenedor.
-			</ul>
-			
-			<p>Normalmente se suele indicar las distancias en píxeles (<i>px</i>).</p>
-			
-			<p>En el caso de que alguna caja se solape con otra, se puede determinar cuál estará delante utilizando el parámetro <b>z-index</b>. Este parámetro toma valores enteros positivos o negattivos(...,-1, 0, 1, 2, 3,...) y se asigna un valor para cada caja. La caja que tenga un valor mayor es la que aparecerá por delante de las demás.</p>
-			
-			<p>Por último, también se suele indicar la anchura (<b><i>width</i></b>) y la altura (<b><i>height</i></b>) de las cajas mediante los parámetros que se pueden encontrar en los <a href="./guia_referencia_css_w3c/guia_css.xhtml#detallesVisual" target="_blank">detalles del modelo de formato visual</a>.</p>
-			
-			
+            <h1 class="fw-bold mb-3 display-6">11. Diseño Visual I: Modelo de Cajas y Posición</h1>
             
-        </div>
+            <p class="lead text-secondary mb-4">
+                En el motor de renderizado de cualquier navegador web, <strong>absolutamente todo elemento HTML es una caja rectangular</strong>. El Modelo de Cajas (<em>Box Model</em>) y los esquemas de posicionamiento constituyen las reglas fundamentales que determinan las dimensiones y la ubicación de cada elemento en la pantalla.
+            </p>
+
+            <!-- Sección 1: El Modelo de Cajas -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-box text-primary"></i> 1. El Modelo de Cajas (<em>Box Model</em>)
+            </h2>
+            <p class="text-secondary small mb-3">
+                Cada caja de CSS está formada concéntricamente por cuatro áreas diferenciadas, desde el interior hacia el exterior:
+            </p>
+
+            <div class="card border bg-body-tertiary rounded-3 shadow-sm mb-4">
+                <div class="card-body p-3 p-md-4 text-center">
+                    <div class="bg-white p-3 rounded-3 border d-inline-block shadow-sm mb-3">
+                        <img src="../imagenes/modelo_cajas.png" alt="Esquema del Modelo de Cajas: Content, Padding, Border, Margin" class="img-fluid rounded">
+                    </div>
+                    <div class="row g-3 text-start small">
+                        <div class="col-md-3">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-primary mb-1"><i class="bi bi-file-text me-1"></i> Contenido (Content)</h6>
+                                <p class="text-secondary mb-0">El núcleo donde se renderiza el texto, imagen, video u otros elementos hijos. Dimensionado por <code>width</code> y <code>height</code>.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-success mb-1"><i class="bi bi-arrows-collapse me-1"></i> Relleno (Padding)</h6>
+                                <p class="text-secondary mb-0">Espacio libre interior transparente entre el contenido y el borde. Hereda el color o imagen de fondo del elemento.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-warning-emphasis mb-1"><i class="bi bi-bounding-box me-1"></i> Borde (Border)</h6>
+                                <p class="text-secondary mb-0">Línea que delimita el padding del exterior. Puede ser visible o transparente, con estilos sólidos, punteados o redondeados.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-danger mb-1"><i class="bi bi-arrows-expand me-1"></i> Margen (Margin)</h6>
+                                <p class="text-secondary mb-0">Espacio exterior que separa la caja de las cajas vecinas. Siempre es transparente y permite el centrado automático (<code>margin: 0 auto;</code>).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- box-sizing: border-box Callout -->
+            <div class="card border border-success-subtle bg-body-tertiary rounded-3 p-3 p-md-4 mb-5 shadow-sm">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-success">La Clave Moderna</span>
+                    <h5 class="fw-bold text-dark mb-0">La propiedad <code>box-sizing: border-box;</code></h5>
+                </div>
+                <p class="small text-secondary mb-3">
+                    En el modelo tradicional de CSS (<code>content-box</code>), si un elemento medía <code>width: 300px</code> y se le añadía <code>padding: 20px</code> y <code>border: 5px</code>, el ancho total en pantalla se convertía en <strong>350px</strong> (300 + 40 + 10), provocando desbordamientos de página y descuadres en cuadrículas.
+                </p>
+                <div class="p-3 bg-success-subtle text-success-emphasis rounded-3 border border-success-subtle small mb-3">
+                    <i class="bi bi-check-circle-fill me-1"></i> Con <strong><code>box-sizing: border-box;</code></strong>, el <code>padding</code> y el <code>border</code> se restan hacia dentro del ancho especificado. Si pides 300px, medirá <strong>exactamente 300px</strong>.
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3">
+                    <span class="badge bg-secondary mb-2 small">El Reseteo Universal de Bootstrap y CSS Moderno:</span>
+                    <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">*, *::before, *::after</span> {
+    <span class="text-info">box-sizing</span>: <span class="text-success">border-box</span>;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Sección 2: Tipos de Visualización (display) -->
+            <h2 class="h4 fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-eye text-primary"></i> 2. Tipos de Visualización: La Propiedad <code>display</code>
+            </h2>
+            <div class="row g-3 mb-5">
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-primary mb-2">display: block</span>
+                        <h6 class="fw-bold mb-1">Bloque</h6>
+                        <p class="small text-secondary mb-0">Ocupa todo el ancho disponible del contenedor padre. Empieza en una nueva línea y respeta <code>width</code>, <code>height</code>, <code>margin</code> y <code>padding</code> (ej: <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>).</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-secondary mb-2">display: inline</span>
+                        <h6 class="fw-bold mb-1">En Línea</h6>
+                        <p class="small text-secondary mb-0">Ocupa solo el ancho justo de su contenido. Fluye dentro del texto, no crea saltos de línea y <strong>no</strong> admite <code>width</code> ni <code>height</code> (ej: <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>).</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-info text-dark mb-2">display: inline-block</span>
+                        <h6 class="fw-bold mb-1">Bloque en Línea</h6>
+                        <p class="small text-secondary mb-0">Lo mejor de ambos mundos: se alinea horizontalmente sin salto de línea como un elemento inline, pero acepta dimensiones exactas de <code>width</code> y <code>height</code> (ej: botones, tarjetas flotantes).</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-danger mb-2">display: none</span>
+                        <h6 class="fw-bold mb-1">Ocultación Total</h6>
+                        <p class="small text-secondary mb-0">Elimina completamente el elemento del renderizado de la página: no ocupa espacio visual ni interactivo en el flujo del documento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Esquemas de Posicionamiento (position) -->
+            <h2 class="h4 fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-arrows-move text-primary"></i> 3. Esquemas de Posicionamiento (<code>position</code>)
+            </h2>
+            <p class="text-secondary small mb-3">
+                La propiedad <code>position</code> define la mecánica para desplazar o anclar una caja en la pantalla mediante las coordenadas <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> y el orden de capas <code>z-index</code>:
+            </p>
+
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-hover align-middle bg-white mb-0 shadow-sm rounded-3 overflow-hidden">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width: 20%;">Valor</th>
+                            <th scope="col" style="width: 25%;">En el Flujo Normal</th>
+                            <th scope="col" style="width: 55%;">Comportamiento y Uso Típico</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small">
+                        <tr>
+                            <td class="fw-bold"><code>static</code></td>
+                            <td><span class="badge bg-success-subtle text-success border">Sí (Por defecto)</span></td>
+                            <td>Posición natural según el orden HTML. Las propiedades <code>top</code>, <code>left</code>, etc. y <code>z-index</code> no tienen ningún efecto.</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold"><code>relative</code></td>
+                            <td><span class="badge bg-success-subtle text-success border">Sí (Conserva su hueco)</span></td>
+                            <td>Se desplaza respecto a su posición original sin alterar a los elementos vecinos. <strong>Uso esencial:</strong> Servir como contenedor de referencia para hijos con <code>position: absolute</code>.</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold"><code>absolute</code></td>
+                            <td><span class="badge bg-danger-subtle text-danger border">No (Sale del flujo)</span></td>
+                            <td>Se posiciona respecto al ancestro posicionado más cercano (que tenga <code>relative</code>, <code>absolute</code> o <code>fixed</code>). El resto de elementos actúan como si no existiera.</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold"><code>fixed</code></td>
+                            <td><span class="badge bg-danger-subtle text-danger border">No (Sale del flujo)</span></td>
+                            <td>Anclado directamente a la ventana gráfica del navegador (<em>viewport</em>). Permanece siempre visible aunque el usuario haga scroll (ej: barras superiores fijas, botones flotantes de chat).</td>
+                        </tr>
+                        <tr class="table-primary-subtle">
+                            <td class="fw-bold text-primary"><code>sticky</code></td>
+                            <td><span class="badge bg-primary">Híbrido Inteligente</span></td>
+                            <td>Actúa como <code>relative</code> hasta que el scroll de la página alcanza un umbral definido (ej: <code>top: 0;</code>), momento en el cual se "pega" como <code>fixed</code> mientras dure su contenedor padre.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Demostración y Boceto de Maquetación -->
+            <div class="card border bg-body-tertiary rounded-3 p-3 p-md-4 mb-4">
+                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                    <div>
+                        <h6 class="fw-bold text-dark mb-1"><i class="bi bi-window-split text-primary me-2"></i>Boceto Estructural y Flujo Visual</h6>
+                        <p class="small text-secondary mb-0">Inspecciona el prototipo de estructura básica de cajas dividido en cabecera, navegación lateral y cuerpo principal.</p>
+                    </div>
+                    <a href="./ejemplos/pruebas_visual1.html" target="_blank" class="btn btn-primary btn-sm text-nowrap fw-medium shadow-sm">
+                        <i class="bi bi-box-arrow-up-right me-1"></i> Abrir Demostración Visual
+                    </a>
+                </div>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
