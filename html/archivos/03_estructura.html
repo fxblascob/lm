@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03. Estructura del texto | HTML | LMSGI</title>
-    <meta name="description" content="Separación de párrafos, saltos de línea con br, líneas horizontales hr y comentarios en HTML.">
+    <meta name="description" content="Elementos de bloque y de línea, párrafos, colapso de espacios en blanco, texto preformateado, saltos de línea y jerarquía semántica de encabezados.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
     </style>
 </head>
 <body>
@@ -70,37 +69,72 @@
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
         <div class="offcanvas-header border-bottom border-secondary">
             <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
-                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML5
+                <i class="bi bi-filetype-html text-primary"></i> Módulo HTML
             </h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
         </div>
         <div class="offcanvas-body p-3">
-            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Lecciones de HTML</h6>
-            <div class="list-group list-group-flush mb-4 small">
-                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">00. Introducción a HTML</a>
-                <a href="./01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">01. Organización de un sitio web</a>
-                <a href="./02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">02. Etiquetas básicas</a>
-                <a href="./03_estructura.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary rounded-2 d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 03. Estructura del texto</a>
-                <a href="./04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">04. Formato del texto</a>
-                <a href="./05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">05. Hipervínculos</a>
-                <a href="./06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">06. Imágenes</a>
-                <a href="./07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">07. Listas</a>
-                <a href="./08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">08. Tablas</a>
-                <a href="./09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">09. Marcos</a>
-                <a href="./10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">10. Agrupación. Capas</a>
-                <a href="./11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">11. Formularios</a>
-                <a href="./12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">12. Extras. Multimedia</a>
-                <a href="./13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">13. XHTML y HTML5</a>
-                <a href="./14_guia_html.pdf" target="_blank" class="list-group-item list-group-item-action bg-transparent text-info border-secondary py-2"><i class="bi bi-file-earmark-pdf me-1"></i> 14. Guía rápida de HTML (PDF)</a>
-                <a href="./16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> 15. Ejercicios prácticos</a>
-                <a href="./16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary py-2"><i class="bi bi-pencil-square me-1"></i> Ejercicios resueltos</a>
-                <a href="./17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">16. Proyecto final</a>
-                <a href="./18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary py-2">17. Bibliografía</a>
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de HTML</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-journal-text text-primary"></i> 00. Introducción a HTML
+                </a>
+                <a href="01_organizacion.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-folder2-open text-primary"></i> 01. Organización de un sitio
+                </a>
+                <a href="02_etiquetasbasicas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-filetype-html text-primary"></i> 02. Etiquetas básicas
+                </a>
+                <a href="03_estructura.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary d-flex align-items-center gap-2 py-2 rounded-2 fw-semibold">
+                    <i class="bi bi-check-circle-fill"></i> 03. Estructura del texto
+                </a>
+                <a href="04_formato.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-fonts text-primary"></i> 04. Formato del texto
+                </a>
+                <a href="05_hipervinculos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-link-45deg text-primary"></i> 05. Hipervínculos
+                </a>
+                <a href="06_multimedia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-image text-primary"></i> 06. Multimedia y fotos
+                </a>
+                <a href="07_listas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-list-ol text-primary"></i> 07. Listas (ol, ul, dl)
+                </a>
+                <a href="08_tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-table text-primary"></i> 08. Tablas
+                </a>
+                <a href="09_marcos.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-window-stack text-primary"></i> 09. Marcos e iframes
+                </a>
+                <a href="10_capas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-layers text-primary"></i> 10. Capas y contenedores
+                </a>
+                <a href="11_formularios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-ui-checks text-primary"></i> 11. Formularios
+                </a>
+                <a href="12_extras.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-stars text-primary"></i> 12. Elementos extras
+                </a>
+                <a href="13_xhtml_html5.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-patch-check text-primary"></i> 13. XHTML y HTML5
+                </a>
+                <a href="16_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-warning border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-pencil-square"></i> 16. Ejercicios Prácticos
+                </a>
+                <a href="16_ejercicios_resueltos.html" class="list-group-item list-group-item-action bg-transparent text-success border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-check2-circle"></i> 16. Ejercicios Resueltos
+                </a>
+                <a href="17_proyecto.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-kanban text-primary"></i> 17. Proyecto Integrador
+                </a>
+                <a href="18_bibliografia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2">
+                    <i class="bi bi-bookmarks text-primary"></i> 18. Bibliografía y Enlaces
+                </a>
             </div>
 
             <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
             <div class="d-flex flex-column gap-1 small">
-                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-primary me-2"></i> Módulo CSS</a>
                 <a href="../../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
                 <a href="../../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
                 <a href="../../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
@@ -126,152 +160,184 @@
             </ol>
         </nav>
 
-        <!-- Cabecera del Tema -->
-        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary border-start border-4 border-primary">
-            <div class="row align-items-center gy-3">
-                <div class="col-lg-8">
-                    <div class="d-flex flex-wrap gap-2 mb-2">
-                        <span class="badge bg-primary text-white">Lección 03</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+        <!-- Tarjeta de Contenido Educativo -->
+        <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 1: HTML</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Semántica de Texto</span>
+            </div>
+
+            <h1 class="fw-bold mb-3 display-6">03. Estructura del Texto y Flujo de Documento</h1>
+            <p class="lead text-secondary mb-4">
+                El texto es el componente esencial de la Web. En HTML, el texto no se diseña arbitrariamente, sino que se dota de significado y estructura semántica para que navegadores, motores de búsqueda y lectores de pantalla lo comprendan y presenten adecuadamente.
+            </p>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">1. Elementos de bloque frente a elementos de línea</h3>
+            <p>
+                Todos los elementos visuales de HTML pertenecen fundamentalmente a dos categorías de comportamiento en el flujo normal de la página:
+            </p>
+
+            <div class="row g-3 my-3">
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-primary">
+                            <i class="bi bi-square-fill fs-5"></i>
+                            <h5 class="fw-bold mb-0">Elementos de Bloque (Block)</h5>
+                        </div>
+                        <ul class="small text-secondary mb-2">
+                            <li>Comienzan siempre en una <strong>nueva línea</strong> (salto de línea implícito antes y después).</li>
+                            <li>Por defecto ocupan el <strong>100% del ancho disponible</strong> en su contenedor padre.</li>
+                            <li>Pueden contener elementos de línea y otros elementos de bloque.</li>
+                            <li><strong>Ejemplos:</strong> <code>&lt;p&gt;</code>, <code>&lt;h1&gt;...&lt;h6&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;ul&gt;</code>, <code>&lt;li&gt;</code>.</li>
+                        </ul>
                     </div>
-                    <h2 class="fw-bold mb-1">03. Estructura del texto</h2>
-                    <p class="text-secondary mb-0 small">
-                        Separación de párrafos, saltos de línea con br, líneas horizontales hr y comentarios en HTML.
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border-0 bg-body-tertiary rounded-3 p-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 text-success">
+                            <i class="bi bi-dash-square-fill fs-5"></i>
+                            <h5 class="fw-bold mb-0">Elementos de Línea (Inline)</h5>
+                        </div>
+                        <ul class="small text-secondary mb-2">
+                            <li>Se posicionan <strong>uno tras otro en la misma línea</strong> de texto, adaptándose al flujo natural de lectura.</li>
+                            <li>Solo ocupan el <strong>ancho estrictamente necesario</strong> para su contenido.</li>
+                            <li>No inician un salto de línea y no deben contener elementos de bloque.</li>
+                            <li><strong>Ejemplos:</strong> <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;code&gt;</code>, <code>&lt;img&gt;</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">2. El colapso de espacios en blanco (Whitespace Collapsing)</h3>
+            <p>
+                Si abres un editor de código y pulsas 5 veces la barra espaciadora o 3 veces la tecla <em>Enter</em> entre dos palabras, observarás que el navegador <strong>colapsa todo ese espacio en un único espacio simple</strong>:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;p&gt;Este         texto        tiene         muchos        espacios
+y varios
+saltos de
+línea en el código.&lt;/p&gt;</code></pre>
+
+            <p class="small text-secondary mb-2"><strong>Resultado en el navegador:</strong></p>
+            <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                <p class="mb-0">Este texto tiene muchos espacios y varios saltos de línea en el código.</p>
+            </div>
+
+            <p>
+                Este comportamiento es una ventaja: permite indentar y tabular el código fuente para que sea legible por programadores sin desconfigurar la apariencia final.
+            </p>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">3. Párrafos con <code>&lt;p&gt;</code></h3>
+            <p>
+                El párrafo es la unidad semántica básica de texto continuo. Se define con la etiqueta <code>&lt;p&gt;...&lt;/p&gt;</code>. Cada párrafo crea automáticamente separación visual respecto al siguiente:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;p&gt;HTML5 ofrece elementos semánticos que dan sentido al contenido.&lt;/p&gt;
+&lt;p&gt;CSS se encarga de la estética visual, colores, espaciados y tipografía.&lt;/p&gt;</code></pre>
+
+            <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                <p>HTML5 ofrece elementos semánticos que dan sentido al contenido.</p>
+                <p class="mb-0">CSS se encarga de la estética visual, colores, espaciados y tipografía.</p>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">4. Texto preformateado: <code>&lt;pre&gt;</code> y <code>&lt;code&gt;</code></h3>
+            <p>
+                Cuando necesites mostrar texto exactamente tal y como está escrito en el archivo (respetando múltiples espacios, tabulaciones y saltos de línea sin colapso), se utiliza la etiqueta <code>&lt;pre&gt;</code>. Si además contiene código fuente, se combina con <code>&lt;code&gt;</code>:
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;pre&gt;&lt;code&gt;function saludar(nombre) {
+    // Los espacios y sangrías se respetan exactamente
+    console.log(&quot;Hola &quot; + nombre);
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+            <div class="p-3 bg-body-tertiary rounded-3 border mb-3 font-monospace">
+<pre class="mb-0"><code>function saludar(nombre) {
+    // Los espacios y sangrías se respetan exactamente
+    console.log("Hola " + nombre);
+}</code></pre>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">5. Saltos de línea forzados: <code>&lt;br&gt;</code></h3>
+            <p>
+                La etiqueta <code>&lt;br&gt;</code> (<em>break</em>) introduce un salto de línea sin iniciar un nuevo párrafo.
+            </p>
+
+            <div class="alert alert-warning border-warning-subtle d-flex align-items-start gap-3 my-3">
+                <i class="bi bi-exclamation-triangle-fill text-warning fs-4 mt-1"></i>
+                <div>
+                    <h6 class="fw-bold mb-1">Regla de oro: ¿Cuándo usar y cuándo NO usar &lt;br&gt;?</h6>
+                    <p class="small mb-0">
+                        <strong>Uso correcto:</strong> En contenidos donde el salto de línea es intrínseco al texto y no representa un párrafo independiente, como estrofas poéticas o direcciones postales.
+                        <br>
+                        <strong>Uso incorrecto:</strong> <strong>Nunca utilices múltiples &lt;br&gt;&lt;br&gt; para crear separación o margen entre elementos.</strong> El espaciado visual es competencia exclusiva de CSS (márgenes y paddings).
                     </p>
                 </div>
-                <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
-                    <a href="../index.html" class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
-                        <i class="bi bi-journal-text"></i> Índice HTML
-                    </a>
-                    <a href="./16_ejercicios.html" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1">
-                        <i class="bi bi-pencil-square"></i> Ejercicios
+            </div>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;p&gt;
+    Calle Mayor, 12, 3º B&lt;br&gt;
+    46002 Valencia&lt;br&gt;
+    España
+&lt;/p&gt;</code></pre>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">6. Jerarquía semántica de encabezados: <code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code></h3>
+            <p>
+                Los encabezados (<em>headings</em>) estructuran la jerarquía lógica del documento en secciones y subsecciones. Hay 6 niveles disponibles, desde <code>&lt;h1&gt;</code> (máxima importancia) hasta <code>&lt;h6&gt;</code> (mínima importancia):
+            </p>
+
+            <div class="p-3 bg-body-tertiary rounded-3 border my-3">
+                <h1 class="fs-2 text-primary">Encabezado de Nivel 1 (&lt;h1&gt;)</h1>
+                <h2 class="fs-3 text-secondary">Encabezado de Nivel 2 (&lt;h2&gt;)</h2>
+                <h3 class="fs-4">Encabezado de Nivel 3 (&lt;h3&gt;)</h3>
+                <h4 class="fs-5">Encabezado de Nivel 4 (&lt;h4&gt;)</h4>
+                <h5 class="fs-6 text-muted">Encabezado de Nivel 5 (&lt;h5&gt;)</h5>
+                <h6 class="fs-6 text-muted fw-normal">Encabezado de Nivel 6 (&lt;h6&gt;)</h6>
+            </div>
+
+            <div class="card border-0 bg-primary-subtle text-primary-emphasis rounded-3 p-3 my-3">
+                <h6 class="fw-bold mb-2"><i class="bi bi-lightbulb-fill me-1"></i> Buenas prácticas de accesibilidad y SEO con encabezados:</h6>
+                <ul class="small mb-0">
+                    <li><strong>Un único &lt;h1&gt; principal por página:</strong> Debe resumir con precisión el tema global del documento.</li>
+                    <li><strong>No saltarse niveles en la jerarquía:</strong> No saltes de un <code>&lt;h1&gt;</code> directamente a un <code>&lt;h3&gt;</code>; desciende de forma ordenada (<code>h1</code> &rarr; <code>h2</code> &rarr; <code>h3</code>).</li>
+                    <li><strong>No usar encabezados para agrandar texto:</strong> Usa encabezados únicamente por su valor estructural. Si quieres texto más grande por motivos visuales, usa clases de CSS (ej. <code>fs-1</code> o <code>font-size</code>), no etiquetas de encabezado.</li>
+                </ul>
+            </div>
+
+            <h3 class="fw-bold text-dark mt-4 mb-3">7. Ruptura temática semántica: <code>&lt;hr&gt;</code></h3>
+            <p>
+                Históricamente, la etiqueta <code>&lt;hr&gt;</code> (<em>horizontal rule</em>) se usaba como una línea divisoria decorativa. En la semántica moderna de HTML5, representa una <strong>ruptura temática entre párrafos</strong> (un cambio de escena en una narración, un cambio de tema o una transición en un artículo):
+            </p>
+
+            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;p&gt;La expedición partió a primera hora de la mañana cruzando el valle.&lt;/p&gt;
+
+&lt;!-- Ruptura temática: cambio temporal o de escena --&gt;
+&lt;hr&gt;
+
+&lt;p&gt;Tres días más tarde, el campamento base divisaba la cumbre.&lt;/p&gt;</code></pre>
+
+            <div class="p-3 bg-body-tertiary rounded-3 border my-3">
+                <p>La expedición partió a primera hora de la mañana cruzando el valle.</p>
+                <hr>
+                <p class="mb-0">Tres días más tarde, el campamento base divisaba la cumbre.</p>
+            </div>
+
+            <!-- Acceso a Ejercicios Prácticos -->
+            <div class="card border-0 bg-warning-subtle text-dark rounded-4 p-4 mt-5">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+                    <div>
+                        <span class="badge bg-warning text-dark border mb-1">Práctica recomendada</span>
+                        <h4 class="fw-bold mb-1">Ejercicio 1: Estructura del texto</h4>
+                        <p class="small mb-0 text-secondary">
+                            Aplica lo aprendido sobre párrafos, encabezados jerárquicos y saltos de línea para maquetar un texto estructurado.
+                        </p>
+                    </div>
+                    <a href="16_ejercicios.html#ej_01" class="btn btn-dark btn-sm text-nowrap d-flex align-items-center gap-2 shadow-sm">
+                        <span>Ir al Ejercicio 1</span>
+                        <i class="bi bi-arrow-right"></i>
                     </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Contenido Didáctico -->
-        <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <p>En HTML disponemos de elementos en bloque y elementos en línea. </p>
-			<p> Un elemento HTML no es lo mismo que una etiqueta HTML ya que está formado por dos etiquetas (una de apertura y otra de cierre), 
-				el texto entre las etiquetas y atributos opcionales </p>
-			<p> De modo que tendremos dos tipos de elementos: </p>
-			<ul>
-				<li><b>Elementos de bloque:</b><br>
-					Son elementos que crean estructuras más grandes que pueden contener a los elementos de línea y a otros elementos de bloque. 
-					Además siempre incorpora un salto de línea antes y después del mismo.
-				</li>
-				<li><b>Elementos de línea</b><br>
-					Estos elementos solo pueden contener datos y a otros elementos de línea. Se colocará a continuación del elemento anterior, 
-					sin introducir ningún salto de línea.
-				</li>
-			</ul>
-			<p> Estos tipos de elementos se diferencian por tanto en la forma en la que ocupan el espacio disponible de la página.</p>
-			
-            <h1>Estructura del texto</h1>
-			
-			<p>El texto es el tipo de contenido más habitual en las páginas web. La correcta estructuración del texto facilitará la lectura de nuestra página por parte de otras personas. En esta sección estudiaremos las etiquetas HTML más importantes para estructurar el texto de una página.</p>
-			
-			<h2>Escribir texto en una página web</h2>
-			
-			<p>Tal como hemos estudiado, el texto que escribamos dentro de las etiquetas &lt;body&gt; &lt;/body&gt; aparecerá en pantalla cuando se cargue la página. No obstante, si hacemos la prueba y escribimos algún texto, observaremos lo siguiente:</p>
-			
-			<ul>
-			    <li>Aunque introduzcamos <b>más de un espacio</b> entre las palabras, sólamente se <b>muestra un único espacio</b> en el navegador.</li>		
-			    <li>Aunque insertemos un <b>salto de línea</b> en el código de la página (tecla <i>Enter</i>), <b>no aparece representado</b> cuando cargamos la página en el navegador.</li>	
-			</ul>
-			
-			<p>Esto se debe a que el lenguaje HTML se creó para estructurar texto. Ello quiere decir que para realizar cualquier cambio en la estructura del texto (introducir una nueva frase mediante punto y aparte, crear un párrafo nuevo,...) habrá que utilizar una <b>etiqueta</b>. A continuación veremos las etiquetas más importantes.</p>
-			<p>Si deseamos insertar un espacio más del normal entre dos palabras es necesario insertar el carácter <b>&amp;nbsp;</b> (no-break space) por cada espacio que queramos añadir</p>
-			
-			<h2>Salto de línea</h2>
-			
-			<p>Cuando se desee insertar un cambio de línea en una página web se utilizará la etiqueta <b>&lt;br&gt;</b>. Esta etiqueta no tiene etiqueta de cierre. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>Este <br>
-texto <br>
-aparece en <br>
-la misma línea. <br><br>
-
-Este <b>&lt;br&gt;</b> texto<b>&lt;br&gt;</b><br>
-aparece <b>&lt;br&gt;</b> en <b>&lt;br&gt;</b><br>
-líneas <b>&lt;br&gt;</b> distintas.</code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-Este texto aparece en la misma línea.<br><br>
-
-Este<br>texto<br>aparece<br>en<br>líneas<br>distintas.</code></pre>
-            
-            <p>Esta etiqueta <b>no debe usarse más que cuando sea necesario</b>. En su lugar se suele agrupar el texto en párrafos, tal como veremos en el siguiente punto.</p>
-			
-			<h2>Párrafos</h2>
-			
-			<p>El párrafo es la estructura más utilizada. Para indicar que un texto pertenece al mismo párrafo, se introduce dentro de las etiquetas <b>&lt;p&gt;</b> <b>&lt;/p&gt;</b>. Cuando el párrafo termina con la etiqueta de cierre, <b>se introduce automáticamente un salto de línea</b>. Por ejemplo, el código siguiente:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Este texto forma parte del párrafo 1.<b>&lt;/p&gt;</b> <b>&lt;p&gt;</b>Este texto 
-forma parte del párrafo 2. Por eso está en otra línea.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-<p>Este texto forma parte del párrafo 1.</p>
-<p>Este texto forma parte del párrafo 2. Por eso está en otra línea.</p></code></pre>
-			<p>Es un elemento de bloque y no puede contener otros elementos de bloque.</p>
-			<p>La etiqueta de cierre es opcional.</p>
-			<p>El navegador se encarga de que la línea de texto ocupe todo el ancho disponible, y si el ancho cambia, el texto se ajusta al nuevo ancho ocupando más o menos líneas</p>
-			<p>Todo texto de un HTML que no sea encabezado, lista o celda de una tabla debe estar dentro de un elemento <b>&lt;p&gt;</b> </p>
-            
-            <h2>Encabezados</h2>
-			
-			<p>Los encabezados son <b>bloques que destacan el texto</b> que contienen. Se utilizan como delimitadores de sección dentro de las páginas web. Existen 6 tipos de encabezado, representados por las etiquetas siguientes (en orden de más a menos importantes):<br>
-			<b>&lt;h1 | h2 | h3 | h4 | h5 | h6&gt;</b>  <br> 
-			Los encabezados son elementos de bloque.<br>
-			Los encabezados van a definir el esquema del documento, por lo tanto, debemos utilizarlas de forma coherente. No tiene sentido tener un &lt;h2&gt; si no tenemos antes un &lt;h1&gt;, por ejemplo.<br>
-			Las etiquetas de cierre son obligatorias <br>
-			Así, el código:</p>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;body&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h1&gt;</b>Encabezado de nivel 1.<b>&lt;/h1&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h2&gt;</b>Encabezado de nivel 2.<b>&lt;/h2&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h3&gt;</b>Encabezado de nivel 3.<b>&lt;/h3&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h4&gt;</b>Encabezado de nivel 4.<b>&lt;/h4&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h5&gt;</b>Encabezado de nivel 5.<b>&lt;/h5&gt;</b><br>
-&nbsp;&nbsp;<b>&lt;h6&gt;</b>Encabezado de nivel 6.<b>&lt;/h6&gt;</b><br>
-<b>&lt;/body&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-<h1>Encabezado de nivel 1.</h1>
-<h2>Encabezado de nivel 2.</h2>
-<h3>Encabezado de nivel 3.</h3>
-<h4>Encabezado de nivel 4.</h4>
-<h5>Encabezado de nivel 5.</h5>
-<h6>Encabezado de nivel 6.</h6></code></pre>
-            
-            <p><b>Los encabezados también introducen un salto de línea al final</b>. El tamaño de la letra y el tipo de destacado dependen del navegador que se utilice. <b>La etiqueta de encabezado no debe utilizarse dentro de una etiqueta de párrafo y viceversa</b>.</p>
-            
-            <h2>Línea horizontal</h2>
-            
-            <p>Es una línea que se suele utilizar de separador. Para ello se utiliza la etiqueta <b>&lt;hr&gt;</b>. Así, el código:</p>
-						
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;p&gt;</b>Un párrafo.<b>&lt;/p&gt;</b><br>
-<b>&lt;hr&gt;</b><br>
-<b>&lt;p&gt;</b>Otro párrafo.<b>&lt;/p&gt;</b></code></pre>
-            
-            <p>Produce el siguiente resultado;</p>
-            
-            <div class="ejemplo">
-<p>Un párrafo.</p>
-<hr>
-<p>Otro párrafo.</p></code></pre>
-            
-            <p>La línea o regla horizontal también introduce un salto de línea al final.</p>
-			
-            <div class="ejercicios">
-                <h2><a href = "16_ejercicios.html#ej_01" >Ejercicio 1:</a></h2>
-            </div>
         </article>
 
         <!-- Navegación entre Temas -->
