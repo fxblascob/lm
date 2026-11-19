@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>17. Ejercicios Resueltos de CSS | CSS | LMSGI</title>
-    <meta name="description" content="Soluciones completas comentadas del boletín de ejercicios prácticos de CSS.">
+    <meta name="description" content="Soluciones comentadas completas del boletín de ejercicios prácticos de CSS con código fuente y descargas.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,10 +28,20 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
+        .exercise-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border-radius: 0.75rem;
+            overflow: hidden;
         }
-        .soluciones {visibility:visible;}
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.08) !important;
+        }
+        .filter-btn.active {
+            background-color: var(--bs-primary);
+            color: #fff;
+            border-color: var(--bs-primary);
+        }
     </style>
 </head>
 <body>
@@ -69,7 +79,6 @@
         </div>
     </header>
 
-    
     <!-- 2. Menú Lateral Offcanvas -->
     <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
         <div class="offcanvas-header border-bottom border-secondary">
@@ -81,23 +90,23 @@
         <div class="offcanvas-body p-3">
             <h6 class="text-uppercase text-secondary small fw-bold mb-2">Temario de CSS</h6>
             <div class="list-group list-group-flush mb-4">
-<a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-palette text-primary"></i> 00. Introducción a CSS</a>
-<a href="01_tipos_hojas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 01. Tipos de hojas de estilo</a>
-<a href="02_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 02. Estructura de documentos CSS</a>
-<a href="03_selectores.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 03. Reglas y Selectores</a>
-<a href="04_criterios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 04. Criterios de selección</a>
-<a href="06_herencia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 06. Herencia y Precedencia</a>
-<a href="07_Ejemplos_Background.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 07. Fondos (Backgrounds)</a>
-<a href="08_Ejemplos_Text.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 08. Tipografía y Texto</a>
-<a href="09_Ejemplos_Links_Tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 09. Enlaces y Tablas</a>
-<a href="10_Ejemplos_Imagenes_bordes.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 10. Imágenes y Bordes</a>
-<a href="11_visual.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 11. Diseño Visual I (Modelo de Cajas)</a>
-<a href="12_flotante.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 12. Diseño Visual II (Flotantes y Posicionamiento)</a>
-<a href="13_Ejemplos_Homepages.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 13. Ejemplos de Homepages</a>
-<a href="15_disenyo_adaptativo2.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 15. Diseño Web Adaptativo (Responsive Design)</a>
-<a href="16_bootstrap.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 16. Framework Bootstrap</a>
-<a href="17_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 17. Ejercicios Prácticos de CSS</a>
-<a href="17_ejercicios_r.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 17. Ejercicios Resueltos de CSS</a>
+                <a href="../index.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-palette text-primary"></i> 00. Introducción a CSS</a>
+                <a href="01_tipos_hojas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 01. Tipos de hojas de estilo</a>
+                <a href="02_estructura.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 02. Estructura de documentos CSS</a>
+                <a href="03_selectores.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 03. Reglas y Selectores</a>
+                <a href="04_criterios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 04. Criterios de selección</a>
+                <a href="06_herencia.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 06. Herencia y Precedencia</a>
+                <a href="07_Ejemplos_Background.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 07. Fondos (Backgrounds)</a>
+                <a href="08_Ejemplos_Text.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 08. Tipografía y Texto</a>
+                <a href="09_Ejemplos_Links_Tablas.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 09. Enlaces y Tablas</a>
+                <a href="10_Ejemplos_Imagenes_bordes.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 10. Imágenes y Bordes</a>
+                <a href="11_visual.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 11. Diseño Visual I (Modelo de Cajas)</a>
+                <a href="12_flotante.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 12. Diseño Visual II (Flotantes y Posicionamiento)</a>
+                <a href="13_Ejemplos_Homepages.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 13. Ejemplos de Homepages</a>
+                <a href="15_disenyo_adaptativo2.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 15. Diseño Web Adaptativo (Responsive Design)</a>
+                <a href="16_bootstrap.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-filetype-css text-primary"></i> 16. Framework Bootstrap</a>
+                <a href="17_ejercicios.html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2"><i class="bi bi-pencil-square text-warning"></i> 17. Ejercicios Prácticos de CSS</a>
+                <a href="17_ejercicios_r.html" class="list-group-item list-group-item-action active bg-primary text-white border-primary fw-semibold d-flex align-items-center gap-2 py-2"><i class="bi bi-check-circle-fill"></i> 17. Ejercicios Resueltos de CSS</a>
             </div>
 
             <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
@@ -116,7 +125,6 @@
         </div>
     </div>
 
-
     <!-- 3. Contenedor Principal Ergonómico -->
     <main class="container-xl my-4 flex-grow-1">
         
@@ -129,284 +137,894 @@
             </ol>
         </nav>
 
-        <!-- Tarjeta de Contenido Educativo -->
+        <!-- Tarjeta de Contenido Educativo Principal -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-success-subtle text-success border border-success-subtle">Soluciones Comentadas</span>
+                <span class="badge bg-warning-subtle text-warning border border-warning-subtle">Código Fuente Descargable</span>
             </div>
 
-            <h1>Ejercicios de aprendizaje</h1>
-                <div class="ejercicios">
-                    <h2 id="ej_01" >Ejercicio_CSS 1  :</h2>
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al primer párrafo utilizando el primero de los métodos descritos. Dicho estilo consistirá en poner el texto de color verde y con tamaño de letra de 15 puntos. El código CSS necesario es el siguiente:</p>
-                    <div class="codigo">
-    <pre>color:green; font-size:15pt;</pre>
-                    </div>
-                    <p>Observa que el formato se aplica sólo al primer párrafo, que es el que tiene la etiqueta <tt>style</tt>. Guarda el archivo con el nombre ejercicio1.html.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/01.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/01.html"> Solución: html</a>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-3 pb-3 mb-4 border-bottom">
+                <div>
+                    <h1 class="display-6 fw-bold mb-1">Ejercicios Resueltos y Explicados</h1>
+                    <p class="text-secondary mb-0">Solucionario completo con explicaciones pedagógicas, bloques de código listos para inspeccionar y enlaces directos a los archivos HTML y CSS resueltos.</p>
                 </div>
-                <div class="ejercicios">
-                    <h2 id="ej_02">Ejercicio_CSS 2:</h2>
-                    <p>Utilizando el documento HTML del ejemplo anterior, manteniendo los cambios realizados en el ejercicio 1, aplica un estilo CSS a todos los párrafos utilizando el segundo de los métodos descritos (hoja de estilo interna). Dicho estilo consistirá en poner el texto de color rojo y con tamaño de letra de 8 puntos. El código CSS necesario es el siguiente:</p>
-                    <div class="codigo">
-                        <pre>
-            p {
-            color:red; <span class="comentarios">/*Color rojo*/</span>
-            font-size:8pt; <span class="comentarios">/*Tamaño de letra 8 puntos*/</span>
-            }</pre>
-                    </div>
-                    
-                    <p>Observa que <b>todos</b> los párrafos del documento se ponen de color rojo con tamaño de letra 8 <b>menos el primero</b>. Esto es porque la hoja de estilos interna aplica los formatos escritos en ella a todos los elementos tipo párrafo (&lt;p&gt;), pero como el primero tiene definido su propio estilo dentro de su misma etiqueta &lt;p&gt;, será ésta última la que tenga más peso. Se puede deducir que los estilos definidos <b>directamente en las etiquetas HTML</b> se aplican <b>por delante</b> de los definidos en la <b>hoja de estilos interna</b>. Guarda el archivo con el nombre ejercicio2.html.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/02.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/02.html"> Solución: html</a>
-                    
+                <a href="17_ejercicios.html" class="btn btn-outline-primary btn-sm d-flex align-items-center gap-2 text-nowrap shadow-sm">
+                    <i class="bi bi-card-text"></i>
+                    <span>Ver Enunciados</span>
+                </a>
+            </div>
+
+        <!-- Barra de Filtros por Categoría -->
+        <div class="card p-3 mb-4 shadow-sm border-0 bg-body-tertiary">
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-funnel-fill text-primary"></i>
+                    <span class="fw-semibold small">Filtrar ejercicios:</span>
                 </div>
+                <div class="d-flex flex-wrap gap-1" id="filterBtnGroup" role="group" aria-label="Filtro de ejercicios">
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn active" data-filter="all">Todos <span class="badge bg-secondary ms-1">17</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="fundamentos">Fundamentos <span class="badge bg-secondary ms-1">1-3</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="selectores">Selectores <span class="badge bg-secondary ms-1">4-7</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="herencia">Herencia <span class="badge bg-secondary ms-1">8</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="maquetacion">Maquetación <span class="badge bg-secondary ms-1">9-12</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="responsive">Responsive <span class="badge bg-secondary ms-1">13-15</span></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary filter-btn" data-filter="bootstrap">Bootstrap <span class="badge bg-secondary ms-1">16-17</span></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 1: Estilos en línea (Atributo style) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_01" data-category="fundamentos">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 1</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Fundamentos</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_01" class="text-decoration-none text-secondary">#ej_01</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Estilos en línea (Atributo style)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Partiendo del documento HTML base, aplica un estilo CSS al primer párrafo utilizando el método de estilo en línea mediante el atributo <code>style</code>. El formato consistirá en asignar color verde y un tamaño de fuente de 15 puntos.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/01.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>&lt;!-- En el archivo ejercicio1.html --&gt;
+&lt;p style=&quot;color: green; font-size: 15pt;&quot;&gt;
+    En un lugar de la Mancha, de cuyo nombre no quiero acordarme...
+&lt;/p&gt;
+&lt;p&gt;
+    No ha mucho tiempo que vivía un hidalgo de los de lanza en astillero...
+&lt;/p&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El atributo <code>style="..."</code> añade estilos directamente al elemento sin necesidad de reglas ni selectores, con la máxima especificidad (1,0,0,0) frente a hojas externas o internas.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_01" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/01.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 2: Hoja de estilo interna (&lt;style&gt; en &lt;head&gt;) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_02" data-category="fundamentos">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 2</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Fundamentos</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_02" class="text-decoration-none text-secondary">#ej_02</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Hoja de estilo interna (&lt;style&gt; en &lt;head&gt;)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Manteniendo el estilo en línea del ejercicio 1 en el primer párrafo, añade una hoja de estilo interna en la cabecera <code>&lt;head&gt;</code> que asigne a todos los párrafos (<code>p</code>) color rojo y tamaño de fuente de 8 puntos.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/02.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Ejercicio 2&lt;/title&gt;
+    &lt;style&gt;
+        p {
+            color: red;
+            font-size: 8pt;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p style=&quot;color: green; font-size: 15pt;&quot;&gt;Primer párrafo (prevalece style en línea)&lt;/p&gt;
+    &lt;p&gt;Segundo párrafo (aplica estilo de la hoja interna)&lt;/p&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> La regla de tipo <code>p</code> tiene especificidad (0,0,0,1), por lo que es superada por el estilo en línea (1,0,0,0) del primer párrafo.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_02" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
                 
-                <div class="ejercicios">
-                    <h2 id="ej_03">Ejercicio_CSS 3:</h2>
-    
-                    <p>Por último, crea un nuevo archivo de texto llamado &quot;estilos.css&quot; y escribe en él el siguiente código css:</p>
-                    
-                    <div class="codigo">
-                        <pre>
-            p { 
-            color:blue; <span class="comentarios">/*Color azul*/</span>
-            text-indent:2em; <span class="comentarios">/*Sangría de dos caracteres*/</span>
-            text-align:right; <span class="comentarios">/*Alineado a la derecha*/</span>
-            }</pre>
-                    </div>
-                    
-                    <p>A continuación, guarda el archivo y sitúalo en la misma carpeta que los ejercicios anteriores. Después, abre el ejercicio 2 y guárdalo con el nombre <b>ejercicio3.html</b>. Modifícalo para que utilice la hoja de estilos externa tal y como se explica en el método 3.</p>
-    
-                    <p>Observa qué ocurre si incluyes la hoja de estilos externa <b>antes</b> que la hoja interna y viceversa.</p>
-                    
-                    <p>Se puede deducir que los estilos se aplican <b>siguiendo el orden en que estén situados en el documento HTML</b>. Además, si se indica en dos sitios distintos un estilo que afecte al mismo elemento, <b>prevalecerá el último estilo aplicado</b>.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/03.png"> Resultado final cargando primero la hoja externa</a>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/03_2.png"> Resultado final cargando primero la hoja interna</a>
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.css"> css</a>
-                    </p>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/02.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 3: Hoja de estilo externa y orden de cascada -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_03" data-category="fundamentos">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-primary fs-6">Ejercicio 3</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Fundamentos</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
                 </div>
-                <div class="ejercicios">
-                    <h2 id="ej_04">Ejercicio_CSS 4:</h2>
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al cuarto párrafo utilizando un identificador. Dicho estilo consistirá en poner el texto de color verde y con tamaño de letra de 15 puntos. El código CSS necesario es el siguiente:</p>
-                   
-                    <div class="codigo">
-                        <pre>
-            color: green; 
-            font-size: 15pt;    
-                        </pre>
-                    </div>
-                    
-                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio4.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio4.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/04.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/04.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/04.css"> css</a>
-                   
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_03" class="text-decoration-none text-secondary">#ej_03</a>
                 </div>
-                <div class="ejercicios">
-                    <h2 id="ej_05">Ejercicio_CSS 5:</h2>
-    
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS a los párrafos impares utilizando una clase. Dicho estilo consistirá en poner el texto de color azul y con tamaño de letra de 7 puntos. El código CSS necesario es el siguiente:</p>
-                    
-                    <div class="codigo">
-                        <pre>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Hoja de estilo externa y orden de cascada</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crea un archivo externo llamado <code>estilos.css</code> con reglas para los párrafos (color azul, sangría de 2em y alineación derecha). Guarda una copia del ejercicio anterior como <code>ejercicio3.html</code> y vincula la hoja externa. Comprueba qué ocurre al enlazar la hoja externa antes o después de la hoja interna.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/03.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo 03.css */
+p { 
+    color: blue;
+    text-indent: 2em;
+    text-align: right;
+}
+
+&lt;!-- En 03.html: Si cargamos externa antes de style --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;03.css&quot;&gt;
+&lt;style&gt;
+    p { color: red; font-size: 8pt; }
+&lt;/style&gt;
+&lt;!-- Prevalece color: red porque la etiqueta &lt;style&gt; va después --&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El algoritmo de cascada resuelve conflictos de igual especificidad priorizando la última declaración en el orden de origen.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_03" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/03.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Externa primero, interna después</a> <a href="../ejercicios/resueltos/aprendizaje/resultado/03_2.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Interna primero, externa después</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 4: Selector de Identificador (#id) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_04" data-category="selectores">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">Ejercicio 4</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Selectores CSS</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_04" class="text-decoration-none text-secondary">#ej_04</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Selector de Identificador (#id)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Partiendo de <code>codigo_html_base.html</code>, aplica un estilo CSS al cuarto párrafo utilizando un identificador (<code>id="p4"</code>). El estilo debe asignar color verde y un tamaño de letra de 15 puntos. Almacena las reglas en una hoja externa <code>ejercicio4.css</code> enlazada a <code>ejercicio4.html</code>.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/04.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/04.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo ejercicio4.css */
+#p4 {
+    color: green; 
+    font-size: 15pt;   
+}
+
+&lt;!-- En ejercicio4.html --&gt;
+&lt;p id=&quot;p4&quot;&gt;Este es el cuarto párrafo con id=&quot;p4&quot;...&lt;/p&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Un selector de ID tiene un peso de especificidad elevado (0,1,0,0), superando a cualquier selector de clase o etiqueta.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_04" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/04.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 5: Selector de Clase y Selección de Elementos Impares -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_05" data-category="selectores">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">Ejercicio 5</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Selectores CSS</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_05" class="text-decoration-none text-secondary">#ej_05</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Selector de Clase y Selección de Elementos Impares</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Partiendo de <code>codigo_html_base.html</code>, aplica un estilo a los párrafos impares del documento. El estilo asignará color azul y tamaño de fuente de 7 puntos. Puedes resolverlo mediante una clase (<code>class="impar"</code>) o utilizando la pseudoclase estructural <code>:nth-child(odd)</code> en una hoja externa <code>ejercicio5.css</code>.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/05.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/05.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo 05.css */
+p:nth-child(odd) {
     color: blue; 
-    font-size: 7pt;    </pre>
-                    </div>
-                    
-                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio5.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio5.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/05.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/05.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/05.css"> css</a>
-                </div>
-                <div class="ejercicios">
-                    <h2  id="ej_06">Ejercicio_CSS 6:</h2>
-    
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS a los enlaces que aparezcan en el documento. Los enlaces normales deberán ser rojos (red), los visitados verdes (green), los activos amarillo (yellow) y los que tengan el ratón encima azules (blue).</p>
-                    
-                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio6.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio6.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/06.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/06.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/06.css"> css</a>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_07">Ejercicio_CSS 7:</h2>
-    
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS para que la primera letra de cada párrafo tenga tamaño 18 puntos y la primera letra de cada encabezado h3 tenga un tamaño de 22 puntos.</p>
-                    
-                    <p>Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio7.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio7.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/07.png"> Resultado final</a>
-                    <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/07.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/07.css"> css</a>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_08">Ejercicio_CSS 8:</h2>
-    
-                    <p>Partiendo del documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a>, aplica un estilo CSS al cuerpo de la página que ponga el color de la letra en rojo (red) y cree un borde sólido de 3 píxeles. Para ello crea una hoja de estilo externa llamada <tt>&quot;ejercicio8.css&quot;</tt> donde se almacene el código css y modifica el archivo HTML cambiándole el nombre por <tt>&quot;ejercicio8.html&quot;</tt> y haciendo que utilice la hoja de estilo que acabas de crear.</p>
-                    <p>Observa que los párrafos heredan el color de letra pero no los bordes.</p>
-                    <p>A continuación, añade el siguiente código para editar el estilo de los párrafos:</p>
-                    <div class="codigo">
-                        <pre>
-            p {
-            border: inherit; 
-            }
-                        </pre>
-                    </div>
-                        <p>Observa que ahora sí que aparece un borde alrededor de cada párrafo. Esto es porque la propiedad <i>border</i>, que no se hereda, se ha definido para que sea heredable mediante la palabra <i>inherit</i>.</p>
-                        <p><a href="../ejercicios/resueltos/aprendizaje/resultado/08.png"> Resultado final</a>
-                        <p class="soluciones"><a href="../ejercicios/resueltos/aprendizaje/soluciones/08.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/08.css"> css</a>
-                </div>
+    font-size: 7pt;    
+}
 
-                <div class="ejercicios">
-                    <h2 id="ej_09">Ejercicio_CSS 9:</h2>
-    
-                    <p>Guarda el documento HTML que puedes encontrar <a href="./codigo_html_base.html">aquí</a> con el nombre de <tt>&quot;ejercicio9.html&quot;</tt>. Modifícalo añadiendo dos capas: la primera (<i>capa1</i>) almacenerá la tercera parte (aproximadamente) del código HTML, y la otra (<i>capa2</i>) el resto.</p>
-                    
-                    <p>A continuación, crea cuatro hojas de estilo externas llamadas: <tt>&quot;ejercicio9a.css&quot;</tt>, <tt>&quot;ejercicio9b.css&quot;</tt>, <tt>&quot;ejercicio9c.css&quot;</tt> y <tt>&quot;ejercicio9d.css&quot;</tt>. Añade los estilos necesarios para que se cumpla lo siguiente:</p>
-                    
-                    <ul>
-                        <li><b>9a</b> - La primera capa esté flotando a la derecha.</li>
-                        <li><b>9b</b> - La primera capa esté flotando a la izquierda.</li>
-                        <li><b>9c</b> - Las dos capas estén flotando (una a la izquierda y otra a la derecha).</li>
-                        <li><b>9d</b> - La primera capa esté flotando a la izquierda y la segunda tenga la propiedad <tt>clear:both</tt>.</li>
-                    </ul>
-                    <p> <a href="../ejercicios/resueltos/aprendizaje/resultado/09a.png"> Resultado 09a </a> -
-                    <p class="soluciones">  
-                        solución 09a: 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.html"> html </a> -
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.css"> css </a>
-                    <p> 
-                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09b.png"> Resultado 09b </a> -
-                    <p class="soluciones">
-                        solución 09b: 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.html"> html </a> -
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.css"> css </a>
-                    <p> 
-                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09c.png"> Resultado 09c </a> -
-                    <p class="soluciones">
-                        solución 09c: 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.html"> html </a> -
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.css"> css </a>
-                    <p> 
-                    <a href="../ejercicios/resueltos/aprendizaje/resultado/09d.png"> Resultado 09d </a> -
-                    <p class="soluciones">
-                        solución 09d: 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.html"> html </a> -
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.css"> css </a>
-                    </p>
-                    
+/* O mediante clases HTML: */
+.impar {
+    color: blue;
+    font-size: 7pt;
+}</code></pre>
                 </div>
-                
-                <div class="ejercicios">
-                    <h2 id="ej_10">Ejercicio_CSS 10:</h2>
-    
-                    <p>Visita la página <a href="http://www.w3schools.com/css/tryit.asp?filename=trycss_float6">http://www.w3schools.com/css/tryit.asp?filename=trycss_float6</a>. Observa cómo construir un esquema de página de sitio web utilizando la propiedad <tt>float</tt> y <tt>clear</tt>. En la parte de la izquierda tienes el código fuente y en la derecha el resultado.</p>
-                    
-                    <p>Contesta a las siguientes preguntas y guárdalas en un archivo con nombre <tt>&quot;ejercicio10.txt&quot;</tt>:</p>
-                    
-                    <ol>
-                        <li>¿Cuántas capas se utilizan en el código HTML? Indica sus nombres. ¿Se utilizan clases o identificadores?</li>
-                        <li>¿Se utiliza una hoja de estilos interna o externa? ¿Por qué?</li>
-                        <li>¿Cómo consiguen dividir el centro de la página en dos partes, una a la izquierda de la otra?</li>
-                    </ol>
-                    <p>
-                        
-                    </p>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_11">Ejercicio_CSS 11:</h2>
-    
-                    <p>Crea una página web,  parecida a la del enlace de abajo
-                    <p>Utiliza capas o contenedores de css3-html5 para posicionar los elementos</p>
-                    <p>La imagen la puedes sacar de <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/pirata.png"> aquí </a>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/11.png"> Resultado final</a>
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.css"> css</a>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_12">Ejercicio_CSS 12:</h2>
-    
-                    <p>Une todos lo ejercicios que has realizado utilizando un menú, parecido al del enlace de abajo</a>  </p>
-                    <p>Utiliza capas o contenedores para posicionar los elementos y listas sin orden para los menús</p>
-                    <p>Las imágenes las puedes sacar de aquí: 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/img_tree.png"> arbol </a> y 
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/logo.png"> logo </a>
-                    </p>
-                    <p><a href="../ejercicios/resueltos/aprendizaje/resultado/12.png"> Resultado final</a>
-                        <p class="soluciones">
-                            <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.html"> Solución: html</a>
-                            
-                            <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.css"> css</a>
-                        </p>
-                </div>
-                <div class="ejercicios" style="display:none;">
-                    <h2 id="ej_13">Ejercicio_CSS 13:</h2>
-    
-                    <p>Desarrollo de un sitio web adaptativo utilizando media queries de forma que permita visualizar la página en varias resoluciones 
-                         según aparece aquí: <a href="../ejercicios/resueltos/aprendizaje/resultado/13.png"> Resultado final</a></p>
-                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo_html.html">aquí</a>
-                    
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.html"> Solución: html</a>
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.css"> Solución css</a>
-                    </p>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_14">Ejercicio_CSS 14:</h2>
-                    <p>Crea un documento CSS donde, ayudándote de media queries, definas tres posibles disposiciones:<a href="../ejercicios/resueltos/aprendizaje/resultado/14_media_queries_grid.pdf"> Resultado final</a>
-                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">aquí</a>
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid.html"> Solución: html + css</a>
-                    </p>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_15">Ejercicio_CSS 15:</h2>
-                    <p>Crea un documento CSS donde, ayudándote de flexbox definas estas posibles disposiciones:<a href="../ejercicios/resueltos/aprendizaje/resultado/15_flexbox.pdf"> Resultado final</a>
-                    <p>Podeis sacar el código HTML de <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">aquí</a>
-                    
-                    <ul>
-                        <li>Las dos cajas centrales que ocupen el doble de tamaño que las laterales. Las laterales van a tener un color de fondo gris y las centrales amarillo-naranja.
-                        <li>Las cajas laterales tengan una anchura mínima de 200px, y las centrales de 300px. Cuando esto no sea posible, se redistribuirán
-                    </ul>
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/15_flexbox.html"> Solución: html + css</a>
-                    </p>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_16">Ejercicio_CSS 16:</h2>
-                    <p>
-                        Descarga <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html">este ejemplo </a>que ya hemos utilizado en secciones anteriores. Añade una hoja propia estilos.css simplemente para dar un color de fondo a las cajas. Ahora vamos a utilizar la rejilla de Bootstrap para que:
-                    </p>
-                    <ul>
-                        <li>Las cuatro cajas se muestren una junto a otra en dispositivos tamaño lg o superior </li>
-                        <li>Las cajas se muestren de dos en dos en tamaño sm o superior                   </li>
-                        <li>Las cajas se muestren una bajo la otra en dispositivos más pequeños                        </li>
-                    </ul>
-                    <p>Define un margen entre las cajas para separarlas, y asigna a cada caja una anchura en celdas apropiada para su contenido, a tu gusto.
-                   
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/16_bootstrap.html"> Solución: html + css</a>
-                    </p>
-                </div>
-                <div class="ejercicios">
-                    <h2 id="ej_17">Ejercicio_CSS 17:</h2>
-                    <p>
-                        Descarga <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios_html.html">este formulario</a> y aplícale 
-                        los estilos facilitados por Bootstrap para poderlo visualizar de este modo:<br>
-                        <img width="800" src="../ejercicios/resueltos/aprendizaje/resultado/17_ejercicio_bootstrap_formulario.png">
-                    </p>
-                   
-                    <p class="soluciones">
-                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios.html"> Solución: html + css</a>
-                    </p>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El selector de clase tiene especificidad (0,0,1,0), idéntica a la pseudoclase <code>:nth-child()</code>.
                 </div>
             </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_05" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/05.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 6: Pseudoclases de Enlace (:link, :visited, :hover, :active) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_06" data-category="selectores">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">Ejercicio 6</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Selectores CSS</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_06" class="text-decoration-none text-secondary">#ej_06</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Pseudoclases de Enlace (:link, :visited, :hover, :active)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Aplica estilos en <code>ejercicio6.css</code> a todos los hipervínculos del documento base siguiendo la regla mnemotécnica LVHA: enlaces no visitados en rojo (<code>red</code>), visitados en verde (<code>green</code>), al situar el ratón encima en azul (<code>blue</code>) y en el instante de hacer clic en amarillo (<code>yellow</code>).</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/06.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/06.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo 06.css */
+a:link    { color: red; }    /* Enlace no visitado */
+a:visited { color: green; }  /* Enlace ya visitado */
+a:hover   { color: blue; }   /* Cursor encima del enlace */
+a:active  { color: yellow; } /* Al seleccionar/hacer clic */
+a:focus   { color: brown; }  /* Navegación por teclado */</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Añadir <code>:focus</code> garantiza accesibilidad para usuarios que navegan mediante tabulación de teclado.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_06" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/06.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 7: Pseudoelemento ::first-letter (Letra Capital) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_07" data-category="selectores">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-success fs-6">Ejercicio 7</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Selectores CSS</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_07" class="text-decoration-none text-secondary">#ej_07</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Pseudoelemento ::first-letter (Letra Capital)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Aplica estilos en <code>ejercicio7.css</code> para crear letras capitulares tipográficas: la primera letra de cada párrafo debe tener un tamaño de 18 puntos, y la primera letra de cada encabezado <code>&lt;h3&gt;</code> debe tener un tamaño de 22 puntos.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/07.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/07.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo 07.css */
+h3::first-letter { 
+    font-size: 22pt;
+}
+p::first-letter {
+    font-size: 18pt;
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Las propiedades aplicables a <code>::first-letter</code> están acotadas a tipografía, color, fondos, márgenes y flotación (como <code>float: left</code> para letras capitulares encajadas).
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_07" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/07.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 8: Herencia y forzado con inherit -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_08" data-category="herencia">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-warning fs-6">Ejercicio 8</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Herencia y Cascada</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_08" class="text-decoration-none text-secondary">#ej_08</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Herencia y forzado con inherit</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Aplica al elemento <code>body</code> letra de color rojo y un borde sólido de 3px en <code>ejercicio8.css</code>. Observa que los párrafos heredan el color pero no el borde. A continuación, añade la regla <code>border: inherit;</code> a los párrafos para forzar la herencia del borde.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/08.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/08.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Archivo 08.css */
+body {
+    color: red;
+    border-style: solid;
+    border-width: 3px;
+    border-color: red;
+}
+p {
+    border: inherit;
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El valor <code>inherit</code> computa el valor de la propiedad del padre directo y lo aplica al elemento hijo.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_08" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/08.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 9: Maquetación clásica con flotantes (float y clear) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_09" data-category="maquetacion">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-info fs-6">Ejercicio 9</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Maquetación Clásica</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_09" class="text-decoration-none text-secondary">#ej_09</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Maquetación clásica con flotantes (float y clear)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Guarda el HTML base como <code>ejercicio9.html</code> agrupando el contenido en dos capas contenedoras (<code>#capa1</code> y <code>#capa2</code>). Elabora cuatro hojas externas (<code>ejercicio9a.css</code> a <code>9d.css</code>) comprobando las combinaciones de flotación: 9a (Capa 1 flotando a la derecha), 9b (Capa 1 flotando a la izquierda), 9c (Ambas capas flotando a izquierda y derecha), y 9d (Capa 1 a la izquierda y Capa 2 con <code>clear: both</code>).</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> 09a (HTML)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09a.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> 09a (CSS)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> 09b (HTML)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09b.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> 09b (CSS)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> 09c (HTML)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09c.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> 09c (CSS)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> 09d (HTML)</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/09d.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> 09d (CSS)</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* 09c.css: Columnas enfrentadas */
+#capa1 { float: left; width: 48%; background-color: yellow; }
+#capa2 { float: right; width: 48%; background-color: grey; }
+
+/* 09d.css: Segunda capa despejando flotación */
+#capa1 { float: left; width: 50%; background-color: yellow; }
+#capa2 { clear: both; background-color: grey; }</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Los elementos con <code>float</code> salen del flujo normal del documento. Las cajas no flotadas adyacentes fluyen alrededor de su caja límite.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_09" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> codigo_html_base.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/09a.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado 09a</a> <a href="../ejercicios/resueltos/aprendizaje/resultado/09b.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado 09b</a> <a href="../ejercicios/resueltos/aprendizaje/resultado/09c.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado 09c</a> <a href="../ejercicios/resueltos/aprendizaje/resultado/09d.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado 09d</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 10: Análisis de esquema web con float y clear -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_10" data-category="maquetacion">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-info fs-6">Ejercicio 10</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Maquetación Clásica</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_10" class="text-decoration-none text-secondary">#ej_10</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Análisis de esquema web con float y clear</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Analiza la arquitectura clásica de un sitio web con cabecera, dos columnas adyacentes y pie de página. Responde a las tres preguntas técnicas en un documento <code>ejercicio10.txt</code>:<ol class="mb-0 mt-2"><li>¿Cuántas capas se emplean en el HTML, cuáles son sus nombres y si usan clases o identificadores?</li><li>¿Qué tipo de hoja de estilos se emplea y qué ventajas ofrece para pruebas?</li><li>¿Qué mecanismo CSS permite que las columnas se coloquen lado a lado y qué propiedad evita que el pie de página se solape?</li></ol></p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/10.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/10_nuevo.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Versión moderna (HTML)</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Respuestas modelo para ejercicio10.txt */
+1. Se utilizan 4 capas principales: header, nav, section y footer, identificadas habitualmente por clases (.header, .nav, .section, .footer) o IDs (#header, #nav...).
+2. Se suele usar hoja interna para ejemplos autocontenidos didácticos, aunque en producción es preferible externa por mantenibilidad.
+3. Se colocan una junto a otra con float: left (con anchos complementarios, ej. 25% y 75%), y el pie de página utiliza clear: both para no solaparse.</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Hoy en día, este patrón se resuelve con Flexbox o CSS Grid sin necesidad de <code>clear: both</code> ni desbordamientos.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_10" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/10.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 11: Maquetación estructurada: Portal 'El Rincón del Pirata' -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_11" data-category="maquetacion">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-info fs-6">Ejercicio 11</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Maquetación Clásica</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_11" class="text-decoration-none text-secondary">#ej_11</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Maquetación estructurada: Portal 'El Rincón del Pirata'</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Construye una página web completa estructurada en contenedores semánticos (cabecera, menú lateral, zona de contenido principal y pie de página). Aplica fondos de color, tipografía estilizada, bordes redondeados y posiciona adecuadamente la imagen temática facilitada.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/11.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Extracto de 11.css */
+body {
+    background-color: #d1e0e0;
+    font-family: Arial, sans-serif;
+}
+#contenedor {
+    width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    border: 1px solid #79a6d2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+#menu { float: left; width: 220px; padding: 15px; }
+#contenido { margin-left: 250px; padding: 20px; }</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El aislamiento de columnas mediante margen compensado o flotación asegura que el contenido no invada la zona de la barra lateral.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_11" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/pirata.png" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> Imagen pirata.png</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/11.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 12: Portal integrador de ejercicios con barra de navegación -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_12" data-category="maquetacion">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-info fs-6">Ejercicio 12</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Maquetación Clásica</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_12" class="text-decoration-none text-secondary">#ej_12</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Portal integrador de ejercicios con barra de navegación</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Crea una página de índice o portal integrador que reúna y enlace todos los ejercicios realizados en la unidad. La interfaz debe incluir una cabecera con imágenes decorativas (<code>logo.png</code> y <code>img_tree.png</code>), un menú de navegación estilizado a partir de listas <code>&lt;ul&gt;</code> y una zona de bienvenida.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/12.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Menú de navegación en 12.css */
+ul.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+}
+ul.menu li a {
+    display: block;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+ul.menu li a:hover {
+    background-color: #111;
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Convertir los hipervínculos en elementos de bloque expande su área clicable ergonómica a todo el ancho del contenedor.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_12" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/img/logo.png" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> Imágenes: logo.png e img_tree.png</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/12.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 13: Diseño web adaptativo con Media Queries -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_13" data-category="responsive">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-secondary fs-6">Ejercicio 13</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Responsive y Grid</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_13" class="text-decoration-none text-secondary">#ej_13</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Diseño web adaptativo con Media Queries</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Partiendo de la plantilla HTML proporcionada, implementa una hoja de estilo adaptativa con reglas <code>@media</code> que restructure el layout según el ancho del dispositivo: disposición a una sola columna en pantallas móviles estrechas y dos columnas en pantallas de escritorio medianas y grandes.</p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución HTML</a> <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo.css" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-css"></i> Solución CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* Extracto de 13_adaptativo.css */
+@media screen and (max-width: 600px) {
+    .columna {
+        width: 100%;
+        float: none;
+    }
+}
+@media screen and (min-width: 601px) {
+    .lateral { width: 30%; float: left; }
+    .principal { width: 70%; float: left; }
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Siempre debe incluirse el meta tag <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> para que el navegador móvil no aplique zoom de escritorio automático.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_13" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/13_adaptativo_html.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> 13_adaptativo_html.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/13.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado en diferentes viewports</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 14: Reorganización de cajas con Media Queries y CSS Grid -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_14" data-category="responsive">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-secondary fs-6">Ejercicio 14</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Responsive y Grid</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_14" class="text-decoration-none text-secondary">#ej_14</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Reorganización de cajas con Media Queries y CSS Grid</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Utilizando las cuatro cajas del documento base proporcionado, elabora una hoja de estilo con Media Queries o CSS Grid que configure tres disposiciones visuales según la anchura de la ventana:<ul class="mb-0 mt-2"><li><strong>Móvil (&lt; 600px):</strong> 1 columna apilada verticalmente.</li><li><strong>Tablet (600px - 992px):</strong> Rejilla 2x2 equilibrada.</li><li><strong>Escritorio (&gt; 992px):</strong> Las cuatro cajas alineadas en horizontal o en distribución asimétrica.</li></ul></p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución completa HTML+CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* 14_media_queries_grid.html */
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    .caja { width: 48%; float: left; margin: 1%; }
+}
+@media screen and (min-width: 901px) {
+    .caja { width: 23%; float: left; margin: 1%; }
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Modernizado con CSS Grid: <code>grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));</code> logra el mismo resultado de forma 100% fluida.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_14" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> 14_media_queries_grid_html.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/14_media_queries_grid.pdf" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Especificación y Resultado PDF</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 15: Distribución flexible con Flexbox (flex-grow y flex-wrap) -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_15" data-category="responsive">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-secondary fs-6">Ejercicio 15</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Responsive y Grid</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_15" class="text-decoration-none text-secondary">#ej_15</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Distribución flexible con Flexbox (flex-grow y flex-wrap)</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Con el mismo documento base de 4 cajas, implementa un contenedor Flexbox (<code>display: flex; flex-wrap: wrap;</code>) que satisfaga estas condiciones:<ul class="mb-0 mt-2"><li>Las dos cajas centrales ocupan el doble de tamaño que las laterales (proporción <code>flex-grow: 2</code> frente a <code>flex-grow: 1</code>).</li><li>Cajas laterales con fondo gris y centrales amarillo-anaranjado.</li><li>Anchura mínima de 200px para las laterales y 300px para las centrales (<code>flex-basis</code> o <code>min-width</code>) para forzar su redistribución fluida en pantallas pequeñas.</li></ul></p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/15_flexbox.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución completa HTML+CSS</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>/* 15_flexbox.html */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.lateral {
+    flex: 1 1 200px;
+    background-color: #e0e0e0;
+}
+.central {
+    flex: 2 1 300px;
+    background-color: #ffd166;
+}</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> La notación abreviada <code>flex: [grow] [shrink] [basis]</code> condensa los tres factores de dimensionamiento flexible en una sola declaración.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_15" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> 14_media_queries_grid_html.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/15_flexbox.pdf" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Especificación y Resultado PDF</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 16: Maquetación adaptativa con el sistema de rejilla de Bootstrap 5 -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_16" data-category="bootstrap">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-danger fs-6">Ejercicio 16</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Framework Bootstrap</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_16" class="text-decoration-none text-secondary">#ej_16</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Maquetación adaptativa con el sistema de rejilla de Bootstrap 5</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Partiendo del documento de 4 cajas, elimina los estilos manuales de posición y aplica las clases de rejilla de 12 columnas de Bootstrap 5 (<code>container</code>, <code>row</code>, <code>col-*</code>) cumpliendo:<ul class="mb-0 mt-2"><li>En pantallas grandes (<code>lg</code> o superior &ge; 992px): las 4 cajas en una sola fila (3 columnas cada una: <code>col-lg-3</code>).</li><li>En pantallas medianas (<code>sm</code> y <code>md</code> &ge; 576px): las cajas agrupadas de 2 en 2 (6 columnas cada una: <code>col-sm-6</code>).</li><li>En pantallas móviles (&lt; 576px): cada caja ocupa el ancho completo (<code>col-12</code>).</li><li>Separación uniforme con gutters (<code>g-3</code>).</li></ul></p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/16_bootstrap.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución interactiva Bootstrap</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>&lt;!-- Solución con Bootstrap 5.3 --&gt;
+&lt;div class=&quot;container my-4&quot;&gt;
+    &lt;div class=&quot;row g-3&quot;&gt;
+        &lt;div class=&quot;col-12 col-sm-6 col-lg-3&quot;&gt;
+            &lt;div class=&quot;p-4 bg-info-subtle border rounded shadow-sm text-center&quot;&gt;Caja 1&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-12 col-sm-6 col-lg-3&quot;&gt;
+            &lt;div class=&quot;p-4 bg-warning-subtle border rounded shadow-sm text-center&quot;&gt;Caja 2&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-12 col-sm-6 col-lg-3&quot;&gt;
+            &lt;div class=&quot;p-4 bg-success-subtle border rounded shadow-sm text-center&quot;&gt;Caja 3&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;col-12 col-sm-6 col-lg-3&quot;&gt;
+            &lt;div class=&quot;p-4 bg-danger-subtle border rounded shadow-sm text-center&quot;&gt;Caja 4&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> Con Bootstrap no es necesario escribir Media Queries manuales para orquestar la disposición en columnas entre dispositivos.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_16" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/14_media_queries_grid_html.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> 14_media_queries_grid_html.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/16_bootstrap.html" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Demostración Interactiva</a>
+            </div>
+        </div>
+
+        <!-- Ejercicio Resuelto 17: Diseño ergonómico de formularios con componentes Bootstrap 5 -->
+        <div class="card exercise-card mb-4 shadow-sm border border-success-subtle" id="ej_17" data-category="bootstrap">
+            <div class="card-header bg-body-tertiary d-flex flex-wrap justify-content-between align-items-center gap-2 py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="badge bg-danger fs-6">Ejercicio 17</span>
+                    <span class="badge bg-secondary-subtle text-secondary border">Framework Bootstrap</span>
+                    <span class="badge bg-success text-white"><i class="bi bi-check-lg me-1"></i> Resuelto</span>
+                </div>
+                <div class="small text-muted font-monospace">
+                    <a href="#ej_17" class="text-decoration-none text-secondary">#ej_17</a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h4 class="card-title fw-bold mb-3 text-success-emphasis">Diseño ergonómico de formularios con componentes Bootstrap 5</h4>
+                <p class="card-text text-secondary-emphasis lead fs-6">Descarga la plantilla de formulario HTML sin estilizar y aplícale las clases semánticas de Bootstrap 5 para crear una interfaz limpia y ergonómica:<ul class="mb-0 mt-2"><li>Campos de texto, email y contraseña con <code>form-control</code> y sus etiquetas correspondientes con <code>form-label</code>.</li><li>Agrupaciones de formulario con rejilla <code>row g-3</code>.</li><li>Checkboxes y radios con <code>form-check</code> e <code>form-check-input</code>.</li><li>Selectores estilizados con <code>form-select</code>.</li><li>Botones de acción claros con <code>btn btn-primary</code>.</li></ul></p>
+            <!-- Caja de Solución Comentada -->
+            <div class="card bg-success-subtle border-success-subtle p-3 mt-3">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom border-success-subtle">
+                    <span class="fw-bold text-success-emphasis d-flex align-items-center gap-1">
+                        <i class="bi bi-check-circle-fill"></i> Solución Implementada:
+                    </span>
+                    <div class="d-flex flex-wrap gap-1">
+                        <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios.html" target="_blank" class="btn btn-sm btn-success d-inline-flex align-items-center gap-1 shadow-sm"><i class="bi bi-filetype-html"></i> Solución interactiva formulario</a>
+                    </div>
+                </div>
+                <div class="bg-dark text-light p-3 rounded-3 my-2">
+                    <pre class="mb-0 text-light font-monospace small"><code>&lt;!-- Formulario estilizado con Bootstrap 5 --&gt;
+&lt;form class=&quot;row g-3&quot;&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;
+        &lt;label for=&quot;inputEmail&quot; class=&quot;form-label&quot;&gt;Email&lt;/label&gt;
+        &lt;input type=&quot;email&quot; class=&quot;form-control&quot; id=&quot;inputEmail&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-md-6&quot;&gt;
+        &lt;label for=&quot;inputPassword&quot; class=&quot;form-label&quot;&gt;Contraseña&lt;/label&gt;
+        &lt;input type=&quot;password&quot; class=&quot;form-control&quot; id=&quot;inputPassword&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;div class=&quot;form-check&quot;&gt;
+            &lt;input class=&quot;form-check-input&quot; type=&quot;checkbox&quot; id=&quot;gridCheck&quot;&gt;
+            &lt;label class=&quot;form-check-label&quot; for=&quot;gridCheck&quot;&gt;Acepto los términos&lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;col-12&quot;&gt;
+        &lt;button type=&quot;submit&quot; class=&quot;btn btn-primary px-4 shadow-sm&quot;&gt;Registrarse&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+                <div class="small text-success-emphasis mt-1">
+                    <i class="bi bi-lightbulb-fill text-warning me-1"></i> <strong>Explicación:</strong> El uso de <code>form-label</code> y <code>for="..."</code> enlazado al <code>id="..."</code> del control garantiza máxima accesibilidad (a11y) y una amplia zona táctil en pantallas móviles.
+                </div>
+            </div>
+            </div>
+            <div class="card-footer bg-light-subtle d-flex flex-wrap align-items-center gap-2 py-3 border-top">
+                <a href="17_ejercicios.html#ej_17" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-card-text"></i> Enunciado</a>
+                <a href="../ejercicios/resueltos/aprendizaje/soluciones/17_bootstrap_formularios_html.html" target="_blank" class="btn btn-sm btn-outline-primary d-inline-flex align-items-center gap-1"><i class="bi bi-file-earmark-code"></i> 17_bootstrap_formularios_html.html</a>
+                <a href="../ejercicios/resueltos/aprendizaje/resultado/17_ejercicio_bootstrap_formulario.png" target="_blank" class="btn btn-sm btn-outline-secondary d-inline-flex align-items-center gap-1"><i class="bi bi-image"></i> Resultado esperado</a>
+            </div>
+        </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -415,8 +1033,8 @@
                 <i class="bi bi-arrow-left"></i>
                 <span><strong>Anterior:</strong> 17. Ejercicios Prácticos</span>
             </a>
-            <a href="../../xml/index.html" class="btn btn-warning text-dark btn-sm d-flex align-items-center gap-2 shadow-sm">
-                <span><strong>Siguiente:</strong> Siguiente Módulo: XML</span>
+            <a href="../../xml/index.html" class="btn btn-warning text-dark btn-sm d-flex align-items-center gap-2 shadow-sm fw-medium">
+                <span><strong>Siguiente Módulo:</strong> XML</span>
                 <i class="bi bi-arrow-right"></i>
             </a>
         </nav>
@@ -438,7 +1056,29 @@
 
     <!-- Bootstrap 5.3 JS Bundle (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
 
+    <!-- Script de Filtro Ergonómico -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('#filterBtnGroup .filter-btn');
+            const cards = document.querySelectorAll('.exercise-card');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    buttons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.getAttribute('data-filter');
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.classList.remove('d-none');
+                        } else {
+                            card.classList.add('d-none');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>
