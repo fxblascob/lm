@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10. Agrupación de elementos. Capas | HTML | LMSGI</title>
-    <meta name="description" content="Elementos de bloque y en línea: div y span para agrupar y estructurar el diseño web.">
+    <title>10. Agrupación, Capas y Semántica HTML5 | LMSGI</title>
+    <meta name="description" content="Estructuración de documentos web: id y class, contenedores div y span, evolución de las capas clásicas hacia la semántica estructural HTML5 (header, nav, main, section, article, aside, footer).">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,18 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
+        .exercise-card {
+            border-left: 4px solid #ffc107;
+            background-color: #fffdf5;
+        }
+        .wireframe-box {
+            border: 2px dashed #6c757d;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -122,7 +133,7 @@
             <ol class="breadcrumb mb-0 small">
                 <li class="breadcrumb-item"><a href="../../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
                 <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none">HTML</a></li>
-                <li class="breadcrumb-item active" aria-current="page">10. Agrupación de elementos. Capas</li>
+                <li class="breadcrumb-item active" aria-current="page">10. Agrupación y Capas</li>
             </ol>
         </nav>
 
@@ -132,11 +143,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 10</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5 Semántico</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">Arquitectura & Maquetación</span>
                     </div>
-                    <h2 class="fw-bold mb-1">10. Agrupación de elementos. Capas</h2>
+                    <h2 class="fw-bold mb-1">10. Agrupación, Capas y Semántica HTML5</h2>
                     <p class="text-secondary mb-0 small">
-                        Elementos de bloque y en línea: div y span para agrupar y estructurar el diseño web.
+                        Identificación con <code>id</code> y <code>class</code>, contenedores genéricos (<code>&lt;div&gt;</code> y <code>&lt;span&gt;</code>) y la evolución desde las "capas clásicas" hacia las etiquetas semánticas estructurales de HTML5.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,153 +164,313 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <h2>Identificación de elementos: atributos <i>id</i> y <i>class</i></h2>
-            <p>Para identificar a cada elemento por separado, es necesario asignarle un nombre para poder hacer referencia a él. Esto se consigue mediante los atributos <i>id</i> y <i>class</i>. Estos atributos se pueden utilizar con cualquier etiqueta HTML</p>
             
-            <p>El atributo <b>id</b> permite asignar a una etiqueta HTML un <b>nombre o identificador</b> que ha de ser <b>único</b> dentro del documento. Así pues, no puede haber dos elementos HTML con el mismo identificador.</p>
-            
-            <p>El atributo <b>class</b> permite asignar a una etiqueta HTML un <b>nombre de clase</b>. <b>Puede haber más de un elemento HTML que pertenezca a la misma clase</b>. Además, un elemento HTML puede pertenecer a varias clases (se colocarían varios atributos <i>class</i>).</p>
+            <!-- Sección 1: id vs class -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-tag-fill text-primary"></i> 1. Identificación de elementos: Atributos <code>id</code> y <code>class</code>
+                </h3>
+                <p>
+                    Para que las hojas de estilo (CSS) y los scripts (JavaScript) puedan localizar, estilizar o manipular elementos específicos del documento, HTML proporciona dos atributos universales:
+                </p>
 
-			<h2>Agrupación de elementos: Etiquetas <i>&lt;div&gt;</i> y <i>&lt;span&gt;</i></h2>
-			
-			<h3>&lt;div&gt;</h3>	
-			<p>Sirve para agrupar varios elementos dentro de un bloque y de esta forma asignarle nombre, clase y estilo.</p>
-			<p>Es un elemento de bloque por lo que puede contener elementos en linea y otros elementos de bloque incluyendo otro elemento &lt;div&gt;.</p>
+                <div class="row g-4 my-3">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-primary shadow-sm">
+                            <div class="card-header bg-primary text-white fw-bold d-flex align-items-center gap-2">
+                                <i class="bi bi-fingerprint"></i> El atributo <code>id</code> (Identificador Único)
+                            </div>
+                            <div class="card-body small">
+                                <ul class="mb-3">
+                                    <li>Asigna un nombre que debe ser <strong>estrictamente único</strong> dentro de todo el documento HTML (no pueden existir dos elementos con el mismo <code>id</code>).</li>
+                                    <li>Permite crear destinos de hipervínculos ancla (p. ej. <code>&lt;a href="#contacto"&gt;</code> enlaza con <code>&lt;section id="contacto"&gt;</code>).</li>
+                                    <li>Es la vía más rápida para seleccionar un elemento en JavaScript: <code>document.getElementById("miElemento")</code>.</li>
+                                    <li>Asocia etiquetas con campos en formularios mediante <code>&lt;label for="email"&gt;</code> e <code>&lt;input id="email"&gt;</code>.</li>
+                                </ul>
+                                <pre class="bg-dark text-light p-2 rounded mb-0 overflow-auto"><code>&lt;!-- id: único e irrepetible --&gt;
+&lt;main id="contenido-principal"&gt;...&lt;/main&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
 
-			<h3>&lt;span&gt;</h3>	
-			<p>Sirve para identificar un elemento en línea y de esta forma asignarle nombre, clase y estilo.</p>
-			<p>Con &lt;span&gt; podmos cambiar entre otros el tamaño de la fuente, el color, el alto de línea, la posición del texto dentro de la línea, etc..</p>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-success shadow-sm">
+                            <div class="card-header bg-success text-white fw-bold d-flex align-items-center gap-2">
+                                <i class="bi bi-collection"></i> El atributo <code>class</code> (Clasificador Reutilizable)
+                            </div>
+                            <div class="card-body small">
+                                <ul class="mb-3">
+                                    <li>Asigna una categoría o clase que puede ser <strong>compartida por múltiples elementos</strong> del documento.</li>
+                                    <li>Un mismo elemento puede pertenecer a <strong>múltiples clases simultáneamente</strong>, separando sus nombres con un espacio.</li>
+                                    <li>Es la base fundamental del diseño web modular y de frameworks como Bootstrap (p. ej. <code>class="btn btn-primary shadow-sm"</code>).</li>
+                                    <li>En CSS se selecciona con un punto (<code>.tarjeta</code>) y en JavaScript con <code>querySelectorAll(".tarjeta")</code>.</li>
+                                </ul>
+                                <pre class="bg-dark text-light p-2 rounded mb-0 overflow-auto"><code>&lt;!-- class: reutilizable y combinable --&gt;
+&lt;button class="btn btn-primary rounded-pill"&gt;Enviar&lt;/button&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Sección 2: Contenedores Neutros (div y span) -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-box-seam text-primary"></i> 2. Contenedores genéricos: &lt;div&gt; y &lt;span&gt;
+                </h3>
+                <p>
+                    Cuando necesitamos agrupar elementos exclusivamente para aplicarles estilos visuales, crear cuadrículas con CSS (Flexbox o Grid) o manipularlos con JavaScript, pero ningún elemento semántico representa su significado, recurrimos a los <strong>contenedores genéricos neutros</strong>:
+                </p>
 
-            <h1>Capas</h1>
-            
-            <p>En el diseño actual de páginas web, se utiliza un mecanismo para estructurar la información de los documentos: las <b>capas</b>.</p>
-            
-            <p>Una capa HTML es simplemente una <b>agrupación de código HTML</b> dentro de una etiqueta <b><i>&lt;div&gt; &lt;/div&gt</i></b>. De esta manera se separa el contenido de la página en secciones independientes que podrán ser tratadas independientemente mediante hojas de estilo (que se verán en el siguiente tema).</p>
-			
-			<h2>Estructura de una página mediante capas</h2>
-			
-			<p>A la hora de diseñar una página mediante capas, se suele seguir un esquema como el que se propone a continuación (se indica sólo el código correspondiente al cuerpo de la página):</p>	
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-<b>&lt;body&gt;</b>
+                <div class="table-responsive my-3">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 15%;">Etiqueta</th>
+                                <th style="width: 25%;">Tipo de elemento</th>
+                                <th>Comportamiento y Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>&lt;div&gt;</code></td>
+                                <td>Elemento de bloque (<em>block</em>)</td>
+                                <td>
+                                    Genera un salto de línea antes y después, ocupando por defecto todo el ancho disponible. Sirve para envolver grandes conjuntos de elementos (párrafos, títulos, listas) y crear cajas maquetadas con bordes, rellenos o fondos.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>&lt;span&gt;</code></td>
+                                <td>Elemento en línea (<em>inline</em>)</td>
+                                <td>
+                                    Fluye dentro del texto normal sin provocar saltos de línea, ocupando únicamente el espacio de su contenido. Se emplea para aplicar estilos tipográficos específicos (color, tamaño, negrita) a una palabra o frase concreta dentro de un párrafo.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-  <b>&lt;div id=&quot;contenedor&quot;&gt;</b>
+                <div class="row g-4 my-3">
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-primary mb-2">Ejemplo de código:</h6>
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!-- &lt;div&gt; agrupa un bloque visual completo --&gt;
+&lt;div class="p-3 bg-light border rounded"&gt;
+    &lt;h4&gt;Aviso Importante&lt;/h4&gt;
+    &lt;p&gt;
+        El examen final será el 
+        &lt;!-- &lt;span&gt; estiliza un fragmento en línea --&gt;
+        &lt;span class="badge bg-danger"&gt;25 de junio&lt;/span&gt; 
+        a primera hora.
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-secondary mb-2">Resultado en el navegador:</h6>
+                        <div class="p-3 bg-body-tertiary rounded-3 border h-100 d-flex flex-column justify-content-center">
+                            <div class="p-3 bg-white border rounded shadow-sm">
+                                <h4 class="h5 fw-bold text-dark mb-2">Aviso Importante</h4>
+                                <p class="mb-0 small text-secondary">
+                                    El examen final será el 
+                                    <span class="badge bg-danger">25 de junio</span> 
+                                    a primera hora.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 3: El Modelo Tradicional de Capas (HTML 4) -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-layers-half text-primary"></i> 3. El modelo histórico de "Capas" (HTML 4) y Prácticas del Curso
+                </h3>
+                <p>
+                    A mediados de los años 2000, para superar la antigua maquetación con tablas, se popularizó el diseño web basado en <strong>capas</strong>: se dividía la página en bloques <code>&lt;div&gt;</code> con identificadores que representaban las partes de la web.
+                </p>
+
+                <p>El esquema tradicional enseñado en las prácticas de la asignatura sigue esta estructura:</p>
+
+                <div class="row g-4 align-items-center my-3">
+                    <div class="col-lg-6">
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;body&gt;
+  &lt;!-- Capa contenedora general --&gt;
+  &lt;div id="contenedor"&gt;
   
-    <b>&lt;div id=&quot;cabecera&quot;&gt;</b>
-      ...
-      Contenido de la cabecera (título de la página,...)
-      ...
-    <b>&lt;/div&gt;</b>
-  
-    <b>&lt;div id=&quot;indice&quot;&gt;</b>
-      ...
-      Contenido del índice (enlaces a otras páginas, etc.)
-      ...
-    <b>&lt;/div&gt;</b>
-  
-    <b>&lt;div id=&quot;cuerpo&quot;&gt;</b>
-    ...
-      Contenido del cuerpo de la página 
-      (información principal: texto, imágenes,...)
-    ...
-    <b>&lt;/div&gt;</b>
-  
-    <b>&lt;div id=&quot;pie&quot;&gt;</b>
-      ...
-      Contenido del pie de la página (fecha, autor, copyright,...)
-      ...
-    <b>&lt;/div&gt;</b>
+    &lt;!-- Capa superior: cabecera y título --&gt;
+    &lt;div id="cabecera"&gt;
+      &lt;h1&gt;Título del Sitio Web&lt;/h1&gt;
+    &lt;/div&gt;
     
-  <b>&lt;/div&gt;</b>
-  
-<b>&lt;/body&gt;</b>
-					</code></pre>
-            
-            <p>Como puede observarse, en primer lugar se define una capa llamada <i>contenedor</i>, que almacena todo el código HTML de la página. A continuación, se crean varias capas que albergarán los datos relacionados con la cabecera, índice, cuerpo y pie de la página.</p>
-            
-            <p>Por supuesto, este esquema es flexible y puede variarse.</p>
-<!--
-			<h3>&lt;div&gt;</h3>
-<p>Sirve para agrupar varios elementos ddentro de un bloque y de esta forma asignarle nombre, clase y estilo.</p>
-<p>Es un elemento de bloque por lo que puede contener elementos en linea y otros elementos de bloque incluyendo tro eemento &lt;div&gt;.</p>
--->
-<h3>Ejemplo</h3>
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;!--Primer bloque llamado cabecera --&gt;
-<b>
-&lt;div id="cabecera" style="background-color:#D5EDB3" align="center"&gt;
- </b>
- &lt;h2&gt;LAS CAPAS&lt;/h2&gt;
- <b>
- &lt;p&gt;&lt;span style="font-size:14pt; font-style:italic"&gt;El Nuevo Diseño de Webs&lt;/span&gt;&lt;/p&gt;
-</b>
- &lt;/div&gt;
+    &lt;!-- Capa de navegación: menú e índice --&gt;
+    &lt;div id="indice"&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Inicio&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Ejercicios&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Capa principal: contenido del documento --&gt;
+    &lt;div id="cuerpo"&gt;
+      &lt;p&gt;Contenido principal de la página...&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;!-- Capa inferior: pie de página --&gt;
+    &lt;div id="pie"&gt;
+      &lt;p&gt;&amp;copy; 2026 - Departamento de Informática&lt;/p&gt;
+    &lt;/div&gt;
+    
+  &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <div class="p-3 bg-light rounded-3 border">
+                            <img src="../imagenes/capas.png" alt="Esquema clásico de capas con contenedor, cabecera, índice, cuerpo y pie" class="img-fluid rounded shadow-sm">
+                            <p class="small text-muted mt-2 mb-0">Figura 1. Esquema estructural del Ejercicio 20 (capas clásicas).</p>
+                        </div>
+                    </div>
+                </div>
 
-&lt;!--Segundo bloque llamado contenido --&gt;
-<b>
-&lt;div id="contenido" style="background-color:#EE3" align="left"&gt;
-</b>  
-  &lt;p&gt;Las Capas tienen muchas ventajas
-	   a la hora de diseñar páginas webs.
-	   &lt;br&gt;
-    Características:
-  &lt;ul&gt;
-   &lt;li&gt;Permiten estructurar los documentos&lt;/li&gt;
-   &lt;li&gt;Es más sencilo su mantenimiento&lt;/li&gt;
-   &lt;li&gt;Permiten definir estilos&lt;/li&gt;
-  &lt;/ul&gt;
- &lt;/p&gt;
-&lt;/div&gt;
+                <!-- Callouts a Ejercicios 19 y 20 -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-folder-fill text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 19: Estructuración con capas</h5>
+                            <p class="small text-secondary mb-3">Reorganización de los ejercicios del 1 al 10 aplicando las capas <code>contenedor</code>, <code>cabecera</code>, <code>indice</code>, <code>cuerpo</code> y <code>pie</code>.</p>
+                            <a href="./16_ejercicios.html#ej_19" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 19
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-bounding-box text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 20: Esqueleto visual de cajas</h5>
+                            <p class="small text-secondary mb-3">Creación de la plantilla base de capas aplicando bordes visuales y márgenes mediante CSS para verificar la estructura.</p>
+                            <a href="./16_ejercicios.html#ej_20" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 20
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
- &lt;div id="pie" style="background-color:#CCC" align="right"&gt;
- &lt;p&gt;Esto es un aviso. &lt;br&gt;
-    que se pone en el pie &lt;br&gt;
- &lt;/p&gt;
- &lt;div&gt;
-</code></pre>
+            <!-- Sección 4: La Revolución Semántica de HTML5 -->
+            <section class="mb-4">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-patch-check-fill text-success"></i> 4. La Revolución Semántica de HTML5: Superando la "Divitis"
+                </h3>
+                
+                <div class="alert alert-info py-3 px-3 small border-start border-4 border-info mb-4">
+                    <h6 class="fw-bold text-dark mb-1"><i class="bi bi-lightbulb-fill text-info me-1"></i> El problema de la "Divitis" (Div Soup):</h6>
+                    <p class="mb-0">
+                        En páginas construidas solo con <code>&lt;div&gt;</code>, el navegador, Google y los lectores de pantalla veían un documento plano sin significado. Cada desarrollador nombraba sus capas como quería (<code>id="cabecera"</code>, <code>id="header"</code>, <code>id="top"</code>, <code>id="banner"</code>). Para resolver esta anarquía, <strong>HTML5 introdujo etiquetas semánticas con significado estandarizado universal</strong>.
+                    </p>
+                </div>
 
-<p>Se vería así:</P>
-<!--Primer bloque llamado cabecera -->
-<div id="cabecera" style="background-color:#D5EDB3" align="center">
-	<h2>LAS CAPAS</h2>
-	<p><span style="font-size:16pt; font-style:italic">El Nuevo Diseño de Webs</span></p>
-	</div>
+                <div class="text-center my-4 p-3 bg-light rounded-3 border">
+                    <img src="../imagenes/Layout_HTML5.jpg" alt="Mapa estructural de HTML5: header, nav, main, section, article, aside y footer" class="img-fluid rounded shadow-sm" style="max-height: 420px;">
+                    <p class="small text-muted mt-2 mb-0">Figura 2. Anatomía semántica de un sitio web moderno en HTML5.</p>
+                </div>
 
-<!--Segundo bloque llamado contenido -->
-	<div id="contenido" style="background-color:#EE3" align="left">
-	<p>Las Capas tienen muchas ventajas 
-	   a la hora de diseñar páginas webs.  
-	   <br>
-	   Características:
-	   <ul>
-		<li>Permiten estructurar los documentos </li>
-		<li>Es más sencilo su mantenimiento</li>
-		<li>Permiten definir estilos</li>
-	   </ul>
-	</p></code></pre>
-	<div id="pie_2" style="background-color:#CCC" align="right">
- 	<p>Esto es un aviso. <br>
-	   que se pone en el pie<br>
-	</p></code></pre>
+                <!-- Tabla de equivalencias -->
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 25%;">HTML 4 (Clásico)</th>
+                                <th style="width: 25%;">HTML5 (Semántico Estándar)</th>
+                                <th>Significado y Función en la Arquitectura Web</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>&lt;div id="cabecera"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;header&gt;</code></td>
+                                <td>Cabecera introductoria del sitio o de una sección (contiene logotipo, títulos principales y buscador).</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div id="menu"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;nav&gt;</code></td>
+                                <td>Contenedor de enlaces de navegación principal del sitio web.</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div id="cuerpo"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;main&gt;</code></td>
+                                <td><strong>Contenido principal y único del documento.</strong> Solo puede existir un único <code>&lt;main&gt;</code> activo por página.</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div class="seccion"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;section&gt;</code></td>
+                                <td>Sección temática genérica dentro de un documento. Casi siempre debe comenzar con un encabezado (<code>&lt;h2&gt;</code> o <code>&lt;h3&gt;</code>).</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div class="articulo"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;article&gt;</code></td>
+                                <td>Pieza de contenido autocontenida que tiene sentido por sí misma (noticias, entradas de blog, posts, fichas de producto).</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div id="lateral"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;aside&gt;</code></td>
+                                <td>Contenido tangencial o complementario (barra lateral, enlaces relacionados, publicidad, biografías breves).</td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;div id="pie"&gt;</code></td>
+                                <td class="fw-bold text-success"><code>&lt;footer&gt;</code></td>
+                                <td>Pie de página o de una sección (copyright, datos de contacto, enlaces legales y redes sociales).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-<h3>Propiedades de las capas</h3>
-<p>Algunas propiedades de estas capas son:</p>
-<ul>
-<li>left, right, top y position, para definir la posición en pantalla</li>
-<li>width y height, para el ancho y alto</li>
-<li>z-index. Para ordenar el solapamiento.</li>
-<li>visibility. Para mostrar u ocultar.</li>
-<li>background-color, etc...</li>
-<li>Estas propiedades hay que definirlas a través de hojas de estilo.</li>
-</ul>
+                <div class="p-3 bg-body-tertiary rounded-3 border">
+                    <h6 class="fw-bold text-success mb-2">Esqueleto Semántico Moderno en HTML5:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Portal Web Semántico&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
 
-            <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_19">Ejercicio 19:</a></h2></code></pre>
-            
-            <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_20">Ejercicio 20:</a></h2>
-            </div>
+    &lt;header&gt;
+        &lt;h1&gt;Lenguajes de Marcas&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;HTML5&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;CSS3&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Introducción al Desarrollo Web Moderno&lt;/h2&gt;
+            &lt;p&gt;Aprender las bases de la semántica garantiza páginas accesibles y optimizadas.&lt;/p&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+
+    &lt;aside&gt;
+        &lt;h3&gt;Recursos Recomendados&lt;/h3&gt;
+        &lt;p&gt;Enlaces a la documentación oficial de MDN y W3C.&lt;/p&gt;
+    &lt;/aside&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&amp;copy; 2026 - Departamento de Informática&lt;/p&gt;
+    &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
