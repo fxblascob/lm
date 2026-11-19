@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12. Extras. Multimedia | HTML | LMSGI</title>
-    <meta name="description" content="Audio y vídeo nativo en HTML5, incrustación de objetos y metadatos.">
+    <title>12. Extras: Multimedia y Componentes HTML5 | LMSGI</title>
+    <meta name="description" content="Multimedia nativa en HTML5 (video, audio, track), incrustación de PDF con object, favicons modernos, redirecciones y nuevos componentes interactivos (details, summary, dialog, progress, meter, time).">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,14 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
+        .exercise-card {
+            border-left: 4px solid #ffc107;
+            background-color: #fffdf5;
+        }
+        details summary {
+            cursor: pointer;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
@@ -132,11 +139,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 12</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5 Semántico</span>
+                        <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Multimedia Nativa & WCAG</span>
                     </div>
-                    <h2 class="fw-bold mb-1">12. Extras. Multimedia</h2>
+                    <h2 class="fw-bold mb-1">12. Extras: Multimedia Nativa y Componentes HTML5</h2>
                     <p class="text-secondary mb-0 small">
-                        Audio y vídeo nativo en HTML5, incrustación de objetos y metadatos.
+                        Vídeo (<code>&lt;video&gt;</code>) y audio (<code>&lt;audio&gt;</code>) nativos sin plugins, subtítulos con <code>&lt;track&gt;</code>, favicons modernos, PDFs con <code>&lt;object&gt;</code>, redirecciones y nuevos elementos interactivos (<code>&lt;details&gt;</code>, <code>&lt;dialog&gt;</code>, <code>&lt;progress&gt;</code>).
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,166 +160,336 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <h2>Icono en la barra de navegación del explorador</h2>
-				
-				<p>Para añadir un icono que se muestre en la barra de navegación del navegador, se utiliza la siguiente etiqueta, que deberá incluirse en la <b>cabecera</b> de la página web:</p>
-				
-				<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;link rel=&quot;shortcut icon&quot; href=&quot;</b><i>nombre_icono.ico</i><b>&quot;&gt;</b></code></pre>
-				
-				<p>Hay que sustituir <i>nombre_icono.ico</i> por la ruta al archivo que contenga el icono que se pretenda incorporar. Este archivo deberá tener la <b>extensión <i>.ico</i></b>.
-				Normalmente un archivo de 12x12 o 60x60.			
-				Puedes encontrar un enlace a una web con gran variedad de iconos para descargar en la sección de bibliografía.</p>
-				
-				<p>El aspecto de la barra de navegación será el siguiente:</p>
-				
-				<div class="text-center p-3 my-4 bg-body-tertiary rounded-4 border">
-					<img src="../imagenes/icono_barra.png" alt="Icono en barra de navegación"></code></pre>
-				
-				<p>En los sitios web únicamente es necesario incorporar esa etiqueta a la <b>página principal</b> del sitio para que se muestre en todas las demás.</p>
-				
-				<div class="ejercicios">
-					<h2><a href="16_ejercicios.html#ej_23">Ejercicio 23:</a></h2></code></pre>
-				
-				<h2>Redirección automática a otra página</h2>
-				
-				<p>Para que una página se redirija automáticamente a otra, hay que introducir la siguiente etiqueta en la <b>cabecera</b> del documento HTML:</p>
-				
-				<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;meta http-equiv=&quot;refresh&quot; content=&quot;</b><i>numero_de_segundos</i><b>;url=</b><i>web_de_destino</i><b>&quot;&gt;</b></code></pre>
-				
-				<p>Hay que sustituir <i>numero_de_segundos</i> por el número de segundos que tardará en producirse la redirección (si se pone el valor 0, la redirección se producirá en cuanto se cargue la página) y <i>web_de_destino</i> por la dirección web que se cargará cuando se agote el tiempo. </p>
-				
-				<div class="ejercicios">
-					<h2><a href="16_ejercicios.html#ej_24">Ejercicio 24:</a></h2></code></pre>
-				
-			
-					
-		
-			<h2>Objetos Multimedia</h2>
-			<p>Actualmente la idea de muchos creadores es ir retirando Flash y aprovechar las nuevas capacidades de HTML 5 para la multimedia.</p>
-			<p><b>Problema Multimedia</b></p>
-			<p>El problema es que hay numerosos formatos de video y audio y que cada navegador tiene capacidades distintas al respecto.  
-	Por ello muchos usuarios conocedores de estos problemas saben que en los ordenadores hay que instalar plugins (extensiones) para poder ver videos u oir música.
-	El navegador buscará si disponemos del plugin apropiado para ver el vídeo, si no es así simplemente lo descargará en nuestro ordenador al no poder mostrar el contenido. 
-	</p>
-			<h3>&lt;video&gt; y &lt;audio&gt;</h3>
-			
-			<p>Atributos:</p>
-	<ul>
-	<li><b>src</b>: URL del vídeo a reproducir</li>
-	<li><b>poster</b>: para visualizar una imagen mientras no está disponible el vídeo</li>
-	<li><b>autoplay</b>: booleano que indica la reproducción automática del vídeo</li>
-	<li><b>loop</b>: booleano que indica la repetición automática del vídeo</li>
-	<li><b>controls</b>: booleano que indica al navegador que incorpore controles de usuario</li>
-	</ul>
-	<p>Los formatos de video a utilizar más habituales son: ogg, mp4, matroska (mkv,mka,mks)
-	y audio ogg, mp3, etc.</p>
-			
-			<p>
-			<b>Codecs. Elemento source</b><br/>
-	Se denomina codec (de codificar, decodificar), al software que se usa para crear los videos. Un video actual usa un formato comprimido de datos, por lo que para crearlos se codifican los datos y para mostrarlo, se decodifica. 
-	Eso significa que para ver un video en un formato concreto, se necesita el codec apropiado. Para más inri, cada navegador incorpora unos codecs. HTML 5 ha conseguido subsanar la situación, mediante la etiqueta <b>source</b>. 
-	La idea es que el video se codifica en varios formatos distintos y luego les hacemos referencia dentro de la etiqueta video y el navegador usará el formato que sea capaz de traducir (del que disponga de codecs). 
-	El elemento <b>source</b> fundamentalmente dispone de dos atributos: <b>src</b> para indicar la URL que nos lleva al video y <b>type</b> que indica el tipo MIME del video. Además dentro del tipo MIME se pueden indicar los 
-	codecs concretos que necesitamos para decodificar el video. 
-	<br/>La idea es la siguiente: 
+            
+            <!-- Sección 1: La Era Post-Flash: Multimedia Nativa en HTML5 -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-play-circle-fill text-danger"></i> 1. Multimedia Nativa en HTML5: &lt;video&gt; y &lt;audio&gt;
+                </h3>
+                
+                <div class="alert alert-secondary py-3 px-3 small border-start border-4 border-secondary mb-4">
+                    <h6 class="fw-bold text-dark mb-1"><i class="bi bi-info-circle-fill text-secondary me-1"></i> El fin de Adobe Flash y los plugins propietarios:</h6>
+                    <p class="mb-0">
+                        Antiguamente, para reproducir vídeo o música en una web era obligatorio instalar extensiones de terceros como Adobe Flash Player, QuickTime o Silverlight. Esto provocaba constantes agujeros de seguridad, alto consumo de batería y caídas del navegador. <strong>Adobe Flash quedó oficialmente extinto en 2020.</strong> En la actualidad, <strong>HTML5 reproduce vídeo y sonido de forma 100% nativa</strong> mediante los elementos estándar <code>&lt;video&gt;</code> y <code>&lt;audio&gt;</code>.
+                    </p>
+                </div>
 
-	<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;video autoplay="autoplay" controls="controls" poster="foto1.jpg"&gt;
-    &lt;source src="video.mp4" type="video/mp4;codecs='avc1.42E01E, mp40a.40.2' " /&gt;
-    &lt;source src="video.ogv" type="video/ogg;codecs='theora, vorbis' " /&gt;
-    El navegador no puede mostrar el vídeo
-&lt;/video> 
-</pre>
-	</div>
-	Dentro de type, el uso de codecs es opcional, ya que si el navegador no reconoce el formato no suele hacer caso a los codecs que se indiquen (aunque a veces les descarga). 
-	La idea es que si el primer formato no se reconoce (primer elemento source), se intenta el segundo y así sucesivamente. Si ninguno es reproducible por el navegador actual, 
-	éste mostrará la frase final tras el último source. 
-			</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;video autoplay="autoplay" controls="controls"&gt;
-	&lt;source src="video.mp4" type="video/mp4"/&gt;
-	El navegador no puede mostrar el vídeo
+                <!-- El elemento <video> -->
+                <h5 class="fw-bold text-dark mt-4 mb-2">A. El elemento &lt;video&gt;</h5>
+                <p class="small">
+                    Permite incrustar clips de vídeo directamente en la página. Sus atributos principales son:
+                </p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle small mb-3">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Atributo</th>
+                                <th style="width: 20%;">Tipo</th>
+                                <th>Función y Buenas Prácticas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>controls</code></td>
+                                <td>Booleano</td>
+                                <td><strong>Indispensable.</strong> Muestra la interfaz de reproducción nativa (play/pausa, barra de tiempo, volumen, pantalla completa).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>poster</code></td>
+                                <td>URL de imagen</td>
+                                <td>Imagen de portada o miniatura mostrada mientras el vídeo no se ha iniciado o está descargándose.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>muted</code></td>
+                                <td>Booleano</td>
+                                <td>Inicia el vídeo silenciado por defecto.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>autoplay</code></td>
+                                <td>Booleano</td>
+                                <td>
+                                    Inicia la reproducción automáticamente. <span class="badge bg-danger">Regla de navegadores</span>: Todos los navegadores modernos <strong>bloquean el autoplay</strong> a menos que se incluya obligatoriamente también <code>muted</code>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>loop</code></td>
+                                <td>Booleano</td>
+                                <td>Reinicia la reproducción automáticamente al llegar al final (reproducción en bucle).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>preload</code></td>
+                                <td><code>auto</code> | <code>metadata</code> | <code>none</code></td>
+                                <td>Controla cuánto vídeo se precarga antes de que el usuario pulse reproducir (optimización de datos móviles).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Código y Previsualización de Vídeo con source y track -->
+                <div class="row g-4 my-2">
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-primary mb-2">Sintaxis recomendada con fuentes múltiples y subtítulos:</h6>
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;video controls poster="../imagenes/logo.jpg" class="w-100 rounded-3 shadow-sm"&gt;
+    &lt;!-- Formato universal MP4 (códec H.264) --&gt;
+    &lt;source src="../imagenes/video.mp4" type="video/mp4"&gt;
+    
+    &lt;!-- Subtítulos accesibles en formato WebVTT --&gt;
+    &lt;track kind="subtitles" src="subtitulos_es.vtt" srclang="es" label="Español" default&gt;
+    
+    &lt;!-- Mensaje de respaldo si el navegador no soporta HTML5 --&gt;
+    Tu navegador no soporta la reproducción nativa de vídeo HTML5.
 &lt;/video&gt;</code></pre>
-			<p>Así se verá: </p>
-			<video autoplay="autoplay" controls="controls">
-				<source src="../imagenes/video.mp4" type="video/mp4"/>
-				El navegador no puede mostrar el vídeo
-			</video>
-			<br/>
-			<br/>
-				<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>&lt;audio controls="controls"&gt;
-	&lt;source src="audio.ogg" type="audio/ogg"&gt;
-	&lt;source src="audio.mp3" type="audio/mpeg"&gt;
-	El navegador no puede mostrar el audio
-&lt;/audio&gt; 
-		</pre>
-		</div>
-		<br/>
-		<p>Así se verá: </p>
-		 <audio controls="controls">
-			<source src="../imagenes/audio.ogg" type="audio/ogg">
-			<source src="../imagenes/audio.mp3" type="audio/mpeg">
-			El navegador no puede mostrar el audio
-		</audio> 
-		<br/> <br/>
-		<h3>&lt;object&gt;</h3>
-		<p>Inserta un objeto en el documento y permite incorporar cualquier tipo de contenido a una página web. El tipo de objeto viene determinado por sus 
-		   atributos y puede ser una imagen,  un applet de java, un vídeo, una animación flash, otro documento HTML (aunque se puede hacer con iframe), etc..
-		   </p>
-		<p><b><u>Atributos</u></b></p>
-		<ul>
-		  <li><b>data:</b>Indica la URI donde están los datos del objeto.</li>
-		  <li><b>type:</b>Indica el tipo de datos especificados en data. La sintaxis es: type="categoria/formato". Ejemplo: audio/basic, audio/mpp3, video/mpeg, video/quicktime, application/x-shockwave-flash, etc.</li>
-		  <li><b>archive:</b>Es una lista de URIs (separada por espacios) donde hay archiivos útiles para el objeto.</li>
-		  <li><b>standby:</b>Es un texto que presenta el navegador durante la carga de los datos.</li>
-		  <li><b>height, width:</b> alto y ancho del objeto</li>
-		  <li><b>name:</b>Nombre para designar el elemento</li>
-		 </ul> 
-		  
-		  
-		  
-		 <h3>&lt;param&gt;</h3>
-		<p>Sirve para inicializar variables de objetos que serán utilizadas en tiempo de ejecución. No tiene etiqueta de cierre.
-		Elemento interior a object, que permite especificar parámetros a los plugins de los navegadores encargados de mostrar el objeto. A través de param pasamos instrucciones al plugin que reproduzca el objeto. 
-		La forma es mediante los atributos name (en el que se indica el nombre del atributo) y value (valor del atributo)</p>
-		<p><b><u>Atributos</u></b></p>
-		<ul>
-		  <li><b>name:</b>Indica el nombre de un parámetro de ejecución. </li>
-		  <li><b>value:</b>Indica el valor inicial del parámetro especificado en name.</li>
-		  <li><b>valuetype:</b>Indica el tipo del atributo value (data|ref|object). </li>
-		  <li><b>standby:</b>Es un texto que presenta el navegador durante la carga de los datos.</li>
-		  <li><b>type:</b>Indica el tipo del recurso cuando valuetype="ref".</li>
-		 </ul> 
-		  
-		 <p><b><u>Sintaxis</u></b></p>
-		 <p><b>&lt;param  name="nombre de parámetro" value="valor de parámetro"&gt;</b>
-		 
-		 <p>La lista de parámetros depende del tipo de objeto, algunos son: FileName para el nombre del archivo, quality para la calidad de imagen, wmode para el fondo, allowFullScreen para pantalla completa, swfversion para la versión de Flash Player, etc...
-		
-		<p>Ejemplo:  Insertar un video.</p>
-      
-	  
-	   <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;object data="../imagenes/video.mp4" 
-  width="425" height="350"&gt;
-&lt;/object&gt;
-		 </code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-secondary mb-2">Reproductor nativo en vivo:</h6>
+                        <div class="p-3 bg-body-tertiary rounded-3 border h-100 d-flex flex-column justify-content-center">
+                            <video controls class="w-100 rounded-3 shadow-sm bg-black" style="max-height: 240px;">
+                                <source src="../imagenes/video.mp4" type="video/mp4">
+                                Tu navegador no soporta la etiqueta video.
+                            </video>
+                            <span class="small text-muted mt-2 text-center">Clip demostrativo local (<code>video.mp4</code>)</span>
+                        </div>
+                    </div>
+                </div>
 
-		 	<p>Aparece así:</p>		
-			<!--<object data="http://www.youtube.com/v/en0EfNXmL6M?version=3" width="425" height="350">-->
-			<object data="../imagenes/video.mp4" width="425" height="350" >
-			</object>
-<br/>
-<p>Insertar un pdf:</p>
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;object width="425" height="350" data="./15_guia_html.pdf"&gt;
-&lt;/object&gt;
-		 </code></pre>
-			<p>Aparece así:</p>	
-			<object width="600" height="500" data="./14_guia_html.pdf"></object>
-			<br/>
-			<div class="ejercicios">
-				<h3><a href="16_ejercicios.html#ej_25">Ejercicio 25</a></h3>
+                <!-- El elemento <audio> -->
+                <h5 class="fw-bold text-dark mt-5 mb-2">B. El elemento &lt;audio&gt;</h5>
+                <p class="small">
+                    Funciona de forma análoga a <code>&lt;video&gt;</code> pero para pistas sonoras, música o podcasts. Los formatos estándar más admitidos son <strong>MP3</strong> (<code>audio/mpeg</code>), <strong>OGG</strong> (<code>audio/ogg</code>) y <strong>WAV</strong> (<code>audio/wav</code>):
+                </p>
+
+                <div class="row g-4 my-2">
+                    <div class="col-lg-6">
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;audio controls class="w-100"&gt;
+    &lt;source src="../imagenes/audio.mp3" type="audio/mpeg"&gt;
+    Tu navegador no soporta la reproducción de audio.
+&lt;/audio&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-3 bg-body-tertiary rounded-3 border h-100 d-flex flex-column justify-content-center">
+                            <audio controls class="w-100 shadow-sm">
+                                <source src="../imagenes/audio.mp3" type="audio/mpeg">
+                                Tu navegador no soporta audio.
+                            </audio>
+                            <span class="small text-muted mt-2 text-center">Pista de sonido local (<code>audio.mp3</code>)</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 2: Incrustación de Documentos con <object> -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-file-earmark-pdf-fill text-danger"></i> 2. Incrustación de Documentos y PDFs (&lt;object&gt;)
+                </h3>
+                <p>
+                    La etiqueta <code>&lt;object&gt;</code> es un contenedor polivalente que permite embeber recursos multimedia o documentos externos en la página web. Su uso más destacado hoy en día es la <strong>incrustación de documentos PDF interactivos</strong>:
+                </p>
+
+                <div class="row g-4 my-2">
+                    <div class="col-lg-6">
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!-- Incrustación accesible de un PDF con enlace alternativo --&gt;
+&lt;object data="./14_guia_html.pdf" type="application/pdf" width="100%" height="320"&gt;
+    &lt;p class="small text-muted"&gt;
+        Tu navegador no puede visualizar el PDF directamente.
+        &lt;a href="./14_guia_html.pdf" target="_blank"&gt;
+            Descargar guía PDF aquí
+        &lt;/a&gt;.
+    &lt;/p&gt;
+&lt;/object&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-2 bg-body-tertiary rounded-3 border h-100">
+                            <object data="./14_guia_html.pdf" type="application/pdf" width="100%" height="220" class="rounded border">
+                                <p class="small p-2 text-muted mb-0">
+                                    Visualizador no disponible. <a href="./14_guia_html.pdf" target="_blank">Abrir PDF</a>.
+                                </p>
+                            </object>
+                            <div class="text-center mt-1">
+                                <span class="badge bg-secondary-subtle text-secondary small border">Visor interactivo de PDF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Callout a Ejercicio 25 -->
+                <div class="my-3">
+                    <div class="card exercise-card p-3 shadow-sm rounded-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                            <i class="bi bi-collection-play text-warning fs-5"></i>
+                        </div>
+                        <h5 class="fw-bold text-dark mb-1">Ejercicio 25: Proyecto multimedia integrado</h5>
+                        <p class="small text-secondary mb-3">Creación de una página temática integrando vídeo local, pista de audio y un documento PDF embebido.</p>
+                        <a href="./16_ejercicios.html#ej_25" class="btn btn-sm btn-outline-dark fw-medium align-self-start">
+                            <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 25
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 3: Metadatos en el <head>: Favicon y Redirección -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-browser-chrome text-primary"></i> 3. Metadatos del encabezado: Favicon y Redirección
+                </h3>
+
+                <!-- Favicon -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-app-indicator text-primary"></i> A. El Favicon Moderno (Icono de la Pestaña)
+                    </h5>
+                    <p class="small text-secondary">
+                        El favicon es el icono identificativo que aparece en la pestaña del navegador y en los marcadores favoritos. En HTML5 moderno se admiten imágenes vectoriales SVG (nítidas en cualquier pantalla retina) y archivos PNG de alta resolución:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-3 overflow-auto"><code>&lt;!-- Favicon moderno vectorial (SVG) --&gt;
+&lt;link rel="icon" type="image/svg+xml" href="imagenes/icono.svg"&gt;
+
+&lt;!-- Favicon estándar en formato PNG --&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png"&gt;
+
+&lt;!-- Respaldo clásico para navegadores antiguos (.ico) --&gt;
+&lt;link rel="alternate icon" href="favicon.ico"&gt;</code></pre>
+
+                    <div class="p-3 bg-light rounded-3 border text-center my-3">
+                        <img src="../imagenes/icono_barra.png" alt="Ejemplo de icono en la barra de pestañas del navegador" class="img-fluid rounded shadow-sm">
+                        <p class="small text-muted mt-2 mb-0">Figura 1. Visualización del icono corporativo en la pestaña del explorador.</p>
+                    </div>
+
+                    <!-- Callout Ejercicio 23 -->
+                    <div class="card exercise-card p-3 shadow-sm rounded-3 my-2">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Ejercicio 23: Incorporación de Favicon</h6>
+                        <p class="small text-secondary mb-2">Asignación de un icono personalizado en la cabecera para identificar la pestaña web.</p>
+                        <a href="./16_ejercicios.html#ej_23" class="btn btn-sm btn-outline-dark fw-medium align-self-start">
+                            <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 23
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Redirección con meta refresh -->
+                <div class="mb-3">
+                    <h5 class="fw-bold text-dark d-flex align-items-center gap-2">
+                        <i class="bi bi-arrow-repeat text-primary"></i> B. Redirección automática con <code>&lt;meta http-equiv="refresh"&gt;</code>
+                    </h5>
+                    <p class="small text-secondary">
+                        Permite indicar al navegador que espere un determinado número de segundos y cargue automáticamente una nueva página web:
+                    </p>
+
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-3 overflow-auto"><code>&lt;!-- Redirige a la web del instituto transcurridos 10 segundos --&gt;
+&lt;meta http-equiv="refresh" content="10;url=https://www.iessanvicente.com"&gt;</code></pre>
+
+                    <div class="alert alert-warning py-2 px-3 small border-start border-4 border-warning mb-3">
+                        <i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> <strong>Recomendación WCAG de Accesibilidad:</strong> Los lectores de pantalla y usuarios con dificultades de lectura pueden desorientarse si la página salta de golpe. Si se usa una redirección por metaetiqueta, siempre se debe conceder un tiempo prudencial (al menos 10 segundos) e incluir un enlace visible manual en el texto de la página por si la redirección falla.
+                    </div>
+
+                    <!-- Callout Ejercicio 24 -->
+                    <div class="card exercise-card p-3 shadow-sm rounded-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2">
+                            <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                            <i class="bi bi-hourglass-split text-warning"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Ejercicio 24: Redirección automática con temporizador</h6>
+                        <p class="small text-secondary mb-2">Página informativa con aviso visual que se redirige automáticamente al portal escolar a los 10 segundos.</p>
+                        <a href="./16_ejercicios.html#ej_24" class="btn btn-sm btn-outline-dark fw-medium align-self-start">
+                            <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 24
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 4: Nuevos Componentes Interactivos Nativos en HTML5 -->
+            <section class="mb-4">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-boxes text-primary"></i> 4. Nuevos Componentes Interactivos Nativos en HTML5
+                </h3>
+                <p>
+                    HTML5 estandarizó controles interactivos que antes obligaban a programar complejas funciones de JavaScript:
+                </p>
+
+                <!-- details y summary -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-success d-flex align-items-center gap-2">
+                        <i class="bi bi-chevron-down"></i> A. Desplegables y Acordeones Nativos: &lt;details&gt; y &lt;summary&gt;
+                    </h5>
+                    <p class="small text-secondary">
+                        Crea un componente plegable interactivo accesible por teclado de forma 100% nativa, sin necesidad de librerías ni scripts:
+                    </p>
+
+                    <div class="row g-4 my-2">
+                        <div class="col-lg-6">
+                            <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;details class="p-3 bg-light border rounded"&gt;
+    &lt;summary class="fw-bold text-primary"&gt;
+        ¿Qué titulación obtengo con este ciclo?
+    &lt;/summary&gt;
+    &lt;p class="small mt-2 mb-0"&gt;
+        Obtienes el título oficial de Técnico Superior 
+        en Desarrollo de Aplicaciones Web (DAW).
+    &lt;/p&gt;
+&lt;/details&gt;</code></pre>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-3 bg-body-tertiary rounded-3 border h-100 d-flex flex-column justify-content-center">
+                                <details class="p-3 bg-white border rounded shadow-sm">
+                                    <summary class="fw-bold text-primary">
+                                        ¿Qué titulación obtengo con este ciclo? (Haz clic para abrir)
+                                    </summary>
+                                    <p class="small text-secondary mt-2 mb-0">
+                                        Obtienes el título oficial de Técnico Superior en Desarrollo de Aplicaciones Web (DAW). ¡Funciona sin una sola línea de JavaScript!
+                                    </p>
+                                </details>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- progress y meter -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark">B. Indicadores de Medición y Avance: &lt;progress&gt; y &lt;meter&gt;</h5>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                                <strong class="d-block text-dark mb-1"><code>&lt;progress value="70" max="100"&gt;</code></strong>
+                                Representa el grado de finalización de una tarea (p. ej. subida de un archivo o progreso en un examen).
+                                <div class="mt-2">
+                                    <label class="form-label d-block text-muted">Progreso del temario: 70%</label>
+                                    <progress value="70" max="100" class="w-100"></progress>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                                <strong class="d-block text-dark mb-1"><code>&lt;meter value="8" min="0" max="10"&gt;</code></strong>
+                                Representa un valor dentro de un rango conocido (p. ej. uso de disco, calificación académica o nivel de batería).
+                                <div class="mt-2">
+                                    <label class="form-label d-block text-muted">Nota del proyecto: 8.5 / 10</label>
+                                    <meter value="8.5" min="0" max="10" low="5" high="8" optimum="10" class="w-100"></meter>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- time -->
+                <div class="mb-2">
+                    <h5 class="fw-bold text-dark">C. Fechas Semánticas Legibles por Máquinas: &lt;time&gt;</h5>
+                    <p class="small text-secondary mb-2">
+                        Permite asociar una fecha legible para personas con un formato estandarizado ISO 8601 interpretable por motores de búsqueda y calendarios:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small overflow-auto"><code>&lt;p&gt;
+    La entrega final será el 
+    &lt;time datetime="2026-06-15T12:00:00" class="fw-bold text-primary"&gt;
+        15 de junio de 2026 a mediodía
+    &lt;/time&gt;.
+&lt;/p&gt;</code></pre>
+                </div>
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
