@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -130,37 +127,179 @@
         </nav>
 
         <!-- Tarjeta de Contenido Educativo -->
+                <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 09</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Componentes y Tablas</span>
             </div>
 
-            <h2>Ejemplos CSS - Enlaces y Tablas- Ejemplos de <a href="http://www.w3schools.com">www.w3schools.com</a></h2>
-				<div id="lista_enlaces_ejemplos">
-				<ul>
-					<li> <a id="a0" href="#" onclick="cargar(0)">Color y text decoration</a>	</li>
-					<li> <a id="a1" href="#" onclick="cargar(1)">Más estilos de links</a>	</li>
-					<li> <a id="a2" href="#" onclick="cargar(2)">Link Boxes</a>	</li>
-					<li> <a id="a8" href="#" onclick="cargar(8)">Menú Horizontal</a>	</li>
-					<li> <a id="a9" href="#" onclick="cargar(9)">Menú Vertical</a>	</li>
-					<li> <a id="a3" href="#" onclick="cargar(3)">Tablas. Collapse</a></li>
-					<li> <a id="a4" href="#" onclick="cargar(4)">Tablas. Alineación Vert.</a>	</li>
-					<li> <a id="a5" href="#" onclick="cargar(5)">Tablas. Alineac. Horizontal</a>	</li>
-					<li> <a id="a6" href="#" onclick="cargar(6)">Tablas. Caption y color</a>	</li>
-					<li> <a id="a7" href="#" onclick="cargar(7)">Ejemplo completo Tabla</a>	</li>
-					</ul>
-				</div>
-				<div class="p_iframe" style="display:inline">
-					<p id="piframeizqda">Código </p>	
-					<p id="piframedrcha">Resultado</p>
-				</div>
-				<div style="clear:both;"></div>
-				<iframe id="iframeResult_2" class="result_output" name="view_2"></iframe>	
-				<iframe id="iframeResult" class="result_output" name="view"></iframe>	
-				<div style="clear:both;"></div>
-				
-			</div>
+            <h1 class="fw-bold mb-3 display-6">09. Enlaces y Tablas en CSS</h1>
+            
+            <p class="lead text-secondary mb-4">
+                Los hipervínculos son el eje de navegación de la web, y las tablas representan datos tabulares estructurados. CSS permite transformar enlaces básicos en botones interactivos y barras de navegación completas, así como dotar a las tablas de diseños limpios, cebrados y adaptados a dispositivos móviles.
+            </p>
+
+            <!-- Sección 1: Enlaces y Botones -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-link-45deg text-primary"></i> 1. Estilización de Enlaces y Menús
+            </h2>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-1">Estados Dinámicos (LVHA)</h6>
+                        <p class="small text-secondary mb-2">Control de la experiencia de usuario según la interacción:</p>
+                        <ul class="list-unstyled small mb-0 font-monospace">
+                            <li><span class="text-primary">a:link</span> { color: #0d6efd; }</li>
+                            <li><span class="text-secondary">a:visited</span> { color: #6c757d; }</li>
+                            <li><span class="text-danger">a:hover</span> { text-decoration: underline; }</li>
+                            <li><span class="text-warning">a:active</span> { color: #fd7e14; }</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-1">Enlaces tipo Botón (Button Boxes)</h6>
+                        <p class="small text-secondary mb-2">Transforma un enlace en línea en un botón pulsable ergonómico:</p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">a.boton</span> {
+    <span class="text-info">display</span>: <span class="text-success">inline-block</span>;
+    <span class="text-info">padding</span>: <span class="text-success">0.5rem 1.25rem</span>;
+    <span class="text-info">background-color</span>: <span class="text-success">#0d6efd</span>;
+    <span class="text-info">color</span>: <span class="text-success">#ffffff</span>;
+    <span class="text-info">text-decoration</span>: <span class="text-success">none</span>;
+    <span class="text-info">border-radius</span>: <span class="text-success">0.375rem</span>;
+    <span class="text-info">transition</span>: <span class="text-success">background 0.2s</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 shadow-sm p-3">
+                        <h6 class="fw-bold text-dark mb-1">Barras de Navegación</h6>
+                        <p class="small text-secondary mb-2">Construidas semánticamente mediante listas no ordenadas:</p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-info">/* Menú horizontal con flexbox */</span>
+<span class="text-warning">nav ul</span> {
+    <span class="text-info">list-style</span>: <span class="text-success">none</span>;
+    <span class="text-info">display</span>: <span class="text-success">flex</span>;
+    <span class="text-info">gap</span>: <span class="text-success">1rem</span>;
+    <span class="text-info">padding</span>: <span class="text-success">0</span>;
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2: Estilización de Tablas -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-table text-primary"></i> 2. Propiedades de Tablas en CSS
+            </h2>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3">
+                        <h6 class="fw-bold text-dark mb-2"><code>border-collapse: collapse;</code></h6>
+                        <p class="small text-secondary mb-2">
+                            Por defecto, las tablas HTML separan los bordes de cada celda. La propiedad <code>border-collapse: collapse;</code> unifica los bordes adyacentes en una única línea delgada, logrando un diseño moderno y compacto.
+                        </p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>table { border-collapse: collapse; width: 100%; }</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3">
+                        <h6 class="fw-bold text-dark mb-2">Cebrado y Resaltado (<em>Zebra Striping</em>)</h6>
+                        <p class="small text-secondary mb-2">
+                            Mejora la velocidad de escaneo visual de datos alternando el color de fondo de las filas pares con <code>:nth-child(even)</code> y resaltando la fila sobre la que pasa el ratón con <code>tr:hover</code>.
+                        </p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>tbody tr:nth-child(even) { background: #f8f9fa; }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Visor Interactivo en Vivo -->
+            <h2 class="h4 fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                <i class="bi bi-play-circle text-primary"></i> 3. Visor Interactivo de Ejemplos
+            </h2>
+            <p class="text-secondary small mb-3">
+                Explora los ejemplos guiados organizados por categoría para ver el código fuente y su resultado interactivo:
+            </p>
+
+            <!-- Categoría Enlaces -->
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-2 p-2 bg-body-tertiary rounded-3 border">
+                <span class="badge bg-primary me-1"><i class="bi bi-link-45deg me-1"></i>Enlaces y Menús:</span>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-primary text-white" onclick="cargar(0)">1. Enlaces Básicos</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(1)">2. Fondos en Enlaces</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(2)">3. Cajas tipo Botón</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(8)">4. Menú Horizontal</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-primary" onclick="cargar(9)">5. Menú Vertical</button>
+            </div>
+
+            <!-- Categoría Tablas -->
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-4 p-2 bg-body-tertiary rounded-3 border">
+                <span class="badge bg-success me-1"><i class="bi bi-table me-1"></i>Tablas de Datos:</span>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-success" onclick="cargar(3)">6. Border Collapse</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-success" onclick="cargar(4)">7. Alineación Vertical</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-success" onclick="cargar(5)">8. Alineación Horizontal</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-success" onclick="cargar(6)">9. Caption y Colores</button>
+                <button type="button" class="btn btn-sm btn-ejemplo btn-outline-success" onclick="cargar(7)">10. Tabla Completa</button>
+            </div>
+
+            <!-- Contenedor Split-View Código vs Resultado -->
+            <div class="card border rounded-3 shadow-sm overflow-hidden mb-4">
+                <div class="card-header bg-dark text-white py-2 px-3 d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-display text-primary"></i>
+                        <span class="fw-semibold small" id="ejemploTitulo">1. Enlaces Básicos</span>
+                    </div>
+                    <span class="badge bg-secondary small">Inspector en Vivo</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row g-0">
+                        <!-- Columna Código -->
+                        <div class="col-lg-6 border-end border-secondary-subtle">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-code-slash text-primary me-1"></i> Código Fuente</span>
+                                <span class="badge bg-light text-secondary border">HTML + CSS</span>
+                            </div>
+                            <iframe id="iframeResult_2" name="view_2" class="w-100 bg-white" style="height: 400px; border: 0;" title="Código fuente del ejemplo"></iframe>
+                        </div>
+
+                        <!-- Columna Resultado -->
+                        <div class="col-lg-6">
+                            <div class="bg-light px-3 py-2 border-bottom d-flex align-items-center justify-content-between">
+                                <span class="small fw-bold text-secondary"><i class="bi bi-eye text-success me-1"></i> Resultado Renderizado</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle">Vista Previa</span>
+                            </div>
+                            <iframe id="iframeResult" name="view" class="w-100 bg-white" style="height: 400px; border: 0;" title="Resultado en vivo"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enlace a Tablas Responsive en Bootstrap -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 d-flex flex-sm-row align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-bootstrap-fill fs-2 text-primary"></i>
+                    <div>
+                        <div class="fw-bold small text-dark">Tablas ergonómicas en Bootstrap 5.3</div>
+                        <div class="text-secondary small">Aprende a envolver tablas en contenedores <code>.table-responsive</code> para navegación táctil sin desbordamientos.</div>
+                    </div>
+                </div>
+                <a href="./16_bootstrap.html" class="btn btn-sm btn-outline-primary text-nowrap">
+                    <i class="bi bi-arrow-right-circle me-1"></i> Ver Bootstrap Tablas
+                </a>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
@@ -190,20 +329,48 @@
         </div>
     </footer>
 
-    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+        <!-- Bootstrap 5.3 JS Bundle (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script>function cargar(n)	{
-				var f='./ejemplos/ejemplo_3'+n+'.html';
-				var g='./ejemplos/ejemplo_3'+n+'_2.html';
-				document.getElementById("iframeResult").src=f;
-				document.getElementById("iframeResult_2").src=g;
-				var h='a'+n;
-				x=document.getElementById(h).innerHTML;
-				y=document.getElementById("piframedrcha");
-				y.innerHTML=x;
-				/*z=document.getElementById("piframeizqda");
-				z.innerHTML=x;*/
-			}</script>
+    <script>
+        const ejemplos = {
+            0: { title: "1. Color y text-decoration en Enlaces", file: "ejemplo_30" },
+            1: { title: "2. Fondos y Bordes en Estados de Enlace", file: "ejemplo_31" },
+            2: { title: "3. Cajas de Enlaces tipo Botón (Link Boxes)", file: "ejemplo_32" },
+            8: { title: "4. Menú de Navegación Horizontal con Lista", file: "ejemplo_38" },
+            9: { title: "5. Menú de Navegación Vertical", file: "ejemplo_39" },
+            3: { title: "6. Tablas: Unificación de Bordes (border-collapse)", file: "ejemplo_33" },
+            4: { title: "7. Tablas: Alineación Vertical en Celdas (vertical-align)", file: "ejemplo_34" },
+            5: { title: "8. Tablas: Alineación Horizontal de Texto", file: "ejemplo_35" },
+            6: { title: "9. Tablas: Título (caption) y Fondos Cebrados", file: "ejemplo_36" },
+            7: { title: "10. Ejemplo Completo de Tabla Estilizada", file: "ejemplo_37" }
+        };
 
+        function cargar(n) {
+            const item = ejemplos[n];
+            if (!item) return;
+            document.getElementById("iframeResult").src = "./ejemplos/" + item.file + ".html";
+            document.getElementById("iframeResult_2").src = "./ejemplos/" + item.file + "_2.html";
+            document.getElementById("ejemploTitulo").textContent = item.title;
+            
+            // Actualizar botones activos
+            document.querySelectorAll(".btn-ejemplo").forEach((btn) => {
+                if (btn.getAttribute("onclick") === `cargar(${n})`) {
+                    btn.classList.add("btn-primary", "text-white");
+                    btn.classList.remove("btn-outline-primary", "btn-outline-success");
+                } else {
+                    btn.classList.remove("btn-primary", "text-white");
+                    if (btn.textContent.includes("1.") || btn.textContent.includes("2.") || btn.textContent.includes("3.") || btn.textContent.includes("4.") || btn.textContent.includes("5.")) {
+                        btn.classList.add("btn-outline-primary");
+                    } else {
+                        btn.classList.add("btn-outline-success");
+                    }
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            cargar(0);
+        });
+    </script>
 </body>
 </html>
