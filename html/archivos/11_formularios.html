@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>11. Formularios | HTML | LMSGI</title>
-    <meta name="description" content="Interacción con el usuario: formulario form, métodos GET y POST, controles input, select, textarea y botones.">
+    <title>11. Formularios en HTML5 | LMSGI</title>
+    <meta name="description" content="Formularios en HTML5: estructura de form, nuevos tipos de input (email, tel, date, number, color), validación nativa (required, pattern), label, select, datalist, fieldset y legend.">
     
     <!-- Bootstrap 5.3 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -28,7 +28,10 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        
+        .exercise-card {
+            border-left: 4px solid #ffc107;
+            background-color: #fffdf5;
+        }
     </style>
 </head>
 <body>
@@ -132,11 +135,12 @@
                 <div class="col-lg-8">
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         <span class="badge bg-primary text-white">Lección 11</span>
-                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5</span>
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle">HTML5 Semántico</span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle">Validación Nativa & UI/UX</span>
                     </div>
-                    <h2 class="fw-bold mb-1">11. Formularios</h2>
+                    <h2 class="fw-bold mb-1">11. Formularios Web en HTML5</h2>
                     <p class="text-secondary mb-0 small">
-                        Interacción con el usuario: formulario form, métodos GET y POST, controles input, select, textarea y botones.
+                        Estructura de <code>&lt;form&gt;</code>, controles interactivos con <code>&lt;input&gt;</code>, tipos modernos (<code>email</code>, <code>tel</code>, <code>date</code>, <code>color</code>, <code>number</code>), validación nativa sin JS, <code>&lt;label&gt;</code>, <code>&lt;datalist&gt;</code>, <code>&lt;select&gt;</code> y <code>&lt;fieldset&gt;</code>.
                     </p>
                 </div>
                 <div class="col-lg-4 d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -152,437 +156,416 @@
 
         <!-- Contenido Didáctico -->
         <article class="content-card shadow-sm p-4 p-md-5 mb-4">
-            <h2>Introducción a los formularios</h2>
-			<p>Los formularios se diseñaron para que el usuario pudiera enviar datos al servidor.</p>
-			<p>Un formulario HTML es una sección de un documento que contiene contenido normal, código, elementos especiales llamados controles y rótulos (labels) en esos controles. Los usuarios normalmente "completan" un formulario modificando sus controles (introduciendo texto, seleccionando objetos de un menú, etc.), antes de enviar el formulario a un agente para que lo procese (por ejemplo, a un servidor web o a un servidor de correo).</p>
-			<p>Al <b>enviar</b> un formulario, se envían como datos unas parejas de <b>nombre-valor</b> para cada control del formulario. Es por ello que <b>cada control del formulario debe tener un nombre y almacenar un valor</b> (que será modificable por el usuario).</p>
-			
-			<h2>Creación de formularios</h2>
-			<p>La creación de un formulario se realiza escribiendo las etiquetas <b>&lt;form&gt; &lt;/form&gt;</b>. <b>Todos los contenidos del formulario (texto y controles) deberán incluirse entre dichas etiquetas</b>. Un formulario puede contener texto y código HTML (párrafos, listas, etc.) además de los controles del formulario.</p>
-			<p>Los <b>atributos</b> que se deben indicar en la etiqueta &lt;form&gt; son los siguientes:</p>
-			
-		    <ul>
-		        <li>Atributo <b>id</b>. Indica el nombre de identificación que recibe el formulario. También se puede utilizar el atributo <i>name</i>, pero es menos recomendable.</li>
-		        <li>Atributo <b>action</b>. Indica la URI del programa que manejará el formulario completado y enviado. Normalmente se indicará en este atributo la <b>dirección web del servidor</b> encargado de procesar el formulario. También es habitual mandar los datos por <b>correo electrónico</b>, en cuyo caso el atributo tendrá como valor lo siguiente: <b>mailto:<i>direccion_correo</i>?subject=<i>Asunto del mensaje</i></b>.</li>
-		        <li>Atributo <b>method</b>. Indica el método por el cual se enviarán los datos del usuario al servidor. Existen dos métodos: <i>GET</i> y <i>POST</i>. Se estudiará su significado en temas posteriores. Para los ejercicios utilizaremos <b>POST</b>.</li>
-		        <li>Atributo <b>enctype</b>. Este atributo especifica el tipo de contenido usado para enviar el formulario al servidor (cuando el valor del atributo <i>method</i> sea <i>post</i>). El tipo más habitual que se suele indicar es &quot;text/plain&quot;, aunque existen otros como &quot;text/html&quot;, &quot;image/png&quot;, &quot;image/gif&quot;, &quot;video/mpeg&quot;, &quot;text/css&quot;, y &quot;audio/basic&quot;. Cuando se quieran enviar archivos a través de formularios se debe usar el tipo &quot;multipart/form-data&quot;</li>
-		        <li>Atributo <b>accept-charset</b>. Indica una codificación de caracteres que debe ser aceptada por el servidor para poder manejar este formulario.</li>
-		    </ul>
-			    
-			<p>El siguiente ejemplo muestra un formulario que va a ser enviado a una dirección de correo cuando sea enviado:</p>
-			
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code><b>&lt;form id=&quot;formulario1&quot; action=&quot;mailto:correo@correo.es?subject=asunto&quot; method=&quot;post&quot; enctype=&quot;text/plain&quot; accept-charset=&quot;utf-8&quot;&gt;</b><br>
-<br>
-&nbsp;&nbsp;&nbsp;...Contenido del formulario<br>
-<br>  
-<b>&lt;/form&gt;</b></code></pre>
-			<hr>
-
-			<h2>Controles de los formularios</h2>
-			
-			<p>Todos los controles del formulario deberán llevar los siguientes atributos <b>obligatoriamente</b>:</p>
-			
-			<ul>
-			    <li><b>Atributo <i>name</i></b>. Indica el <b>nombre de control</b> que recibe el control.</li>
-			    <li><b>Atributo <i>alt</i></b>. Indica el texto que aparecerá si el navegador no muestra correctamente el control.</li>
-			    <li><b>Atributo <i>value</i></b>. Indica el valor que almacena el control. En el caso de las cajas de texto, el contenido de este atributo será lo que escriba el usuario, por lo que no hará falta indicarlo; en el caso de una casilla de selección u otro control, sí que deberá indicarse en el código de la página, ya que en caso contrario no se enviaría ninguna información.</li>
-			</ul>
-			
-			<p>Además, cada control podrá incluir atributos específicos según qué tipo de control sea (ver la guía de referencia de HTML).</p>
-			<h3>&lt;Label&gt;</h3>
-			<p>Los &lt;labels&gt; deben indicar la función de cada campo, (nombre, adjuntar imagen, número de tarjeta de crédito...).
-			<div class ="codigo">
-				<p><strong>Un simple ejemplo de un label con el atributo for</strong></p>
-				&lt;label for="name"&gt Púlsame &lt;/label&gt;<br>
-				&lt;input type="text" id="name" name="nombre"&gt;<br><br>
-
-				<p><strong>Aun mas simple</strong></p>
-				&lt;label&gt; Púlsame &lt;input type="text" id="name" name="nombre""&gt;&lt;/label"&gt;</code></pre>
-			
-			<h3>&lt;input&gt;</h3>
-			<p>Inserta el elemento definido en "type" dentro del formulario.</p>
-    		<p><b><u>Atributos</u></b></p>
-			<ul>
-				<li><b>type:</b> Indica el tipo de control de formulario: (text|pasword|checkbox|radio|submit|reset|file|hidden|image|button)</li>
-				<li><b>name:</b> Nombre del control</li>
-				<li><b>size:</b> Establece el ancho del control en pixels o en caracteres.</li>
-				<li><b>maxlength:</b> Establece el nº máximo de caracteres para control de tipo texto o password.</li>
-				<li><b>checked:</b> Marca la casilla para un control de tipo checckbox o radio</li>
-				<li><b>src:</b> Indica la URI donde se encuentra la imagenn para type="image"</li>
-				<li><b>disabled:</b> Este booleano desabilita el contro y no se puede introducir datos.</li>
-				<li><b>readonly:</b> Este booleano immpide que el usuuario haga cambios en el control.</li>
-				<li><b>accept:</b> Lista de tipos mime válidos para suubir ficheros.</li>
-				<li><b>placeholder:</b> El atributo placeholder permite mostrar en los controles de texto un texto descriptivo que desaparece al escribir en él.</li>
-				<li><strong>required</strong> (nuevo en HTML5) required que nos permite comprobar que el campo ha sido rellenado antes incluso de pulsar ese botón de envío, sin necesidad de más complicaciones o código extra.
-				<li><b>value:</b></li>
-					<ul>
-						<li>para cuadros de texto es el valor inicial que aparece en el recuadro.</li>
-						<li>para botones de tipo radio y checkbox es el valor que se envvía a servidor</li>
-						<li>para botones de acción es el título del botón.</li>
-					</ul>
-				<li><strong>pattern:</strong> obliga a que los datos de un campo tengan un patrón determinado</li>
-				<li><strong>max, min:</strong> determina los límites inferior superior en campos con valores numéricos</li>
-			</ul>
-				
-				
-			<h3>Caja de texto</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;text&quot;&gt;</b>.  <input name="texto" type="text"></p>
-			
-			<h3>Caja de texto cifrado</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;password&quot;&gt;</b>.  <input name="clave" type="password"></p>
-			
-			<h3>Casilla de verificación</h3>
-			
-			<p>Se crean con la etiqueta y atributo <b>&lt;input type=&quot;checkbox&quot;&gt;</b>. Pueden activarse varias a la vez. Además, puede haber varias casillas de verificación con el mismo nombre de control, lo que permite que los usuarios indiquen varios valores para la misma propiedad.</p>
-			<p><input name="casilla1" value="valor1" type="checkbox"> <input name="casilla2" value="valor2" type="checkbox"> <input name="casilla3" value="valor3" type="checkbox"></p>
-			
-			<h3>Botones radio o radiobotones</h3>
-			
-			<p>Se crean con la etiqueta y atributo <b>&lt;input type=&quot;radio&quot;&gt;</b>. Los radiobotones que tengan el <b>mismo nombre de control</b> serán mutuamente exclusivos: sólo podrá activarse <b>uno a la vez</b>.</p>
-			<p><input name="radio1" value="opcion1" type="radio"> <input name="radio1" value="opcion2" type="radio"> <input name="radio1" value="opcion3" type="radio"></p>
-			
-			<h3>Botón de borrado</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;reset&quot;&gt;</b>. Al pulsarlo, se borran todos los datos introducidos en el formulario. El atributo <i>value</i> almacena el texto que aparecerá sobre el botón.<input name="borrar" type="reset" value="Borrar"></p>
-			
-			<h3>Botón normal</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;button&quot;&gt;</b>. La acción que se realizará cuando se pulse este botón se indica mediante un lenguaje de script que veremos en un tema posterior, por lo que ahora no nos será útil. El atributo <i>value</i> almacena el texto que aparecerá sobre el botón. <input name="boton" type="button" value="Botón"></p>
-			
-			<h3>Botón de envío</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;submit&quot;&gt;</b>. Al pulsarlo, se enviarán los datos introducidos en el formulario de acuerdo con lo indicado en el atributo <i>action</i> del formulario. El atributo <i>value</i> almacena el texto que aparecerá sobre el botón.<input name="enviar" type="submit" value="Enviar"></p>
-			
-			<h3>Control oculto</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;hidden&quot;&gt;</b>. Se utiliza para mandar información no visible al usuario. <input name="oculto" value="dato_oculto" type="hidden"></p>
-			<p>Su finalidad es la de enviar ciertos datos al servidor que no son útiles para el ciente. Por ejemplo: podemos enviar la fecha y hora  junto con el resto de la información sin que el usuario lo perciba. Para obtener la fecha y hora sería necesario haccer un script que modifique el atributo vaue del control hidden.</p>
-			<h3>Control de selección de archivo</h3>
-			
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;file&quot;&gt;</b>. Se utiliza para mandar archivos mediante el formulario. Si se usa, se debe indicar el <b>tipo &quot;multipart/form-data&quot; en el atributo enctype del formulario</b>.</p>
-			<p><input name="fichero"  type="file"></p>
-			
-			<h3>Botón de imagen</h3>
-			<p>Se crea con la etiqueta y atributo <b>&lt;input type=&quot;image&quot;&gt;</b> Crea un botón de envío gráfico. Mediante el atributo src se debe indicar la URL de la imagen que debe mostrar el navegador en lugar del botón normal. </p>
-			<p><input name="enviar"  type="image" src="../imagenes/button.gif"></p>
-			
-			<h3>&lt;button&gt;</h3>
-			<p>Sirve para insertar un botón como los creados por &lt;input&gt; pero con más posibilidades de formato, por ejemplo: incluir imágenes dentro del botón. Su atributo type indica el tipo de botón (submit|reset|button).</p>
-			<p> Ejemplo:</p>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;button type="submit"&gt;
-	&lt;img width="60" height="40" src="../imagenes/marenostrum.jpg"&gt;
-&lt;/button&gt;
-</code></pre>
-				<p> Se vería así:</p>
-<button type="submit">
-	<img width="60" height="40" src="../imagenes/marenostrum.jpg">
-	</img>
-</button>
-				
-				
-            	<h3>Caja de texto multilínea</h3>
-    			
-            	<p>Se crea con las etiquetas <b>&lt;textarea&gt; &lt;/textarea&gt;</b>. El tamaño de la caja se indica mediante los atributos <i>rows</i> (número de líneas) y <i>cols</i> (número de caracteres por línea). El contenido inicial de la caja se indica entre las etiquetas de apertura y cierre.</p>
-            	
-            	<p><textarea name="multilinea" rows="5" cols="80"></textarea></p>
-            	
-            	<h3>Menú de selección</h3>
-    			
-            	<p>Se crea con las etiquetas <b>&lt;select&gt; &lt;/select&gt;</b>. Cada <b>opción</b> ofrecida por el menú se representa por las etiquetas <b>&lt;option&gt; &lt;/option&gt;</b>. Un elemento <i>select</i> debe contener al menos un elemento <i>option</i>.</p>
-            	
-            	<p>A continuación se muestra el código de un menú de selección y el resultado obtenido:</p>
-            	
-            	<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;select name=&quot;elegir-componente&quot;&gt;
-   &lt;option value=&quot;componente_1&quot;&gt;componente_1&lt;/option&gt;
-   &lt;option value=&quot;componente_2&quot; selected&gt;componente_2&lt;/option&gt;
-   &lt;option value=&quot;componente_3&quot;&gt;componente_3&lt;/option&gt;
-   &lt;option value=&quot;componente_4&quot;&gt;componente_4&lt;/option&gt;
-   &lt;option value=&quot;componente_5&quot;&gt;componente_5&lt;/option&gt;
-   &lt;option value=&quot;componente_6&quot;&gt;componente_6&lt;/option&gt;
-   &lt;option value=&quot;componente_7&quot;&gt;componente_7&lt;/option&gt;
-&lt;/select&gt;
-					</code></pre>
-			
-			<p>
-                <select name="elegir-componente">
-                    <option value="componente_1">componente_1</option>
-                    <option value="componente_2" selected>componente_2</option>
-                    <option value="componente_3">componente_3</option>
-                    <option value="componente_4">componente_4</option>
-                    <option value="componente_5">componente_5</option>
-                    <option value="componente_6">componente_6</option>
-                    <option value="componente_7">componente_7</option>
-                </select>
-           </p>
-           
-           <p>Se pueden crear <b>menús de selección múltiple</b>. Para ello se hace uso de los atributos <i>size</i> (para indicar el número de filas del menú que se ven al mismo tiempo) y <i>multiple</i> (para permitir una selección múltiple de opciones) de la etiqueta <i>select</i>:</p>
-           
-           <pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;select name=&quot;elegir-componente&quot; <b>multiple size=&quot;4&quot;</b>&gt;
-   &lt;option value=&quot;componente_1&quot;&gt;componente_1&lt;/option&gt;
-   &lt;option value=&quot;componente_2&quot; selected&gt;componente_2&lt;/option&gt;
-   &lt;option value=&quot;componente_3&quot; selected&gt;componente_3&lt;/option&gt;
-   &lt;option value=&quot;componente_4&quot;&gt;componente_4&lt;/option&gt;
-   &lt;option value=&quot;componente_5&quot;&gt;componente_5&lt;/option&gt;
-   &lt;option value=&quot;componente_6&quot;&gt;componente_6&lt;/option&gt;
-   &lt;option value=&quot;componente_7&quot;&gt;componente_7&lt;/option&gt;
-&lt;/select&gt;
-					</code></pre>
-			
-			<p>
-                <select name="elegir-componente" multiple size="4">
-                    <option value="componente_1">componente_1</option>
-                    <option value="componente_2" selected>componente_2</option>
-                    <option value="componente_3" selected>componente_3</option>
-					<option value="componente_4">componente_4</option>
-                    <option value="componente_5">componente_5</option>
-                    <option value="componente_6">componente_6</option>
-                    <option value="componente_7">componente_7</option>
-                </select>
-           </p>
-            	 
-			</form>
-
-			<h3>Ejemplo:</h3>
-			<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;form action="manejador.html" enctype="multipart/form-data" 
-   method="post"&gt;
- USUARIO:
-  &lt;input type="text" name="usuario" value="user"&gt; &lt;br&gt;
- CONTRASEÑA:&lt;input type="password" name="pass"&gt; &lt;br&gt;
- SOCIO:&lt;input type="Checkbox" name="socio" checked&gt; &lt;br&gt;
- SEXO:&lt;input type="radio" name="genero" value="m"&gt; Masculino
-  &lt;input type="radio" name="genero" value="f"&gt; Femenino &lt;br&gt;
- TEMAS PREFERIDOS:
-  &lt;input type="radio" name="aventuras" value="a"&gt; Acción 
-  &lt;input type="radio" name="historica" value="h"&gt; Histórica 
-  &lt;input type="radio" name="ficcion" value="fi"&gt; Ficción &lt;br&gt;
- DESCUENTO:
-  &lt;input name="descuento" value="15%" size="5" readonly&gt; &lt;br&gt;
- SUBIR FOTOGRAFIA: &lt;br&gt;
-  &lt;input type="file" name="fichero"
-    accept="application/x-zip-compressed"&gt;&lt;br&gt;
-  &lt;input type="submit" value="enviar"&gt;
-  &lt;input type="reset" value="reset"&gt;
-  &lt;input type="button" value="salir"
-    onclick=!window.close();"&gt;
-&lt;/form&gt;
-			</code></pre>
-
-			<p>Se visualizaría así:</p>
-			
-			<form action="manejador.html" enctype="multipart/form-data" method="post">
-			USUARIO:
-			<input type="text" name="usuario" value="user"> <br>
-			CONTRASEÑA:<input type="password" name="pass"> <br>
-			SOCIO:<input type="Checkbox" name="socio" checked> <br>
-			SEXO:<input type="radio" name="genero" value="m"> Masculino
-				 <input type="radio" name="genero" value="f"> Femenino <br>
-			TEMAS PREFERIDOS:
-			<input type="radio" name="aventuras" value="a"> Acción 
-			<input type="radio" name="historica" value="h"> Histórica 
-			<input type="radio" name="ficcion" value="fi"> Ficción <br>
-			DESCUENTO:
-			<input name="descuento" value="15%" size="5" readonly> <br>
-			SUBIR FOTOGRAFIA: <br>
-			<input type="file" name="fichero"
-					accept="application/x-zip-compressed"><br>
-			<input type="submit" value="enviar">
-			<input type="reset" value="reset">
-			<input type="button" value="salir"
-					onclick="window.close();">
-			</form>
-	
-	
-			<p><b>Consideraciones</b></p>
-<p>El control de tipo text tiene el valor por defecto "user".</p>
-<p>El  control de tipo password sustituye  los caracteres que introduce el usuario por simbolos para ocultarlos.</p>
-<p>El control de tipo checkbox está marcado por defecto (atributo checked) puediendo ser desmarcado por el usuario.</p>
-<p>El primer conjunto de botones tipo radio tienen el mismo name="genero", lo cual los hace mutuamente excluyentes.</p>
-<p>El segundo conjunto de botones tipo radio tienen diferentes nombres por lo que es pisible seleccionar varios a la vez.</p>
-<p>El control que contiene el descuento es readony por lo que el usuario no puede cambiar su valor.</p>
-<p>El control de tipo file inserta un botón para realizar una búsqueda en el disco del fichero que se enviará con el formulario. Hay que definir el atributo enctype</p>
-<p>El control de tipo submit envía los daatos del formulario a la URI especificada en el atributo action</p>
-<p>El control de tipo reset recupera los valores por defecto de todos los controles.</p>
-<p>El control de tipo button define un botón genérico para asociarle una determinada acción con un script, por ejemplo: cerrar la ventana del formulario.</p>
-			
-			<div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_21">Ejercicio 21:</a></h2></code></pre>
             
-            <div class="ejercicios">
-                <h2><a href="16_ejercicios.html#ej_22">Ejercicio 22:</a></h2></code></pre>
-<h3>Más....</h3>
-	<b>&lt;optgroup&gt;</b>
-	<p>Sirve para definir grupos de opciones. Atributos: disabled, label (rótulo para el grupo de opciones)</p>
+            <!-- Sección 1: La etiqueta <form> y la comunicación cliente-servidor -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-send-check text-primary"></i> 1. Arquitectura de un Formulario Web (&lt;form&gt;)
+                </h3>
+                <p>
+                    Un formulario HTML es una interfaz interactiva que permite al usuario introducir datos para enviarlos a un servidor web (programado en PHP, Node.js, Python o Java) para su almacenamiento, procesamiento o autenticación.
+                </p>
+                <p>
+                    Al enviarse, el navegador empaqueta la información en pares <strong><code>nombre=valor</code></strong> (asociados al atributo <code>name</code> de cada control). Por tanto, <strong>cualquier control que carezca de atributo <code>name</code> será ignorado por el navegador al enviar los datos</strong>.
+                </p>
 
-	<b>&lt;label&gt;</b>
-	<p>Sirve para asignar un título a un control. Atributo <b><i>for</i></b>: Especifica el nombre de otro control para el que servirá de rótulo. Coincide con el atributo id del control relacionado.</p>
-	
-	<b>&lt;fieldset&gt;</b>
-	<p>Sirve para agrupar los controles y sus títulos por temas.</p>
-	
-	<b>&lt;legend&gt;</b>
-	<p>Sirve para asignar un rótulo a un fieldset.</p>
+                <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                    <h6 class="fw-bold text-primary mb-2">Estructura general de la etiqueta &lt;form&gt;:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;form action="procesar.php" method="post" enctype="multipart/form-data"&gt;
+    &lt;!-- Controles del formulario: etiquetas, campos, botones --&gt;
+&lt;/form&gt;</code></pre>
+                </div>
 
-	<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-&lt;fieldset width="300"&gt;
-&lt;legend&gt;Datos del Producto&lt;/legend&gt;
-Producto&lt;br&gt;
-&lt;select id="producto" name="producto" multiple="si" size="8"&gt;
-  &lt;optgroup label="Armaduras"&gt;
-  &lt;option value="AR001" selected="selected"&gt;
-  AR001 Oro Reluciente
-  &lt;/option&gt;
-  &lt;option value="AR002" &gt;
-  AR002 Plata Pulida
-  &lt;/option&gt;
-  &lt;option value="AR003" &gt;
-  AR003 Bronce Reforzado
-  &lt;/option&gt;
-  &lt;/optgroup&gt;
-&lt;/select&gt;
-&lt;/fieldset&gt;
-	</code></pre>
-<p>Se vería así:</p>	
-	<fieldset width="300">
-	<legend>Datos del Producto</legend>
-	Producto<br>
-	<select id="producto" name="producto" multiple="si" size="8">
-	<optgroup label="Armaduras">
-	<option value="AR001" selected="selected">
-	AR001 Oro Reluciente
-	</option>
-	<option value="AR002" >
-	AR002 Plata Pulida
-	</option>
-	<option value="AR003" >
-	AR003 Bronce Reforzado
-	</option>
-	</optgroup>
-	</select>
-	</fieldset>
-	
-<h3>Ejemplo:</h3>
-<p>Prueba el siguiente código y guardalo como ejemplo12.html</p>
-<pre class="bg-dark text-light p-3 rounded-3 shadow-sm my-3 overflow-auto"><code>
-	
-&lt;h1&gt;INDUSTRIAS STARFUERTE&lt;/h1&gt;
-&lt;table width="1000"&gt;
-&lt;tr&gt;
-&lt;td&gt;
-&lt;p&gt;
-&lt;form action="manejador.html" method="post"&gt;
-&lt;fieldset&gt;
-&lt;legend&gt;FORMULARIO DE PEDIDO&lt;/legend&gt;
-&lt;table width="700" cellpadding="5"&gt;
-&lt;tr&gt; &lt;td&gt; &lt;strong&gt; &gt; Paso 1. Identificación&lt;/strong&gt; &lt;/td&gt; &lt;/tr&gt;
-&lt;td&gt;
- &lt;fieldset&gt;
- &lt;legend&gt; Datos del Cliente &lt;/legend&gt;&lt;br&gt;
- &lt;label for="email"&gt;Correo Electrónico&lt;/label&gt;
- &lt;input type="text" id="email" size="20" maxlength="40"&gt;
- &lt;br&gt;
- &lt;label for="pass"&gt;Contraseña&lt;/label&gt;
- &lt;input type="password" id="pass" size="10" maxlength="30"&gt;
- &lt;br&gt;(Longitud mínima 6 caracteres)
- &lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;td&gt;
- &lt;fieldset&gt;
- &lt;legend&gt; Tipos de Cliente &lt;/legend&gt;&lt;br&gt;
- &lt;input type="radio" id="particular" name="tipo" checked&gt;
- &lt;label for="particular"&gt;Particular&lt;/label&gt;&lt;br&gt;
- &lt;input type="radio" id="asociacion" name="tipo" checked&gt;
- &lt;label for="asociacion"&gt;Asociación&lt;/label&gt;&lt;br&gt;
- &lt;input type="radio" id="empresa" name="tipo" checked&gt;
- &lt;label for="empresa"&gt;Empresa&lt;/label&gt;&lt;br&gt;
- &lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;/table&gt;
-&lt;table width="980" cellpadding="5"&gt;
-&lt;tr&gt; &lt;td&gt; &lt;strong&gt; &gt; Paso 2. Pedido&lt;/strong&gt; &lt;/td&gt; &lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;
- &lt;fieldset width="300"&gt;
-  &lt;legend&gt;Datos del Producto&lt;/legend&gt;
-  Producto&lt;br&gt;
-  &lt;select id="producto" name="producto" multiple="si" size="8"&gt;
-   &lt;optgroup label="Armaduras"&gt;
-    &lt;option value="AR001" selected="selected"&gt;
-    AR001 Oro Reluciente
-    &lt;/option&gt;
-    &lt;option value="AR002" &gt;
-    AR002 Plata Pulida
-    &lt;/option&gt;
-    &lt;option value="AR003" &gt;
-    AR003 Bronce Reforzado
-    &lt;/option&gt;
-   &lt;/optgroup&gt;
-    &lt;optgroup label="Extras"&gt;
-    &lt;option value="EX001" selected="selected"&gt;
-    EX001 Escudo
-    &lt;/option&gt;
-    &lt;option value="EX002" &gt;
-    EX002 Invisibilidad
-    &lt;/option&gt;
-   &lt;/optgroup&gt;
-  &lt;/select&gt;
- &lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;td&gt;
-&lt;fieldset&gt;
- &lt;legend&gt;Información de interés&lt;/legend&gt;
- Comentarios&lt;br&gt;
- &lt;textarea rows="6" cols="60"&gt;Escriba aquí sus comentarios
- &lt;/textarea&gt;
- &lt;br&gt;&lt;input type="checkbox" id="publi" value="si" checked&gt;
- &lt;label for="publi"&gt;Acepto recibir información publicitaria
- &lt;/label&gt;
-&lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;table width="980" cellpadding="5"&gt;
-&lt;tr&gt;
-&lt;td&gt;
- &lt;fieldset&gt;
-  &lt;legend&gt;Datos de Envío&lt;/legend&gt;&lt;br&gt;
-  &lt;label for="dire"&gt;Dirección&lt;/label&gt;
-  &lt;input type="text" id="dire" size="40"&gt;
-  &lt;br&gt;
-  &lt;label for="ciudad"&gt;Ciudad&lt;/label&gt;
-  &lt;input type="text" id="ciudad" size="20"&gt;
-  &lt;label for="cp"&gt;Código Postal&lt;/label&gt;
-  &lt;input type="text" id="cp" size="5"&gt;
- &lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;td&gt;
- &lt;fieldset&gt;
-  &lt;legend&gt;Datos Bancarios&lt;/legend&gt;&lt;br&gt;
-  &lt;label for="entidad"&gt;Nombre de la Entidad&lt;/label&gt;
-  &lt;input type="text" id="entidad" size="20"&gt;
-  &lt;br&gt;
-  &lt;label for="cuenta"&gt;Nº de Cuenta&lt;/label&gt;
-  &lt;input type="text" id="cuenta" size="20"&gt;
- &lt;/fieldset&gt;
-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;button type="submit"&gt;ENVIAR&lt;br&gt;PEDIDO&lt;/button&gt;&lt;/td&gt;
-&lt;td&gt;&lt;button type="reset"&gt;RESET&lt;/button&gt;&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/table&gt;
-&lt;/fieldset&gt;
-&lt;/p&gt;
-&lt;/form&gt;
-&lt;/table&gt;
+                <div class="table-responsive my-4">
+                    <table class="table table-bordered table-hover align-middle small mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Atributo</th>
+                                <th style="width: 25%;">Valores comunes</th>
+                                <th>Propósito y Buenas Prácticas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>action</code></td>
+                                <td>URL del script o endpoint</td>
+                                <td>Dirección a la que se remitirán los datos (p. ej. <code>registro.php</code> o <code>/api/login</code>). Si se omite, se envía a la misma página actual.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>method</code></td>
+                                <td><code>post</code> | <code>get</code></td>
+                                <td>
+                                    <strong><code>post</code>:</strong> Envía los datos ocultos en el cuerpo de la petición HTTP. Obligatorio para contraseñas, datos confidenciales o subida de archivos.<br>
+                                    <strong><code>get</code>:</strong> Adjunta los datos visibles en la propia URL (<code>?q=termino&amp;pagina=2</code>). Ideal para búsquedas y filtros consultables.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>enctype</code></td>
+                                <td><code>application/x-www-form-urlencoded</code><br><code>multipart/form-data</code></td>
+                                <td>
+                                    Codificación de envío. Si el formulario incluye campos de subida de archivos (<code>&lt;input type="file"&gt;</code>), es <strong>estrictamente obligatorio</strong> definir <code>enctype="multipart/form-data"</code>.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>autocomplete</code></td>
+                                <td><code>on</code> | <code>off</code></td>
+                                <td>Permite o prohíbe que el navegador sugiera valores guardados previamente en el historial del usuario.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>novalidate</code></td>
+                                <td>Atributo booleano</td>
+                                <td>Desactiva la validación nativa de HTML5 del formulario (muy útil durante fases de prueba o desarrollo).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-</pre>
-</div>
+                <div class="alert alert-secondary py-2 px-3 small border-start border-4 border-secondary">
+                    <i class="bi bi-info-circle-fill me-1"></i> <strong>Nota sobre <code>action="mailto:..."</code>:</strong> En apuntes antiguos se enseñaba a enviar formularios directamente por correo con <code>mailto:</code>. En la web actual esto es obsoleto y desaconsejado: falla en casi todos los navegadores modernos y teléfonos móviles si no hay un cliente de correo de escritorio local configurado. Los formularios siempre se procesan mediante un script de servidor o servicio API.
+                </div>
+            </section>
+
+            <!-- Sección 2: La Etiqueta <label> y Accesibilidad -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-universal-access text-success"></i> 2. La etiqueta &lt;label&gt; y la Ergonomía Táctil
+                </h3>
+                <p>
+                    La etiqueta <code>&lt;label&gt;</code> asigna un texto descriptivo a un control del formulario. No es un simple texto informativo: es un <strong>pilar de accesibilidad (WCAG) y ergonomía táctil</strong>:
+                </p>
+                <ul class="small">
+                    <li><strong>Accesibilidad:</strong> Permite que los lectores de pantalla anuncien exactamente qué información debe introducir el usuario al enfocarse en el campo.</li>
+                    <li><strong>Ergonomía móvil:</strong> Al hacer clic o tocar con el dedo sobre el texto del <code>&lt;label&gt;</code>, el navegador coloca automáticamente el cursor en el campo de texto o conmuta la casilla/radio, facilitando el uso en smartphones.</li>
+                </ul>
+
+                <div class="row g-4 my-2">
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-primary mb-2">Vinculación explícita con el atributo <code>for</code> (Recomendada):</h6>
+                        <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;!-- El valor de "for" DEBE coincidir con el "id" del control --&gt;
+&lt;label for="usuario" class="form-label fw-semibold"&gt;
+    Nombre de usuario:
+&lt;/label&gt;
+&lt;input type="text" id="usuario" name="usuario" class="form-control"&gt;</code></pre>
+                    </div>
+                    <div class="col-lg-6">
+                        <h6 class="fw-bold text-secondary mb-2">Previsualización funcional interactiva:</h6>
+                        <div class="p-3 bg-body-tertiary rounded-3 border h-100 d-flex flex-column justify-content-center">
+                            <label for="demo_usuario" class="form-label fw-semibold text-dark mb-1">Nombre de usuario (haz clic en este texto):</label>
+                            <input type="text" id="demo_usuario" name="demo_usuario" class="form-control shadow-sm" placeholder="ejemplo: lola_garcia">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección 3: Controles Clásicos de <input> -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-input-cursor-text text-primary"></i> 3. Controles fundamentales: La etiqueta &lt;input&gt;
+                </h3>
+                <p>
+                    La etiqueta <code>&lt;input&gt;</code> es un elemento vacío (sin etiqueta de cierre) cuya apariencia y comportamiento se transforman radicalmente mediante el atributo <strong><code>type</code></strong>:
+                </p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle small mb-4">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 20%;">Tipo (<code>type</code>)</th>
+                                <th>Descripción y Comportamiento</th>
+                                <th style="width: 30%;">Ejemplo de Código</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>text</code></td>
+                                <td>Entrada estándar de texto en una sola línea.</td>
+                                <td><code>&lt;input type="text" name="nombre"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>password</code></td>
+                                <td>Entrada ofuscada (los caracteres se ocultan con puntos o asteriscos).</td>
+                                <td><code>&lt;input type="password" name="clave"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>checkbox</code></td>
+                                <td>Casilla de selección múltiple (independientes entre sí). Se pueden marcar varias.</td>
+                                <td><code>&lt;input type="checkbox" name="acepto" value="si"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>radio</code></td>
+                                <td>Opción excluyente. Los radios con el <strong>mismo atributo <code>name</code></strong> solo permiten elegir uno a la vez.</td>
+                                <td><code>&lt;input type="radio" name="turno" value="m"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>file</code></td>
+                                <td>Permite seleccionar y subir ficheros locales del usuario (requiere <code>enctype="multipart/form-data"</code>).</td>
+                                <td><code>&lt;input type="file" name="cv" accept=".pdf"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>hidden</code></td>
+                                <td>Control invisible para el usuario. Transmite identificadores o tokens de sesión al servidor.</td>
+                                <td><code>&lt;input type="hidden" name="token" value="xyz"&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-primary"><code>submit</code> / <code>reset</code></td>
+                                <td>Botones nativos para enviar el formulario o restaurar sus valores iniciales.</td>
+                                <td><code>&lt;input type="submit" value="Enviar"&gt;</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Comparativa input button vs <button> -->
+                <div class="card border-0 bg-light p-3 rounded-3">
+                    <h6 class="fw-bold text-dark mb-1 d-flex align-items-center gap-2">
+                        <i class="bi bi-hand-index-thumb text-primary"></i> Mejor práctica: El elemento <code>&lt;button&gt;</code> frente a <code>&lt;input type="submit"&gt;</code>
+                    </h6>
+                    <p class="small text-secondary mb-2">
+                        En HTML moderno es preferible utilizar el elemento contenedor <strong><code>&lt;button type="submit"&gt;</code></strong> en lugar de <code>&lt;input type="submit"&gt;</code>. Permite incluir contenido HTML enriquecido en su interior, como iconos vectoriales, negritas o imágenes:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small mb-0 overflow-auto"><code>&lt;!-- Botón moderno con icono de Bootstrap integrado --&gt;
+&lt;button type="submit" class="btn btn-primary d-flex align-items-center gap-2"&gt;
+    &lt;i class="bi bi-send-fill"&gt;&lt;/i&gt; Enviar Solicitud
+&lt;/button&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sección 4: Nuevos Tipos de Input en HTML5 -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-stars text-warning"></i> 4. La Revolución de Tipos Nativos en HTML5
+                </h3>
+                <p>
+                    Uno de los mayores avances de HTML5 fue la incorporación de tipos de entrada semánticos que aportan validación automática y activan el teclado adecuado en smartphones:
+                </p>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle small mb-4">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Tipo HTML5</th>
+                                <th>Teclado / Interfaz en Móviles</th>
+                                <th>Validación y Características Clave</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary-subtle">
+                                <td class="fw-bold text-primary"><code>email</code></td>
+                                <td>Teclado optimizado con <code>@</code> y <code>.</code></td>
+                                <td>Valida automáticamente que el texto contenga una dirección de correo válida con formato <code>usuario@dominio.ext</code>.</td>
+                            </tr>
+                            <tr class="table-primary-subtle">
+                                <td class="fw-bold text-primary"><code>tel</code></td>
+                                <td>Teclado numérico telefónico</td>
+                                <td>Optimiza la marcación en smartphones. No aplica validación estricta por defecto por la variedad de formatos internacionales.</td>
+                            </tr>
+                            <tr class="table-primary-subtle">
+                                <td class="fw-bold text-primary"><code>url</code></td>
+                                <td>Teclado con <code>/</code> y <code>.com</code></td>
+                                <td>Exige que el valor comience por un protocolo válido (como <code>https://</code> o <code>http://</code>).</td>
+                            </tr>
+                            <tr class="table-success-subtle">
+                                <td class="fw-bold text-success"><code>number</code></td>
+                                <td>Teclado numérico con flechas</td>
+                                <td>Restringe la entrada únicamente a números. Soporta los atributos <code>min</code>, <code>max</code> y <code>step</code>.</td>
+                            </tr>
+                            <tr class="table-info-subtle">
+                                <td class="fw-bold text-info"><code>date</code></td>
+                                <td>Selector nativo de calendario</td>
+                                <td>Muestra el selector de fecha nativo del sistema operativo (YYYY-MM-DD), eliminando librerías JavaScript pesadas.</td>
+                            </tr>
+                            <tr class="table-info-subtle">
+                                <td class="fw-bold text-info"><code>time</code></td>
+                                <td>Selector nativo de reloj</td>
+                                <td>Permite seleccionar horas y minutos según el huso horario local del usuario.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><code>color</code></td>
+                                <td>Paleta cromática gráfica</td>
+                                <td>Abre el selector de color del sistema y devuelve su valor en formato hexadecimal (p. ej. <code>#20c997</code>).</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><code>range</code></td>
+                                <td>Barra deslizante (<em>slider</em>)</td>
+                                <td>Permite seleccionar un valor continuo o gradual entre un valor <code>min</code> y <code>max</code>.</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold"><code>search</code></td>
+                                <td>Botón nativo de borrado rápido</td>
+                                <td>Campo de búsqueda de texto con una cruz nativa para limpiar la consulta rápidamente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Sección 5: Validación Nativa (Constraint Validation API) -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-shield-check text-primary"></i> 5. Validación Nativa en Cliente sin JavaScript
+                </h3>
+                <p>
+                    HTML5 permite validar la integridad de los datos directamente en el navegador antes de enviar la petición al servidor mediante atributos estándar:
+                </p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                            <strong class="d-block text-primary mb-1"><code>required</code></strong>
+                            Atributo booleano que impide el envío del formulario si el campo está vacío, mostrando una burbuja de advertencia nativa.
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                            <strong class="d-block text-primary mb-1"><code>pattern="expresion_regular"</code></strong>
+                            Exige que el valor cumpla una expresión regular (RegEx) concreta (p. ej. DNI español: <code>pattern="[0-9]{8}[A-Za-z]"</code>).
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                            <strong class="d-block text-primary mb-1"><code>minlength</code> / <code>maxlength</code></strong>
+                            Limita el número mínimo y máximo de caracteres permitidos.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                            <strong class="d-block text-primary mb-1"><code>min</code>, <code>max</code>, <code>step</code></strong>
+                            Fijan los límites inferior, superior y el salto numérico para tipos <code>number</code>, <code>range</code> o <code>date</code>.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-body-tertiary rounded border h-100 small">
+                            <strong class="d-block text-primary mb-1"><code>placeholder</code></strong>
+                            Muestra un texto de ejemplo en gris claro que desaparece automáticamente en cuanto el usuario comienza a escribir.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-body-tertiary rounded-3 border mt-3">
+                    <h6 class="fw-bold text-dark mb-2">Ejemplo de campo con validación nativa completa:</h6>
+                    <pre class="bg-dark text-light p-3 rounded-3 shadow-sm mb-0 overflow-auto"><code>&lt;label for="dni" class="form-label"&gt;DNI (8 dígitos y letra):&lt;/label&gt;
+&lt;input type="text" 
+       id="dni" 
+       name="dni" 
+       required 
+       pattern="[0-9]{8}[A-Za-z]" 
+       placeholder="12345678Z" 
+       title="Ocho dígitos seguidos de una letra mayúscula o minúscula" 
+       class="form-control"&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sección 6: Controles Avanzados (textarea, select, datalist) -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-menu-button-wide text-primary"></i> 6. Controles avanzados: textarea, select y datalist
+                </h3>
+
+                <!-- textarea -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark">A. Área de texto multilínea: <code>&lt;textarea&gt;</code></h5>
+                    <p class="small text-secondary mb-2">
+                        A diferencia de <code>&lt;input&gt;</code>, tiene etiqueta de apertura y cierre. El texto por defecto se ubica entre ambas etiquetas (no en un atributo <code>value</code>):
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small overflow-auto"><code>&lt;label for="observaciones" class="form-label"&gt;Observaciones:&lt;/label&gt;
+&lt;textarea id="observaciones" name="observaciones" rows="4" class="form-control" placeholder="Escribe aquí tus comentarios..."&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+
+                <!-- select y optgroup -->
+                <div class="mb-4">
+                    <h5 class="fw-bold text-dark">B. Menús desplegables: <code>&lt;select&gt;</code> y <code>&lt;optgroup&gt;</code></h5>
+                    <p class="small text-secondary mb-2">
+                        Permite elegir una opción entre varias predefinidas con <code>&lt;option&gt;</code>. Podemos agrupar opciones temáticas mediante <code>&lt;optgroup label="..."&gt;</code>:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small overflow-auto"><code>&lt;select name="curso" class="form-select"&gt;
+    &lt;optgroup label="Grado Superior"&gt;
+        &lt;option value="daw" selected&gt;1º Desarrollo de Aplicaciones Web (DAW)&lt;/option&gt;
+        &lt;option value="dam"&gt;1º Desarrollo de Aplicaciones Multiplataforma (DAM)&lt;/option&gt;
+        &lt;option value="asir"&gt;1º Administración de Sistemas en Red (ASIR)&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                </div>
+
+                <!-- datalist -->
+                <div class="mb-3">
+                    <h5 class="fw-bold text-success d-flex align-items-center gap-2">
+                        <i class="bi bi-lightning-charge-fill"></i> C. Sugerencias de autocompletado en HTML5: <code>&lt;datalist&gt;</code>
+                    </h5>
+                    <p class="small text-secondary mb-2">
+                        Combina la libertad de una caja de texto libre con la comodidad de un menú desplegable. El atributo <code>list</code> del <code>&lt;input&gt;</code> se enlaza con el <code>id</code> del <code>&lt;datalist&gt;</code>:
+                    </p>
+                    <pre class="bg-dark text-light p-2 rounded small overflow-auto"><code>&lt;!-- Campo de texto con lista de sugerencias dinámicas --&gt;
+&lt;label for="navegador" class="form-label"&gt;Elige tu navegador habitual:&lt;/label&gt;
+&lt;input type="text" id="navegador" name="navegador" list="lista-navegadores" class="form-control" placeholder="Escribe para buscar..."&gt;
+
+&lt;datalist id="lista-navegadores"&gt;
+    &lt;option value="Google Chrome"&gt;
+    &lt;option value="Mozilla Firefox"&gt;
+    &lt;option value="Microsoft Edge"&gt;
+    &lt;option value="Apple Safari"&gt;
+    &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+                </div>
+            </section>
+
+            <!-- Sección 7: fieldset y legend -->
+            <section class="mb-5">
+                <h3 class="fw-bold text-dark border-bottom pb-2 mb-3 d-flex align-items-center gap-2">
+                    <i class="bi bi-card-checklist text-primary"></i> 7. Agrupación semántica con &lt;fieldset&gt; y &lt;legend&gt;
+                </h3>
+                <p>
+                    En formularios extensos, las etiquetas <code>&lt;fieldset&gt;</code> y <code>&lt;legend&gt;</code> permiten agrupar lógicamente campos relacionados (como Datos Personales, Dirección de Envío y Forma de Pago), mejorando radicalmente la experiencia de usuario y la navegación con teclado y lectores de pantalla:
+                </p>
+
+                <div class="p-3 bg-body-tertiary rounded-3 border mb-3">
+                    <fieldset class="border p-3 rounded-3 bg-white shadow-sm mb-3">
+                        <legend class="float-none w-auto px-2 fs-6 fw-bold text-primary border-bottom-0 mb-0">
+                            <i class="bi bi-person-badge me-1"></i> Datos de Acceso
+                        </legend>
+                        <div class="row g-3 mt-1">
+                            <div class="col-md-6">
+                                <label for="demo_email" class="form-label small fw-semibold">Correo Electrónico:</label>
+                                <input type="email" id="demo_email" class="form-control form-control-sm" placeholder="usuario@educacion.es">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="demo_pass" class="form-label small fw-semibold">Contraseña:</label>
+                                <input type="password" id="demo_pass" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- Callout a Ejercicios 21 y 22 -->
+                <div class="row g-3 my-3">
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-card-text text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 21: Formulario con desplegables</h5>
+                            <p class="small text-secondary mb-3">Construcción de un formulario de matriculación con menús de selección y campos de texto.</p>
+                            <a href="./16_ejercicios.html#ej_21" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 21
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card exercise-card p-3 shadow-sm rounded-3 h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-warning text-dark fw-bold">Práctica</span>
+                                <i class="bi bi-ui-checks text-warning fs-5"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark mb-1">Ejercicio 22: Formulario completo con validaciones</h5>
+                            <p class="small text-secondary mb-3">Creación de un formulario de contacto con restricciones de tamaño, límites de caracteres y tipos de datos.</p>
+                            <a href="./16_ejercicios.html#ej_22" class="btn btn-sm btn-outline-dark fw-medium mt-auto">
+                                <i class="bi bi-box-arrow-up-right me-1"></i> Ver Ejercicio 22
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </article>
 
         <!-- Navegación entre Temas -->
