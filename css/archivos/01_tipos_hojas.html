@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -132,73 +129,391 @@
         <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 01</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Fundamentos y Enlace</span>
             </div>
 
-            <h1>Tipos de hojas de estilo</h1>
+            <h1 class="fw-bold mb-3 display-6">01. Tipos de Hojas de Estilo en CSS</h1>
             
-            <p>Una hoja de estilos contiene datos de formato relativos a los elementos definidos en la página HTML. Por lo tanto, ambos (documento HTML y hoja de estilo) deben estar relacionados de alguna manera. Existen tres maneras de utilizar hojas de estilo:</p>
-            <h3>Tres formas de insertar CSS</h3>
-			<ul>
-			<li>Estilo en línea
-			<li>Hojas de estilo internas
-			<li>Hojas de estilo externas
-			</ul>
+            <p class="lead text-secondary mb-4">
+                El lenguaje <strong>CSS</strong> (<em>Cascading Style Sheets</em>) fue diseñado con un principio clave de la arquitectura web: 
+                <strong>separar el contenido y la estructura semántica (HTML) de la presentación y el diseño visual (CSS)</strong>.
+                Para aplicar reglas de estilo a un documento web existen tres métodos fundamentales, además de directivas modulares de importación.
+            </p>
 
-            <ol>
-                <li><b>Estilo en línea: Aplicar estilos directamente a elementos HTML.</b> De esta manera se escribe el código CSS dentro del atributo <tt>style</tt> de la etiqueta HTML en cuestión. Por ejemplo, para aplicar un estilo css a un párrafo: 
-                    <div class="codigo">
-						<pre>
-&lt;p <b>style="color:sienna;margin-left:20px;"</b>&gt;HOLA&lt;/p&gt;
-                        </pre>
-					</div>
-                
-				<li><b>Hojas de estilos internas.</b> Se utilizan para aplicar estilos a la página en la cual se utiliza. El código de la hoja de estilo se ubicará en la cabecera de la página web, entre las etiquetas &lt;style&gt; y &lt;/style&gt;
- 
-                    <div class="codigo">
-<pre>
+            <!-- Alerta conceptual -->
+            <div class="alert alert-primary d-flex align-items-center gap-3 rounded-3 mb-4 shadow-sm" role="alert">
+                <i class="bi bi-info-circle-fill fs-4 text-primary flex-shrink-0"></i>
+                <div class="small">
+                    <strong>Principio de separación de responsabilidades:</strong> Mantener el diseño en archivos independientes no solo hace el código más limpio y legible, sino que acelera notablemente la carga de las páginas web gracias a la memoria caché de los navegadores.
+                </div>
+            </div>
+
+            <!-- Sección 1: Los 3 métodos principales -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-layers text-primary"></i> Tres Formas de Insertar CSS
+            </h2>
+
+            <div class="row g-4 mb-4">
+                <!-- 1. Estilo en línea -->
+                <div class="col-12">
+                    <div class="card border bg-body-tertiary rounded-3 shadow-sm h-100">
+                        <div class="card-header bg-white border-bottom py-3 d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark d-flex align-items-center gap-2">
+                                <span class="badge bg-warning text-dark">Método 1</span> Estilo en línea (<em>Inline style</em>)
+                            </span>
+                            <span class="badge bg-light text-secondary border">Atributo <code>style</code></span>
+                        </div>
+                        <div class="card-body p-3 p-md-4">
+                            <p class="small text-secondary mb-3">
+                                Se define directamente dentro de la etiqueta HTML deseada mediante el atributo global <code>style</code>. El valor del atributo contiene una o más declaraciones CSS separadas por punto y coma.
+                            </p>
+                            
+                            <div class="bg-dark text-light p-3 rounded-3 mb-3">
+                                <span class="badge bg-secondary mb-2 text-uppercase small">Ejemplo HTML:</span>
+                                <pre class="mb-0 text-white-50"><code class="text-white">&lt;p <span class="text-warning">style="color: #0d6efd; margin-left: 20px; font-weight: bold;"</span>&gt;
+    Este párrafo tiene estilos aplicados en línea.
+&lt;/p&gt;</code></pre>
+                            </div>
+
+                            <div class="row g-2 small">
+                                <div class="col-md-6">
+                                    <div class="p-2 bg-success-subtle text-success-emphasis rounded border border-success-subtle">
+                                        <i class="bi bi-check-circle-fill me-1"></i> <strong>Ventaja:</strong> Inmediatez para pruebas rápidas y maquetación de correos electrónicos (HTML emails).
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-2 bg-danger-subtle text-danger-emphasis rounded border border-danger-subtle">
+                                        <i class="bi bi-x-circle-fill me-1"></i> <strong>Desventaja:</strong> Rompe la separación de código, no es reutilizable y tiene una especificidad muy alta difícil de sobrescribir.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Hoja de estilo interna -->
+                <div class="col-12">
+                    <div class="card border bg-body-tertiary rounded-3 shadow-sm h-100">
+                        <div class="card-header bg-white border-bottom py-3 d-flex align-items-center justify-content-between">
+                            <span class="fw-bold text-dark d-flex align-items-center gap-2">
+                                <span class="badge bg-info text-dark">Método 2</span> Hoja de estilo interna o incrustada (<em>Embedded</em>)
+                            </span>
+                            <span class="badge bg-light text-secondary border">Elemento <code>&lt;style&gt;</code></span>
+                        </div>
+                        <div class="card-body p-3 p-md-4">
+                            <p class="small text-secondary mb-3">
+                                Las reglas CSS se escriben dentro del elemento <code>&lt;style&gt;</code> ubicado en la cabecera (<code>&lt;head&gt;</code>) del documento HTML. Afectan a todos los elementos coincidentes de esa página en particular.
+                            </p>
+                            
+                            <div class="bg-dark text-light p-3 rounded-3 mb-3">
+                                <span class="badge bg-secondary mb-2 text-uppercase small">Ejemplo HTML:</span>
+                                <pre class="mb-0 text-white-50"><code class="text-white">&lt;!DOCTYPE html&gt;
+&lt;html lang="es"&gt;
 &lt;head&gt;
-    &lt;style&gt;
-        hr {color:sienna;}
-        p {margin-left:20px;}
-        body {background-image:url("images/back40.gif");}
-    &lt;/style&gt;
-&lt;/head&gt;
-</pre>
-				</div>
-                
-				<li><b>Hojas de estilos externas.</b> Se utilizan para aplicar el mismo formato a varias páginas de un portal. Se definen en un archivo externo que será consultado por todas las páginas HTML del sitio web, reutilizando por tanto el código. Para ello se escribirá el código CSS en un documento externo con extensión <tt>css</tt>. Posteriormente se vinculará a la página web mediante la utilización de la siguiente etiqueta en la cabecera del documento HTML en cuestión: 
-                    <div class="codigo">
-<pre><b>&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;</b><i>nombre_archivo_css.css</i><b>&quot;&gt;</b></pre>
-					</div>
-            </ol>
-            
-            <div class="ejercicios">
-                <h2><a href="17_ejercicios.html#ej_01">Ejercicio_CSS 1  :</a></h2>                
-            </div>
-            
-            <div class="ejercicios">
-                <h2><a href="17_ejercicios.html#ej_02">Ejercicio_CSS 2:</a></h2>
-            </div>
-            
-            <div class="ejercicios">
-                <h2><a href="17_ejercicios.html#ej_03">Ejercicio_CSS 3:</a></h2>
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Página con estilos internos&lt;/title&gt;
+    <span class="text-info">&lt;style&gt;</span>
+        <span class="text-warning">body</span> {
+            background-color: #f8f9fa;
+            font-family: system-ui, sans-serif;
+        }
+        <span class="text-warning">h1</span> {
+            color: #0d6efd;
+            border-bottom: 2px solid #dee2e6;
+        }
+        <span class="text-warning">p</span> {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+    <span class="text-info">&lt;/style&gt;</span>
+&lt;/head&gt;</code></pre>
+                            </div>
+
+                            <div class="row g-2 small">
+                                <div class="col-md-6">
+                                    <div class="p-2 bg-success-subtle text-success-emphasis rounded border border-success-subtle">
+                                        <i class="bi bi-check-circle-fill me-1"></i> <strong>Ventaja:</strong> Ideal para estilos únicos de una página o para inyectar CSS crítico (<em>Critical CSS</em>) mejorando la velocidad de carga.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-2 bg-danger-subtle text-danger-emphasis rounded border border-danger-subtle">
+                                        <i class="bi bi-x-circle-fill me-1"></i> <strong>Desventaja:</strong> No se comparte entre diferentes páginas del sitio web; cambiar un estilo global requeriría editar archivo por archivo.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Hoja de estilo externa -->
+                <div class="col-12">
+                    <div class="card border border-primary-subtle bg-body-tertiary rounded-3 shadow-sm h-100">
+                        <div class="card-header bg-primary text-white py-3 d-flex align-items-center justify-content-between">
+                            <span class="fw-bold d-flex align-items-center gap-2">
+                                <span class="badge bg-white text-primary">Método 3</span> Hoja de estilo externa (<em>External stylesheet</em>) — Estándar recomendado
+                            </span>
+                            <span class="badge bg-primary-subtle text-white border border-white-50">Elemento <code>&lt;link&gt;</code></span>
+                        </div>
+                        <div class="card-body p-3 p-md-4">
+                            <p class="small text-secondary mb-3">
+                                Es la mejor práctica indiscutible en desarrollo web. El código CSS se redacta en un archivo independiente con extensión <code>.css</code> y se vincula a cualquier página HTML mediante la etiqueta <code>&lt;link&gt;</code> dentro de <code>&lt;head&gt;</code>.
+                            </p>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-lg-6">
+                                    <div class="bg-dark text-light p-3 rounded-3 h-100">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-secondary text-uppercase small">1. En el documento HTML:</span>
+                                            <span class="small text-secondary">index.html</span>
+                                        </div>
+                                        <pre class="mb-0 text-white-50"><code class="text-white">&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Mi sitio web&lt;/title&gt;
+    <span class="text-success">&lt;link rel="stylesheet" href="css/estilos.css"&gt;</span>
+&lt;/head&gt;</code></pre>
+                                        <div class="mt-2 text-secondary small">
+                                            <i class="bi bi-lightbulb text-warning me-1"></i> <em>En HTML5 el atributo <code>type="text/css"</code> es obsoleto y redundante, pues CSS es el estándar por defecto.</em>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="bg-dark text-light p-3 rounded-3 h-100">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="badge bg-secondary text-uppercase small">2. En el archivo CSS:</span>
+                                            <span class="small text-secondary">css/estilos.css</span>
+                                        </div>
+                                        <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">body</span> {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    color: #212529;
+}
+
+<span class="text-warning">.boton-principal</span> {
+    background-color: #0d6efd;
+    color: #ffffff;
+    border-radius: 0.375rem;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="p-3 bg-primary-subtle text-primary-emphasis rounded-3 border border-primary-subtle small">
+                                <i class="bi bi-star-fill text-primary me-2"></i><strong>Por qué es el método profesional:</strong>
+                                Permite cambiar el aspecto corporativo completo de miles de páginas modificando un único archivo. Además, el navegador web guarda el archivo <code>.css</code> en su <strong>memoria caché</strong> tras la primera visita, por lo que las siguientes páginas cargan de forma casi instantánea sin volver a descargar los estilos.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-                <h3>Orden de los estilos en Cascada</h3>
+            <!-- Sección 2: La regla @import -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-4 mb-4">
+                <h3 class="h5 fw-bold text-dark mb-2 d-flex align-items-center gap-2">
+                    <i class="bi bi-download text-primary"></i> La directiva de importación modular: <code>@import</code>
+                </h3>
+                <p class="small text-secondary mb-3">
+                    CSS permite importar hojas de estilo dentro de otras hojas de estilo mediante la regla <code>@import</code>. Debe colocarse obligatoriamente en la primera línea del archivo CSS o al inicio del bloque <code>&lt;style&gt;</code>, antes de cualquier otra regla.
+                </p>
 
-                <p>¿Qué estilo se usará cuando se ha especificado más de un estilo para un elemento de HTML?
-                <p>Los estilos irán en cascada en el siguiente orden de prioridad, de menos a más.
-                <ol>
-                    <li>Hoja de estilos externa
-                    <li>Hoja de estilos interna
-                    <li>Estilo en línea (directamente en un elemento HTML)
-                </ol>
-                <p>Un estilo en línea (dentro de un elemento HTML) tiene la prioridad mayor lo que quiere decir que sobrescribirá un estilo definido en una hoja de estilo interna (en la cabecera) o en una hoja de estilo externa.</p>
-                <p>Nota: Si el link de la hoja de estilo externa está después de la hoja de estilo interna, la externa anulará la interna.</p>
-                
+                <div class="bg-dark text-light p-3 rounded-3 mb-3">
+                    <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-info">/* En el archivo principal estilos.css */</span>
+<span class="text-primary">@import</span> <span class="text-warning">url("reset.css")</span>;
+<span class="text-primary">@import</span> <span class="text-warning">url("tipografia.css")</span>;
+<span class="text-primary">@import</span> <span class="text-warning">url("botones.css")</span>;
+
+<span class="text-info">/* Reglas generales posteriores */</span>
+<span class="text-warning">main</span> {
+    padding: 2rem;
+}</code></pre>
+                </div>
+
+                <div class="alert alert-warning border-0 small mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-exclamation-triangle-fill fs-5 text-warning flex-shrink-0"></i>
+                    <div>
+                        <strong>Aviso de rendimiento:</strong> <code>@import</code> carga los archivos de forma <em>secuencial</em> (uno tras otro), generando un cuello de botella en la red. En proyectos de producción modernos se prefiere usar múltiples etiquetas <code>&lt;link&gt;</code> en HTML (que cargan en paralelo) o herramientas de compilación/empaquetado (como Vite o Webpack).
+                    </div>
+                </div>
             </div>
+
+            <!-- Sección 3: Tabla Comparativa -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-table text-primary"></i> Comparativa de Métodos
+            </h2>
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-hover align-middle bg-white mb-0 shadow-sm rounded-3 overflow-hidden">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width: 20%;">Método</th>
+                            <th scope="col" style="width: 25%;">Ubicación</th>
+                            <th scope="col" style="width: 20%;">Ámbito</th>
+                            <th scope="col" style="width: 15%;">Aprovecha Caché</th>
+                            <th scope="col" style="width: 20%;">Recomendación</th>
+                        </tr>
+                    </thead>
+                    <tbody class="small">
+                        <tr>
+                            <td class="fw-bold"><i class="bi bi-code-slash text-warning me-1"></i> En línea (<em>Inline</em>)</td>
+                            <td>Atributo <code>style="..."</code></td>
+                            <td>Elemento individual</td>
+                            <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">No</span></td>
+                            <td><span class="badge bg-secondary">Uso esporádico / Emails</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold"><i class="bi bi-file-code text-info me-1"></i> Interna (<em>Embedded</em>)</td>
+                            <td>Elemento <code>&lt;style&gt;</code> en <code>&lt;head&gt;</code></td>
+                            <td>Una sola página HTML</td>
+                            <td><span class="badge bg-danger-subtle text-danger border border-danger-subtle">No (va en el HTML)</span></td>
+                            <td><span class="badge bg-info text-dark">Pruebas / CSS crítico</span></td>
+                        </tr>
+                        <tr class="table-primary-subtle">
+                            <td class="fw-bold text-primary"><i class="bi bi-filetype-css text-primary me-1"></i> Externa (<em>Linked</em>)</td>
+                            <td>Archivo <code>.css</code> + etiqueta <code>&lt;link&gt;</code></td>
+                            <td>Múltiples páginas del portal</td>
+                            <td><span class="badge bg-success">Sí (Excelente)</span></td>
+                            <td><span class="badge bg-primary">Estándar profesional</span></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold"><i class="bi bi-arrow-down-circle text-secondary me-1"></i> Regla <code>@import</code></td>
+                            <td>Primera línea dentro de un archivo CSS</td>
+                            <td>Según el archivo destino</td>
+                            <td><span class="badge bg-success-subtle text-success border border-success-subtle">Sí (el subarchivo)</span></td>
+                            <td><span class="badge bg-warning text-dark">Evitar por lentitud</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sección 4: Orden de Cascada y Prioridad Inicial -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-water text-primary"></i> Orden de Prioridad en Cascada
+            </h2>
+            <p class="text-secondary small mb-3">
+                ¿Qué ocurre si para un mismo elemento (por ejemplo, un <code>&lt;p&gt;</code>) se declaran reglas contradictorias en los diferentes tipos de hojas? El navegador resuelve el conflicto evaluando el orden de la <strong>cascada</strong>:
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-light-subtle rounded-3 p-3 border-start border-4 border-secondary shadow-sm">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-secondary">1. Prioridad Base</span>
+                            <span class="small fw-bold">Hoja Externa</span>
+                        </div>
+                        <p class="small text-secondary mb-0">
+                            Aplica los estilos generales de todo el sitio web. Es la base de diseño corporativo.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-light-subtle rounded-3 p-3 border-start border-4 border-primary shadow-sm">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-primary">2. Prioridad Intermedia</span>
+                            <span class="small fw-bold">Hoja Interna</span>
+                        </div>
+                        <p class="small text-secondary mb-0">
+                            Sobrescribe a la hoja externa si está declarada después en el <code>&lt;head&gt;</code> o tiene selectores más específicos.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 bg-light-subtle rounded-3 p-3 border-start border-4 border-danger shadow-sm">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="badge bg-danger">3. Máxima Prioridad</span>
+                            <span class="small fw-bold">Estilo en Línea</span>
+                        </div>
+                        <p class="small text-secondary mb-0">
+                            El estilo en línea dentro de la etiqueta HTML sobrescribe tanto a hojas internas como externas para esa propiedad concreta.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-secondary d-flex align-items-center gap-3 rounded-3 mb-4" role="alert">
+                <i class="bi bi-sort-down fs-4 text-dark flex-shrink-0"></i>
+                <div class="small">
+                    <strong>Regla del orden en el documento:</strong> Entre hojas de estilo externas e internas, en caso de igualdad de especificidad, <strong>la última que aparezca leída en el código HTML prevalecerá sobre las anteriores</strong>. Por este motivo, siempre enlazamos librerías externas como Bootstrap antes que nuestro propio archivo <code>estilos.css</code>.
+                </div>
+            </div>
+
+            <!-- Sección 5: Ejercicios del Tema -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-pencil-square text-warning"></i> Actividades Prácticas Guiadas
+            </h2>
+            <p class="text-secondary small mb-3">
+                Pon a prueba los conceptos aprendidos resolviendo los siguientes ejercicios prácticos de nuestro taller de CSS:
+            </p>
+
+            <div class="row g-3 mb-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm rounded-3">
+                        <div class="card-body p-3 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-warning-subtle text-dark border">Actividad 01</span>
+                                <i class="bi bi-code-slash text-warning fs-5"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">Ejercicio CSS 1</h6>
+                            <p class="small text-secondary flex-grow-1 mb-3">
+                                Aplicar estilos en línea directamente al primer párrafo de un documento web base.
+                            </p>
+                            <a href="17_ejercicios.html#ej_01" class="btn btn-outline-warning btn-sm w-100 fw-medium">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Resolver Ejercicio 1
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm rounded-3">
+                        <div class="card-body p-3 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-warning-subtle text-dark border">Actividad 02</span>
+                                <i class="bi bi-file-code text-info fs-5"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">Ejercicio CSS 2</h6>
+                            <p class="small text-secondary flex-grow-1 mb-3">
+                                Incrustar una hoja de estilo interna mediante <code>&lt;style&gt;</code> para formatear párrafos y comprobar la cascada.
+                            </p>
+                            <a href="17_ejercicios.html#ej_02" class="btn btn-outline-warning btn-sm w-100 fw-medium">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Resolver Ejercicio 2
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border shadow-sm rounded-3">
+                        <div class="card-body p-3 d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="badge bg-warning-subtle text-dark border">Actividad 03</span>
+                                <i class="bi bi-filetype-css text-primary fs-5"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">Ejercicio CSS 3</h6>
+                            <p class="small text-secondary flex-grow-1 mb-3">
+                                Crear un archivo externo <code>estilos.css</code>, vincularlo con <code>&lt;link&gt;</code> y analizar la resolución de conflictos.
+                            </p>
+                            <a href="17_ejercicios.html#ej_03" class="btn btn-outline-warning btn-sm w-100 fw-medium">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Resolver Ejercicio 3
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Descarga/acceso a la plantilla base -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 d-flex flex-sm-row align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-filetype-html fs-2 text-danger"></i>
+                    <div>
+                        <div class="fw-bold small text-dark">Documento HTML base para los ejercicios</div>
+                        <div class="text-secondary small">Plantilla mínima necesaria para realizar las prácticas 1, 2 y 3.</div>
+                    </div>
+                </div>
+                <a href="./codigo_html_base.html" target="_blank" class="btn btn-sm btn-outline-secondary text-nowrap">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> Ver código base
+                </a>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
