@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -132,40 +129,229 @@
         <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 02</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Sintaxis y Estructura</span>
             </div>
 
-            <h1>Estructura documento CSS</h1>
-        
-            <p>Tal y como se ha visto en el punto anterior, existen tres maneras de utilizar hojas de estilo. La primera de ellas se utiliza para aplicar estilos concretos a elementos concretos de una página, por lo que se suele utilizar para casos muy puntuales. Por ello, a partir de ahora hablaremos de las hojas de estilo externas. Las hojas internas serán exactamente igual pero estarán contenidas en el mismo documento HTML en vez de en un archivo aparte.</p>
+            <h1 class="fw-bold mb-3 display-6">02. Estructura y Sintaxis de Documentos CSS</h1>
             
-            <p>Los archivos de hojas de estilo tienen extensión .css y están formados por un conjunto de reglas puestas una a continuación de otra:</p>
-            
-            <div class="codigo">
-                <pre>
-body {
-    background: white;
-    font-size: 11pt; 
-    font-family: Arial,Helvetica,sans-serif; 
-    color: black; 
-    text-align:justify; 
-    }
-            
-p   {
-    text-indent: 2em;
-    }           </pre>
+            <p class="lead text-secondary mb-4">
+                Un documento o archivo CSS (con extensión <code>.css</code>) está compuesto por una secuencia de <strong>reglas de estilo</strong>. Cada regla le indica al motor de renderizado del navegador exactamente <em>a qué elementos HTML</em> debe aplicar un conjunto determinado de <em>propiedades visuales</em>.
+            </p>
+
+            <!-- Sección 1: Anatomía de una Regla CSS -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-braces text-primary"></i> Anatomía de una Regla CSS
+            </h2>
+
+            <p class="text-secondary small mb-3">
+                Toda regla en CSS consta de dos partes elementales: el <strong>selector</strong> y el <strong>bloque de declaraciones</strong>.
+            </p>
+
+            <!-- Card con Imagen Descriptiva -->
+            <div class="card border bg-body-tertiary rounded-3 shadow-sm mb-4">
+                <div class="card-header bg-white border-bottom py-3 d-flex align-items-center justify-content-between">
+                    <span class="fw-bold text-dark"><i class="bi bi-diagram-3 text-primary me-2"></i>Esquema general de sintaxis</span>
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Estructura W3C</span>
+                </div>
+                <div class="card-body p-3 p-md-4 text-center">
+                    <div class="bg-white p-3 rounded-3 border d-inline-block shadow-sm mb-3 max-w-100">
+                        <img src="../imagenes/sintaxis.jpg" alt="Sintaxis de una regla CSS: Selector, Propiedad y Valor" class="img-fluid rounded">
+                    </div>
+                    <div class="row g-3 text-start small">
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-primary mb-1"><i class="bi bi-bullseye me-1"></i> 1. Selector</h6>
+                                <p class="text-secondary mb-0">Indica los elementos del documento HTML a los que afectará la regla (ej: <code>h1</code>, <code>p</code>, <code>.boton</code>).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-warning-emphasis mb-1"><i class="bi bi-tag me-1"></i> 2. Propiedad</h6>
+                                <p class="text-secondary mb-0">La característica visual que se desea modificar, seguida siempre de dos puntos <code>:</code> (ej: <code>color</code>, <code>font-size</code>).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 bg-white rounded-3 border h-100">
+                                <h6 class="fw-bold text-success mb-1"><i class="bi bi-check2-square me-1"></i> 3. Valor</h6>
+                                <p class="text-secondary mb-0">El ajuste o medida asignado a la propiedad, finalizado obligatoriamente con punto y coma <code>;</code> (ej: <code>blue</code>, <code>1.5rem</code>).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <p>Como se puede observar, las reglas están formadas por dos componentes: un <b>selector</b>, que indica cuales serán los elementos a los que hay que aplicar el estilo, y una <b>declaración</b>, que establece las propiedades y valores que se aplicarán. La estructura genérica de una regla sería:</p>
-            <div id="imagen_css">
-			<img  src="../imagenes/sintaxis.jpg" width="638" height="151" >
+
+            <!-- Ejemplo de Código Estilizado -->
+            <h3 class="h5 fw-bold text-dark mb-3">Ejemplo Práctico en un Archivo <code>estilos.css</code></h3>
+            <div class="bg-dark text-light p-3 p-md-4 rounded-3 shadow-sm mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-secondary">
+                    <span class="text-secondary small fw-medium"><i class="bi bi-file-earmark-code me-1"></i> Archivo: estilos.css</span>
+                    <span class="badge bg-secondary text-uppercase small">Sintaxis CSS3</span>
+                </div>
+                <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-info">/* 1. Regla para el cuerpo del documento */</span>
+<span class="text-warning">body</span> {
+    <span class="text-info">background-color</span>: <span class="text-success">#f8f9fa</span>;
+    <span class="text-info">font-family</span>: <span class="text-success">system-ui, -apple-system, sans-serif</span>;
+    <span class="text-info">color</span>: <span class="text-success">#212529</span>;
+    <span class="text-info">line-height</span>: <span class="text-success">1.6</span>;
+}
+
+<span class="text-info">/* 2. Regla para los párrafos generales */</span>
+<span class="text-warning">p</span> {
+    <span class="text-info">margin-bottom</span>: <span class="text-success">1rem</span>;
+    <span class="text-info">text-align</span>: <span class="text-success">justify</span>;
+}
+
+<span class="text-info">/* 3. Regla para encabezados destacados */</span>
+<span class="text-warning">h1, h2, h3</span> {
+    <span class="text-info">color</span>: <span class="text-success">#0d6efd</span>;
+    <span class="text-info">font-weight</span>: <span class="text-success">700</span>;
+}</code></pre>
             </div>
-			<div id="nofloat"></div>
-            <p>En el ejemplo que hemos puesto, hay dos reglas de estilo: la primera de ellas se aplicaría sobre el elemento <b>body</b> (etiqueta que define el cuerpo de una página HTML) y la segunda sobre el elemento <b>p</b> (etiqueta que define un párrafo dentro de una página HTML). La primera regla tendría cinco declaraciones de formato (formadas cada una por una pareja de <i>propiedad: valor</i>) y la segunda uno. Las propiedades que se pueden formatear así como los valores que puede tomar cada propiedad se encuentran en la <a href="./guia_referencia_css_w3c/guia_css.xhtml">Guía rápida CSS 2.1</a> que se incluye en este documento.</p>
-            
-            
-        </div>
+
+            <!-- Sección 2: Comentarios en CSS -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-chat-left-text text-primary"></i> Comentarios en CSS
+            </h2>
+            <p class="text-secondary small mb-3">
+                Los comentarios permiten documentar el código, organizar secciones o desactivar reglas temporalmente sin que el navegador las ejecute:
+            </p>
+
+            <div class="bg-dark text-light p-3 rounded-3 mb-3">
+                <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-info">/* Comentario de una sola línea */</span>
+
+<span class="text-info">/* ========================================================
+   SECCIÓN DE NAVEGACIÓN Y CABECERA
+   Comentario de bloque para separar módulos o componentes
+   ======================================================== */</span>
+<span class="text-warning">.navbar</span> {
+    <span class="text-info">position</span>: <span class="text-success">sticky</span>;
+    <span class="text-info">top</span>: <span class="text-success">0</span>;
+}</code></pre>
+            </div>
+
+            <div class="alert alert-warning d-flex align-items-center gap-3 rounded-3 mb-4 shadow-sm" role="alert">
+                <i class="bi bi-exclamation-triangle-fill fs-4 text-warning flex-shrink-0"></i>
+                <div class="small">
+                    <strong>¡Atención con los comentarios!</strong> En CSS nativo <strong>no existe</strong> el comentario de doble barra (<code>//</code>) de JavaScript o C++. Usar <code>//</code> en un archivo CSS es un error de sintaxis que provocará que el navegador ignore esa regla o la siguiente.
+                </div>
+            </div>
+
+            <!-- Sección 3: Unidades de Medida en CSS Moderno -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-rulers text-primary"></i> Unidades de Medida en CSS
+            </h2>
+            <p class="text-secondary small mb-3">
+                Para definir tamaños de fuente, márgenes, rellenos o dimensiones de contenedores, CSS ofrece dos categorías principales de unidades:
+            </p>
+
+            <div class="row g-4 mb-4">
+                <!-- Absolutas -->
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 shadow-sm">
+                        <div class="card-header bg-white py-3 border-bottom">
+                            <h6 class="fw-bold mb-0 text-dark"><i class="bi bi-pin-angle text-danger me-2"></i>Unidades Absolutas</h6>
+                        </div>
+                        <div class="card-body p-3 small">
+                            <p class="text-secondary mb-3">Tienen un valor fijo y no cambian según el dispositivo ni la configuración del usuario.</p>
+                            <ul class="list-group list-group-flush rounded-2 border">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><code>px</code> (Píxeles de pantalla)</span>
+                                    <span class="badge bg-secondary">Uso común en bordes y sombras</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+                                    <span><code>pt</code>, <code>pc</code> (Puntos tipográficos)</span>
+                                    <span class="badge bg-light text-secondary border">Solo impresión</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center text-muted">
+                                    <span><code>cm</code>, <code>mm</code>, <code>in</code> (Físicas)</span>
+                                    <span class="badge bg-light text-secondary border">Solo hojas de estilo print</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relativas -->
+                <div class="col-md-6">
+                    <div class="card h-100 border border-primary-subtle bg-body-tertiary rounded-3 shadow-sm">
+                        <div class="card-header bg-primary text-white py-3">
+                            <h6 class="fw-bold mb-0"><i class="bi bi-arrows-angle-expand me-2"></i>Unidades Relativas (Recomendadas)</h6>
+                        </div>
+                        <div class="card-body p-3 small">
+                            <p class="text-secondary mb-3">Se adaptan dinámicamente al tamaño del elemento padre, a la raíz o a la pantalla.</p>
+                            <ul class="list-group list-group-flush rounded-2 border">
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                                    <span><code>rem</code> (Root EM - Relativo a <code>&lt;html&gt;</code>)</span>
+                                    <span class="badge bg-success">Estándar en Accesibilidad</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                                    <span><code>em</code> (Relativo al font-size del elemento)</span>
+                                    <span class="badge bg-primary">Márgenes y paddings modulares</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                                    <span><code>%</code> (Porcentaje respecto al contenedor padre)</span>
+                                    <span class="badge bg-info text-dark">Layouts fluidos</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center bg-white">
+                                    <span><code>vw</code> / <code>vh</code> (Porcentaje del viewport)</span>
+                                    <span class="badge bg-secondary">Diseño Responsive y Móvil</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerta rem vs px -->
+            <div class="p-3 bg-success-subtle text-success-emphasis rounded-3 border border-success-subtle small mb-4">
+                <i class="bi bi-check-circle-fill text-success me-2"></i><strong>Por qué usamos <code>rem</code> en desarrollo moderno:</strong>
+                Por defecto en la mayoría de navegadores <code>1rem = 16px</code>. Si un usuario con discapacidad visual aumenta el tamaño de fuente base de su navegador a 24px, una interfaz maquetada con <code>rem</code> se escala automáticamente de forma proporcional, mientras que con <code>px</code> quedaría rígida e inaccesible.
+            </div>
+
+            <!-- Sección 4: Variables Nativas en CSS (Custom Properties) -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-code-square text-primary"></i> Variables Nativas en CSS (<em>Custom Properties</em>)
+            </h2>
+            <p class="text-secondary small mb-3">
+                El estándar moderno de CSS permite almacenar valores reutilizables (como paletas de colores corporativos o espaciados) utilizando la pseudoclase global <code>:root</code> y la función <code>var()</code>:
+            </p>
+
+            <div class="bg-dark text-light p-3 rounded-3 mb-4">
+                <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-info">/* 1. Declaración centralizada en la raíz del documento */</span>
+<span class="text-warning">:root</span> {
+    <span class="text-primary">--color-primario</span>: <span class="text-success">#0d6efd</span>;
+    <span class="text-primary">--color-secundario</span>: <span class="text-success">#6c757d</span>;
+    <span class="text-primary">--radio-borde</span>: <span class="text-success">0.5rem</span>;
+}
+
+<span class="text-info">/* 2. Invocación limpia en cualquier selector */</span>
+<span class="text-warning">.tarjeta-destacada</span> {
+    <span class="text-info">border</span>: <span class="text-success">2px solid <span class="text-primary">var(--color-primario)</span></span>;
+    <span class="text-info">border-radius</span>: <span class="text-primary">var(--radio-borde)</span>;
+}
+
+<span class="text-warning">.boton</span> {
+    <span class="text-info">background-color</span>: <span class="text-primary">var(--color-primario)</span>;
+    <span class="text-info">color</span>: <span class="text-success">#ffffff</span>;
+}</code></pre>
+            </div>
+
+            <!-- Recursos Oficiales -->
+            <div class="card border-0 bg-body-tertiary rounded-3 p-3 d-flex flex-sm-row align-items-center justify-content-between gap-3">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="bi bi-journal-code fs-2 text-primary"></i>
+                    <div>
+                        <div class="fw-bold small text-dark">Documentación de referencia W3C y MDN</div>
+                        <div class="text-secondary small">Consulta la especificación de propiedades y sintaxis en la red oficial de desarrolladores de Mozilla.</div>
+                    </div>
+                </div>
+                <a href="https://developer.mozilla.org/es/docs/Web/CSS/Syntax" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary text-nowrap">
+                    <i class="bi bi-box-arrow-up-right me-1"></i> MDN Sintaxis CSS
+                </a>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
