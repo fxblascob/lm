@@ -1,33 +1,392 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            PHP
-        </title>
-		<link rel="stylesheet" type="text/css" href="./../estilos.css">
-		<script src="./codigo.js"></script> 
-        <meta charset="UTF-8">		
-    </head>
-    <body>
-			<div id="contenedor_general">
-					<div id="contenedor_cabecera">
-						<img src="../imagenes/logo.jpg" alt="Logo" width="147" height="92"> 
-						<h1>Iniciación a PHP</h1>
-					</div>
-					<iframe id="if" src="./menu.html" frameborder="0" scrolling="yes" seamless="seamless" ></iframe>
-					<div id="contenedor_cuerpo">
-						<iframe name="marco_contenido" id="marco_contenido" width="100%" style="height: 85vh; border: none;" src="./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html"></iframe>
-					</div>
-						
-	
-				<!-- Fin del cuerpo de la página-->
-					<footer id="contenedor_pie">
-						<p>Manual de HTML - CSS - Javascript - PHP</p>
-					</footer>
-			</div>
-				
-		
-		
-    </body>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo PHP | LMSGI</title>
+    <meta name="description" content="Temario de PHP para desarrollo web backend: sintaxis básica, formularios, sesiones, AJAX, POO y acceso a bases de datos.">
+    
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        .viewer-container {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        .content-frame {
+            width: 100%;
+            height: 78vh;
+            min-height: 550px;
+            border: none;
+        }
+        .card-topic {
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .card-topic:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.08) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../index.html">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold tracking-tight">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-info text-dark fw-medium" href="./index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-filetype-php text-info"></i> Módulo PHP
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Unidades Teóricas</h6>
+            <div class="list-group list-group-flush mb-4">
+                <button type="button" class="list-group-item list-group-item-action active bg-info text-dark border-info d-flex align-items-center gap-2 py-2 rounded-2 fw-semibold topic-btn" onclick="selectTopic('./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html', '00. Primeros pasos con PHP', 'Introducción a PHP, arquitectura de servidor, etiquetas de apertura y primer script.', this)">
+                    <i class="bi bi-journal-code"></i> 00. Primeros pasos
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/01_Elementos básicos del lenguaje _ Desarrollo web con PHP.html', '01. Elementos básicos del lenguaje', 'Variables, constantes, operadores aritméticos, condicionales y estructuras repetitivas.', this)">
+                    <i class="bi bi-1-circle text-info"></i> 01. Elementos básicos
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/02_Uso de funciones _ Desarrollo web con PHP.html', '02. Uso de funciones', 'Paso de parámetros por valor y referencia, valores de retorno y ámbito de variables.', this)">
+                    <i class="bi bi-2-circle text-info"></i> 02. Funciones
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/03_Arrays, errores y otros conceptos _ Desarrollo web con PHP.html', '03. Arrays, errores y otros conceptos', 'Arrays indexados y asociativos, funciones de manipulación y depuración.', this)">
+                    <i class="bi bi-3-circle text-info"></i> 03. Arrays y Errores
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/04_Recogida de datos de formularios _ Desarrollo web con PHP.html', '04. Recogida de datos de formularios', 'Tratamiento de peticiones GET y POST, validación en servidor y seguridad.', this)">
+                    <i class="bi bi-4-circle text-info"></i> 04. Formularios
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/05_Redirecciones e inclusiones _ Desarrollo web con PHP.html', '05. Redirecciones e inclusiones', 'Modularización con include y require, y encabezados de redirección con header().', this)">
+                    <i class="bi bi-5-circle text-info"></i> 05. Redirecciones
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/06_Cookies y sesiones _ Desarrollo web con PHP.html', '06. Cookies y sesiones', 'Persistencia de estado en HTTP: variables de sesión $_SESSION y gestión de cookies.', this)">
+                    <i class="bi bi-6-circle text-info"></i> 06. Cookies y Sesiones
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/07_Comunicación asíncrona con AJAX _ Desarrollo web con JavaScript.html', '07. Comunicación asíncrona con AJAX', 'Intercambio de datos JSON en segundo plano entre el cliente y el backend en PHP.', this)">
+                    <i class="bi bi-7-circle text-info"></i> 07. AJAX en PHP
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/08_Programación orientada a objetos con PHP _ Desarrollo web con PHP.html', '08. Programación orientada a objetos (POO)', 'Clases, objetos, constructores, encapsulamiento, herencia e interfaces en PHP.', this)">
+                    <i class="bi bi-8-circle text-info"></i> 08. POO en PHP
+                </button>
+                <button type="button" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2 topic-btn" onclick="selectTopic('./ficheros/09_Acceso a bases de datos con PHP _ Desarrollo web con PHP.html', '09. Acceso a bases de datos (PDO)', 'Conexión a MySQL con PDO, consultas preparadas contra inyección SQL y CRUD.', this)">
+                    <i class="bi bi-9-circle text-info"></i> 09. Bases de Datos (PDO)
+                </button>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Taller Práctico y Materiales</h6>
+            <div class="list-group list-group-flush mb-4 small">
+                <a href="./material/nachoiborra.pdf" download class="list-group-item list-group-item-action bg-transparent text-light-emphasis border-secondary py-2">
+                    <i class="bi bi-journal-check text-info me-2"></i> Manual Completo Nacho Iborra (PDF)
+                </a>
+                <a href="./material_asir_alex/cuaderno-de-ejercicios-y-practicas-php.pdf" download class="list-group-item list-group-item-action bg-transparent text-light-emphasis border-secondary py-2">
+                    <i class="bi bi-pencil-square text-warning me-2"></i> Cuaderno de Prácticas y Ejercicios
+                </a>
+                <a href="./material_asir_alex/7. Acceso a BBDD.pdf" download class="list-group-item list-group-item-action bg-transparent text-light-emphasis border-secondary py-2">
+                    <i class="bi bi-database text-success me-2"></i> Guía Acceso a BBDD
+                </a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenedor Principal Ergonómico -->
+    <main class="container-xl my-4 flex-grow-1">
+        
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0 small">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none"><i class="bi bi-house-door"></i> Inicio</a></li>
+                <li class="breadcrumb-item"><a href="./index.html" class="text-decoration-none">PHP</a></li>
+                <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCurrent">00. Primeros pasos con PHP</li>
+            </ol>
+        </nav>
+
+        <!-- Barra de Título y Acciones Dinámica -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-body-tertiary">
+            <div class="row align-items-center gy-3">
+                <div class="col-lg-7">
+                    <div class="d-flex flex-wrap gap-2 mb-2">
+                        <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle">Módulo 5: PHP</span>
+                        <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Backend Web</span>
+                    </div>
+                    <h2 class="fw-bold mb-1" id="topicTitle">00. Primeros pasos con PHP</h2>
+                    <p class="text-secondary mb-0 small" id="topicDesc">
+                        Introducción a PHP, arquitectura de servidor, etiquetas de apertura y primer script.
+                    </p>
+                </div>
+                <div class="col-lg-5 d-flex flex-wrap gap-2 justify-content-lg-end">
+                    <a href="./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html" target="_blank" id="btnFullscreen" class="btn btn-sm btn-outline-primary d-flex align-items-center gap-1 shadow-sm">
+                        <i class="bi bi-box-arrow-up-right"></i> Pantalla completa
+                    </a>
+                    <a href="./material/nachoiborra.pdf" download class="btn btn-sm btn-info text-dark d-flex align-items-center gap-1 shadow-sm fw-medium">
+                        <i class="bi bi-download"></i> Manual Nacho Iborra (PDF)
+                    </a>
+                    <a href="./material/nachoiborra.odt" download class="btn btn-sm btn-outline-secondary d-flex align-items-center gap-1">
+                        <i class="bi bi-file-earmark-word"></i> ODT
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de Selección Rápida de Pestañas -->
+        <div class="d-flex gap-2 overflow-x-auto pb-2 mb-3">
+            <button type="button" class="btn btn-sm btn-info text-dark fw-semibold text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html', '00. Primeros pasos con PHP', 'Introducción a PHP, arquitectura de servidor, etiquetas de apertura y primer script.', this)">
+                00. Primeros pasos
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/01_Elementos básicos del lenguaje _ Desarrollo web con PHP.html', '01. Elementos básicos del lenguaje', 'Variables, constantes, operadores aritméticos, condicionales y estructuras repetitivas.', this)">
+                01. Básicos
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/02_Uso de funciones _ Desarrollo web con PHP.html', '02. Uso de funciones', 'Paso de parámetros por valor y referencia, valores de retorno y ámbito de variables.', this)">
+                02. Funciones
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/03_Arrays, errores y otros conceptos _ Desarrollo web con PHP.html', '03. Arrays, errores y otros conceptos', 'Arrays indexados y asociativos, funciones de manipulación y depuración.', this)">
+                03. Arrays
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/04_Recogida de datos de formularios _ Desarrollo web con PHP.html', '04. Recogida de datos de formularios', 'Tratamiento de peticiones GET y POST, validación en servidor y seguridad.', this)">
+                04. Formularios
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/05_Redirecciones e inclusiones _ Desarrollo web con PHP.html', '05. Redirecciones e inclusiones', 'Modularización con include y require, y encabezados de redirección con header().', this)">
+                05. Redirecciones
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/06_Cookies y sesiones _ Desarrollo web con PHP.html', '06. Cookies y sesiones', 'Persistencia de estado en HTTP: variables de sesión $_SESSION y gestión de cookies.', this)">
+                06. Sesiones
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/07_Comunicación asíncrona con AJAX _ Desarrollo web con JavaScript.html', '07. Comunicación asíncrona con AJAX', 'Intercambio de datos JSON en segundo plano entre el cliente y el backend en PHP.', this)">
+                07. AJAX
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/08_Programación orientada a objetos con PHP _ Desarrollo web con PHP.html', '08. Programación orientada a objetos (POO)', 'Clases, objetos, constructores, encapsulamiento, herencia e interfaces en PHP.', this)">
+                08. POO
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary text-nowrap rounded-pill pill-btn" onclick="selectTopic('./ficheros/09_Acceso a bases de datos con PHP _ Desarrollo web con PHP.html', '09. Acceso a bases de datos (PDO)', 'Conexión a MySQL con PDO, consultas preparadas contra inyección SQL y CRUD.', this)">
+                09. BBDD (PDO)
+            </button>
+        </div>
+
+        <!-- Visor Embebido Responsive (Sin iframes laterales anidados) -->
+        <div class="viewer-container mb-5">
+            <iframe id="contentFrame" src="./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html" class="content-frame" title="Visor Lecciones PHP">
+                <p class="p-4 text-center">
+                    Tu navegador no soporta la previsualización directa. 
+                    <a href="./ficheros/00_Primeros pasos con PHP _ Desarrollo web con PHP.html" class="btn btn-primary btn-sm ms-2">Abrir lección</a>
+                </p>
+            </iframe>
+        </div>
+
+        <!-- Sección Especial: Taller Práctico "Carrito de Compra en PHP" -->
+        <div class="card border-0 shadow-sm rounded-4 p-4 mb-5 bg-body-tertiary">
+            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                <div>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle mb-1">Proyecto Práctico Guiado</span>
+                    <h4 class="fw-bold mb-0">Taller: Carrito de la Compra en PHP</h4>
+                </div>
+                <span class="text-secondary small d-none d-md-inline">4 fases de desarrollo</span>
+            </div>
+            <p class="text-secondary small mb-4">
+                Desarrollo paso a paso de una aplicación web completa de comercio electrónico: arquitectura, estructura de datos, control de inventario en sesiones y persistencia.
+            </p>
+            <div class="row g-3">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100 border-0 bg-white shadow-sm rounded-3 p-3 card-topic">
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">Fase 1</span>
+                        <h6 class="fw-bold mb-1">Estructura Inicial</h6>
+                        <p class="text-secondary small mb-3 flex-grow-1">Catálogo de productos y maquetación de la tienda.</p>
+                        <a href="./material_asir_alex/2. Carrito en PHP - parte 1.pdf" download class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-1"></i> Descargar PDF</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100 border-0 bg-white shadow-sm rounded-3 p-3 card-topic">
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">Fase 2</span>
+                        <h6 class="fw-bold mb-1">Gestión de Sesión</h6>
+                        <p class="text-secondary small mb-3 flex-grow-1">Añadir productos al carrito usando $_SESSION.</p>
+                        <a href="./material_asir_alex/3. Carrito en PHP - parte 2.pdf" download class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-1"></i> Descargar PDF</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100 border-0 bg-white shadow-sm rounded-3 p-3 card-topic">
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">Fase 3</span>
+                        <h6 class="fw-bold mb-1">Modificación y Totales</h6>
+                        <p class="text-secondary small mb-3 flex-grow-1">Actualizar cantidades, cálculo de IVA y costes.</p>
+                        <a href="./material_asir_alex/4. Carrito en PHP - parte 3.pdf" download class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-1"></i> Descargar PDF</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="card h-100 border-0 bg-white shadow-sm rounded-3 p-3 card-topic">
+                        <span class="badge bg-primary-subtle text-primary mb-2 align-self-start">Fase 4</span>
+                        <h6 class="fw-bold mb-1">Finalización del Pedido</h6>
+                        <p class="text-secondary small mb-3 flex-grow-1">Checkout, confirmación y vaciado de cesta.</p>
+                        <a href="./material_asir_alex/5. Carrito en PHP - parte 4.pdf" download class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-download me-1"></i> Descargar PDF</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recursos de Base de Datos y Entorno -->
+        <div class="card border-0 bg-body-tertiary rounded-3 p-4 mb-5">
+            <h5 class="fw-bold mb-3">Recursos de Servidor y Bases de Datos</h5>
+            <div class="row g-2">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/1. Preparando el entorno de desarrollo.pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-hdd-network text-primary fs-5"></i>
+                        <span>1. Entorno de desarrollo local</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/Anexo. PHPMyAdmin.pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-tools text-warning fs-5"></i>
+                        <span>Anexo: Administración con PHPMyAdmin</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/7. Acceso a BBDD.pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-database text-success fs-5"></i>
+                        <span>7. Conexión y consultas a BBDD</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/6. PHP - Subir ficheros al servidor.pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-upload text-info fs-5"></i>
+                        <span>6. Subida de ficheros al servidor</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/5. PHP - Peticiones HTTP (Get y Post).pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-arrow-left-right text-secondary fs-5"></i>
+                        <span>5. Peticiones HTTP (GET y POST)</span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <a href="./material_asir_alex/cuaderno-de-ejercicios-y-practicas-php.pdf" download class="btn btn-sm btn-outline-secondary w-100 text-start d-flex align-items-center gap-2 p-2">
+                        <i class="bi bi-file-earmark-check text-danger fs-5"></i>
+                        <span>Cuaderno de ejercicios resueltos</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paginación / Navegación entre Módulos -->
+        <nav class="d-flex justify-content-between align-items-center gap-2 mb-4">
+            <a href="../javascript/index.html" class="btn btn-outline-secondary btn-sm d-flex align-items-center gap-2">
+                <i class="bi bi-arrow-left"></i>
+                <span><strong>Anterior Módulo:</strong> JavaScript</span>
+            </a>
+            <a href="../index.html" class="btn btn-warning btn-sm d-flex align-items-center gap-2 shadow-sm text-dark">
+                <span><strong>Menú Principal:</strong> Portada</span>
+                <i class="bi bi-house-door"></i>
+            </a>
+        </nav>
+
+    </main>
+
+    <!-- 4. Pie de Página Ergonómico -->
+    <footer class="bg-dark text-light-emphasis py-4 border-top border-secondary mt-auto">
+        <div class="container-xl d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
+            <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="small fw-semibold text-light">Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Script de Cambio Dinámico de Lección -->
+    <script>
+        function selectTopic(contentUrl, title, desc, clickedEl) {
+            // Actualizar iframe
+            document.getElementById('contentFrame').src = contentUrl;
+            
+            // Actualizar textos
+            document.getElementById('topicTitle').textContent = title;
+            document.getElementById('topicDesc').textContent = desc;
+            document.getElementById('breadcrumbCurrent').textContent = title;
+            
+            // Actualizar botón de pantalla completa
+            document.getElementById('btnFullscreen').href = contentUrl;
+            
+            // Actualizar estilos activos de pestañas
+            document.querySelectorAll('.pill-btn').forEach(btn => {
+                btn.classList.remove('btn-info', 'text-dark', 'fw-semibold');
+                btn.classList.add('btn-outline-secondary');
+            });
+            if (clickedEl && clickedEl.classList.contains('pill-btn')) {
+                clickedEl.classList.remove('btn-outline-secondary');
+                clickedEl.classList.add('btn-info', 'text-dark', 'fw-semibold');
+            }
+
+            // Si se hace click desde el Offcanvas, cerrar panel en móviles
+            const offcanvasEl = document.getElementById('offcanvasNav');
+            const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+            if (bsOffcanvas) {
+                bsOffcanvas.hide();
+            }
+
+            // Scroll suave hacia la cabecera
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
 </html>
