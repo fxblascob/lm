@@ -28,9 +28,6 @@
         code, kbd, samp, pre {
             font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
-        .table {
-            margin-bottom: 1.5rem;
-        }
         
     </style>
 </head>
@@ -130,142 +127,208 @@
         </nav>
 
         <!-- Tarjeta de Contenido Educativo -->
+                <!-- Tarjeta de Contenido Educativo -->
         <article class="content-card p-4 p-md-5 mb-4 shadow-sm">
             <div class="d-flex flex-wrap gap-2 mb-3">
+                <span class="badge bg-primary">Lección 12</span>
                 <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Módulo 2: CSS</span>
-                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Estilos y Diseño Web</span>
+                <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle">Flotantes, Desbordamiento y Bordes</span>
             </div>
 
-            <h1>Diseño visual II: </h1>
-                <h2>Elementos <em>float</em> y <em>clear</em></h2>
-                <p>La propiedad <b>float</b> permite sacar a un elemento del flujo del documento, y posicionarlo a la izquierda o derecha de otros elementos adyacentes. Admite tres valores: <i>right</i>, <i>left</i> y <i>none</i>.</p>
-                <p>Un valor <i>left</i> significa que el elemento formará un bloque que se situará a la izquierda de los elementos adyacentes. Un valor right significa que el bloque se situará a la derecha.</p>
-                <p>Un bloque flotante <b>debe tener definida su anchura</b>, implícita o expresamente, ya que de lo contrario será tratado como no flotante.</p>
-                <p>La propiedad <b>clear</b> se utiliza conjuntamente con <i>float</i> para indicar si un elemento flotante permite otros elementos flotantes junto a el. Sus posible valores son <i>none</i> (permite elementos a ambos lados), <i>left</i> (no permite elementos flotantes a la izquierda), <i>right</i> (no permite elementos flotantes a la derecha) o <i>both</i> (no permite elementos flotantes a ningún lado).</p>
-                <p>Los elementos flotan horizontalmente hacia la izquierda o hacia la derecha. Un elemento float se moverá lo mas lejos que pueda hacia la izquierda o derecha del elemento contenedor. 
-                Los elementos que hay después del elemento flotante, flotarán alrededor de éste. Los elementos que hubiera antes del elemento "float" no se ven afectados.
-                Si una imagen, por ejemplo, está flotando a la derecha, el texto que venga después flotará alrededor de ésta a la izquierda.
-                Si se colocan varios elementos "float" uno después del otro, estos elementos flotarán uno al lado del otro si hay sitio.
+            <h1 class="fw-bold mb-3 display-6">12. Diseño Visual II: Flotantes, Overflow y Border-Image</h1>
+            
+            <p class="lead text-secondary mb-4">
+                Históricamente, la propiedad <code>float</code> fue el recurso más utilizado para maquetar columnas en la web antes de la llegada de Flexbox y Grid. Comprender el funcionamiento de los flotantes, las soluciones a su colapso (<em>clearfix</em>), el control de desbordamiento (<code>overflow</code>) y el uso avanzado de <code>border-image</code> es fundamental para dominar la arquitectura visual de CSS.
+            </p>
+
+            <!-- Sección 1: Float y Clear -->
+            <h2 class="h4 fw-bold text-dark mt-4 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-layout-sidebar-inset text-primary"></i> 1. Elementos Flotantes (<code>float</code>) y Limpieza (<code>clear</code>)
+            </h2>
+            <p class="text-secondary small mb-3">
+                La propiedad <code>float</code> saca a un elemento del flujo normal del documento y lo desplaza a la izquierda (<code>left</code>) o a la derecha (<code>right</code>), permitiendo que el contenido de texto que le sigue fluya alrededor de él (como en las columnas de una revista).
+            </p>
+
+            <div class="row g-4 mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-2">Comportamiento de <code>float: left | right;</code></h6>
+                        <ul class="small text-secondary ps-3 mb-2">
+                            <li>El elemento flotante debe tener un ancho (<code>width</code>) definido; si no, se encogerá al mínimo de su contenido.</li>
+                            <li>Los elementos posteriores fluirán abrazando al elemento flotante.</li>
+                            <li>Los elementos anteriores no se ven afectados en absoluto.</li>
+                        </ul>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>img.flotante { float: left; margin: 0 1rem 1rem 0; }</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <h6 class="fw-bold text-dark mb-2">La Propiedad <code>clear: both;</code></h6>
+                        <p class="small text-secondary mb-2">
+                            Indica que un elemento <strong>no permite</strong> flotantes a sus lados. Se fuerza a sí mismo a descender por debajo de cualquier caja flotante adyacente:
+                        </p>
+                        <div class="bg-dark text-light p-2 rounded small">
+                            <code>footer { clear: both; /* Se coloca bajo las columnas flotantes */ }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- El Problema del Colapso y Soluciones -->
+            <div class="card border border-warning-subtle bg-body-tertiary rounded-3 p-3 p-md-4 mb-5 shadow-sm">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="bi bi-exclamation-triangle-fill text-warning fs-4"></i>
+                    <h5 class="fw-bold text-dark mb-0">El Problema del Colapso de Altura (<em>Float Collapse</em>)</h5>
+                </div>
+                <p class="small text-secondary mb-3">
+                    Al flotar todos los elementos dentro de un contenedor padre, el contenedor "no detecta" la altura de sus hijos flotantes y <strong>su altura colapsa a 0 píxeles</strong>, provocando que los fondos y bordes del padre desaparezcan o se monten sobre el contenido siguiente.
                 </p>
-                <h3>Soluciones al problema de float en maquetación CSS</h3>
-                <img src="../imagenes/float_problemas.png">
-                <ol>
-                    <li>Añadir un ancho a todos los elementos flotantes dentro del contenedor, si esto no funciona tenemos otras soluciones:</li>
-                    <li>Añadir al contenedor (que contiene los elementos flotantes) la propiedad <span style="color:blue;">overflow:hidden</span></li>
-                    <li>Añadir al final del contenedor, después de los elementos flotantes, lo siguiente:<br>
-                        <span style="color:blue;">&lt;div style="clear: both"&gt;&lt;/div&gt;</span></li>
-                </ol>
-                
 
-                <p><a href="https://www.w3schools.com/cssref/pr_class_float.asp">Ejemplos float y clear </a>
-                <p><a href="https://www.w3schools.com/cssref/tryit.asp?filename=trycss_float_clear">Ejemplo de un elemento float y otro clear</a>
-                <h2>La propiedad <em>overflow</em></h2>
-                <p>La aparición de CSS 2 brindó a los diseñadores de páginas web algunos elementos que brindan una mayor versatilidad a la hora de distribuir los contenidos en el diseño. Una de las propiedades introducidas es “overflow”, que posibilita una distribución más eficaz de las capas en el diseño.
-                <p>En muchas ocasiones, es necesario para mantener ciertas proporciones en el diseño, asignar a las capas (elementos DIV) determinadas dimensiones, tanto en ancho como en altura.
-                <p>Cuando esto sucede, al momento de introducir los contenidos es posible que los mismos excedan las dimensiones asignadas.
-                <p>Con CSS1, cuando esto sucedía, lo más frecuente era que las capas aumentaran de tamaño hasta cubrir completamente el espacio necesario para los contenidos introducidos. Usualmente, este aumento de tamaño de las capas se produce en la altura.
-                <p>Para evitar este efecto, en CSS2 se introdujo el atributo “overflow”, que sirve para recortar los contenidos que exceden el tamaño de las capas.
-                <p>Pero también sirve para que, en caso de que se desee que el contenido en exceso sea visible, se agreguen a la capa barras de desplazamiento que permitan que el usuario acceda al resto del contenido y la capa mantenga el tamaño deseado.
-                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_visible">Overflow:visible</a>
-                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_scroll">Overflow:scroll</a>
-                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_auto">Overflow:auto</a>
-                <p><a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_overflow_hidden">Overflow:hidden</a>
-
-                <h2>La propiedad <em>display</em></h2>
-
-                <p>Establece el tipo de caja generada por un elemento y puede tomar los siguientes valores (los más importantes):
-                <ul>
-                    <li>display: none  -> Hace invisible la caja
-                    <li>display: inline -> Muestra la caja como un elemento en linea
-                    <li>display: block -> Muestra la caja como un elemento de bloque
-                    <li>display: inline-block  -> Muestra la caja como un elemento en linea pero se puede aplicar valores de <strong>width y height</strong>
-                </ul>      
-                <p><a href="./modelo_cajas_explicar.html">Explicación de display</a>   
-                <p><a href="https://www.w3schools.com/cssref/pr_class_display.asp">CSS display property - W3Schools</a>
-
-                
-                    
-                <div class="ejercicios">
-                    <h3><a href="17_ejercicios.html#ej_09">Ejercicio_CSS 9:</a></h3>
+                <div class="row g-3 align-items-center mb-3">
+                    <div class="col-md-5 text-center">
+                        <img src="../imagenes/float_problemas.png" alt="Problema del colapso de flotantes" class="img-fluid rounded border shadow-sm bg-white p-2">
+                    </div>
+                    <div class="col-md-7">
+                        <h6 class="fw-bold text-dark mb-2">Tres Soluciones para Reparar el Colapso:</h6>
+                        <ol class="small text-secondary ps-3 mb-0">
+                            <li class="mb-2">
+                                <strong>La Solución Moderna (Recomendada):</strong> Añadir al contenedor padre <code>display: flow-root;</code>. Crea un nuevo contexto de formato de bloque nativo sin trucos.
+                            </li>
+                            <li class="mb-2">
+                                <strong>El Clearfix Clásico con Pseudoelemento:</strong>
+                                <pre class="bg-dark text-white p-2 rounded mt-1 mb-0"><code class="small text-white"><span class="text-warning">.contenedor::after</span> {
+    <span class="text-info">content</span>: <span class="text-success">""</span>;
+    <span class="text-info">display</span>: <span class="text-success">table</span>;
+    <span class="text-info">clear</span>: <span class="text-success">both</span>;
+}</code></pre>
+                            </li>
+                            <li>
+                                <strong>Uso de Overflow:</strong> Aplicar al contenedor <code>overflow: hidden;</code> (aunque puede recortar sombras o menús desplegables).
+                            </li>
+                        </ol>
+                    </div>
                 </div>
-                
-                <div class="ejercicios">
-                    <h3><a href="17_ejercicios.html#ej_10">Ejercicio_CSS 10:</a></h3>
-                </div>
-                <h2>Degradados</h2>
-                <p>Los degradados son uno de los efectos más utilizados en la web. Anteriormente, era necesario el uso de imágenes para lograr este efecto, pero ahora es realmente fácil de hacer usando CSS.
-                <p>Los degradados son configurados como fondos, por lo que podemos usar las propiedades background o background-image para declararlos.
-                <p>Tenemos dos tipos de degradados:  <a href="https://www.w3schools.com/css/css3_gradients.asp">degradados lineales </a> y <a href="https://www.w3schools.com/css/css3_gradients_radial.asp">degradados radiales</a>.
 
-                <h2>Bodes redondeados y sombras</h2>
-                <p>Durante muchos años los diseñadores han sufrido intentando lograr el efecto de esquinas redondeadas en las cajas de sus páginas web, eran esa clase de cosas que nos hacía pensar: “debería ser fácil hacerlo”.
-                <p>Gracias a la propiedad border-radius de CSS3, ahora podemos hacerlo de forma muy sencilla
-                <p><a href="https://www.w3schools.com/css/css3_borders.asp">Bordes redondeados </a> 
-                <p><a href="https://www.w3schools.com/css/css3_shadows.asp">Sombras a cajas y a texto </a>
-                <h2>Bordes a partir de imágenes</h2>
-                <p><a href="https://www.w3schools.com/css/css3_border_images.asp">Bordes con imagenes</a>
-                <p><a href="http://w3.unpocodetodo.info/css3/border-image.php">Para entender mejor la propiedad border-image-slice</a>
-                <p>La propiedad <strong>border-image </strong>utiliza una imagen para trazar el borde de un elemento HTML y es el método abreviado de:</p>
-                <p><strong>border-image-source, border-image-slice, border-image-width, border-image-outset, y border-image-repeat.</strong></P>
-                
-                <img style="float:left;"  src="../imagenes/border-image_regiones_slice.png" width="150px">
-                <img style="clear:right;" src="../imagenes/border-image_regiones_slice2.png" width="400px">
-                <ul>
-                    <p><strong>#border-image-slice: </strong></p>
-                   
-                    <p>El diagrama anterior ilustra la ubicación de cada región.
-
-                    <p>Los posibles valores de la propiedad border-image-slice son:de uno a cuatro valores numéricos (porcentajes o números sin unidades): se interpretan como píxeles en imágenes de mapa de bits o como coordenadas en imágenes vectoriales.
-
-                    <li>Las zonas 1-4 son regiones de esquina . Cada uno se usa una sola vez para formar las esquinas de la imagen del borde final.
-                    <li>Las zonas 5-8 son regiones de borde . Estos se repiten, escalan o modifican de otro modo en la imagen del borde final para que coincida con las dimensiones del elemento.
-                    <li>La zona 9 es la región media . Se descarta de manera predeterminada, pero se usa como una imagen de fondo si se establece el fill la palabra clave .
-                    <li>Las propiedades border-image-repeat , border-image-width y border-image-outset determinan cómo se usan estas regiones para formar la imagen de borde final.
-                    <p> La propiedad border-image-slice se puede especificar utilizando de uno a cuatro valores <number-percentage> para representar la posición de cada segmento de imagen. Los valores negativos no son válidos; Los valores superiores a su dimensión correspondiente se fijan al 100% .
-
-                    <li>Cuando se especifica una posición, crea los cuatro sectores a la misma distancia de sus respectivos lados.
-                    <li>Cuando se especifican dos posiciones, el primer valor crea sectores medidos desde arriba y abajo , el segundo crea sectores medidos desde la izquierda y la derecha .
-                    <li>Cuando se especifican tres posiciones, el primer valor crea un segmento medido desde la parte superior , el segundo crea sectores medidos desde la izquierda y la derecha , el tercero crea un sector medido desde la parte inferior .
-                    <li>Cuando se especifican cuatro posiciones, crean cortes medidos desde la parte superior , derecha , inferior e izquierda en ese orden (en sentido horario).
-                    <li>El valor de fill opcional , si se usa, se puede colocar en cualquier lugar de la declaración.
-                </ul>
-               
-                <ul><p><strong>#border-image-repeat: </strong></p>
-                    <li><strong>stretch:</strong> Después de dibujar las esquinas, los segmentos 5 - 8 serán estirados para llenar el espacio correspondiente entre las esquinas.
-                    <li><strong>repeat: </strong>Después de dibujar las esquinas, los segmentos 5 - 8 serán repetidos para llenar el espacio correspondiente entre las esquinas. Si no encajan a la perfección los fragmentos de imagen pueden ser recortados para que quepan.
-                    <li><strong>round: </strong>Después de dibujar las esquinas, los segmentos 5 - 8 serán repetidos para llenar el espacio correspondiente entre las esquinas. Los fragmentos de imagen podrán ser estirados para encajar a la perfección en el espacio disponible;
-                    <li><strong>space: </strong>La normativa dice que los fragmentos de imagen serán espaciados para encajar a la perfección en el espacio disponible. La verdad es que esto todavía no funciona en ningún navegador.
-                </ul>
-                
-                <ul><p><strong>#border-image-outset</strong>
-                    <li>Por defecto el borde que utiliza la imagen esta pintado dentro de los limites de la caja. La propiedad border-image-outset amplía la área donde poder dibujar el borde.
-                    <li>Puede tomar valores numéricos por ejemplo border-image-outset:4. En este caso la área dentro de cual es posible dibujar los fragmentos de imagen será ampliada a 4 veces el valor especificado de la anchura del borde.
-                    <li>También puede tomar valores en px, em, etc... Por ejemplo border-image-outset:20px.En este caso la área dentro de cual es posible dibujar los fragmentos de imagen será ampliada en 20px.
-                    <li>Exactamente como en el caso de border-width puede tomar 1, 2, 3 o 4 valores.
-                <ul>
-                <img   src="../imagenes/border-image_outset.png" width="500px"><br>
-
-                <h3>Ejemplos de como especificar varios valores en una sola instrucción</h3>
-                <pre>
-                /* source | slice */
-                border-image: linear-gradient(red, blue) 27;
-
-                /* source | slice | repeat */
-                border-image: url("/images/border.png") 27 space;
-
-                /* source | slice | width */
-                border-image: linear-gradient(red, blue) 27 / 35px;
-
-                /* source | slice | width | outset | repeat */
-                border-image: url("/images/border.png") 27 23 / 50px 30px / 1rem round space;
-                </pre>
-                <div class="ejercicios">
-                    <h3><a href="17_ejercicios.html#ej_11">Ejercicio_CSS 11:</a></h3>
-                </div>
-                <div class="ejercicios">
-                    <h3><a href="17_ejercicios.html#ej_12">Ejercicio_CSS 12:</a></h3>
+                <div class="alert alert-info border-0 small mb-0 d-flex align-items-center gap-2">
+                    <i class="bi bi-info-circle-fill text-primary flex-shrink-0"></i>
+                    <div>
+                        <strong>Consejo de arquitectura moderna:</strong> En el desarrollo web profesional de hoy en día, <code>float</code> solo se usa para colocar imágenes dentro de párrafos de texto. Para maquetar páginas enteras en columnas o rejillas, se utilizan <strong>CSS Flexbox</strong> o <strong>CSS Grid</strong> (o el sistema Grid de Bootstrap).
+                    </div>
                 </div>
             </div>
+
+            <!-- Sección 2: Control de Desbordamiento (overflow) -->
+            <h2 class="h4 fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-aspect-ratio text-primary"></i> 2. Control de Desbordamiento: La Propiedad <code>overflow</code>
+            </h2>
+            <p class="text-secondary small mb-3">
+                Cuando el contenido interior de una caja excede las dimensiones de ancho o alto asignadas, la propiedad <code>overflow</code> decide cómo se gestiona el excedente:
+            </p>
+
+            <div class="row g-3 mb-5">
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-secondary mb-2">overflow: visible</span>
+                        <h6 class="fw-bold mb-1">Visible (Por defecto)</h6>
+                        <p class="small text-secondary mb-0">El contenido sobresale visualmente por fuera de los límites de la caja sin cortarse.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-danger mb-2">overflow: hidden</span>
+                        <h6 class="fw-bold mb-1">Oculto / Recortado</h6>
+                        <p class="small text-secondary mb-0">Todo lo que supere las dimensiones de la caja queda recortado de forma invisible.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-info text-dark mb-2">overflow: auto</span>
+                        <h6 class="fw-bold mb-1">Scroll Automático</h6>
+                        <p class="small text-secondary mb-0">El navegador muestra barras de scroll únicamente si el contenido excede el espacio disponible.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card h-100 border bg-body-tertiary rounded-3 p-3 shadow-sm">
+                        <span class="badge bg-warning text-dark mb-2">overflow: scroll</span>
+                        <h6 class="fw-bold mb-1">Scroll Permanente</h6>
+                        <p class="small text-secondary mb-0">Fuerza a mostrar siempre las barras de desplazamiento, incluso si el contenido cabe holgadamente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3: Bordes Avanzados a partir de Imágenes (border-image) -->
+            <h2 class="h4 fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-border-style text-primary"></i> 3. Bordes Gráficos Avanzados: <code>border-image</code>
+            </h2>
+            <p class="text-secondary small mb-3">
+                La propiedad <code>border-image</code> permite utilizar un archivo gráfico externo para dibujar un marco decorativo complejo. El navegador divide la imagen en una cuadrícula de <strong>9 regiones</strong> (4 esquinas, 4 lados y 1 centro):
+            </p>
+
+            <div class="card border bg-body-tertiary rounded-3 p-3 p-md-4 mb-4 shadow-sm">
+                <div class="row g-4 align-items-center mb-3">
+                    <div class="col-md-4 text-center">
+                        <img src="../imagenes/border-image_regiones_slice.png" alt="Corte en 9 regiones con border-image-slice" class="img-fluid rounded border bg-white p-2 mb-2">
+                        <div class="small text-secondary">División en 9 regiones de corte</div>
+                    </div>
+                    <div class="col-md-8">
+                        <h6 class="fw-bold text-dark mb-2">Subpropiedades de <code>border-image</code>:</h6>
+                        <ul class="small text-secondary ps-3 mb-0">
+                            <li class="mb-2"><strong><code>border-image-source</code>:</strong> Ruta a la imagen (<code>url('marco.png')</code>).</li>
+                            <li class="mb-2"><strong><code>border-image-slice</code>:</strong> Coordenadas de corte hacia el interior (generalmente en píxeles o porcentajes). Separa las 4 esquinas de los 4 bordes.</li>
+                            <li class="mb-2"><strong><code>border-image-width</code>:</strong> Grosor visual del borde en pantalla.</li>
+                            <li class="mb-2"><strong><code>border-image-repeat</code>:</strong> Determina cómo se rellenan los lados: <code>stretch</code> (estira la imagen), <code>repeat</code> (repite en mosaico) o <code>round</code> (repite y escala proporcionalmente).</li>
+                            <li><strong><code>border-image-outset</code>:</strong> Distancia por la cual el borde gráfico se dibuja hacia afuera de los límites de la caja.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-dark text-light p-3 rounded-3">
+                    <span class="badge bg-secondary mb-2 small">Sintaxis Abreviada:</span>
+                    <pre class="mb-0 text-white-50"><code class="text-white"><span class="text-warning">.caja-pergamino</span> {
+    <span class="text-info">border</span>: <span class="text-success">20px solid transparent</span>;
+    <span class="text-info">border-image</span>: <span class="text-success">url("../imagenes/borders.png") 30 round</span>;
+}</code></pre>
+                </div>
+            </div>
+
+            <!-- Sección 4: Actividades Prácticas -->
+            <h2 class="h4 fw-bold text-dark mt-5 mb-3 d-flex align-items-center gap-2">
+                <i class="bi bi-pencil-square text-warning"></i> Actividades Prácticas Relacionadas
+            </h2>
+            <div class="row g-3 mb-4">
+                <div class="col-md-6">
+                    <div class="card h-100 border shadow-sm rounded-3">
+                        <div class="card-body p-3 d-flex flex-column">
+                            <span class="badge bg-warning-subtle text-dark border align-self-start mb-2">Práctica 09</span>
+                            <h6 class="fw-bold mb-1">Ejercicio CSS 9</h6>
+                            <p class="small text-secondary flex-grow-1 mb-3">
+                                Maquetación en tres columnas flotantes con anchos porcentuales y limpieza de flujo.
+                            </p>
+                            <a href="17_ejercicios.html#ej_09" class="btn btn-outline-warning btn-sm w-100 fw-medium">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Resolver Ejercicio 9
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card h-100 border shadow-sm rounded-3">
+                        <div class="card-body p-3 d-flex flex-column">
+                            <span class="badge bg-warning-subtle text-dark border align-self-start mb-2">Práctica 10</span>
+                            <h6 class="fw-bold mb-1">Ejercicio CSS 10</h6>
+                            <p class="small text-secondary flex-grow-1 mb-3">
+                                Construcción de un esquema completo de sitio web utilizando técnicas de layout.
+                            </p>
+                            <a href="17_ejercicios.html#ej_10" class="btn btn-outline-warning btn-sm w-100 fw-medium">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Resolver Ejercicio 10
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </article>
 
         <!-- Navegación entre Temas -->
