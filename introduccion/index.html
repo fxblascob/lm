@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 1: Introducción a los Lenguajes de Marcas | LMSGI</title>
+    <meta name="description" content="Tema 1 de LMSGI: Codificación de la información (binario, ASCII, Unicode), historia y tipos de lenguajes de marcas, ISO y W3C, HTML, XML, XHTML y JSON.">
+
+    <!-- Bootstrap 5.3 CSS (CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Bootstrap Icons (CDN) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+        }
+        .content-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        code, kbd, samp, pre {
+            font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        .code-block {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.55;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .code-block code {
+            color: inherit;
+        }
+        .code-token-keyword { color: #cba6f7; font-weight: 600; }
+        .code-token-string { color: #a6e3a1; }
+        .code-token-number { color: #fab387; }
+        .code-token-comment { color: #6c7086; font-style: italic; }
+        .code-token-tag { color: #f38ba8; }
+        .code-token-attr { color: #f9e2af; }
+        .code-token-key { color: #89b4fa; }
+        .sticky-summary {
+            position: sticky;
+            top: 5rem;
+        }
+        section[id] {
+            scroll-margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Barra de Navegación Superior Fija -->
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
+        <div class="container-xl">
+            <!-- Botón Hamburguesa Offcanvas -->
+            <button class="btn btn-outline-light btn-sm me-2 d-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav" aria-controls="offcanvasNav" aria-label="Abrir temario">
+                <i class="bi bi-list fs-5"></i>
+                <span class="d-none d-sm-inline fw-semibold">Temario</span>
+            </button>
+
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 me-auto" href="../index.html">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="36" height="36" class="rounded object-fit-cover">
+                <span class="fw-bold">LMSGI</span>
+                <span class="d-none d-md-inline text-secondary small">| Lenguajes de Marcas</span>
+            </a>
+
+            <!-- Enlaces directos a módulos en Desktop -->
+            <nav class="d-none d-lg-flex align-items-center gap-1 me-3" aria-label="Módulos del curso">
+                <a class="btn btn-sm btn-danger text-white fw-medium" href="./index.html" aria-current="page">Introducción</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../html/index.html">HTML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../css/index.html">CSS</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../xml/index.html">XML</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../javascript/index.html">JavaScript</a>
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="../php/index.html">PHP</a>
+            </nav>
+
+            <!-- Botón Rápido de Retorno -->
+            <a href="../index.html" class="btn btn-sm btn-outline-warning d-flex align-items-center gap-1">
+                <i class="bi bi-house-door"></i>
+                <span class="d-none d-sm-inline">Portada</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. Menú Lateral Offcanvas -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title d-flex align-items-center gap-2" id="offcanvasNavLabel">
+                <i class="bi bi-file-earmark-text text-danger"></i> Introducción a los LM
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body p-3">
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Apartados del Tema 1</h6>
+            <div class="list-group list-group-flush mb-4">
+                <a href="#sec-codificacion" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-cpu text-danger"></i> 1. Codificación de la Información
+                </a>
+                <a href="#sec-lenguajes-marcas" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-tags text-danger"></i> 2. Lenguajes de Marcas
+                </a>
+                <a href="#sec-html" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-filetype-html text-primary"></i> 3. HTML
+                </a>
+                <a href="#sec-xml" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-filetype-xml text-success"></i> 4. XML
+                </a>
+                <a href="#sec-xhtml" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-code-slash text-info"></i> 5. XHTML
+                </a>
+                <a href="#sec-json" class="list-group-item list-group-item-action bg-transparent text-light border-secondary d-flex align-items-center gap-2 py-2" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-filetype-json text-warning"></i> 6. JSON
+                </a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Descargas del Tema</h6>
+            <div class="d-flex flex-column gap-1 small mb-4">
+                <a href="../tema1_introduccion_lm.pdf" target="_blank" class="text-light-emphasis text-decoration-none py-1">
+                    <i class="bi bi-file-earmark-pdf text-danger me-2"></i> Tema 1 en PDF
+                </a>
+                <a href="../tema1_introduccion_lm.odt" class="text-light-emphasis text-decoration-none py-1">
+                    <i class="bi bi-file-earmark-word text-primary me-2"></i> Tema 1 editable (ODT)
+                </a>
+            </div>
+
+            <h6 class="text-uppercase text-secondary small fw-bold mb-2">Otros Módulos</h6>
+            <div class="d-flex flex-column gap-1 small">
+                <a href="../html/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-html text-primary me-2"></i> Módulo HTML</a>
+                <a href="../css/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-palette text-warning me-2"></i> Módulo CSS</a>
+                <a href="../xml/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-xml text-success me-2"></i> Módulo XML</a>
+                <a href="../javascript/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-js text-warning me-2"></i> Módulo JavaScript</a>
+                <a href="../php/index.html" class="text-light-emphasis text-decoration-none py-1"><i class="bi bi-filetype-php text-info me-2"></i> Módulo PHP</a>
+            </div>
+
+            <div class="mt-4 pt-3 border-top border-secondary text-center">
+                <a href="../index.html" class="btn btn-outline-warning btn-sm w-100">
+                    <i class="bi bi-house-door me-1"></i> Ir al Menú Principal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Contenido Principal -->
+    <main class="container-xl my-4 flex-grow-1">
+
+        <!-- Breadcrumb de Navegación -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb bg-body-tertiary p-2 px-3 rounded-pill border small">
+                <li class="breadcrumb-item"><a href="../index.html" class="text-decoration-none text-secondary"><i class="bi bi-house-door me-1"></i>Inicio</a></li>
+                <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Tema 1: Introducción a los Lenguajes de Marcas</li>
+            </ol>
+        </nav>
+
+        <!-- Hero Header del Tema -->
+        <div class="card bg-danger-subtle border-danger-subtle shadow-sm rounded-4 mb-4">
+            <div class="card-body p-4 p-lg-5">
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge text-bg-danger px-3 py-2 fs-6 fw-semibold"><i class="bi bi-book me-1"></i> Tema 1 · Fundamentos</span>
+                    <span class="badge bg-dark text-white px-3 py-2 fs-6">Teoría Completa</span>
+                </div>
+                <h1 class="display-5 fw-bold text-dark mb-3">Introducción a los Lenguajes de Marcas</h1>
+                <p class="lead text-dark-emphasis mb-4">
+                    Codificación de la información (datos binarios, ASCII y Unicode), evolución histórica y clasificación de los lenguajes de marcas, organismos de estandarización (ISO y W3C) y visión general de HTML, XML, XHTML y JSON.
+                </p>
+
+                <!-- Píldoras de Acceso Rápido a Secciones -->
+                <div class="d-flex flex-wrap gap-2 pt-3 border-top border-danger-subtle">
+                    <a href="#sec-codificacion" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 1. Codificación</a>
+                    <a href="#sec-lenguajes-marcas" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 2. Lenguajes de marcas</a>
+                    <a href="#sec-html" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 3. HTML</a>
+                    <a href="#sec-xml" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 4. XML</a>
+                    <a href="#sec-xhtml" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 5. XHTML</a>
+                    <a href="#sec-json" class="btn btn-sm btn-outline-dark bg-white rounded-pill"><i class="bi bi-hash"></i> 6. JSON</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Columna Principal de Contenido (9 cols en lg) -->
+            <div class="col-lg-9 d-flex flex-column gap-4">
+
+                <!-- 1. Codificación de la Información -->
+                <section id="sec-codificacion" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-4 pb-2 border-bottom">
+                        <span class="badge text-bg-danger fs-6">1</span>
+                        <h2 class="h3 mb-0 fw-bold">Codificación de la Información</h2>
+                    </div>
+
+                    <!-- 1.1 Datos Binarios -->
+                    <div id="sec-binarios" class="mb-4">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-danger me-1">1.1</span> Datos Binarios
+                        </h3>
+                        <p>
+                            Cualquier dato que no sea texto se considera <strong>dato binario</strong>. Por ejemplo: música, vídeo, imagen, un archivo Excel, un programa, etc.
+                        </p>
+                        <p>
+                            La forma de codificar ese tipo de datos a su forma binaria es muy variable. Por ejemplo, en el caso de las imágenes cada punto (píxel) de la imagen se codifica utilizando su nivel de rojo, verde y azul. De modo que una sola imagen produce millones de dígitos binarios.
+                        </p>
+                        <p>
+                            En cualquier caso, sea cual sea la información que estamos codificando en binario, para poder acceder a dicha información el ordenador necesita el software que sepa cómo decodificar la misma, es decir, saber qué significa cada dígito binario para traducirlo a una forma más humana. Eso solo es posible utilizando el mismo software con el que se codificó o bien otro software capaz de entender la información codificada.
+                        </p>
+
+                        <div class="alert alert-light border border-start border-4 border-danger shadow-sm mb-0">
+                            <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-key text-danger me-1"></i> Ideas clave</h4>
+                            <ul class="mb-0 small text-secondary d-flex flex-column gap-1">
+                                <li>En un ordenador toda la información está en binario.</li>
+                                <li>Existen muchas codificaciones posibles para las imágenes (RGB) y otros archivos.</li>
+                                <li>Para acceder a esta información se necesitará conocer el software que la decodifique.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 1.2 Datos tipo texto -->
+                    <div id="sec-texto" class="pt-3 border-top">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-danger me-1">1.2</span> Datos tipo texto
+                        </h3>
+                        <p>
+                            El texto es quizá la forma más humana de representar información. Antes de la llegada del ordenador, la información se transmitía mediante documentos o libros en papel. Esa forma de transmitir es milenaria y sigue siendo la forma más habitual de transmitir información entre humanos; incluso con la tecnología actual, aplicaciones como Twitter o WhatsApp siguen usando el texto como formato fundamental para transmitir información.
+                        </p>
+                        <p>
+                            En cuanto apareció la informática como una ciencia digital, apareció también el problema de cómo codificar texto en forma de dígitos binarios para hacerlo representable en el ordenador. La forma habitual ha sido codificar cada carácter en una serie de números binarios, de modo que, por ejemplo, el carácter <code>A</code> se codifica como <code>01000001</code> y la <code>B</code> como <code>01000010</code>.
+                        </p>
+                        <p>
+                            El problema surgió por la falta de estandarización: la letra <code>A</code> se podía codificar de forma distinta en diferentes ordenadores y así nos encontrábamos con un problema al querer pasar datos de un ordenador a otro. Poco a poco aparecieron estándares para intentar que todo el hardware y software codificara los caracteres igual.
+                        </p>
+                        <p>
+                            El problema de la codificación de texto que hacía incompatibles los documentos de texto entre diferentes sistemas se redujo cuando se ideó en <strong>1967</strong> un código estándar por parte de la Agencia de Estándares Norteamericana (<strong>ANSI</strong>), dicho código es el llamado <strong>ASCII</strong> (<em>American Standard Code for Information Interchange</em>, código estándar americano para el intercambio de información). El código utiliza el alfabeto inglés (que utiliza caracteres latinos) y para codificar todos los posibles caracteres necesarios para escribir en inglés se ideó un sistema de <strong>7 bits</strong> (con 7 bits se pueden representar <strong>128 símbolos</strong>, suficientes para todas las letras del alfabeto inglés, en minúsculas y mayúsculas, caracteres de puntuación, símbolos especiales e incluso símbolos de control).
+                        </p>
+
+                        <p class="fw-semibold mb-2">El código ASCII es el siguiente:</p>
+                        <figure class="text-center my-4">
+                            <img src="./img/tabla_ascii.png" alt="Tabla de caracteres ASCII de control e imprimibles" class="img-fluid rounded-3 border shadow-sm bg-white p-2">
+                            <figcaption class="figure-caption mt-2">Tabla estándar ASCII de 7 bits (caracteres de control 0–31 y 127, y caracteres imprimibles 32–126).</figcaption>
+                        </figure>
+
+                        <!-- Resumen de estándares de codificación -->
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-6">
+                                <div class="card h-100 border bg-body-tertiary rounded-3">
+                                    <div class="card-body p-3">
+                                        <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-1-circle text-danger me-1"></i> Código ASCII</h4>
+                                        <p class="small text-secondary mb-0">
+                                            Creado en <strong>1967</strong>. Utiliza <strong>7 bits</strong> para representar <strong>128 símbolos</strong>: alfabeto inglés, dígitos, signos de puntuación y caracteres especiales/de control.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border bg-body-tertiary rounded-3">
+                                    <div class="card-body p-3">
+                                        <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-2-circle text-danger me-1"></i> ASCII extendido</h4>
+                                        <p class="small text-secondary mb-0">
+                                            Utiliza <strong>8 bits</strong> (256 símbolos): los 128 símbolos del ASCII original más otros 128 para símbolos de otros idiomas (como tildes o la <code>ñ</code>).
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card border border-danger-subtle bg-danger-subtle bg-opacity-25 rounded-3">
+                                    <div class="card-body p-3">
+                                        <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-globe text-danger me-1"></i> UNICODE</h4>
+                                        <p class="small text-dark mb-2">Consigue incluir todos los caracteres de todas las lenguas mediante distintos formatos de codificación:</p>
+                                        <ul class="small text-secondary mb-0 d-flex flex-column gap-2">
+                                            <li><strong>UTF-8:</strong> utiliza 8 bits (1 byte) para ASCII e ISO-8859-1, 2 bytes para cirílico, griego, etc., 3 bytes para chino o japonés y 4 bytes para símbolos especiales.</li>
+                                            <li><strong>UTF-16:</strong> utiliza 2 bytes para los dos primeros grupos anteriores (ASCII, ISO-8859-1, cirílico, griego, etc.), 3 bytes para chino o japonés y 4 para el resto.</li>
+                                            <li><strong>UTF-32:</strong> utiliza 4 bytes para todos los sistemas. Es más sencillo de gestionar, aunque ocupa más espacio, por lo que apenas se utiliza.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. Lenguajes de marcas -->
+                <section id="sec-lenguajes-marcas" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                        <span class="badge text-bg-danger fs-6">2</span>
+                        <h2 class="h3 mb-0 fw-bold">Lenguajes de marcas</h2>
+                    </div>
+
+                    <p class="lead fs-6 text-secondary mb-4">
+                        Las anotaciones incluidas en los documentos de texto han dado lugar a los lenguajes de marcas.
+                    </p>
+
+                    <!-- 2.1 Introducción Histórica -->
+                    <div id="sec-historia" class="mb-4">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-danger me-1">2.1</span> Introducción Histórica
+                        </h3>
+
+                        <div class="list-group mb-4 shadow-sm">
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">Inicios</span>
+                                <strong>Procesadores de texto:</strong> Primer software en añadir marcas para dar información extra al texto plano.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">IBM / GML</span>
+                                <strong>Charles Goldfarb:</strong> Padre de los lenguajes de marcas. Ayudó a realizar el GML de IBM e ideó posteriormente el SGML.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">Años 70</span>
+                                <strong>TeX y LaTeX:</strong> En los 70, Donald Knuth crea TeX para documentos científicos (unos 300 comandos). Leslie Lamport define LaTeX como evolución de TeX.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">1976 / 1985</span>
+                                <strong>PostScript:</strong> John Warnock lo inicia en 1976 y en 1985 funda Adobe, donde lo desarrolla.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">1986</span>
+                                <strong>SGML:</strong> Versión de GML. Estándar de documentos de texto con etiquetas de marcado. Padre del XML y base del HTML.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-secondary-subtle text-dark border me-2">1987</span>
+                                <strong>RTF (Rich Text Format):</strong> Creado por Microsoft en 1987. WordPad lo utiliza como formato nativo; produce documentos de texto que incluyen anotaciones de formato.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">Web</span>
+                                <strong>HTML:</strong> Creado por Tim Berners-Lee a partir del SGML. Su éxito radica en el de Internet; aparecen los navegadores para mostrar formatos más avanzados y visuales.
+                            </div>
+                            <div class="list-group-item py-3">
+                                <span class="badge bg-success-subtle text-success border border-success-subtle me-2">1998</span>
+                                <strong>XML:</strong> En 1998 el W3C (<em>World Wide Web Consortium</em>) publica el XML (<em>eXtensible Markup Language</em>). Más sencillo que SGML y más potente que HTML, creado para el intercambio de información.
+                            </div>
+                        </div>
+
+                        <!-- Ejemplo de LaTeX -->
+                        <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-code-square text-danger me-1"></i> Ejemplo de código LaTeX</h4>
+                        <pre class="code-block mb-3"><code><span class="code-token-keyword">\documentclass</span>[12pt]{<span class="code-token-string">article</span>}
+<span class="code-token-keyword">\usepackage</span>{<span class="code-token-string">amsmath</span>}
+<span class="code-token-keyword">\title</span>{<span class="code-token-string">\Ejemplo</span>}
+<span class="code-token-keyword">\begin</span>{<span class="code-token-string">document</span>}
+Este es el texto ejemplo de <span class="code-token-keyword">\LaTeX</span>{}
+Con datos en <span class="code-token-keyword">\emph</span>{cursiva} o <span class="code-token-keyword">\textbf</span>{negrita}.
+Ejemplo de f\'ormula
+<span class="code-token-keyword">\begin</span>{<span class="code-token-string">align</span>}
+E &amp;= mc^2
+<span class="code-token-keyword">\end</span>{<span class="code-token-string">align</span>}
+<span class="code-token-keyword">\end</span>{<span class="code-token-string">document</span>}</code></pre>
+
+                        <p class="small text-secondary mb-2">Que con un traductor daría lugar al siguiente resultado:</p>
+                        <figure class="bg-white border rounded-3 p-3 text-center shadow-sm mb-4">
+                            <img src="./img/ejemplo_latex.png" alt="Resultado renderizado del ejemplo de código LaTeX con la fórmula E = mc^2" class="img-fluid">
+                        </figure>
+
+                        <!-- Ejemplo de PostScript -->
+                        <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-printer text-danger me-1"></i> Ejemplo de PostScript</h4>
+                        <pre class="code-block mb-0"><code><span class="code-token-comment">%!PS</span>
+<span class="code-token-keyword">/Courier</span>             <span class="code-token-comment">% Elige el tipo de letra</span>
+<span class="code-token-number">20</span> <span class="code-token-keyword">selectfont</span>        <span class="code-token-comment">% Establece el tamaño de la letra y</span>
+                     <span class="code-token-comment">% la toma como el tipo de letra en uso</span>
+<span class="code-token-number">72 500</span> <span class="code-token-keyword">moveto</span>        <span class="code-token-comment">% Coloca el cursor en las coordenadas</span>
+                     <span class="code-token-comment">% 72, 500 (contando los píxeles desde</span>
+                     <span class="code-token-comment">% la esquina izquierda de la página)</span>
+<span class="code-token-string">(Hola mundo!)</span> <span class="code-token-keyword">show</span>   <span class="code-token-comment">% Escribe el texto entre paréntesis,</span>
+<span class="code-token-keyword">showpage</span>             <span class="code-token-comment">% Imprime el resultado</span></code></pre>
+                    </div>
+
+                    <!-- 2.2 Tipos de Lenguajes de marcas -->
+                    <div id="sec-tipos" class="mb-4 pt-3 border-top">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-danger me-1">2.2</span> Tipos de Lenguajes de marcas
+                        </h3>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card h-100 border rounded-3 bg-body-tertiary">
+                                    <div class="card-body p-3 d-flex flex-column">
+                                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle align-self-start mb-2">Presentación</span>
+                                        <h4 class="h6 fw-bold text-dark">Orientados a la presentación</h4>
+                                        <p class="small text-secondary mb-3 flex-grow-1">
+                                            Al texto se añaden marcas que indican cómo presentarlo visualmente.
+                                        </p>
+                                        <div class="small fw-semibold text-dark border-top pt-2">
+                                            <i class="bi bi-bookmark-check text-primary me-1"></i> Procesadores de texto y HTML
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border rounded-3 bg-body-tertiary">
+                                    <div class="card-body p-3 d-flex flex-column">
+                                        <span class="badge bg-success-subtle text-success border border-success-subtle align-self-start mb-2">Descripción</span>
+                                        <h4 class="h6 fw-bold text-dark">Orientados a la descripción</h4>
+                                        <p class="small text-secondary mb-3 flex-grow-1">
+                                            Las marcas dan significado al texto pero no indican cómo presentarlo (por ejemplo, si el texto es un nombre o una matrícula de coche). Ideales para almacenar datos.
+                                        </p>
+                                        <div class="small fw-semibold text-dark border-top pt-2">
+                                            <i class="bi bi-bookmark-check text-success me-1"></i> SGML y XML
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card h-100 border rounded-3 bg-body-tertiary">
+                                    <div class="card-body p-3 d-flex flex-column">
+                                        <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle align-self-start mb-2">Procedimientos</span>
+                                        <h4 class="h6 fw-bold text-dark">Orientados a procedimientos</h4>
+                                        <p class="small text-secondary mb-3 flex-grow-1">
+                                            Las marcas se interpretan como órdenes. El archivo contiene instrucciones a realizar con el texto.
+                                        </p>
+                                        <div class="small fw-semibold text-dark border-top pt-2">
+                                            <i class="bi bi-bookmark-check text-warning-emphasis me-1"></i> LaTeX o PostScript
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2.3 Organizaciones Desarrolladoras -->
+                    <div id="sec-organizaciones" class="pt-3 border-top">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-danger me-1">2.3</span> Organizaciones Desarrolladoras de Lenguajes de Marcas
+                        </h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 border rounded-3">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-dark text-white">ISO</span>
+                                            <h4 class="h6 fw-bold mb-0">Organización Internacional para la Estandarización</h4>
+                                        </div>
+                                        <ul class="small text-secondary mb-0 d-flex flex-column gap-1 mt-3">
+                                            <li>Se crea en <strong>1947</strong>, agrupa a 163 países y tiene su sede en Ginebra.</li>
+                                            <li>Sus normas son voluntarias y no obligatorias.</li>
+                                            <li>En <strong>1986</strong> publica <strong>SGML</strong> (<em>Standard Generalized Markup Language</em>).</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border rounded-3">
+                                    <div class="card-body p-4">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <span class="badge bg-primary text-white">W3C</span>
+                                            <h4 class="h6 fw-bold mb-0">World Wide Web Consortium</h4>
+                                        </div>
+                                        <ul class="small text-secondary mb-0 d-flex flex-column gap-1 mt-3">
+                                            <li>Se crea en <strong>1994</strong> por <strong>Tim Berners-Lee</strong>.</li>
+                                            <li>Función: tutelar el crecimiento y organización de la web.</li>
+                                            <li>Normalizó el <strong>HTML</strong>.</li>
+                                            <li>En <strong>1998</strong> aparece <strong>XML</strong>.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. HTML -->
+                <section id="sec-html" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                        <span class="badge text-bg-primary fs-6">3</span>
+                        <h2 class="h3 mb-0 fw-bold">HTML <span class="fs-6 fw-normal text-secondary">(HyperText Markup Language)</span></h2>
+                    </div>
+
+                    <p>
+                        <strong>Tim Berners-Lee</strong> utilizó SGML para definir un nuevo lenguaje de etiquetas que llamó <em>HyperText Markup Language</em> (lenguaje de marcado de hipertexto) para crear documentos transportables a través de Internet en los que fuera posible el <strong>hipertexto</strong>; es decir, que determinadas palabras marcadas de forma especial permitieran abrir un documento relacionado con ellas.
+                    </p>
+                    <p>
+                        A pesar de tardar en ser aceptado, HTML fue un éxito rotundo y la causa indudable del éxito de Internet. Hoy en día casi todo en Internet se ve a través de documentos HTML, que popularmente se denominan páginas web.
+                    </p>
+
+                    <!-- 3.1 Etiquetas y Atributos -->
+                    <div id="sec-etiquetas" class="pt-3 border-top">
+                        <h3 class="h5 fw-bold text-dark mb-3">
+                            <span class="text-primary me-1">3.1</span> Etiquetas y Atributos
+                        </h3>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="card h-100 border bg-body-tertiary rounded-3">
+                                    <div class="card-body p-3">
+                                        <h4 class="h6 fw-bold text-primary mb-2"><i class="bi bi-code me-1"></i> Etiqueta</h4>
+                                        <p class="small text-secondary mb-2">
+                                            Texto entre <code>&lt; &gt;</code>. Existen etiquetas de inicio y de fin.
+                                        </p>
+                                        <p class="small mb-0">
+                                            <strong>Ejemplo:</strong> <code>&lt;head&gt;</code>, <code>&lt;/head&gt;</code>; <code>&lt;h1&gt;</code>, <code>&lt;/h1&gt;</code>; <code>&lt;p&gt;</code>, <code>&lt;/p&gt;</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 border bg-body-tertiary rounded-3">
+                                    <div class="card-body p-3">
+                                        <h4 class="h6 fw-bold text-primary mb-2"><i class="bi bi-sliders me-1"></i> Atributo</h4>
+                                        <p class="small text-secondary mb-2">
+                                            Par <strong>nombre-valor</strong> dentro de la etiqueta de inicio.
+                                        </p>
+                                        <p class="small mb-0">
+                                            <strong>Ejemplo:</strong> <code>&lt;a href="http://www.google.es"&gt;enlace a google&lt;/a&gt;</code>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h4 class="h6 fw-bold text-dark mb-2">Ejemplo de documento HTML</h4>
+                        <pre class="code-block mb-3"><code><span class="code-token-tag">&lt;html&gt;</span>
+  <span class="code-token-tag">&lt;head&gt;</span>
+    <span class="code-token-tag">&lt;meta</span> <span class="code-token-attr">http-equiv</span>=<span class="code-token-string">"Content-Type"</span> <span class="code-token-attr">content</span>=<span class="code-token-string">"text/html; charset=utf-8"</span><span class="code-token-tag">&gt;&lt;/meta&gt;</span>
+  <span class="code-token-tag">&lt;/head&gt;</span>
+  <span class="code-token-tag">&lt;body&gt;</span>
+    <span class="code-token-tag">&lt;h1&gt;</span>Encabezado de nivel 1.<span class="code-token-tag">&lt;/h1&gt;</span>
+    <span class="code-token-tag">&lt;a</span> <span class="code-token-attr">href</span>=<span class="code-token-string">"http://www.google.es"</span><span class="code-token-tag">&gt;</span>Texto del enlace<span class="code-token-tag">&lt;/a&gt;</span> <span class="code-token-comment">&lt;!-- esto es un comentario --&gt;</span>
+  <span class="code-token-tag">&lt;/body&gt;</span>
+<span class="code-token-tag">&lt;/html&gt;</span></code></pre>
+
+                        <p class="small text-secondary mb-2">Produce la siguiente visualización en el navegador:</p>
+                        <div class="card border shadow-sm rounded-3 overflow-hidden">
+                            <div class="card-header bg-body-tertiary py-2 px-3 d-flex align-items-center gap-2 small text-muted">
+                                <i class="bi bi-window"></i> Vista previa del navegador
+                            </div>
+                            <div class="card-body bg-white p-4">
+                                <p class="h2 fw-bold text-dark mb-2">Encabezado de nivel 1.</p>
+                                <a href="https://www.google.es" target="_blank" rel="noopener noreferrer">Texto del enlace</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. XML -->
+                <section id="sec-xml" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                        <span class="badge text-bg-success fs-6">4</span>
+                        <h2 class="h3 mb-0 fw-bold">XML <span class="fs-6 fw-normal text-secondary">(Extensible Markup Language)</span></h2>
+                    </div>
+
+                    <p>
+                        En el 2000 aparece el <strong>XML</strong> (<em>Extensible Markup Language</em>) como complemento al HTML. XML y HTML son lenguajes muy diferentes: su función principal es ayudarnos a organizar contenidos y eso hace que los documentos XML sean portables hacia diferentes tipos de aplicaciones.
+                    </p>
+                    <p>
+                        Aunque ambos se basan en el SGML, cada uno ha sido diseñado para cumplir distintas funciones: el <strong>XML</strong> sirve para estructurar información de cualquier tipo, mientras que el <strong>HTML</strong> sirve para estructurar el contenido de texto de un documento web y su metainformación y presentarla a través de un navegador.
+                    </p>
+
+                    <h3 class="h6 fw-bold text-dark mt-3 mb-2"><i class="bi bi-filetype-xml text-success me-1"></i> Ejemplo de XML</h3>
+                    <pre class="code-block mb-0"><code><span class="code-token-tag">&lt;biblioteca&gt;</span>
+    <span class="code-token-tag">&lt;libro&gt;</span>
+        <span class="code-token-tag">&lt;titulo&gt;</span>El juego de Ender<span class="code-token-tag">&lt;/titulo&gt;</span>
+        <span class="code-token-tag">&lt;autor&gt;</span>Orson Scott Card<span class="code-token-tag">&lt;/autor&gt;</span>
+        <span class="code-token-tag">&lt;paginas&gt;</span>325<span class="code-token-tag">&lt;/paginas&gt;</span>
+    <span class="code-token-tag">&lt;/libro&gt;</span>
+    <span class="code-token-tag">&lt;libro&gt;</span>
+        <span class="code-token-tag">&lt;titulo&gt;</span>La tabla de Flandes<span class="code-token-tag">&lt;/titulo&gt;</span>
+        <span class="code-token-tag">&lt;autor</span> <span class="code-token-attr">nacimiento</span>=<span class="code-token-string">"1951"</span><span class="code-token-tag">&gt;</span>Arturo Pérez Reverte<span class="code-token-tag">&lt;/autor&gt;</span>
+        <span class="code-token-tag">&lt;paginas&gt;</span>384<span class="code-token-tag">&lt;/paginas&gt;</span>
+    <span class="code-token-tag">&lt;/libro&gt;</span>
+<span class="code-token-tag">&lt;/biblioteca&gt;</span></code></pre>
+                </section>
+
+                <!-- 5. XHTML -->
+                <section id="sec-xhtml" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                        <span class="badge text-bg-info text-dark fs-6">5</span>
+                        <h2 class="h3 mb-0 fw-bold">XHTML <span class="fs-6 fw-normal text-secondary">(Extensible HyperText Markup Language)</span></h2>
+                    </div>
+
+                    <p class="mb-0">
+                        <em>Extensible HyperText Markup Language</em> fue diseñado para extender HTML y permitir la compatibilidad con nuevos formatos de datos como vídeos, imágenes o lenguajes de scripting. A finales de <strong>2009</strong> se interrumpe el trabajo sobre la versión 2.0 porque el Grupo de Trabajo de Tecnología de Aplicación de Hipertexto Web (<strong>WHATWG</strong>) estaba trabajando en <strong>HTML5</strong> al mismo tiempo, y este último fue el estándar que al final prevaleció. Sin embargo, HTML5 ya no es una aplicación de SGML, sino un lenguaje generalizado compatible con las versiones anteriores.
+                    </p>
+                </section>
+
+                <!-- 6. JSON -->
+                <section id="sec-json" class="card content-card shadow-sm p-4">
+                    <div class="d-flex align-items-center gap-2 mb-3 pb-2 border-bottom">
+                        <span class="badge text-bg-warning text-dark fs-6">6</span>
+                        <h2 class="h3 mb-0 fw-bold">JSON <span class="fs-6 fw-normal text-secondary">(JavaScript Object Notation)</span></h2>
+                    </div>
+
+                    <p>
+                        Se trata de una notación de datos procedente del lenguaje JavaScript estándar (concretamente <strong>ECMAScript</strong> de 1999). En el año 2002 se le daba soporte desde muchos de los navegadores y su fama ha sido tal que ahora se ha convertido en una notación independiente de JavaScript que compite claramente con XML.
+                    </p>
+                    <p>
+                        Se trata de una notación que realmente no se considera lenguaje de marcas, ya que no hay diferencia en el texto a través de etiquetas, sino que se basa en que el texto se divide en <strong>dato</strong> y <strong>metadato</strong>. De modo que el símbolo de los dos puntos (<code>:</code>) separa el metadato del dato. Por otro lado, los símbolos de llave (<code>{ }</code>) y corchete (<code>[ ]</code>) permiten agrupar de manera correcta los datos.
+                    </p>
+
+                    <h3 class="h6 fw-bold text-dark mt-3 mb-2"><i class="bi bi-filetype-json text-warning me-1"></i> Ejemplo de JSON</h3>
+                    <pre class="code-block mb-0"><code>{
+    <span class="code-token-key">"nombre"</span>: <span class="code-token-string">"Jorge"</span>,
+    <span class="code-token-key">"apellido1"</span>: <span class="code-token-string">"Sánchez"</span>,
+    <span class="code-token-key">"dirección"</span>: {
+        <span class="code-token-key">"calle"</span>: <span class="code-token-string">"C/ Falsa nº 0"</span>,
+        <span class="code-token-key">"localidad"</span>: <span class="code-token-string">"Palencia"</span>,
+        <span class="code-token-key">"código Postal"</span>: <span class="code-token-string">"34001"</span>,
+        <span class="code-token-key">"país"</span>: <span class="code-token-string">"España"</span>
+    },
+    <span class="code-token-key">"teléfonos"</span>: [
+        {
+            <span class="code-token-key">"tipo"</span>: <span class="code-token-string">"fijo"</span>,
+            <span class="code-token-key">"número"</span>: <span class="code-token-string">"999 999 999"</span>
+        },
+        {
+            <span class="code-token-key">"tipo"</span>: <span class="code-token-string">"móvil"</span>,
+            <span class="code-token-key">"number"</span>: <span class="code-token-string">"666 666 666"</span>
+        }
+    ]
+}</code></pre>
+                </section>
+
+                <!-- Paginación Inferior -->
+                <nav class="d-flex flex-wrap justify-content-between align-items-center gap-2 mt-2 pt-3 border-top" aria-label="Navegación de módulos">
+                    <a href="../index.html" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                        <i class="bi bi-arrow-left"></i>
+                        <span>Volver a la Portada</span>
+                    </a>
+                    <a href="../html/index.html" class="btn btn-primary fw-semibold d-flex align-items-center gap-2">
+                        <span>Siguiente Módulo: HTML</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+                </nav>
+
+            </div>
+
+            <!-- Columna Lateral Derecha (3 cols en lg): Índice Rápido Flotante -->
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-summary">
+                    <div class="card border content-card shadow-sm p-3">
+                        <h6 class="fw-bold text-uppercase text-secondary small mb-3">
+                            <i class="bi bi-bookmark me-1"></i> En esta página
+                        </h6>
+                        <nav class="nav flex-column small gap-1" aria-label="Índice del tema">
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-codificacion"><i class="bi bi-chevron-right text-danger me-1"></i> 1. Codificación</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-binarios">1.1 Datos Binarios</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-texto">1.2 Datos tipo texto</a>
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-lenguajes-marcas"><i class="bi bi-chevron-right text-danger me-1"></i> 2. Lenguajes de marcas</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-historia">2.1 Historia</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-tipos">2.2 Tipos</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-organizaciones">2.3 Organizaciones</a>
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-html"><i class="bi bi-chevron-right text-primary me-1"></i> 3. HTML</a>
+                            <a class="nav-link ps-4 py-1 text-secondary text-truncate" href="#sec-etiquetas">3.1 Etiquetas y atributos</a>
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-xml"><i class="bi bi-chevron-right text-success me-1"></i> 4. XML</a>
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-xhtml"><i class="bi bi-chevron-right text-info me-1"></i> 5. XHTML</a>
+                            <a class="nav-link px-2 py-1 text-dark fw-semibold text-truncate" href="#sec-json"><i class="bi bi-chevron-right text-warning me-1"></i> 6. JSON</a>
+                        </nav>
+
+                        <div class="border-top mt-3 pt-3 d-flex flex-column gap-2">
+                            <a href="../tema1_introduccion_lm.pdf" target="_blank" class="btn btn-outline-danger btn-sm w-100 d-flex align-items-center justify-content-center gap-1">
+                                <i class="bi bi-filetype-pdf"></i> Ver PDF Original
+                            </a>
+                            <a href="../tema1_introduccion_lm.odt" class="btn btn-outline-secondary btn-sm w-100 d-flex align-items-center justify-content-center gap-1">
+                                <i class="bi bi-download"></i> Descargar ODT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- 4. Pie de Página Común -->
+    <footer class="bg-dark text-white-50 py-4 mt-auto border-top border-secondary">
+        <div class="container-xl d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <div class="d-flex align-items-center gap-2">
+                <img src="../imagenes/logo.jpg" alt="Logo" width="28" height="28" class="rounded object-fit-cover">
+                <span class="text-light fw-semibold">LMSGI</span>
+                <span class="small">&copy; Lenguajes de Marcas y Sistemas de Gestión de Información</span>
+            </div>
+            <div class="small">
+                <span>Ciclos Formativos de Informática (DAW · DAM · ASIR)</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

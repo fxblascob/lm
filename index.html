@@ -65,6 +65,7 @@
 
             <!-- Enlaces directos a módulos en Desktop -->
             <nav class="d-none d-lg-flex align-items-center gap-1 me-3">
+                <a class="btn btn-sm btn-dark text-light-emphasis" href="./introduccion/index.html">Introducción</a>
                 <a class="btn btn-sm btn-dark text-light-emphasis" href="./html/index.html">HTML</a>
                 <a class="btn btn-sm btn-dark text-light-emphasis" href="./css/index.html">CSS</a>
                 <a class="btn btn-sm btn-dark text-light-emphasis" href="./xml/index.html">XML</a>
@@ -80,6 +81,8 @@
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end shadow">
                     <li><h6 class="dropdown-header">Introducción a los LM</h6></li>
+                    <li><a class="dropdown-item d-flex align-items-center gap-2" href="./introduccion/index.html"><i class="bi bi-book text-danger"></i> Leer en Web (HTML)</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item d-flex align-items-center gap-2" href="./tema1_introduccion_lm.pdf" target="_blank"><i class="bi bi-file-earmark-pdf text-danger"></i> Descargar PDF</a></li>
                     <li><a class="dropdown-item d-flex align-items-center gap-2" href="./tema1_introduccion_lm.odt"><i class="bi bi-file-earmark-word text-primary"></i> Descargar ODT</a></li>
                 </ul>
@@ -108,8 +111,15 @@
                     <div id="colIntro" class="accordion-collapse collapse" data-bs-parent="#accordionTemario">
                         <div class="accordion-body py-2">
                             <ul class="list-unstyled mb-0 d-flex flex-column gap-1 small">
-                                <li><a href="./tema1_introduccion_lm.pdf" target="_blank" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-filetype-pdf text-danger"></i> Tema 1: Teoría completa (PDF)</a></li>
-                                <li><a href="./tema1_introduccion_lm.odt" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-file-earmark text-primary"></i> Tema 1: Formato editable (ODT)</a></li>
+                                <li><a href="./introduccion/index.html" class="text-decoration-none text-light fw-semibold d-flex align-items-center gap-2 py-1"><i class="bi bi-book text-danger"></i> Tema 1: Teoría en Web (HTML)</a></li>
+                                <li><a href="./introduccion/index.html#sec-codificacion" class="text-decoration-none text-light-emphasis py-1 d-block">1. Codificación de la Información</a></li>
+                                <li><a href="./introduccion/index.html#sec-lenguajes-marcas" class="text-decoration-none text-light-emphasis py-1 d-block">2. Lenguajes de marcas</a></li>
+                                <li><a href="./introduccion/index.html#sec-html" class="text-decoration-none text-light-emphasis py-1 d-block">3. HTML</a></li>
+                                <li><a href="./introduccion/index.html#sec-xml" class="text-decoration-none text-light-emphasis py-1 d-block">4. XML</a></li>
+                                <li><a href="./introduccion/index.html#sec-xhtml" class="text-decoration-none text-light-emphasis py-1 d-block">5. XHTML</a></li>
+                                <li><a href="./introduccion/index.html#sec-json" class="text-decoration-none text-light-emphasis py-1 d-block">6. JSON</a></li>
+                                <li class="border-top border-secondary mt-1 pt-1"><a href="./tema1_introduccion_lm.pdf" target="_blank" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-filetype-pdf text-danger"></i> Descargar PDF</a></li>
+                                <li><a href="./tema1_introduccion_lm.odt" class="text-decoration-none text-light-emphasis d-flex align-items-center gap-2 py-1"><i class="bi bi-file-earmark text-primary"></i> Descargar ODT</a></li>
                             </ul>
                         </div>
                     </div>
@@ -273,32 +283,6 @@
             </div>
         </section>
 
-        <!-- Tarjeta Destacada: Tema 1 Introducción -->
-        <section class="card border-0 shadow-sm rounded-4 mb-4 bg-body-tertiary border-start border-4 border-danger">
-            <div class="card-body p-4">
-                <div class="row align-items-center gy-3">
-                    <div class="col-md-8">
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                            <span class="badge bg-danger text-white">Tema 0</span>
-                            <span class="text-muted small">Fundamentos Iniciales</span>
-                        </div>
-                        <h4 class="fw-bold mb-1">Introducción a los Lenguajes de Marcas</h4>
-                        <p class="text-secondary mb-0">
-                            Orígenes históricos de SGML, evolución de HTML y el estándar W3C, características de los lenguajes de etiquetas y clasificación general.
-                        </p>
-                    </div>
-                    <div class="col-md-4 d-flex flex-column flex-sm-row flex-md-column gap-2 justify-content-end">
-                        <a href="./tema1_introduccion_lm.pdf" target="_blank" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center gap-2 shadow-sm">
-                            <i class="bi bi-file-earmark-pdf"></i> Abrir Tema 1 (PDF)
-                        </a>
-                        <a href="./tema1_introduccion_lm.odt" class="btn btn-outline-secondary btn-sm d-flex align-items-center justify-content-center gap-2">
-                            <i class="bi bi-download"></i> Descargar ODT
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Sección de Módulos Temáticos -->
         <section id="modulos" class="mb-4">
             <div class="d-flex align-items-center justify-content-between mb-3">
@@ -309,6 +293,42 @@
             </div>
 
             <div class="row g-4">
+
+                <!-- Módulo 0: Introducción a los LM -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 card-module rounded-4 shadow-sm">
+                        <div class="card-body d-flex flex-column p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="icon-box bg-danger-subtle text-danger">
+                                    <i class="bi bi-file-earmark-text fs-2"></i>
+                                </div>
+                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Tema 1 · Fundamentos</span>
+                            </div>
+                            <h5 class="card-title fw-bold">0. Introducción a los LM</h5>
+                            <p class="card-text text-secondary small flex-grow-1">
+                                Codificación binaria y de texto (ASCII y Unicode), evolución histórica de SGML y estándares ISO/W3C, y visión general de HTML, XML, XHTML y JSON.
+                            </p>
+                            <ul class="list-unstyled small text-muted mb-4 d-flex flex-column gap-1">
+                                <li><i class="bi bi-check2 text-danger me-1"></i> Codificación: Binario, ASCII y Unicode</li>
+                                <li><i class="bi bi-check2 text-danger me-1"></i> Historia, tipos de LM, ISO y W3C</li>
+                                <li><i class="bi bi-check2 text-danger me-1"></i> Fundamentos de HTML, XML, XHTML y JSON</li>
+                            </ul>
+                            <div class="d-flex flex-column gap-2 mt-auto">
+                                <a href="./introduccion/index.html" class="btn btn-danger d-flex align-items-center justify-content-center gap-2">
+                                    Ver Tema Introducción <i class="bi bi-arrow-right"></i>
+                                </a>
+                                <div class="d-flex gap-2">
+                                    <a href="./tema1_introduccion_lm.pdf" target="_blank" class="btn btn-outline-danger btn-sm flex-fill d-flex align-items-center justify-content-center gap-1">
+                                        <i class="bi bi-file-earmark-pdf"></i> PDF
+                                    </a>
+                                    <a href="./tema1_introduccion_lm.odt" class="btn btn-outline-secondary btn-sm flex-fill d-flex align-items-center justify-content-center gap-1">
+                                        <i class="bi bi-download"></i> ODT
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Módulo 1: HTML -->
                 <div class="col-md-6 col-lg-4">
